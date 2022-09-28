@@ -41,12 +41,6 @@
         'Graduate Student',
       ],
     },
-    'marco_esters': {
-       nameFull: 'Marco Esters',
-       titles: [
-         'Web Developer',
-       ],
-    },
     }; 
 
   function buildPerson(person, personId) {
