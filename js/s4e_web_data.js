@@ -14,7 +14,7 @@ picture:'pic_welcome_grad_kclark.png',
 {
 date:'August 15, 2022',
 newsTitle:'Day One',
-message:'The Entropy for Energy Laboratory begins its journey at Johns Hopkins University.',
+message:'The Entropy for Energy Laboratory launches at Johns Hopkins University.',
 picture:'pic_jhu_location.png',
 },
 ];
