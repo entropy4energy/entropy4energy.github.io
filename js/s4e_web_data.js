@@ -6,6 +6,12 @@ message:'The website is live. Visit here for the group&apos;s latest news.',
 picture:'pic_jhu_campus.jpg',
 },
 {
+date:'September 21, 2022',
+newsTitle:'AFLOW School Workshop at JHU',
+message:'Members of the AFLOW Team (JHU and Duke University) organized a morning workshop on topics in computational materials science. The recordings can be found at <a href="http://aflow.org/aflow-school/">aflow.org/aflow-school</a>. It was host by the Department of Materials Science & Engineering and Advanced Research Computing at Hopkins (ARCH).',
+picture:'pic_aflow_school_2022.jpg',
+},
+{
 date:'August 15, 2022',
 newsTitle:'The group welcomes PhD student Keith Clark',
 message:'Keith comes from George Mason University where he studied Chemistry and Mathematics. Welcome Keith!',
