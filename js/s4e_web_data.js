@@ -1,15 +1,21 @@
 const newsItems=[
 {
 date:'September 27, 2022',
-newsTitle:'New JHU group site published',
-message:'New JHU site is up. Visit here for the latest news in the group&apos;s research, publications, and other projects.',
-picture:'pic_jhu.jpg',
+newsTitle:'New group site published',
+message:'The website is live. Visit here for the group&apos;s latest news.',
+picture:'pic_jhu_campus.jpg',
 },
 {
 date:'August 15, 2022',
 newsTitle:'The group welcomes PhD student Keith Clark',
 message:'Keith comes from George Mason University where he studied Chemistry and Mathematics. Welcome Keith!',
 picture:'pic_welcome_grad_kclark.png',
+},
+{
+date:'August 15, 2022',
+newsTitle:'Day One',
+message:'The Entropy for Energy Laboratory begins its journey at Johns Hopkins University.',
+picture:'pic_jhu_location.png',
 },
 ];
 
