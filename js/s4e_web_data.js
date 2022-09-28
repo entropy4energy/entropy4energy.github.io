@@ -1,15 +1,15 @@
 const newsItems=[
 {
+date:'September 27, 2022',
+newsTitle:'New JHU group site published',
+message:'New JHU site is up. Visit here for the latest news in the group&apos;s research, publications, and other projects.',
+picture:'pic_jhu.jpg',
+},
+{
 date:'August 15, 2022',
 newsTitle:'The group welcomes PhD student Keith Clark',
 message:'Keith comes from George Mason University where he studied Chemistry and Mathematics. Welcome Keith!',
 picture:'pic_welcome_grad_kclark.png',
-},
-{
-date:'August 15, 2022',
-newsTitle:'New JHU group site published',
-message:'New JHU site is up. Visit here for the latest news in the group&apos;s research, publications, and other projects.',
-picture:'pic_jhu.jpg',
 },
 ];
 
