@@ -8,7 +8,7 @@ picture:'pic_jhu_campus.jpg',
 {
 date:'September 21, 2022',
 newsTitle:'AFLOW School Workshop at JHU',
-message:'Members of the AFLOW Team (JHU and Duke University) organized a morning workshop on topics in computational materials science. The recordings can be found at <a href="http://aflow.org/aflow-school/">aflow.org/aflow-school</a>. The event was hosted by the Department of Materials Science & Engineering and Advanced Research Computing at Hopkins (ARCH).',
+message:'Members of the AFLOW Team (JHU, Lift Technology, and Duke University) organized a morning workshop on topics in computational materials science. The recordings can be found at <a href="http://aflow.org/aflow-school/">aflow.org/aflow-school</a>. The event was hosted by the Department of Materials Science & Engineering and Advanced Research Computing at Hopkins (ARCH).',
 picture:'pic_aflow_school_2022.jpg',
 },
 {
