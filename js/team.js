@@ -69,7 +69,7 @@
     return (
       '<div class="member' + (person.alumnus ? ' alumnus' : '') + '">'
       + '<div class="member-img">'
-      + '<img src="media/people/' + personId + '.jpg" alt="Portrait of ' + person.fullName + '">'
+      + '<img src="media/team/' + personId + '.jpg" alt="Portrait of ' + person.fullName + '">'
       + '</div>'
       + '<div class="member-data">'
       + '<div class="member-data-name">' + person.nameFull + '</div>'

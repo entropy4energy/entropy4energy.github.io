@@ -15,7 +15,7 @@ document.querySelector('header').innerHTML = '<div class="hero">Entropy for Ener
   +   '<ul>'
   +     '<li><a id="nav_home" href=".">Home</a></li>'
   +     '<li><a id="nav_publications" href="publications.html">Publications</li>'
-  +     '<li><a id="nav_people" href="people.html">People</a></li>'
+  +     '<li><a id="nav_team" href="team.html">Team</a></li>'
   +     '<li><a id="nav_news" href="news.html">News</a></li>'
   +     '<li><a id="nav_jobs" href="jobs.html">Jobs</a></li>'
   +   '</ul>'
