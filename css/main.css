@@ -125,7 +125,6 @@ footer {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding-bottom=0 !important;
     padding: 10px 0;
 }
 footer img {
