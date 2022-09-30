@@ -126,6 +126,7 @@ footer {
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 10px 0;
+    align-items: center;
 }
 footer img {
     height: 100px;
