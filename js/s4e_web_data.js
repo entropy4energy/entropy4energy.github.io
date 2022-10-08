@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'October 05, 2022',
+newsTitle:'Prof. Oses presents to JHU&apos;s Materials Graduate Society',
+message:'Prof. Oses presents to graduate students on &quot;Materials Informatics with the aflow.org repositories&quot;.',
+picture:'pic_mgs_meet_greet_2022.jpg',
+},
+{
 date:'September 27, 2022',
 newsTitle:'New group site published',
 message:'The website is live. Visit here for the group&apos;s latest news.',
@@ -15,7 +21,7 @@ picture:'pic_aflow_school_2022.jpg',
 date:'August 15, 2022',
 newsTitle:'The group welcomes PhD student Keith Clark',
 message:'Keith comes from George Mason University where he studied Chemistry and Mathematics. Welcome Keith!',
-picture:'pic_welcome_grad_kclark.png',
+picture:'pic_welcome_grad_kclark.jpg',
 },
 {
 date:'August 15, 2022',
