@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'October 19, 2022',
+newsTitle:'DMSE Fall 2022 Seminar Series Speaker Prof. Reza Shahbazian-Yassar',
+message:'Profs. Shahbazian-Yassar and Oses (host) following the seminar on &quot;In-Situ TEM Studies of Multi-principal Elemental Nanoparticles: Synthesis and Environmental Reactions&quot;.',
+picture:'pics_dmse_speaker_rshahbazian-yassar_2022.jpg',
+},
+{
 date:'October 05, 2022',
 newsTitle:'Prof. Oses presents to JHU&apos;s Materials Graduate Society',
 message:'Prof. Oses presents to graduate students on &quot;Materials Informatics with the aflow.org repositories&quot;.',
