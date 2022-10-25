@@ -41,8 +41,9 @@ const publicationsJournal=[
 {
 titlePublication:'aflow++: a C++ framework for autonomous materials design',
 authors:['C.&nbsp;Oses','M.&nbsp;Esters','D.&nbsp;Hicks','S.&nbsp;Divilov','H.&nbsp;Eckert','R.&nbsp;Friedrich','M.&nbsp;J.&nbsp;Mehl','A.&nbsp;Smolyanyuk','X.&nbsp;Campilongo','A.&nbsp;van&nbsp;de&nbsp;Walle','J.&nbsp;Schroers','A.&nbsp;G.&nbsp;Kusne','I.&nbsp;Takeuchi','E.&nbsp;Zurek','M.&nbsp;Buongiorno&nbsp;Nardelli','M.&nbsp;Fornari','Y.&nbsp;Lederer','O.&nbsp;Levy','C.&nbsp;Toher','S.&nbsp;Curtarolo'],
+journal:'Computational Materials Science',
 year:2022,
-status:'submitted',
+status:'press',
 arxiv:'2208.03052',
 filename:'2208.03052',
 },
