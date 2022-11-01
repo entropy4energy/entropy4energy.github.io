@@ -50,12 +50,12 @@
     +   '<span class="job-title-and-flyer"><b>' + job.title + '</b> ' + (job.flyer?('<a href="media/jobs/' + job.flyer + '.pdf" download="' + job.flyer + '.pdf" target="blank">(PDF)</a>'):'') + '</span>'
     +   '<div class="job-description">' + job.description + '</div>'
     +   '<div class="job-quals-header"><br/><b>Qualifications</b></div>'
-    +   '<div class="job-quals"><ol type="A">' + qualsList + '</ol></div>'
+    +   '<div class="job-quals-text"><ol type="A">' + qualsList + '</ol></div>'
     +   '<div class="job-appInstructions-header"><b>Application Instructions</b></div>'
-    +   '<div class="job-appInstructions">' + job.appInstructions  + '<br/><br/> Please submit your application at <a href=' + job.appURL + ' target="blank">' + job.appURL + '</a>.</div>'
+    +   '<div class="job-appInstructions-text">' + job.appInstructions  + '<br/><br/> Please submit your application at <a href=' + job.appURL + ' target="blank">' + job.appURL + '</a>.</div>'
     +   '<div class="job-url"></div>'
     +   '<div class="job-EqualEmploymentOpportunityStatement-header"><br/><b>Equal Employment Opportunity Statement</b></div>'
-    +   '<div class="job-EqualEmploymentOpportunityStatement">' + EqualEmploymentOpportunityStatement + '</div>'
+    +   '<div class="job-EqualEmploymentOpportunityStatement-text">' + EqualEmploymentOpportunityStatement + '</div>'
     + '</div>';
     document.getElementById('jobList').insertAdjacentHTML('beforeend', jobsHtml);
   };

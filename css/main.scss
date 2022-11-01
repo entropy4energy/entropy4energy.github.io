@@ -9,6 +9,7 @@ $black-semi-transparent: #000000aa;
 
 $slide-indicator-dims: 2em;
 
+$small-threshold: 1000px;
 $mobile-threshold: 548px;
 
 $menu-width: 4em;
@@ -51,7 +52,7 @@ header {
     box-sizing: border-box;
     font-size: 2em;
     height: 4em;
-    margin: 10px 20px 0;
+    margin: 0 20px 0;
     padding-top: 1em;
   }
 }
@@ -147,6 +148,7 @@ footer {
   width: 80%;
 
   &-slide {
+    border: 1px solid black;
     display: none;
     height: 100%;
     margin-bottom: -$slide-indicator-dims;
@@ -176,6 +178,10 @@ footer {
       height: 100%;
       justify-content: center;
       width: 100%;
+      & a {
+        height: 100%;
+        width: 100%;
+      }
       & img {
         max-height: 100%;
         max-width: 100%;
@@ -258,6 +264,7 @@ footer {
   grid-column-gap: 10px;
   grid-template-columns: 2em auto auto;
   margin-bottom: 30px;
+  margin-right: 10px;
   &-number {
     font-weight: bold;
     margin-left: 350px;
@@ -278,7 +285,7 @@ footer {
       width: 348px;
       height: 225px;
       border:1px solid black;
-      margin-top: 10px;
+      margin-top: 2px;
     }
   }
 }
@@ -329,7 +336,7 @@ footer {
   margin-bottom: 20px;
   width: 100%;
   p {
-    text-align: center;
+    text-align: justify;
   }
 }
 
@@ -377,6 +384,73 @@ footer {
     li {
       margin: 0.25em 0;
     }
+  }
+}
+
+/* Jobs */
+
+.job {
+  display: grid;
+  grid-column-gap: 20px;
+  grid-template-areas: "a b" "a c" "a d" "a e" "a f" "a g" "a h" "a i";
+  grid-template-columns: 13em auto;
+  margin-bottom: 20px;
+  text-align: justify;
+  &-date {
+    grid-area: a;
+    font-weight: bold;
+  }
+  &-stat {
+    &-open {
+      color: green;
+    }
+    &-closed {
+      color: red;
+    }
+  }
+  &-title-flyer {
+    grid-area: b;
+    font-weight: bold;
+  }
+  &-description {
+    grid-area: c;
+    text-align: justify;
+  }
+  &-quals {
+    &-header {
+      grid-area: d;
+    }
+    &-text {
+      grid-area: e;
+    }
+  }
+  &-appInstructions {
+    &-header {
+      grid-area: f;
+    }
+    &-text {
+      grid-area: g;
+    }
+  }
+  &-EqualEmploymentOpportunityStatement {
+    &-header {
+      grid-area: h;
+    }
+    &-text {
+      grid-area: i;
+    }
+  }
+}
+
+@media screen and (max-width: $small-threshold) {
+  .sidebar {
+    display: none;
+  }
+  .publication-img {
+    display: none;
+  }
+  .publication-number{
+    margin-left: 0px;
   }
 }
 
@@ -488,5 +562,16 @@ footer {
     &-img {
       display: none;
     }
+    &-number {
+      margin-left: 0px;
+    }
+  }
+
+  .job {
+    display: grid;
+    grid-column-gap: 0px;
+    grid-template-columns: 30em auto;
+    grid-template-areas: "b " "a" "c" "d" "e" "f" "g" "h" "i";
+    margin-bottom: 20px;
   }
 }
