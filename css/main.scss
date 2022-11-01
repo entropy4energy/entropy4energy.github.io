@@ -31,7 +31,10 @@ $menu-bar-length: 2em;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   margin: 0;
+  min-height: 100vh;
 }
 
 h1 {
@@ -55,9 +58,9 @@ header {
 
 nav {
   background-color: $color-main-4;
-  margin: auto;
   position: sticky;
   top: 0;
+  width: 100%;
   z-index: 9999;
   input {
     display: none;
@@ -121,6 +124,7 @@ nav {
 
 footer {
   @include contrast-main-1();
+  align-items: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -314,6 +318,7 @@ footer {
 
 .main-content-wrapper {
   display: grid;
+  flex: 1 0 auto;
   grid-template-columns: 75% 25%;
   margin: auto;
   min-width: $mobile-threshold;
