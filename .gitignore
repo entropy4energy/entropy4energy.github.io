@@ -1,3 +1,5 @@
 .DS_Store
 media/publications/10.1016_j.commatsci.2021.110450.pdf
 node_modules
+package.json
+package-lock.json
