@@ -17,7 +17,7 @@
   for (const job of jobList) {
     let qualsList=''; 
     for (qual of job.quals){
-        qualsList += '<li style="padding-left:10px">' + qual + '</li>';
+        qualsList += '<li>' + qual + '</li>';
     }
     let stat='Open';
     let statType='job-stat-open';

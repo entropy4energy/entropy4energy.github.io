@@ -425,6 +425,9 @@ footer {
     }
     &-text {
       grid-area: e;
+      li {
+        padding-left: 10px;
+      }
     }
   }
   &-appInstructions {

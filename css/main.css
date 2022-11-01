@@ -377,6 +377,9 @@ footer img {
 .job-quals-text {
     grid-area: e;
 }
+.job-quals-text li {
+    padding-left: 10px;
+}
 .job-appInstructions-header {
     grid-area: f;
 }
