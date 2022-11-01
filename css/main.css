@@ -7,22 +7,11 @@
     font-size: 1em;
 }
 
-html{
-  height: 100%;
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
 body {
-    position: relative;
+    display: flex;
+    flex-direction: column;
     margin: 0;
-    padding-bottom:6rem;
-    min-height: 100%;
+    min-height: 100vh;
 }
 
 h1 {
@@ -47,9 +36,9 @@ header .hero {
 
 nav {
     background-color: #68ace5;
-    margin: auto;
     position: sticky;
     top: 0;
+    width: 100%;
     z-index: 9999;
 }
 nav input {
@@ -114,19 +103,14 @@ nav li a:hover:not(.active) {
 }
 
 footer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
     background-color: #002D72;
     color: #ffffff;
+    align-items: center;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 10px 0;
-    align-items: center;
 }
 footer img {
     height: 100px;
@@ -143,6 +127,7 @@ footer img {
     width: 80%;
 }
 .slideshow-slide {
+    border: 1px solid black;
     display: none;
     height: 100%;
     margin-bottom: -2em;
@@ -150,7 +135,6 @@ footer img {
     overflow: hidden;
     position: relative;
     width: 100%;
-    border: 1px solid black;
 }
 .slideshow-slide-text {
     align-items: center;
@@ -216,7 +200,7 @@ footer img {
 .news-item {
     display: grid;
     grid-column-gap: 10px;
-    grid-template-columns: 10em auto;
+    grid-template-columns: 11em auto;
     grid-template-areas: "a b" "a c" "a d";
     margin-bottom: 20px;
 }
@@ -250,11 +234,11 @@ footer img {
     grid-column-gap: 10px;
     grid-template-columns: 2em auto auto;
     margin-bottom: 30px;
-    margin-right:10px;
+    margin-right: 10px;
 }
 .publication-number {
     font-weight: bold;
-    margin-left: 350px
+    margin-left: 350px;
 }
 .publication-title {
     font-style: italic;
@@ -269,7 +253,7 @@ footer img {
     display: block;
     width: 348px;
     height: 225px;
-    border:1px solid black;
+    border: 1px solid black;
     margin-top: 2px;
 }
 
@@ -305,6 +289,7 @@ footer img {
 
 .main-content-wrapper {
     display: grid;
+    flex: 1 0 auto;
     grid-template-columns: 75% 25%;
     margin: auto;
     min-width: 548px;
@@ -314,6 +299,9 @@ footer img {
 .content-block {
     margin-bottom: 20px;
     width: 100%;
+}
+.content-block p {
+    text-align: justify;
 }
 
 .sidebar {
@@ -357,12 +345,11 @@ footer img {
 }
 
 /* Jobs */
-
 .job {
     display: grid;
-    grid-column-gap: 20px;
-    grid-template-columns: 13em auto;
+    grid-column-gap: 10px;
     grid-template-areas: "a b" "a c" "a d" "a e" "a f" "a g" "a h" "a i";
+    grid-template-columns: 11em auto;
     margin-bottom: 20px;
     text-align: justify;
 }
@@ -371,53 +358,51 @@ footer img {
     font-weight: bold;
 }
 .job-stat-open {
-    color: green; 
+    color: green;
 }
 .job-stat-closed {
-    color: red; 
+    color: red;
 }
 .job-title-flyer {
     grid-area: b;
     font-weight: bold;
 }
 .job-description {
-    text-align: justify;
     grid-area: c;
+    text-align: justify;
 }
 .job-quals-header {
     grid-area: d;
 }
-.job-quals {
+.job-quals-text {
     grid-area: e;
-}
-.job-quals ol {
-    /*padding-left: 0;*/
 }
 .job-appInstructions-header {
     grid-area: f;
 }
-.job-appInstructions {
+.job-appInstructions-text {
     grid-area: g;
 }
 .job-EqualEmploymentOpportunityStatement-header {
     grid-area: h;
 }
-.job-EqualEmploymentOpportunityStatement {
+.job-EqualEmploymentOpportunityStatement-text {
     grid-area: i;
 }
 
-@media screen and (max-width:1000px) {
-  .sidebar {
-    display: none;
-  }
-  .publication-img {
-    display: none;
-  }
-  .publication-number{
-    margin-left: 0px;
-  }
-}
+@media screen and (max-width: 1000px) {
+    .sidebar {
+        display: none;
+    }
 
+    .publication-img {
+        display: none;
+    }
+
+    .publication-number {
+        margin-left: 0px;
+    }
+}
 @media screen and (max-width: 548px) {
     .main-content-wrapper {
         box-sizing: border-box;
@@ -506,22 +491,21 @@ footer img {
         width: 100%;
     }
 
-    .publication-number {
-      margin-left: 0px
-    }
     .publication {
         grid-template-columns: 2em auto;
     }
     .publication-img {
         display: none;
     }
+    .publication-number {
+        margin-left: 0px;
+    }
+
     .job {
-      display: grid;
-      grid-column-gap: 0px;
-      grid-template-columns: 30em auto;
-      grid-template-areas: "b " "a" "c" "d" "e" "f" "g" "h" "i";
-      margin-bottom: 20px;
+        display: grid;
+        grid-column-gap: 0px;
+        grid-template-columns: 30em auto;
+        grid-template-areas: "b " "a" "c" "d" "e" "f" "g" "h" "i";
+        margin-bottom: 20px;
     }
 }
-
-

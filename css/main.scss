@@ -7,6 +7,9 @@ $color-main-4: #68ace5;
 
 $black-semi-transparent: #000000aa;
 
+$date-column-width: 11em;
+$date-column-gap: 10px;
+
 $slide-indicator-dims: 2em;
 
 $small-threshold: 1000px;
@@ -228,8 +231,8 @@ footer {
 
 .news-item {
   display: grid;
-  grid-column-gap: 10px;
-  grid-template-columns: 10em auto;
+  grid-column-gap: $date-column-gap;
+  grid-template-columns: $date-column-width auto;
   grid-template-areas: 'a b' 'a c' 'a d';
   margin-bottom: 20px;
   &-date {
@@ -391,9 +394,9 @@ footer {
 
 .job {
   display: grid;
-  grid-column-gap: 20px;
+  grid-column-gap: $date-column-gap;
   grid-template-areas: "a b" "a c" "a d" "a e" "a f" "a g" "a h" "a i";
-  grid-template-columns: 13em auto;
+  grid-template-columns: $date-column-width auto;
   margin-bottom: 20px;
   text-align: justify;
   &-date {
