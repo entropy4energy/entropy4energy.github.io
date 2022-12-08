@@ -39,6 +39,16 @@ picture:'pic_jhu_location.png',
 
 const publicationsJournal=[
 {
+titlePublication:'QH-POCC: taming tiling entropy in thermal expansion calculations of disordered materials',
+authors:['M.&nbsp;Esters','A.&nbsp;Smolyanyuk','C.&nbsp;Oses','D.&nbsp;Hicks','S.&nbsp;Divilov','H.&nbsp;Eckert','X.&nbsp;Campilongo','C.&nbsp;Toher','S.&nbsp;Curtarolo'],
+equalContributions:2,
+journal:'Acta Materialia',
+year:2022,
+status:'press',
+arxiv:'2212.00919',
+filename:'2212.00919',
+},
+{
 titlePublication:'aflow++: a C++ framework for autonomous materials design',
 authors:['C.&nbsp;Oses','M.&nbsp;Esters','D.&nbsp;Hicks','S.&nbsp;Divilov','H.&nbsp;Eckert','R.&nbsp;Friedrich','M.&nbsp;J.&nbsp;Mehl','A.&nbsp;Smolyanyuk','X.&nbsp;Campilongo','A.&nbsp;van&nbsp;de&nbsp;Walle','J.&nbsp;Schroers','A.&nbsp;G.&nbsp;Kusne','I.&nbsp;Takeuchi','E.&nbsp;Zurek','M.&nbsp;Buongiorno&nbsp;Nardelli','M.&nbsp;Fornari','Y.&nbsp;Lederer','O.&nbsp;Levy','C.&nbsp;Toher','S.&nbsp;Curtarolo'],
 journal:'Computational Materials Science',
