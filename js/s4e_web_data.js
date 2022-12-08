@@ -43,7 +43,7 @@ titlePublication:'QH-POCC: taming tiling entropy in thermal expansion calculatio
 authors:['M.&nbsp;Esters','A.&nbsp;Smolyanyuk','C.&nbsp;Oses','D.&nbsp;Hicks','S.&nbsp;Divilov','H.&nbsp;Eckert','X.&nbsp;Campilongo','C.&nbsp;Toher','S.&nbsp;Curtarolo'],
 equalContributions:2,
 journal:'Acta Materialia',
-year:2022,
+year:2023,
 status:'press',
 arxiv:'2212.00919',
 filename:'2212.00919',
