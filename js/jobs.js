@@ -3,6 +3,14 @@
   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
   const EqualEmploymentOpportunityStatement='The Johns Hopkins University is committed to equal opportunity for its faculty, staff, and students. To that end, the university does not discriminate on the basis of sex, gender, marital status, pregnancy, race, color, ethnicity, national origin, age, disability, religion, sexual orientation, gender identity or expression, veteran status or other legally protected characteristic. The university is committed to providing qualified individuals access to all academic and employment programs, benefits and activities on the basis of demonstrated ability, performance and merit without regard to personal factors that are irrelevant to the program involved.';
   const jobList = [
+  {
+      open: 'Nov. 1, 2022',
+      close: 'Feb. 1, 2023',
+      title: '2023 Undergraduate Summer Researcher (Amgen Scholars Program)',
+      description: 'The Entropy for Energy Laboratory at Johns Hopkins University (PI Corey Oses) welcomes undergraduate researchers in computational materials science through the <a href=https://krieger.jhu.edu/ursca/visitor-programs/amgen-scholars-program target="blank">2023 Amgen Scholars Program</a>. Projects will focus on the discovery of high-entropy materials for clean hydrogen production, waste-heat conversion, and electric grid technology. Researchers will perform high-throughput <i>ab-initio</i> calculations and employ machine learning/artificial intelligence algorithms for the analysis of materials synthesizability, stability, and functional properties. The <a href=https://krieger.jhu.edu/ursca/visitor-programs/amgen-scholars-program target="blank">Amgen Scholars Program</a> pays for the student’s travel and housing fees and provides a $600/week stipend. Eligible candidates must be U.S. citizens or U.S. permanent residents enrolled in an accredited four-year college or university in the United States, Puerto Rico or other U.S. territories. Candidates must be sophomores (with four quarters or three semesters of college experience), juniors, or non-graduating seniors (who are returning in the fall to continue undergraduate studies) with a cumulative grade point average of 3.2 or above. The program will take place 29 May 2023 through 4 August 2023. Applications are due on 1 February 2023 by 11:59PM EST. Please see the attached <a href="media/jobs/amgen_flyer_2023.pdf" download="amgen_flyer_2023.pdf" target="blank">flyer</a>  or visit this <a href=https://krieger.jhu.edu/ursca/visitor-programs/amgen-scholars-program target="blank">link</a> to apply. For questions regarding the Entropy for Energy Laboratory, email Prof. Oses (corey at jhu.edu).',
+      flyer: 'amgen_flyer_2023',
+      appURL: 'https://krieger.jhu.edu/ursca/visitor-programs/amgen-scholars-program',
+    },
     {
       open: 'May 20, 2022',
       title: 'Postdoctoral Researcher Opportunity',
@@ -16,8 +24,10 @@
 
   for (const job of jobList) {
     let qualsList=''; 
-    for (qual of job.quals){
+    if (job.quals){
+      for (qual of job.quals){
         qualsList += '<li>' + qual + '</li>';
+      }
     }
     let stat='Open';
     let statType='job-stat-open';
@@ -25,23 +35,23 @@
       let closeClean=job.close.replace(',','');
       let closeSplit=closeClean.split(' ');
       let closeMonth='';
-      if (closeSplit[0]=='January'){closeMonth=01};
-      if (closeSplit[0]=='February'){closeMonth=02};
-      if (closeSplit[0]=='March'){closeMonth=03};
-      if (closeSplit[0]=='April'){closeMonth=04};
+      if (closeSplit[0]=='Jan.'){closeMonth=01};
+      if (closeSplit[0]=='Feb.'){closeMonth=02};
+      if (closeSplit[0]=='Mar.'){closeMonth=03};
+      if (closeSplit[0]=='Apr.'){closeMonth=04};
       if (closeSplit[0]=='May'){closeMonth=05};
-      if (closeSplit[0]=='June'){closeMonth=06};
-      if (closeSplit[0]=='July'){closeMonth=07};
-      if (closeSplit[0]=='August'){closeMonth=08};
-      if (closeSplit[0]=='September'){closeMonth=09};
-      if (closeSplit[0]=='October'){closeMonth=10};
-      if (closeSplit[0]=='November'){closeMonth=11};
-      if (closeSplit[0]=='December'){closeMonth=12};
+      if (closeSplit[0]=='Jun.'){closeMonth=06};
+      if (closeSplit[0]=='Jul.'){closeMonth=07};
+      if (closeSplit[0]=='Aug.'){closeMonth=08};
+      if (closeSplit[0]=='Sep.'){closeMonth=09};
+      if (closeSplit[0]=='Oct,'){closeMonth=10};
+      if (closeSplit[0]=='Nov.'){closeMonth=11};
+      if (closeSplit[0]=='Dec.'){closeMonth=12};
       let closeDate = new Date(closeSplit[2]+'-'+closeMonth+'-'+closeSplit[1]);
       if (closeDate < today) {
         stat='Closed';
         statType='job-stat-closed';
-      };
+      }
     };
   
     const jobsHtml =
@@ -49,14 +59,14 @@
     +   '<span class="job-date"> Opens: ' + job.open + '<br/>' +  (job.close ? ('Closes: ' + job.close + '<br/>'):'') + 'Status: <span class="' + statType  + '">'  + stat + '</span> </span>'
     +   '<span class="job-title-and-flyer"><b>' + job.title + '</b> ' + (job.flyer?('<a href="media/jobs/' + job.flyer + '.pdf" download="' + job.flyer + '.pdf" target="blank">(PDF)</a>'):'') + '</span>'
     +   '<div class="job-description">' + job.description + '</div>'
-    +   '<div class="job-quals-header"><br/><b>Qualifications</b></div>'
-    +   '<div class="job-quals-text"><ol type="A">' + qualsList + '</ol></div>'
-    +   '<div class="job-appInstructions-header"><b>Application Instructions</b></div>'
-    +   '<div class="job-appInstructions-text">' + job.appInstructions  + '<br/><br/> Please submit your application at <a href=' + job.appURL + ' target="blank">' + job.appURL + '</a>.</div>'
+    +   (job.quals?('<div class="job-quals-header"><br/><b>Qualifications</b></div>'): '')
+    +   (job.quals?('<div class="job-quals-text"><ol type="A">' + qualsList + '</ol></div>'):'')
+    +   (job.appInstructions?('<div class="job-appInstructions-header"><b>Application Instructions</b></div>'):'')
+    +   (job.appInstructions?('<div class="job-appInstructions-text">' + job.appInstructions  + '<br/><br/> Please submit your application at <a href=' + job.appURL + ' target="blank">' + job.appURL + '</a>.</div>'):'')
     +   '<div class="job-url"></div>'
     +   '<div class="job-EqualEmploymentOpportunityStatement-header"><br/><b>Equal Employment Opportunity Statement</b></div>'
     +   '<div class="job-EqualEmploymentOpportunityStatement-text">' + EqualEmploymentOpportunityStatement + '</div>'
     + '</div>';
     document.getElementById('jobList').insertAdjacentHTML('beforeend', jobsHtml);
-  };
+  }
 })();
