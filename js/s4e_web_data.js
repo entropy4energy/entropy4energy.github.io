@@ -39,6 +39,15 @@ picture:'pic_jhu_location.png',
 
 const publicationsJournal=[
 {
+titlePublication:'Influence of Processing on the Microstructural Evolution and Multiscale Hardness in Titanium Carbonitrides (TiCN) Produced via Field Assisted Sintering Technology',
+authors:['D.&nbsp;E.&nbsp;Wolfe','C.&nbsp;M.&nbsp;DeSalle','C.&nbsp;J.&nbsp;Ryan','R.&nbsp;E.&nbsp;Slapikas','R.&nbsp;T.&nbsp;Sweny','R.&nbsp;J.&nbsp;Crealese','P.&nbsp;A.&nbsp;Kolonin','S.&nbsp;P.&nbsp;Stepanoff','A.&nbsp;Haque','S.&nbsp;Divilov','H.&nbsp;Eckert','C.&nbsp;Oses','M.&nbsp;Esters','D.&nbsp;W.&nbsp;Brenner','W.&nbsp;G.&nbsp;Fahrenholtz','J.-P.&nbsp;Maria','C.&nbsp;Toher','E.&nbsp;Zurek','S.&nbsp;Curtarolo'],
+journal:'Materialia',
+year:2023,
+status:'press',
+doi:'10.1016/j.mtla.2023.101682',
+filename:'10.1016_j.mtla.2023.101682',
+},
+{
 titlePublication:'aflow++: a C++ framework for autonomous materials design',
 authors:['C.&nbsp;Oses','M.&nbsp;Esters','D.&nbsp;Hicks','S.&nbsp;Divilov','H.&nbsp;Eckert','R.&nbsp;Friedrich','M.&nbsp;J.&nbsp;Mehl','A.&nbsp;Smolyanyuk','X.&nbsp;Campilongo','A.&nbsp;van&nbsp;de&nbsp;Walle','J.&nbsp;Schroers','A.&nbsp;G.&nbsp;Kusne','I.&nbsp;Takeuchi','E.&nbsp;Zurek','M.&nbsp;Buongiorno&nbsp;Nardelli','M.&nbsp;Fornari','Y.&nbsp;Lederer','O.&nbsp;Levy','C.&nbsp;Toher','S.&nbsp;Curtarolo'],
 journal:'Computational Materials Science',
