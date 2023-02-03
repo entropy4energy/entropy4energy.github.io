@@ -414,6 +414,10 @@ footer img {
         width: 100%;
     }
 
+    .content-block {
+      width: 95%;
+    }
+
     .sidebar {
         display: none;
     }
