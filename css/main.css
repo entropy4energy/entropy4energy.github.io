@@ -310,6 +310,7 @@ footer img {
 }
 .sidebar-content {
     background-color: #68ace5;
+    border-radius: 8px;
     padding: 10px 10px 20px;
     width: 100%;
 }
