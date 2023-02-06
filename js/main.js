@@ -39,10 +39,11 @@ document.querySelector('footer').innerHTML =
   const newsMax = 5;
   const sidebar = document.querySelector('.sidebar-content');
   for (let i = 0; i < newsMax && i < newsItems.length; i++) {
+    let newsId=i;
     const news = newsItems[i];
     const newsItem =
         '<div class="sidebar-news-item">'
-      +   '<div class="sidebar-news-item-title"><a href="news.html#' + news.newsId + '">' + news.newsTitle + '</a></div>'
+      +   '<div class="sidebar-news-item-title"><a href="news.html#' + newsId + '">' + news.newsTitle + '</a></div>'
       +   '<div class="sidebar-news-item-date">' + news.date + '</div>'
       + '</div>';
     sidebar.insertAdjacentHTML('beforeend', newsItem);

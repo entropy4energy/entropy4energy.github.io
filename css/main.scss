@@ -141,6 +141,22 @@ footer {
 
 /* Index */
 
+.index-img {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  border: 2.5px solid;
+  border-radius: 8px;
+  border-color: #68ace5;
+  max-width: 70%;
+  height: auto;
+}
+
+.index-text { 
+  text-align: center;
+  padding-bottom: 10px;
+}
+
 .slideshow {
   display: flex;
   flex-wrap: wrap;
@@ -349,6 +365,7 @@ footer {
 
   &-content {
     background-color: $color-main-4;
+    border-radius: 8px;
     padding: 10px 10px 20px;
     width: 100%;
   }
@@ -466,6 +483,10 @@ footer {
     display: block;
     padding: 0 10px;
     width: 100%;
+  }
+  
+  .content-block {
+    width: 87%;
   }
 
   .sidebar {

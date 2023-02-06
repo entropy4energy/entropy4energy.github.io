@@ -117,6 +117,20 @@ footer img {
 }
 
 /* Index */
+.index-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2.5px solid;
+  border-radius: 8px;
+  border-color: #68ace5;
+  max-width: 70%;
+  height: auto;
+}
+.index-text { 
+  text-align: center;
+  padding-bottom: 10px;
+}
 .slideshow {
     display: flex;
     flex-wrap: wrap;
@@ -310,6 +324,7 @@ footer img {
 }
 .sidebar-content {
     background-color: #68ace5;
+    border-radius: 8px;
     padding: 10px 10px 20px;
     width: 100%;
 }
@@ -412,6 +427,10 @@ footer img {
         display: block;
         padding: 0 10px;
         width: 100%;
+    }
+
+    .content-block {
+      width: 87%;
     }
 
     .sidebar {
