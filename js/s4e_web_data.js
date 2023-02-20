@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'January 23, 2023',
+newsTitle:'The group welcomes undergraduate Will Shiber',
+message:'Will is a Johns Hokpins undergraduate majoring in materials science and applied mathematical science. Welcome Will!',
+picture:'pic_welcome_undergrad_wshiber.jpg',
+},
+{
 date:'October 19, 2022',
 newsTitle:'DMSE Fall 2022 Seminar Series Speaker Prof. Reza Shahbazian-Yassar',
 message:'Profs. Shahbazian-Yassar and Oses (host) following the seminar on &quot;In-Situ TEM Studies of Multi-principal Elemental Nanoparticles: Synthesis and Environmental Reactions&quot;.',
