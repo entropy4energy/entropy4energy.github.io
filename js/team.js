@@ -41,6 +41,13 @@
         'Graduate Student',
       ],
     },
+    'will_shiber': {
+      contact: 'wshiber1 at jhu.edu',
+      nameFull: 'Will Shiber',
+      titles: [
+        'Undergraduate Student',
+      ],
+    },
     }; 
 
   function buildPerson(person, personId) {
