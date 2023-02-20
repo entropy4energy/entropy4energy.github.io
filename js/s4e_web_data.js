@@ -2,7 +2,7 @@ const newsItems=[
 {
 date:'January 23, 2023',
 newsTitle:'The group welcomes undergraduate Will Shiber',
-message:'Will is a Johns Hokpins undergraduate majoring in materials science and applied mathematical science. Welcome Will!',
+message:'Will is an undergraduate student majoring in materials science and applied mathematics and statistics. Welcome Will!',
 picture:'pic_welcome_undergrad_wshiber.jpg',
 },
 {
