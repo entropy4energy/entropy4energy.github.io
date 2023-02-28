@@ -1,9 +1,15 @@
 const newsItems=[
 {
 date:'January 23, 2023',
+newsTitle:'The group welcomes undergraduate Veric Tan',
+message:'Veric is an undergraduate student majoring in materials science and engineering & cognitive science. Welcome Veric!',
+picture:'pic_welcome_undergrad_vtan.jpg',
+},
+{
+date:'January 23, 2023',
 newsTitle:'The group welcomes undergraduate Katie Cariaga',
 message:'Katie is an undergraduate student majoring in materials science and engineering & computer science. Welcome Katie!',
-picture:'pic_welcome_undergrad_katie_cariaga.jpg',
+picture:'pic_welcome_undergrad_kcariaga.jpg',
 },
 {
 date:'January 23, 2023',
