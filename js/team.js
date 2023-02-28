@@ -55,6 +55,13 @@
         'Undergraduate Student',
       ],
     },
+    'veric_tan': {
+      contact: 'vtan5 at jhu.edu',
+      nameFull: 'Veric Tan',
+      titles: [
+        'Undergraduate Student',
+      ],
+    },
     }; 
 
   function buildPerson(person, personId) {
