@@ -48,6 +48,13 @@
         'Undergraduate Student',
       ],
     },
+    'katie_cariaga': {
+      contact: 'kcariag1 at jhu.edu',
+      nameFull: 'Katie Cariaga',
+      titles: [
+        'Undergraduate Student',
+      ],
+    },
     }; 
 
   function buildPerson(person, personId) {
