@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'April 3, 2023',
+newsTitle:'Will Shiber is named a 2023 IDIES Summer Student Fellow',
+message:'Will has been awarded a <a href="https://www.idies.jhu.edu/2023-idies-summer-student-fellows/" target="_blank">2023 Institute for Data Intensive Engineering and Science (IDIES) Summer Student Fellowship</a>. Congratulations Will!',
+picture:'pic_idies_logo.png',
+},
+{
 date:'January 23, 2023',
 newsTitle:'The group welcomes undergraduate Veric Tan',
 message:'Veric is an undergraduate student majoring in materials science and engineering & cognitive science. Welcome Veric!',
