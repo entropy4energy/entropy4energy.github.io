@@ -32,7 +32,8 @@ document.querySelector('footer').innerHTML =
   + '<div class="contact-line">Department of Materials Science and Engineering</div>'
   + '<div class="contact-line">Johns Hopkins University</div>'
   + '<div class="contact-line">Baltimore, Maryland</div>'
-  + '</div>';
+  + '</div>'
+  + '<a href="https://www.idies.jhu.edu/2023-seed-awardees/" target="_blank"><img src="media/footer/idies.png" alt="IDIES logo" class="footer-sponsor"></a>';
 
 (() => {
   document.querySelector('.main-content-wrapper').insertAdjacentHTML('beforeend', '<div class="sidebar"><div class="sidebar-content"><h2>Latest News</h2></div></div>');
