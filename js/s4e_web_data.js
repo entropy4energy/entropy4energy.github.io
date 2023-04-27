@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'April 24, 2023',
+newsTitle:'Katie Cariaga is named a 2023 MDSGC Summer Intern',
+message:'Katie has been awarded a 2023 <a href="https://md.spacegrant.org/" target="_blank">Maryland Space Grant Consortium (MDSGC)</a> Summer Internship. Congratulations Katie! </a>',
+picture:'pic_mdsgc_logo.png',
+},
+{
 date:'April 3, 2023',
 newsTitle:'Will Shiber is named a 2023 IDIES Summer Student Fellow',
 message:'Will has been awarded a <a href="https://www.idies.jhu.edu/2023-idies-summer-student-fellows/" target="_blank">2023 Institute for Data Intensive Engineering and Science (IDIES) Summer Student Fellowship</a>. <a href = "https://hub.jhu.edu/announcements/2023/04/21/idies-announces-2023-summer-student-fellowship-ssf-recipients/" target="_blank">Congratulations Will! </a>',
