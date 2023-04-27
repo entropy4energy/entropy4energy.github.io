@@ -116,10 +116,11 @@ footer img {
     height: 100px;
 }
 .footer-sponsor{
-    height: 60px;
+    height: 40px;
     border: 2.5px solid;
     border-radius: 8px;
     border-color: #68ace5;
+    background-color: #ffffff;
 }
 
 /* Index */
