@@ -2,7 +2,7 @@ const newsItems=[
 {
 date:'April 3, 2023',
 newsTitle:'Will Shiber is named a 2023 IDIES Summer Student Fellow',
-message:'Will has been awarded a <a href="https://www.idies.jhu.edu/2023-idies-summer-student-fellows/" target="_blank">2023 Institute for Data Intensive Engineering and Science (IDIES) Summer Student Fellowship</a>. Congratulations Will!',
+message:'Will has been awarded a <a href="https://www.idies.jhu.edu/2023-idies-summer-student-fellows/" target="_blank">2023 Institute for Data Intensive Engineering and Science (IDIES) Summer Student Fellowship</a>. <a href = "https://hub.jhu.edu/announcements/2023/04/21/idies-announces-2023-summer-student-fellowship-ssf-recipients/" target="_blank">Congratulations Will! </a>',
 picture:'pic_idies_logo.png',
 },
 {
