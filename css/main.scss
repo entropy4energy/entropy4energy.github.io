@@ -135,11 +135,11 @@ footer {
   justify-content: space-around;
   padding: 10px 0;
   img {
-    height: 100px;
+    max-height: 100px;
+    max-width: 350px;
   }
 }
 .footer-sponsor{
-    height: 40px;
     border: 2.5px solid;
     border-radius: 8px;
     border-color: #68ace5;
