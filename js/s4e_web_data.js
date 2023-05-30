@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'May 30, 2023',
+newsTitle:'The group welcomes Amgen Scholar Dakota Braaten',
+message:'Dakota is an undergraduate student at Kansas State University majoring in chemical engineering. Welcome Dakota!',
+picture:'pic_welcome_undergrad_dbraaten.jpg',
+},
+{
 date:'April 24, 2023',
 newsTitle:'Katie Cariaga is named a 2023 MDSGC Summer Intern',
 message:'Katie has been awarded a 2023 <a href="https://md.spacegrant.org/" target="_blank">Maryland Space Grant Consortium (MDSGC)</a> Summer Internship. Congratulations Katie! </a>',

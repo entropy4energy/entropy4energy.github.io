@@ -62,6 +62,13 @@
         'Undergraduate Student',
       ],
     },
+    'dakota_braaten': {
+      contact: 'dbraaten02 at ksu.edu',
+      nameFull: 'Dakota Braaten',
+      titles: [
+        'Undergraduate Student','Amgen Scholar'
+      ],
+    },
     }; 
 
   function buildPerson(person, personId) {
