@@ -1,7 +1,7 @@
 const newsItems=[
 {
 date:'May 30, 2023',
-newsTitle:'The group welcomes Amgen Scholar Dakota Braaten',
+newsTitle:'The group welcomes Dakota Braaten',
 message:'Dakota is an undergraduate student at Kansas State University majoring in chemical engineering. Welcome Dakota!',
 picture:'pic_welcome_undergrad_dbraaten.jpg',
 },

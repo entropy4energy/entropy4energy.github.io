@@ -63,10 +63,10 @@
       ],
     },
     'dakota_braaten': {
-      contact: 'dbraaten02 at ksu.edu',
+      contact: 'dbraate1 at jhu.edu',
       nameFull: 'Dakota Braaten',
       titles: [
-        'Undergraduate Student','Amgen Scholar'
+        'Undergraduate Student',
       ],
     },
     }; 
