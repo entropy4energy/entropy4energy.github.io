@@ -62,6 +62,13 @@
         'Undergraduate Student',
       ],
     },
+    'dakota_braaten': {
+      contact: 'dbraate1 at jhu.edu',
+      nameFull: 'Dakota Braaten',
+      titles: [
+        'Undergraduate Student',
+      ],
+    },
     }; 
 
   function buildPerson(person, personId) {
