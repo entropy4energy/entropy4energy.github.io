@@ -4,6 +4,12 @@
   const EqualEmploymentOpportunityStatement='The Johns Hopkins University is committed to equal opportunity for its faculty, staff, and students. To that end, the university does not discriminate on the basis of sex, gender, marital status, pregnancy, race, color, ethnicity, national origin, age, disability, religion, sexual orientation, gender identity or expression, veteran status or other legally protected characteristic. The university is committed to providing qualified individuals access to all academic and employment programs, benefits and activities on the basis of demonstrated ability, performance and merit without regard to personal factors that are irrelevant to the program involved.';
   const jobList = [
   {
+      open: 'May 31, 2023',
+      title: 'Opening for Master\'s and PhD Research in Energy Storage',
+      description: 'Interested in performing materials science research that combines experiments with computation? The Entropy for Energy Laboratory is looking for new students interested in the synthesis, characterization, and computational modeling of high-entropy oxides for energy storage. ',
+      appInstructions: 'Submit a single PDF file via email named “<i>LASTNAME</i>_<i>FIRSTNAME</i>_S4E_202305.pdf” containing: a cover letter, CV, and contact information for 3 references. Send your submission to Professors Corey Oses (corey at jhu.edu) and SM Koohpayeh (koohpayeh at jhu.edu); subject line must contain “S4E Energy Storage”.',
+    },
+    {
       open: 'May 20, 2022',
       title: 'Postdoctoral Researcher Opportunity',
       description: 'The Entropy for Energy Laboratory at Johns Hopkins University (PI Corey Oses) has openings for postdoctoral researchers in computational materials science. Projects will focus on the discovery of high-entropy materials for clean hydrogen production, waste-heat conversion, and electric grid technology. Postdocs will be expected to perform high-throughput <i>ab-initio</i> calculations and employ machine learning/artificial intelligence algorithms for the analysis of materials synthesizability, stability, and functional properties. Graduate Students near the completion of their PhD are welcome to apply.',
@@ -59,10 +65,11 @@
     +   '<span class="job-date"> Opens: ' + job.open + '<br/>' +  (job.close ? ('Closes: ' + job.close + '<br/>'):'') + 'Status: <span class="' + statType  + '">'  + stat + '</span> </span>'
     +   '<span class="job-title-and-flyer"><b>' + job.title + '</b> ' + (job.flyer?('<a href="media/jobs/' + job.flyer + '.pdf" download="' + job.flyer + '.pdf" target="blank">(PDF)</a>'):'') + '</span>'
     +   '<div class="job-description">' + job.description + '</div>'
-    +   (job.quals?('<div class="job-quals-header"><br/><b>Qualifications</b></div>'): '')
+    +   (job.quals?('<div class="job-quals-header"><br/><b>Qualifications</b></div>'): '<br>')
     +   (job.quals?('<div class="job-quals-text"><ol type="A">' + qualsList + '</ol></div>'):'')
     +   (job.appInstructions?('<div class="job-appInstructions-header"><b>Application Instructions</b></div>'):'')
-    +   (job.appInstructions?('<div class="job-appInstructions-text">' + job.appInstructions  + '<br/><br/> Please submit your application at <a href=' + job.appURL + ' target="blank">' + job.appURL + '</a>.</div>'):'')
+    +   (job.appInstructions?('<div class="job-appInstructions-text">' + job.appInstructions) :'')
+    +   (job.appURL?('<br/><br/> Please submit your application at <a href=' + job.appURL + ' target="blank">' + job.appURL + '</a>.</div>'):'</div>')
     +   '<div class="job-url"></div>'
     +   '<div class="job-EqualEmploymentOpportunityStatement-header"><br/><b>Equal Employment Opportunity Statement</b></div>'
     +   '<div class="job-EqualEmploymentOpportunityStatement-text">' + EqualEmploymentOpportunityStatement + '</div>'
