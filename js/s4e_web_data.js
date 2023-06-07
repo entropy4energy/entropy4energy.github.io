@@ -8,7 +8,7 @@ picture:'pic_welcome_undergrad_dbraaten.jpg',
 {
 date:'April 24, 2023',
 newsTitle:'Katie Cariaga is named a 2023 MDSGC Summer Intern',
-message:'Katie has been awarded a 2023 <a href="https://md.spacegrant.org/" target="_blank">Maryland Space Grant Consortium (MDSGC)</a> Summer Internship. Congratulations Katie! </a>',
+message:'Katie has been awarded a 2023 <a href="https://md.spacegrant.org/" target="_blank">Maryland Space Grant Consortium (MDSGC)</a> Summer Internship. <a href="https://energyinstitute.jhu.edu/revealing-the-secrets-that-may-unlock-the-potential-of-thermoelectric-materials/" target="_blank">Congratulations Katie! </a>',
 picture:'pic_mdsgc_logo.png',
 },
 {
