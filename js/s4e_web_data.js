@@ -3,7 +3,7 @@ const newsItems=[
 date:'July 31, 2023',
 newsTitle:'Katie presents at the 2023 MDSGC Student Research Symposium',
 message:'Katie presented her research at the Maryland Space Grant Consortium\'s 2023 Student Research Symposium. Excellent work Katie!',
-picture:'pic_kcariaga_MDSGC_2023.jpg',
+picture:'pic_kcariaga_mdsgc_2023.jpg',
 },
 {
 date:'May 30, 2023',
