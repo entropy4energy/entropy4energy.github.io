@@ -462,14 +462,6 @@ footer {
       grid-area: g;
     }
   }
-  &-EqualEmploymentOpportunityStatement {
-    &-header {
-      grid-area: h;
-    }
-    &-text {
-      grid-area: i;
-    }
-  }
 }
 
 @media screen and (max-width: $small-threshold) {

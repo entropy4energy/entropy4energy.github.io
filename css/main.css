@@ -408,12 +408,6 @@ footer img {
 .job-appInstructions-text {
     grid-area: g;
 }
-.job-EqualEmploymentOpportunityStatement-header {
-    grid-area: h;
-}
-.job-EqualEmploymentOpportunityStatement-text {
-    grid-area: i;
-}
 
 @media screen and (max-width: 1000px) {
     .sidebar {
