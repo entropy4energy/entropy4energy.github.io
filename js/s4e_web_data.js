@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'July 31, 2023',
+newsTitle:'Katie presents at the 2023 MDSGC Student Research Symposium',
+message:'Katie presented her research at the Maryland Space Grant Consortium\'s 2023 Student Research Symposium. Excellent work Katie!',
+picture:'pic_KT_MDSGC_2023.jpg',
+},
+{
 date:'May 30, 2023',
 newsTitle:'The group welcomes Dakota Braaten',
 message:'Dakota is an undergraduate student at Kansas State University majoring in chemical engineering. Welcome Dakota!',
