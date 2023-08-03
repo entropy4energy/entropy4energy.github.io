@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'August 1, 2023',
+newsTitle:'Dakota presents at the 2023 Hopkins Summer Research Symposium',
+message:'Dakota presented his research at the 2023 Hopkins Summer Research Symposium. Great job Dakota!',
+picture:'pic_dbraaten_research_symposium.jpg',
+},
+{
 date:'May 30, 2023',
 newsTitle:'The group welcomes Dakota Braaten',
 message:'Dakota is an undergraduate student at Kansas State University majoring in chemical engineering. Welcome Dakota!',
