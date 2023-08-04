@@ -69,9 +69,11 @@
     +   (job.appInstructions?('<div class="job-appInstructions-header"><b>Application Instructions</b></div>'):'')
     +   (job.appInstructions?('<div class="job-appInstructions-text">' + job.appInstructions+'</div>') :'')
     +   (job.appURL?('<div class="job-appUrl">Please submit your application at <a href=' + job.appURL + ' target="blank">' + job.appURL + '</a>.</div>'):'')
-    +   '<div class="job-EqualEmploymentOpportunityStatement-header"><br/><b>Equal Employment Opportunity Statement</b></div>'
-    +   '<div class="job-EqualEmploymentOpportunityStatement-text">' + EqualEmploymentOpportunityStatement + '</div>'
     + '</div>';
     document.getElementById('jobList').insertAdjacentHTML('beforeend', jobsHtml);
   }
+  const EqualEmploymentHTML =
+       '<b>Equal Employment Opportunity Statement</b>'
+    +   '<br/> '+EqualEmploymentOpportunityStatement;
+  document.getElementById('EqualEmploymentOpportunityStatement').insertAdjacentHTML('beforeend',EqualEmploymentHTML)
 })();
