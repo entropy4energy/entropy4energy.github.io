@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'August 15, 2023',
+newsTitle:'The group welcomes Tianhao Li',
+message:'Tianhao comes from Duke University where he studied Materials Science & Engineering. Welcome Tianhao!',
+picture:'pic_welcome_grad_tli.jpg',
+},
+{
 date:'August 1, 2023',
 newsTitle:'Dakota presents at the 2023 Hopkins Summer Research Symposium',
 message:'Dakota presented his research at the 2023 Hopkins Summer Research Symposium. Great job Dakota!',
