@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'August 1, 2023',
+newsTitle:'Dakota presents at the 2023 Hopkins Summer Research Symposium',
+message:'Dakota presented his research at the 2023 Hopkins Summer Research Symposium. Great job Dakota!',
+picture:'pic_dbraaten_research_symposium.jpg',
+},
+{
 date:'July 31, 2023',
 newsTitle:'Katie presents at the 2023 MDSGC Student Research Symposium',
 message:'Katie presented her research at the Maryland Space Grant Consortium\'s 2023 Student Research Symposium. Excellent work Katie!',
