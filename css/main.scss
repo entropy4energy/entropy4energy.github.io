@@ -176,12 +176,13 @@ footer {
   &-slide {
     border: 1px solid black;
     display: none;
-    height: 100%;
+    height: auto;
     margin-bottom: -$slide-indicator-dims;
     order: 1;
     overflow: hidden;
     position: relative;
-    width: 100%;   
+    width: auto;   
+    min-width: 600px;
     &-text {
       align-items: center;
       background-color: $black-semi-transparent;
@@ -211,6 +212,7 @@ footer {
       & img {
         max-height: 100%;
         max-width: 100%;
+        min-width: 600px;
       }
     }
   }
