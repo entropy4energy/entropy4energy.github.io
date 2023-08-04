@@ -1,6 +1,6 @@
 const newsItems=[
 {
-date:'August 15, 2023',
+date:'August 1, 2023',
 newsTitle:'The group welcomes Tianhao Li',
 message:'Tianhao comes from Duke University where he studied Materials Science & Engineering. Welcome Tianhao!',
 picture:'pic_welcome_grad_tli.jpg',
