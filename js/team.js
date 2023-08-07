@@ -41,6 +41,13 @@
         'Graduate Student',
       ],
     },
+    'tianhao_li': {
+      contact: 'tli114 at jhu.edu',
+      nameFull: 'Tianhao Li',
+      titles: [
+        'Graduate Student',
+      ],
+    },
     'will_shiber': {
       contact: 'wshiber1 at jhu.edu',
       nameFull: 'Will Shiber',
