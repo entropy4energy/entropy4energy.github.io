@@ -80,7 +80,9 @@
     document.getElementById('jobList').insertAdjacentHTML('beforeend', jobsHtml);
   }
   const EqualEmploymentHTML =
-       '<b>Equal Employment Opportunity Statement</b>'
-    +   '<br/> '+EqualEmploymentOpportunityStatement;
+      '<div class="equal-employment-opportunity-statement">'
+    +   '<b>Equal Employment Opportunity Statement</b>'
+    +   '<br/> '+EqualEmploymentOpportunityStatement
+    +   '</div>';
   document.getElementById('EqualEmploymentOpportunityStatement').insertAdjacentHTML('beforeend',EqualEmploymentHTML)
 })();
