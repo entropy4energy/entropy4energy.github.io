@@ -14,8 +14,8 @@
     {
       open: 'May 31, 2023',
       title: 'Opening for Master\'s and PhD Research in Energy Storage',
-      description: 'Interested in performing materials science research that combines experiments with computation? The <i>S4E</i> Lab is looking for new students interested in the synthesis, characterization, and computational modeling of high-entropy oxides for energy storage. ',
-    appInstructions: 'Submit a single PDF file via email named “<i>LASTNAME</i>_<i>FIRSTNAME</i>_S4E_202305.pdf” containing: a cover letter, CV, and contact information for 3 references. Send your submission to Professors Corey Oses (corey at jhu.edu) and SM Koohpayeh (koohpayeh at jhu.edu); subject line must contain “S4E Energy Storage”.',
+      description: 'Interested in performing materials science research that combines experiments with computation? The <i>S4E</i> Lab is looking for new students interested in the synthesis, characterization, and computational modeling of high-entropy materials for energy storage. This project involves hands-on training on how to synthesize and experimentally characterize disordered materials. Candidates will also learn how to run high-throughput <i>ab-initio</i> calculations and develop machine learning/artificial intelligence algorithms that analyze materials synthesizability, stability, and functional properties.',
+    appInstructions: 'If you are interested in joining the <i>S4E</i> team, please schedule a meeting by emailing jobs-estorage AT s4e.ai with your CV.',
     },
     {
       open: 'May 20, 2022',
