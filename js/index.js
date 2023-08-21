@@ -41,6 +41,11 @@
   setTimeout(automaticSlideShow, 7000);
 
   const pics=[
+    {
+        date: 'September 9, 2022',
+        title: 'Prof. Oses teaching CHULL',
+        file: 'media/home/pic_team_20220909.png',
+      },
       {
         date:'July 26, 2023',
         title:'The group @ Baltimore\'s Inner Harbor',
@@ -55,11 +60,6 @@
         date: 'August 1, 2023',
         title: 'The group @ Hopkins\' 2023 Summer Research Symposium',
         file: 'media/home/pic_team_hopkins_symposium_20230801.png',
-      },
-      {
-        date: 'September 9, 2022',
-        title: 'Prof. Oses teaching CHULL',
-        file: 'media/home/pic_team_20220909.png',
       }
     ];
 
