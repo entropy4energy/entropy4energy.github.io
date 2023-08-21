@@ -137,7 +137,6 @@ footer img {
 }
 .index-text { 
   text-align: center;
-  padding-bottom: 10px;
 }
 .slideshow {
     display: flex;
@@ -145,19 +144,18 @@ footer img {
     max-width: 750px;
     justify-content: flex-end;
     margin: 25px auto;
-    min-width: 370px;
     width: 80%;
+    min-width: 370px;
 }
 .slideshow-slide {
     border: 1px solid black;
     display: none;
-    height: auto;
+    height: 100%;
     margin-bottom: -2em;
     order: 1;
     overflow: hidden;
     position: relative;
-    width: auto;
-    min-width: 600px;
+    width: 100%;
 }
 .slideshow-slide-text {
     align-items: center;
@@ -189,7 +187,6 @@ footer img {
 .slideshow-slide-img img {
     max-height: 100%;
     max-width: 100%;
-    min-width: 600px;
 }
 .slideshow input {
     display: none;
