@@ -465,6 +465,9 @@ footer {
     }
   }
 }
+.equal-employment-opportunity-statement {
+    text-align: justify;
+}
 
 @media screen and (max-width: $small-threshold) {
   .sidebar {
@@ -487,7 +490,7 @@ footer {
   }
   
   .content-block {
-    width: 87%;
+    width: 100%;
   }
 
   .sidebar {

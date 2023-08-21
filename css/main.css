@@ -12,6 +12,7 @@ body {
     flex-direction: column;
     margin: 0;
     min-height: 100vh;
+    min-width: 390px;
 }
 
 h1 {
@@ -144,7 +145,7 @@ footer img {
     max-width: 750px;
     justify-content: flex-end;
     margin: 25px auto;
-    min-width: 400px;
+    min-width: 370px;
     width: 80%;
 }
 .slideshow-slide {
@@ -223,7 +224,7 @@ footer img {
 .news-item {
     display: grid;
     grid-column-gap: 10px;
-    grid-template-columns: 11em auto;
+    grid-template-columns: 10em auto;
     grid-template-areas: "a b" "a c" "a d";
     margin-bottom: 20px;
 }
@@ -315,7 +316,7 @@ footer img {
     flex: 1 0 auto;
     grid-template-columns: 75% 25%;
     margin: auto;
-    min-width: 548px;
+    min-width: 390px;
     width: 80%;
 }
 
@@ -410,6 +411,9 @@ footer img {
 .job-appInstructions-text {
     grid-area: g;
 }
+.equal-employment-opportunity-statement {
+    text-align: justify;
+}
 
 @media screen and (max-width: 1000px) {
     .sidebar {
@@ -433,7 +437,7 @@ footer img {
     }
 
     .content-block {
-      width: 87%;
+      width: 100%;
     }
 
     .sidebar {
@@ -514,6 +518,7 @@ footer img {
 
     footer .contact {
         width: 100%;
+        margin: 10px 20px;
     }
 
     .publication {
@@ -529,7 +534,7 @@ footer img {
     .job {
         display: grid;
         grid-column-gap: 0px;
-        grid-template-columns: 30em auto;
+        grid-template-columns: auto auto;
         grid-template-areas: "b " "a" "c" "d" "e" "f" "g" "h" "i";
         margin-bottom: 20px;
     }
