@@ -159,7 +159,7 @@ footer {
   height: auto;
 }
 
-.index-text { 
+.index-header { 
   text-align: center;
 }
 
@@ -229,7 +229,7 @@ footer {
       justify-content: center;
       order: 2;
       width: $slide-indicator-dims;
-      z-index: 9999;
+      z-index: 9998;
     }
 
     &[type=radio]:checked + label {
