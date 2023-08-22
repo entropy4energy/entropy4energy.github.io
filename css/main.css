@@ -135,7 +135,7 @@ footer img {
   max-width: 70%;
   height: auto;
 }
-.index-text { 
+.index-header { 
   text-align: center;
 }
 .slideshow {
@@ -202,7 +202,7 @@ footer img {
     justify-content: center;
     order: 2;
     width: 2em;
-    z-index: 9999;
+    z-index: 9998;
 }
 .slideshow input[type=radio]:checked + label {
     background-color: #aaaaaa;
