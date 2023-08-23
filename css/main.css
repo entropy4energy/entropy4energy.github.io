@@ -134,16 +134,14 @@ footer img {
     max-width: 750px;
     justify-content: flex-end;
     margin: 25px auto;
-    width: 80%;
     min-width: 370px;
+    width: 80%;
 }
 .slideshow.top {
     max-width: 400px;
-    width:100%;
 }
 .slideshow.bottom {
     max-height: 550px;
-    width: 100%;
 }
 .slideshow-slide {
     border: 1px solid black;
