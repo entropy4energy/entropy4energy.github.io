@@ -125,16 +125,6 @@ footer img {
 }
 
 /* Index */
-.index-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  border: 2.5px solid;
-  border-radius: 8px;
-  border-color: #68ace5;
-  max-width: 70%;
-  height: auto;
-}
 .index-header { 
   text-align: center;
 }
