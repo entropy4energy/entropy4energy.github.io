@@ -171,8 +171,9 @@ footer {
   margin: 25px auto;
   width: 80%;
   min-width: 370px;
-  max-width: 400px;
-
+  &.top {
+    max-width: 400px;
+    }
   &-slide {
     border: 1px solid black;
     display: none;
@@ -208,9 +209,13 @@ footer {
         height: 100%;
         width: 100%;
       }
-      & img {
+      & img.top{
         max-height: 299px;
         width: auto;
+      }
+      & img.bottom{
+        max-height: 100%;
+        width: 100%;
       }
     }
   }
@@ -602,9 +607,5 @@ footer {
     grid-template-columns: 30em auto;
     grid-template-areas: "b " "a" "c" "d" "e" "f" "g" "h" "i";
     margin-bottom: 20px;
-  }
-
-  .slideshow-slide {
-      height: 200px;
   }
 }
