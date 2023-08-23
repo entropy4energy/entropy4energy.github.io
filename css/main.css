@@ -149,6 +149,11 @@ footer img {
 }
 .slideshow.top {
     max-width: 400px;
+    width:100%;
+}
+.slideshow.bottom {
+    max-height: 550px;
+    width: 100%;
 }
 .slideshow-slide {
     border: 1px solid black;
@@ -188,11 +193,12 @@ footer img {
     width: 100%;
 }
 .slideshow-slide-img.top img {
-    max-height: 299px;
-    width: auto;
+    height: 299px;
+    max-width: 100%;
 }
 .slideshow-slide-img.bottom img {
-    max-height: 100%;
+    justify-content: flex-start;
+    height: 400px;
     max-width: 100%;
 }
 .slideshow input {
@@ -541,5 +547,11 @@ footer img {
         grid-template-columns: auto auto;
         grid-template-areas: "b " "a" "c" "d" "e" "f" "g" "h" "i";
         margin-bottom: 20px;
+    }
+    .slideshow.top {
+      height: 200px;
+    }
+    .slideshow-slide-img.bottom img {
+      height: 300px;
     }
 }
