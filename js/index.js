@@ -35,6 +35,26 @@
     document.getElementById('top_slideshow').insertAdjacentHTML('beforeend', slideHtml);
   }
 
+  function top_automaticSlideShow() {
+    // Checked: play
+    if (document.getElementById('top_slideshow_play').checked) {
+      const slides = document.querySelectorAll('#top_slideshow input[type=radio]');
+      for (let i = 0; i < slides.length; i++) {
+        if (slides[i].checked) {
+          if (i === slides.length - 1) {
+            slides[0].checked = true;
+          } else {
+            slides[i + 1].checked = true;
+          }
+          break;
+        }
+      }
+    }
+    setTimeout(top_automaticSlideShow, 7000);
+  }
+
+  setTimeout(top_automaticSlideShow, 7000);
+
   for (let i = 0; i < 10; i++) {
     const pub = publicationsJournal[i];
     let pubUrl = '';
@@ -56,7 +76,7 @@
     document.getElementById('bottom_slideshow').insertAdjacentHTML('beforeend', slideHtml);
   }
 
-  function automaticSlideShow() {
+  function bottom_automaticSlideShow() {
     // Checked: play
     if (document.getElementById('bottom_slideshow_play').checked) {
       const slides = document.querySelectorAll('#bottom_slideshow input[type=radio]');
@@ -71,9 +91,9 @@
         }
       }
     }
-    setTimeout(automaticSlideShow, 7000);
+    setTimeout(bottom_automaticSlideShow, 7000);
   }
 
-  setTimeout(automaticSlideShow, 7000);
+  setTimeout(bottom_automaticSlideShow, 7000);
 })();
 
