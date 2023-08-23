@@ -1,45 +1,4 @@
 (() => {
-  for (let i = 0; i < 10; i++) {
-    const pub = publicationsJournal[i];
-    let pubUrl = '';
-    let fileName = '';
-    if (pub.doi) {
-      pubUrl = 'https://doi.org/'+pub.doi;
-    } else if (pub.arxiv) {
-      pubUrl = 'https://arxiv.org/abs/'+pub.arxiv;
-    } 
-    const slideHtml =
-      '<input type="radio" id="slideshow_main_' + (i + 1).toString() + '" name="slideshow_main_indicators"' + (i === 0 ? ' checked' : '') + '>'
-      + '<label class="slideshow-indicator" for="slideshow_main_' + (i + 1).toString() + '">' + (i + 1).toString() + '</label>'
-      + '<div class="slideshow-slide">'
-      +   '<div class="slideshow-slide-text">' +pub.titlePublication+ '</div>'
-      +   '<a class="slideshow-slide-img" href="' + pubUrl + '" target="_blank">'
-      +     '<img src="media/publications/' + pub.filename + '.png" alt="' + pub.titlePublication  + '">'
-      +   '</a>'
-      + '</div>';
-    document.getElementById('slideshow_main').insertAdjacentHTML('beforeend', slideHtml);
-  }
-
-  function automaticSlideShow() {
-    // Checked: play
-    if (document.getElementById('slideshow_main_play').checked) {
-      const slides = document.querySelectorAll('#slideshow_main input[type=radio]');
-      for (let i = 0; i < slides.length; i++) {
-        if (slides[i].checked) {
-          if (i === slides.length - 1) {
-            slides[0].checked = true;
-          } else {
-            slides[i + 1].checked = true;
-          }
-          break;
-        }
-      }
-    }
-    setTimeout(automaticSlideShow, 7000);
-  }
-
-  setTimeout(automaticSlideShow, 7000);
-
   const pics=[
     {
         date: 'September 9, 2022',
@@ -61,25 +20,46 @@
         title: 'The group @ Hopkins\' 2023 Summer Research Symposium',
         file: 'media/home/pic_team_hopkins_symposium_20230801.png',
       }
-    ];
+  ];
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 4; i++) {
     pic=pics[i];
     let fileName = '';
     const slideHtml =
-      '<input type="radio" id="slideshow_home_' + (i + 1).toString() + '" name="slideshow_home_indicators"' + (i === 0 ? ' checked' : '') + '>'
-      + '<label class="slideshow-indicator" for="slideshow_home_' + (i + 1).toString() + '">' + (i + 1).toString() + '</label>'
+      '<input type="radio" id="top_slideshow_' + (i + 1).toString() + '" name="top_slideshow_indicators"' + (i === 0 ? ' checked' : '') + '>'
+      + '<label class="slideshow-indicator" for="top_slideshow_' + (i + 1).toString() + '">' + (i + 1).toString() + '</label>'
       + '<div class="slideshow-slide">'
       +   '<div class="slideshow-slide-text">' +pic.title+ '</div>'
-      +   '<div class="slideshow-slide-img"><img src="' + pic.file + '" alt="' + pic.title  + '"></div>'
+      +   '<div class="slideshow-slide-img top"><img src="' + pic.file + '" alt="' + pic.title  + '"></div>'
       + '</div>';
-    document.getElementById('slideshow_home').insertAdjacentHTML('beforeend', slideHtml);
+    document.getElementById('top_slideshow').insertAdjacentHTML('beforeend', slideHtml);
   }
 
-  function automaticSlideShow_home() {
+  for (let i = 0; i < 10; i++) {
+    const pub = publicationsJournal[i];
+    let pubUrl = '';
+    let fileName = '';
+    if (pub.doi) {
+      pubUrl = 'https://doi.org/'+pub.doi;
+    } else if (pub.arxiv) {
+      pubUrl = 'https://arxiv.org/abs/'+pub.arxiv;
+    } 
+    const slideHtml =
+      '<input type="radio" id="bottom_slideshow_' + (i + 1).toString() + '" name="bottom_slideshow_indicators"' + (i === 0 ? ' checked' : '') + '>'
+      + '<label class="slideshow-indicator" for="bottom_slideshow_' + (i + 1).toString() + '">' + (i + 1).toString() + '</label>'
+      + '<div class="slideshow-slide">'
+      +   '<div class="slideshow-slide-text">' +pub.titlePublication+ '</div>'
+      +   '<a class="slideshow-slide-img bottom" href="' + pubUrl + '" target="_blank">'
+      +     '<img src="media/publications/' + pub.filename + '.png" alt="' + pub.titlePublication  + '">'
+      +   '</a>'
+      + '</div>';
+    document.getElementById('bottom_slideshow').insertAdjacentHTML('beforeend', slideHtml);
+  }
+
+  function automaticSlideShow() {
     // Checked: play
-    if (document.getElementById('slideshow_home_play').checked) {
-      const slides = document.querySelectorAll('#slideshow_home input[type=radio]');
+    if (document.getElementById('bottom_slideshow_play').checked) {
+      const slides = document.querySelectorAll('#bottom_slideshow input[type=radio]');
       for (let i = 0; i < slides.length; i++) {
         if (slides[i].checked) {
           if (i === slides.length - 1) {
@@ -91,9 +71,9 @@
         }
       }
     }
-    setTimeout(automaticSlideShow_home, 7000);
+    setTimeout(automaticSlideShow, 7000);
   }
 
-  setTimeout(automaticSlideShow_home, 7000);
+  setTimeout(automaticSlideShow, 7000);
 })();
 

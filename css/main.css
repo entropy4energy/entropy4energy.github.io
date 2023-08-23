@@ -146,6 +146,8 @@ footer img {
     margin: 25px auto;
     width: 80%;
     min-width: 370px;
+}
+.slideshow.top {
     max-width: 400px;
 }
 .slideshow-slide {
@@ -185,9 +187,13 @@ footer img {
     height: 100%;
     width: 100%;
 }
-.slideshow-slide-img img {
+.slideshow-slide-img.top img {
     max-height: 299px;
     width: auto;
+}
+.slideshow-slide-img.bottom img {
+    max-height: 100%;
+    max-width: 100%;
 }
 .slideshow input {
     display: none;
@@ -535,8 +541,5 @@ footer img {
         grid-template-columns: auto auto;
         grid-template-areas: "b " "a" "c" "d" "e" "f" "g" "h" "i";
         margin-bottom: 20px;
-    }
-    .slideshow-slide {
-      height: 200px;
     }
 }
