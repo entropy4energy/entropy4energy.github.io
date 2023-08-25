@@ -28,9 +28,9 @@
     const slideHtml =
       '<input type="radio" id="top_slideshow_' + (i + 1).toString() + '" name="top_slideshow_indicators"' + (i === 0 ? ' checked' : '') + '>'
       + '<label class="slideshow-indicator" for="top_slideshow_' + (i + 1).toString() + '">' + (i + 1).toString() + '</label>'
-      + '<div class="slideshow-slide">'
+      + '<div class="slideshow-slide top">'
       +   '<div class="slideshow-slide-text">' +pic.title+ '</div>'
-      +   '<div class="slideshow-slide-img top"><img src="' + pic.file + '" alt="' + pic.title  + '"></div>'
+      +   '<div class="slideshow-slide-img"><img src="' + pic.file + '" alt="' + pic.title  + '"></div>'
       + '</div>';
     document.getElementById('top_slideshow').insertAdjacentHTML('beforeend', slideHtml);
   }
@@ -67,9 +67,9 @@
     const slideHtml =
       '<input type="radio" id="bottom_slideshow_' + (i + 1).toString() + '" name="bottom_slideshow_indicators"' + (i === 0 ? ' checked' : '') + '>'
       + '<label class="slideshow-indicator" for="bottom_slideshow_' + (i + 1).toString() + '">' + (i + 1).toString() + '</label>'
-      + '<div class="slideshow-slide">'
+      + '<div class="slideshow-slide bottom">'
       +   '<div class="slideshow-slide-text">' +pub.titlePublication+ '</div>'
-      +   '<a class="slideshow-slide-img bottom" href="' + pubUrl + '" target="_blank">'
+      +   '<a class="slideshow-slide-img" href="' + pubUrl + '" target="_blank">'
       +     '<img src="media/publications/' + pub.filename + '.png" alt="' + pub.titlePublication  + '">'
       +   '</a>'
       + '</div>';
