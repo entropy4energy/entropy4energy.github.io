@@ -148,20 +148,8 @@ footer {
 
 /* Index */
 
-.index-img {
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-  border: 2.5px solid;
-  border-radius: 8px;
-  border-color: #68ace5;
-  max-width: 70%;
-  height: auto;
-}
-
-.index-text { 
+.index-header { 
   text-align: center;
-  padding-bottom: 10px;
 }
 
 .slideshow {
@@ -170,9 +158,16 @@ footer {
   max-width: 750px;
   justify-content: flex-end;
   margin: 25px auto;
-  min-width: 400px;
+  min-width: 370px;
   width: 80%;
-
+  &.top {
+    height: 229px;
+    width: 450px;
+    }
+  &.bottom {
+    height: 450px;
+    width: 615px;
+    }
   &-slide {
     border: 1px solid black;
     display: none;
@@ -181,19 +176,25 @@ footer {
     order: 1;
     overflow: hidden;
     position: relative;
-    width: 100%;   
+    width: 100%;
+    &.top {
+      border: 2.5px solid;
+      border-color: #68ace5;
+      background-color: #D5D5D5;
+    }
     &-text {
       align-items: center;
+      text-align: center;
       background-color: $black-semi-transparent;
       color: #ffffff;
       display: flex;
-      height: $slide-indicator-dims;
+      height: 4em;
       justify-content: center;
       position: absolute;
       top: 0;
       transition: all 0.5s;
-      transform: translateY(-100%);
-      width: 100%;
+      transform: translateY(-200%);
+      width: 100%;  
     }
     &:hover &-text {
       transform: translateY(0%);
@@ -209,8 +210,8 @@ footer {
         width: 100%;
       }
       & img {
-        max-height: 100%;
-        max-width: 100%;
+        height: 100%;
+        width: auto;
       }
     }
   }
@@ -228,7 +229,7 @@ footer {
       justify-content: center;
       order: 2;
       width: $slide-indicator-dims;
-      z-index: 9999;
+      z-index: 9998;
     }
 
     &[type=radio]:checked + label {
@@ -476,6 +477,18 @@ footer {
   }
   .publication-number{
     margin-left: 0px;
+  }
+  .slideshow.top {
+    height: 225px;
+    min-width: 340px;
+    width: 340px;
+  }
+  .slideshow.bottom {
+    height: 250px;
+    width: 370px;
+  }
+  .slideshow-slide-text {
+    height: 5em;
   }
 }
 
