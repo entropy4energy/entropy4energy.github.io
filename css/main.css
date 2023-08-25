@@ -162,15 +162,16 @@ footer img {
 }
 .slideshow-slide-text {
     align-items: center;
+    text-align: center;
     background-color: #000000aa;
     color: #ffffff;
     display: flex;
-    height: 2em;
+    height: 4em;
     justify-content: center;
     position: absolute;
     top: 0;
     transition: all 0.5s;
-    transform: translateY(-100%);
+    transform: translateY(-200%);
     width: 100%;
 }
 .slideshow-slide:hover .slideshow-slide-text {
@@ -435,6 +436,9 @@ footer img {
     .slideshow.bottom {
       height: 250px;
       width: 370px;
+    }
+    .slideshow-slide-text {
+      height: 5em;
     }
 }
 @media screen and (max-width: 548px) {
