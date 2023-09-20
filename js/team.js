@@ -48,6 +48,13 @@
         'Graduate Student',
       ],
     },
+    'xuanhao_lin': {
+      contact: 'xlin44 at jhu.edu',
+      nameFull: 'Xuanhao Lin',
+      titles: [
+        'Graduate Student',
+      ],
+    },
     'will_shiber': {
       contact: 'wshiber1 at jhu.edu',
       nameFull: 'Will Shiber',
