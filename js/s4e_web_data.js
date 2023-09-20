@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'September 1, 2023',
+newsTitle:'The group welcomes Xuanhao Lin',
+message:'Xuanhao comes from Guangdong Technion-Israel Institute of Technology where he studied Materials Science & Engineering. Welcome Xuanhao!',
+picture:'pic_welcome_grad_xlin.jpg',
+},
+{
 date:'August 1, 2023',
 newsTitle:'The group welcomes Tianhao Li',
 message:'Tianhao comes from Duke University where he studied Materials Science & Engineering. Welcome Tianhao!',
