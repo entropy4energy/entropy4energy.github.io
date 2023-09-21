@@ -2,7 +2,7 @@ const newsItems=[
 {
 date:'September 20, 2023',
 newsTitle:'The group recieves funding from Space@Hopkins',
-message:'The S4E team is awarded a <a target="blank" href="https://nam02.safelinks.protection.outlook.com/?url=https%3A%2F%2Fjhu.us5.list-manage.com%2Ftrack%2Fclick%3Fu%3Dbd75ef1a5cad0cbfd522412c4%26id%3D95260eb5ff%26e%3D4ace0ce180&data=05%7C01%7Ctli114%40jh.edu%7C5b5a779debc44591a9c608dbb5558aff%7C9fa4f438b1e6473b803f86f8aedf0dec%7C0%7C0%7C638303151226121142%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=oP%2BUa%2Fc18%2BJXpB%2FdKBO8FeROuvcCQJra2a2qjvZRrU0%3D&reserved=0">Space@Hopkins</a> seed grant. Congratulations team!',
+message:'The S4E team is awarded a <a target="blank" href="https://hub.jhu.edu/announcements/2023/09/08/four-teams-awarded-spacehopkins-seed-grants/">Space@Hopkins</a> seed grant. Congratulations team!',
 picture:'pic_space_at_hopkins_logo.png',
 },
 {
