@@ -1,4 +1,4 @@
-const newsItems=
+const newsItems=[
 {
 date:'September 20, 2023',
 newsTitle:'The group recieves funding from Space@Hopkins',
