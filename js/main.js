@@ -33,6 +33,7 @@ document.querySelector('footer').innerHTML =
   + '<div class="contact-line">Johns Hopkins University</div>'
   + '<div class="contact-line">Baltimore, Maryland</div>'
   + '</div>'
+  + '<a href="https://spacestudies.jhu.edu" target="_blank"><img src="media/footer/pic_space_at_hopkins_logo.png" alt="space@Hopkins logo" class="footer-sponsor"></a>'
   + '<a href="https://www.idies.jhu.edu" target="_blank"><img src="media/footer/idies.png" alt="IDIES logo" class="footer-sponsor"></a>'
   + '<a href="https://md.spacegrant.org/" target="_blank"><img src="media/footer/mdsgc.png" alt="MDSGC logo" class="footer-sponsor"></a>';
 
