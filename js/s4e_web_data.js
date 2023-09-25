@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'September 20, 2023',
+newsTitle:'The group recieves funding from Space@Hopkins',
+message:'The S4E team is awarded a <a target="blank" href="https://hub.jhu.edu/announcements/2023/09/08/four-teams-awarded-spacehopkins-seed-grants/">Space@Hopkins</a> seed grant. Congratulations team!',
+picture:'pic_space_at_hopkins_logo.png',
+},
+{
 date:'September 1, 2023',
 newsTitle:'The group welcomes Xuanhao Lin',
 message:'Xuanhao comes from Guangdong Technion-Israel Institute of Technology where he studied Materials Science & Engineering. Welcome Xuanhao!',
