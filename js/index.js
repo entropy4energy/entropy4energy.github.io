@@ -24,6 +24,11 @@
         date: 'September 22, 2023',
         title: 'The group BBQ lunch @ K-POT!',
         file: 'media/home/pic_team_kbbq_20230922.png',
+      },
+      {
+        date: 'October 13, 2023',
+        title: 'The group @ IDIES\' 2023 Symposium',
+        file: 'media/home/pic_team_idies_20231013.png',
       }
   ];
 
