@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'October 13, 2023',
+newsTitle:'Keith and Will present at the 2023 IDIES Symposium',
+message:'Keith and Will presented their research at the 2023 IDIES Symposium, impressive presentation, good job guys!',
+picture:'pic_kc_ws_idies_2023.png',
+},
+{
 date:'September 20, 2023',
 newsTitle:'The group recieves funding from Space@Hopkins',
 message:'The S4E team is awarded a <a target="blank" href="https://hub.jhu.edu/announcements/2023/09/08/four-teams-awarded-spacehopkins-seed-grants/">Space@Hopkins</a> seed grant. Congratulations team!',
