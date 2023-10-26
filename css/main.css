@@ -243,7 +243,7 @@ footer img {
 }
 .news-item-img img {
     max-height: 200px;
-    max-width: 200px;
+    max-width: 300px;
 }
 .news-item-text {
     grid-area: c;
@@ -428,6 +428,11 @@ footer img {
     .publication-number {
         margin-left: 0px;
     }
+
+    .news-item-img img {
+      max-width: 200px;
+    }
+
     .slideshow.top {
       height: 225px;
       min-width: 340px;
@@ -542,6 +547,10 @@ footer img {
     }
     .publication-number {
         margin-left: 0px;
+    }
+
+    .news-item-img img {
+      max-width: 200px;
     }
 
     .job {

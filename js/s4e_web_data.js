@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'October 25, 2023',
+newsTitle:'ARCH interviews Prof. Oses',
+message:'<a target="blank" href= "https://www.arch.jhu.edu/">Advanced Research Computing at Hopkins (ARCH)</a> writes a <a target="blank" href="https://www.arch.jhu.edu/research-spotlight-corey-oses/">Research Spotlight</a> on Prof. Oses and the Entropy for Energy Laboratory.',
+pictures:['pic_logo_arch.png'],
+},
+{
 date:'October 13, 2023',
 newsTitle:'Keith and Will present at the 2023 IDIES Symposium',
 message:'Keith and Will presented their research at the 2023 IDIES Symposium, impressive presentation, good job guys!',

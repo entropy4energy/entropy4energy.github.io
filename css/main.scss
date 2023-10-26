@@ -272,7 +272,7 @@ footer {
     margin-top: 15px;
     img {
       max-height: 200px;
-      max-width: 200px;
+      max-width: 300px;
     }
   }
   &-text {
@@ -478,6 +478,9 @@ footer {
   .publication-number{
     margin-left: 0px;
   }
+  .news-item-img img{
+    max-width=200px;
+  }
   .slideshow.top {
     height: 225px;
     min-width: 340px;
@@ -607,6 +610,10 @@ footer {
     &-number {
       margin-left: 0px;
     }
+  }
+
+  .news-item-img img{
+    max-width=200px;
   }
 
   .job {
