@@ -29,6 +29,11 @@
         date: 'October 13, 2023',
         title: 'The group @ IDIES\' 2023 Symposium',
         file: 'media/home/pic_team_idies_20231013.png',
+      },
+      {
+        date: 'December 14, 2023',
+        title: 'Ending of the semester dinner @ Yesh',
+        file: 'media/home/pic_team_yesh_20231214.png',
       }
   ];
 
