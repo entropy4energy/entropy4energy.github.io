@@ -83,6 +83,20 @@
         'Undergraduate Student',
       ],
     },
+    'Julia_Gelfond': {
+      contact: 'jgelfon1 at jhu.edu',
+      nameFull: 'Julia Gelfond',
+      titles: [
+        'Undergraduate Student',
+      ],
+    },
+    'akshaya_ajith': {
+      contact: 'aajith1 at jhu.edu',
+      nameFull: 'Akshaya Ajith',
+      titles: [
+        'Undergraduate Student',
+      ],
+    },
     }; 
 
   function buildPerson(person, personId) {

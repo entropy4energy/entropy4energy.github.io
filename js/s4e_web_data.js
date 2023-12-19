@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'December 1, 2023',
+newsTitle:'The group welcomes Julia Gelfond and Akshaya Ajith!',
+message:'Julia and Akshaya are both undergraduate students majoring in materials science and engineering. Welcome Julia and Akshaya!',
+pictures:['pic_welcome_undergrad_jgelfond.jpg','pic_welcome_undergrad_aajith.jpg'],
+},
+{
 date:'October 25, 2023',
 newsTitle:'ARCH interviews Prof. Oses',
 message:'<a target="blank" href= "https://www.arch.jhu.edu/">Advanced Research Computing at Hopkins (ARCH)</a> writes a <a target="blank" href="https://www.arch.jhu.edu/research-spotlight-corey-oses/">Research Spotlight</a> on Prof. Oses and the Entropy for Energy Laboratory.',
