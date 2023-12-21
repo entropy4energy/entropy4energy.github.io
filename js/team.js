@@ -83,7 +83,7 @@
         'Undergraduate Student',
       ],
     },
-    'Julia_Gelfond': {
+    'julia_gelfond': {
       contact: 'jgelfon1 at jhu.edu',
       nameFull: 'Julia Gelfond',
       titles: [
