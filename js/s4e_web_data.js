@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'January 17, 2023',
+newsTitle:'Will presents at the 2024 ROSEI Symposium',
+message:'Will presented his research at the 2024 ROSEI Symposium. Well done Will!',
+pictures:['pic_ws_ROSEI_2024.jpg'],
+},
+{
 date:'December 1, 2023',
 newsTitle:'The group welcomes Julia Gelfond and Akshaya Ajith!',
 message:'Julia and Akshaya are both undergraduate students majoring in materials science and engineering. Welcome Julia and Akshaya!',
