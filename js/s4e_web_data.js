@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'January 30, 2024',
+newsTitle:'The group welcomes Guotao Qiu, Yuxiang Liu and Xiao Xu!',
+message:'Guotao comes from University of Macau where he studied Applied Physics and Materials Engineering, Yuxiang comes from University of Bremen where she studied Computational Physics and Xiao comes from University of Texas, Austin where he studied Electrical and Computer Engineering. Welcome!',
+pictures:['pic_welcome_postdoc_gqiu.jpg','pic_welcome_postdoc_yliu.jpg','pic_welcome_grad_xxu.jpg'],
+},
+{
 date:'January 17, 2023',
 newsTitle:'Will presents at the 2024 ROSEI Symposium',
 message:'Will presented his research at the 2024 ROSEI Symposium. Well done Will!',

@@ -17,6 +17,10 @@
       positions: ['Undergraduate Student'],
     },
     {
+      groupTitle: 'Alumni',
+      positions: ['Alumni'],
+    },
+    {
       groupTitle: 'Affiliates',
       positions: ['Web Developer'],
     },
@@ -34,16 +38,37 @@
         'Assistant Professor',
       ],
     },
+    'guotao_qiu': {
+      contact: 'gqiu5 at jhu.edu',
+      nameFull: 'Guotao Qiu',
+      titles: [
+        'Postdoctoral Associate',
+      ],
+    },
+    'yuxiang_liu': {
+      contact: 'yliu597 at jhu.edu',
+      nameFull: 'Yuxiang Liu',
+      titles: [
+        'Postdoctoral Associate',
+      ],
+    },
     'keith_clark': {
       contact: 'kclark96 at jhu.edu',
       nameFull: 'Keith Clark',
       titles: [
-        'Graduate Student',
+        'Alumni',
       ],
     },
     'tianhao_li': {
       contact: 'tli114 at jhu.edu',
       nameFull: 'Tianhao Li',
+      titles: [
+        'Graduate Student',
+      ],
+    },
+    'xiao_xu': {
+      contact: 'xxu115 at jhu.edu',
+      nameFull: 'Xiao Xu',
       titles: [
         'Graduate Student',
       ],
