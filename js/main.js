@@ -18,6 +18,7 @@ document.querySelector('header').innerHTML = '<div class="hero">Entropy for Ener
   +     '<li><a id="nav_team" href="team.html">Team</a></li>'
   +     '<li><a id="nav_news" href="news.html">News</a></li>'
   +     '<li><a id="nav_jobs" href="jobs.html">Jobs</a></li>'
+  +     '<li><a id="nav_workshops" href="workshops.html">Workshops</a></li>'
   +   '</ul>'
   + '</nav>';
   document.querySelector('header').insertAdjacentHTML('afterend', navHtml);
