@@ -29,6 +29,9 @@
         <p>${workshop.description}</p>
         <a href="${workshop.link}" class="register-now" target="_blank" rel="noopener noreferrer">Register Now</a>
         <a href="https://engineering.jhu.edu/materials/event/data-driven-materials-modeling-workshop" class="register-now" target="_blank" rel="noopener noreferrer">Updated Schedule</a>
+	<p><b>Day 1 Materials</b></p>
+        <a href="https://forms.gle/yBGsnLbLWcJ3Bs2c7" class="colab-link" target="_blank" rel="noopener noreferrer">Pre-Survey</a>
+        <a href="https://forms.gle/E2uPSDKzXEDoQ9Cy8" class="colab-link" target="_blank" rel="noopener noreferrer">Post-Survey</a>
         <p>Workshop led by Dr. Guotao Qiu, Dr. Yuxiang Liu, Tianhao Li and Xiao Xu on high-throughput density functional theory calculations with aflow++, thermodynamic analysis, structural prototypes, and modeling disordered materials will start from 13:00 - 17:00, May 29.</p>
         <p>The Google Colab links for each section are here:</p>
         <a href="https://colab.research.google.com/drive/1gqEJ_c2mi5r9VisNdzj7e6H2N_OiVYbr?usp=sharing" class="colab-link" target="_blank" rel="noopener noreferrer">01_AFLOW_DFT</a>
