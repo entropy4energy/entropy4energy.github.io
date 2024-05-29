@@ -29,6 +29,7 @@
         <p>${workshop.description}</p>
         <a href="${workshop.link}" class="register-now" target="_blank" rel="noopener noreferrer">Register Now</a>
         <a href="https://engineering.jhu.edu/materials/event/data-driven-materials-modeling-workshop" class="register-now" target="_blank" rel="noopener noreferrer">Updated Schedule</a>
+        <a href="https://wse.zoom.us/j/93151456592?pwd=aG4rQWc1YTh5Tmg5UFZXdHdDeStOZz09" class="register-now" target="_blank" rel="noopener noreferrer">Zoom</a>
 	<p><b>Day 1 Materials</b></p>
         <a href="https://forms.gle/yBGsnLbLWcJ3Bs2c7" class="colab-link" target="_blank" rel="noopener noreferrer">Pre-Survey</a>
         <a href="https://forms.gle/E2uPSDKzXEDoQ9Cy8" class="colab-link" target="_blank" rel="noopener noreferrer">Post-Survey</a>
