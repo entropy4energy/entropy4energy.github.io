@@ -27,14 +27,15 @@
         <h2>${workshop.title}</h2>
         <p><strong>Date:</strong> ${workshop.date}</p>
         <p>${workshop.description}</p>
-        <a href="${workshop.link}" class="register-now">Register Now</a>
+        <a href="${workshop.link}" class="register-now" target="_blank" rel="noopener noreferrer">Register Now</a>
+        <a href="https://engineering.jhu.edu/materials/event/data-driven-materials-modeling-workshop" class="register-now" target="_blank" rel="noopener noreferrer">Updated Schedule</a>
         <p>Workshop led by Dr. Guotao Qiu, Dr. Yuxiang Liu, Tianhao Li and Xiao Xu on high-throughput density functional theory calculations with aflow++, thermodynamic analysis, structural prototypes, and modeling disordered materials will start from 13:00 - 17:00, May 29.</p>
-        <p>The google colab links for each section are here:</p>
-        <a href="https://colab.research.google.com/drive/1gqEJ_c2mi5r9VisNdzj7e6H2N_OiVYbr?usp=sharing" class="colab-link">01_AFLOW_DFT</a>
-        <a href="https://colab.research.google.com/drive/1NHxjKDCxRKZv-21llKWZVl8VtzxaoZVC?usp=sharing" class="colab-link">02_AFLOW_PROTOTYPE</a>
-        <a href="https://colab.research.google.com/drive/1DCuvWdY3v-47sgD1GSVWo9pa52g_MD8I?usp=sharing" class="colab-link">03_AFLOW_CHULL</a>
-        <a href="https://colab.research.google.com/drive/11G7IwQAso4MnovbeP5plmFk_WZEZj5q0?usp=sharing" class="colab-link">04_AFLOW_POCC</a>
-        <a href="https://colab.research.google.com/drive/1Zz021nGh6ltnpDD1zt6aSrpfXCwy5XJT?usp=sharing" class="colab-link">05_AFLOW_ML</a>
+        <p>The Google Colab links for each section are here:</p>
+        <a href="https://colab.research.google.com/drive/1gqEJ_c2mi5r9VisNdzj7e6H2N_OiVYbr?usp=sharing" class="colab-link" target="_blank" rel="noopener noreferrer">01_AFLOW_DFT</a>
+        <a href="https://colab.research.google.com/drive/1NHxjKDCxRKZv-21llKWZVl8VtzxaoZVC?usp=sharing" class="colab-link" target="_blank" rel="noopener noreferrer">02_AFLOW_PROTOTYPE</a>
+        <a href="https://colab.research.google.com/drive/1DCuvWdY3v-47sgD1GSVWo9pa52g_MD8I?usp=sharing" class="colab-link" target="_blank" rel="noopener noreferrer">03_AFLOW_CHULL</a>
+        <a href="https://colab.research.google.com/drive/11G7IwQAso4MnovbeP5plmFk_WZEZj5q0?usp=sharing" class="colab-link" target="_blank" rel="noopener noreferrer">04_AFLOW_POCC</a>
+        <a href="https://colab.research.google.com/drive/1Zz021nGh6ltnpDD1zt6aSrpfXCwy5XJT?usp=sharing" class="colab-link" target="_blank" rel="noopener noreferrer">05_AFLOW_ML</a>
         ${imagesHtml}
       </div>
     `;
