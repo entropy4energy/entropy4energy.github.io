@@ -30,6 +30,8 @@
         <a href="${workshop.link}" class="register-now" target="_blank" rel="noopener noreferrer">Register Now</a>
         <a href="https://engineering.jhu.edu/materials/event/data-driven-materials-modeling-workshop" class="register-now" target="_blank" rel="noopener noreferrer">Updated Schedule</a>
         <a href="https://wse.zoom.us/j/93151456592?pwd=aG4rQWc1YTh5Tmg5UFZXdHdDeStOZz09" class="register-now" target="_blank" rel="noopener noreferrer">Zoom</a>
+	<p><b>Day 3 Materials</b></p>
+        <a href="https://colab.research.google.com/drive/1CqBCY-3PAEkbkLucOE3upzmPx82CYit7?usp=sharing" class="colab-link" target="_blank" rel="noopener noreferrer">Jupyter Notebook Materials</a>
 	<p><b>Day 2 Materials</b></p>
         <a href="https://s4e.ai/workshops/2024_ai_materials/DAY_2/" class="colab-link" target="_blank" rel="noopener noreferrer">Jupyter Notebook Materials</a>
 	<p><b>Day 1 Materials</b></p>
