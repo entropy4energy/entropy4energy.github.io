@@ -3,7 +3,7 @@ const newsItems=[
 date:'June 6, 2024',
 newsTitle:'The group welcomes Katrina Wang, Maya Niyogi, and Shawn Zhou!',
 message:'Katrina, Maya, and Shawn are all undergraduate students. Katrina is majoring in molecular and cellular biology. Maya and Shawn are majoring in applied math and statistics. Welcome!',
-pictures:['pic_welcome_postdoc_kwang.jpg','pic_welcome_postdoc_mniyogi.jpg','pic_welcome_grad_yzhou.jpg'],
+pictures:['pic_welcome_undergrad_kwang.jpg','pic_welcome_undergrad_mniyogi.jpg','pic_welcome_undergrad_yzhou.jpg'],
 },
 {
 date:'January 30, 2024',
