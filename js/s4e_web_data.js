@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'June 6, 2024',
+newsTitle:'The group welcomes Katrina Wang, Maya Niyogi, and Shawn Zhou!',
+message:'Katrina, Maya, and Shawn are all undergraduate students. Katrina is majoring in molecular and cellular biology. Maya and Shawn are majoring in applied math and statistics. Welcome!',
+pictures:['pic_welcome_undergrad_kwang.jpg','pic_welcome_undergrad_mniyogi.jpg','pic_welcome_undergrad_yzhou.jpg'],
+},
+{
 date:'January 30, 2024',
 newsTitle:'The group welcomes Guotao Qiu, Yuxiang Liu and Xiao Xu!',
 message:'Guotao comes from University of Macau where he studied Applied Physics and Materials Engineering, Yuxiang comes from University of Bremen where she studied Computational Physics and Xiao comes from University of Texas, Austin where he studied Electrical and Computer Engineering. Welcome!',
