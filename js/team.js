@@ -80,6 +80,27 @@
         'Graduate Student',
       ],
     },
+    'maya_niyogi': {
+      contact: 'mniyogi1 at jhu.edu',
+      nameFull: 'Maya Niyogi',
+      titles: [
+        'Undergraduate Student',
+     ],
+    },
+    'shawn_zhou': {
+      contact: 'yzhou218 at jhu.edu',
+      nameFull: 'Shawn Zhou',
+      titles: [
+        'Undergraduate Student',
+     ],
+    },
+    'katrina_wang': {
+      contact: 'kwang123 at jhu.edu',
+      nameFull: 'Katrina Wang',
+      titles: [
+        'Undergraduate Student',
+     ],
+    },
     'will_shiber': {
       contact: 'wshiber1 at jhu.edu',
       nameFull: 'Will Shiber',
