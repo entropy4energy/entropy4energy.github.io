@@ -89,6 +89,11 @@
         ${video4}
         ${video5}
         ${video6}
+        <p><b>Day 2 Quantum Chemistry and Catalysis</b></p>
+        <p>Hands-on materials</p><a href="https://s4e.ai/workshops/2024_ai_materials/DAY_2/" class="colab-link" target="_blank" rel="noopener noreferrer">Jupyter Notebook</a>
+        <p><b>Day 3 Monte Carlo and Molecular Dynamics</b></p>
+        <p>Hands-on materials</p><a href="https://colab.research.google.com/drive/1CqBCY-3PAEkbkLucOE3upzmPx82CYit7?usp=sharing" class="colab-link" target="_blank" rel="noopener noreferrer">Jupyter Notebook</a>
+
         ${imagesHtml}
       </div>
     `;
