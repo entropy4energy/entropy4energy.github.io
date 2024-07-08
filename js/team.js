@@ -17,6 +17,10 @@
       positions: ['Undergraduate Student'],
     },
     {
+      groupTitle: 'Alumni',
+      positions: ['Alumni'],
+    },
+    {
       groupTitle: 'Affiliates',
       positions: ['Web Developer'],
     },
@@ -34,11 +38,25 @@
         'Assistant Professor',
       ],
     },
+    'guotao_qiu': {
+      contact: 'gqiu5 at jhu.edu',
+      nameFull: 'Guotao Qiu',
+      titles: [
+        'Postdoctoral Associate',
+      ],
+    },
+    'yuxiang_liu': {
+      contact: 'yliu597 at jhu.edu',
+      nameFull: 'Yuxiang Liu',
+      titles: [
+        'Postdoctoral Associate',
+      ],
+    },
     'keith_clark': {
       contact: 'kclark96 at jhu.edu',
       nameFull: 'Keith Clark',
       titles: [
-        'Graduate Student',
+        'Alumni',
       ],
     },
     'tianhao_li': {
@@ -48,12 +66,40 @@
         'Graduate Student',
       ],
     },
+    'xiao_xu': {
+      contact: 'xxu115 at jhu.edu',
+      nameFull: 'Xiao Xu',
+      titles: [
+        'Graduate Student',
+      ],
+    },
     'xuanhao_lin': {
       contact: 'xlin44 at jhu.edu',
       nameFull: 'Xuanhao Lin',
       titles: [
-        'Graduate Student',
+        'Alumni',
       ],
+    },
+    'maya_niyogi': {
+      contact: 'mniyogi1 at jhu.edu',
+      nameFull: 'Maya Niyogi',
+      titles: [
+        'Undergraduate Student',
+     ],
+    },
+    'shawn_zhou': {
+      contact: 'yzhou218 at jhu.edu',
+      nameFull: 'Shawn Zhou',
+      titles: [
+        'Undergraduate Student',
+     ],
+    },
+    'katrina_wang': {
+      contact: 'kwang123 at jhu.edu',
+      nameFull: 'Katrina Wang',
+      titles: [
+        'Undergraduate Student',
+     ],
     },
     'will_shiber': {
       contact: 'wshiber1 at jhu.edu',
@@ -73,12 +119,26 @@
       contact: 'vtan5 at jhu.edu',
       nameFull: 'Veric Tan',
       titles: [
-        'Undergraduate Student',
+        'Alumni',
       ],
     },
     'dakota_braaten': {
       contact: 'dbraate1 at jhu.edu',
       nameFull: 'Dakota Braaten',
+      titles: [
+        'Alumni',
+      ],
+    },
+    'julia_gelfond': {
+      contact: 'jgelfon1 at jhu.edu',
+      nameFull: 'Julia Gelfond',
+      titles: [
+        'Undergraduate Student',
+      ],
+    },
+    'akshaya_ajith': {
+      contact: 'aajith1 at jhu.edu',
+      nameFull: 'Akshaya Ajith',
       titles: [
         'Undergraduate Student',
       ],
