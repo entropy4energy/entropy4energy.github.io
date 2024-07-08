@@ -18,6 +18,7 @@ document.querySelector('header').innerHTML = '<div class="hero">Entropy for Ener
   +     '<li><a id="nav_team" href="team.html">Team</a></li>'
   +     '<li><a id="nav_news" href="news.html">News</a></li>'
   +     '<li><a id="nav_jobs" href="jobs.html">Jobs</a></li>'
+  +     '<li><a id="nav_workshops" href="workshops.html">Workshops</a></li>'
   +   '</ul>'
   + '</nav>';
   document.querySelector('header').insertAdjacentHTML('afterend', navHtml);
@@ -33,6 +34,7 @@ document.querySelector('footer').innerHTML =
   + '<div class="contact-line">Johns Hopkins University</div>'
   + '<div class="contact-line">Baltimore, Maryland</div>'
   + '</div>'
+  + '<a href="https://spacestudies.jhu.edu" target="_blank"><img src="media/footer/pic_space_at_hopkins_logo.png" alt="space@Hopkins logo" class="footer-sponsor"></a>'
   + '<a href="https://www.idies.jhu.edu" target="_blank"><img src="media/footer/idies.png" alt="IDIES logo" class="footer-sponsor"></a>'
   + '<a href="https://md.spacegrant.org/" target="_blank"><img src="media/footer/mdsgc.png" alt="MDSGC logo" class="footer-sponsor"></a>';
 

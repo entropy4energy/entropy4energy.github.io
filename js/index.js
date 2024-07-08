@@ -19,10 +19,25 @@
         date: 'August 1, 2023',
         title: 'The group @ Hopkins\' 2023 Summer Research Symposium',
         file: 'media/home/pic_team_hopkins_symposium_20230801.png',
+      },
+      {
+        date: 'September 22, 2023',
+        title: 'The group BBQ lunch @ K-POT!',
+        file: 'media/home/pic_team_kbbq_20230922.png',
+      },
+      {
+        date: 'October 13, 2023',
+        title: 'The group @ IDIES\' 2023 Symposium',
+        file: 'media/home/pic_team_idies_20231013.png',
+      },
+      {
+        date: 'December 14, 2023',
+        title: 'Ending of the semester dinner @ Yesh',
+        file: 'media/home/pic_team_yesh_20231214.png',
       }
   ];
 
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < pics.length; i++) {
     pic=pics[i];
     let fileName = '';
     const slideHtml =
