@@ -1,9 +1,19 @@
 (() => {
+  const upcomingWorkshopsDiv = document.getElementById('upcoming_workshops')
   const workshopList = document.getElementById('workshop_list');
+  
+  if (!upcomingWorkshopsDiv) {
+    console.error('Element with ID "upcoming_workshops" not found.');
+    return;
+  }
   if (!workshopList) {
     console.error('Element with ID "workshop_list" not found.');
     return;
   }
+
+  const noneElement = document.createElement('h2');
+  noneElement.textContent = 'None';
+  upcomingWorkshopsDiv.appendChild(noneElement);
 
   const workshops = [
     {
