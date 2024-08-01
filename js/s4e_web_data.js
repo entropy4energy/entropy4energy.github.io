@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'Jul 31, 2024',
+newsTitle:'Gabby presents at the 2024 STEM Symposium',
+message:'Gabby presented her research at the 2024 STEM Symposium. Well done Gabby!',
+pictures:['pic_gabby_STEM_Symposium.jpg'],
+},
+{
 date:'June 6, 2024',
 newsTitle:'The group welcomes Katrina Wang, Maya Niyogi, and Shawn Zhou!',
 message:'Katrina, Maya, and Shawn are all undergraduate students. Katrina is majoring in molecular and cellular biology. Maya and Shawn are majoring in applied math and statistics. Welcome!',
