@@ -3,6 +3,13 @@
   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
   const EqualEmploymentOpportunityStatement='The Johns Hopkins University is committed to equal opportunity for its faculty, staff, and students. To that end, the university does not discriminate on the basis of sex, gender, marital status, pregnancy, race, color, ethnicity, national origin, age, disability, religion, sexual orientation, gender identity or expression, veteran status or other legally protected characteristic. The university is committed to providing qualified individuals access to all academic and employment programs, benefits and activities on the basis of demonstrated ability, performance and merit without regard to personal factors that are irrelevant to the program involved.';
   const jobList = [
+     {
+      open: 'Dec. 20, 2024',
+      close: 'Feb. 3, 2025',
+      title: '2025 Undergraduate Summer Researcher (National Science Foundation, REU summer program)',
+      description: 'The <i>S4E</i> Lab has openings for undergraduate researchers in the data-driven discovery of energy materials. Research on Sustainable Energy Technology and Systems (ROSETAS) is a 10-week National Science Foundation Research Experience for Undergraduates (REU) summer program in sustainable energy that is hosted by ROSEI, which serves as the nexus for sustainable energy-related research and educational programs at Johns Hopkins University. Accepted students will be awarded a $7,000 stipend and given housing on campus for the summer. Candidates must be U.S. Citizens or U.S. Permanent Residents, have completed at least one year of undergraduate studies, and not yet have a bachelor’s degree. Trainees will participate in a professional development program and in research projects in one of five areas that address society’s vast energy needs: carbon capture and transformation, energy storage technology, solar energy technology, wind energy technology, and electricity grid management. The program will take place 27 May 2025 through 1 August 2025. Applications are due on 3 February 2025 by 11:59 ET. Please see the attached <a href="media/jobs/rosetas_flyer_2025.pdf" download="rosetas_flyer_2025.pdf" target="blank">flyer</a>  or visit this <a href=https://etap.nsf.gov/award/7317/opportunity/9804 target="blank">link</a> to apply. For questions regarding the Entropy for Energy Laboratory, email the <i>S4E</i> team (entropy4energy AT jhu.edu). Please submit your application at <a href=https://etap.nsf.gov/award/7317/opportunity/9804 target="blank">https://etap.nsf.gov/award/7317/opportunity/9804</a>.',
+      flyer: 'rosetas_flyer_2025',
+    },
     {
       open: 'Jan. 1, 2025',
       title: 'Postdoctoral Researcher Opportunity',
