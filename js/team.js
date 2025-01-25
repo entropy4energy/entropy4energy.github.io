@@ -73,6 +73,13 @@
         'Graduate Student',
       ],
     },
+    'jaehyung_lee': {
+      contact: 'jlee859 at jhu.edu',
+      nameFull: 'Jaehyung Lee',
+      titles: [
+        'Graduate Student',
+      ],
+    },    
     'xuanhao_lin': {
       contact: 'xlin44 at jhu.edu',
       nameFull: 'Xuanhao Lin',
