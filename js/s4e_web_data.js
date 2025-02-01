@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'Jan 2, 2024',
+newsTitle:'The group welcomes Guangshuai (Jerry) Han and Jaehyung Lee!',
+message:'Jerry comes from Purdue University where he studied civil engineering. Jaehyung comes from Columbia University where he studied chemical engineering. Welcome!',
+pictures:['pic_welcome_postdoc_ghan.jpg','pic_welcome_grad_jlee.jpg'],
+},
+{
 date:'Jul 31, 2024',
 newsTitle:'Gabby presents at the 2024 STEM Symposium',
 message:'Gabby presented her research at the 2024 STEM Symposium. Well done Gabby!',
@@ -14,7 +20,7 @@ pictures:['pic_welcome_undergrad_kwang.jpg','pic_welcome_undergrad_mniyogi.jpg',
 {
 date:'January 30, 2024',
 newsTitle:'The group welcomes Guotao Qiu, Yuxiang Liu and Xiao Xu!',
-message:'Guotao comes from University of Macau where he studied Applied Physics and Materials Engineering, Yuxiang comes from University of Bremen where she studied Computational Physics and Xiao comes from University of Texas, Austin where he studied Electrical and Computer Engineering. Welcome!',
+message:'Guotao comes from University of Macau where he studied Applied Physics and Materials Engineering, Yuxiang comes from University of Bremen where she studied Computational Physics and Xiao comes from The University of Texas at Austin where he studied Electrical and Computer Engineering. Welcome!',
 pictures:['pic_welcome_postdoc_gqiu.jpg','pic_welcome_postdoc_yliu.jpg','pic_welcome_grad_xxu.jpg'],
 },
 {
