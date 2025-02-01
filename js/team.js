@@ -44,14 +44,14 @@
       titles: [
         'Postdoctoral Associate',
       ],
-    }
+    },
     'yuxiang_liu': {
       contact: 'yliu597 at jhu.edu',
       nameFull: 'Yuxiang Liu',
       titles: [
         'Alumni',
       ],
-    }
+    },
     'guangshuai_han': {
       contact: 'ghan19 at jh.edu',
       nameFull: 'Guangshuai (Jerry) Han',
