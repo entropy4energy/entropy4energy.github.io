@@ -1,6 +1,6 @@
 const newsItems=[
 {
-date:'Jan 2, 2024',
+date:'Jan 2, 2025',
 newsTitle:'The group welcomes Guangshuai (Jerry) Han and Jaehyung Lee!',
 message:'Jerry comes from Purdue University where he studied civil engineering. Jaehyung comes from Columbia University where he studied chemical engineering. Welcome!',
 pictures:['pic_welcome_postdoc_ghan.jpg','pic_welcome_grad_jlee.jpg'],
