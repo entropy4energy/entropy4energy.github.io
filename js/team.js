@@ -94,6 +94,20 @@
         'Alumni',
       ],
     },
+    'shaoyu_tseng': {
+      contact: 'stseng8 at jhu.edu',
+      nameFull: 'Shao-Yu Tseng',
+      titles: [
+        'Undergraduate Student',
+      ],
+    },
+    'matthew_brownrigg': {
+      contact: 'mbrownr1 at jhu.edu',
+      nameFull: 'Matthew Brownrigg',
+      titles: [
+        'Undergraduate Student',
+      ],
+    },
     'maya_niyogi': {
       contact: 'mniyogi1 at jhu.edu',
       nameFull: 'Maya Niyogi',
