@@ -1,5 +1,11 @@
 const newsItems=[
 {
+date:'Mar 5, 2025',
+newsTitle:'The group welcomes Shao-Yu Tseng and Matthew Brownrigg!',
+message:'Shao-Yu and Matthew are undergraduate students. Shao-Yu is majoring in materials science and engineering. Matthew is majoring in computer science. Welcome!',
+pictures:['pic_welcome_undergrad_stseng.jpg','pic_welcome_undergrad_mbrownr.jpg'],
+},
+{
 date:'Jan 2, 2025',
 newsTitle:'The group welcomes Guangshuai (Jerry) Han and Jaehyung Lee!',
 message:'Jerry comes from Purdue University where he studied civil engineering. Jaehyung comes from Columbia University where he studied chemical engineering. Welcome!',
