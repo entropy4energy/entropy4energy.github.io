@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Jobs</h1>
+  <div class="eeo-statement">
+    <div class="eeo-statement-header">Equal Employment Opportunity Statement</div>
+    <p>
+      The Johns Hopkins University is committed to equal opportunity for its faculty,
+      staff, and students. To that end, the university does not discriminate on the
+      basis of sex, gender, marital status, pregnancy, race, color, ethnicity,
+      national origin, age, disability, religion, sexual orientation, gender identity
+      or expression, veteran status or other legally protected characteristic.
+      The university is committed to providing qualified individuals access to all
+      academic and employment programs, benefits and activities on the basis of
+      demonstrated ability, performance and merit without regard to personal factors
+      that are irrelevant to the program involved.
+    </p>
+  </div>
+  {% for job in data.jobs %}
+    <div class="job">
+      <div class="job-date">
+        <div class="job-date-open">Opens: <span class="job-date-open-text">{{ job.open }}</span></div>
+        {% if job.close %}
+          <div class="job-date-close">Closes: <span class="job-date-close-text">{{ job.close }}</span></div>
+        {% endif %}
+        <div class="job-date-stat noscript">Status: <span class="job-date-stat-text open">Open</span></div>
+      </div>
+      <div class="job-description">
+        <h2>
+          {{ job.title }}
+          {% if job.flyer %}
+            <span class="job-description-flyer">(<a href="media/jobs/{{ job.flyer }}.pdf" download="{{ job.flyer}}.pdf" target="_blank">PDF</a>)</span>
+          {% endif %}
+        </h2>
+        <p>{{ job.description }}</p>
+        <h3>Qualifications</h3>
+        <p>
+          <ol type="A">
+            {% for qual in job.quals %}
+              <li>{{ qual }}</li>
+            {% endfor %}
+          </ol>
+        </p>
+        <h3>Application Instructions</h3>
+        <p>{{ job.instructions }}</p>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
+
+{% block body_extra %}
+  <script src="js/jobs.js"></script>
+{% endblock %}

@@ -14,6 +14,7 @@ $slide-indicator-dims: 2em;
 
 $small-threshold: 1000px;
 $mobile-threshold: 548px;
+$body-min-width: 390px;
 
 $menu-width: 4em;
 $menu-bar-length: 2em;
@@ -34,11 +35,22 @@ $menu-bar-length: 2em;
   font-size: 1em;
 }
 
+/*
+  If users have JavaScript disabled, elements that depend on JavaScript will not work.
+  Unfortunately, there is no "opposite" of the <noscript> tag.
+  To circumvent this, elements with the .noscript class will be invisible by default.
+  In the JavaScript files, the class just needs to be removed for the classList.
+*/
+.noscript {
+  display: none !important;
+}
+
 body {
   display: flex;
   flex-direction: column;
   margin: 0;
   min-height: 100vh;
+  min-width: $body-min-width;
 }
 
 h1 {
@@ -134,21 +146,23 @@ footer {
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 10px 0;
+
   img {
     max-height: 100px;
     max-width: 350px;
   }
-}
-.footer-sponsor{
+
+  .sponsor {
     border: 2.5px solid;
+    border-color: $color-main-4;
     border-radius: 8px;
-    border-color: #68ace5;
     background-color: #ffffff;
+  }
 }
 
 /* Index */
 
-.index-header { 
+.index-header {
   text-align: center;
 }
 
@@ -160,14 +174,17 @@ footer {
   margin: 25px auto;
   min-width: 370px;
   width: 80%;
-  &.top {
-    height: 229px;
-    width: 450px;
-    }
+
   &.bottom {
     height: 450px;
     width: 615px;
-    }
+  }
+
+  &.top {
+    height: 299px;
+    width: 450px;
+  }
+
   &-slide {
     border: 1px solid black;
     display: none;
@@ -178,23 +195,23 @@ footer {
     position: relative;
     width: 100%;
     &.top {
+      background-color: #d5d5d5;
       border: 2.5px solid;
-      border-color: #68ace5;
-      background-color: #D5D5D5;
+      border-color: $color-main-4;
     }
     &-text {
       align-items: center;
-      text-align: center;
       background-color: $black-semi-transparent;
       color: #ffffff;
       display: flex;
-      height: 4em;
+      height: 2*$slide-indicator-dims;
       justify-content: center;
       position: absolute;
+      text-align: center;
       top: 0;
       transition: all 0.5s;
       transform: translateY(-200%);
-      width: 100%;  
+      width: 100%;
     }
     &:hover &-text {
       transform: translateY(0%);
@@ -355,7 +372,7 @@ footer {
   flex: 1 0 auto;
   grid-template-columns: 75% 25%;
   margin: auto;
-  min-width: $mobile-threshold;
+  min-width: $body-min-width;
   width: 80%;
 }
 
@@ -417,81 +434,94 @@ footer {
 
 /* Jobs */
 
+.eeo-statement{
+  &-header {
+    font-weight: bold;
+  }
+
+  p {
+    margin-top: 0;
+  }
+}
+
 .job {
   display: grid;
   grid-column-gap: $date-column-gap;
-  grid-template-areas: "a b" "a c" "a d" "a e" "a f" "a g" "a h" "a i";
   grid-template-columns: $date-column-width auto;
   margin-bottom: 20px;
   text-align: justify;
+
+  li {
+    padding-left: 10px;
+  }
+
   &-date {
-    grid-area: a;
     font-weight: bold;
-  }
-  &-stat {
-    &-open {
-      color: green;
-    }
-    &-closed {
-      color: red;
-    }
-  }
-  &-title-flyer {
-    grid-area: b;
-    font-weight: bold;
-  }
-  &-description {
-    grid-area: c;
-    text-align: justify;
-  }
-  &-quals {
-    &-header {
-      grid-area: d;
-    }
-    &-text {
-      grid-area: e;
-      li {
-        padding-left: 10px;
+    &-stat {
+      &-text {
+        &.open {
+          color: green;
+        }
+        &.closed {
+          color: red;
+        }
       }
     }
   }
-  &-appInstructions {
-    &-header {
-      grid-area: f;
+
+  &-description {
+    text-align: justify;
+
+    h2 {
+      border-bottom: none;
+      font-size: 1em;
+      margin: 0;
     }
-    &-text {
-      grid-area: g;
+
+    h3 {
+      font-size: 1em;
+      margin-bottom: 0;
+    }
+
+    p {
+      margin-top: 0;
+    }
+
+    &-flyer {
+      font-weight: normal;
     }
   }
-}
-.equal-employment-opportunity-statement {
-    text-align: justify;
 }
 
 @media screen and (max-width: $small-threshold) {
   .sidebar {
     display: none;
   }
+
   .publication-img {
     display: none;
   }
   .publication-number{
     margin-left: 0px;
   }
-  .news-item-img img{
-    max-width=200px;
+
+  .news-item-img img {
+    max-width: 200px;
   }
-  .slideshow.top {
-    height: 225px;
-    min-width: 340px;
-    width: 340px;
-  }
-  .slideshow.bottom {
-    height: 250px;
-    width: 370px;
-  }
-  .slideshow-slide-text {
-    height: 5em;
+
+  .slideshow {
+    &.bottom {
+      height: 250px;
+      width: 370px;
+    }
+    &.top {
+      height: 225px;
+      min-width: 340px;
+      width: 340px;
+    }
+    &-slide-text {
+      height: 5em;
+    }
   }
 }
 
@@ -502,7 +532,7 @@ footer {
     padding: 0 10px;
     width: 100%;
   }
-  
+
   .content-block {
     width: 100%;
   }
@@ -598,6 +628,7 @@ footer {
   
   footer {
     .contact {
+      margin: 10px 20px;
       width: 100%;
     }
   }
@@ -612,15 +643,16 @@ footer {
     }
   }
 
-  .news-item-img img{
-    max-width=200px;
+  .news-item-img {
+    img {
+      max-width: 200px;
+    }
   }
 
   .job {
     display: grid;
     grid-column-gap: 0px;
-    grid-template-columns: 30em auto;
-    grid-template-areas: "b " "a" "c" "d" "e" "f" "g" "h" "i";
+    grid-template-columns: auto auto;
     margin-bottom: 20px;
   }
 }

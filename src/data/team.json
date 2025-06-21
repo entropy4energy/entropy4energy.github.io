@@ -1,0 +1,151 @@
+{
+  "corey_oses": {
+    "contact": "corey at jhu.edu",
+    "name": "Corey Oses",
+    "socials": {
+      "gscholar": "Za7m4CMAAAAJ",
+      "orcid": "0000-0002-3790-1377"
+    },
+    "titles": [
+      "Assistant Professor"
+    ]
+  },
+  "guotao_qiu": {
+    "contact": "gqiu5 at jhu.edu",
+    "name": "Guotao Qiu",
+    "titles": [
+      "Postdoctoral Associate"
+    ]
+  },
+  "yuxiang_liu": {
+    "alumn": true,
+    "contact": "yliu597 at jhu.edu",
+    "name": "Yuxiang Liu",
+    "titles": [
+      "Postdoctoral Associate"
+    ]
+  },
+  "guangshuai_han": {
+    "contact": "ghan19 at jh.edu",
+    "name": "Guangshuai (Jerry) Han",
+    "titles": [
+      "Postdoctoral Associate"
+    ]
+  },
+  "keith_clark": {
+    "alumn": true,
+    "contact": "kclark96 at jhu.edu",
+    "name": "Keith Clark",
+    "titles": [
+      "Master Student"
+    ]
+  },
+  "tianhao_li": {
+    "contact": "tli114 at jhu.edu",
+    "name": "Tianhao Li",
+    "titles": [
+      "Graduate Student"
+    ]
+  },
+  "xiao_xu": {
+    "contact": "xxu115 at jhu.edu",
+    "name": "Xiao Xu",
+    "titles": [
+      "Graduate Student"
+    ]
+  },
+  "jaehyung_lee": {
+    "contact": "jlee859 at jhu.edu",
+    "name": "Jaehyung Lee",
+    "titles": [
+      "Graduate Student"
+    ]
+  },
+  "xuanhao_lin": {
+    "alumn": true,
+    "contact": "xlin44 at jhu.edu",
+    "name": "Xuanhao Lin",
+    "titles": [
+      "Master Student"
+    ]
+  },
+  "shaoyu_tseng": {
+    "contact": "stseng8 at jhu.edu",
+    "name": "Shao-Yu Tseng",
+    "titles": [
+      "Undergraduate Student"
+    ]
+  },
+  "matthew_brownrigg": {
+    "contact": "mbrownr1 at jhu.edu",
+    "name": "Matthew Brownrigg",
+    "titles": [
+      "Undergraduate Student"
+    ]
+  },
+  "maya_niyogi": {
+    "contact": "mniyogi1 at jhu.edu",
+    "name": "Maya Niyogi",
+    "titles": [
+      "Undergraduate Student"
+    ]
+  },
+  "shawn_zhou": {
+    "contact": "yzhou218 at jhu.edu",
+    "name": "Shawn Zhou",
+    "titles": [
+      "Undergraduate Student"
+    ]
+  },
+  "katrina_wang": {
+    "contact": "kwang123 at jhu.edu",
+    "name": "Katrina Wang",
+    "titles": [
+      "Undergraduate Student"
+    ]
+  },
+  "will_shiber": {
+    "contact": "wshiber1 at jhu.edu",
+    "name": "Will Shiber",
+    "titles": [
+      "Undergraduate Student"
+    ]
+  },
+  "katie_cariaga": {
+    "contact": "kcariag1 at jhu.edu",
+    "name": "Katie Cariaga",
+    "titles": [
+      "Undergraduate Student"
+    ]
+  },
+  "veric_tan": {
+    "alumn": true,
+    "contact": "vtan5 at jhu.edu",
+    "name": "Veric Tan",
+    "titles": [
+      "Undergraduate Student"
+    ]
+  },
+  "dakota_braaten": {
+    "alumn": true,
+    "contact": "dbraate1 at jhu.edu",
+    "name": "Dakota Braaten",
+    "titles": [
+      "Undergraduate Student"
+    ]
+  },
+  "julia_gelfond": {
+    "contact": "jgelfon1 at jhu.edu",
+    "name": "Julia Gelfond",
+    "titles": [
+      "Undergraduate Student"
+    ]
+  },
+  "akshaya_ajith": {
+    "contact": "aajith1 at jhu.edu",
+    "name": "Akshaya Ajith",
+    "titles": [
+      "Undergraduate Student"
+    ]
+  }
+}

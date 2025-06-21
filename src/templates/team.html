@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block head_extra %}
+  <link rel="stylesheet" type="text/css" href="css/academicons-1.9.1/css/academicons.min.css">
+{% endblock %}
+
+{% macro member_html(member) %}
+  {% if member.alumnus %}
+    {% set member_class = "member alumnus" %}
+  {% else %}
+    {% set member_class = "member" %}
+  {% endif %}
+  <div class="{{ member_class }}">
+    <div class="member-img">
+      <img src="media/team/{{ member.id }}.jpg" alt="Portrait of {{ member.name }}">
+    </div>
+    <div class="member-data">
+      <div class="member-data-name">{{ member.name }}</div>
+      <div class="member-data-line">{{ member.titles|join("<br>") }}</div>
+      {% if member.contact %}
+        <div class="member-data-line">{{ member.contact }}</div>
+      {% endif %}
+      {% if member.socials|length > 0 %}
+        <div class="member-data-line">
+          {% for social in member.socials %}
+            <a href="{{ social.href }}" target="_blank">{{ social.icon }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}
+
+{% block content %}
+<h1>Group Members</h1>
+<div id="current_members">
+  {% for group in data.team.current %}
+    {% if group.title %}
+      <h2>{{ group.title }}</h2>
+    {% endif %}
+    {% for member in group.members %}
+      {{ member_html(member) }}
+    {% endfor %}
+  {% endfor %}
+</div>
+{% if data.team.alumni|length > 0 %}
+  <div id="alumni">
+    <h2>Alumni</h2>
+    {% for group in data.team.alumni %}
+      {% for member in group.members %}
+        {{ member_html(member) }}
+      {% endfor %}
+    {% endfor %}
+  </div>
+{% endif %}
+{% endblock %}
