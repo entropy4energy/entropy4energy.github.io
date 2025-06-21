@@ -1,0 +1,210 @@
+[
+  {
+    "date": [2025, 3, 5],
+    "title": "The group welcomes Shao-Yu Tseng and Matthew Brownrigg!",
+    "message": "Shao-Yu and Matthew are undergraduate students. Shao-Yu is majoring in materials science and engineering. Matthew is majoring in computer science. Welcome!",
+    "pictures": [
+      "pic_welcome_undergrad_stseng.jpg",
+      "pic_welcome_undergrad_mbrownr.jpg"
+    ]
+  },
+  {
+    "date": [2025, 1, 2],
+    "title": "The group welcomes Guangshuai (Jerry) Han and Jaehyung Lee!",
+    "message": "Jerry comes from Purdue University where he studied civil engineering. Jaehyung comes from Columbia University where he studied chemical engineering. Welcome!",
+    "pictures": [
+      "pic_welcome_postdoc_ghan.jpg",
+      "pic_welcome_grad_jlee.jpg"
+    ]
+  },
+  {
+    "date": [2024, 7, 31],
+    "title": "Gabby presents at the 2024 STEM Symposium",
+    "message": "Gabby presented her research at the 2024 STEM Symposium. Well done Gabby!",
+    "pictures": [
+      "pic_gabby_STEM_Symposium.jpg"
+    ]
+  },
+  {
+    "date": [2024, 6, 6],
+    "title": "The group welcomes Katrina Wang, Maya Niyogi, and Shawn Zhou!",
+    "message": "Katrina, Maya, and Shawn are all undergraduate students. Katrina is majoring in molecular and cellular biology. Maya and Shawn are majoring in applied math and statistics. Welcome!",
+    "pictures": [
+      "pic_welcome_undergrad_kwang.jpg",
+      "pic_welcome_undergrad_mniyogi.jpg",
+      "pic_welcome_undergrad_yzhou.jpg"
+    ]
+  },
+  {
+    "date": [2024, 1, 30],
+    "title": "The group welcomes Guotao Qiu, Yuxiang Liu and Xiao Xu!",
+    "message": "Guotao comes from University of Macau where he studied Applied Physics and Materials Engineering, Yuxiang comes from University of Bremen where she studied Computational Physics and Xiao comes from The University of Texas at Austin where he studied Electrical and Computer Engineering. Welcome!",
+    "pictures": [
+      "pic_welcome_postdoc_gqiu.jpg",
+      "pic_welcome_postdoc_yliu.jpg",
+      "pic_welcome_grad_xxu.jpg"
+    ]
+  },
+  {
+    "date": [2023, 1, 17],
+    "title": "Will presents at the 2024 ROSEI Symposium",
+    "message": "Will presented his research at the 2024 ROSEI Symposium. Well done Will!",
+    "pictures": [
+      "pic_ws_ROSEI_2024.jpg"
+    ]
+  },
+  {
+    "date": [2023, 12, 1],
+    "title": "The group welcomes Julia Gelfond and Akshaya Ajith!",
+    "message": "Julia and Akshaya are both undergraduate students majoring in materials science and engineering. Welcome Julia and Akshaya!",
+    "pictures": [
+      "pic_welcome_undergrad_jgelfond.jpg",
+      "pic_welcome_undergrad_aajith.jpg"
+    ]
+  },
+  {
+    "date": [2023, 10, 25],
+    "title": "ARCH interviews Prof. Oses",
+    "message": "<a target=\"_blank\" href= \"https://www.arch.jhu.edu/\">Advanced Research Computing at Hopkins (ARCH)</a> writes a <a target=\"_blank\" href=\"https://www.arch.jhu.edu/research-spotlight-corey-oses/\">Research Spotlight</a> on Prof. Oses and the Entropy for Energy Laboratory.",
+    "pictures": [
+      "pic_logo_arch.png"
+    ]
+  },
+  {
+    "date": [2023, 10, 13],
+    "title": "Keith and Will present at the 2023 IDIES Symposium",
+    "message": "Keith and Will presented their research at the 2023 IDIES Symposium, impressive presentation, good job guys!",
+    "pictures": [
+      "pic_kc_idies_2023.png",
+      "pic_ws_idies_2023.png"
+    ]
+  },
+  {
+    "date": [2023, 9, 1],
+    "title": "The group welcomes Xuanhao Lin",
+    "message": "Xuanhao comes from Guangdong Technion-Israel Institute of Technology where he studied Materials Science & Engineering. Welcome Xuanhao!",
+    "pictures": [
+      "pic_welcome_grad_xlin.jpg"
+    ]
+  },
+  {
+    "date": [2023, 8, 1],
+    "title": "The group welcomes Tianhao Li",
+    "message": "Tianhao comes from Duke University where he studied Materials Science & Engineering. Welcome Tianhao!",
+    "pictures": [
+      "pic_welcome_grad_tli.jpg"
+    ]
+  },
+  {
+    "date": [2023, 8, 1],
+    "title": "Dakota presents at the 2023 Hopkins Summer Research Symposium",
+    "message": "Dakota presented his research at the 2023 Hopkins Summer Research Symposium. Great job Dakota!",
+    "pictures": [
+      "pic_dbraaten_research_symposium.jpg"
+    ]
+  },
+  {
+    "date": [2023, 7, 31],
+    "title": "Katie presents at the 2023 MDSGC Student Research Symposium",
+    "message": "Katie presented her research at the Maryland Space Grant Consortium's 2023 Student Research Symposium. Excellent work Katie!",
+    "pictures": [
+      "pic_kcariaga_mdsgc_2023.jpg"
+    ]
+  },
+  {
+    "date": [2023, 5, 30],
+    "title": "The group welcomes Dakota Braaten",
+    "message": "Dakota is an undergraduate student at Kansas State University majoring in chemical engineering. Welcome Dakota!",
+    "pictures": [
+      "pic_welcome_undergrad_dbraaten.jpg"
+    ]
+  },
+  {
+    "date": [2023, 4, 24],
+    "title": "Katie Cariaga is named a 2023 MDSGC Summer Intern",
+    "message": "Katie has been awarded a 2023 <a href=\"https://md.spacegrant.org/\" target=\"_blank\">Maryland Space Grant Consortium (MDSGC)</a> Summer Internship. <a href=\"https://energyinstitute.jhu.edu/revealing-the-secrets-that-may-unlock-the-potential-of-thermoelectric-materials/\" target=\"_blank\">Congratulations Katie! </a>",
+    "pictures": [
+      "pic_mdsgc_logo.png"
+    ]
+  },
+  {
+    "date": [2023, 4, 3],
+    "title": "Will Shiber is named a 2023 IDIES Summer Student Fellow",
+    "message": "Will has been awarded a <a href=\"https://www.idies.jhu.edu/2023-idies-summer-student-fellows/\" target=\"_blank\">2023 Institute for Data Intensive Engineering and Science (IDIES) Summer Student Fellowship</a>. <a href = \"https://hub.jhu.edu/announcements/2023/04/21/idies-announces-2023-summer-student-fellowship-ssf-recipients/\" target=\"_blank\">Congratulations Will! </a>",
+    "pictures": [
+      "pic_idies_logo.png"
+    ]
+  },
+  {
+    "date": [2023, 1, 23],
+    "title": "The group welcomes undergraduate Veric Tan",
+    "message": "Veric is an undergraduate student majoring in materials science and engineering & cognitive science. Welcome Veric!",
+    "pictures": [
+      "pic_welcome_undergrad_vtan.jpg"
+    ]
+  },
+  {
+    "date": [2023, 1, 23],
+    "title": "The group welcomes undergraduate Katie Cariaga",
+    "message": "Katie is an undergraduate student majoring in materials science and engineering & computer science. Welcome Katie!",
+    "pictures": [
+      "pic_welcome_undergrad_kcariaga.jpg"
+    ]
+  },
+  {
+    "date": [2023, 1, 23],
+    "title": "The group welcomes undergraduate Will Shiber",
+    "message": "Will is an undergraduate student majoring in materials science and engineering & applied mathematics and statistics. Welcome Will!",
+    "pictures": [
+      "pic_welcome_undergrad_wshiber.jpg"
+    ]
+  },
+  {
+    "date": [2022, 10, 19],
+    "title": "DMSE Fall 2022 Seminar Series Speaker Prof. Reza Shahbazian-Yassar",
+    "message": "Profs. Shahbazian-Yassar and Oses (host) following the seminar on &quot;In-Situ TEM Studies of Multi-principal Elemental Nanoparticles: Synthesis and Environmental Reactions&quot;.",
+    "pictures": [
+      "pics_dmse_speaker_rshahbazian-yassar_2022.jpg"
+    ]
+  },
+  {
+    "date": [2022, 10, 5],
+    "title": "Prof. Oses presents to JHU&apos;s Materials Graduate Society",
+    "message": "Prof. Oses presents to graduate students on &quot;Materials Informatics with the aflow.org repositories&quot;.",
+    "pictures": [
+      "pic_mgs_meet_greet_2022.jpg"
+    ]
+  },
+  {
+    "date": [2022, 9, 27],
+    "title": "New group site published",
+    "message": "The website is live. Visit here for the group&apos;s latest news.",
+    "pictures": [
+      "pic_jhu_campus.jpg"
+    ]
+  },
+  {
+    "date": [2022, 9, 21],
+    "title": "AFLOW School Workshop at JHU",
+    "message": "Members of the AFLOW Team (JHU, Lift Technology, and Duke University) organized a morning workshop on topics in computational materials science. The recordings can be found at <a href=\"http://aflow.org/aflow-school/\">aflow.org/aflow-school</a>. The event was hosted by the Department of Materials Science & Engineering and Advanced Research Computing at Hopkins (ARCH).",
+    "pictures": [
+      "pic_aflow_school_2022.jpg"
+    ]
+  },
+  {
+    "date": [2022, 8, 15],
+    "title": "The group welcomes PhD student Keith Clark",
+    "message": "Keith comes from George Mason University where he studied Chemistry and Mathematics. Welcome Keith!",
+    "pictures": [
+      "pic_welcome_grad_kclark.jpg"
+    ]
+  },
+  {
+    "date": [2022, 8, 15],
+    "title": "Day One",
+    "message": "The Entropy for Energy Laboratory launches at Johns Hopkins University.",
+    "pictures": [
+      "pic_jhu_location.png"
+    ]
+  }
+]
