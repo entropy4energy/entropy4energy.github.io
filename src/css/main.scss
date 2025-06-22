@@ -201,7 +201,7 @@ footer {
   }
 
   &-slide {
-    border: 1px solid black;
+    border: 1px solid $color-main-3;
     display: none;
     height: 100%;
     margin-bottom: -$slide-indicator-dims;
@@ -209,12 +209,6 @@ footer {
     overflow: hidden;
     position: relative;
     width: 100%;
-
-    &.top {
-      background-color: $color-main-2;
-      border: 2.5px solid;
-      border-color: $color-main-4;
-    }
 
     &-text {
       align-items: center;
@@ -248,8 +242,9 @@ footer {
       }
 
       & img {
-        height: 100%;
-        width: auto;
+        min-height: 100%;
+        min-width: 100%;
+        overflow: hidden;
       }
     }
   }
