@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% set iframe_properties='allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen' %}
+  <h1>Workshops</h1>
+  <div class="workshop">
+      {% for workshop in data.workshops %}
+        <h2>{{ workshop.title }}</h2>
+        <p><b>Date:</b> {{ workshop.date }}</p>
+        <p>{{ workshop.description }}</p>
+        {% if workshop.signup %}
+          <div class="workshop-link-container">
+            <a class="workshop-button" href="{{ workshop.signup }}" target="_blank">
+              Sign up
+            </a>
+          </div>
+        {% endif %}
+        {% for session in workshop.sessions %}
+          <div class="workshop-session">
+            <h3>{{ session.title }}</h3>
+            {% if session.presenter|length  == 1 %}
+              <p class="workshop-session-presenter">Presenter: {{ session.presenter[0] }}</p>
+            {% else %}
+              <p class="workshop-session-presenter">Presenters: {{ session.presenter|join(", ") }}</p>
+            {% endif %}
+            {% if session.description %}
+              <p>{{ session.description }}</p>
+            {% endif %}
+            {% if session.youtube_id %}
+              <div class="workshop-session-video">
+                <iframe src="https://youtube.com/embed/{{ session.youtube_id }}" {{ iframe_properties }}></iframe>
+              </div>
+            {% endif %}
+            {% if session.materials %}
+              {% if session.materials.type == "collab" %}
+                {% set url = "https://colab.research.google.com/drive/%s?usp=sharing" % session.materials.link %}
+                {% set link_properties='rel="noopener noreferrer"' %}
+              {% else %}
+                {% set url = session.materials.link %}
+                {% set link_properties = "" %}
+              {% endif %}
+              <div class="workshop-link-container">
+                <a class="workshop-button" target="_blank" href="{{ url }}" {{ link_properties }}>
+                  Hands-on materials
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+        {% if workshop.has_flyer %}
+          <img src="media/workshops/{{ workshop.id }}/flyer.png" alt="Image of {{ workshop.title }}" style="width:100%; height:auto;">
+        {% endif %}
+      {% endfor %}
+  </div>
+{% endblock %}

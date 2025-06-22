@@ -8,24 +8,56 @@ from typing import Any
 from jinja2 import Environment, FileSystemLoader
 
 HEADERS = [
-  "home",
-  "publications",
-  "team",
-  "news",
-  "jobs",
+    "home",
+    "publications",
+    "team",
+    "news",
+    "jobs",
+    "workshops",
 ]
 
 BASE_PATH = Path(__file__).parent
 DATA_DIR = BASE_PATH / "data"
 TEMPLATE_DIR = BASE_PATH / "templates"
 
-DATEFORMAT = "%b %d, %Y"
+
+def format_date(input_date: date | list[date] | list[list[int]] | list[int]) -> str:
+    date_range: list[date] = []
+    bad_type = False
+    if isinstance(input_date, date):
+        date_range = [input_date]
+    elif isinstance(input_date, list):
+        if all(isinstance(d, int) for d in input_date) and len(input_date) == 3:
+            date_range = [date(*input_date)]
+        elif all(isinstance(d, date) for d in input_date):
+            date_range = input_date.copy()
+        elif (
+            all(isinstance(d, list) for d in input_date)
+            and all(isinstance(i, int) for d in input_date for i in d)
+            and all(len(d) == 3 for d in input_date)
+        ):
+            date_range = [date(*d) for d in input_date]
+        else:
+            bad_type = True
+    else:
+        bad_type = True
+    if bad_type:
+        raise TypeError(f"Input dates have incorrect type or length. {input_date=}")
+    if len(date_range) == 2:
+        begin, end = date_range
+        if begin.year != end.year:
+            return f'{begin.strftime("%b %d, %Y")} &ndash; {end.strftime("%b %d, %Y")}'
+        elif begin.month != end.month:
+            return f'{begin.strftime("%b %d")} &ndash; {end.strftime("%b %d, %Y")}'
+        else:
+            return f'{begin.strftime("%b %d")} &ndash; {end.strftime("%d, %Y")}'
+    else:
+        return date_range[0].strftime("%b %d, %Y")
 
 
 def process_home(data: dict[str, Any]):
     for slide in data["home"]["slides"]:
-        slide_date = slide["date"]
-        slide["date"] = date(*slide_date).strftime(DATEFORMAT)
+        slide["date"] = format_date(slide["date"])
     nslides_max = 10
     img_base = BASE_PATH / "media" / "publications"
     slides = []
@@ -56,9 +88,9 @@ def process_home(data: dict[str, Any]):
 
 def process_jobs(data: dict[str, Any]):
     for job in data["jobs"]:
-        job["open"] = date(*job["open"]).strftime(DATEFORMAT)
+        job["open"] = format_date(job["open"])
         if close := job.get("close"):
-            job["close"] = date(*close).strftime(DATEFORMAT)
+            job["close"] = format_date(close)
 
 
 def process_publications(data: dict[str, Any]):
@@ -208,8 +240,29 @@ def process_team(data: dict[str, Any]):
 
 def process_news(data: dict[str, Any]):
     for news_item in data["news"]:
-        news_date = news_item["date"]
-        news_item["date"] = date(*news_date).strftime(DATEFORMAT)
+        news_item["date"] = format_date(news_item["date"])
+
+
+def process_workshops(data: dict[str, Any]):
+    for workshop in data["workshops"]:
+        workshop_date = [date(*d) for d in workshop["date"]]
+        workshop["date"] = format_date(workshop_date)
+        workshop_dir = Path(BASE_PATH, "media", "workshops", workshop["id"])
+        workshop["has_flyer"] = (workshop_dir / "flyer.png").exists()
+        for session in workshop["sessions"]:
+            if isinstance(session["presenter"], str):
+                session["presenter"] = [session["presenter"]]
+            elif not isinstance(session["presenter"], list):
+                raise TypeError("Presenter must be str or list.")
+            if materials := session.get("materials"):
+                if materials.startswith("http"):
+                    materials_type = "url"
+                else:
+                    materials_type = "collab"
+                session["materials"] = {
+                    "link": materials,
+                    "type": materials_type,
+                }
 
 
 PROCESS_DATA = {
@@ -217,6 +270,7 @@ PROCESS_DATA = {
     "jobs": process_jobs,
     "publications": process_publications,
     "team": process_team,
+    "workshops": process_workshops,
 }
 
 
