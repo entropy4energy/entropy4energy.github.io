@@ -58,7 +58,9 @@ def format_date(input_date: date | list[date] | list[list[int]] | list[int]) -> 
 def process_home(data: dict[str, Any]):
     for slide in data["home"]["slides"]:
         slide["date"] = format_date(slide["date"])
-    nslides_max = 10
+    # Slideshow indicators cannot accommodate more than 8 slides
+    # for small display sizes
+    nslides_max = 8
     img_base = BASE_PATH / "media" / "publications"
     slides = []
     for pub in data["publications"]["journal"]:
