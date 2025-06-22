@@ -599,6 +599,18 @@ footer {
     display: none;
   }
 
+  .content-block {
+    width: 100%;
+  }
+
+  .main-content-wrapper {
+    box-sizing: border-box;
+    display: block;
+    padding: 0 10px;
+    width: 100%;
+  }
+
+
   .publication-img {
     display: none;
   }
@@ -631,20 +643,6 @@ footer {
 }
 
 @media screen and (max-width: $mobile-threshold) {
-  .main-content-wrapper {
-    box-sizing: border-box;
-    display: block;
-    padding: 0 10px;
-    width: 100%;
-  }
-
-  .content-block {
-    width: 100%;
-  }
-
-  .sidebar {
-    display: none;
-  }
 
   nav {
     box-sizing: border-box;
