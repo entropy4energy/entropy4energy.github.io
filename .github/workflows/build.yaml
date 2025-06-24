@@ -9,6 +9,7 @@ permissions: {}
 
 jobs:
   build:
+    name: Build website
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,6 +32,7 @@ jobs:
           path: dist/
 
   deploy:
+    name: Deploy website
     if: ${{ github.ref == 'refs/head/main' }} 
     needs: build
     environment:
