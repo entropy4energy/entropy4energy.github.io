@@ -1,0 +1,65 @@
+[
+  {
+    "id": "2024_ai_materials",
+    "title": "Data-Driven Materials Modeling Workshop",
+    "date": [
+      [2024, 5, 29],
+      [2024, 5, 31]
+    ],
+    "description": "Join us for the first Data-Driven Materials Modeling Workshop, happening Wednesday, May 29, through Friday, May 31. This three-day workshop will have a distinct theme for each day with expert speaker seminars in the mornings followed by hands-on workshop sessions in the afternoons. The morning session targets researchers—both experimental and computational—looking to integrate data-driven approaches into their projects and includes a keynote from a leading expert on the topic, followed by a talk highlighting developments within Hopkins. The hands-on session targets students looking to learn implementation details led by graduate students and postdocs.",
+    "signup": "https://jhu.campusgroups.com/MATS/rsvp_boot?id=1951635",
+    "sessions": [
+      {
+        "description": "A welcome and a brief introduction about the Data-Driven Materials Modeling Workshop, followed by the AIMNet2.",
+        "presenter": "Prof. Olexander Isayev",
+        "title": "Welcome and Introduction",
+        "youtube_id": "Gi21PB98kUY"
+      },
+      {
+        "presenter": "Prof. Corey Oses",
+        "title": "Introduction of AFLOW",
+        "youtube_id": "kZj3zQkBAKg"
+      },
+      {
+        "materials": "1gqEJ_c2mi5r9VisNdzj7e6H2N_OiVYbr",
+        "presenter": "Dr. Guotao Qiu",
+        "title": "AFLOW-DFT",
+        "youtube_id": "OLMPDG9rpPc"
+      },
+      {
+        "materials": "1NHxjKDCxRKZv-21llKWZVl8VtzxaoZVC",
+        "presenter": "Xiao Xu",
+        "title": "AFLOW-Prototype",
+        "youtube_id": "Cd4Asw8rRWA"
+      },
+      {
+        "materials": "1DCuvWdY3v-47sgD1GSVWo9pa52g_MD8I",
+        "presenter": "Tianhao Li",
+        "title": "AFLOW-CHULL",
+        "youtube_id": "jBQUSNsFBX0"
+      },
+      {
+        "materials": "11G7IwQAso4MnovbeP5plmFk_WZEZj5q0",
+        "presenter": "Dr. Yuxiang Liu",
+        "title": "AFLOW-POCC",
+        "youtube_id": "TmJxxTfQ_wk"
+      },
+      {
+        "materials": "1Zz021nGh6ltnpDD1zt6aSrpfXCwy5XJT",
+        "presenter": "Xiao Xu",
+        "title": "AFLOW-ML",
+        "youtube_id": "sgM3dx3FOi0"
+      },
+      {
+        "materials": "https://https://s4e.ai/workshops/2024_ai_materials/DAY_2/",
+        "presenter": ["Prof. Brandon Bukowski", "Prof. Tine Curk"],
+        "title": "Quantum Chemistry and Catalysis"
+      },
+      {
+        "materials": "1CqBCY-3PAEkbkLucOE3upzmPx82CYit7",
+        "presenter": ["Prof. Brandon Bukowski", "Prof. Tine Curk"],
+        "title": "Monte Carlo and Molecular Dynamics"
+      }
+    ]
+  }
+]
