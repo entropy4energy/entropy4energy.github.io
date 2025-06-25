@@ -64,7 +64,6 @@ def process_home(data: dict[str, Any]):
     img_base = BASE_PATH / "media" / "publications"
     slides = []
     for pub in data["publications"]["journal"]:
-        if "url" in pub: pub["link"] = str(pub["url"])   #make a copy as "link" since url is overwritten here
         if "doi" in pub:
             pub["url"] = f"https://doi.org/{pub['doi']}"
         elif "arxiv" in pub:
@@ -123,6 +122,7 @@ def process_publications(data: dict[str, Any]):
                 elif status == "published":
                     pub["status"] = ""
 
+            if "url" in pub: pub["link"] = str(pub["url"])   #make a copy as "link" since url is overwritten here
             if doi := pub.get("doi"):
                 pub["url"] = f'<a href="https://doi.org/{doi}" target="_blank">DOI:{doi}</a>'
             elif arxiv := pub.get("arxiv"):
