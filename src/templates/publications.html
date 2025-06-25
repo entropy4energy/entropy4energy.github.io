@@ -7,8 +7,8 @@
         <a href="media/publications/{{ pub.filename }}.pdf" target="_blank">
           <img src="media/publications/{{ pub.imgfile }}.png" alt="Graphical abstract for {{ pub.title }}">
         </a>
-      {% elif "imgfile" in pub and "url" in pub %}
-        <a href={{ pub.url }} target="_blank">
+      {% elif "imgfile" in pub and "link" in pub %}
+        <a href="{{ pub.link }}" target="_blank">
           <img src="media/publications/{{ pub.imgfile }}.png" alt="Graphical abstract for {{ pub.title }}">
         </a>
       {% elif "imgfile" in pub %}
