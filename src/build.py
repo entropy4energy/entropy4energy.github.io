@@ -131,11 +131,10 @@ def process_publications(data: dict[str, Any]):
 
             if filename := pub.get("filename"):
                 pdf_file = file_base / f"{filename}.pdf"
-                if pdf_file.exists():
-                    img_file = file_base / f"{filename}.png"
-                    if img_file.exists():
-                        pub["imgfile"] = filename
-                else:
+                img_file = file_base / f"{filename}.png"
+                if img_file.exists():
+                    pub["imgfile"] = filename
+                if not pdf_file.exists():
                     del pub["filename"]
 
             year = pub["year"]
