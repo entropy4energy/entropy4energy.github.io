@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% macro pub_html(pub) %}
+  <div class="publication">
+    <div class="publication-img">
+      {% if "imgfile" in pub and "filename" in pub %}
+        <a href="media/publications/{{ pub.filename }}.pdf" target="_blank">
+          <img src="media/publications/{{ pub.imgfile }}.png" alt="Graphical abstract for {{ pub.title }}">
+        </a>
+      {% endif %}
+    </div>
+    <div class="publication-number">{{ pub.number }}.</div>
+    <div class="publication-data">
+      <span class="publication-authors">{{ pub.authors }}</span>
+      <span class="publication-title">{{ pub.title }}</span>
+      {% if pub.book %}
+        in <span class="publication-book">{{ pub.book }}</span>
+      {% endif %}
+      {% if pub.journal %}
+        <span class="publication-journal">{{ pub.journal }}</span>
+      {% endif %}
+      {% if pub.volume %}
+        <span class="publication-volume">{{ pub.volume }}</span>
+      {% endif %}
+      {% if pub.issue %}
+        <span class="publication-issue">{{ pub.issue }}</span>
+      {% endif %}
+      {% if pub.status %}
+        <span class="publication-status">{{ pub.status }}</span>
+      {% endif %}
+       (<span class="publication-year">{{ pub.year }}</span>)
+      {% if pub.url %}
+        <span class="publication-url">{{ pub.url }}</span>
+      {% endif %}
+      {% if pub.filename %}
+        (<a href="media/publications/{{ pub.filename }}.pdf" target="_blank">PDF</a>)
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro build_publications(pubs) %}
+  {% for year, pubs_year in pubs|dictsort(reverse=true) %}
+    {% if pubs_year[0].book %}
+      <h2 id="publications_book_{{ year }}">{{ year }}</h2>
+    {% else %}
+      <h2 id="publications_journal_{{ year }}">{{ year }}</h2>
+    {% endif %}
+    {% for pub in pubs_year %}
+      {{ pub_html(pub) }}
+    {% endfor %}
+  {% endfor %}
+{% endmacro %}
+
+{% block content %}
+  <div class="nav-block">
+    <a href="#articles">Journal Articles</a>
+    <a href="#chapters">Book Chapters</a>
+  </div>
+  <h1 id="articles">Journal Articles</h1>
+  <div class="publications-section" id="publications_articles">
+    {{ build_publications(data.publications.journal) }}
+  </div>
+  <h1 id="chapters">Book Chapters</h1>
+  <div class="publications-section" id="publications_books">
+    {{ build_publications(data.publications.book) }}
+  </div>
+{% endblock %}

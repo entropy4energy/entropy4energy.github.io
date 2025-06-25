@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>News</h1>
+  <div id="news_items" class="news">
+    {% for news in data.news %}
+      <div class="news-item" id="{{ loop.index }}">
+        <span class="news-item-date">{{ news.date }}</span>
+        <span class="news-item-title">{{ news.title }}</span>
+        <span class="news-item-text">{{ news.message }}</span>
+        <span class="news-item-img">
+          {% for picture in news.pictures %}
+            <img src="media/news/{{ picture }}" alt="Image for news {{ news.title }}">
+          {% endfor %}
+        </span>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
