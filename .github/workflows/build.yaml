@@ -33,7 +33,7 @@ jobs:
 
   deploy:
     name: Deploy website
-    if: ${{ github.ref == 'refs/head/main' }} 
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: build
     environment:
       name: github-pages
