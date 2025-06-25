@@ -13,8 +13,8 @@
         "J.&nbsp;R.&nbsp;Owens"
       ],
       "journal": "Materials Horizons",
-      "doi": "10.1039/D5MH00356C",
-      "filename": "10.1039_D5MH00356C"
+      "filename": "10.1039_D5MH00356C",
+      "doi": "10.1039/D5MH00356C"
     },
     {
       "status": "published",
@@ -32,8 +32,8 @@
       "journal": "npj Computational Materials",
       "volume": "11",
       "pages": "145",
-      "doi": "10.1038/s41524-025-01594-6",
-      "filename": "10.1038_s41524-025-01594-6"
+      "filename": "10.1038_s41524-025-01594-6",
+      "doi": "10.1038/s41524-025-01594-6"
     },
     {
       "status": "published",
@@ -53,8 +53,8 @@
       "volume": "147",
       "number": "1",
       "pages": "510&ndash;518",
-      "doi": "10.1021/jacs.4c11753",
-      "filename": "10.1021_jacs.4c11753"
+      "filename": "10.1021_jacs.4c11753",
+      "doi": "10.1021/jacs.4c11753"
     },
     {
       "status": "published",
@@ -71,8 +71,8 @@
       "journal": "Acta Materialia",
       "volume": "276",
       "pages": "120117",
-      "doi": "10.1016/j.actamat.2024.120117",
-      "filename": "10.1016_j.actamat.2024.120117"
+      "filename": "10.1016_j.actamat.2024.120117",
+      "doi": "10.1016/j.actamat.2024.120117"
     },
     {
       "status": "published",
@@ -142,8 +142,8 @@
       "journal": "Digital Discovery",
       "volume": "3",
       "pages": "1509&ndash;1533",
-      "doi": "10.1039/D4DD00039K",
       "filename": "10.1039_D4DD00039K",
+      "doi": "10.1039/D4DD00039K",
       "arxiv": "2402.00572"
     },
     {
@@ -178,8 +178,8 @@
       "journal": "Nature",
       "volume": "625",
       "pages": "66&ndash;73",
-      "doi": "10.1038/s41586-023-06786-y",
-      "filename": "10.1038_s41586-023-06786-y"
+      "filename": "10.1038_s41586-023-06786-y",
+      "doi": "10.1038/s41586-023-06786-y"
     },
     {
       "status": "published",
@@ -199,8 +199,8 @@
       "journal": "Nature Communications",
       "volume": "15",
       "pages": "3328",
-      "doi": "10.1038/s41467-024-46753-3",
       "filename": "10.1038_s41467-024-46753-3",
+      "doi": "10.1038/s41467-024-46753-3",
       "arxiv": "2309.04053"
     },
     {
@@ -617,6 +617,7 @@
       "pages": "110450",
       "doi": "10.1016/j.commatsci.2021.110450",
       "filename": "10.1016_j.commatsci.2021.110450",
+      "url": "https://s4e.ai/ARTL/10.1016_j.commatsci.2021.110450.pdf",
       "arxiv": "2012.05961"
     },
     {
@@ -874,8 +875,8 @@
       "volume": "43",
       "number": "9",
       "pages": "670&ndash;675",
+      "filename": "1803.05035",
       "doi": "10.1557/mrs.2018.207",
-      "filename": "10.1557_mrs.2018.207",
       "arxiv": "1803.05035"
     },
     {
@@ -916,8 +917,8 @@
       "journal": "npj Computational Materials",
       "volume": "4",
       "pages": "29",
+      "filename": "1709.02727",
       "doi": "10.1038/s41524-018-0085-8",
-      "filename": "10.1038_s41524-018-0085-8",
       "arxiv": "1709.02727"
     },
     {
@@ -940,8 +941,8 @@
       "journal": "Computational Materials Science",
       "volume": "152",
       "pages": "134&ndash;145",
+      "filename": "j.commatsci.2018.03.075",
       "doi": "10.1016/j.commatsci.2018.03.075",
-      "filename": "10.1016_j.commatsci.2018.03.075",
       "arxiv": "1711.10744"
     },
     {
@@ -962,8 +963,8 @@
       "journal": "Acta Crystallographica Section A",
       "volume": "74",
       "pages": "184&ndash;203",
+      "filename": "ActaCrystA74_184_S2053273318003066",
       "doi": "10.1107/S2053273318003066",
-      "filename": "10.1107_S2053273318003066",
       "arxiv": "1802.07977"
     },
     {
@@ -981,8 +982,8 @@
       "volume": "57",
       "number": "2",
       "pages": "653&ndash;667",
+      "filename": "1703.04497v1",
       "doi": "10.1021/acs.inorgchem.7b02462",
-      "filename": "10.1021_acs.inorgchem.7b02462",
       "arxiv": "1703.04497"
     },
     {
@@ -1001,8 +1002,8 @@
       "journal": "Computational Materials Science",
       "volume": "137",
       "pages": "362&ndash;370",
+      "filename": "1612.05130v1",
       "doi": "10.1016/j.commatsci.2017.04.036",
-      "filename": "10.1016_j.commatsci.2017.04.036",
       "arxiv": "1612.05130"
     },
     {
@@ -1021,8 +1022,8 @@
       "journal": "Nature Communications",
       "volume": "8",
       "pages": "15679",
+      "filename": "ncomms15679.pd",
       "doi": "10.1038/ncomms15679",
-      "filename": "10.1038_ncomms15679",
       "arxiv": "1608.04782"
     },
     {
@@ -1045,8 +1046,8 @@
       "journal": "Physical Review Materials",
       "volume": "1",
       "pages": "015401",
+      "filename": "1611.05714v2",
       "doi": "10.1103/PhysRevMaterials.1.015401",
-      "filename": "10.1103_PhysRevMaterials.1.015401",
       "arxiv": "1611.05714"
     },
     {
@@ -1064,8 +1065,8 @@
       "journal": "Acta Materialia",
       "volume": "122",
       "pages": "438&ndash;447",
+      "filename": "j.actamat.2016.09.017",
       "doi": "10.1016/j.actamat.2016.09.017",
-      "filename": "10.1016_j.actamat.2016.09.017",
       "arxiv": "1603.05967"
     },
     {
@@ -1088,8 +1089,8 @@
       "volume": "3",
       "number": "4",
       "pages": "e1602241",
-      "doi": "10.1126/sciadv.1602241",
-      "filename": "10.1126_sciadv.1602241"
+      "filename": "sciadv_1602241",
+      "doi": "10.1126/sciadv.1602241"
     },
     {
       "status": "published",
@@ -1106,8 +1107,8 @@
       "volume": "6",
       "number": "4",
       "pages": "041061",
+      "filename": "PhysRevX.6.041061",
       "doi": "10.1103/PhysRevX.6.041061",
-      "filename": "10.1103_PhysRevX.6.041061",
       "arxiv": "1606.03279"
     },
     {
@@ -1123,8 +1124,8 @@
       "volume": "28",
       "number": "18",
       "pages": "6484&ndash;6492",
+      "filename": "acs.chemmater.6b01449",
       "doi": "10.1021/acs.chemmater.6b01449",
-      "filename": "10.1021_acs.chemmater.6b01449",
       "arxiv": "1511.04373"
     },
     {
@@ -1147,8 +1148,8 @@
       "journal": "Computational Materials Science",
       "volume": "108A",
       "pages": "233&ndash;238",
+      "filename": "j.commatsci.2015.07.019",
       "doi": "10.1016/j.commatsci.2015.07.019",
-      "filename": "10.1016_j.commatsci.2015.07.019",
       "arxiv": "1506.00303"
     },
     {
@@ -1168,8 +1169,8 @@
       "volume": "27",
       "number": "3",
       "pages": "735&ndash;743",
+      "filename": "acs.chemmater.503507h",
       "doi": "10.1021/cm503507h",
-      "filename": "10.1021_cm503507h",
       "arxiv": "1412.4096"
     }
   ],
