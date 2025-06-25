@@ -148,14 +148,16 @@ def process_publications(data: dict[str, Any]):
 
 def process_team(data: dict[str, Any]):
     def sort_members(a, b):
-        if a["id"] == "coses":
+        if a["id"] == "corey_oses":
             return 1
-        if b["id"] == "coses":
+        if b["id"] == "corey_oses":
             return -1
         if a.get("rank", 0) != b.get("rank", 0):
             return 1 if a.get("rank", 0) < b.get("rank", 0) else -1
-        if a["name"] != b["name"]:
-            return 1 if a["name"] < b["name"] else -1
+        lname_a=a["name"].split()[-1]
+        lname_b=b["name"].split()[-1]
+        if lname_a != lname_b:
+            return 1 if lname_a < lname_b else -1
         return 0
 
     groups = [
