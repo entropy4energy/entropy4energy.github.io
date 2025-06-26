@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - dev # Add dev branch 
   pull_request:
 
 permissions: {}
@@ -16,11 +17,28 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
+          fetch-depth: 0 # Fetch all branches for dev changes
 
-      - name: Build website
+      - name: Build main branch content
         run: |
+          git checkout main
           make install-packages
           make
+          cp -r dist/ main_dist
+        shell: bash
+
+      - name: Build dev branch content
+        run: |
+          git checkout dev
+          make install-packages
+          make
+          cp -r dist/ main_dist/__dev__
+        shell: bash
+      
+      - name: Build full website
+        run: |
+          rm -rf dist/
+          mv main_dist/ dist/
         shell: bash
 
       - name: Setup pages
@@ -33,7 +51,7 @@ jobs:
 
   deploy:
     name: Deploy website
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' }}
     needs: build
     environment:
       name: github-pages
