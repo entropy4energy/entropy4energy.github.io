@@ -1,6 +1,7 @@
 [
   {
     "open": [2025, 1, 15],
+    "close": [2025, 7, 1],
     "title": "Postdoctoral Researcher Opportunity in Reactor Design",
     "description": "The <i>S4E</i> Labor has openings for postdoctoral researchers. The postdoc will be co-advised by <a href=\"https://halllab.seas.upenn.edu\" target=\"_blank\">Prof. A. Shoji Hall at the University of Pennsylvania</a>. We invite applications for a postdoctoral researcher position focused on the design and construction of reactors with next generation catalysts for thermochemical processes. Candidates will collaborate with other experimental, theoretical, and machine learning groups to efficiently optimize reactor designs. This position offers a unique opportunity to work at the forefront of renewable energy research and catalysts, developing innovative solutions with high commercial impact for sustainable fuel production. Graduate students near the completion of their Ph.D. are welcome to apply.",
     "quals": [
@@ -15,6 +16,7 @@
   },
   {
     "open": [2025, 1, 1],
+    "close": [2025, 7, 1],
     "title": "Postdoctoral Researcher Opportunity in Materials Informatics",
     "description": "The <i>S4E</i> Lab has openings for postdoctoral researchers in the data-driven discovery of energy materials. Projects focus on innovating clean hydrogen production, waste-heat conversion, nuclear power, and energy storage. Graduate students near the completion of their Ph.D. are welcome to apply.",
     "quals": [
@@ -32,6 +34,13 @@
   },
   {
     "open": [2023, 5, 31],
+    "title": "Opening for Master's and PhD Research in Energy Materials",
+    "description": "Interested in performing computational materials science research? The <i>S4E</i> Lab is looking for new students interested in the computational modeling of high-entropy materials for energy materials. Candidates will learn how to run high-throughput <i>ab-initio</i> calculations and develop machine learning/artificial intelligence algorithms that analyze materials synthesizability, stability, and functional properties.",
+    "instructions": "If you are interested in joining the <i>S4E</i> team, please follow these instructions: <li><b>For JHU students.</b> Schedule a meeting by emailing the <i>S4E</i> team (entropy4energy AT jhu.edu) with your CV.</li><li><b>For external candidates.</b> <a href=\"https://engineering.jhu.edu/admissions\" target=\"_blank\">Submit an application</a> to the Department of Materials Science &amp; Engineering. Note Prof. Oses as a faculty advisor of interest and discuss your interest in the <i>S4E</i> Lab in your Statement of Research. Applications are assessed <a href=\"https://engineering.jhu.edu/admissions/graduate-admissions/full-time-programs/how-to-apply/application-deadlines\" target=\"_blank\">twice a year</a>, in October and December. Questions should be addressed to Mrs. Lauren Rodgers (lmodica1 AT jhu.edu).</li>"
+  },
+  {
+    "open": [2023, 5, 31],
+    "close": [2025, 7, 1],
     "title": "Opening for Master's and PhD Research in Energy Materials",
     "description": "Interested in performing materials science research that combines experiments with computation? The <i>S4E</i> Lab is looking for new students interested in the synthesis, characterization, and computational modeling of high-entropy materials for energy materials. This project involves hands-on training on how to synthesize and experimentally characterize disordered materials. Candidates will also learn how to run high-throughput <i>ab-initio</i> calculations and develop machine learning/artificial intelligence algorithms that analyze materials synthesizability, stability, and functional properties.",
     "instructions": "If you are interested in joining the <i>S4E</i> team, please follow these instructions: <li><b>For JHU students.</b> Schedule a meeting by emailing the <i>S4E</i> team (entropy4energy AT jhu.edu) with your CV.</li><li><b>For external candidates.</b> <a href=\"https://engineering.jhu.edu/admissions\" target=\"_blank\">Submit an application</a> to the Department of Materials Science &amp; Engineering. Note Prof. Oses as a faculty advisor of interest and discuss your interest in the <i>S4E</i> Lab in your Statement of Research. Applications are assessed <a href=\"https://engineering.jhu.edu/admissions/graduate-admissions/full-time-programs/how-to-apply/application-deadlines\" target=\"_blank\">twice a year</a>, in October and December. Questions should be addressed to Mrs. Lauren Rodgers (lmodica1 AT jhu.edu).</li>"
