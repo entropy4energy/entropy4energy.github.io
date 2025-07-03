@@ -265,6 +265,10 @@ footer {
       z-index: 9998;
     }
 
+    & + label {
+      display: none !important;
+    }
+
     &[type=radio]:checked + label {
       background-color: #aaaaaa;
       color: $color-main-3;
