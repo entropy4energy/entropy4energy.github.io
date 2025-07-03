@@ -1,29 +1,29 @@
 {
   "slides": [
     {
-      "date": [2022, 9, 9],
-      "title": "Prof. Oses teaching CHULL",
-      "file": "pic_team_20220909.png"
+      "date": [2025, 6, 1],
+      "title": "The group @ Mason Hall",
+      "file": "pic_team_masonhall_20250601.png"
     },
     {
-      "date": [2023, 7, 25],
-      "title": "The group @ Baltimore's Inner Harbor",
-      "file": "pic_team_harbor_20230726.png"
+      "date": [2024, 10, 1],
+      "title": Prof. Oses" teaching with LEGOLAS",
+      "file": "pic_CO_LEGOLAS_1_20241001.png"
     },
     {
-      "date": [2023, 7, 31],
-      "title": "The group @ MDSGC's 2023 Student Research Symposium",
-      "file": "pic_team_mdsgc_20230731.png"
+      "date": [2024, 10, 1],
+      "title": "Matt teaching session",
+      "file": "pic_matt_teaching_20241001.png"
     },
     {
-      "date": [2023, 8, 1],
-      "title": "The group @ Hopkins' 2023 Summer Research Symposium",
-      "file": "pic_team_hopkins_symposium_20230801.png"
+      "date": [2024, 10, 1],
+      "title": "Akshaya teaching session",
+      "file": "pic_akshaya_teaching_20241001.png"
     },
     {
-      "date": [2023, 9, 22],
-      "title": "The group BBQ lunch @ K-POT!",
-      "file": "pic_team_kbbq_20230922.png"
+      "date": [2023, 12, 14],
+      "title": "Ending of the semester dinner @ Yesh",
+      "file": "pic_team_yesh_20231214.png"
     },
     {
       "date": [2023, 10, 13],
@@ -31,9 +31,29 @@
       "file": "pic_team_idies_20231013.png"
     },
     {
-      "date": [2023, 12, 14],
-      "title": "Ending of the semester dinner @ Yesh",
-      "file": "pic_team_yesh_20231214.png"
+      "date": [2023, 9, 22],
+      "title": "The group BBQ lunch @ K-POT!",
+      "file": "pic_team_kbbq_20230922.png"
+    },
+    {
+      "date": [2023, 8, 1],
+      "title": "The group @ Hopkins' 2023 Summer Research Symposium",
+      "file": "pic_team_hopkins_symposium_20230801.png"
+    },
+    {
+      "date": [2023, 7, 31],
+      "title": "The group @ MDSGC's 2023 Student Research Symposium",
+      "file": "pic_team_mdsgc_20230731.png"
+    },
+    {
+      "date": [2023, 7, 26],
+      "title": "The group @ Baltimore's Inner Harbor",
+      "file": "pic_team_harbor_20230726.png"
+    },
+    {
+      "date": [2022, 9, 9],
+      "title": "Prof. Oses teaching CHULL",
+      "file": "pic_team_20220909.png"
     }
   ]
 }
