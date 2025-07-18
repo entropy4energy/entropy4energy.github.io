@@ -177,6 +177,10 @@ def process_team(data: dict[str, Any]):
             "positions": ["Undergraduate Student"],
             "title": "Undergraduate Students",
         },
+        {
+            "positions": ["Highschool Student"],
+            "title": "Highschool Students",
+        },
     ]
 
     socials = [
