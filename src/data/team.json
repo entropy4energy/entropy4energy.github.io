@@ -106,6 +106,7 @@
     ]
   },
   "will_shiber": {
+    "alumn": true,
     "contact": "wshiber1 at jhu.edu",
     "name": "Will Shiber",
     "titles": [
@@ -132,7 +133,7 @@
     "contact": "dbraate1 at jhu.edu",
     "name": "Dakota Braaten",
     "titles": [
-      "Undergraduate Student"
+      "Visiting Student"
     ]
   },
   "julia_gelfond": {
@@ -154,21 +155,21 @@
     "contact": "choy2 at jhu.edu",
     "name": "Connor Hoy",
     "titles": [
-      "Undergraduate Student"
+      "Visiting Student"
     ]
   },
     "elizabeth_rodriguez": {
     "contact": "erodri60 at jhu.edu",
     "name": "Elizabeth Rodriguez",
     "titles": [
-      "Undergraduate Student"
+      "Visiting Student"
     ]
   },
     "mirriam_nzunda": {
     "contact": "mnzunda1 at jhu.edu",
     "name": "Mirriam Nzunda",
     "titles": [
-      "Undergraduate Student"
+      "Visiting Student"
     ]
   },
     "phianna_koehn": {
