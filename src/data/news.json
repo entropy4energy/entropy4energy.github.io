@@ -13,17 +13,36 @@
     "title": "Connor presents at the 2025 Summer STEM Symposium",
     "message": "Connor presented his research at the 2025 Summer STEM Symposium. Great job Connor!",
     "pictures": [
-      "pic_connor_STEM_Sympsium.jpg",
+      "pic_connor_STEM_Symposium.jpg",
       "pic_connor_jae.jpg"
     ]
   },
   {
     "date": [2025, 7, 24],
     "title": "Mirriam presents at the 2025 PROPEL Symposium",
-    "message": "Mirriam presented her research at the 2024 PROPEL Symposium. Well done Mirriam!",
+    "message": "Mirriam presented her research at the 2025 PROPEL Symposium. Well done Mirriam!",
     "pictures": [
       "pic_mirriam_PROPEL_Symposium.jpg",
       "pic_mirriam_jae.jpg"
+    ]
+  },
+   {
+    "date": [2025, 6, 12],
+    "title": "The group welcomes Phianna Koehn and Oliver Gospodarev!",
+    "message": "Phianna and Oliver are highschool junior students at the Baltimore Polytechnic Institute. Welcome!",
+    "pictures": [
+      "pic_welcome_highschool_koehn.jpg",
+      "pic_welcome_highschool_gospodarev.jpg"
+    ]
+  },
+  {
+    "date": [2025, 5, 28],
+    "title": "The group welcomes Connor Hoy, Elizabeth Rodriguez, and Mirriam Nzunda!",
+    "message": "Connor is visiting from the University of Texas at Dallas where he studies materials science engineering. Elizabeth is visiting from California State University, Chico where she studies computer engineering. Mirriam is visiting from Smith College where she studies chemical engineering. Welcome!",
+    "pictures": [
+      "pic_welcome_undergrad_hoy.jpg",
+      "pic_welcome_undergrad_rodriguez.jpg",
+      "pic_welcome_undergrad_nzunda.jpg"
     ]
   },
   {
