@@ -1,5 +1,22 @@
 [
   {
+   "date": [2025, 10, 9],
+   "title": "Tianhao wins the Amazon AI Fellowship",
+   "message": "We are proud to announce that our group member Tianhao has been awarded the Amazon AI Fellowship, a distinction granted to only ten students across the university. Congratulations on this outstanding achievement!",
+   "pictures": [
+     "pic_amazon_tianhao.jpg",
+     "pic_amazon_tianhao_2.jpg"
+    ]
+  },
+  {
+   "date": [2025, 9, 1],
+   "title": "The group welcomes Jiayue Hu!",
+   "message": "Jiayue comes from Temple University where he studied mechanical engineering. Welcome!",
+   "pictures": [
+     "pic_welcome_postdoc_jhu.jpg"
+    ]
+  },
+  {
     "date": [2025, 8, 1],
     "title": "Elizabeth presents at the 2025 ROSETAS Symposium",
     "message": "Elizabeth presented her research at the 2025 ROSETAS Symposium. Well done Elizabeth!",
