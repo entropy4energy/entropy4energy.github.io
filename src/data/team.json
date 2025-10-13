@@ -33,6 +33,13 @@
       "Postdoctoral Associate"
     ]
   },
+  "jiayue_hu": {
+    "contact": "jhu130 at jh.edu",
+    "name": "Jiayue Hu",
+    "titles": [
+      "Postdoctoral Associate"
+    ]
+  },
   "keith_clark": {
     "alumn": true,
     "contact": "kclark96 at jhu.edu",
@@ -56,6 +63,7 @@
     ]
   },
   "jaehyung_lee": {
+    "alumn": true,
     "contact": "jlee859 at jhu.edu",
     "name": "Jaehyung Lee",
     "titles": [
@@ -187,6 +195,7 @@
     ]
   },
   "alex_skeldon": {
+    "alumn": true,
     "contact": "askeldo1 at jhu.edu",
     "name": "Alex Skeldon",
     "titles": [
