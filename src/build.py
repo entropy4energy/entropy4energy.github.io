@@ -14,6 +14,8 @@ HEADERS = [
     "news",
     "jobs",
     "workshops",
+    "zips",
+    "api",
 ]
 
 BASE_PATH = Path(__file__).parent
