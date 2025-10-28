@@ -7,11 +7,9 @@
   </div>
 
   <ul>
-    <li><a href="https://s4e.ai/API/zips/unaries.jsonl.gz">unaries.jsonl.gz</a></li>
-    <li><a href="https://s4e.ai/API/zips/binaries.jsonl.gz">binaries.jsonl.gz</a></li>
-    <li><a href="https://s4e.ai/API/zips/ternaries.jsonl.gz">ternaries.jsonl.gz</a></li>
-    <li><a href="https://s4e.ai/API/zips/quaternaries.jsonl.gz">quaternaries.jsonl.gz</a></li>
-    <li><a href="https://s4e.ai/API/zips/quinaries.jsonl.gz">quinaries.jsonl.gz</a></li>
+    {% for href in data["zips"]["files"] %}
+      <li><a href="https://s4e.ai/API/zips/{{ href }}">{{ href }}</a></li>
+    {% endfor %}
   </ul>
 
 {% endblock %}
