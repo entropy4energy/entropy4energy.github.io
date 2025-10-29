@@ -16,7 +16,7 @@ HEADERS = [
     "news",
     "jobs",
     "workshops",
-    "zips",
+    "chaos",
     "api",
 ]
 
@@ -289,7 +289,7 @@ def process_zips(data: dict[str, Any]):
     hrefs = re.findall(r'href="([^"]*)"', decoded_html)
     hrefs = list(filter(lambda x: x.endswith('.gz'), hrefs)) + \
             list(filter(lambda x: x.endswith('.md5'), hrefs))
-    data["zips"]["files"] = hrefs
+    data["chaos"]["files"] = hrefs
     
 
 PROCESS_DATA = {
@@ -298,7 +298,7 @@ PROCESS_DATA = {
     "publications": process_publications,
     "team": process_team,
     "workshops": process_workshops,
-    "zips": process_zips,
+    "chaos": process_zips,
 }
 
 
