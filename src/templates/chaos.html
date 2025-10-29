@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>CHAOS Datasets</h1>
+  <h2>
+    <u>C</u>ombinatorial <u>H</u>igh-Entropy <u>A</u>nalysis and <u>O</u>ptimization for <u>S</u>ynthesis
+  </h2>
+
+  <p>The following High Entropy Oxide datasets are available for download:</p>
+
+  <ul>
+    {% for href in data["chaos"]["files"] %}
+      <li><a href="https://s4e.ai/API/zips/{{ href }}">{{ href }}</a></li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}
+
