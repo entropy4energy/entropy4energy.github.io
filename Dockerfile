@@ -28,6 +28,6 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
 # Helpful commands
-# First build: docker build -t mysite:latest .
-# Rebuild after changes: docker build --no-cache -t mysite:latest .
-# Run: docker run --rm -p 8080:80 mysite:latest
+# First build: docker build -t entropy4energy:latest .
+# Rebuild after changes: docker build --no-cache -t entropy4energy:latest .
+# Run: docker run --rm -p 8080:80 entropy4energy:latest
