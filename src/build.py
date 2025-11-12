@@ -18,8 +18,6 @@ HEADERS = [
     "workshops",
     "research",
     "chaos",
-    "chaos-gpt",
-    "api",
 ]
 
 BASE_PATH = Path(__file__).parent
