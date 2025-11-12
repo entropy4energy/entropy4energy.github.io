@@ -47,7 +47,7 @@ all: $(BUILDTARGETS)
 
 # HTML targets
 PREREQSALL=$(BUILDPY) $(DATADIR)/news.json $(TEMPLATEDIR)/base.html
-HTMLFILES=index jobs news publications team workshops chaos api
+HTMLFILES=index jobs news publications team workshops research chaos chaos-gpt api
 html: $(foreach HTML,$(HTMLFILES),$(BLDDIR)/$(HTML).html)
 
 $(BLDDIR)/%.html: $(PREREQSALL) $(TEMPLATEDIR)/%.html $(DATADIR)/%.json
