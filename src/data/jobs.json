@@ -21,7 +21,9 @@
      "close": [2026, 2, 2],
      "title": "2026 Undergraduate Summer Researcher (National Science Foundation, REU summer program)",
      "description": "The <i>S4E</i> Lab has openings for undergraduate researchers in the data-driven discovery of energy materials. <li><b>Program.</b> Research on Sustainable Energy Technology and Systems (ROSETAS) is a 10-week National Science Foundation Research Experience for Undergraduates (REU) summer program in sustainable energy that is hosted by ROSEI, which serves as the nexus for sustainable energy-related research and educational programs at Johns Hopkins University.</li><li><b>Stipend and housing.</b> Accepted students will be awarded a $7,000 stipend and given housing on campus for the summer.",
-     "quals": "Candidates must be U.S. Citizens or U.S. Permanent Residents, have completed at least one year of undergraduate studies, and not yet have a bachelor.",
+     "quals": [
+       "Candidates must be U.S. Citizens or U.S. Permanent Residents, have completed at least one year of undergraduate studies, and not yet have a bachelor."
+     ],
      "instructions": "The program will take place 26 May 2026 through 31 July 2026. Applications are due on 2 February 2026 by 11:59 ET. Note Prof. Oses as a faculty advisor of interest and discuss your interest in the <i>S4E</i> Lab in your Statement of Research. For questions regarding the Entropy for Energy Laboratory, email the <i>S4E</i> team (entropy4energy AT jhu.edu).</li><li><b>Application link.</b> Please see the attached <a href=\"media/jobs/rosetas_flyer_2026.pdf\" target=\"_blank\">flyer</a> or visit this <a href=\"https://etap.nsf.gov/award/7317/opportunity/11556\" target=\"_blank\">link</a> to apply.</li>",
      "flyer": "rosetas_flyer_2026"
   },
