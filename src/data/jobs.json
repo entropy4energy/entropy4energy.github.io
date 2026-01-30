@@ -1,5 +1,22 @@
 [
   {
+     "open": [2025, 12, 5],
+     "title": "Postdoctoral Researcher Opportunity in Materials Informatics",
+     "description": "The <i>S4E</i> Lab has openings for postdoctoral researchers in the data-driven discovery of energy materials. Projects focus on fundamental research innovating clean hydrogen production, waste-heat conversion, nuclear power, and energy storage.",
+     "quals": [
+       "Doctorate in materials science, physics, chemistry, computer science or other related fields.",
+       "Ability to move to and work at Johns Hopkins University, USA.",
+       "Proven track-record of first-author publications and presentations. A minimum of three peer-reviewed, first-author publications must be accessible by the <i>S4E</i> team.",
+       "Proven experience with VASP, Quantum ESPRESSO, LAMMPS, or other <i>ab-initio</i> codes.",
+       "Strong programming skills in C++ and Python and proficiency with Unix systems.",
+       "Ability to lead research projects and collaborate with experimentalists.",
+       "Fundamental understanding of thermodynamics of materials, solid-state physics, inorganic chemistry, and metallurgy at the level of theory/implementation.",
+       "Expertise in any of the following areas: high-entropy materials, disorder, phonons, magnetism, catalysis, machine learning/artificial intelligence, database/API development, aflow.org repositories."
+     ],
+     "flyer": "oses_ad_postdoc_202512",
+     "instructions": "Submit a single PDF file via <a href=\"https://apply.interfolio.com/178526\" target=\"_blank\">Interfolio</a> named &quot;<i>Lastname</i>_<i>Firstname</i>_S4E_202512.pdf&quot; containing a cover letter, CV, and contact information for 3 references. The cover letter should address each point of the qualifications list explicitly (<i>i.e.</i>, A, B, C, ...). Provide ample examples and details where possible. Applications without explicit responses will not be reviewed. OPTIONAL: DOIs for 3 recent and relevant publications can be included at the end of the packet. Questions can be sent to the <i>S4E</i> team (entropy4energy AT jhu.edu); subject line must contain &quot;S4E Post-Doc&quot;."
+  },
+  {
     "open": [2025, 8, 12],
     "title": "Postdoctoral Researcher Opportunity in Materials Informatics",
     "description": "The <i>S4E</i> Lab has openings for postdoctoral researchers in the data-driven discovery of energy materials. Projects focus on innovating clean hydrogen production, waste-heat conversion, nuclear power, and energy storage. Graduate students near the completion of their Ph.D. are welcome to apply.",
@@ -16,6 +33,23 @@
     ],
     "flyer": "oses_ad_postdoc_202508",
     "instructions": "Submit a single PDF file via <a href=\"https://apply.interfolio.com/171935\" target=\"_blank\">Interfolio</a> named &quot;<i>Lastname</i>_<i>Firstname</i>_S4E_202508.pdf&quot; containing a cover letter, CV, and contact information for 3 references. The cover letter should address each point of the qualifications list explicitly (<i>i.e.</i>, A, B, C, ...). Provide ample examples and details where possible. Applications without explicit responses will not be reviewed. OPTIONAL: DOIs for 3 recent and relevant publications can be included at the end of the packet. Questions can be sent to the <i>S4E</i> team (entropy4energy AT jhu.edu); subject line must contain &quot;S4E Post-Doc&quot;."
+  },
+  {
+    "open": [2023, 5, 31],
+    "title": "Opening for Master's and PhD Research in Energy Materials",
+    "description": "Interested in performing computational materials science research? The <i>S4E</i> Lab is looking for new students interested in the computational modeling of high-entropy materials for energy materials. Candidates will learn how to run high-throughput <i>ab-initio</i> calculations and develop machine learning/artificial intelligence algorithms that analyze materials synthesizability, stability, and functional properties.",
+    "instructions": "If you are interested in joining the <i>S4E</i> team, please follow these instructions: <li><b>For JHU students.</b> Schedule a meeting by emailing the <i>S4E</i> team (entropy4energy AT jhu.edu) with your CV.</li><li><b>For external candidates.</b> <a href=\"https://engineering.jhu.edu/admissions\" target=\"_blank\">Submit an application</a> to the Department of Materials Science &amp; Engineering. Note Prof. Oses as a faculty advisor of interest and discuss your interest in the <i>S4E</i> Lab in your Statement of Research. Applications are assessed <a href=\"https://engineering.jhu.edu/admissions/graduate-admissions/full-time-programs/how-to-apply/application-deadlines\" target=\"_blank\">twice a year</a>, in October and December. Questions should be addressed to Mrs. Lauren Rodgers (lmodica1 AT jhu.edu).</li>"
+  },
+  {
+     "open": [2025, 11, 23],
+     "close": [2026, 2, 2],
+     "title": "2026 Undergraduate Summer Researcher (National Science Foundation, REU summer program)",
+     "description": "The <i>S4E</i> Lab has openings for undergraduate researchers in the data-driven discovery of energy materials. <li><b>Program.</b> Research on Sustainable Energy Technology and Systems (ROSETAS) is a 10-week National Science Foundation Research Experience for Undergraduates (REU) summer program in sustainable energy that is hosted by ROSEI, which serves as the nexus for sustainable energy-related research and educational programs at Johns Hopkins University.</li><li><b>Stipend and housing.</b> Accepted students will be awarded a $7,000 stipend and given housing on campus for the summer.",
+     "quals": [
+       "Candidates must be U.S. Citizens or U.S. Permanent Residents, have completed at least one year of undergraduate studies, and not yet have a bachelor."
+     ],
+     "instructions": "The program will take place 26 May 2026 through 31 July 2026. Applications are due on 2 February 2026 by 11:59 ET. Note Prof. Oses as a faculty advisor of interest and discuss your interest in the <i>S4E</i> Lab in your Statement of Research. For questions regarding the Entropy for Energy Laboratory, email the <i>S4E</i> team (entropy4energy AT jhu.edu).</li><li><b>Application link.</b> Please see the attached <a href=\"media/jobs/rosetas_flyer_2026.pdf\" target=\"_blank\">flyer</a> or visit this <a href=\"https://etap.nsf.gov/award/7317/opportunity/11556\" target=\"_blank\">link</a> to apply.</li>",
+     "flyer": "rosetas_flyer_2026"
   },
   {
     "open": [2025, 1, 15],
@@ -49,12 +83,6 @@
     ],
     "flyer": "oses_ad_postdoc_comp_202501",
     "instructions": "Submit a single PDF file via <a href=\"https://apply.interfolio.com/161248\" target=\"_blank\">Interfolio</a> named &quot;<i>Lastname</i>_<i>Firstname</i>_S4E_202501.pdf&quot; containing a cover letter, CV, and contact information for 3 references. The cover letter should address each point of the qualifications list explicitly (<i>i.e.</i>, A, B, C, ...). Provide ample examples and details where possible. Applications without explicit responses will not be reviewed. OPTIONAL: DOIs for 3 recent and relevant publications can be included at the end of the packet. Questions can be sent to the <i>S4E</i> team (entropy4energy AT jhu.edu); subject line must contain &quot;S4E Post-Doc&quot;."
-  },
-  {
-    "open": [2023, 5, 31],
-    "title": "Opening for Master's and PhD Research in Energy Materials",
-    "description": "Interested in performing computational materials science research? The <i>S4E</i> Lab is looking for new students interested in the computational modeling of high-entropy materials for energy materials. Candidates will learn how to run high-throughput <i>ab-initio</i> calculations and develop machine learning/artificial intelligence algorithms that analyze materials synthesizability, stability, and functional properties.",
-    "instructions": "If you are interested in joining the <i>S4E</i> team, please follow these instructions: <li><b>For JHU students.</b> Schedule a meeting by emailing the <i>S4E</i> team (entropy4energy AT jhu.edu) with your CV.</li><li><b>For external candidates.</b> <a href=\"https://engineering.jhu.edu/admissions\" target=\"_blank\">Submit an application</a> to the Department of Materials Science &amp; Engineering. Note Prof. Oses as a faculty advisor of interest and discuss your interest in the <i>S4E</i> Lab in your Statement of Research. Applications are assessed <a href=\"https://engineering.jhu.edu/admissions/graduate-admissions/full-time-programs/how-to-apply/application-deadlines\" target=\"_blank\">twice a year</a>, in October and December. Questions should be addressed to Mrs. Lauren Rodgers (lmodica1 AT jhu.edu).</li>"
   },
   {
     "open": [2023, 5, 31],
