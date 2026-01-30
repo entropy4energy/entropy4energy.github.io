@@ -3,6 +3,26 @@
     {
       "status": "published",
       "year": 2025,
+      "title": "The search for high-entropy fuel-cell catalysts using disorder descriptors",
+      "authors": [
+        "G.&nbsp;Han",
+        "T.&nbsp;Li",
+        "X.&nbsp;Xu",
+        "J.&nbsp;Lee",
+        "S.&nbsp;Sequeira",
+        "A.&nbsp;Ajith",
+        "C.&nbsp;Oses"
+      ],
+      "equal_contribution": 2,
+      "journal": "Nano Futures",
+      "volume": "9",
+      "pages": "045001",
+      "doi": "10.1088/2399-1984/ae19b0",
+      "filename": "10.1088_2399-1984_ae19b0"
+    },
+    {
+      "status": "published",
+      "year": 2025,
       "title": "Beyond the four core effects: revisiting thermoelectrics with a high-entropy design",
       "authors": [
         "C.&nbsp;Oses",
