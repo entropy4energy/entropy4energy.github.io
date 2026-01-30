@@ -1,6 +1,8 @@
 import argparse
 import functools
 import json
+import re
+import urllib.request
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -14,6 +16,8 @@ HEADERS = [
     "news",
     "jobs",
     "workshops",
+    "research",
+    "chaos",
 ]
 
 BASE_PATH = Path(__file__).parent
@@ -276,6 +280,17 @@ def process_workshops(data: dict[str, Any]):
                     "type": materials_type,
                 }
 
+def process_zips(data: dict[str, Any]):
+    url = "https://s4e.ai/API/zips/"
+    with urllib.request.urlopen(url) as response:
+        html_content = response.read()
+    decoded_html = html_content.decode('utf-8')
+    hrefs = []
+    hrefs = re.findall(r'href="([^"]*)"', decoded_html)
+    hrefs = list(filter(lambda x: x.endswith('.gz'), hrefs)) + \
+            list(filter(lambda x: x.endswith('.md5'), hrefs))
+    data["chaos"]["files"] = hrefs
+    
 
 PROCESS_DATA = {
     "home": process_home,
@@ -283,6 +298,7 @@ PROCESS_DATA = {
     "publications": process_publications,
     "team": process_team,
     "workshops": process_workshops,
+    "chaos": process_zips,
 }
 
 
