@@ -1,5 +1,21 @@
 [
   {
+    "id": "2026_quantum",
+    "title": "Quantum Computing in Practice: Hands On with Quantinuum",
+    "date": [
+      [2026, 2, 25],
+      [2026, 2, 26]
+    ],
+    "description": "Join us for an interactive workshop highlighting some of the latest developments in quantum computing, featuring hands-on sessions with quantum hardware and software platforms. Explore real-world applications and demonstrations across fields such as quantum chemistry, physics, materials science, biology, engineering, data science, and artificial intelligence. The program includes keynote talks, panel discussions, research presentations, and practical tutorials designed to inform, engage, and connect participants from diverse backgrounds in this rapidly evolving field.",
+    "sessions": [
+      {
+        "presenter":"Dr. Corey Oses and Dr. Gregory Quiroz",
+        "description": "Please register <a href=\"https://engineering.jhu.edu/materials/event/quantum-computing-in-practice-hands-on-with-quantinuum/\" target=\"_blank\">HERE</a>. A $50 registration fee is required to reserve your spot for this two-day workshop. This fee covers meals, workshop materials, and ensures meaningful participation during our hands-on sessions with Quantinuum’s hardware and software. If the cost poses a barrier, please contact the organizers.",
+        "title": "Registration"
+      }
+    ]
+  },
+  {
     "id": "2024_ai_materials",
     "title": "Data-Driven Materials Modeling Workshop",
     "date": [
