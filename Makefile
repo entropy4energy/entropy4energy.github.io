@@ -26,7 +26,7 @@ SSCFLAGS=-u cssnano -u autoprefixer --no-map
 # JavaScript
 JSSRC=$(SRCDIR)/js
 JSBLD=$(BLDDIR)/js
-JSC="./node_modules/.bin/google-closure-compiler"
+JSC=./$(NODEBIN)/google-closure-compiler
 JSCFLAGS=-O ADVANCED #--language_out ECMASCRIPT5_STRICT  # uncomment for IE
 
 # rsync
@@ -47,7 +47,7 @@ all: $(BUILDTARGETS)
 
 # HTML targets
 PREREQSALL=$(BUILDPY) $(DATADIR)/news.json $(TEMPLATEDIR)/base.html
-HTMLFILES=index jobs news publications team workshops research chaos
+HTMLFILES=index jobs news publications team workshops
 html: $(foreach HTML,$(HTMLFILES),$(BLDDIR)/$(HTML).html)
 
 $(BLDDIR)/%.html: $(PREREQSALL) $(TEMPLATEDIR)/%.html $(DATADIR)/%.json
