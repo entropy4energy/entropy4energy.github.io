@@ -12,6 +12,16 @@
         "presenter":"Dr. Corey Oses and Dr. Gregory Quiroz",
         "description": "Please register <a href=\"https://engineering.jhu.edu/materials/event/quantum-computing-in-practice-hands-on-with-quantinuum/\" target=\"_blank\">HERE</a>. A $50 registration fee is required to reserve your spot for this two-day workshop. This fee covers meals, workshop materials, and ensures meaningful participation during our hands-on sessions with Quantinuum’s hardware and software. If the cost poses a barrier, please contact the organizers.",
         "title": "Registration"
+      },
+      {
+        "presenter":"Mikail Shaikh",
+        "materials": "1D6vsn7jPjvBcYlk6SzufwZhoeqvc-gi0",
+        "title": "Nexus demo"
+      },
+      {
+        "presenter":"Mikail Shaikh",
+        "materials": "1RigFRYTKi_LATq_BocSN-M66hBk7_tTP",
+        "title": "Nexus demo: Guppy examples and homework" 
       }
     ]
   },
