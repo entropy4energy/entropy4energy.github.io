@@ -22,6 +22,16 @@
         "presenter":"Mikail Shaikh",
         "materials": "1RigFRYTKi_LATq_BocSN-M66hBk7_tTP",
         "title": "Nexus demo: Guppy examples and homework" 
+      },
+      {
+        "presenter":"Mikail Shaikh, Ciaran Ward",
+        "title":"Day 2",
+        "youtube_id":"UiaRxfAsJtY"
+      },
+      {
+        "presenter":"Ciaran Ward",
+        "title":"Resources",
+        "description":"We offer one-month trial access to InQuanto via Quantinuum Nexus. Please enter <a href=\"https://engineering.jhu.edu/materials/event/quantum-computing-in-practice-hands-on-with-quantinuum/\" target=\"_blank\">HERE</a> for the trail. Documentations of InQuanto, Nexus, and other products from Quantinuum are available <a href=\"https://docs.quantinuum.com/\" target=\"_blank\">HERE</a>. <br>A case-study tutorial on catalyzed nitrogen dissociation based on our published workflow is available <a href=\"https://docs.quantinuum.com/inquanto/tutorials/case_study_tutorials.html\" target=\"_blank\">HERE</a>.  <br>A knowledge article on quantum error-corrected quantum phase estimation for quantum computational chemistry is available <a href=\"https://docs.quantinuum.com/inquanto/tutorials/InQ_KA_h2xh2.html\" target=\"_blank\">HERE</a>."
       }
     ]
   },

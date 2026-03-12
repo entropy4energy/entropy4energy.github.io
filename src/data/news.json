@@ -1,5 +1,13 @@
 [
   {
+   "date": [2026, 2, 26],
+   "title": "Quantum Computing Workshop at JHU",
+   "message": "We organized a workshop on topics in quantum computing. The event was hosted by Quantinuum, the Department of Materials Science & Engineering, Advanced Research Computing at Hopkins (ARCH), the Institute for Data Intensive Engineering and Science (IDIES), and Johns Hopkins Data Science and AI Institute (DSAI).",
+   "pictures": [
+     "pic_1_qc_2026.png",
+     "pic_2_qc_2026.png"
+    ]
+  {
    "date": [2025, 10, 9],
    "title": "Tianhao wins the Amazon AI Fellowship",
    "message": "We are proud to announce that our group member Tianhao has been awarded the Amazon AI Fellowship, a distinction granted to only ten students across the university. Congratulations on this outstanding achievement!",
