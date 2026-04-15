@@ -181,6 +181,7 @@
     ]
   },
     "connor_hoy": {
+    "alumn": true,
     "contact": "choy2 at jhu.edu",
     "name": "Connor Hoy",
     "titles": [
@@ -188,6 +189,7 @@
     ]
   },
     "elizabeth_rodriguez": {
+    "alumn": true,
     "contact": "erodri60 at jhu.edu",
     "name": "Elizabeth Rodriguez",
     "titles": [
@@ -195,6 +197,7 @@
     ]
   },
     "mirriam_nzunda": {
+    "alumn": true,
     "contact": "mnzunda1 at jhu.edu",
     "name": "Mirriam Nzunda",
     "titles": [
