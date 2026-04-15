@@ -1,5 +1,27 @@
 [
   {
+    "id": "2026_L2L",
+    "title": "Laboratory to Launchpad: Bringing Your Energy IP to Life",
+    "date": [
+      [2026, 6, 11]
+    ],
+    "description": "Registration is now open for Laboratory to Launchpad: Bringing Your Energy IP to Life, a one-day conference hosted by Johns Hopkins University on Thursday, June 11, 2026, at the Hopkins Bloomberg Center, 555 Pennsylvania Ave, Washington, D.C. This event is designed for faculty, students, staff, postdocs, researchers, and innovators interested in translating research into real-world impact. While the conference is centered on energy-related technologies, the topics are broadly relevant to anyone interested in commercialization, intellectual property, startup formation, translational strategy, research communication, and moving discoveries from the lab into industry and society.",
+    "highlights": [
+      "A featured talk from Dr. David Gates, CTO of Thea Energy",
+      "Workshops on pitching research, securing federal funding, intellectual property, licensing, and startup growth",
+      "A working lunch panel on cross-disciplinary innovation and translational research",
+      "A live pitch competition with judges from D.C. venture capital firms",
+      "A networking reception to close the day"
+    ],
+    "sessions": [
+      {
+        "presenter":"Dr. Corey Oses",
+        "description": "Please register <a href=\"https://engineering.jhu.edu/materials/laboratory-to-launchpad/\" target=\"_blank\">HERE</a>.",
+        "title": "Registration"
+      }
+    ]
+  },
+  {
     "id": "2026_quantum",
     "title": "Quantum Computing in Practice: Hands On with Quantinuum",
     "date": [
