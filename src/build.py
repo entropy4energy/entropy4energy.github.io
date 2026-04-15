@@ -166,6 +166,10 @@ def process_team(data: dict[str, Any]):
             "title": "",
         },
         {
+            "positions": ["Research Scientist"],
+            "title": "Research Scientists",
+        },
+        {
             "positions": ["Postdoctoral Associate"],
             "title": "Postdocs",
         },
