@@ -7,7 +7,15 @@
       {% for workshop in data.workshops %}
         <h2>{{ workshop.title }}</h2>
         <p><b>Date:</b> {{ workshop.date }}</p>
-        <p>{{ workshop.description }}</p>
+        <p>{{ workshop.description|replace("\n", "<br>")|safe }}</p>
+        {% if workshop.highlights %}
+          <p><b>Highlights include:</b></p>
+          <ul>
+            {% for item in workshop.highlights %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
         {% if workshop.signup %}
           <div class="workshop-link-container">
             <a class="workshop-button" href="{{ workshop.signup }}" target="_blank">
