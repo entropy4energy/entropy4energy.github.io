@@ -1,5 +1,15 @@
 [
   {
+    "date": [2026, 4, 7],
+    "title": "The group welcomes Avi Bregman, Hashan Peiris, and Shubham Singh!",
+    "message": "Avi Bregman is a senior scientist at the Johns Hopkins University Applied Physics Lab. Hashan Peiris comes from Binghamton University where he studied materials science and engineering. Shubham Singh comes from King Abdullah University of Science and Technology where he studied applied physics. Welcome!",
+    "pictures": [
+      "pic_welcome_research_scientist_avi.jpg",
+      "pic_welcome_postdoc_mpeiris.jpg",
+      "pic_welcome_postdoc_ssing.jpg"
+     ]
+   },
+  {
    "date": [2026, 2, 26],
    "title": "Quantum Computing Workshop at JHU",
    "message": "We organized a workshop on topics in quantum computing. The event was hosted by Quantinuum, the Department of Materials Science & Engineering, Advanced Research Computing at Hopkins (ARCH), the Institute for Data Intensive Engineering and Science (IDIES), and Johns Hopkins Data Science and AI Institute (DSAI).",
