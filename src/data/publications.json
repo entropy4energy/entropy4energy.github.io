@@ -2,6 +2,26 @@
   "journal": [
     {
       "status": "published",
+      "year": 2026,
+      "title": "Stabilizing Iodine in Pyrochlore: Toward New Nuclear Waste Forms",
+      "authors": [
+        "X.&nbsp;Xu",
+        "G.&nbsp;Han",
+        "T.&nbsp;Li",
+        "J.&nbsp;Hu",
+        "G.&nbsp;Qiu",
+        "S.-Y.&nbsp;Tseng",
+        "G.&nbsp;H.&nbsp;Han",
+        "A.&nbsp;Dupuy",
+        "A.&nbsp;S.&nbsp;Hall",
+        "C.&nbsp;Oses"
+      ],
+      "journal": "Precision Chemistry",
+      "doi": "10.1021/prechem.5c00467",
+      "filename": "10.1021_prechem.5c00467"
+    },
+    {
+      "status": "published",
       "year": 2025,
       "title": "The search for high-entropy fuel-cell catalysts using disorder descriptors",
       "authors": [
