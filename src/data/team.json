@@ -27,6 +27,7 @@
     ]
   },
   "guangshuai_han": {
+    "alumn": true,
     "contact": "ghan19 at jh.edu",
     "name": "Guangshuai (Jerry) Han",
     "titles": [
@@ -114,6 +115,7 @@
     ]
   },
   "maya_niyogi": {
+    "alumn": true,
     "contact": "mniyogi1 at jhu.edu",
     "name": "Maya Niyogi",
     "titles": [
@@ -121,6 +123,7 @@
     ]
   },
   "shawn_zhou": {
+    "alumn": true,
     "contact": "yzhou218 at jhu.edu",
     "name": "Shawn Zhou",
     "titles": [
@@ -128,6 +131,7 @@
     ]
   },
   "katrina_wang": {
+    "alumn": true,
     "contact": "kwang123 at jhu.edu",
     "name": "Katrina Wang",
     "titles": [
@@ -143,6 +147,7 @@
     ]
   },
   "katie_cariaga": {
+    "alumn": true,
     "contact": "kcariag1 at jhu.edu",
     "name": "Katie Cariaga",
     "titles": [
@@ -174,6 +179,7 @@
     ]
   },
   "akshaya_ajith": {
+    "alumn": true,
     "contact": "aajith1 at jhu.edu",
     "name": "Akshaya Ajith",
     "titles": [
@@ -205,6 +211,7 @@
     ]
   },
     "phianna_koehn": {
+    "alumn": true,
     "contact": "pkoehn2 at jhu.edu",
     "name": "Phianna Koehn",
     "titles": [
@@ -212,6 +219,7 @@
     ]
   },
     "oliver_gospodarev": {
+    "alumn": true,
     "contact": "ogospod1 at jhu.edu",
     "name": "Oliver Gospodarev",
     "titles": [
@@ -235,6 +243,7 @@
     ]
   },
     "samridhi_chordia": {
+    "alumn": true,
     "contact": "schordi2 at jhu.edu",
     "name": "Samridhi Chordia",
     "titles": [
