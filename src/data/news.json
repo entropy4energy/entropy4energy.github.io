@@ -1,10 +1,18 @@
 [
   {
-    "date": [2026, 4, 8],
-    "title": "Dr. Oses is awarded ARPA-E IGNIITE young investigator and the group attended the 2026 ARPA-E Energy Innovation Summit!",
-    "message": "Congratulations to Dr. Oses for being awarded ARPA-E IGNIITE funding for AI-driven fusion materials research. The group attended the summit held in San Diego on April 7, 2026, where we met with the program manager and presented our research outcomes.",
+    "date": [2026, 6, 11],
+    "title": "Dr. Oses honored at National Academy of Sciences",
+    "message": "Dr. Oses was honored at the ARPA-E IGNIITE Awards Ceremony at the National Academy of Sciences in Washington, DC.",
     "pictures": [
       "pic_oses_igniite_2026.jpeg",
+      "pic_oses_igniite_2026_2.jpeg"
+     ]
+  },
+  {
+    "date": [2026, 4, 8],
+    "title": "Dr. Oses wins ARPA-E IGNIITE Early Career Award and the group attended the 2026 ARPA-E Energy Innovation Summit!",
+    "message": "Congratulations to Dr. Oses for being awarded ARPA-E IGNIITE funding for AI-driven fusion materials research. The group attended the summit held in San Diego on April 7, 2026, where we met with the program manager and presented our research outcomes.",
+    "pictures": [
       "pic_ignite_2026.jpg",
       "pic_arpae_2026.png"
      ]
