@@ -1,1 +1,13 @@
-{}
+{
+  "files": [
+    "1_unaries_2026-03-22.jsonl.gz",
+    "2_binaries_2026-03-22.jsonl.gz",
+    "3_ternaries_2026-03-22.jsonl.gz",
+    "4_quaternaries_2026-03-22.jsonl.gz",
+    "5_quinaries_2026-03-22.jsonl.gz",
+    "6_senaries_2026-03-22.jsonl.gz",
+    "7_septenaries_2026-03-22.jsonl.gz",
+    "8_octonaries_2026-03-22.jsonl.gz",
+    "checksum.md5"
+  ]
+}
