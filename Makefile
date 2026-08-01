@@ -1,4 +1,9 @@
+SHELL := /bin/bash
+.SHELLFLAGS := -o pipefail -c
+PYTHON ?= $(if $(wildcard venv/bin/python),venv/bin/python,python3)
+
 .EXTRA_PREREQS=Makefile
+.DELETE_ON_ERROR:
 
 # Directories
 SRCDIR=src
@@ -52,11 +57,11 @@ html: $(foreach HTML,$(HTMLFILES),$(BLDDIR)/$(HTML).html)
 
 $(BLDDIR)/%.html: $(PREREQSALL) $(TEMPLATEDIR)/%.html $(DATADIR)/%.json
 	@mkdir -p $(@D)
-	python $(BUILDPY) $(@F) | $(HTMLC) $(HTMLCFLAGS) -o $@
+	$(PYTHON) $(BUILDPY) $(@F) | $(HTMLC) $(HTMLCFLAGS) -o $@
 
 $(BLDDIR)/index.html: $(PREREQSALL) $(TEMPLATEDIR)/home.html $(DATADIR)/publications.json
 	@mkdir -p $(@D)
-	python $(BUILDPY) home --extra_data publications | $(HTMLC) $(HTMLCFLAGS) -o $@
+	$(PYTHON) $(BUILDPY) home --extra_data publications | $(HTMLC) $(HTMLCFLAGS) -o $@
 
 # CSS targets
 css: $(CSSBLD)/academicons-1.9.1 $(CSSBLD)/main.css
@@ -85,10 +90,10 @@ $(BLDDIR)/%:
 install-packages: py-install npm-install
 
 npm-install:
-	npm install
+	npm ci
 
 py-install:
-	pip install -r requirements.txt
+	$(PYTHON) -m pip install -r requirements.txt
 
 clean:
 	-rm -rf $(BLDDIR)
