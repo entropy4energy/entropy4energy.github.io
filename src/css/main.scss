@@ -391,6 +391,15 @@ footer {
   }
 }
 
+.alumni-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.alumni-member {
+  margin-bottom: 0.5em;
+}
+
 .ai-inverse {
   color: $color-main-1;
   &:hover {

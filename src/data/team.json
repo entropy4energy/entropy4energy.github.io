@@ -27,6 +27,7 @@
     ]
   },
   "guangshuai_han": {
+    "alumn": true,
     "contact": "ghan19 at jh.edu",
     "name": "Guangshuai (Jerry) Han",
     "titles": [
@@ -36,6 +37,27 @@
   "jiayue_hu": {
     "contact": "jhu130 at jh.edu",
     "name": "Jiayue Hu",
+    "titles": [
+      "Postdoctoral Associate"
+    ]
+  },
+  "avi_bregman": {
+    "contact": "Avi.Bregman at jhuapl.edu",
+    "name": "Avi Bregman",
+    "titles": [
+      "Research Scientist"
+    ]
+  },
+  "hashan_peiris": {
+    "contact": "mpeiris1 at jh.edu",
+    "name": "M. D. Hashan C. Peiris",
+    "titles": [
+      "Postdoctoral Associate"
+    ]
+  },
+  "singh_shubham": {
+    "contact": "ssing187 at jh.edu",
+    "name": "Shubham Singh",
     "titles": [
       "Postdoctoral Associate"
     ]
@@ -93,6 +115,7 @@
     ]
   },
   "maya_niyogi": {
+    "alumn": true,
     "contact": "mniyogi1 at jhu.edu",
     "name": "Maya Niyogi",
     "titles": [
@@ -100,6 +123,7 @@
     ]
   },
   "shawn_zhou": {
+    "alumn": true,
     "contact": "yzhou218 at jhu.edu",
     "name": "Shawn Zhou",
     "titles": [
@@ -107,6 +131,7 @@
     ]
   },
   "katrina_wang": {
+    "alumn": true,
     "contact": "kwang123 at jhu.edu",
     "name": "Katrina Wang",
     "titles": [
@@ -122,6 +147,7 @@
     ]
   },
   "katie_cariaga": {
+    "alumn": true,
     "contact": "kcariag1 at jhu.edu",
     "name": "Katie Cariaga",
     "titles": [
@@ -153,6 +179,7 @@
     ]
   },
   "akshaya_ajith": {
+    "alumn": true,
     "contact": "aajith1 at jhu.edu",
     "name": "Akshaya Ajith",
     "titles": [
@@ -160,6 +187,7 @@
     ]
   },
     "connor_hoy": {
+    "alumn": true,
     "contact": "choy2 at jhu.edu",
     "name": "Connor Hoy",
     "titles": [
@@ -167,6 +195,7 @@
     ]
   },
     "elizabeth_rodriguez": {
+    "alumn": true,
     "contact": "erodri60 at jhu.edu",
     "name": "Elizabeth Rodriguez",
     "titles": [
@@ -174,6 +203,7 @@
     ]
   },
     "mirriam_nzunda": {
+    "alumn": true,
     "contact": "mnzunda1 at jhu.edu",
     "name": "Mirriam Nzunda",
     "titles": [
@@ -181,6 +211,7 @@
     ]
   },
     "phianna_koehn": {
+    "alumn": true,
     "contact": "pkoehn2 at jhu.edu",
     "name": "Phianna Koehn",
     "titles": [
@@ -188,6 +219,7 @@
     ]
   },
     "oliver_gospodarev": {
+    "alumn": true,
     "contact": "ogospod1 at jhu.edu",
     "name": "Oliver Gospodarev",
     "titles": [
@@ -211,6 +243,7 @@
     ]
   },
     "samridhi_chordia": {
+    "alumn": true,
     "contact": "schordi2 at jhu.edu",
     "name": "Samridhi Chordia",
     "titles": [
