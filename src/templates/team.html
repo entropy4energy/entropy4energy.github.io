@@ -5,12 +5,7 @@
 {% endblock %}
 
 {% macro member_html(member) %}
-  {% if member.alumnus %}
-    {% set member_class = "member alumnus" %}
-  {% else %}
-    {% set member_class = "member" %}
-  {% endif %}
-  <div class="{{ member_class }}">
+  <div class="member">
     <div class="member-img">
       <img src="media/team/{{ member.id }}.jpg" alt="Portrait of {{ member.name }}">
     </div>
@@ -46,11 +41,16 @@
 {% if data.team.alumni|length > 0 %}
   <div id="alumni">
     <h2>Alumni</h2>
-    {% for group in data.team.alumni %}
-      {% for member in group.members %}
-        {{ member_html(member) }}
+    <ul class="alumni-list">
+      {% for group in data.team.alumni %}
+        {% for member in group.members %}
+          <li class="alumni-member">
+            <strong>{{ member.name }}</strong>
+            &mdash; {{ member.titles|join(", ") }}
+          </li>
+        {% endfor %}
       {% endfor %}
-    {% endfor %}
+    </ul>
   </div>
 {% endif %}
 {% endblock %}

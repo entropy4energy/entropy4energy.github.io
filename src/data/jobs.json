@@ -1,6 +1,24 @@
 [
   {
+     "open": [2026, 6, 16],
+     "title": "Postdoctoral Researcher Opportunity in Materials Informatics",
+     "description": "The <i>S4E</i> Lab has openings for postdoctoral researchers in the data-driven discovery of energy materials. Projects focus on fusion and fission materials, redox chemistry, and quantum-computing-enabled materials discovery.",
+     "quals": [
+       "Doctorate in materials science, physics, chemistry, computer science, quantum information science, or related fields.",
+       "Ability to move to and work at Johns Hopkins University, USA.",
+       "Proven track-record of first-author publications and presentations. A minimum of three peer-reviewed, first-author publications must be accessible by the <i>S4E</i> team.",
+       "Proven experience with VASP, Quantum ESPRESSO, LAMMPS, or other <i>ab-initio</i> codes.",
+       "Strong programming skills in C++ and Python and proficiency with Unix systems.",
+       "Ability to lead research projects and collaborate with experimentalists.",
+       "Fundamental understanding of thermodynamics of materials, solid-state physics, inorganic chemistry, and metallurgy at the level of theory/implementation.",
+       "Expertise in any of the following areas: high-entropy materials, disorder, phonons, magnetism, catalysis, machine learning/artificial intelligence, database/API development, quantum computing for materials science."
+     ],
+     "flyer": "oses_ad_postdoc_202606",
+     "instructions": "Submit a single PDF file via <a href=\"https://apply.interfolio.com/188240\" target=\"_blank\">Interfolio</a> named &quot;<i>Lastname</i>_<i>Firstname</i>_S4E_202606.pdf&quot; containing a cover letter, CV, and contact information for 3 references. The cover letter should address each point of the qualifications list explicitly (<i>i.e.</i>, A, B, C, ...). Provide ample examples and details where possible. Applications without explicit responses will not be reviewed. OPTIONAL: DOIs for 3 recent and relevant publications can be included at the end of the packet. Questions can be sent to the <i>S4E</i> team (s4e-admissions at jhu.edu); subject line must contain &quot;S4E Post-Doc&quot;."
+  },
+  {
      "open": [2025, 12, 5],
+     "close": [2026, 6, 1],
      "title": "Postdoctoral Researcher Opportunity in Materials Informatics",
      "description": "The <i>S4E</i> Lab has openings for postdoctoral researchers in the data-driven discovery of energy materials. Projects focus on fundamental research innovating clean hydrogen production, waste-heat conversion, nuclear power, and energy storage.",
      "quals": [
@@ -18,6 +36,7 @@
   },
   {
     "open": [2025, 8, 12],
+    "close": [2026, 6, 1],
     "title": "Postdoctoral Researcher Opportunity in Materials Informatics",
     "description": "The <i>S4E</i> Lab has openings for postdoctoral researchers in the data-driven discovery of energy materials. Projects focus on innovating clean hydrogen production, waste-heat conversion, nuclear power, and energy storage. Graduate students near the completion of their Ph.D. are welcome to apply.",
     "quals": [
