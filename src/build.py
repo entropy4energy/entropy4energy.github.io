@@ -14,7 +14,6 @@ HEADERS = [
     "news",
     "jobs",
     "workshops",
-    "research",
     "chaos",
 ]
 
