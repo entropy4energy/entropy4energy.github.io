@@ -168,6 +168,10 @@ def process_team(data: dict[str, Any]):
             "title": "",
         },
         {
+            "positions": ["Research Scientist"],
+            "title": "Research Scientists",
+        },
+        {
             "positions": ["Postdoctoral Associate"],
             "title": "Postdocs",
         },
@@ -277,6 +281,7 @@ def process_workshops(data: dict[str, Any]):
                     "link": materials,
                     "type": materials_type,
                 }
+
 
 PROCESS_DATA = {
     "home": process_home,
