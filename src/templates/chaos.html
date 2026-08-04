@@ -31,4 +31,15 @@
     style="border:none;">
   </iframe>
 
+  {% if data["chaos"]["acknowledgments"] %}
+    <section aria-labelledby="chaos-acknowledgments">
+      <h2 id="chaos-acknowledgments">Acknowledgments</h2>
+      <ul>
+        {% for contributor in data["chaos"]["acknowledgments"] %}
+          <li>{{ contributor["name"] | e }} &mdash; {{ contributor["years"] | e }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
 {% endblock %}
