@@ -9,5 +9,15 @@
     "7_septenaries_2026-03-22.jsonl.gz",
     "8_octonaries_2026-03-22.jsonl.gz",
     "checksum.md5"
+  ],
+  "acknowledgments": [
+    {
+      "name": "Peter Boctor",
+      "years": "2026–Present"
+    },
+    {
+      "name": "Bryan Lim",
+      "years": "2026–Present"
+    }
   ]
 }
