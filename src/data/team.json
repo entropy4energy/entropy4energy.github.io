@@ -48,9 +48,30 @@
       "Research Scientist"
     ]
   },
+  "jonathan_owens": {
+    "contact": "jon.r.owens at gevernova.com",
+    "name": "Jonathan R. Owens",
+    "titles": [
+      "Research Scientist"
+    ]
+  },
   "hashan_peiris": {
     "contact": "mpeiris1 at jh.edu",
     "name": "M. D. Hashan C. Peiris",
+    "titles": [
+      "Postdoctoral Associate"
+    ]
+  },
+  "aritra_mukhopadhyaya": {
+    "contact": "amukhop3 at jh.edu",
+    "name": "Aritra Mukhopadhyaya",
+    "titles": [
+      "Postdoctoral Associate"
+    ]
+  },
+  "theodore_maranets": {
+    "contact": "tmarane1 at jh.edu",
+    "name": "Theodore Maranets",
     "titles": [
       "Postdoctoral Associate"
     ]
@@ -73,6 +94,13 @@
   "tianhao_li": {
     "contact": "tli114 at jhu.edu",
     "name": "Tianhao Li",
+    "titles": [
+      "Graduate Student"
+    ]
+  },
+  "rongjian_xue": {
+    "contact": "rxue8 at jh.edu",
+    "name": "Rongjian (Jimmy) Xue",
     "titles": [
       "Graduate Student"
     ]
@@ -104,7 +132,28 @@
     "contact": "stseng8 at jhu.edu",
     "name": "Shao-Yu Tseng",
     "titles": [
-      "Undergraduate Student"
+      "Graduate Student"
+    ]
+  },
+  "peter_boctor": {
+    "contact": "pboctor1 at jh.edu",
+    "name": "Peter Boctor",
+    "titles": [
+      "Highschool Student"
+    ]
+  },
+  "bryan_lim": {
+    "contact": "blim11 at jh.edu",
+    "name": "Bryan Lim",
+    "titles": [
+      "Highschool Student"
+    ]
+  },
+  "jason_spada": {
+    "contact": "jspada1 at jh.edu",
+    "name": "Jason Spada",
+    "titles": [
+      "Visiting Student"
     ]
   },
   "matthew_brownrigg": {
@@ -222,6 +271,13 @@
     "alumn": true,
     "contact": "ogospod1 at jhu.edu",
     "name": "Oliver Gospodarev",
+    "titles": [
+      "Highschool Student"
+    ]
+  },
+  "ethan_krichavsky": {
+    "alumn": true,
+    "name": "Ethan Krichavsky",
     "titles": [
       "Highschool Student"
     ]
