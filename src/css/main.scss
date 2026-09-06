@@ -519,6 +519,55 @@ h2 {
   }
 }
 
+/* Teaching */
+
+.course-entry {
+  margin-bottom: 18px;
+
+  &-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    align-items: baseline;
+  }
+
+  &-code {
+    color: $color-main-1;
+    font-weight: bold;
+  }
+
+  &-title {
+    font-weight: bold;
+  }
+
+  &-term {
+    color: gray;
+    font-size: 0.9em;
+  }
+
+  p {
+    margin-top: 4px;
+  }
+}
+
+.award-list {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    margin-bottom: 8px;
+    padding-left: 3.5em;
+  }
+}
+
+.award-year {
+  color: $color-main-1;
+  display: inline-block;
+  font-weight: bold;
+  margin-left: -3.5em;
+  min-width: 3.5em;
+}
+
 /* Press list (News) */
 
 .press-list {
