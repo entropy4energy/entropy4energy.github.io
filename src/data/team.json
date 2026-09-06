@@ -16,7 +16,8 @@
     "name": "Guotao Qiu",
     "titles": [
       "Postdoctoral Associate"
-    ]
+    ],
+    "years": "2024–2025"
   },
   "yuxiang_liu": {
     "alumn": true,
@@ -24,7 +25,8 @@
     "name": "Yuxiang Liu",
     "titles": [
       "Postdoctoral Associate"
-    ]
+    ],
+    "years": "2024–2025"
   },
   "guangshuai_han": {
     "alumn": true,
@@ -32,14 +34,16 @@
     "name": "Guangshuai (Jerry) Han",
     "titles": [
       "Postdoctoral Associate"
-    ]
+    ],
+    "years": "2025–2026"
   },
   "jiayue_hu": {
     "contact": "jhu130 at jh.edu",
     "name": "Jiayue Hu",
     "titles": [
       "Postdoctoral Associate"
-    ]
+    ],
+    "years": "2025–present"
   },
   "avi_bregman": {
     "contact": "Avi.Bregman at jhuapl.edu",
@@ -60,7 +64,8 @@
     "name": "M. D. Hashan C. Peiris",
     "titles": [
       "Postdoctoral Associate"
-    ]
+    ],
+    "years": "2026–present"
   },
   "aritra_mukhopadhyaya": {
     "contact": "amukhop3 at jh.edu",
@@ -81,7 +86,8 @@
     "name": "Shubham Singh",
     "titles": [
       "Postdoctoral Associate"
-    ]
+    ],
+    "years": "2026–present"
   },
   "keith_clark": {
     "alumn": true,
@@ -89,28 +95,32 @@
     "name": "Keith Clark",
     "titles": [
       "Master Student"
-    ]
+    ],
+    "years": "2022–2023"
   },
   "tianhao_li": {
     "contact": "tli114 at jhu.edu",
     "name": "Tianhao Li",
     "titles": [
       "Graduate Student"
-    ]
+    ],
+    "years": "2023–present"
   },
   "rongjian_xue": {
     "contact": "rxue8 at jh.edu",
     "name": "Rongjian (Jimmy) Xue",
     "titles": [
       "Graduate Student"
-    ]
+    ],
+    "years": "2026–present"
   },
   "xiao_xu": {
     "contact": "xxu115 at jhu.edu",
     "name": "Xiao Xu",
     "titles": [
       "Graduate Student"
-    ]
+    ],
+    "years": "2024–present"
   },
   "jaehyung_lee": {
     "alumn": true,
@@ -118,7 +128,8 @@
     "name": "Jaehyung Lee",
     "titles": [
       "Graduate Student"
-    ]
+    ],
+    "years": "2025"
   },
   "xuanhao_lin": {
     "alumn": true,
@@ -126,42 +137,53 @@
     "name": "Xuanhao Lin",
     "titles": [
       "Master Student"
-    ]
+    ],
+    "years": "2023"
   },
   "shaoyu_tseng": {
     "contact": "stseng8 at jhu.edu",
     "name": "Shao-Yu Tseng",
     "titles": [
       "Graduate Student"
-    ]
+    ],
+    "years": "2024–present"
   },
   "peter_boctor": {
     "contact": "pboctor1 at jh.edu",
     "name": "Peter Boctor",
     "titles": [
-      "Highschool Student"
-    ]
+      "High School Researcher",
+      "Engineering Innovation Research Program"
+    ],
+    "years": "2026"
   },
   "bryan_lim": {
     "contact": "blim11 at jh.edu",
     "name": "Bryan Lim",
     "titles": [
-      "Highschool Student"
-    ]
+      "High School Researcher",
+      "Engineering Innovation Research Program"
+    ],
+    "years": "2026"
   },
   "jason_spada": {
     "contact": "jspada1 at jh.edu",
     "name": "Jason Spada",
     "titles": [
-      "Visiting Student"
-    ]
+      "Summer Researcher",
+      "ROSETAS REU"
+    ],
+    "alumn": true,
+    "years": "2026"
   },
   "matthew_brownrigg": {
     "contact": "mbrownr1 at jhu.edu",
     "name": "Matthew Brownrigg",
     "titles": [
       "Undergraduate Student"
-    ]
+    ],
+    "alumn": true,
+    "years": "2024–2026"
   },
   "maya_niyogi": {
     "alumn": true,
@@ -169,7 +191,8 @@
     "name": "Maya Niyogi",
     "titles": [
       "Undergraduate Student"
-    ]
+    ],
+    "years": "2024–2025"
   },
   "shawn_zhou": {
     "alumn": true,
@@ -177,7 +200,8 @@
     "name": "Shawn Zhou",
     "titles": [
       "Undergraduate Student"
-    ]
+    ],
+    "years": "2024–2026"
   },
   "katrina_wang": {
     "alumn": true,
@@ -185,7 +209,8 @@
     "name": "Katrina Wang",
     "titles": [
       "Undergraduate Student"
-    ]
+    ],
+    "years": "2024–2026"
   },
   "will_shiber": {
     "alumn": true,
@@ -193,7 +218,8 @@
     "name": "Will Shiber",
     "titles": [
       "Undergraduate Student"
-    ]
+    ],
+    "years": "2023–2025"
   },
   "katie_cariaga": {
     "alumn": true,
@@ -201,7 +227,8 @@
     "name": "Katie Cariaga",
     "titles": [
       "Undergraduate Student"
-    ]
+    ],
+    "years": "2023–2026"
   },
   "veric_tan": {
     "alumn": true,
@@ -209,15 +236,18 @@
     "name": "Veric Tan",
     "titles": [
       "Undergraduate Student"
-    ]
+    ],
+    "years": "2023"
   },
   "dakota_braaten": {
     "alumn": true,
     "contact": "dbraate1 at jhu.edu",
     "name": "Dakota Braaten",
     "titles": [
-      "Visiting Student"
-    ]
+      "Summer Researcher",
+      "Amgen Scholars Program"
+    ],
+    "years": "2023"
   },
   "julia_gelfond": {
     "alumn": true,
@@ -225,7 +255,8 @@
     "name": "Julia Gelfond",
     "titles": [
       "Undergraduate Student"
-    ]
+    ],
+    "years": "2023–2024"
   },
   "akshaya_ajith": {
     "alumn": true,
@@ -233,54 +264,67 @@
     "name": "Akshaya Ajith",
     "titles": [
       "Undergraduate Student"
-    ]
+    ],
+    "years": "2023–2025"
   },
-    "connor_hoy": {
+  "connor_hoy": {
     "alumn": true,
     "contact": "choy2 at jhu.edu",
     "name": "Connor Hoy",
     "titles": [
-      "Visiting Student"
-    ]
+      "Summer Researcher",
+      "Amgen Scholars Program"
+    ],
+    "years": "2025"
   },
-    "elizabeth_rodriguez": {
+  "elizabeth_rodriguez": {
     "alumn": true,
     "contact": "erodri60 at jhu.edu",
     "name": "Elizabeth Rodriguez",
     "titles": [
-      "Visiting Student"
-    ]
+      "Summer Researcher",
+      "ROSETAS REU"
+    ],
+    "years": "2025"
   },
-    "mirriam_nzunda": {
+  "mirriam_nzunda": {
     "alumn": true,
     "contact": "mnzunda1 at jhu.edu",
     "name": "Mirriam Nzunda",
     "titles": [
-      "Visiting Student"
-    ]
+      "Summer Researcher",
+      "PROPEL"
+    ],
+    "years": "2025"
   },
-    "phianna_koehn": {
+  "phianna_koehn": {
     "alumn": true,
     "contact": "pkoehn2 at jhu.edu",
     "name": "Phianna Koehn",
     "titles": [
-      "Highschool Student"
-    ]
+      "High School Researcher",
+      "Ingenuity Project"
+    ],
+    "years": "2025–2026"
   },
-    "oliver_gospodarev": {
+  "oliver_gospodarev": {
     "alumn": true,
     "contact": "ogospod1 at jhu.edu",
     "name": "Oliver Gospodarev",
     "titles": [
-      "Highschool Student"
-    ]
+      "High School Researcher",
+      "Ingenuity Project"
+    ],
+    "years": "2025–2026"
   },
   "ethan_krichavsky": {
     "alumn": true,
     "name": "Ethan Krichavsky",
     "titles": [
-      "Highschool Student"
-    ]
+      "High School Researcher",
+      "Engineering Innovation Research Program"
+    ],
+    "years": "2026"
   },
   "alex_skeldon": {
     "alumn": true,
@@ -288,7 +332,8 @@
     "name": "Alex Skeldon",
     "titles": [
       "Master Student"
-    ]
+    ],
+    "years": "2025"
   },
   "sabrina_sequeira": {
     "alumn": true,
@@ -296,14 +341,76 @@
     "name": "Sabrina Sequeira",
     "titles": [
       "Master Student"
-    ]
+    ],
+    "years": "2024–2025"
   },
-    "samridhi_chordia": {
+  "samridhi_chordia": {
     "alumn": true,
     "contact": "schordi2 at jhu.edu",
     "name": "Samridhi Chordia",
     "titles": [
-      "Highschool Student"
-    ]
+      "High School Researcher"
+    ],
+    "years": "2024–2026"
+  },
+  "joseph_anderson": {
+    "name": "Joseph Anderson",
+    "titles": [
+      "Master Student"
+    ],
+    "alumn": true,
+    "years": "2025–2026"
+  },
+  "gengyao_qiu": {
+    "name": "Gengyao Qiu",
+    "titles": [
+      "Master Student"
+    ],
+    "alumn": true,
+    "years": "2025–2026"
+  },
+  "benjamin_casino": {
+    "name": "Benjamin Casino",
+    "titles": [
+      "Undergraduate Student"
+    ],
+    "alumn": true,
+    "years": "2024–2025"
+  },
+  "gabrielle_ameyaw": {
+    "name": "Gabrielle Ameyaw",
+    "titles": [
+      "Summer Researcher",
+      "Amgen Scholars Program"
+    ],
+    "alumn": true,
+    "years": "2024"
+  },
+  "matthew_yacobucci": {
+    "name": "Matthew Yacobucci",
+    "titles": [
+      "High School Researcher",
+      "Ingenuity Project"
+    ],
+    "alumn": true,
+    "years": "2023–2025"
+  },
+  "damario_bunch": {
+    "name": "Damario Bunch",
+    "titles": [
+      "High School Researcher",
+      "Ingenuity Project"
+    ],
+    "alumn": true,
+    "years": "2023–2025"
+  },
+  "daxton_abel_skinner": {
+    "name": "Daxton Abel-Skinner",
+    "titles": [
+      "High School Researcher",
+      "Ingenuity Project"
+    ],
+    "alumn": true,
+    "years": "2026"
   }
 }
