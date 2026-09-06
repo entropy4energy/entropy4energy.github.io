@@ -61,11 +61,11 @@ def format_date(input_date: date | list[date] | list[list[int]] | list[int]) -> 
     if len(date_range) == 2:
         begin, end = date_range
         if begin.year != end.year:
-            return f'{begin.strftime("%b %d, %Y")} &ndash; {end.strftime("%b %d, %Y")}'
+            return f'{begin.strftime("%b %d, %Y")} &ndash;{end.strftime("%b %d, %Y")}'
         elif begin.month != end.month:
-            return f'{begin.strftime("%b %d")} &ndash; {end.strftime("%b %d, %Y")}'
+            return f'{begin.strftime("%b %d")} &ndash;{end.strftime("%b %d, %Y")}'
         else:
-            return f'{begin.strftime("%b %d")} &ndash; {end.strftime("%d, %Y")}'
+            return f'{begin.strftime("%b %d")}&ndash;{end.strftime("%d, %Y")}'
     else:
         return date_range[0].strftime("%b %d, %Y")
 
