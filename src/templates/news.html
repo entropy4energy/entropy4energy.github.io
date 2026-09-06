@@ -16,4 +16,16 @@
       </div>
     {% endfor %}
   </div>
+  {% if data.press %}
+    <h1 id="press">In the press</h1>
+    <ul class="press-list">
+      {% for item in data.press %}
+        <li>
+          <span class="press-date">{{ item.date }}</span>
+          <a href="{{ item.url }}" target="_blank">{{ item.title }}</a>,
+          <span class="press-outlet">{{ item.outlet }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
 {% endblock %}
