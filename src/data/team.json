@@ -76,14 +76,16 @@
     "name": "Aritra Mukhopadhyaya",
     "titles": [
       "Postdoctoral Associate"
-    ]
+    ],
+    "years": "2026–present"
   },
   "theodore_maranets": {
     "contact": "tmarane1 at jh.edu",
     "name": "Theodore Maranets",
     "titles": [
       "Postdoctoral Associate"
-    ]
+    ],
+    "years": "2026–present"
   },
   "singh_shubham": {
     "contact": "ssing187 at jh.edu",
@@ -98,7 +100,7 @@
     "contact": "kclark96 at jhu.edu",
     "name": "Keith Clark",
     "titles": [
-      "Master Student"
+      "Master's Student"
     ],
     "years": "2022–2023"
   },
@@ -140,7 +142,7 @@
     "contact": "xlin44 at jhu.edu",
     "name": "Xuanhao Lin",
     "titles": [
-      "Master Student"
+      "Master's Student"
     ],
     "years": "2023"
   },
@@ -335,7 +337,7 @@
     "contact": "askeldo1 at jhu.edu",
     "name": "Alex Skeldon",
     "titles": [
-      "Master Student"
+      "Master's Student"
     ],
     "years": "2025"
   },
@@ -344,7 +346,7 @@
     "contact": "ssequei1 at jhu.edu",
     "name": "Sabrina Sequeira",
     "titles": [
-      "Master Student"
+      "Master's Student"
     ],
     "years": "2024–2025"
   },
@@ -360,15 +362,16 @@
   "joseph_anderson": {
     "name": "Joseph (JT) Anderson",
     "titles": [
-      "Master Student"
+      "Master's Student"
     ],
     "alumn": true,
     "years": "2025–2026"
   },
   "gengyao_qiu": {
+    "contact": "gqiu6 at jh.edu",
     "name": "Gengyao Qiu",
     "titles": [
-      "Master Student"
+      "Master's Student"
     ],
     "years": "2025–present"
   },

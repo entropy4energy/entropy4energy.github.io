@@ -16,7 +16,7 @@
       "title": "Gateway Computing: Python",
       "term": "Every spring since 2023",
       "text": [
-        "An introductory programming course for engineering students covering algorithms, control structures, functions, files, testing, and debugging, with problems drawn from engineering and science. Dr. Oses teaches two sections each spring, with 20 to 30 students in total."
+        "An introductory programming course for engineering students covering algorithms, control structures, functions, files, testing, and debugging, with problems drawn from engineering and science. Prof. Oses teaches two sections each spring, with 20 to 30 students in total."
       ]
     },
     {
@@ -30,7 +30,7 @@
   ],
   "workshops_text": [
     "The group organizes hands-on workshops at Johns Hopkins University on data-driven materials modeling, quantum computing for materials, and translating energy research into applications. Recordings and notebooks from past events are on the <a href=\"workshops\">Workshops</a> page.",
-    "Dr. Oses co-organized schools on high-throughput computational materials science at Carnegie Mellon University, the University of Pennsylvania, Texas A&amp;M University, TU Dresden, and the University of Rwanda. He has also presented at the University of Maryland and NIST Machine Learning for Materials Research bootcamps since 2018."
+    "Prof. Oses co-organized schools on high-throughput computational materials science at Carnegie Mellon University, the University of Pennsylvania, Texas A&amp;M University, TU Dresden, and the University of Rwanda. He has also presented at the University of Maryland and NIST Machine Learning for Materials Research bootcamps since 2018."
   ],
   "outreach": [
     {
@@ -38,12 +38,12 @@
       "text": "Since 2022, the group has hosted nine undergraduate researchers, six high school researchers, five visiting students, and four master's students, in addition to its PhD students, postdoctoral associates, and research scientists. Undergraduates join through the Research on Sustainable Energy Technology and Systems (ROSETAS) summer program, a National Science Foundation Research Experience for Undergraduates site hosted by ROSEI, and through Johns Hopkins research credit. Four undergraduate researchers are co-authors on group publications."
     },
     {
-      "title": "Ingenuity Project Research Practicum",
-      "text": "Since 2023, the group has mentored high school students from the Ingenuity Project at Baltimore Polytechnic Institute through its year-long Research Practicum. Students build and program the LEGOLAS low-cost autonomous laboratory, a LEGO-based system that runs experiments and uses machine learning to select the next one. Each cohort also helps train the students who follow. The same kit, developed at the University of Maryland and NIST, is used in the final unit of the Materials Modeling course."
+      "title": "High school research",
+      "text": "Since 2023, the group has mentored high school students through programs such as the Ingenuity Project Research Practicum at Baltimore Polytechnic Institute and the Johns Hopkins Engineering Innovation Research Program. Students build and program the LEGOLAS low-cost autonomous laboratory, a LEGO-based system that runs experiments and uses machine learning to select the next one, and take on other autonomous-laboratory projects. Each cohort helps train the students who follow. The same kit, developed at the University of Maryland and NIST, is used in the final unit of the Materials Modeling course."
     },
     {
       "title": "Society of Hispanic Professional Engineers",
-      "text": "Dr. Oses is faculty mentor for the Johns Hopkins University chapter."
+      "text": "Prof. Oses is faculty mentor for the Johns Hopkins University chapter."
     }
   ],
   "service": [

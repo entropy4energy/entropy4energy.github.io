@@ -23,8 +23,8 @@
   },
   {
     "date": [2026, 6, 11],
-    "title": "Dr. Oses honored at National Academy of Sciences",
-    "message": "Dr. Oses was honored at the ARPA-E IGNIITE Awards Ceremony at the National Academy of Sciences in Washington, DC.",
+    "title": "Prof. Oses honored at National Academy of Sciences",
+    "message": "Prof. Oses was honored at the ARPA-E IGNIITE Awards Ceremony at the National Academy of Sciences in Washington, DC.",
     "pictures": [
       "pic_oses_igniite_2026.jpeg",
       "pic_oses_igniite_2026_2.jpeg"
@@ -32,8 +32,8 @@
   },
   {
     "date": [2026, 4, 8],
-    "title": "Dr. Oses wins the ARPA-E IGNIITE Early Career Award",
-    "message": "Congratulations to Dr. Oses for being awarded ARPA-E IGNIITE funding for AI-driven fusion materials research. The group attended the summit held in San Diego on April 7, 2026, where we met with the program manager and presented our research outcomes.",
+    "title": "Prof. Oses wins the ARPA-E IGNIITE Early Career Award",
+    "message": "Congratulations to Prof. Oses for being awarded ARPA-E IGNIITE funding for AI-driven fusion materials research. The group attended the summit held in San Diego on April 7, 2026, where we met with the program manager and presented our research outcomes.",
     "pictures": [
       "pic_ignite_2026.jpg",
       "pic_arpae_2026.png"
@@ -105,7 +105,7 @@
    {
     "date": [2025, 6, 12],
     "title": "The group welcomes Phianna Koehn and Oliver Gospodarev",
-    "message": "Phianna and Oliver are highschool junior students at the Baltimore Polytechnic Institute. Welcome!",
+    "message": "Phianna and Oliver are high school juniors at the Baltimore Polytechnic Institute. Welcome!",
     "pictures": [
       "pic_welcome_highschool_koehn.jpg",
       "pic_welcome_highschool_gospodarev.jpg"
