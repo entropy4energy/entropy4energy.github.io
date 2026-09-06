@@ -1,7 +1,7 @@
 [
   {
     "date": [2026, 8, 27],
-    "title": "The group welcomes <strong>Jonathan R. Owens</strong>, and <strong>Rongjian (Jimmy) Xue</strong>!",
+    "title": "The group welcomes <strong>Jonathan R. Owens</strong> and <strong>Rongjian (Jimmy) Xue</strong>",
     "message": "<strong>Jonathan R. Owens</strong> is a senior scientist at GE Vernova Advanced Research. <strong>Rongjian (Jimmy) Xue</strong> comes from Zhejiang University where he studied Materials Science & Engineering. Welcome!",
     "picture_alt": "Portraits of Jonathan R. Owens and Rongjian (Jimmy) Xue",
     "picture_directory": "team",
@@ -12,7 +12,7 @@
   },
   {
     "date": [2026, 7, 6],
-    "title": "The group welcomes <strong>Theodore Maranets</strong>, and <strong>Aritra Mukhopadhyaya</strong>!",
+    "title": "The group welcomes <strong>Theodore Maranets</strong> and <strong>Aritra Mukhopadhyaya</strong>",
     "message": "Theodore \"Teddy\" Maranets comes from the University of Nevada, Reno where he studied mechanical engineering. <strong>Aritra Mukhopadhyaya</strong> comes from the Institute of Nano Science and Technology Mohali where he studied computational nanoscience. Welcome!",
     "picture_alt": "Portraits of Theodore Maranets and Aritra Mukhopadhyaya",
     "picture_directory": "team",
@@ -32,7 +32,7 @@
   },
   {
     "date": [2026, 4, 8],
-    "title": "Dr. Oses wins ARPA-E IGNIITE Early Career Award and the group attended the 2026 ARPA-E Energy Innovation Summit!",
+    "title": "Dr. Oses wins the ARPA-E IGNIITE Early Career Award",
     "message": "Congratulations to Dr. Oses for being awarded ARPA-E IGNIITE funding for AI-driven fusion materials research. The group attended the summit held in San Diego on April 7, 2026, where we met with the program manager and presented our research outcomes.",
     "pictures": [
       "pic_ignite_2026.jpg",
@@ -41,7 +41,7 @@
   },
   {
     "date": [2026, 4, 6],
-    "title": "The group welcomes Avi Bregman, Hashan Peiris, and Shubham Singh!",
+    "title": "The group welcomes Avi Bregman, Hashan Peiris, and Shubham Singh",
     "message": "Avi Bregman is a senior scientist at the Johns Hopkins University Applied Physics Lab. Hashan Peiris comes from Binghamton University where he studied materials science and engineering. Shubham Singh comes from King Abdullah University of Science and Technology where he studied applied physics. Welcome!",
     "pictures": [
       "pic_welcome_research_scientist_avi.jpg",
@@ -61,7 +61,7 @@
   {
    "date": [2025, 10, 9],
    "title": "Tianhao wins the Amazon AI Fellowship",
-   "message": "We are proud to announce that our group member Tianhao has been awarded the Amazon AI Fellowship, a distinction granted to only ten students across the university. Congratulations on this outstanding achievement!",
+   "message": "We are proud to announce that our group member Tianhao has been awarded the Amazon AI Fellowship, a distinction granted to only ten students across the university. Congratulations, Tianhao!",
    "pictures": [
      "pic_amazon_tianhao.jpg",
      "pic_amazon_tianhao_2.jpg"
@@ -69,7 +69,7 @@
   },
   {
    "date": [2025, 9, 1],
-   "title": "The group welcomes Jiayue Hu!",
+   "title": "The group welcomes Jiayue Hu",
    "message": "Jiayue comes from Temple University where he studied mechanical engineering. Welcome!",
    "pictures": [
      "pic_welcome_postdoc_jhu.jpg"
@@ -78,7 +78,7 @@
   {
     "date": [2025, 8, 1],
     "title": "Elizabeth presents at the 2025 ROSETAS Symposium",
-    "message": "Elizabeth presented her research at the 2025 ROSETAS Symposium. Well done Elizabeth!",
+    "message": "Elizabeth presented her research at the 2025 ROSETAS Symposium. Congratulations, Elizabeth!",
     "pictures": [
       "pic_elizabeth_ROSETAS_Symposium.jpg",
       "pic_elizabeth_poster.jpg"
@@ -87,7 +87,7 @@
   {
     "date": [2025, 7, 31],
     "title": "Connor presents at the 2025 Summer STEM Symposium",
-    "message": "Connor presented his research at the 2025 Summer STEM Symposium. Great job Connor!",
+    "message": "Connor presented his research at the 2025 Summer STEM Symposium. Congratulations, Connor!",
     "pictures": [
       "pic_connor_STEM_Symposium.jpg",
       "pic_connor_jae.jpg"
@@ -96,7 +96,7 @@
   {
     "date": [2025, 7, 24],
     "title": "Mirriam presents at the 2025 PROPEL Symposium",
-    "message": "Mirriam presented her research at the 2025 PROPEL Symposium. Well done Mirriam!",
+    "message": "Mirriam presented her research at the 2025 PROPEL Symposium. Congratulations, Mirriam!",
     "pictures": [
       "pic_mirriam_PROPEL_Symposium.jpg",
       "pic_mirriam_jae.jpg"
@@ -104,7 +104,7 @@
   },
    {
     "date": [2025, 6, 12],
-    "title": "The group welcomes Phianna Koehn and Oliver Gospodarev!",
+    "title": "The group welcomes Phianna Koehn and Oliver Gospodarev",
     "message": "Phianna and Oliver are highschool junior students at the Baltimore Polytechnic Institute. Welcome!",
     "pictures": [
       "pic_welcome_highschool_koehn.jpg",
@@ -113,7 +113,7 @@
   },
   {
     "date": [2025, 5, 28],
-    "title": "The group welcomes Connor Hoy, Elizabeth Rodriguez, and Mirriam Nzunda!",
+    "title": "The group welcomes Connor Hoy, Elizabeth Rodriguez, and Mirriam Nzunda",
     "message": "Connor is visiting from the University of Texas at Dallas where he studies materials science engineering. Elizabeth is visiting from California State University, Chico where she studies computer engineering. Mirriam is visiting from Smith College where she studies chemical engineering. Welcome!",
     "pictures": [
       "pic_welcome_undergrad_hoy.jpg",
@@ -123,7 +123,7 @@
   },
   {
     "date": [2025, 3, 5],
-    "title": "The group welcomes Shao-Yu Tseng and Matthew Brownrigg!",
+    "title": "The group welcomes Shao-Yu Tseng and Matthew Brownrigg",
     "message": "Shao-Yu and Matthew are undergraduate students. Shao-Yu is majoring in materials science and engineering. Matthew is majoring in computer science. Welcome!",
     "pictures": [
       "pic_welcome_undergrad_stseng.jpg",
@@ -132,7 +132,7 @@
   },
   {
     "date": [2025, 1, 2],
-    "title": "The group welcomes Guangshuai (Jerry) Han and Jaehyung Lee!",
+    "title": "The group welcomes Guangshuai (Jerry) Han and Jaehyung Lee",
     "message": "Jerry comes from Purdue University where he studied civil engineering. Jaehyung comes from Columbia University where he studied chemical engineering. Welcome!",
     "pictures": [
       "pic_welcome_postdoc_ghan.jpg",
@@ -142,14 +142,14 @@
   {
     "date": [2024, 7, 31],
     "title": "Gabby presents at the 2024 STEM Symposium",
-    "message": "Gabby presented her research at the 2024 STEM Symposium. Well done Gabby!",
+    "message": "Gabby presented her research at the 2024 STEM Symposium. Congratulations, Gabby!",
     "pictures": [
       "pic_gabby_STEM_Symposium.jpg"
     ]
   },
   {
     "date": [2024, 6, 6],
-    "title": "The group welcomes Katrina Wang, Maya Niyogi, and Shawn Zhou!",
+    "title": "The group welcomes Katrina Wang, Maya Niyogi, and Shawn Zhou",
     "message": "Katrina, Maya, and Shawn are all undergraduate students. Katrina is majoring in molecular and cellular biology. Maya and Shawn are majoring in applied math and statistics. Welcome!",
     "pictures": [
       "pic_welcome_undergrad_kwang.jpg",
@@ -159,7 +159,7 @@
   },
   {
     "date": [2024, 1, 30],
-    "title": "The group welcomes Guotao Qiu, Yuxiang Liu and Xiao Xu!",
+    "title": "The group welcomes Guotao Qiu, Yuxiang Liu and Xiao Xu",
     "message": "Guotao comes from University of Macau where he studied Applied Physics and Materials Engineering, Yuxiang comes from University of Bremen where she studied Computational Physics and Xiao comes from The University of Texas at Austin where he studied Electrical and Computer Engineering. Welcome!",
     "pictures": [
       "pic_welcome_postdoc_gqiu.jpg",
@@ -170,15 +170,15 @@
   {
     "date": [2024, 1, 17],
     "title": "Will presents at the 2024 ROSEI Symposium",
-    "message": "Will presented his research at the 2024 ROSEI Symposium. Well done Will!",
+    "message": "Will presented his research at the 2024 ROSEI Symposium. Congratulations, Will!",
     "pictures": [
       "pic_ws_ROSEI_2024.jpg"
     ]
   },
   {
     "date": [2023, 12, 1],
-    "title": "The group welcomes Julia Gelfond and Akshaya Ajith!",
-    "message": "Julia and Akshaya are both undergraduate students majoring in materials science and engineering. Welcome Julia and Akshaya!",
+    "title": "The group welcomes Julia Gelfond and Akshaya Ajith",
+    "message": "Julia and Akshaya are both undergraduate students majoring in materials science and engineering. Welcome, Julia and Akshaya!",
     "pictures": [
       "pic_welcome_undergrad_jgelfond.jpg",
       "pic_welcome_undergrad_aajith.jpg"
@@ -195,7 +195,7 @@
   {
     "date": [2023, 10, 13],
     "title": "Keith and Will present at the 2023 IDIES Symposium",
-    "message": "Keith and Will presented their research at the 2023 IDIES Symposium, impressive presentation, good job guys!",
+    "message": "Keith and Will presented their research at the 2023 IDIES Symposium. Congratulations, Keith and Will!",
     "pictures": [
       "pic_kc_idies_2023.png",
       "pic_ws_idies_2023.png"
@@ -204,7 +204,7 @@
   {
     "date": [2023, 9, 1],
     "title": "The group welcomes Xuanhao Lin",
-    "message": "Xuanhao comes from Guangdong Technion-Israel Institute of Technology where he studied Materials Science & Engineering. Welcome Xuanhao!",
+    "message": "Xuanhao comes from Guangdong Technion-Israel Institute of Technology where he studied Materials Science & Engineering. Welcome, Xuanhao!",
     "pictures": [
       "pic_welcome_grad_xlin.jpg"
     ]
@@ -212,7 +212,7 @@
   {
     "date": [2023, 8, 1],
     "title": "The group welcomes Tianhao Li",
-    "message": "Tianhao comes from Duke University where he studied Materials Science & Engineering. Welcome Tianhao!",
+    "message": "Tianhao comes from Duke University where he studied Materials Science & Engineering. Welcome, Tianhao!",
     "pictures": [
       "pic_welcome_grad_tli.jpg"
     ]
@@ -220,7 +220,7 @@
   {
     "date": [2023, 8, 1],
     "title": "Dakota presents at the 2023 Hopkins Summer Research Symposium",
-    "message": "Dakota presented his research at the 2023 Hopkins Summer Research Symposium. Great job Dakota!",
+    "message": "Dakota presented his research at the 2023 Hopkins Summer Research Symposium. Congratulations, Dakota!",
     "pictures": [
       "pic_dbraaten_research_symposium.jpg"
     ]
@@ -228,7 +228,7 @@
   {
     "date": [2023, 7, 31],
     "title": "Katie presents at the 2023 MDSGC Student Research Symposium",
-    "message": "Katie presented her research at the Maryland Space Grant Consortium's 2023 Student Research Symposium. Excellent work Katie!",
+    "message": "Katie presented her research at the Maryland Space Grant Consortium's 2023 Student Research Symposium. Congratulations, Katie!",
     "pictures": [
       "pic_kcariaga_mdsgc_2023.jpg"
     ]
@@ -236,7 +236,7 @@
   {
     "date": [2023, 5, 30],
     "title": "The group welcomes Dakota Braaten",
-    "message": "Dakota is an undergraduate student at Kansas State University majoring in chemical engineering. Welcome Dakota!",
+    "message": "Dakota is an undergraduate student at Kansas State University majoring in chemical engineering. Welcome, Dakota!",
     "pictures": [
       "pic_welcome_undergrad_dbraaten.jpg"
     ]
@@ -244,7 +244,7 @@
   {
     "date": [2023, 4, 24],
     "title": "Katie Cariaga is named a 2023 MDSGC Summer Intern",
-    "message": "Katie has been awarded a 2023 <a href=\"https://md.spacegrant.org/\" target=\"_blank\">Maryland Space Grant Consortium (MDSGC)</a> Summer Internship. <a href=\"https://energyinstitute.jhu.edu/revealing-the-secrets-that-may-unlock-the-potential-of-thermoelectric-materials/\" target=\"_blank\">Congratulations Katie! </a>",
+    "message": "Katie has been awarded a 2023 <a href=\"https://md.spacegrant.org/\" target=\"_blank\">Maryland Space Grant Consortium (MDSGC)</a> Summer Internship. <a href=\"https://energyinstitute.jhu.edu/revealing-the-secrets-that-may-unlock-the-potential-of-thermoelectric-materials/\" target=\"_blank\">Congratulations, Katie! </a>",
     "pictures": [
       "pic_mdsgc_logo.png"
     ]
@@ -252,7 +252,7 @@
   {
     "date": [2023, 4, 3],
     "title": "Will Shiber is named a 2023 IDIES Summer Student Fellow",
-    "message": "Will has been awarded a <a href=\"https://www.idies.jhu.edu/2023-idies-summer-student-fellows/\" target=\"_blank\">2023 Institute for Data Intensive Engineering and Science (IDIES) Summer Student Fellowship</a>. <a href = \"https://hub.jhu.edu/announcements/2023/04/21/idies-announces-2023-summer-student-fellowship-ssf-recipients/\" target=\"_blank\">Congratulations Will! </a>",
+    "message": "Will has been awarded a <a href=\"https://www.idies.jhu.edu/2023-idies-summer-student-fellows/\" target=\"_blank\">2023 Institute for Data Intensive Engineering and Science (IDIES) Summer Student Fellowship</a>. <a href = \"https://hub.jhu.edu/announcements/2023/04/21/idies-announces-2023-summer-student-fellowship-ssf-recipients/\" target=\"_blank\">Congratulations, Will! </a>",
     "pictures": [
       "pic_idies_logo.png"
     ]
@@ -260,7 +260,7 @@
   {
     "date": [2023, 1, 23],
     "title": "The group welcomes undergraduate Veric Tan",
-    "message": "Veric is an undergraduate student majoring in materials science and engineering & cognitive science. Welcome Veric!",
+    "message": "Veric is an undergraduate student majoring in materials science and engineering & cognitive science. Welcome, Veric!",
     "pictures": [
       "pic_welcome_undergrad_vtan.jpg"
     ]
@@ -268,7 +268,7 @@
   {
     "date": [2023, 1, 23],
     "title": "The group welcomes undergraduate Katie Cariaga",
-    "message": "Katie is an undergraduate student majoring in materials science and engineering & computer science. Welcome Katie!",
+    "message": "Katie is an undergraduate student majoring in materials science and engineering & computer science. Welcome, Katie!",
     "pictures": [
       "pic_welcome_undergrad_kcariaga.jpg"
     ]
@@ -276,7 +276,7 @@
   {
     "date": [2023, 1, 23],
     "title": "The group welcomes undergraduate Will Shiber",
-    "message": "Will is an undergraduate student majoring in materials science and engineering & applied mathematics and statistics. Welcome Will!",
+    "message": "Will is an undergraduate student majoring in materials science and engineering & applied mathematics and statistics. Welcome, Will!",
     "pictures": [
       "pic_welcome_undergrad_wshiber.jpg"
     ]
@@ -316,7 +316,7 @@
   {
     "date": [2022, 8, 15],
     "title": "The group welcomes PhD student Keith Clark",
-    "message": "Keith comes from George Mason University where he studied Chemistry and Mathematics. Welcome Keith!",
+    "message": "Keith comes from George Mason University where he studied Chemistry and Mathematics. Welcome, Keith!",
     "pictures": [
       "pic_welcome_grad_kclark.jpg"
     ]
