@@ -393,10 +393,16 @@ h2 {
   }
 
   &-links {
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
     margin-top: 0.4rem;
+
+    /* the DOI chip sits inside a span; render it as a direct flex item */
+    .publication-url {
+      display: contents;
+    }
 
     a {
       border: 1px solid $color-main-1;
@@ -404,6 +410,7 @@ h2 {
       color: $color-main-1;
       font-size: 0.8rem;
       font-weight: 600;
+      line-height: 1.4;
       padding: 0.1rem 0.65rem;
       text-decoration: none;
 

@@ -129,6 +129,10 @@ def process_publications(data: dict[str, Any]):
     for typ in pubs.keys():
         npubs = len(data["publications"][typ])
         for p, pub in enumerate(data["publications"][typ]):
+            # the feed's "number" is the journal issue; "number" here is the
+            # running count shown in the list
+            if pub.get("number"):
+                pub["issue"] = pub["number"]
             pub["number"] = npubs - p
 
             if len(pub["authors"]) == 1:
