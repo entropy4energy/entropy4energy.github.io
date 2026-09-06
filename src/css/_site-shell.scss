@@ -343,6 +343,11 @@ $site-products: chaos loop;
 }
 
 @media screen and (max-width: $small-threshold) {
+  .site-nav li a {
+    font-size: 0.9rem;
+    padding: 0.8rem 0.7rem;
+  }
+
   .sidebar {
     margin: 1rem 0;
     order: -1;
