@@ -1,0 +1,19 @@
+{#- Site header. Shared with LOOP through dist/partials/header*.html -#}
+<header>
+  <div class="hero">
+    <a href="{{ data.root or '.' }}" class="hero-logo"><img src="{{ data.root }}media/icons/s4e.png" alt="S4E"></a>
+    <span class="hero-title">
+      {% if data.product %}
+        <span class="hero-site">Entropy for Energy Laboratory</span>
+        <span class="hero-sep">&middot;</span>
+        <strong>{{ data.product.name }}</strong>
+        {% if data.product.full_name %}
+          <span class="hero-sep">&middot;</span>
+          <span class="hero-full-name">{{ data.product.full_name }}</span>
+        {% endif %}
+      {% else %}
+        Entropy for Energy Laboratory
+      {% endif %}
+    </span>
+  </div>
+</header>
