@@ -72,30 +72,31 @@ header {
     align-items: center;
     box-sizing: border-box;
     display: flex;
-    font-size: 2em;
-    gap: 0.6em;
-    height: 4em;
-    margin: 0 20px 0;
-    padding: 0.55em 0;
+    font-size: 1.15em;
+    font-weight: 600;
+    gap: 14px;
+    height: 61px;
+    margin: 0 auto;
+    min-width: $body-min-width;
+    padding: 0 20px;
+    width: 80%;
   }
 
   .hero-logo {
-    background-color: $color-main-2;
-    border-radius: 8px;
     display: block;
     flex: 0 0 auto;
-    padding: 6px 10px;
 
     img {
       display: block;
-      height: 2.4em;
+      height: 38px;
       width: auto;
     }
   }
 }
 
 nav {
-  background-color: $color-main-4;
+  background-color: $color-main-2;
+  border-bottom: 1px solid #e6e2dc;
   position: sticky;
   top: 0;
   width: 100%;
@@ -110,16 +111,8 @@ nav {
   }
 
   a {
-    color: white;
+    color: $color-main-1;
     text-decoration: none;
-  }
-
-  & > ul {
-    display: flex;
-    flex-wrap: wrap;
-    font-size: clamp(1.1em, 1.75vw, 1.5em);
-    justify-content: center;
-    width: 100%;
   }
 
   ul {
@@ -128,27 +121,34 @@ nav {
     padding: 0;
   }
 
+  & > ul {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.95em;
+    font-weight: 600;
+    gap: 4px;
+    justify-content: flex-start;
+    margin: 0 auto;
+    min-width: $body-min-width;
+    padding: 6px 20px;
+    width: 80%;
+  }
+
   li {
-    border-right: 1px solid $color-main-2;
-    flex: 1 1 auto;
-    max-width: 9em;
-    min-width: 5.5em;
     text-align: center;
 
-    &:first-child {
-      border-left: 1px solid $color-main-2;
-    }
-
     a {
+      border-radius: 6px;
       display: block;
-      padding: 10px;
+      padding: 8px 14px;
 
-      &.active{
-        @include contrast-main-2();
+      &.active {
+        background-color: rgba(0, 45, 114, 0.08);
       }
 
       &:hover:not(.active) {
-        @include contrast-main-1();
+        background-color: rgba(0, 45, 114, 0.14);
       }
     }
   }
@@ -826,11 +826,9 @@ footer {
 
 @media screen and (max-width: $mobile-threshold) {
   header .hero {
-    height: auto;
-  }
-
-  header .hero-title {
-    display: none;
+    font-size: 1em;
+    padding: 0 12px;
+    width: 100%;
   }
 
 
@@ -840,7 +838,7 @@ footer {
     .menu {
       box-sizing: border-box;
       height: 3.25em;
-      color: $color-main-2;
+      color: $color-main-1;
       cursor: pointer;
       display: inline-block;
       margin: 5px;
@@ -854,7 +852,7 @@ footer {
         &-bar {
           $bar-height: 3px;
           $bar-distance: 5px;
-          background-color: $color-main-2;
+          background-color: $color-main-1;
           border-radius: 1px;
           display: block;
           height: $bar-height;
