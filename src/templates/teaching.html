@@ -29,7 +29,7 @@
   {% for item in data.teaching.student_comments %}
     <blockquote class="student-comment">
       <p>&ldquo;{{ item.text }}&rdquo;</p>
-      <footer>{{ item.source }}</footer>
+      <div class="student-comment-source">{{ item.source }}</div>
     </blockquote>
   {% endfor %}
 
