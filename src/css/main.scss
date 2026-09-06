@@ -68,11 +68,28 @@ header {
   @include contrast-main-1();
 
   .hero {
+    align-items: center;
     box-sizing: border-box;
+    display: flex;
     font-size: 2em;
+    gap: 0.6em;
     height: 4em;
     margin: 0 20px 0;
-    padding-top: 1em;
+    padding: 0.55em 0;
+  }
+
+  .hero-logo {
+    background-color: $color-main-2;
+    border-radius: 8px;
+    display: block;
+    flex: 0 0 auto;
+    padding: 6px 10px;
+
+    img {
+      display: block;
+      height: 2.4em;
+      width: auto;
+    }
   }
 }
 
@@ -728,6 +745,14 @@ footer {
 }
 
 @media screen and (max-width: $mobile-threshold) {
+  header .hero {
+    height: auto;
+  }
+
+  header .hero-title {
+    display: none;
+  }
+
 
   nav {
     box-sizing: border-box;
