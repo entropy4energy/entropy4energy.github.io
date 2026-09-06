@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Data and Tools</h1>
+  <p class="tools-lead">{{ data.tools.intro }}</p>
+  <div class="tool-cards">
+    {% for tool in data.tools.products %}
+      <div class="tool-card">
+        <div class="tool-card-kind">{{ tool.kind }}</div>
+        <h2 class="tool-card-title">{{ tool.name }}</h2>
+        <div class="tool-card-full">{{ tool.full_name }}</div>
+        <p class="tool-card-text">{{ tool.description }}</p>
+        <div class="tool-card-actions">
+          <a class="workshop-button" href="{{ tool.href }}"{% if tool.external %} target="_blank" rel="noopener noreferrer"{% endif %}>Open {{ tool.name }}</a>
+          {% for link in tool.links %}
+            <a class="workshop-chip" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
