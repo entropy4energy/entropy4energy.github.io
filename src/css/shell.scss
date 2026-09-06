@@ -1,5 +1,4 @@
 // Shell-only stylesheet for pages outside this build that include the
 // shell fragments (LOOP at s4e.ai/loop). Built to css/shell.css.
 
-@import 'tokens';
-@import 'shell';
+@use 'site-shell';
