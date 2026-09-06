@@ -59,6 +59,8 @@ $(BLDDIR)/%.html: $(PREREQSALL) $(TEMPLATEDIR)/%.html $(DATADIR)/%.json
 	@mkdir -p $(@D)
 	$(PYTHON) $(BUILDPY) $(@F) | $(HTMLC) $(HTMLCFLAGS) -o $@
 
+$(BLDDIR)/news.html: $(DATADIR)/press.json
+
 $(BLDDIR)/index.html: $(PREREQSALL) $(TEMPLATEDIR)/home.html $(DATADIR)/home.json $(DATADIR)/publications.json $(DATADIR)/research.json
 	@mkdir -p $(@D)
 	$(PYTHON) $(BUILDPY) home --extra_data publications research | $(HTMLC) $(HTMLCFLAGS) -o $@
