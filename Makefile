@@ -59,9 +59,9 @@ $(BLDDIR)/%.html: $(PREREQSALL) $(TEMPLATEDIR)/%.html $(DATADIR)/%.json
 	@mkdir -p $(@D)
 	$(PYTHON) $(BUILDPY) $(@F) | $(HTMLC) $(HTMLCFLAGS) -o $@
 
-$(BLDDIR)/index.html: $(PREREQSALL) $(TEMPLATEDIR)/home.html $(DATADIR)/home.json $(DATADIR)/research.json
+$(BLDDIR)/index.html: $(PREREQSALL) $(TEMPLATEDIR)/home.html $(DATADIR)/home.json $(DATADIR)/publications.json $(DATADIR)/research.json
 	@mkdir -p $(@D)
-	$(PYTHON) $(BUILDPY) home --extra_data research | $(HTMLC) $(HTMLCFLAGS) -o $@
+	$(PYTHON) $(BUILDPY) home --extra_data publications research | $(HTMLC) $(HTMLCFLAGS) -o $@
 
 # CSS targets
 css: $(CSSBLD)/academicons-1.9.1 $(CSSBLD)/main.css
