@@ -9,6 +9,7 @@ from jinja2 import Environment, FileSystemLoader
 
 HEADERS = [
     "home",
+    "research",
     "publications",
     "team",
     "news",
