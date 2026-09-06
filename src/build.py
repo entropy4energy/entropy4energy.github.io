@@ -260,6 +260,11 @@ def process_team(data: dict[str, Any]):
 def process_news(data: dict[str, Any]):
     for news_item in data["news"]:
         news_item["date"] = format_date(news_item["date"])
+    press_file = DATA_DIR / "press.json"
+    if press_file.exists():
+        data["press"] = json.loads(press_file.read_text())
+        for item in data["press"]:
+            item["date"] = format_date(item["date"])
 
 
 def process_workshops(data: dict[str, Any]):

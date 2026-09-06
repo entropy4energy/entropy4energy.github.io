@@ -439,6 +439,30 @@ footer {
   }
 }
 
+/* Press list (News) */
+
+.press-list {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    margin-bottom: 8px;
+    padding-left: 8em;
+  }
+}
+
+.press-date {
+  color: $color-main-1;
+  display: inline-block;
+  font-weight: bold;
+  margin-left: -8em;
+  min-width: 8em;
+}
+
+.press-outlet {
+  color: gray;
+}
+
 /* Research */
 
 .research-figure {
