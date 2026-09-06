@@ -1,5 +1,6 @@
 import argparse
 import functools
+import hashlib
 import json
 from datetime import date
 from pathlib import Path
@@ -289,6 +290,15 @@ def arg_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def asset_version() -> str:
+    """Short content hash of the stylesheet and scripts, used as a
+    cache-busting query string on their URLs."""
+    h = hashlib.sha1()
+    for path in sorted((BASE_PATH / "css").glob("*.scss")) + sorted((BASE_PATH / "js").glob("*.js")):
+        h.update(path.read_bytes())
+    return h.hexdigest()[:10]
+
+
 def build_html(section: str = "", extra_data: list = []) -> str:
     """Create a rendered HTML file.
 
@@ -309,6 +319,7 @@ def build_html(section: str = "", extra_data: list = []) -> str:
     data = {
         "headers": HEADERS,
         "section": section,
+        "asset_version": asset_version(),
     }
     data["news"] = json.loads((DATA_DIR / "news.json").read_text())
     process_news(data)
