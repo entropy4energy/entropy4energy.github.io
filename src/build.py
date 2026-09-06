@@ -14,6 +14,7 @@ HEADERS = [
     "research",
     "publications",
     "team",
+    "teaching",
     "news",
     "jobs",
     "workshops",
