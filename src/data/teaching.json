@@ -8,7 +8,7 @@
       "text": [
         "Students write scientific code in Python and use it to model materials. The course begins with the UNIX shell, Git, LaTeX, and Make, then develops numerical methods from their mathematical foundations. Topics include integration of equations of motion, relaxation methods for fields, eigenvalue problems, random numbers, and Monte Carlo sampling. Students apply these methods to density functional theory, high-throughput materials databases, molecular dynamics, and machine learning. The final unit introduces autonomous experimentation using the LEGOLAS low-cost autonomous laboratory kit, in which results from one experiment are used to select the next.",
         "There are no written examinations. Each of the seven assignments consists of a working program and a report typeset in LaTeX and maintained in a GitHub repository. The semester ends with a group project presented in class. Students implement the numerical methods themselves rather than relying on libraries that already solve the problem, and they check their results against analytic limits, conservation laws, or convergence tests. The density functional theory, high-throughput modeling, and molecular dynamics assignments run on the university's research computing cluster.",
-        "The course enrolls 15 to 17 students each fall, mostly graduate students in materials science and related departments. In course evaluations, students rate its intellectual challenge 4.6 of 5."
+        "The course enrolls 15 to 17 students each fall, mostly graduate students in materials science and related departments, and often has a waiting list. In course evaluations, students rate its intellectual challenge 4.6 of 5."
       ]
     },
     {
@@ -108,8 +108,16 @@
       "source": "Course evaluation, Materials Modeling, fall 2025"
     },
     {
+      "text": "The homeworks are fantastic. I learned so much in this class by doing the homeworks. They were very challenging and pushed me out of my comfort zone but allowed me to learn so many new skills and forced me to think.",
+      "source": "Course evaluation, Materials Modeling, fall 2024"
+    },
+    {
       "text": "He's helpful, but will never simply give a student the answer; he'll force them to think critically about the error and manually debug it themselves, since that's a more valuable skill than any one technique. He's patient and adept at explaining new concepts.",
       "source": "Enrolled Student Survey, Johns Hopkins University, 2023"
+    },
+    {
+      "text": "Dr. Oses clearly puts a great deal of time into his students and provides a great deal of personalized feedback.",
+      "source": "Course evaluation, Gateway Computing: Python, spring 2025"
     },
     {
       "text": "Challenging yet immensely supportive.",
