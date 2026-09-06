@@ -1,8 +1,9 @@
 {
   "intro": {
     "text": [
-      "Chemical disorder creates a materials design problem that cannot be solved by brute-force enumeration. A multicomponent material can adopt an enormous number of compositions and atomic configurations, each with different energies and local chemical environments. We develop AI and physics-based models that learn from this space and generate candidate materials, atomic configurations, and synthesis routes. We then test those predictions experimentally.",
-      "Our goal is not simply to predict the properties of materials that already exist. We want to generate materials with the chemistry, disorder, and local atomic environments needed for a target function. Hydrogen production and nuclear materials are where we are proving this approach."
+      "Chemical disorder opens an enormous space for materials design. When many elements share a crystal lattice, both their composition and their atomic arrangement can be varied. The number of possibilities quickly becomes too large to explore one material at a time.",
+      "We develop computational and AI methods to learn from these large chemical spaces and generate new materials for energy production, nuclear technology, and extreme environments. Our work combines first-principles calculations, machine learning, synthesis, and experiment. A major goal is to move beyond brute-force screening toward models that can propose materials with the chemistry and atomic structure needed for a particular function.",
+      "Students in the <i>S4E</i> lab work across this cycle, from computational prediction and AI to making materials and testing their properties. Our current research centers on <a href=\"#hydrogen\">hydrogen production</a>, <a href=\"#nuclear\">materials for fission and fusion</a>, and <a href=\"#data\">new methods for learning and generating chemical disorder</a>."
     ],
     "image": "intro_high_entropy_energy.png",
     "image_alt": "High-entropy materials for hydrogen, batteries, electronics, and catalysis",
@@ -14,8 +15,9 @@
       "id": "hydrogen",
       "title": "Hydrogen production",
       "text": [
-        "We design materials for electrochemical and thermochemical hydrogen production. For electrocatalysis, we developed machine-learning and first-principles disorder descriptors that identified platinum-free candidates from a chemical space of more than 20,000 high-entropy alloys. With experimental partners we showed that the arrangement of atoms on an alloy surface, at fixed composition and electronic structure, switches methanol oxidation activity on and off.",
-        "For thermochemical water splitting, we work with the Johns Hopkins Applied Physics Laboratory and Sandia National Laboratories on multi-cation oxides. These oxides release oxygen when heated and recover it from steam at lower temperatures than conventional oxide cycles. A provisional patent covers the resulting catalyst designs. The central problem is which phases in these oxides store the exchangeable oxygen and how much of it a practical cycle can recover."
+        "Hydrogen is used throughout chemical manufacturing, and its production economics are strongly affected by natural-gas prices. New production routes could provide greater flexibility in how and where hydrogen is made. We design materials for producing hydrogen from water using electricity or heat.",
+        "Our work combines computational materials design with experimental synthesis and testing. Machine learning allows us to explore complex alloys as alternatives to precious-metal catalysts, and we use first-principles calculations to understand how chemical disorder changes catalytic behavior. We also design multicomponent oxides that split water through thermochemical cycles at lower temperatures. For example, we combined machine learning with first-principles disorder descriptors to evaluate more than 20,000 high-entropy alloys and identify platinum-free candidates. With experimental partners we showed that the arrangement of atoms on an alloy surface, at fixed composition and electronic structure, switches methanol oxidation activity on and off.",
+        "Students working in this area encounter catalysis, electronic structure, thermodynamics, machine learning, materials synthesis, and experimental characterization."
       ],
       "image": "hydrogen_catalyst_screening.png",
       "image_alt": "Screening workflow for high-entropy fuel-cell catalysts using disorder descriptors",
@@ -36,9 +38,9 @@
       "id": "nuclear",
       "title": "Materials for fission and fusion",
       "text": [
-        "Iodine-129 is long-lived and mobile, and few durable waste forms can immobilize it. We showed that iodine substitutes into an oxyfluoride pyrochlore and then evaluated more than 40,000 multi-cation pyrochlore compositions for higher loading, with many candidates above 33 wt% iodine. That work is part of an ARPA-E program on high-entropy glass-ceramics for waste immobilization and led to a provisional patent on iodine-bearing glass-based waste forms.",
-        "Standard density functional theory misplaces the ground states of many iodides. The group therefore builds experiment-grounded thermodynamic corrections and learns them with graph neural networks, so that calibrated energetics extend to compounds no one has measured.",
-        "For fusion, projects funded by the Seaver Institute and ARPA-E address mirrors for harsh plasma-facing environments and the cesium problem in negative hydrogen ion sources. An Air Force program studies refractory multi-principal-element alloys for extreme temperatures."
+        "Nuclear energy requires materials that can perform for long periods under some of the most demanding conditions in engineering. Waste forms must immobilize radioactive elements for very long times, while materials used in reactors must tolerate extreme temperatures, radiation, and chemically aggressive environments.",
+        "We investigate whether chemical disorder can provide new solutions to these problems. Our work spans nuclear waste forms, high-temperature materials, and materials for fusion environments. In one recent example, we demonstrated that iodine can be incorporated directly into the crystal lattice of a pyrochlore waste form and used high-entropy design to explore compositions with substantially higher iodine capacity.",
+        "Research in this area brings together phase stability, defect chemistry, first-principles calculations, machine learning, synthesis, and characterization."
       ],
       "image": "nuclear_iodine_pyrochlore.png",
       "image_alt": "Iodine loading in pyrochlore ceramics increased by high-entropy design",
@@ -53,11 +55,11 @@
     },
     {
       "id": "data",
-      "title": "Learning and generating configurational disorder",
+      "title": "Learning and generating chemical disorder",
       "text": [
-        "A disordered material cannot be represented by a single atomic structure. Its properties depend on an ensemble of configurations whose populations change with composition and temperature. Explicitly calculating every relevant configuration is impossible for all but the simplest systems. We develop AI models that learn these configurational spaces and generate the structures needed to predict finite-temperature materials behavior.",
-        "The aim is to move beyond brute-force screening. Rather than enumerate every possible material or atomic arrangement, we want models that learn the underlying chemical and configurational space well enough to generate candidates directly.",
-        "A first-principles database of high-entropy oxides, paired with their ordered precursors and queried through a large-language-model interface, maps which compositions form. Large-language-model extraction of synthesis routes from the literature, with explicit tracking of which conditions a paper reports, connects those compositions to how they are made. Machine-learned interatomic potentials for oxides, iodides, and alloys supply the configurational sampling. In our benchmarks, structural agreement with DFT does not necessarily imply agreement in the calculated density of states. Ongoing work examines transferability of these potentials to molecular dynamics and develops descriptors for lattice thermal conductivity and for thermal motion in diffraction."
+        "AI is changing what is possible in materials design. Chemical spaces that are far too large to explore one material at a time can instead be learned by models that identify patterns and generate new candidates. Disordered materials make this problem especially challenging because a single composition can contain many different atomic arrangements.",
+        "We develop machine-learning models, interatomic potentials, materials databases, and generative methods for this problem. We are interested in models that learn both which elements belong in a material and how those elements arrange themselves at the atomic scale. These tools connect directly to our work in hydrogen and nuclear materials. In benchmarking machine-learned interatomic potentials, for example, we found that structural agreement with DFT does not guarantee agreement in the electronic density of states.",
+        "Students in this area work at the intersection of materials science, physics, AI, and scientific computing. Projects can involve electronic-structure calculations, machine-learned potentials, molecular dynamics, large-scale materials data, generative modeling, and the development of open scientific software."
       ],
       "image": "data_doping_to_high_entropy.png",
       "image_alt": "From doping to alloying to high-entropy oxides: increasing configurational entropy",
