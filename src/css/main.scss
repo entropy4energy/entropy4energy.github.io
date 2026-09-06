@@ -790,12 +790,23 @@ h2 {
   }
 }
 
+.pi-details {
+  margin: -0.5rem 0 1.75rem calc(15% + 20px);
+
+  & > summary {
+    color: $color-main-1;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+  }
+}
+
 .pi-block {
   border-bottom: 1px solid $color-line;
   display: grid;
   gap: 0 2rem;
   grid-template-columns: 1fr 1fr;
-  margin: -0.5rem 0 1.75rem calc(15% + 20px);
+  margin: 0.75rem 0 0;
   padding-bottom: 1rem;
 
   h3 {
@@ -1244,9 +1255,12 @@ h2 {
 }
 
 @media screen and (max-width: $mobile-threshold) {
+  .pi-details {
+    margin-left: 0;
+  }
+
   .pi-block {
     grid-template-columns: 1fr;
-    margin-left: 0;
   }
 
   .publication {
