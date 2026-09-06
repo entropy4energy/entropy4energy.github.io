@@ -1,7 +1,8 @@
 {
   "intro": {
     "text": [
-      "The <i>S4E</i> lab studies chemically disordered materials, particularly systems in which many elements share a crystal lattice. Configurational entropy can alter phase stability, while the number of possible compositions and atomic configurations makes these materials difficult to search using conventional approaches. Our work develops the computational tools to search that space and applies them to materials for energy conversion and for nuclear environments. Each direction below pairs first-principles calculations and machine learning with synthesis and characterization by collaborators."
+      "Chemical disorder creates a materials design problem that cannot be solved by brute-force enumeration. A multicomponent material can adopt an enormous number of compositions and atomic configurations, each with different energies and local chemical environments. We develop AI and physics-based models that learn from this space and generate candidate materials, atomic configurations, and synthesis routes. We then test those predictions experimentally.",
+      "Our goal is not simply to predict the properties of materials that already exist. We want to generate materials with the chemistry, disorder, and local atomic environments needed for a target function. Hydrogen production and nuclear materials are where we are proving this approach."
     ],
     "image": "intro_high_entropy_energy.png",
     "image_alt": "High-entropy materials for hydrogen, batteries, electronics, and catalysis",
@@ -11,52 +12,70 @@
   "directions": [
     {
       "id": "hydrogen",
-      "title": "Hydrogen from water and heat",
+      "title": "Hydrogen production",
       "text": [
-        "Most hydrogen today comes from natural gas. Producing it from water requires either an electrocatalyst that lowers the cost of the reaction or an oxide that releases oxygen when heated and recovers it from steam, producing hydrogen in the second step. We work on both routes.",
-        "On the electrochemical side, we developed a workflow that couples machine learning with first-principles disorder descriptors to screen more than 20,000 alloy compositions for fuel-cell catalysts, identifying lower-cost, platinum-free candidates. With experimental partners we showed that the arrangement of atoms on an alloy surface, at fixed composition and electronic structure, switches methanol oxidation activity on and off.",
-        "On the thermochemical side, the group works with the Johns Hopkins Applied Physics Laboratory and Sandia National Laboratories on multi-cation oxides for low-temperature thermochemical water splitting, and a provisional patent covers the resulting catalyst designs. Current work examines which phases contain the exchangeable oxygen, how cation chemistry determines the operating temperature, and how computational predictions compare with synthesis and reactor testing."
+        "We design materials for electrochemical and thermochemical hydrogen production. For electrocatalysis, we developed machine-learning and first-principles disorder descriptors that identified platinum-free candidates from a chemical space of more than 20,000 high-entropy alloys. With experimental partners we showed that the arrangement of atoms on an alloy surface, at fixed composition and electronic structure, switches methanol oxidation activity on and off.",
+        "For thermochemical water splitting, we work with the Johns Hopkins Applied Physics Laboratory and Sandia National Laboratories on multi-cation oxides. These oxides release oxygen when heated and recover it from steam at lower temperatures than conventional oxide cycles. A provisional patent covers the resulting catalyst designs. The central problem is which phases in these oxides store the exchangeable oxygen and how much of it a practical cycle can recover."
       ],
       "image": "hydrogen_catalyst_screening.png",
       "image_alt": "Screening workflow for high-entropy fuel-cell catalysts using disorder descriptors",
       "image_caption": "Disorder descriptors for fuel-cell catalyst screening. Adapted from Han <i>et al.</i>, <i>Nano Futures</i> <b>9</b>, 045001 (2025), CC BY 4.0.",
       "image_url": "https://doi.org/10.1088/2399-1984/ae19b0",
       "publications": [
-        {"text": "The search for high-entropy fuel-cell catalysts using disorder descriptors, <i>Nano Futures</i> (2025)", "doi": "10.1088/2399-1984/ae19b0"},
-        {"text": "Atomic ordering-induced ensemble variation in alloys governs electrocatalyst on/off states, <i>J. Am. Chem. Soc.</i> (2024)", "doi": "10.1021/jacs.4c11753"}
+        {
+          "text": "The search for high-entropy fuel-cell catalysts using disorder descriptors, <i>Nano Futures</i> (2025)",
+          "doi": "10.1088/2399-1984/ae19b0"
+        },
+        {
+          "text": "Atomic ordering-induced ensemble variation in alloys governs electrocatalyst on/off states, <i>J. Am. Chem. Soc.</i> (2024)",
+          "doi": "10.1021/jacs.4c11753"
+        }
       ]
     },
     {
       "id": "nuclear",
-      "title": "Materials for nuclear energy: waste forms and extreme environments",
+      "title": "Materials for fission and fusion",
       "text": [
-        "Fission and fusion both require materials that remain functional under conditions where conventional materials have important limitations. Iodine-129 is long-lived and mobile, and few durable hosts hold it. We showed that iodine substitutes into an oxyfluoride pyrochlore and then screened more than 40,000 multi-cation pyrochlore compositions for higher loading, with many candidates above 33 wt% iodine. That work is part of an ARPA-E program on high-entropy glass-ceramics for waste immobilization and led to a provisional patent on iodine-bearing glass-based waste forms.",
+        "Iodine-129 is long-lived and mobile, and few durable waste forms can immobilize it. We showed that iodine substitutes into an oxyfluoride pyrochlore and then evaluated more than 40,000 multi-cation pyrochlore compositions for higher loading, with many candidates above 33 wt% iodine. That work is part of an ARPA-E program on high-entropy glass-ceramics for waste immobilization and led to a provisional patent on iodine-bearing glass-based waste forms.",
         "Standard density functional theory misplaces the ground states of many iodides. The group therefore builds experiment-grounded thermodynamic corrections and learns them with graph neural networks, so that calibrated energetics extend to compounds no one has measured.",
-        "On the fusion side, projects funded by the Seaver Institute and ARPA-E address mirrors for harsh plasma-facing environments and the cesium problem in negative hydrogen ion sources. An Air Force program studies refractory multi-principal-element alloys for extreme temperatures."
+        "For fusion, projects funded by the Seaver Institute and ARPA-E address mirrors for harsh plasma-facing environments and the cesium problem in negative hydrogen ion sources. An Air Force program studies refractory multi-principal-element alloys for extreme temperatures."
       ],
       "image": "nuclear_iodine_pyrochlore.png",
       "image_alt": "Iodine loading in pyrochlore ceramics increased by high-entropy design",
       "image_caption": "Iodine loading in pyrochlores by high-entropy design. Adapted from Xu <i>et al.</i>, <i>Precis. Chem.</i> <b>4</b>, 1211 (2026), CC BY-NC-ND 4.0.",
       "image_url": "https://doi.org/10.1021/prechem.5c00467",
       "publications": [
-        {"text": "Stabilizing iodine in pyrochlore: toward new nuclear waste forms, <i>Precis. Chem.</i> (2026)", "doi": "10.1021/prechem.5c00467"}
+        {
+          "text": "Stabilizing iodine in pyrochlore: toward new nuclear waste forms, <i>Precis. Chem.</i> (2026)",
+          "doi": "10.1021/prechem.5c00467"
+        }
       ]
     },
     {
       "id": "data",
-      "title": "Data, descriptors, and machine-learned potentials for disordered materials",
+      "title": "Learning and generating configurational disorder",
       "text": [
-        "A disordered crystal has no single atomic configuration, so its calculated properties often require averages over many configurations. This makes first-principles calculations substantially more expensive than for ordered materials. We develop databases, descriptors, and machine-learned models to reduce that cost.",
-        "Our work includes first-principles databases of high-entropy oxides and their ordered precursors, large-language-model methods for extracting synthesis procedures from the literature, and machine-learned interatomic potentials for oxides, iodides, and alloys. We have shown that structural agreement between machine-learned and DFT-relaxed structures does not necessarily imply agreement in the calculated density of states. Ongoing work examines transferability of these potentials to molecular dynamics and develops descriptors for properties including lattice thermal conductivity and thermal motion."
+        "A disordered material cannot be represented by a single atomic structure. Its properties depend on an ensemble of configurations whose populations change with composition and temperature. Explicitly calculating every relevant configuration is impossible for all but the simplest systems. We develop AI models that learn these configurational spaces and generate the structures needed to predict finite-temperature materials behavior.",
+        "The aim is to move beyond brute-force screening. Rather than enumerate every possible material or atomic arrangement, we want models that learn the underlying chemical and configurational space well enough to generate candidates directly.",
+        "A first-principles database of high-entropy oxides, paired with their ordered precursors and queried through a large-language-model interface, maps which compositions form. Large-language-model extraction of synthesis routes from the literature, with explicit tracking of which conditions a paper reports, connects those compositions to how they are made. Machine-learned interatomic potentials for oxides, iodides, and alloys supply the configurational sampling. In our benchmarks, structural agreement with DFT does not necessarily imply agreement in the calculated density of states. Ongoing work examines transferability of these potentials to molecular dynamics and develops descriptors for lattice thermal conductivity and for thermal motion in diffraction."
       ],
       "image": "data_doping_to_high_entropy.png",
       "image_alt": "From doping to alloying to high-entropy oxides: increasing configurational entropy",
       "image_caption": "From doping to high-entropy design. Adapted from Oses <i>et al.</i>, <i>Mater. Horiz.</i> <b>12</b>, 5946 (2025), CC BY 3.0.",
       "image_url": "https://doi.org/10.1039/D5MH00356C",
       "publications": [
-        {"text": "Structural benchmarks overlook density-of-states errors in machine-learned interatomic potentials, <i>APL Mach. Learn.</i> (2026)", "doi": "10.1063/5.0339982"},
-        {"text": "Beyond the four core effects: revisiting thermoelectrics with a high-entropy design, <i>Mater. Horiz.</i> (2025)", "doi": "10.1039/D5MH00356C"},
-        {"text": "High entropy powering green energy: hydrogen, batteries, electronics, and catalysis, <i>npj Comput. Mater.</i> (2025)", "doi": "10.1038/s41524-025-01594-6"}
+        {
+          "text": "Structural benchmarks overlook density-of-states errors in machine-learned interatomic potentials, <i>APL Mach. Learn.</i> (2026)",
+          "doi": "10.1063/5.0339982"
+        },
+        {
+          "text": "Beyond the four core effects: revisiting thermoelectrics with a high-entropy design, <i>Mater. Horiz.</i> (2025)",
+          "doi": "10.1039/D5MH00356C"
+        },
+        {
+          "text": "High entropy powering green energy: hydrogen, batteries, electronics, and catalysis, <i>npj Comput. Mater.</i> (2025)",
+          "doi": "10.1038/s41524-025-01594-6"
+        }
       ]
     }
   ],
