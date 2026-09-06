@@ -1,48 +1,6 @@
 {% extends "base.html" %}
 
-{% block content %}
-  <h1>Jobs</h1>
-  <div class="join-note">
-    <div class="join-note-header">Joining the <i>S4E</i> Lab</div>
-    <p>
-      <b>PhD students.</b> Current Johns Hopkins students: email your CV to the
-      <i>S4E</i> team (entropy4energy AT jhu.edu) to schedule a meeting.
-      External applicants:
-      <a href="https://engineering.jhu.edu/admissions" target="_blank">submit an application</a>
-      to the Department of Materials Science and Engineering and name Prof. Oses
-      as a faculty advisor of interest. Applications are due
-      <b>October 15</b> for spring admission and <b>December 15</b> for fall
-      admission. Questions about the application process go to
-      Mrs. Lauren Rodgers (lmodica1 AT jhu.edu).
-    </p>
-    <p>
-      <b>Postdoctoral researchers.</b> Apply through the Interfolio link in the
-      open posting below. The cover letter must address each qualification
-      explicitly. Questions go to the <i>S4E</i> team (entropy4energy AT jhu.edu)
-      with &quot;S4E Post-Doc&quot; in the subject line.
-    </p>
-    <p>
-      <b>Undergraduate and master&#8217;s students.</b> Current Johns Hopkins
-      students: email your CV and a short statement of interest to the
-      <i>S4E</i> team (entropy4energy AT jhu.edu). Summer positions for external
-      undergraduates are posted below when a program is open.
-    </p>
-  </div>
-  <div class="eeo-statement">
-    <div class="eeo-statement-header">Equal Employment Opportunity Statement</div>
-    <p>
-      The Johns Hopkins University is committed to equal opportunity for its faculty,
-      staff, and students. To that end, the university does not discriminate on the
-      basis of sex, gender, marital status, pregnancy, race, color, ethnicity,
-      national origin, age, disability, religion, sexual orientation, gender identity
-      or expression, veteran status or other legally protected characteristic.
-      The university is committed to providing qualified individuals access to all
-      academic and employment programs, benefits and activities on the basis of
-      demonstrated ability, performance and merit without regard to personal factors
-      that are irrelevant to the program involved.
-    </p>
-  </div>
-  {% for job in data.jobs %}
+{% macro job_html(job) %}
     <div class="job">
       <div class="job-date">
         <div class="job-date-open">Opens: <span class="job-date-open-text">{{ job.open }}</span></div>
@@ -71,7 +29,66 @@
         <p>{{ job.instructions }}</p>
       </div>
     </div>
+{% endmacro %}
+
+{% block content %}
+  <h1>Jobs</h1>
+  <div class="join-note">
+    <div class="join-note-header">Joining the <i>S4E</i> Lab</div>
+    <p>
+      <b>PhD students.</b> Current Johns Hopkins students: email the
+      <i>S4E</i> team (entropy4energy AT jhu.edu) with your CV, an unofficial
+      transcript, and a short paragraph on which research direction interests
+      you and any relevant coursework or programming experience, and we will
+      schedule a meeting.
+      External applicants:
+      <a href="https://engineering.jhu.edu/admissions" target="_blank">submit an application</a>
+      to the Department of Materials Science and Engineering and name Prof. Oses
+      as a faculty advisor of interest. Applications are due
+      <b>October 15</b> for spring admission and <b>December 15</b> for fall
+      admission. Questions about the application process go to
+      Mrs. Lauren Rodgers (lmodica1 AT jhu.edu).
+    </p>
+    <p>
+      <b>Postdoctoral researchers.</b> Apply through the Interfolio link in
+      the relevant open posting below; more than one posting may be open at a
+      time. The cover letter must address each qualification explicitly. Questions go to the <i>S4E</i> team (entropy4energy AT jhu.edu)
+      with &quot;S4E Post-Doc&quot; in the subject line.
+    </p>
+    <p>
+      <b>Undergraduate and master&#8217;s students.</b> Current Johns Hopkins
+      students: email the <i>S4E</i> team (entropy4energy AT jhu.edu) with your
+      CV, an unofficial transcript, a short paragraph on which research
+      direction interests you, and when you would like to start. Summer positions for external
+      undergraduates are posted below when a program is open.
+    </p>
+  </div>
+  <div class="eeo-statement">
+    <div class="eeo-statement-header">Equal Employment Opportunity Statement</div>
+    <p>
+      The Johns Hopkins University is committed to equal opportunity for its faculty,
+      staff, and students. To that end, the university does not discriminate on the
+      basis of sex, gender, marital status, pregnancy, race, color, ethnicity,
+      national origin, age, disability, religion, sexual orientation, gender identity
+      or expression, veteran status or other legally protected characteristic.
+      The university is committed to providing qualified individuals access to all
+      academic and employment programs, benefits and activities on the basis of
+      demonstrated ability, performance and merit without regard to personal factors
+      that are irrelevant to the program involved.
+    </p>
+  </div>
+  {% for job in data.jobs if not job.archived %}
+    {{ job_html(job) }}
   {% endfor %}
+  {% set archived = data.jobs | selectattr("archived") | list %}
+  {% if archived %}
+    <details class="job-archive">
+      <summary>Past postings ({{ archived | length }})</summary>
+      {% for job in archived %}
+        {{ job_html(job) }}
+      {% endfor %}
+    </details>
+  {% endif %}
 {% endblock %}
 
 {% block body_extra %}
