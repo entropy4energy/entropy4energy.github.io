@@ -54,7 +54,17 @@
           {% endif %}
         </div>
         {% for extra in workshop.extras %}
-          <p class="workshop-extra"><b>{{ extra.title }}.</b> {{ extra.description }}</p>
+          <div class="workshop-extra">
+            <h3 class="workshop-sessions-title">{{ extra.title }}</h3>
+            {% if extra.description %}<p>{{ extra.description }}</p>{% endif %}
+            {% if extra.links %}
+              <ul class="workshop-links">
+                {% for link in extra.links %}
+                  <li><a href="{{ link.href }}" target="_blank" rel="noopener noreferrer">{{ link.label }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
         {% endfor %}
         {% if workshop.sessions %}
           <h3 class="workshop-sessions-title">Sessions</h3>
