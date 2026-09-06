@@ -19,6 +19,15 @@ HEADERS = [
     "workshops",
 ]
 
+# Nav labels that differ from title case (product acronyms).
+LABELS = {
+    "chaos": "CHAOS",
+    "loop": "LOOP",
+}
+
+# Nav entries that leave the static site (apps served alongside it).
+EXTERNAL_LINKS: dict[str, str] = {}
+
 BASE_PATH = Path(__file__).parent
 DATA_DIR = BASE_PATH / "data"
 TEMPLATE_DIR = BASE_PATH / "templates"
@@ -386,6 +395,8 @@ def build_html(section: str = "", extra_data: list = []) -> str:
 
     data = {
         "headers": HEADERS,
+        "labels": {h: LABELS.get(h, h.title()) for h in HEADERS},
+        "external_links": EXTERNAL_LINKS,
         "section": section,
         "asset_version": asset_version(),
     }
@@ -400,6 +411,10 @@ def build_html(section: str = "", extra_data: list = []) -> str:
         data[extra_section] = json.loads(Path(DATA_DIR / extra_file).read_text())
     if section in PROCESS_DATA:
         PROCESS_DATA[section](data)
+    # A product page (CHAOS, LOOP) declares "product" in its data file:
+    # name, full_name, optional subnav [{label, href}] and contributors
+    # [{name, years}]. base.html uses it for the hero, sub-nav and footer.
+    data["product"] = (data.get(section) or {}).get("product") if isinstance(data.get(section), dict) else None
 
     loader = FileSystemLoader(TEMPLATE_DIR)
     env = Environment(loader=loader)
