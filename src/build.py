@@ -140,6 +140,9 @@ def process_publications(data: dict[str, Any]):
             if "url" in pub: pub["link"] = str(pub["url"])   #make a copy as "link" since url is overwritten here
             if doi := pub.get("doi"):
                 pub["url"] = f'<a href="https://doi.org/{doi}" target="_blank">DOI:{doi}</a>'
+                #closed-access papers have no PDF in media/publications (only open-access
+                #PDFs and arXiv preprints are hosted), so the snapshot links to the DOI
+                pub.setdefault("link", f"https://doi.org/{doi}")
             elif arxiv := pub.get("arxiv"):
                 pub["url"] = f'<a href="https://arxiv.org/{arxiv}" target="_blank">ArXiV</a>'
             elif url := pub.get("url"):
@@ -150,8 +153,16 @@ def process_publications(data: dict[str, Any]):
                 img_file = file_base / f"{filename}.png"
                 if img_file.exists():
                     pub["imgfile"] = filename
+                pub["pdf_label"] = "PDF"
                 if not pdf_file.exists():
-                    del pub["filename"]
+                    #only open-access PDFs are hosted; a closed paper may still have its
+                    #arXiv preprint (the author's version), which is linked as "preprint"
+                    arxiv = pub.get("arxiv")
+                    if arxiv and (file_base / f"{arxiv}.pdf").exists():
+                        pub["filename"] = arxiv
+                        pub["pdf_label"] = "preprint"
+                    else:
+                        del pub["filename"]
 
             year = pub["year"]
             if year not in pubs[typ].keys():
