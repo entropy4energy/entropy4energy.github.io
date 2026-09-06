@@ -5,7 +5,7 @@
   <h1>Workshops</h1>
   <p class="workshop-lead">
     The group organizes hands-on workshops on data-driven materials modeling,
-    quantum computing, and research translation.
+    quantum computing, and moving research toward application.
     Recordings and materials stay available after each event.
   </p>
   <div class="workshop-index">
@@ -20,7 +20,7 @@
           {% set facts = [] %}
           {% if workshop.sessions %}{% set _ = facts.append(workshop.sessions|length ~ " session" ~ ("s" if workshop.sessions|length != 1 else "")) %}{% endif %}
           {% if workshop.n_recordings %}{% set _ = facts.append(workshop.n_recordings ~ " recording" ~ ("s" if workshop.n_recordings != 1 else "")) %}{% endif %}
-          {% if workshop.n_materials %}{% set _ = facts.append(workshop.n_materials ~ " hands-on notebook" ~ ("s" if workshop.n_materials != 1 else "")) %}{% endif %}
+          {% if workshop.n_materials %}{% set _ = facts.append(workshop.n_materials ~ " notebook" ~ ("s" if workshop.n_materials != 1 else "")) %}{% endif %}
           {% if facts %}<div class="workshop-card-facts">{{ facts|join(" &middot; ") }}</div>{% endif %}
         </div>
       </a>
