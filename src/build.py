@@ -339,6 +339,14 @@ def process_workshops(data: dict[str, Any]):
                     "link": materials,
                     "type": materials_type,
                 }
+        # Registration and Resources entries are notes about the event, not
+        # talks: they leave the session list. Registration is shown only
+        # while the event is still ahead.
+        end = workshop_date[-1]
+        workshop["upcoming"] = end >= date.today()
+        extras = [s for s in workshop["sessions"] if s["title"] in ("Registration", "Resources")]
+        workshop["sessions"] = [s for s in workshop["sessions"] if s not in extras]
+        workshop["extras"] = [s for s in extras if s["title"] != "Registration" or workshop["upcoming"]]
         workshop["n_recordings"] = sum(1 for s in workshop["sessions"] if s.get("youtube_id"))
         workshop["n_materials"] = sum(1 for s in workshop["sessions"] if s.get("materials"))
         plain = re.sub(r"<[^>]+>", "", workshop["description"]).replace("\n", " ")
