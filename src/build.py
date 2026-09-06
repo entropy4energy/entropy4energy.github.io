@@ -61,6 +61,34 @@ def format_date(input_date: date | list[date] | list[list[int]] | list[int]) -> 
 def process_home(data: dict[str, Any]):
     for slide in data["home"]["slides"]:
         slide["date"] = format_date(slide["date"])
+    # Slideshow indicators cannot accommodate more than 8 slides
+    # for small display sizes
+    nslides_max = 8
+    img_base = BASE_PATH / "media" / "publications"
+    slides = []
+    for pub in data["publications"]["journal"]:
+        if "doi" in pub:
+            pub["url"] = f"https://doi.org/{pub['doi']}"
+        elif "arxiv" in pub:
+            pub["url"] = f"https://arxiv.org/{pub['arxiv']}"
+        elif "url" not in pub:
+            continue
+
+        if "filename" not in pub:
+            continue
+        img_file = img_base / f"{pub['filename']}.png"
+        if not img_file.exists():
+            continue
+
+        slide = {
+            "img": f"media/publications/{pub['filename']}.png",
+            "text": pub["title"],
+            "url": pub["url"],
+        }
+        slides.append(slide)
+        if len(slides) == nslides_max:
+            break
+    data["slideshow_publications"] = slides
 
 
 def process_jobs(data: dict[str, Any]):
