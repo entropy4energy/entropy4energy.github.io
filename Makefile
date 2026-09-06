@@ -54,7 +54,7 @@ all: $(BUILDTARGETS)
 # HTML embeds a content hash of the CSS and JS sources (cache busting),
 # so every page must be rebuilt when those change.
 PREREQSALL=$(BUILDPY) $(DATADIR)/news.json $(TEMPLATEDIR)/base.html $(PARTIALSRC) $(wildcard $(CSSSRC)/*.scss) $(wildcard $(JSSRC)/*.js)
-HTMLFILES=index jobs news publications research team workshops
+HTMLFILES=index jobs news publications research teaching team workshops
 html: $(foreach HTML,$(HTMLFILES),$(BLDDIR)/$(HTML).html)
 
 $(BLDDIR)/%.html: $(PREREQSALL) $(TEMPLATEDIR)/%.html $(DATADIR)/%.json
