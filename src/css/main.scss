@@ -568,6 +568,21 @@ h2 {
   min-width: 3.5em;
 }
 
+.student-comment {
+  border-left: 3px solid $color-main-4;
+  margin: 0 0 14px;
+  padding: 2px 0 2px 16px;
+
+  p {
+    margin: 0 0 4px;
+  }
+
+  footer {
+    color: gray;
+    font-size: 0.9em;
+  }
+}
+
 /* Press list (News) */
 
 .press-list {
