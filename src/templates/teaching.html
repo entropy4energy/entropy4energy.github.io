@@ -25,6 +25,13 @@
     </div>
   {% endfor %}
 
+  <h3>Guest lectures</h3>
+  <ul class="award-list">
+    {% for item in data.teaching.guest_lectures %}
+      <li><span class="award-year">{{ item.year }}</span> {{ item.text }}</li>
+    {% endfor %}
+  </ul>
+
   <h2 id="workshops">Workshops and schools</h2>
   <p>{{ data.teaching.workshops_text }}</p>
 
