@@ -33,7 +33,9 @@
   </ul>
 
   <h2 id="workshops">Workshops and schools</h2>
-  <p>{{ data.teaching.workshops_text }}</p>
+  {% for para in data.teaching.workshops_text %}
+    <p>{{ para }}</p>
+  {% endfor %}
 
   <h2 id="outreach">Outreach and mentoring</h2>
   {% for item in data.teaching.outreach %}
