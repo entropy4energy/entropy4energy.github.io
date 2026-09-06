@@ -14,11 +14,11 @@ HEADERS = [
     "research",
     "publications",
     "team",
-    "teaching",
     "news",
-    "jobs",
+    "teaching",
     "workshops",
     "tools",
+    "jobs",
 ]
 
 # Nav labels that differ from title case (product acronyms).
