@@ -99,7 +99,7 @@ nav {
   & > ul {
     display: flex;
     flex-wrap: wrap;
-    font-size: 1.5em;
+    font-size: clamp(1.1em, 1.75vw, 1.5em);
     justify-content: center;
     width: 100%;
   }
@@ -112,7 +112,9 @@ nav {
 
   li {
     border-right: 1px solid $color-main-2;
-    min-width: 7em;
+    flex: 1 1 auto;
+    max-width: 9em;
+    min-width: 5.5em;
     text-align: center;
 
     &:first-child {
