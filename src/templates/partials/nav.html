@@ -1,0 +1,31 @@
+{#- Site navigation. The active tab is marked twice: class="active" for the
+    static site, and data-s4e-tab on <body> for pages that include this
+    fragment (LOOP); shell.css lights #nav_<tab> from the body attribute. -#}
+<nav class="site-nav" aria-label="Entropy for Energy site">
+  <input id="menu_toggle" type="checkbox">
+  <label for="menu_toggle" class="menu">
+   <span class="menu-icon">
+     <span class="menu-icon-bar"></span>
+     <span class="menu-icon-bar"></span>
+     <span class="menu-icon-bar"></span>
+   </span>
+   <span class="menu-text">Menu</span>
+  </label>
+  <ul>
+    {% for header in data.headers %}
+      {% if header in data.external_links %}
+        {% set href = data.external_links[header] %}
+      {% elif header == "home" %}
+        {% set href = data.root or "." %}
+      {% else %}
+        {% set href = data.root ~ header %}
+      {% endif %}
+      {% set cls = ' class="active"' if header == data.section or header == data.parent else "" %}
+      <li>
+        <a id="nav_{{ header }}" href="{{ href }}"{{ cls }}>
+          {{ data.labels[header] }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
