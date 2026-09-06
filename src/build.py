@@ -261,9 +261,20 @@ def process_team(data: dict[str, Any]):
                                       key=functools.cmp_to_key(sort_members),
                                       reverse=True)
 
+    # Alumni: one flat list, most recent departure first (then latest start,
+    # then last name), so the people who just left sit at the top.
+    def alumni_key(member):
+        years = re.findall(r"\d{4}", str(member.get("years", "")))
+        end = int(years[-1]) if years else 0
+        start = int(years[0]) if years else 0
+        return (end, start, -ord(member["name"].split()[-1][0].lower()))
+
+    flat = [m for group in team["alumni"] for m in group["members"]]
+
     # Discard empty groups
     data["team"] = {key: [grp for grp in item if grp["members"]]
                     for key, item in team.items()}
+    data["team"]["alumni_flat"] = sorted(flat, key=alumni_key, reverse=True)
 
 
 NEWS_CATEGORIES = [
