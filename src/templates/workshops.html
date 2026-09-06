@@ -3,61 +3,98 @@
 {% block content %}
   {% set iframe_properties='allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen' %}
   <h1>Workshops</h1>
-  <div class="workshop">
-      {% for workshop in data.workshops %}
-        <h2>{{ workshop.title }}</h2>
-        <p><b>Date:</b> {{ workshop.date }}</p>
-        <p>{{ workshop.description|replace("\n", "<br>")|safe }}</p>
-        {% if workshop.highlights %}
-          <p><b>Highlights include:</b></p>
-          <ul>
-            {% for item in workshop.highlights %}
-              <li>{{ item }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-        {% if workshop.signup %}
-          <div class="workshop-link-container">
-            <a class="workshop-button" href="{{ workshop.signup }}" target="_blank">
-              Sign up
-            </a>
-          </div>
-        {% endif %}
-        {% for session in workshop.sessions %}
-          <div class="workshop-session">
-            <h3>{{ session.title }}</h3>
-            {% if session.presenter|length  == 1 %}
-              <p class="workshop-session-presenter">Presenter: {{ session.presenter[0] }}</p>
-            {% else %}
-              <p class="workshop-session-presenter">Presenters: {{ session.presenter|join(", ") }}</p>
-            {% endif %}
-            {% if session.description %}
-              <p>{{ session.description }}</p>
-            {% endif %}
-            {% if session.youtube_id %}
-              <div class="workshop-session-video">
-                <iframe src="https://youtube.com/embed/{{ session.youtube_id }}" {{ iframe_properties }}></iframe>
-              </div>
-            {% endif %}
-            {% if session.materials %}
-              {% if session.materials.type == "collab" %}
-                {% set url = "https://colab.research.google.com/drive/%s?usp=sharing" % session.materials.link %}
-                {% set link_properties='rel="noopener noreferrer"' %}
-              {% else %}
-                {% set url = session.materials.link %}
-                {% set link_properties = "" %}
-              {% endif %}
-              <div class="workshop-link-container">
-                <a class="workshop-button" target="_blank" href="{{ url }}" {{ link_properties }}>
-                  Hands-on materials
-                </a>
-              </div>
-            {% endif %}
-          </div>
-        {% endfor %}
+  <p class="workshop-lead">
+    The group organizes hands-on workshops on data-driven materials modeling,
+    quantum computing, and research translation.
+    Recordings and materials stay available after each event.
+  </p>
+  <div class="workshop-index">
+    {% for workshop in data.workshops %}
+      <a class="workshop-card" href="#{{ workshop.id }}">
         {% if workshop.has_flyer %}
-          <img src="media/workshops/{{ workshop.id }}/flyer.png" alt="Image of {{ workshop.title }}" style="width:100%; height:auto;">
+          <img src="media/workshops/{{ workshop.id }}/flyer.png" alt="" loading="lazy">
         {% endif %}
-      {% endfor %}
+        <div class="workshop-card-body">
+          <div class="workshop-card-date">{{ workshop.date }}</div>
+          <div class="workshop-card-title">{{ workshop.title }}</div>
+          <div class="workshop-card-facts">
+            {{ workshop.sessions|length }} session{{ 's' if workshop.sessions|length != 1 }}
+            {% if workshop.n_recordings %} &middot; {{ workshop.n_recordings }} recording{{ 's' if workshop.n_recordings != 1 }}{% endif %}
+            {% if workshop.n_materials %} &middot; {{ workshop.n_materials }} hands-on notebook{{ 's' if workshop.n_materials != 1 }}{% endif %}
+          </div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="workshop">
+    {% for workshop in data.workshops %}
+      <section class="workshop-entry" id="{{ workshop.id }}">
+        <h2>{{ workshop.title }}</h2>
+        <div class="workshop-header">
+          <div class="workshop-about">
+            <p class="workshop-date"><b>{{ workshop.date }}</b></p>
+            <p>{{ workshop.description|replace("\n", "<br>")|safe }}</p>
+            {% if workshop.highlights %}
+              <p><b>Highlights</b></p>
+              <ul>
+                {% for item in workshop.highlights %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            {% if workshop.signup %}
+              <p><a class="workshop-button" href="{{ workshop.signup }}" target="_blank">Sign up</a></p>
+            {% endif %}
+          </div>
+          {% if workshop.has_flyer %}
+            <a class="workshop-flyer" href="media/workshops/{{ workshop.id }}/flyer.png" target="_blank">
+              <img src="media/workshops/{{ workshop.id }}/flyer.png" alt="Flyer for {{ workshop.title }}" loading="lazy">
+            </a>
+          {% endif %}
+        </div>
+        {% if workshop.sessions %}
+          <h3 class="workshop-sessions-title">Sessions</h3>
+          <ol class="workshop-sessions">
+            {% for session in workshop.sessions %}
+              <li class="workshop-session">
+                <div class="workshop-session-head">
+                  <div class="workshop-session-info">
+                    <span class="workshop-session-name">{{ session.title }}</span>
+                    <span class="workshop-session-presenter">{{ session.presenter|join(", ") }}</span>
+                  </div>
+                  <div class="workshop-session-actions">
+                    {% if session.materials %}
+                      {% if session.materials.type == "collab" %}
+                        {% set url = "https://colab.research.google.com/drive/%s?usp=sharing" % session.materials.link %}
+                      {% else %}
+                        {% set url = session.materials.link %}
+                      {% endif %}
+                      <a class="workshop-chip" target="_blank" rel="noopener noreferrer" href="{{ url }}">Notebook</a>
+                    {% endif %}
+                    {% if session.youtube_id %}
+                      <a class="workshop-chip" target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v={{ session.youtube_id }}">YouTube</a>
+                    {% endif %}
+                  </div>
+                </div>
+                {% if session.description or session.youtube_id %}
+                  <details class="workshop-session-more">
+                    <summary>{% if session.youtube_id %}Watch{% if session.description %} and abstract{% endif %}{% else %}Abstract{% endif %}</summary>
+                    {% if session.description %}
+                      <p>{{ session.description }}</p>
+                    {% endif %}
+                    {% if session.youtube_id %}
+                      <div class="workshop-session-video">
+                        <iframe src="https://youtube.com/embed/{{ session.youtube_id }}" loading="lazy" title="{{ session.title }}" {{ iframe_properties }}></iframe>
+                      </div>
+                    {% endif %}
+                  </details>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ol>
+        {% endif %}
+      </section>
+    {% endfor %}
   </div>
 {% endblock %}
