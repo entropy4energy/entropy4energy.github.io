@@ -45,6 +45,12 @@
       {
         "presenter": ["Dr. Ian Tolfree (Emerald Development Managers)", "Carter (Ultratech Capital Partners)", "Rakesh Radhakrishnan (Prithvi Ventures)"],
         "title": "Energy IP pitch competition"
+      },
+      {
+        "title": "Links",
+        "links": [
+          {"label": "Event page with the full program and speaker biographies (Johns Hopkins Department of Materials Science and Engineering)", "href": "https://engineering.jhu.edu/materials/laboratory-to-launchpad/"}
+        ]
       }
     ]
   },
@@ -113,6 +119,7 @@
         "presenter":"Ciaran Ward",
         "title":"Resources",
         "links": [
+          {"label": "Event page (Johns Hopkins Department of Materials Science and Engineering)", "href": "https://engineering.jhu.edu/materials/event/quantum-computing-in-practice-hands-on-with-quantinuum/"},
           {"label": "Documentation for InQuanto, Nexus, and other Quantinuum products", "href": "https://docs.quantinuum.com/"},
           {"label": "Case-study tutorial: catalyzed nitrogen dissociation, based on the published workflow", "href": "https://docs.quantinuum.com/inquanto/tutorials/case_study_tutorials.html"},
           {"label": "Knowledge article: quantum error-corrected quantum phase estimation for quantum computational chemistry", "href": "https://docs.quantinuum.com/inquanto/tutorials/InQ_KA_h2xh2.html"}
@@ -127,58 +134,79 @@
       [2024, 5, 29],
       [2024, 5, 31]
     ],
-    "description": "The first <strong><em>Data-Driven Materials Modeling Workshop</em></strong> was held May 29&ndash;31, 2024. Each day combined morning seminars with hands-on sessions in the afternoon. The seminars introduced data-driven approaches for experimental and computational materials research, and the hands-on sessions gave students experience implementing the methods with guidance from graduate students and postdoctoral researchers.",
+    "description": "The first <strong><em>Data-Driven Materials Modeling Workshop</em></strong> was held May 29&ndash;31, 2024, in Hodson Hall on the Homewood campus, sponsored by the Institute for Data-Intensive Engineering and Science (IDIES), the Ralph O'Connor Sustainable Energy Institute (ROSEI), and Advanced Research Computing at Hopkins (ARCH). Each day had a theme, a morning keynote and seminar, and a hands-on afternoon: high-throughput thermodynamic modeling, quantum chemistry and catalysis, and Monte Carlo and molecular dynamics. The seminars introduced data-driven approaches for experimental and computational materials research, and the hands-on sessions gave students experience implementing the methods with guidance from graduate students and postdoctoral researchers.",
     "sessions": [
       {
-        "description": "A welcome and brief introduction to the workshop, followed by a presentation on AIMNet2.",
-        "presenter": "Prof. Olexandr Isayev",
-        "title": "Welcome and Introduction",
+        "title": "Day 1 keynote: Artificial intelligence solutions for computational and materials chemistry tasks",
+        "presenter": "Prof. Olexandr Isayev, Carnegie Mellon University",
+        "description": "A welcome and brief introduction to the workshop, followed by the keynote on universal deep learning potentials and machine-learning-guided materials discovery.",
         "youtube_id": "Gi21PB98kUY"
       },
       {
+        "title": "Day 1 seminar: Introduction of AFLOW",
         "presenter": "Prof. Corey Oses",
-        "title": "Introduction of AFLOW",
         "youtube_id": "kZj3zQkBAKg"
       },
       {
-        "materials": "1gqEJ_c2mi5r9VisNdzj7e6H2N_OiVYbr",
+        "title": "Day 1 hands-on: AFLOW-DFT",
         "presenter": "Dr. Guotao Qiu",
-        "title": "AFLOW-DFT",
+        "materials": "1gqEJ_c2mi5r9VisNdzj7e6H2N_OiVYbr",
         "youtube_id": "OLMPDG9rpPc"
       },
       {
-        "materials": "1NHxjKDCxRKZv-21llKWZVl8VtzxaoZVC",
+        "title": "Day 1 hands-on: AFLOW-Prototype",
         "presenter": "Xiao Xu",
-        "title": "AFLOW-Prototype",
+        "materials": "1NHxjKDCxRKZv-21llKWZVl8VtzxaoZVC",
         "youtube_id": "Cd4Asw8rRWA"
       },
       {
-        "materials": "1DCuvWdY3v-47sgD1GSVWo9pa52g_MD8I",
+        "title": "Day 1 hands-on: AFLOW-CHULL",
         "presenter": "Tianhao Li",
-        "title": "AFLOW-CHULL",
+        "materials": "1DCuvWdY3v-47sgD1GSVWo9pa52g_MD8I",
         "youtube_id": "jBQUSNsFBX0"
       },
       {
-        "materials": "11G7IwQAso4MnovbeP5plmFk_WZEZj5q0",
+        "title": "Day 1 hands-on: AFLOW-POCC",
         "presenter": "Dr. Yuxiang Liu",
-        "title": "AFLOW-POCC",
+        "materials": "11G7IwQAso4MnovbeP5plmFk_WZEZj5q0",
         "youtube_id": "TmJxxTfQ_wk"
       },
       {
-        "materials": "1Zz021nGh6ltnpDD1zt6aSrpfXCwy5XJT",
+        "title": "Day 1 hands-on: AFLOW-ML",
         "presenter": "Xiao Xu",
-        "title": "AFLOW-ML",
+        "materials": "1Zz021nGh6ltnpDD1zt6aSrpfXCwy5XJT",
         "youtube_id": "sgM3dx3FOi0"
       },
       {
-        "materials": "https://s4e.ai/workshops/2024_ai_materials/DAY_2/",
-        "presenter": ["Prof. Brandon Bukowski", "Prof. Tine Curk"],
-        "title": "Quantum Chemistry and Catalysis"
+        "title": "Day 2 keynote: Physical (and AI/ML amenable) paradigms for computationally interrogating atomic-scale reaction mechanisms",
+        "presenter": "Prof. John A. Keith, University of Pittsburgh"
       },
       {
-        "materials": "1CqBCY-3PAEkbkLucOE3upzmPx82CYit7",
-        "presenter": ["Prof. Brandon Bukowski", "Prof. Tine Curk"],
-        "title": "Monte Carlo and Molecular Dynamics"
+        "title": "Day 2 seminar",
+        "presenter": "Prof. Brandon Bukowski"
+      },
+      {
+        "title": "Day 2 hands-on: Quantum chemistry and catalysis (density functional theory with GPAW, ab initio molecular dynamics, machine learning potentials with NequIP)",
+        "presenter": "Prof. Brandon Bukowski",
+        "materials": "https://s4e.ai/workshops/2024_ai_materials/DAY_2/"
+      },
+      {
+        "title": "Day 3 keynote: Combining advanced simulations and experiments, a path toward understanding collective phenomena",
+        "presenter": "Prof. Erik Luijten, Northwestern University"
+      },
+      {
+        "title": "Day 3 seminar",
+        "presenter": ["Prof. Michael Falk", "Prof. Tine Curk"]
+      },
+      {
+        "title": "Day 3 hands-on: Monte Carlo and molecular dynamics (fracture with molecular dynamics, Monte Carlo for alloy equilibration, random forest classification and regression)",
+        "presenter": ["Dr. Vicente Munizaga", "Dr. Turash Haque Pial"],
+        "materials": "1CqBCY-3PAEkbkLucOE3upzmPx82CYit7"
+      },
+      {
+        "title": "Links",
+        "description": "Day 1 recordings were edited by Andrew Kim, an undergraduate in Materials Science and Engineering, and posted by Matthew Brownrigg.",
+        "links": [{"label": "Event page with the program and keynote abstracts (Johns Hopkins Department of Materials Science and Engineering)", "href": "https://engineering.jhu.edu/materials/event/data-driven-materials-modeling-workshop/"}]
       }
     ]
   }
