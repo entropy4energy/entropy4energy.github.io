@@ -185,30 +185,14 @@ def process_publications(data: dict[str, Any]):
 
 
 def process_team(data: dict[str, Any]):
-    def start_year(member):
+    def member_key(member):
+        # Order within a group: position first (PhD students above master's
+        # students), then seniority (earliest start year in "years", or an
+        # optional "start" of the form YYYY-MM-DD when a year is not enough),
+        # then the order of the entries in team.json for exact ties.
         years = re.findall(r"\d{4}", str(member.get("years", "")))
-        return int(years[0]) if years else 9999
-
-    def sort_members(a, b):
-        if a["id"] == "corey_oses":
-            return 1
-        if b["id"] == "corey_oses":
-            return -1
-        # Seniority within a group: whoever has been in the group longest
-        # (earliest start year in "years") comes first; then position within
-        # the group (PhD before master's); then last name.
-        # (The list is built with reverse=True, hence the inverted signs.)
-        start_a = start_year(a)
-        start_b = start_year(b)
-        if start_a != start_b:
-            return 1 if start_a < start_b else -1
-        if a.get("rank", 0) != b.get("rank", 0):
-            return 1 if a.get("rank", 0) < b.get("rank", 0) else -1
-        lname_a=a["name"].split()[-1]
-        lname_b=b["name"].split()[-1]
-        if lname_a != lname_b:
-            return 1 if lname_a < lname_b else -1
-        return 0
+        start = str(member.get("start") or (years[0] if years else "9999"))
+        return (member.get("rank", 0), start, member["index"])
 
     groups = [
         {
@@ -224,7 +208,7 @@ def process_team(data: dict[str, Any]):
             "title": "Postdocs",
         },
         {
-            "positions": ["Graduate Student", "Master Student", "Master's Student"],
+            "positions": ["PhD Student", "Graduate Student", "Master Student", "Master's Student"],
             "title": "Graduate Students",
         },
         {
@@ -264,8 +248,9 @@ def process_team(data: dict[str, Any]):
         # Catch-all group if no title fits
         team[key].append({"title": "Affiliates", "members": []})
 
-    for member_id, member in data["team"].items():
+    for index, (member_id, member) in enumerate(data["team"].items()):
         member["id"] = member_id
+        member["index"] = index
         # A member without a headshot in src/media/team gets no <img> at all
         # (a broken image with alt text is worse than a blank).
         member["has_photo"] = (BASE_PATH / "media" / "team" / f"{member_id}.jpg").exists()
@@ -298,9 +283,7 @@ def process_team(data: dict[str, Any]):
 
     for groups in team.values():
         for group in groups:
-            group["members"] = sorted(group["members"],
-                                      key=functools.cmp_to_key(sort_members),
-                                      reverse=True)
+            group["members"] = sorted(group["members"], key=member_key)
 
     # Alumni: one flat list, most recent departure first (then latest start,
     # then last name), so the people who just left sit at the top.
