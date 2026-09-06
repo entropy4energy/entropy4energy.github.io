@@ -84,5 +84,19 @@
       "year": "2023",
       "text": "Reviewer of the Year 2022, <i>npj Computational Materials</i>"
     }
+  ],
+  "guest_lectures": [
+    {
+      "year": "2026",
+      "text": "Guest lecture on applications of thermodynamics to materials, EN.510.603 Phase Transformations (T. Curk), Johns Hopkins University"
+    },
+    {
+      "year": "2026",
+      "text": "Faculty guest, Foundations of Materials Science and Engineering (T. Weihs), Johns Hopkins University"
+    },
+    {
+      "year": "2023",
+      "text": "Guest lecture, Department of Materials Science and Engineering course of A. S. Hall, Johns Hopkins University"
+    }
   ]
 }
