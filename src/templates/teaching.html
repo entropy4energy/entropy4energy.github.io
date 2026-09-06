@@ -7,8 +7,6 @@
     <a href="#courses">Courses</a>
     <a href="#workshops">Workshops</a>
     <a href="#outreach">Outreach</a>
-    <a href="#service">Service</a>
-    <a href="#awards">Awards</a>
   </div>
 
   <h2 id="courses">Courses</h2>
@@ -50,17 +48,4 @@
     <p><b>{{ item.title }}.</b> {{ item.text }}</p>
   {% endfor %}
 
-  <h2 id="service">Service</h2>
-  <ul>
-    {% for item in data.teaching.service %}
-      <li>{{ item }}</li>
-    {% endfor %}
-  </ul>
-
-  <h2 id="awards">Awards and recognition</h2>
-  <ul class="award-list">
-    {% for award in data.teaching.awards %}
-      <li><span class="award-year">{{ award.year }}</span> {{ award.text }}</li>
-    {% endfor %}
-  </ul>
 {% endblock %}
