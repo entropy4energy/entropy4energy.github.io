@@ -7,7 +7,7 @@
       "term": "Every fall since 2023",
       "text": [
         "Students write scientific code in Python and use it to model materials. The course starts with the tools of the trade: the UNIX shell, Git, LaTeX, and Make. It then builds numerical methods from their mathematical statements, including integration of equations of motion, relaxation methods for fields, eigenvalue problems, random numbers, and Monte Carlo sampling. Those methods are applied to materials through density functional theory, high-throughput materials databases, molecular dynamics, and machine learning. The final unit is autonomous experimentation, in which prior results choose the next experiment, built on the LEGOLAS low-cost autonomous laboratory kit.",
-        "There are no written examinations. Each of the seven assignments is a working program and a report typeset in LaTeX, tracked in a GitHub repository, and the semester ends with a group project presented in class. Students implement each method themselves rather than calling a library that already solves the problem, and every result is checked against an analytic limit, a conservation law, or a convergence test. Electronic structure and molecular dynamics assignments run on the university's Rockfish cluster with VASP, AFLOW, and LAMMPS.",
+        "There are no written examinations. Each of the seven assignments is a working program and a report typeset in LaTeX, tracked in a GitHub repository, and the semester ends with a group project presented in class. Students implement each method themselves rather than calling a library that already solves the problem, and every result is checked against an analytic limit, a conservation law, or a convergence test. The density functional theory, high-throughput modeling, and molecular dynamics assignments run on the university's research computing cluster.",
         "The course enrolls 15 to 17 students each fall, most of them graduate students in materials science and related departments, with a waiting list in 2026."
       ]
     },
@@ -28,7 +28,7 @@
       ]
     }
   ],
-  "workshops_text": "The group organizes hands-on workshops at Johns Hopkins University on data-driven materials modeling, quantum computing for materials, and moving energy research toward application. Recordings and notebooks from past events are on the <a href=\"workshops\">Workshops</a> page. Corey co-organized the AFLOW Schools held at Carnegie Mellon University, the University of Pennsylvania, Texas A&amp;M University, TU Dresden, and the University of Rwanda. He has presented at the University of Maryland and NIST Machine Learning for Materials Research bootcamps since 2018.",
+  "workshops_text": "The group organizes hands-on workshops at Johns Hopkins University on data-driven materials modeling, quantum computing for materials, and moving energy research toward application. Recordings and notebooks from past events are on the <a href=\"workshops\">Workshops</a> page. Corey co-organized schools on high-throughput computational materials science at Carnegie Mellon University, the University of Pennsylvania, Texas A&amp;M University, TU Dresden, and the University of Rwanda. He has presented at the University of Maryland and NIST Machine Learning for Materials Research bootcamps since 2018.",
   "outreach": [
     {
       "title": "Research in the group",
