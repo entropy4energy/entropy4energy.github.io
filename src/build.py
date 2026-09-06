@@ -337,9 +337,12 @@ def process_workshops(data: dict[str, Any]):
         workshop_dir = Path(BASE_PATH, "media", "workshops", workshop["id"])
         workshop["has_flyer"] = (workshop_dir / "flyer.png").exists()
         for session in workshop["sessions"]:
-            if isinstance(session["presenter"], str):
-                session["presenter"] = [session["presenter"]]
-            elif not isinstance(session["presenter"], list):
+            presenter = session.get("presenter", [])
+            if isinstance(presenter, str):
+                session["presenter"] = [presenter]
+            elif isinstance(presenter, list):
+                session["presenter"] = presenter
+            else:
                 raise TypeError("Presenter must be str or list.")
             if materials := session.get("materials"):
                 if materials.startswith("http"):
@@ -355,7 +358,7 @@ def process_workshops(data: dict[str, Any]):
         # while the event is still ahead.
         end = workshop_date[-1]
         workshop["upcoming"] = end >= date.today()
-        extras = [s for s in workshop["sessions"] if s["title"] in ("Registration", "Resources")]
+        extras = [s for s in workshop["sessions"] if s["title"] in ("Registration", "Resources", "Links")]
         workshop["sessions"] = [s for s in workshop["sessions"] if s not in extras]
         workshop["extras"] = [s for s in extras if s["title"] != "Registration" or workshop["upcoming"]]
         workshop["n_recordings"] = sum(1 for s in workshop["sessions"] if s.get("youtube_id"))
