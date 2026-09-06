@@ -16,15 +16,15 @@
     "subnav": [
       {
         "label": "Datasets",
-        "href": "chaos.html#datasets"
+        "href": "chaos#datasets"
       },
       {
         "label": "API",
-        "href": "chaos.html#api"
+        "href": "chaos#api"
       },
       {
         "label": "CHAOS-GPT",
-        "href": "chaos.html#gpt"
+        "href": "chaos#gpt"
       },
       {
         "label": "LOOP",
