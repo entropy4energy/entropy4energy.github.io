@@ -35,7 +35,7 @@
   "outreach": [
     {
       "title": "Research in the group",
-      "text": "Since 2022, the group has hosted nine undergraduate researchers, six high school researchers, five visiting students, and four master's students, in addition to its PhD students, postdoctoral associates, and research scientists. Undergraduates join through programs including the ROSETAS REU and through Johns Hopkins research credit. Several undergraduate and high school researchers have become co-authors on group publications."
+      "text": "Since 2022, the group has hosted nine undergraduate researchers, six high school researchers, five visiting students, and four master's students, in addition to its PhD students, postdoctoral associates, and research scientists. Undergraduates join through the Research on Sustainable Energy Technology and Systems (ROSETAS) summer program, a National Science Foundation Research Experience for Undergraduates site hosted by ROSEI, and through Johns Hopkins research credit. Several undergraduate and high school researchers have become co-authors on group publications."
     },
     {
       "title": "Ingenuity Project Research Practicum",
@@ -91,15 +91,11 @@
   "guest_lectures": [
     {
       "year": "2026",
-      "text": "Faculty guest, Foundations of Materials Science and Engineering (T. Weihs), Johns Hopkins University, December 2026"
-    },
-    {
-      "year": "2026",
-      "text": "Guest lecture on applications of thermodynamics to materials, EN.510.603 Phase Transformations (T. Curk), Johns Hopkins University, February 2026"
+      "text": "Guest lecture on applications of thermodynamics to materials, EN.510.603 Phase Transformations (T. Curk), Johns Hopkins University"
     },
     {
       "year": "2023",
-      "text": "Guest lecture, Department of Materials Science and Engineering course of A. S. Hall, Johns Hopkins University"
+      "text": "Guest lecture, EN.510.422/622 Micro and Nano Structured Materials and Devices (A. S. Hall), Johns Hopkins University"
     }
   ],
   "student_comments": [
