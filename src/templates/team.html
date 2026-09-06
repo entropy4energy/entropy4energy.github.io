@@ -42,23 +42,18 @@
     {% endfor %}
   {% endfor %}
 </div>
-{% if data.team.alumni|length > 0 %}
-  <div id="alumni">
-    <h2>Alumni</h2>
-    {% for group in data.team.alumni %}
-      {% if group.members %}
-        <h3 class="alumni-group">{{ group.title or "Faculty" }} <span class="alumni-count">{{ group.members|length }}</span></h3>
-        <ul class="alumni-list">
-          {% for member in group.members %}
-            <li class="alumni-member">
-              <span class="alumni-name">{{ member.name }}</span>
-              <span class="alumni-role">{{ member.titles|join(", ") }}</span>
-              {% if member.years %}<span class="alumni-years">{{ member.years }}</span>{% endif %}
-            </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endfor %}
-  </div>
+{% if data.team.alumni_flat %}
+  <details class="alumni-archive" id="alumni">
+    <summary>Alumni <span class="alumni-count">{{ data.team.alumni_flat|length }}</span></summary>
+    <ul class="alumni-list">
+      {% for member in data.team.alumni_flat %}
+        <li class="alumni-member">
+          <span class="alumni-name">{{ member.name }}</span>
+          <span class="alumni-role">{{ member.titles|join(", ") }}</span>
+          {% if member.years %}<span class="alumni-years">{{ member.years }}</span>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </details>
 {% endif %}
 {% endblock %}
