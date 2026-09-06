@@ -1,6 +1,25 @@
 {
   "journal": [
     {
+      "status": "press",
+      "year": 2026,
+      "title": "Structural benchmarks overlook density-of-states errors in machine-learned interatomic potentials",
+      "authors": [
+        "S.-Y.&nbsp;Tseng",
+        "G.&nbsp;Han",
+        "T.&nbsp;Li",
+        "X.&nbsp;Xu",
+        "J.&nbsp;Hu",
+        "G.&nbsp;Qiu",
+        "C.&nbsp;Oses"
+      ],
+      "journal": "APL Machine Learning",
+      "volume": "4",
+      "doi": "10.1063/5.0339982",
+      "filename": "10.1063_5.0339982",
+      "open_access": true
+    },
+    {
       "status": "published",
       "year": 2026,
       "title": "Stabilizing Iodine in Pyrochlore: Toward New Nuclear Waste Forms",
@@ -17,8 +36,12 @@
         "C.&nbsp;Oses"
       ],
       "journal": "Precision Chemistry",
+      "volume": "4",
+      "number": "8",
+      "pages": "1211&ndash1224",
       "doi": "10.1021/prechem.5c00467",
-      "filename": "10.1021_prechem.5c00467"
+      "filename": "10.1021_prechem.5c00467",
+      "open_access": true
     },
     {
       "status": "published",
@@ -38,7 +61,8 @@
       "volume": "9",
       "pages": "045001",
       "doi": "10.1088/2399-1984/ae19b0",
-      "filename": "10.1088_2399-1984_ae19b0"
+      "filename": "10.1088_2399-1984_ae19b0",
+      "open_access": true
     },
     {
       "status": "published",
@@ -56,7 +80,8 @@
       "volume": "12",
       "pages": "5946&ndash;5956",
       "doi": "10.1039/D5MH00356C",
-      "filename": "10.1039_D5MH00356C"
+      "filename": "10.1039_D5MH00356C",
+      "open_access": true
     },
     {
       "status": "published",
@@ -75,7 +100,8 @@
       "volume": "11",
       "pages": "145",
       "doi": "10.1038/s41524-025-01594-6",
-      "filename": "10.1038_s41524-025-01594-6"
+      "filename": "10.1038_s41524-025-01594-6",
+      "open_access": true
     },
     {
       "status": "published",
@@ -96,7 +122,8 @@
       "number": "1",
       "pages": "510&ndash;518",
       "doi": "10.1021/jacs.4c11753",
-      "filename": "10.1021_jacs.4c11753"
+      "filename": "10.1021_jacs.4c11753",
+      "open_access": false
     },
     {
       "status": "published",
@@ -114,7 +141,8 @@
       "volume": "276",
       "pages": "120117",
       "doi": "10.1016/j.actamat.2024.120117",
-      "filename": "10.1016_j.actamat.2024.120117"
+      "filename": "10.1016_j.actamat.2024.120117",
+      "open_access": true
     },
     {
       "status": "published",
@@ -186,6 +214,7 @@
       "pages": "1509&ndash;1533",
       "doi": "10.1039/D4DD00039K",
       "filename": "10.1039_D4DD00039K",
+      "open_access": true,
       "arxiv": "2402.00572"
     },
     {
@@ -221,7 +250,8 @@
       "volume": "625",
       "pages": "66&ndash;73",
       "doi": "10.1038/s41586-023-06786-y",
-      "filename": "10.1038_s41586-023-06786-y"
+      "filename": "10.1038_s41586-023-06786-y",
+      "open_access": true
     },
     {
       "status": "published",
@@ -243,6 +273,7 @@
       "pages": "3328",
       "doi": "10.1038/s41467-024-46753-3",
       "filename": "10.1038_s41467-024-46753-3",
+      "open_access": true,
       "arxiv": "2309.04053"
     },
     {
@@ -274,7 +305,8 @@
       "volume": "27",
       "pages": "101682",
       "doi": "10.1016/j.mtla.2023.101682",
-      "filename": "10.1016_j.mtla.2023.101682"
+      "filename": "10.1016_j.mtla.2023.101682",
+      "open_access": false
     },
     {
       "status": "published",
@@ -307,6 +339,7 @@
       "pages": "111889",
       "doi": "10.1016/j.commatsci.2022.111889",
       "filename": "10.1016_j.commatsci.2022.111889",
+      "open_access": false,
       "arxiv": "2208.03052"
     },
     {
@@ -333,6 +366,7 @@
       "pages": "111808",
       "doi": "10.1016/j.commatsci.2022.111808",
       "filename": "10.1016_j.commatsci.2022.111808",
+      "open_access": false,
       "arxiv": "2207.09842"
     },
     {
@@ -356,6 +390,7 @@
       "pages": "118594",
       "doi": "10.1016/j.actamat.2022.118594",
       "filename": "10.1016_j.actamat.2022.118594",
+      "open_access": false,
       "arxiv": "2212.00919"
     },
     {
@@ -376,7 +411,8 @@
       "volume": "13",
       "pages": "5993",
       "doi": "10.1038/s41467-022-33497-1",
-      "filename": "10.1038_s41467-022-33497-1"
+      "filename": "10.1038_s41467-022-33497-1",
+      "open_access": true
     },
     {
       "status": "published",
@@ -396,6 +432,7 @@
       "pages": "e202205129",
       "doi": "10.1002/anie.202205129",
       "filename": "10.1002_anie.202205129",
+      "open_access": false,
       "arxiv": "2204.03231"
     },
     {
@@ -456,7 +493,8 @@
       "number": "2",
       "pages": "023004",
       "doi": "10.1088/2516-1075/ac572f",
-      "filename": "10.1088_2516-1075_ac572f"
+      "filename": "10.1088_2516-1075_ac572f",
+      "open_access": true
     },
     {
       "status": "published",
@@ -477,6 +515,7 @@
       "pages": "815863",
       "doi": "10.3389/fphy.2022.815863",
       "filename": "10.3389_fphy.2022.815863",
+      "open_access": true,
       "arxiv": "2111.07478"
     },
     {
@@ -499,6 +538,7 @@
       "pages": "194&ndash;202",
       "doi": "10.1557/s43577-022-00281-x",
       "filename": "10.1557_s43577-022-00281-x",
+      "open_access": false,
       "arxiv": "2111.11519"
     },
     {
@@ -521,7 +561,8 @@
       "volume": "12",
       "pages": "5747",
       "doi": "10.1038/s41467-021-25979-5",
-      "filename": "10.1038_s41467-021-25979-5"
+      "filename": "10.1038_s41467-021-25979-5",
+      "open_access": true
     },
     {
       "status": "published",
@@ -546,7 +587,8 @@
       "number": "42",
       "pages": "2102904",
       "doi": "10.1002/adma.202102904",
-      "filename": "10.1002_adma.202102904"
+      "filename": "10.1002_adma.202102904",
+      "open_access": false
     },
     {
       "status": "published",
@@ -616,6 +658,7 @@
       "pages": "217",
       "doi": "10.1038/s41597-021-00974-z",
       "filename": "10.1038_s41597-021-00974-z",
+      "open_access": true,
       "arxiv": "2103.02068"
     },
     {
@@ -638,6 +681,7 @@
       "pages": "043803",
       "doi": "10.1103/PhysRevMaterials.5.043803",
       "filename": "10.1103_PhysRevMaterials.5.043803",
+      "open_access": false,
       "arxiv": "2101.02724"
     },
     {
@@ -659,7 +703,7 @@
       "pages": "110450",
       "doi": "10.1016/j.commatsci.2021.110450",
       "filename": "10.1016_j.commatsci.2021.110450",
-      "url": "https://s4e.ai/ARTL/10.1016_j.commatsci.2021.110450.pdf",
+      "open_access": false,
       "arxiv": "2012.05961"
     },
     {
@@ -683,6 +727,7 @@
       "pages": "083608",
       "doi": "10.1103/PhysRevMaterials.5.083608",
       "filename": "10.1103_PhysRevMaterials.5.083608",
+      "open_access": false,
       "arxiv": "2010.07168"
     },
     {
@@ -710,7 +755,8 @@
       "volume": "215",
       "pages": "117051",
       "doi": "10.1016/j.actamat.2021.117051",
-      "filename": "10.1016_j.actamat.2021.117051"
+      "filename": "10.1016_j.actamat.2021.117051",
+      "open_access": false
     },
     {
       "status": "published",
@@ -740,6 +786,7 @@
       "pages": "5966",
       "doi": "10.1038/s41467-020-19597-w",
       "filename": "10.1038_s41467-020-19597-w",
+      "open_access": true,
       "arxiv": "2006.06141"
     },
     {
@@ -762,7 +809,8 @@
       "volume": "6",
       "pages": "42",
       "doi": "10.1038/s41524-020-0317-6",
-      "filename": "10.1038_s41524-020-0317-6"
+      "filename": "10.1038_s41524-020-0317-6",
+      "open_access": true
     },
     {
       "status": "published",
@@ -777,7 +825,8 @@
       "volume": "5",
       "pages": "295&ndash;309",
       "doi": "10.1038/s41578-019-0170-8",
-      "filename": "10.1038_s41578-019-0170-8"
+      "filename": "10.1038_s41578-019-0170-8",
+      "open_access": false
     },
     {
       "status": "published",
@@ -795,6 +844,7 @@
       "pages": "297&ndash;305",
       "doi": "10.1016/j.actamat.2019.07.008",
       "filename": "10.1016_j.actamat.2019.07.008",
+      "open_access": false,
       "arxiv": "1902.00485"
     },
     {
@@ -816,6 +866,7 @@
       "pages": "89",
       "doi": "10.1038/s41524-019-0226-8",
       "filename": "10.1038_s41524-019-0226-8",
+      "open_access": true,
       "arxiv": "1906.05886"
     },
     {
@@ -833,6 +884,7 @@
       "pages": "69",
       "doi": "10.1038/s41524-019-0206-z",
       "filename": "10.1038_s41524-019-0206-z",
+      "open_access": true,
       "arxiv": "1906.01085"
     },
     {
@@ -854,6 +906,7 @@
       "pages": "59",
       "doi": "10.1038/s41524-019-0192-1",
       "filename": "10.1038_s41524-019-0192-1",
+      "open_access": true,
       "arxiv": "1811.08952"
     },
     {
@@ -875,6 +928,7 @@
       "pages": "073801",
       "doi": "10.1103/PhysRevMaterials.3.073801",
       "filename": "10.1103_PhysRevMaterials.3.073801",
+      "open_access": false,
       "arxiv": "1807.04669"
     },
     {
@@ -902,6 +956,7 @@
       "pages": "2477&ndash;2490",
       "doi": "10.1021/acs.jcim.8b00393",
       "filename": "10.1021_acs.jcim.8b00393",
+      "open_access": false,
       "arxiv": "1806.06901"
     },
     {
@@ -919,6 +974,7 @@
       "pages": "670&ndash;675",
       "doi": "10.1557/mrs.2018.207",
       "filename": "10.1557_mrs.2018.207",
+      "open_access": false,
       "arxiv": "1803.05035"
     },
     {
@@ -941,7 +997,8 @@
       "volume": "9",
       "pages": "4980",
       "doi": "10.1038/s41467-018-07160-7",
-      "filename": "10.1038_s41467-018-07160-7"
+      "filename": "10.1038_s41467-018-07160-7",
+      "open_access": true
     },
     {
       "status": "published",
@@ -961,6 +1018,7 @@
       "pages": "29",
       "doi": "10.1038/s41524-018-0085-8",
       "filename": "10.1038_s41524-018-0085-8",
+      "open_access": true,
       "arxiv": "1709.02727"
     },
     {
@@ -985,6 +1043,7 @@
       "pages": "134&ndash;145",
       "doi": "10.1016/j.commatsci.2018.03.075",
       "filename": "10.1016_j.commatsci.2018.03.075",
+      "open_access": false,
       "arxiv": "1711.10744"
     },
     {
@@ -1007,6 +1066,7 @@
       "pages": "184&ndash;203",
       "doi": "10.1107/S2053273318003066",
       "filename": "10.1107_S2053273318003066",
+      "open_access": false,
       "arxiv": "1802.07977"
     },
     {
@@ -1026,6 +1086,7 @@
       "pages": "653&ndash;667",
       "doi": "10.1021/acs.inorgchem.7b02462",
       "filename": "10.1021_acs.inorgchem.7b02462",
+      "open_access": false,
       "arxiv": "1703.04497"
     },
     {
@@ -1046,6 +1107,7 @@
       "pages": "362&ndash;370",
       "doi": "10.1016/j.commatsci.2017.04.036",
       "filename": "10.1016_j.commatsci.2017.04.036",
+      "open_access": false,
       "arxiv": "1612.05130"
     },
     {
@@ -1066,12 +1128,13 @@
       "pages": "15679",
       "doi": "10.1038/ncomms15679",
       "filename": "10.1038_ncomms15679",
+      "open_access": true,
       "arxiv": "1608.04782"
     },
     {
       "status": "published",
       "year": 2017,
-      "title": "Combining the AFLOW GIBBS and elastic libraries to efficiently and robustly screening thermomechanical properties of solids",
+      "title": "Combining the AFLOW GIBBS and elastic libraries to efficiently and robustly screen thermomechanical properties of solids",
       "authors": [
         "C.&nbsp;Toher",
         "C.&nbsp;Oses",
@@ -1090,6 +1153,7 @@
       "pages": "015401",
       "doi": "10.1103/PhysRevMaterials.1.015401",
       "filename": "10.1103_PhysRevMaterials.1.015401",
+      "open_access": false,
       "arxiv": "1611.05714"
     },
     {
@@ -1109,6 +1173,7 @@
       "pages": "438&ndash;447",
       "doi": "10.1016/j.actamat.2016.09.017",
       "filename": "10.1016_j.actamat.2016.09.017",
+      "open_access": false,
       "arxiv": "1603.05967"
     },
     {
@@ -1132,7 +1197,8 @@
       "number": "4",
       "pages": "e1602241",
       "doi": "10.1126/sciadv.1602241",
-      "filename": "10.1126_sciadv.1602241"
+      "filename": "10.1126_sciadv.1602241",
+      "open_access": true
     },
     {
       "status": "published",
@@ -1151,6 +1217,7 @@
       "pages": "041061",
       "doi": "10.1103/PhysRevX.6.041061",
       "filename": "10.1103_PhysRevX.6.041061",
+      "open_access": true,
       "arxiv": "1606.03279"
     },
     {
@@ -1168,6 +1235,7 @@
       "pages": "6484&ndash;6492",
       "doi": "10.1021/acs.chemmater.6b01449",
       "filename": "10.1021_acs.chemmater.6b01449",
+      "open_access": false,
       "arxiv": "1511.04373"
     },
     {
@@ -1192,6 +1260,7 @@
       "pages": "233&ndash;238",
       "doi": "10.1016/j.commatsci.2015.07.019",
       "filename": "10.1016_j.commatsci.2015.07.019",
+      "open_access": false,
       "arxiv": "1506.00303"
     },
     {
@@ -1213,6 +1282,7 @@
       "pages": "735&ndash;743",
       "doi": "10.1021/cm503507h",
       "filename": "10.1021_cm503507h",
+      "open_access": true,
       "arxiv": "1412.4096"
     }
   ],
@@ -1232,6 +1302,7 @@
       "pages": "181&ndash;222",
       "doi": "10.1002/9783527802265.ch7",
       "filename": "10.1002_9783527802265.ch7",
+      "open_access": false,
       "url": "https://www.wiley.com/en-us/Materials+Informatics-p-9783527341214",
       "arxiv": "1805.05309"
     },
@@ -1250,7 +1321,8 @@
         "S.&nbsp;Curtarolo"
       ],
       "doi": "10.1007/978-3-319-50257-1_108-1",
-      "filename": "10.1007_978-3-319-50257-1_108-1"
+      "filename": "10.1007_978-3-319-50257-1_108-1",
+      "open_access": false
     },
     {
       "status": "published",
@@ -1314,6 +1386,7 @@
       "pages": "1&ndash;28",
       "doi": "10.1007/978-3-319-42913-7_63-2",
       "filename": "10.1007_978-3-319-42913-7_63-2",
+      "open_access": false,
       "arxiv": "1712.00422"
     }
   ]
