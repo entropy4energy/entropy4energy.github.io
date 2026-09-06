@@ -336,7 +336,30 @@ def process_workshops(data: dict[str, Any]):
         workshop["summary"] = first
 
 
+CHAOS_SET_LABELS = {
+    1: "Unaries", 2: "Binaries", 3: "Ternaries", 4: "Quaternaries",
+    5: "Quinaries", 6: "Senaries", 7: "Septenaries", 8: "Octonaries",
+}
+
+
+def process_chaos(data: dict[str, Any]):
+    """Turn the flat file list into table rows: label, name, snapshot date."""
+    rows = []
+    for name in data["chaos"]["files"]:
+        m = re.match(r"(\d+)_(\w+?)_(\d{4})-(\d{2})-(\d{2})\.", name)
+        if m:
+            order = int(m.group(1))
+            label = CHAOS_SET_LABELS.get(order, m.group(2).title())
+            snapshot = date(int(m.group(3)), int(m.group(4)), int(m.group(5))).strftime("%b %d, %Y")
+        else:
+            label = "Checksums" if "checksum" in name else name
+            snapshot = ""
+        rows.append({"label": label, "name": name, "date": snapshot})
+    data["chaos"]["file_rows"] = rows
+
+
 PROCESS_DATA = {
+    "chaos": process_chaos,
     "home": process_home,
     "jobs": process_jobs,
     "publications": process_publications,
