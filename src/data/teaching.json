@@ -1,0 +1,88 @@
+{
+  "intro": "Teaching in the <i>S4E</i> lab follows the same idea as the research: students learn to compute, to reason about materials, and to check a numerical result against physics before trusting it. The courses below are taught at Johns Hopkins University. The workshops, outreach programs, and research mentoring extend the same material to people outside the classroom.",
+  "courses": [
+    {
+      "code": "EN.510.466 / EN.510.666",
+      "title": "Materials Modeling",
+      "term": "Every fall since 2023",
+      "text": [
+        "Students write scientific code in Python and use it to model materials. The course starts with the tools of the trade: the UNIX shell, Git, LaTeX, and Make. It then builds numerical methods from their mathematical statements, including integration of equations of motion, relaxation methods for fields, eigenvalue problems, random numbers, and Monte Carlo sampling. Those methods are applied to materials through density functional theory, high-throughput materials databases, molecular dynamics, and machine learning. The final unit is autonomous experimentation, in which prior results choose the next experiment, built on the LEGOLAS low-cost autonomous laboratory kit.",
+        "There are no written examinations. Each of the seven assignments is a working program and a report typeset in LaTeX, tracked in a GitHub repository, and the semester ends with a group project presented in class. Students implement each method themselves rather than calling a library that already solves the problem, and every result is checked against an analytic limit, a conservation law, or a convergence test. Electronic structure and molecular dynamics assignments run on the university's Rockfish cluster with VASP, AFLOW, and LAMMPS.",
+        "The course enrolls 15 to 17 students each fall, most of them graduate students in materials science and related departments, with a waiting list in 2026."
+      ]
+    },
+    {
+      "code": "EN.500.113",
+      "title": "Gateway Computing: Python",
+      "term": "Every spring since 2023",
+      "text": [
+        "The first programming course for engineering students: algorithms, control structures, functions, files, testing, and debugging, with problems drawn from engineering and science. Corey teaches two sections each spring, 20 to 30 students in total."
+      ]
+    },
+    {
+      "code": "EN.510.501 / EN.510.502 / EN.510.809",
+      "title": "Research for credit",
+      "term": "Every term",
+      "text": [
+        "Undergraduate, master's, and graduate students carry out research in the group for course credit during the academic year and over the summer. How to join is on the <a href=\"jobs\">Jobs</a> page."
+      ]
+    }
+  ],
+  "workshops_text": "The group organizes hands-on workshops at Johns Hopkins University on data-driven materials modeling, quantum computing for materials, and moving energy research toward application. Recordings and notebooks from past events are on the <a href=\"workshops\">Workshops</a> page. Corey co-organized the AFLOW Schools held at Carnegie Mellon University, the University of Pennsylvania, Texas A&amp;M University, TU Dresden, and the University of Rwanda. He has presented at the University of Maryland and NIST Machine Learning for Materials Research bootcamps since 2018.",
+  "outreach": [
+    {
+      "title": "Research in the group",
+      "text": "Since 2022 the group has hosted nine undergraduate researchers, six high school researchers, five visiting students, and four master's students alongside its PhD students, postdoctoral associates, and research scientists. Undergraduates join through the ROSETAS REU summer program and through Johns Hopkins University research credit. Several undergraduate and high school researchers are co-authors on group publications."
+    },
+    {
+      "title": "Ingenuity Project research practicum",
+      "text": "Since 2023 the group has mentored high school students from the Ingenuity Project at Baltimore Polytechnic Institute in its year-long Research Practicum. Students build and program the LEGOLAS low-cost autonomous laboratory, a LEGO-based robot that runs experiments and uses machine learning to choose the next one, and each cohort trains the one that follows. The same kit, developed at the University of Maryland and NIST, closes the Materials Modeling course each year."
+    },
+    {
+      "title": "Society of Hispanic Professional Engineers",
+      "text": "Corey is faculty mentor for the Johns Hopkins University chapter."
+    }
+  ],
+  "service": [
+    "Chair, Colloquium Committee, Johns Hopkins Data Science and AI Institute",
+    "Member, Research Computing Faculty Advisory Committee, Johns Hopkins University",
+    "Host, Johns Hopkins Data Science and AI Institute Fall Symposium (2025, 2026)",
+    "Conference Co-Chair, Materials Research Data Alliance (MaRDA) 2024 Annual Meeting",
+    "Co-Organizer, Mini Symposium on Computational Thermodynamics, 2025 SIAM NY-NJ-PA Section Conference",
+    "Session Chair, APS March Meeting 2024; Session Co-Chair, ROSEI 2024 Summit"
+  ],
+  "awards": [
+    {
+      "year": "2026",
+      "text": "Catalyst Early Career Award, Johns Hopkins University"
+    },
+    {
+      "year": "2026",
+      "text": "MGB-SIAM Early Career Fellowship, Society for Industrial and Applied Mathematics"
+    },
+    {
+      "year": "2026",
+      "text": "IGNIITE Early Career Award, Advanced Research Projects Agency-Energy"
+    },
+    {
+      "year": "2026",
+      "text": "Most Popular Articles 2025, <i>Materials Horizons</i>, Royal Society of Chemistry"
+    },
+    {
+      "year": "2025",
+      "text": "Nexus Award, Johns Hopkins University (with A. G. Bregman, S. D. Cohen, and J. Erlebacher)"
+    },
+    {
+      "year": "2024",
+      "text": "Early-Career Investigator Award in Materials Modelling, International Society of Materials Modeling"
+    },
+    {
+      "year": "2024",
+      "text": "Editors' Highlight, <i>Nature Communications</i>"
+    },
+    {
+      "year": "2023",
+      "text": "Reviewer of the Year 2022, <i>npj Computational Materials</i>"
+    }
+  ]
+}
