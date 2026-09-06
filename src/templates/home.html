@@ -40,7 +40,7 @@
     Recent results include the
     <a href="https://doi.org/10.1021/prechem.5c00467" target="_blank">first demonstration that iodine can be incorporated directly into a pyrochlore crystal lattice</a>,
     <a href="https://doi.org/10.1088/2399-1984/ae19b0" target="_blank">platinum-free fuel-cell catalyst candidates</a>,
-    and <a href="publications.html">new computational methods</a>
+    and <a href="publications">new computational methods</a>
     for high-entropy materials. The program is supported by ARPA-E, the
     Seaver Institute, <a href="https://energyinstitute.jhu.edu/" target="_blank">ROSEI</a>,
     and the <a href="https://ai.jhu.edu/" target="_blank">Data Science and AI Institute</a>.
@@ -49,7 +49,7 @@
   {% if data.research %}
     <div class="direction-cards">
       {% for direction in data.research.directions %}
-        <a class="direction-card" href="research.html#{{ direction.id }}">
+        <a class="direction-card" href="research#{{ direction.id }}">
           <img src="media/research/{{ direction.image }}" alt="{{ direction.image_alt }}">
           <div class="direction-card-title">{{ direction.title }}</div>
           <div class="direction-card-text">{{ direction.blurb }}</div>
@@ -60,7 +60,7 @@
   <p>
     The <i>S4E</i> lab is recruiting PhD students and postdoctoral researchers
     with backgrounds in materials science, physics, chemistry, and computer
-    science. See the <a href="jobs.html">Jobs</a> page for how to apply.
+    science. See the <a href="jobs">Jobs</a> page for how to apply.
   </p>
   {% if data.slideshow_publications %}
     <div class="slideshow bottom" id="bottom_slideshow">

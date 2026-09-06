@@ -1,0 +1,17 @@
+# Clean URLs: /research serves research.html; old /research.html addresses
+# redirect to the clean form. GitHub Pages does the same natively, so this
+# file only matters on s4e.ai (Apache, AllowOverride All).
+Options -MultiViews
+RewriteEngine On
+
+# /index.html -> /
+RewriteCond %{THE_REQUEST} \s/index\.html[\s?]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# /name.html -> /name (only when requested that way by the client)
+RewriteCond %{THE_REQUEST} \s/([A-Za-z0-9_-]+)\.html[\s?]
+RewriteRule ^([A-Za-z0-9_-]+)\.html$ /$1 [R=301,L]
+
+# /name -> name.html (internal, no trailing slash, file must exist)
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^([A-Za-z0-9_-]+)$ $1.html [L]
