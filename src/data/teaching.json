@@ -16,7 +16,7 @@
       "title": "Gateway Computing: Python",
       "term": "Every spring since 2023",
       "text": [
-        "An introductory programming course for engineering students covering algorithms, control structures, functions, files, testing, and debugging, with problems drawn from engineering and science. Corey teaches two sections each spring, with 20 to 30 students in total."
+        "An introductory programming course for engineering students covering algorithms, control structures, functions, files, testing, and debugging, with problems drawn from engineering and science. Dr. Oses teaches two sections each spring, with 20 to 30 students in total."
       ]
     },
     {
@@ -30,7 +30,7 @@
   ],
   "workshops_text": [
     "The group organizes hands-on workshops at Johns Hopkins University on data-driven materials modeling, quantum computing for materials, and translating energy research into applications. Recordings and notebooks from past events are on the <a href=\"workshops\">Workshops</a> page.",
-    "Corey co-organized schools on high-throughput computational materials science at Carnegie Mellon University, the University of Pennsylvania, Texas A&amp;M University, TU Dresden, and the University of Rwanda. He has also presented at the University of Maryland and NIST Machine Learning for Materials Research bootcamps since 2018."
+    "Dr. Oses co-organized schools on high-throughput computational materials science at Carnegie Mellon University, the University of Pennsylvania, Texas A&amp;M University, TU Dresden, and the University of Rwanda. He has also presented at the University of Maryland and NIST Machine Learning for Materials Research bootcamps since 2018."
   ],
   "outreach": [
     {
@@ -43,7 +43,7 @@
     },
     {
       "title": "Society of Hispanic Professional Engineers",
-      "text": "Corey is faculty mentor for the Johns Hopkins University chapter."
+      "text": "Dr. Oses is faculty mentor for the Johns Hopkins University chapter."
     }
   ],
   "service": [
@@ -100,6 +100,16 @@
     {
       "year": "2023",
       "text": "Guest lecture, Department of Materials Science and Engineering course of A. S. Hall, Johns Hopkins University"
+    }
+  ],
+  "student_comments": [
+    {
+      "text": "He's helpful, but will never simply give a student the answer; he'll force them to think critically about the error and manually debug it themselves, since that's a more valuable skill than any one technique. He's patient and adept at explaining new concepts.",
+      "source": "Enrolled Student Survey, Johns Hopkins University, 2023"
+    },
+    {
+      "text": "Challenging yet immensely supportive.",
+      "source": "Enrolled Student Survey, Johns Hopkins University, 2025"
     }
   ]
 }

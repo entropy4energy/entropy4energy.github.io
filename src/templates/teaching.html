@@ -25,6 +25,14 @@
     </div>
   {% endfor %}
 
+  <h3>From student surveys</h3>
+  {% for item in data.teaching.student_comments %}
+    <blockquote class="student-comment">
+      <p>&ldquo;{{ item.text }}&rdquo;</p>
+      <footer>{{ item.source }}</footer>
+    </blockquote>
+  {% endfor %}
+
   <h3>Guest lectures</h3>
   <ul class="award-list">
     {% for item in data.teaching.guest_lectures %}
