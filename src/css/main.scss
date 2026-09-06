@@ -361,6 +361,64 @@ footer {
   }
 }
 
+/* Research */
+
+.research-figure {
+  margin: 10px auto 20px;
+  max-width: 700px;
+  text-align: center;
+
+  img {
+    border: 1px solid gray;
+    display: block;
+    margin: 0 auto;
+    max-height: 420px;
+    max-width: 100%;
+    width: auto;
+  }
+
+  figcaption {
+    color: gray;
+    font-size: 0.85em;
+    margin-top: 6px;
+    text-align: center;
+  }
+}
+
+.research-direction {
+  margin-bottom: 30px;
+}
+
+.research-publications {
+  &-header {
+    font-weight: bold;
+  }
+
+  ul {
+    margin-top: 4px;
+  }
+}
+
+/* Jobs: joining note */
+
+.join-note {
+  background-color: #f2f6fc;
+  border-left: 4px solid $color-main-1;
+  margin-bottom: 25px;
+  padding: 10px 15px;
+
+  &-header {
+    color: $color-main-1;
+    font-size: 1.15em;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  p {
+    margin: 0 0 8px;
+  }
+}
+
 /* People */
 
 .member {

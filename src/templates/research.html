@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Research</h1>
+  <div class="research-intro">
+    {% for para in data.research.intro.text %}
+      <p>{{ para }}</p>
+    {% endfor %}
+    <figure class="research-figure">
+      <a href="{{ data.research.intro.image_url }}" target="_blank">
+        <img src="media/research/{{ data.research.intro.image }}" alt="{{ data.research.intro.image_alt }}">
+      </a>
+      <figcaption>{{ data.research.intro.image_caption }}</figcaption>
+    </figure>
+  </div>
+  <div class="nav-block">
+    {% for direction in data.research.directions %}
+      <a href="#{{ direction.id }}">{{ direction.title }}</a>
+    {% endfor %}
+  </div>
+  {% for direction in data.research.directions %}
+    <div class="research-direction" id="{{ direction.id }}">
+      <h2>{{ direction.title }}</h2>
+      <figure class="research-figure">
+        <a href="{{ direction.image_url }}" target="_blank">
+          <img src="media/research/{{ direction.image }}" alt="{{ direction.image_alt }}">
+        </a>
+        <figcaption>{{ direction.image_caption }}</figcaption>
+      </figure>
+      {% for para in direction.text %}
+        <p>{{ para }}</p>
+      {% endfor %}
+      {% if direction.publications %}
+        <div class="research-publications">
+          <span class="research-publications-header">Selected publications:</span>
+          <ul>
+            {% for pub in direction.publications %}
+              <li><a href="https://doi.org/{{ pub.doi }}" target="_blank">{{ pub.text }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+  <p class="research-closing">{{ data.research.closing }}</p>
+{% endblock %}
