@@ -83,7 +83,7 @@
         {% if header in data.external_links %}
           {% set href = data.external_links[header] %}
         {% else %}
-          {% set href = "." if header == "home" else "%s.html" % header %}
+          {% set href = "." if header == "home" else header %}
         {% endif %}
         {% set cls = ' class="active"' if header == data.section else "" %}
         <li>
@@ -113,14 +113,14 @@
         <ul class="sidebar-list">
           {% for news in data.news[:news_max] %}
             <li>
-              <a href="news.html#{{ news.index }}">
+              <a href="news#{{ news.index }}">
                 <span class="sidebar-date">{{ news.date }}</span>
                 <span class="sidebar-title">{{ news.title }}</span>
               </a>
             </li>
           {% endfor %}
         </ul>
-        <a class="sidebar-more" href="news.html">All news &rarr;</a>
+        <a class="sidebar-more" href="news">All news &rarr;</a>
       </div>
     </aside>
   </div>
