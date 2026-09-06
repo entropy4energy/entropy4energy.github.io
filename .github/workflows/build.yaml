@@ -8,6 +8,13 @@ on:
 
 permissions: {}
 
+# Every run deploys the whole site (main at the root, dev under __dev__), so
+# runs started by pushing main and dev together used to race for the Pages
+# deployment and one of them failed. Queue them instead.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   build:
     name: Build website
