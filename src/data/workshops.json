@@ -54,7 +54,6 @@
         "presenter":"Ciaran Ward",
         "title":"Resources",
         "links": [
-          {"label": "One-month trial access to InQuanto via Quantinuum Nexus, offered to participants through the workshop page", "href": "https://engineering.jhu.edu/materials/event/quantum-computing-in-practice-hands-on-with-quantinuum/"},
           {"label": "Documentation for InQuanto, Nexus, and other Quantinuum products", "href": "https://docs.quantinuum.com/"},
           {"label": "Case-study tutorial: catalyzed nitrogen dissociation, based on the published workflow", "href": "https://docs.quantinuum.com/inquanto/tutorials/case_study_tutorials.html"},
           {"label": "Knowledge article: quantum error-corrected quantum phase estimation for quantum computational chemistry", "href": "https://docs.quantinuum.com/inquanto/tutorials/InQ_KA_h2xh2.html"}
