@@ -118,6 +118,14 @@ def process_publications(data: dict[str, Any]):
         },
     }
     file_base = BASE_PATH / "media" / "publications"
+    # An in-press article without its first-page image is not listed yet;
+    # it appears on its own once the CV feed delivers the PDF and image.
+    for typ in pubs.keys():
+        data["publications"][typ] = [
+            pub for pub in data["publications"][typ]
+            if not (pub.get("status") == "press"
+                    and not (file_base / f"{pub.get('filename', '')}.png").exists())
+        ]
     for typ in pubs.keys():
         npubs = len(data["publications"][typ])
         for p, pub in enumerate(data["publications"][typ]):
