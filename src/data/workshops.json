@@ -5,19 +5,46 @@
     "date": [
       [2026, 6, 11]
     ],
-    "description": "<strong><em>Laboratory to Launchpad: Bringing Your Energy IP to Life</em></strong> was a one-day conference held on June 11, 2026, at the Hopkins Bloomberg Center in Washington, D.C. The conference brought together faculty, students, postdocs, researchers, and other innovators interested in moving research toward application. Sessions covered commercialization, intellectual property, federal funding, startup formation, research communication, and other aspects of translating research beyond the laboratory.",
+    "description": "<strong><em>Laboratory to Launchpad: Bringing Your Energy IP to Life</em></strong> was a one-day conference held on June 11, 2026, at the Hopkins Bloomberg Center in Washington, D.C. The conference brought together faculty, students, postdocs, researchers, and other innovators interested in moving research toward application. Sessions covered commercialization, intellectual property, federal funding, startup formation, research communication, and other aspects of translating research beyond the laboratory. The conference was organized by the Energy Translation Steering Committee at Johns Hopkins (Corey Oses, Steven Cohen, Jonah Erlebacher, and Avi Bregman) with a Nexus Convening Grant from the Provost's Office, co-sponsored by the Carey Business School, the Whiting School of Engineering, and the Applied Physics Laboratory.",
     "highlights": [
       "A featured talk by Dr. David Gates, CTO of Thea Energy",
       "Workshops on pitching research, securing federal funding, intellectual property, licensing, and startup growth",
-      "A working lunch panel on cross-disciplinary innovation and translational research",
-      "A live pitch competition with judges from D.C. venture capital firms",
+      "A working lunch fireside chat with the Chief Commercialization Officer of the U.S. Department of Energy",
+      "A live pitch competition with judges from venture capital firms",
       "A networking reception to close the day"
     ],
     "sessions": [
       {
-        "presenter":"Dr. Corey Oses",
-        "description": "Please register <a href=\"https://engineering.jhu.edu/materials/laboratory-to-launchpad/\" target=\"_blank\">HERE</a>.",
-        "title": "Registration"
+        "presenter": "Dr. David Gates, CTO, Thea Energy",
+        "title": "Keynote: from the Princeton Plasma Physics Laboratory to co-founding Thea Energy"
+      },
+      {
+        "presenter": ["Rashad Howard", "Dr. Jon R. Owens", "Dr. Ahmed Diallo", "Dr. Mark Jackson"],
+        "title": "Panel: working across disciplines"
+      },
+      {
+        "presenter": "Dr. Steven Cohen, Carey Business School",
+        "title": "Workshop: Fastballs and Curveballs, how to pitch your research effectively"
+      },
+      {
+        "presenter": "Dr. LaRico Treadwell, E4 Power",
+        "title": "Workshop: Finding the Fun in Funding, securing federal funding"
+      },
+      {
+        "presenter": "Christina DeMur, Johns Hopkins Technology Ventures",
+        "title": "Workshop: Research to Revenue, IP and market strategy for commercialization"
+      },
+      {
+        "presenter": "Johns Hopkins Technology Ventures",
+        "title": "Workshop: Don't Just Grow, Thrive, the stages of growing a business"
+      },
+      {
+        "presenter": "Anthony Pugliese, Chief Commercialization Officer, U.S. Department of Energy",
+        "title": "Fireside chat"
+      },
+      {
+        "presenter": ["Dr. Ian Tolfree (Emerald Development Managers)", "Carter (Ultratech Capital Partners)", "Rakesh Radhakrishnan (Prithvi Ventures)"],
+        "title": "Energy IP pitch competition"
       }
     ]
   },
