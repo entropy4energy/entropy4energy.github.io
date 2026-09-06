@@ -10,14 +10,36 @@
     "8_octonaries_2026-03-22.jsonl.gz",
     "checksum.md5"
   ],
-  "acknowledgments": [
-    {
-      "name": "Peter Boctor",
-      "years": "2026–Present"
-    },
-    {
-      "name": "Bryan Lim",
-      "years": "2026–Present"
-    }
-  ]
+  "product": {
+    "name": "CHAOS",
+    "full_name": "Combinatorial High-throughput Analysis and Optimization for Synthesis",
+    "subnav": [
+      {
+        "label": "Datasets",
+        "href": "chaos.html#datasets"
+      },
+      {
+        "label": "API",
+        "href": "chaos.html#api"
+      },
+      {
+        "label": "CHAOS-GPT",
+        "href": "chaos.html#gpt"
+      },
+      {
+        "label": "LOOP",
+        "href": "https://s4e.ai/loop/"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Peter Boctor",
+        "years": "2026–Present"
+      },
+      {
+        "name": "Bryan Lim",
+        "years": "2026–Present"
+      }
+    ]
+  }
 }

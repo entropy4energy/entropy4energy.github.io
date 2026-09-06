@@ -18,6 +18,7 @@ HEADERS = [
     "jobs",
     "workshops",
     "chaos",
+    "loop",
 ]
 
 # Nav labels that differ from title case (product acronyms).
@@ -27,7 +28,9 @@ LABELS = {
 }
 
 # Nav entries that leave the static site (apps served alongside it).
-EXTERNAL_LINKS: dict[str, str] = {}
+EXTERNAL_LINKS: dict[str, str] = {
+    "loop": "https://s4e.ai/loop/",
+}
 
 BASE_PATH = Path(__file__).parent
 DATA_DIR = BASE_PATH / "data"
