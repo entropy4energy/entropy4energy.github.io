@@ -63,6 +63,27 @@
     with backgrounds in materials science, physics, chemistry, and computer
     science. See the <a href="jobs.html">Jobs</a> page for how to apply.
   </p>
+  {% if data.slideshow_publications %}
+    <div class="slideshow bottom" id="bottom_slideshow">
+      <input type="checkbox" id="bottom_slideshow_play" class="slideshow-play noscript" checked>
+      <label for="bottom_slideshow_play" class="slideshow-indicator noscript"></label>
+      {% for slide in data.slideshow_publications %}
+        {% if loop.index == 1 %}
+          {% set checked = " checked" %}
+        {% endif %}
+        <input type="radio" id="bottom_slideshow_{{ loop.index - 1 }}" name="bottom_slideshow_indicators"{{ checked }}>
+        <label class="slideshow-indicator" for="bottom_slideshow_{{ loop.index - 1 }}">
+          {{ loop.index }}
+        </label>
+        <div class="slideshow-slide top">
+          <div class="slideshow-slide-text">{{ slide.text }}</div>
+          <a class="slideshow-slide-img" href="{{ slide.url }}" target="_blank">
+            <img src="{{ slide.img }}" alt="{{slide.text}}">
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 {% endblock %}
 
 {% block body_extra %}
