@@ -29,6 +29,33 @@
       {% endif %}
     </div>
   </div>
+  {% if member.awards or member.service %}
+    <div class="pi-block">
+      {% if member.awards %}
+        <div class="pi-block-col">
+          <h3>Awards and recognition</h3>
+          <ul class="award-list">
+            {% for award in member.awards %}
+              <li><span class="award-year">{{ award.year }}</span> {{ award.text }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      {% if member.service %}
+        <div class="pi-block-col">
+          <h3>Service</h3>
+          <ul class="pi-service">
+            {% for item in member.service %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      {% if member.cv %}
+        <p class="pi-block-cv">Full CV at <a href="{{ member.cv }}" target="_blank">{{ member.cv|replace("https://", "") }}</a>.</p>
+      {% endif %}
+    </div>
+  {% endif %}
 {% endmacro %}
 
 {% block content %}
