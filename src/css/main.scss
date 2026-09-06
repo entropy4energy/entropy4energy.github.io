@@ -792,6 +792,41 @@ h2 {
   }
 }
 
+.pi-block {
+  border-bottom: 1px solid $color-line;
+  display: grid;
+  gap: 0 2rem;
+  grid-template-columns: 1fr 1fr;
+  margin: -0.5rem 0 1.75rem calc(15% + 20px);
+  padding-bottom: 1rem;
+
+  h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin: 0 0 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .award-list li,
+  .pi-service li {
+    font-size: 0.92em;
+    margin-bottom: 0.35rem;
+  }
+
+  .pi-service {
+    margin: 0;
+    padding-left: 1.1em;
+  }
+
+  &-cv {
+    color: $color-muted;
+    font-size: 0.9em;
+    grid-column: 1 / -1;
+    margin: 0.25rem 0 0;
+  }
+}
+
 .group-count,
 .alumni-count {
   background-color: $color-surface-2;
@@ -1211,6 +1246,11 @@ h2 {
 }
 
 @media screen and (max-width: $mobile-threshold) {
+  .pi-block {
+    grid-template-columns: 1fr;
+    margin-left: 0;
+  }
+
   .publication {
     grid-template-columns: 2.2rem minmax(0, 1fr);
 
