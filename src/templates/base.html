@@ -13,6 +13,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  {% set descriptions = {
+    "home": "The Entropy for Energy (S4E) Laboratory at Johns Hopkins University develops computational and AI methods to design chemically disordered materials for energy production, chemical manufacturing, nuclear technology, and extreme environments.",
+    "research": "Research in the S4E Laboratory: AI-driven design of chemically disordered materials, hydrogen production, and materials for nuclear fission and fusion.",
+    "publications": "Publications of the Entropy for Energy Laboratory at Johns Hopkins University.",
+    "team": "Members and alumni of the Entropy for Energy Laboratory at Johns Hopkins University.",
+    "news": "News from the Entropy for Energy Laboratory at Johns Hopkins University.",
+    "jobs": "Open positions and how to join the Entropy for Energy Laboratory at Johns Hopkins University: PhD students, postdoctoral researchers, and undergraduates.",
+    "workshops": "Workshops on data-driven materials modeling organized by the Entropy for Energy Laboratory at Johns Hopkins University.",
+  } %}
+  {% set description = descriptions.get(data.section, descriptions["home"]) %}
+  {% set page_title = "Entropy for Energy Laboratory" if data.section == "home" else "S4E - " ~ (data.section | title) %}
+  <meta name="description" content="{{ description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Entropy for Energy Laboratory">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:image" content="https://entropy4energy.ai/media/icons/s4e_share.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page_title }}">
+  <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:image" content="https://entropy4energy.ai/media/icons/s4e_share.png">
   <link rel="icon" href="media/icons/s4e.png">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJ7FYTHH45"></script>
