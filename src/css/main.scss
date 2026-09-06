@@ -652,17 +652,15 @@ h2 {
   padding-left: 0;
 
   li {
+    display: grid;
+    grid-template-columns: 3.5em minmax(0, 1fr);
     margin-bottom: 8px;
-    padding-left: 3.5em;
   }
 }
 
 .award-year {
   color: $color-main-1;
-  display: inline-block;
   font-weight: bold;
-  margin-left: -3.5em;
-  min-width: 3.5em;
 }
 
 .student-comment {
