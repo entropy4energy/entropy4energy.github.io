@@ -85,7 +85,7 @@ $(JSBLD)/%.js: $(JSSRC)/%.js
 	$(JSC) $(JSCFLAGS) --js $^ --js_output_file $@
 
 # Static targets
-static: $(BLDDIR)/media $(BLDDIR)/CNAME
+static: $(BLDDIR)/media $(BLDDIR)/CNAME $(BLDDIR)/.htaccess
 
 $(BLDDIR)/%:
 	$(RSYNC) $(@:$(BLDDIR)/%=$(SRCDIR)/%) $(BLDDIR)/
