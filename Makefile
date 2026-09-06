@@ -43,7 +43,7 @@ NODEDIR=node_modules
 NODEBIN=$(NODEDIR)/.bin
 NPMINST=npm install
 
-BUILDTARGETS=html css js static
+BUILDTARGETS=html partials css js static
 INSTALLTARGETS=install-packages py-install npm-install
 
 .PHONY: all clean realclean $(BUILDTARGETS) $(INSTALLTARGETS)
@@ -53,7 +53,7 @@ all: $(BUILDTARGETS)
 # HTML targets
 # HTML embeds a content hash of the CSS and JS sources (cache busting),
 # so every page must be rebuilt when those change.
-PREREQSALL=$(BUILDPY) $(DATADIR)/news.json $(TEMPLATEDIR)/base.html $(wildcard $(CSSSRC)/*.scss) $(wildcard $(JSSRC)/*.js)
+PREREQSALL=$(BUILDPY) $(DATADIR)/news.json $(TEMPLATEDIR)/base.html $(PARTIALSRC) $(wildcard $(CSSSRC)/*.scss) $(wildcard $(JSSRC)/*.js)
 HTMLFILES=index jobs news publications research team workshops
 html: $(foreach HTML,$(HTMLFILES),$(BLDDIR)/$(HTML).html)
 
@@ -67,10 +67,25 @@ $(BLDDIR)/index.html: $(PREREQSALL) $(TEMPLATEDIR)/home.html $(DATADIR)/home.jso
 	@mkdir -p $(@D)
 	$(PYTHON) $(BUILDPY) home --extra_data publications research | $(HTMLC) $(HTMLCFLAGS) -o $@
 
-# CSS targets
-css: $(CSSBLD)/academicons-1.9.1 $(CSSBLD)/main.css
+# Shell fragments (header, nav, sub-nav, sidebar, footer) for pages built
+# elsewhere that share this site's shell: LOOP at s4e.ai/loop fetches them
+# from https://s4e.ai/partials/. Links inside them are absolute, rooted at
+# SITE_ROOT. tools.json and the product data files feed the sub-nav, the
+# product hero lines and the footer contributors.
+SITE_ROOT?=https://s4e.ai/
+PARTIALSRC=$(wildcard $(TEMPLATEDIR)/partials/*.html)
+PARTIALBLD=$(BLDDIR)/partials
+partials: $(PARTIALBLD)/nav.html
 
-$(CSSBLD)/%.css: $(CSSSRC)/%.scss
+$(PARTIALBLD)/nav.html: $(PREREQSALL) $(wildcard $(DATADIR)/tools.json) $(wildcard $(DATADIR)/chaos.json) $(wildcard $(DATADIR)/loop.json)
+	$(PYTHON) $(BUILDPY) partials --root $(SITE_ROOT) --outdir $(PARTIALBLD)
+
+# CSS targets
+# main.css is the site stylesheet; shell.css holds only the shell rules and
+# is loaded by LOOP together with the fragments above.
+css: $(CSSBLD)/academicons-1.9.1 $(CSSBLD)/main.css $(CSSBLD)/shell.css
+
+$(CSSBLD)/%.css: $(CSSSRC)/%.scss $(wildcard $(CSSSRC)/_*.scss)
 	@mkdir -p $(@D)
 	$(SASS) $< | $(SSC) $(SSCFLAGS) > $@
 

@@ -1,0 +1,19 @@
+{
+  "product": {
+    "name": "LOOP",
+    "full_name": "Learning and Optimization Platform",
+    "contributors": [
+      {"name": "Corey Oses", "years": "2026–present"},
+      {"name": "Peter Boctor", "years": "2026–present"},
+      {"name": "Matthew Brownrigg", "years": "2026"},
+      {"name": "Guangshuai Han", "years": "2026"},
+      {"name": "Shubham Singh", "years": "2026–present"},
+      {"name": "M. D. Hashan C. Peiris", "years": "2026–present"},
+      {"name": "Jiayue Hu", "years": "2026–present"},
+      {"name": "Isabela LaFleur", "years": "2026–present"},
+      {"name": "Kendall Frederick", "years": "2026–present"},
+      {"name": "Bryan Lim", "years": "2026–present"},
+      {"name": "Avi Bregman", "years": "2026–present"}
+    ]
+  }
+}

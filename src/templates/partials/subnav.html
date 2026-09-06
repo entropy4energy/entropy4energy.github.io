@@ -1,0 +1,14 @@
+{#- Data and Tools family sub-navigation (Overview, CHAOS, LOOP, ...).
+    Active entry: class="active" on the static site, data-s4e-product on
+    <body> for pages that include the fragment. -#}
+{% if data.tools %}
+  <div class="subnav" role="navigation" aria-label="Data and Tools">
+    <ul>
+      <li><a id="subnav_tools" href="{{ data.root }}tools"{% if data.section == "tools" %} class="active"{% endif %}>Overview</a></li>
+      {% for item in data.tools.products %}
+        {% set href = item.href if item.external else data.root ~ item.href %}
+        <li><a id="subnav_{{ item.id }}" href="{{ href }}"{% if item.id == data.section %} class="active"{% endif %}>{{ item.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
