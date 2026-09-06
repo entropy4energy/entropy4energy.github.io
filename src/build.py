@@ -400,6 +400,16 @@ def arg_parser() -> argparse.ArgumentParser:
         nargs="*",
         default=[],
     )
+    parser.add_argument(
+        "--root",
+        default="",
+        help="URL prefix for links in the shell (partials only), e.g. https://s4e.ai/",
+    )
+    parser.add_argument(
+        "--outdir",
+        default="dist/partials",
+        help="Where the partials are written (partials only).",
+    )
     return parser
 
 
@@ -435,6 +445,7 @@ def build_html(section: str = "", extra_data: list = []) -> str:
         "external_links": EXTERNAL_LINKS,
         "section": section,
         "asset_version": asset_version(),
+        "root": "",
     }
     data["news"] = json.loads((DATA_DIR / "news.json").read_text())
     process_news(data)
@@ -466,7 +477,66 @@ def build_html(section: str = "", extra_data: list = []) -> str:
     return template.render(data=data)
 
 
+# Shell fragments shared with LOOP (Peter's Django app at s4e.ai/loop).
+# LOOP fetches https://s4e.ai/partials/<name>.html at request time, so the
+# header, nav, sidebar and footer are rendered once, here, and never copied.
+# Links carry an absolute root because the fragments are served under a
+# different path.
+PARTIALS = ["head", "header", "nav", "subnav", "sidebar", "footer"]
+# Fragments that differ per product (hero line, footer contributors).
+PRODUCT_PARTIALS = ["header", "footer"]
+
+
+def build_partials(root: str, outdir: Path) -> list[Path]:
+    """Write the shell fragments to outdir and return the files written."""
+    data = {
+        "headers": HEADERS,
+        "labels": {h: LABELS.get(h, h.title()) for h in HEADERS},
+        "external_links": EXTERNAL_LINKS,
+        "section": "",
+        "parent": "",
+        "asset_version": asset_version(),
+        "root": root,
+        "product": None,
+    }
+    data["news"] = json.loads((DATA_DIR / "news.json").read_text())
+    process_news(data)
+    tools_file = DATA_DIR / "tools.json"
+    data["tools"] = json.loads(tools_file.read_text()) if tools_file.exists() else None
+
+    env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
+    outdir.mkdir(parents=True, exist_ok=True)
+    written = []
+
+    def write(name: str, filename: str):
+        html = env.get_template(f"partials/{name}.html").render(data=data)
+        html = "\n".join(line for line in html.splitlines() if line.strip()) + "\n"
+        path = outdir / filename
+        path.write_text(html)
+        written.append(path)
+
+    for name in PARTIALS:
+        write(name, f"{name}.html")
+    # One header and footer per product: "product" comes from tools.json,
+    # contributors from the product's own data file when it exists.
+    for item in (data["tools"] or {}).get("products", []):
+        product = {"name": item["name"], "full_name": item.get("full_name")}
+        product_file = DATA_DIR / f"{item['id']}.json"
+        if product_file.exists():
+            extra = json.loads(product_file.read_text()).get("product", {})
+            product["contributors"] = extra.get("contributors", [])
+        data["product"] = product
+        for name in PRODUCT_PARTIALS:
+            write(name, f"{name}-{item['id']}.html")
+        data["product"] = None
+    return written
+
+
 if __name__ == "__main__":
     parser = arg_parser()
     args, _ = parser.parse_known_args()
-    print(build_html(args.section, extra_data=args.extra_data))
+    if args.section == "partials":
+        for path in build_partials(args.root, Path(args.outdir)):
+            print(path)
+    else:
+        print(build_html(args.section, extra_data=args.extra_data))
