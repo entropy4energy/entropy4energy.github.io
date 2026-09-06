@@ -1,21 +1,71 @@
 {% extends "base.html" %}
 
+{% macro news_year(year, items) %}
+  <h2 class="news-year" id="y{{ year }}">{{ year }}</h2>
+  <ul class="news-list">
+    {% for news in items %}
+      <li class="news-row" id="{{ news.index }}">
+        <div class="news-thumbs">
+          {% for picture in news.pictures[:3] %}
+            <img src="media/{{ news.picture_directory|default('news') }}/{{ picture }}" alt="{{ news.picture_alt|default('Image for news ' ~ news.title) }}" loading="lazy">
+          {% endfor %}
+        </div>
+        <div class="news-body">
+          <div class="news-meta">
+            <span class="news-date">{{ news.date_short }}</span>
+            <span class="news-tag news-tag-{{ news.category }}">{{ news.category }}</span>
+          </div>
+          <div class="news-title">{{ news.title }}</div>
+          <div class="news-text">{{ news.message }}</div>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
 {% block content %}
   <h1>News</h1>
-  <div id="news_items" class="news">
-    {% for news in data.news %}
-      <div class="news-item" id="{{ loop.index }}">
-        <span class="news-item-date">{{ news.date }}</span>
-        <span class="news-item-title">{{ news.title }}</span>
-        <span class="news-item-text">{{ news.message }}</span>
-        <span class="news-item-img">
-          {% for picture in news.pictures %}
-            <img src="media/{{ news.picture_directory|default('news') }}/{{ picture }}" alt="{{ news.picture_alt|default('Image for news ' ~ news.title) }}">
-          {% endfor %}
-        </span>
-      </div>
+  <div class="jump-nav" role="navigation" aria-label="Jump to year">
+    {% for year in data.news_years %}
+      <a href="#y{{ year }}">{{ year }}</a>
     {% endfor %}
+    {% if data.press %}
+      <a href="#press" class="jump-nav-press">In the press</a>
+    {% endif %}
   </div>
+  <div id="news_items" class="news">
+    {% set ns = namespace(archived=0) %}
+    {% for year, items in data.news_by_year %}
+      {% if year >= data.news_archive_before %}
+        {{ news_year(year, items) }}
+      {% else %}
+        {% set ns.archived = ns.archived + items|length %}
+      {% endif %}
+    {% endfor %}
+    {% if ns.archived %}
+      <details class="news-archive">
+        <summary>Earlier news ({{ ns.archived }} items, {{ data.news_years[-1] }} to {{ data.news_archive_before - 1 }})</summary>
+        {% for year, items in data.news_by_year %}
+          {% if year < data.news_archive_before %}
+            {{ news_year(year, items) }}
+          {% endif %}
+        {% endfor %}
+      </details>
+    {% endif %}
+  </div>
+  <script>
+    // Open the collapsed archive when a link points at an item inside it.
+    (function () {
+      function reveal() {
+        var el = location.hash && document.getElementById(location.hash.slice(1));
+        if (!el) return;
+        var d = el.closest("details");
+        if (d && !d.open) { d.open = true; el.scrollIntoView(); }
+      }
+      window.addEventListener("hashchange", reveal);
+      reveal();
+    })();
+  </script>
   {% if data.press %}
     <h1 id="press">In the press</h1>
     <ul class="press-list">
