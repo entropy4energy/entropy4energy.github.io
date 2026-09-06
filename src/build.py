@@ -2,6 +2,7 @@ import argparse
 import functools
 import hashlib
 import json
+import re
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -257,9 +258,38 @@ def process_team(data: dict[str, Any]):
                     for key, item in team.items()}
 
 
+NEWS_CATEGORIES = [
+    ("welcome", re.compile(r"welcome", re.I)),
+    ("award", re.compile(r"\b(wins?|award|named|honored|fellow)", re.I)),
+    ("workshop", re.compile(r"\b(workshop|school)\b", re.I)),
+    ("talk", re.compile(r"\b(presents?|interview|seminar|speaker|symposium)", re.I)),
+]
+
+
+def news_category(title: str) -> str:
+    """Coarse category badge for a news item, derived from its title."""
+    for name, pattern in NEWS_CATEGORIES:
+        if pattern.search(title):
+            return name
+    return "news"
+
+
 def process_news(data: dict[str, Any]):
-    for news_item in data["news"]:
-        news_item["date"] = format_date(news_item["date"])
+    by_year: dict[int, list[dict[str, Any]]] = {}
+    for index, news_item in enumerate(data["news"], start=1):
+        raw = news_item["date"]
+        item_date = date(*raw) if isinstance(raw, list) and isinstance(raw[0], int) else None
+        news_item["index"] = index
+        news_item["year"] = item_date.year if item_date else None
+        news_item["date_short"] = item_date.strftime("%b %d").replace(" 0", " ") if item_date else ""
+        news_item["date"] = format_date(raw)
+        news_item["category"] = news_category(news_item["title"])
+        by_year.setdefault(news_item["year"], []).append(news_item)
+    years = sorted((y for y in by_year if y is not None), reverse=True)
+    data["news_years"] = years
+    data["news_by_year"] = [(y, by_year[y]) for y in years]
+    # Years before this cutoff are collapsed on the News page.
+    data["news_archive_before"] = years[0] - 2 if years else 0
     press_file = DATA_DIR / "press.json"
     if press_file.exists():
         data["press"] = json.loads(press_file.read_text())
@@ -287,6 +317,11 @@ def process_workshops(data: dict[str, Any]):
                     "link": materials,
                     "type": materials_type,
                 }
+        workshop["n_recordings"] = sum(1 for s in workshop["sessions"] if s.get("youtube_id"))
+        workshop["n_materials"] = sum(1 for s in workshop["sessions"] if s.get("materials"))
+        plain = re.sub(r"<[^>]+>", "", workshop["description"]).replace("\n", " ")
+        first = re.split(r"(?<=[.!?])\s+", plain.strip(), maxsplit=1)[0]
+        workshop["summary"] = first
 
 
 PROCESS_DATA = {
