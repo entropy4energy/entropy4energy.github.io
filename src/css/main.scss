@@ -1,7 +1,7 @@
-@import 'https://fonts.googleapis.com/css?family=Lato:300,400,600,700';
+@use 'tokens' as *;
+@use 'site-shell';
 
-@import 'tokens';
-@import 'shell';
+@import 'https://fonts.googleapis.com/css?family=Lato:300,400,600,700';
 
 :root {
   @include contrast-main-2();
