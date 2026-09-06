@@ -10,7 +10,7 @@
         <span class="news-item-text">{{ news.message }}</span>
         <span class="news-item-img">
           {% for picture in news.pictures %}
-            <img src="media/news/{{ picture }}" alt="Image for news {{ news.title }}">
+            <img src="media/{{ news.picture_directory|default('news') }}/{{ picture }}" alt="{{ news.picture_alt|default('Image for news ' ~ news.title) }}">
           {% endfor %}
         </span>
       </div>
