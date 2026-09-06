@@ -1,0 +1,39 @@
+// Design tokens shared by main.scss and shell.scss (colors, breakpoints,
+// contrast mixins). Values match LOOP's _tokens.scss.
+
+$color-main-1: #002D72;
+$color-main-2: #ffffff;
+$color-main-3: #31261D;
+$color-main-4: #68ace5; 
+
+$black-semi-transparent: #000000aa;
+
+$color-ink: #1a1510;
+$color-muted: #6a635b;
+$color-line: #e6e2dc;
+$color-line-2: #d8d3cc;
+$color-surface-2: #f6f8fc;
+
+$date-column-width: 11em;
+$date-column-gap: 10px;
+
+$slide-indicator-dims: 2em;
+
+$small-threshold: 1000px;
+$mobile-threshold: 548px;
+$body-min-width: 390px;
+
+$menu-width: 4em;
+$menu-bar-length: 2em;
+
+$workshop-video-max-width: 800px;
+
+@mixin contrast-main-1() {
+  background-color: $color-main-1;
+  color: $color-main-2;
+}
+
+@mixin contrast-main-2() {
+  background-color: $color-main-2;
+  color: $color-main-3;
+}
