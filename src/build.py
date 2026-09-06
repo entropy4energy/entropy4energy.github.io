@@ -23,6 +23,7 @@ HEADERS = [
 LABELS = {
     "chaos": "CHAOS",
     "loop": "LOOP",
+    "tools": "Data and Tools",
 }
 
 # Nav entries that leave the static site (apps served alongside it).
@@ -413,6 +414,11 @@ def build_html(section: str = "", extra_data: list = []) -> str:
     }
     data["news"] = json.loads((DATA_DIR / "news.json").read_text())
     process_news(data)
+    # Data and Tools: the family of products (CHAOS, LOOP, ...). Loaded on
+    # every page so product pages can show the family sub-nav and light the
+    # parent tab. Absent on main until the products are published.
+    tools_file = DATA_DIR / "tools.json"
+    data["tools"] = json.loads(tools_file.read_text()) if tools_file.exists() else None
     section_data_file = DATA_DIR / f"{section}.json"
     if section != "news" and section_data_file.exists():
         data[section] = json.loads(section_data_file.read_text())
@@ -426,6 +432,9 @@ def build_html(section: str = "", extra_data: list = []) -> str:
     # name, full_name, optional subnav [{label, href}] and contributors
     # [{name, years}]. base.html uses it for the hero, sub-nav and footer.
     data["product"] = (data.get(section) or {}).get("product") if isinstance(data.get(section), dict) else None
+    # Which top-level tab is lit: a product page lights its family tab.
+    data["parent"] = "tools" if data["tools"] and any(
+        p.get("id") == section for p in data["tools"].get("products", [])) else section
 
     loader = FileSystemLoader(TEMPLATE_DIR)
     env = Environment(loader=loader)
