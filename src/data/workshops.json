@@ -36,6 +36,38 @@
         "title": "Registration"
       },
       {
+        "presenter": "Dr. Corey Oses",
+        "title": "Day 1: Opening remarks"
+      },
+      {
+        "presenter": "Dr. Gregory Quiroz",
+        "title": "Day 1: Overview of modern quantum computing and its challenges"
+      },
+      {
+        "presenter": "Dr. Joan Hoffmann",
+        "title": "Day 1: National and international investment landscape"
+      },
+      {
+        "presenter": "Dr. Mark Jackson",
+        "title": "Day 1: Quantinuum systems and successes"
+      },
+      {
+        "presenter": ["Dr. Mark Jackson (moderator)", "Ricardo Benn", "Dr. Richard Conroy", "Dr. Joan Hoffmann", "Rima Oueid"],
+        "title": "Day 1: Panel: state and federal quantum initiatives"
+      },
+      {
+        "presenter": "Dr. Thomas Soini",
+        "title": "Day 1: Quantum use case overview"
+      },
+      {
+        "presenter": "Dr. Thomas Soini",
+        "title": "Day 1: GenQAI: how quantum enables AI and vice versa"
+      },
+      {
+        "presenter": "Ciaran Ward",
+        "title": "Day 1: Quantum workflow demonstration"
+      },
+      {
         "presenter":"Mikail Shaikh",
         "materials": "1D6vsn7jPjvBcYlk6SzufwZhoeqvc-gi0",
         "title": "Nexus demo"
@@ -43,11 +75,11 @@
       {
         "presenter":"Mikail Shaikh",
         "materials": "1RigFRYTKi_LATq_BocSN-M66hBk7_tTP",
-        "title": "Nexus demo: Guppy examples and homework"
+        "title": "Day 2: Guppy examples and homework notebook"
       },
       {
         "presenter":"Mikail Shaikh, Ciaran Ward",
-        "title":"Day 2",
+        "title":"Day 2: Quantinuum Nexus overview and demo; InQuanto and Nexus",
         "youtube_id":"UiaRxfAsJtY"
       },
       {
