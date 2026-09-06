@@ -53,7 +53,19 @@
   <header>
     <div class="hero">
       <a href="." class="hero-logo"><img src="media/icons/s4e.png" alt="S4E"></a>
-      <span class="hero-title">Entropy for Energy Laboratory</span>
+      <span class="hero-title">
+        {% if data.product %}
+          <span class="hero-site">Entropy for Energy Laboratory</span>
+          <span class="hero-sep">&middot;</span>
+          <strong>{{ data.product.name }}</strong>
+          {% if data.product.full_name %}
+            <span class="hero-sep">&middot;</span>
+            <span class="hero-full-name">{{ data.product.full_name }}</span>
+          {% endif %}
+        {% else %}
+          Entropy for Energy Laboratory
+        {% endif %}
+      </span>
     </div>
   </header>
   <nav>
@@ -68,16 +80,29 @@
     </label>
     <ul>
       {% for header in data.headers %}
-        {% set href = "." if header == "home" else "%s.html" % header %}
+        {% if header in data.external_links %}
+          {% set href = data.external_links[header] %}
+        {% else %}
+          {% set href = "." if header == "home" else "%s.html" % header %}
+        {% endif %}
         {% set cls = ' class="active"' if header == data.section else "" %}
         <li>
           <a id="nav_{{ header }}" href="{{ href }}"{{ cls }}>
-            {{ header | title }}
+            {{ data.labels[header] }}
           </a>
         </li>
       {% endfor %}
     </ul>
   </nav>
+  {% if data.product and data.product.subnav %}
+    <div class="subnav" role="navigation" aria-label="{{ data.product.name }} sections">
+      <ul>
+        {% for item in data.product.subnav %}
+          <li><a href="{{ item.href }}"{% if item.active %} class="active"{% endif %}>{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
   <div class="main-content-wrapper">
     <div class="content-block">
       {% block content %}{% endblock %}
@@ -117,6 +142,16 @@
     <a href="https://ai.jhu.edu/" target="_blank"><img src="media/footer/dsai.png" alt="DSAI logo" class="sponsor"></a>
     <a href="https://energyinstitute.jhu.edu/" target="_blank"><img src="media/footer/rosei.png" alt="ROSEI logo" class="sponsor"></a>
     </div>
+    {% if data.product and data.product.contributors %}
+      <details class="footer-contributors">
+        <summary>Contributors</summary>
+        <ul aria-label="{{ data.product.name }} contributors">
+          {% for person in data.product.contributors %}
+            <li class="footer-contributor">{{ person.name }} &middot; {{ person.years }}</li>
+          {% endfor %}
+        </ul>
+      </details>
+    {% endif %}
     </div>
   </footer>
   {% block body_extra %}{% endblock %}
