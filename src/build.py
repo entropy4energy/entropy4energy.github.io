@@ -185,11 +185,23 @@ def process_publications(data: dict[str, Any]):
 
 
 def process_team(data: dict[str, Any]):
+    def start_year(member):
+        years = re.findall(r"\d{4}", str(member.get("years", "")))
+        return int(years[0]) if years else 9999
+
     def sort_members(a, b):
         if a["id"] == "corey_oses":
             return 1
         if b["id"] == "corey_oses":
             return -1
+        # Seniority within a group: whoever has been in the group longest
+        # (earliest start year in "years") comes first; then position within
+        # the group (PhD before master's); then last name.
+        # (The list is built with reverse=True, hence the inverted signs.)
+        start_a = start_year(a)
+        start_b = start_year(b)
+        if start_a != start_b:
+            return 1 if start_a < start_b else -1
         if a.get("rank", 0) != b.get("rank", 0):
             return 1 if a.get("rank", 0) < b.get("rank", 0) else -1
         lname_a=a["name"].split()[-1]
@@ -212,7 +224,7 @@ def process_team(data: dict[str, Any]):
             "title": "Postdocs",
         },
         {
-            "positions": ["Graduate Student", "Master Student"],
+            "positions": ["Graduate Student", "Master Student", "Master's Student"],
             "title": "Graduate Students",
         },
         {
