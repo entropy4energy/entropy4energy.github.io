@@ -36,7 +36,8 @@
           "text": "High entropy powering green energy: hydrogen, batteries, electronics, and catalysis, <i>npj Comput. Mater.</i> (2025)",
           "doi": "10.1038/s41524-025-01594-6"
         }
-      ]
+      ],
+      "blurb": "AI models that learn which elements belong in a material and how they arrange at the atomic scale."
     },
     {
       "id": "hydrogen",
@@ -59,7 +60,8 @@
           "text": "Atomic ordering-induced ensemble variation in alloys governs electrocatalyst on/off states, <i>J. Am. Chem. Soc.</i> (2024)",
           "doi": "10.1021/jacs.4c11753"
         }
-      ]
+      ],
+      "blurb": "Materials for producing hydrogen from water using electricity or heat."
     },
     {
       "id": "nuclear",
@@ -79,7 +81,8 @@
           "text": "Stabilizing iodine in pyrochlore: toward new nuclear waste forms, <i>Precis. Chem.</i> (2026)",
           "doi": "10.1021/prechem.5c00467"
         }
-      ]
+      ],
+      "blurb": "Waste forms and extreme-environment materials for fission and fusion."
     }
   ],
   "closing": "The group is recruiting at every level, from undergraduates to postdoctoral researchers. See the <a href=\"jobs.html\">Jobs</a> page for how to apply."
