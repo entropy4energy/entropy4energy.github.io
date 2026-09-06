@@ -416,5 +416,12 @@
     ],
     "alumn": true,
     "years": "2026"
+  },
+  "kendall_frederick": {
+    "name": "Kendall Frederick",
+    "titles": [
+      "Undergraduate Student"
+    ],
+    "years": "2026–present"
   }
 }
