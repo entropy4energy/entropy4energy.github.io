@@ -49,15 +49,19 @@
     "contact": "Avi.Bregman at jhuapl.edu",
     "name": "Avi Bregman",
     "titles": [
-      "Research Scientist"
-    ]
+      "Research Scientist",
+      "Visiting Scientist, ROSEI"
+    ],
+    "years": "2026–present"
   },
   "jonathan_owens": {
     "contact": "jowens58 at jh.edu",
     "name": "Jonathan R. Owens",
     "titles": [
-      "Research Scientist"
-    ]
+      "Research Scientist",
+      "Visiting Scientist, ROSEI"
+    ],
+    "years": "2025–present"
   },
   "hashan_peiris": {
     "contact": "mpeiris1 at jh.edu",
