@@ -2,36 +2,80 @@
 
 {% block content %}
   <h1>CHAOS</h1>
-  <p>
+  <p class="chaos-lead">
     <u>C</u>ombinatorial <u>H</u>igh-throughput <u>A</u>nalysis and
-    <u>O</u>ptimization for <u>S</u>ynthesis.
+    <u>O</u>ptimization for <u>S</u>ynthesis: a first-principles database of
+    high-entropy oxides, their ordered binary and ternary precursors, and a
+    library of structural and chemical descriptors for synthesis-oriented
+    screening.
   </p>
 
+  <div class="access-cards">
+    <a class="access-card" href="#datasets">
+      <div class="access-card-title">Download</div>
+      <div class="access-card-text">
+        Bulk files by number of cations, {{ data.chaos.files|length - 1 }}
+        compressed JSON Lines archives with an MD5 checksum list.
+      </div>
+    </a>
+    <a class="access-card" href="#api">
+      <div class="access-card-title">API</div>
+      <div class="access-card-text">
+        Query entries and descriptors over HTTP from scripts and notebooks.
+      </div>
+    </a>
+    <a class="access-card" href="#gpt">
+      <div class="access-card-title">CHAOS-GPT</div>
+      <div class="access-card-text">
+        Ask questions in plain language; the agent turns them into database
+        retrievals.
+      </div>
+    </a>
+  </div>
+
   <h2 id="datasets">Datasets</h2>
-  <p>The following high-throughput datasets are available for download:</p>
-
-  <ul>
-    {% for href in data["chaos"]["files"] %}
-      <li><a href="https://s4e.ai/API/zips/{{ href }}">{{ href }}</a></li>
-    {% endfor %}
-  </ul>
-
-  <p>More files available soon...</p>
+  <table class="chaos-files">
+    <thead>
+      <tr>
+        <th>Set</th>
+        <th>File</th>
+        <th>Snapshot</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for file in data.chaos.file_rows %}
+        <tr>
+          <td>{{ file.label }}</td>
+          <td><a href="https://s4e.ai/API/zips/{{ file.name }}">{{ file.name }}</a></td>
+          <td>{{ file.date }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p class="chaos-note">
+    Files are gzip-compressed JSON Lines, one entry per line.
+    Verify downloads against <code>checksum.md5</code>.
+    More sets will be added as calculations complete.
+  </p>
 
   <h2 id="api">API access</h2>
   <p>
-    API access is available; visit
-    <a href="https://s4e.ai/API/chaos/?help">https://s4e.ai/API/chaos/?help</a> 
-    for documentation.
+    The REST API serves the same entries and descriptors.
+    Documentation and examples:
+    <a href="https://s4e.ai/API/chaos/?help">s4e.ai/API/chaos/?help</a>.
   </p>
 
   <h2 id="gpt">CHAOS-GPT interface</h2>
-  <iframe
-    src="https://chaos.boctor.dev/"
-    width="100%"
-    height="800px"
-    style="border:none;">
-  </iframe>
-
-
+  <p class="chaos-note">
+    A natural-language interface to the database.
+    It runs in the panel below or full screen at
+    <a href="https://chaos.boctor.dev/" target="_blank" rel="noopener noreferrer">chaos.boctor.dev</a>.
+  </p>
+  <div class="chaos-gpt">
+    <iframe
+      src="https://chaos.boctor.dev/"
+      title="CHAOS-GPT"
+      loading="lazy">
+    </iframe>
+  </div>
 {% endblock %}
