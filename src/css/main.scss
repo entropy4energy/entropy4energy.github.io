@@ -7,6 +7,12 @@ $color-main-4: #68ace5;
 
 $black-semi-transparent: #000000aa;
 
+$color-ink: #1a1510;
+$color-muted: #6a635b;
+$color-line: #e6e2dc;
+$color-line-2: #d8d3cc;
+$color-surface-2: #f6f8fc;
+
 $date-column-width: 11em;
 $date-column-gap: 10px;
 
@@ -355,34 +361,147 @@ footer {
 
 /* News */
 
-.news-item {
-  display: grid;
-  grid-column-gap: $date-column-gap;
-  grid-template-columns: $date-column-width auto;
-  grid-template-areas: 'a b' 'a c' 'a d';
-  margin-bottom: 20px;
+/* News */
 
-  &-date {
-    grid-area: a;
-    font-weight: bold;
-  }
+.jump-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 1.25rem;
 
-  &-title {
-    grid-area: b;
-    font-weight: bold;
-  }
+  a {
+    border: 1px solid $color-line-2;
+    border-radius: 999px;
+    color: $color-main-1;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.2rem 0.75rem;
+    text-decoration: none;
 
-  &-img {
-    grid-area: d;
-    margin-top: 15px;
-    img {
-      max-height: 200px;
-      max-width: 300px;
+    &:hover {
+      background-color: rgba(0, 45, 114, 0.06);
     }
   }
 
-  &-text {
-    grid-area: c;
+  &-press {
+    margin-left: auto;
+  }
+}
+
+.news-year {
+  border-bottom: 1px solid $color-line-2;
+  color: $color-main-1;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  margin: 1.5rem 0 0.5rem;
+  padding-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.news-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    max-width: none;
+  }
+}
+
+.news-row {
+  border-bottom: 1px solid $color-line;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 5.5rem 1fr;
+  padding: 0.85rem 0;
+  scroll-margin-top: 4em;
+
+  &:target {
+    background-color: $color-surface-2;
+    box-shadow: 0 0 0 0.6rem $color-surface-2;
+  }
+}
+
+.news-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  img {
+    border-radius: 6px;
+    display: block;
+    height: 5.5rem;
+    object-fit: cover;
+    width: 5.5rem;
+  }
+
+  img + img {
+    height: 2.7rem;
+  }
+}
+
+.news-body {
+  min-width: 0;
+}
+
+.news-meta {
+  align-items: center;
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 0.15rem;
+}
+
+.news-date {
+  color: $color-muted;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.news-tag {
+  background-color: $color-surface-2;
+  border-radius: 999px;
+  color: $color-main-1;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.1rem 0.55rem;
+  text-transform: uppercase;
+
+  &-award {
+    background-color: #fff4d6;
+    color: #7a4b00;
+  }
+
+  &-workshop {
+    background-color: #e6f3ff;
+  }
+
+  &-talk {
+    background-color: #eef7ea;
+    color: #2b5a1e;
+  }
+}
+
+.news-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.news-text {
+  color: $color-muted;
+  font-size: 0.92rem;
+  margin-top: 0.25rem;
+}
+
+.news-archive {
+  margin-top: 1.5rem;
+
+  & > summary {
+    color: $color-main-1;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0.5rem 0;
   }
 }
 
@@ -630,30 +749,64 @@ footer {
   margin-left: 20px;
   margin-top: 40px;
 
-  &-content {
-    background-color: $color-main-4;
+  &-card {
+    background-color: $color-main-2;
+    border: 1px solid $color-line-2;
     border-radius: 8px;
-    padding: 10px 10px 20px;
-    width: 100%;
+    padding: 0.9rem 1rem 0.75rem;
   }
-  
-  &-news-item {
-    display: block;
-    margin-bottom: 10px;
-    &-date {
-      font-style: italic;
+
+  &-label {
+    color: $color-main-1;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  &-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      border-top: 1px solid $color-line;
+      padding: 0.55rem 0;
+    }
+
+    a {
+      color: $color-ink;
+      display: block;
+      font-size: 0.9rem;
+      line-height: 1.35;
+      text-decoration: none;
+
+      &:hover .sidebar-title {
+        color: $color-main-1;
+      }
     }
   }
 
-  h2 {
-    border-bottom: none;
-    color: $color-main-2;
-    font-size: 1.3em;
-    margin-bottom: 0.35em;
+  &-date {
+    color: $color-muted;
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.1rem;
   }
 
-  a {
-    color: $color-main-2;
+  &-more {
+    color: $color-main-1;
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -754,43 +907,176 @@ footer {
 
 /* workshops */
 
-.workshop {
+.workshop-lead {
+  color: $color-muted;
+}
+
+.workshop-index {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin: 1rem 0 2rem;
+}
+
+.workshop-card {
+  background-color: $color-main-2;
+  border: 1px solid $color-line-2;
+  border-radius: 8px;
+  color: $color-ink;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    box-shadow: 0 6px 18px rgba(0, 45, 114, 0.12);
+    transform: translateY(-2px);
+  }
+
   img {
+    aspect-ratio: 16 / 9;
     display: block;
-    margin-top: 20px;
+    object-fit: cover;
+    object-position: top;
     width: 100%;
   }
 
-  &-link-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin: auto;
+  &-body {
+    padding: 0.8rem 1rem 0.9rem;
+  }
+
+  &-date {
+    color: $color-muted;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &-title {
+    color: $color-main-1;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0.2rem 0 0.35rem;
+  }
+
+  &-facts {
+    color: $color-muted;
+    font-size: 0.85rem;
+  }
+}
+
+.workshop {
+  &-entry {
+    scroll-margin-top: 4em;
+  }
+
+  &-header {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr 240px;
+    margin-bottom: 1rem;
+  }
+
+  &-about p:first-child {
+    margin-top: 0;
+  }
+
+  &-date {
+    color: $color-main-1;
+  }
+
+  &-flyer img {
+    border: 1px solid $color-line;
+    border-radius: 6px;
+    display: block;
     width: 100%;
+  }
 
-    a {
+  &-button {
+    background-color: $color-main-1;
+    border-radius: 6px;
+    color: $color-main-2;
+    display: inline-block;
+    font-weight: 600;
+    padding: 0.5rem 1.1rem;
+    text-decoration: none;
+
+    &:hover {
       background-color: $color-main-4;
-      border-radius: 4px;
-      color: $color-main-2;
-      display: inline-block;
-      font-weight: bold;
-      max-width: 50%;
-      min-width: 25%;
-      padding: 8px 16px;
-      text-align: center;
-      text-decoration: none;
+    }
+  }
 
-      &:hover {
-        background-color: $color-main-1;
-      }
+  &-sessions-title {
+    color: $color-main-1;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+  }
+
+  &-sessions {
+    border-top: 1px solid $color-line-2;
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+
+    li {
+      max-width: none;
     }
   }
 
   &-session {
+    border-bottom: 1px solid $color-line;
+    padding: 0.7rem 0;
+
+    &-head {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+    }
+
+    &-info {
+      display: flex;
+      flex: 1 1 20rem;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    &-name {
+      font-weight: 600;
+    }
+
+    &-presenter {
+      color: $color-muted;
+      font-size: 0.9rem;
+    }
+
+    &-actions {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    &-more {
+      margin-top: 0.4rem;
+
+      & > summary {
+        color: $color-main-1;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      p {
+        color: $color-muted;
+        font-size: 0.95rem;
+      }
+    }
 
     &-video {
       height: 0;
-      margin: 0 auto;
+      margin: 0.5rem 0;
       max-width: $workshop-video-max-width;
       overflow: hidden;
       padding-bottom: 56.25%;  /* 16:9 ratio */
@@ -805,17 +1091,62 @@ footer {
         top: 0;
         width: 100%;
       }
-
-      & + .workshop-link-container {
-        margin-top: 15px;
-      }
     }
+  }
+}
+
+.workshop-chip {
+  border: 1px solid $color-main-1;
+  border-radius: 999px;
+  color: $color-main-1;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.15rem 0.7rem;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: $color-main-1;
+    color: $color-main-2;
   }
 }
 
 @media screen and (max-width: $small-threshold) {
   .sidebar {
-    display: none;
+    margin: 1rem 0;
+    order: -1;
+
+    &-card {
+      padding: 0.6rem 0.9rem;
+    }
+
+    &-list {
+      display: flex;
+      gap: 0 1.25rem;
+      overflow-x: auto;
+
+      li {
+        border-top: none;
+        flex: 0 0 15rem;
+        padding: 0.2rem 0;
+      }
+
+      li:nth-child(n+4) {
+        display: none;
+      }
+    }
+
+    &-more {
+      margin-top: 0.25rem;
+    }
+  }
+
+  .workshop-header {
+    grid-template-columns: 1fr;
+  }
+
+  .workshop-flyer {
+    max-width: 320px;
   }
 
   .content-block {
@@ -824,7 +1155,8 @@ footer {
 
   .main-content-wrapper {
     box-sizing: border-box;
-    display: block;
+    display: flex;
+    flex-direction: column;
     padding: 0 10px;
     width: 100%;
   }
@@ -838,9 +1170,6 @@ footer {
     margin-left: 0px;
   }
 
-  .news-item-img img {
-    max-width: 200px;
-  }
 
   .slideshow {
 
@@ -989,11 +1318,18 @@ footer {
     }
   }
 
-  .news-item-img {
+  .news-row {
+    gap: 0.75rem;
+    grid-template-columns: 4rem 1fr;
+  }
 
-    img {
-      max-width: 200px;
-    }
+  .news-thumbs img {
+    height: 4rem;
+    width: 4rem;
+  }
+
+  .news-thumbs img + img {
+    display: none;
   }
 
   .job {
