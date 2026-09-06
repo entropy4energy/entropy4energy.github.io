@@ -82,19 +82,22 @@
     <div class="content-block">
       {% block content %}{% endblock %}
     </div>
-    <div class="sidebar">
-      <div class="sidebar-content">
-        <h2>Latest News</h2>
-        {% for news in data.news[:news_max] %}
-          <div class="sidebar-news-item">
-            <div class="sidebar-news-item-title">
-              <a href="news.html#{{ loop.index }}">{{ news.title }}</a>
-            </div>
-            <div class="sidebar-news-item-date">{{ news.date }}</div>
-          </div>
-        {% endfor %}
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-label">Latest news</div>
+        <ul class="sidebar-list">
+          {% for news in data.news[:news_max] %}
+            <li>
+              <a href="news.html#{{ news.index }}">
+                <span class="sidebar-date">{{ news.date }}</span>
+                <span class="sidebar-title">{{ news.title }}</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+        <a class="sidebar-more" href="news.html">All news &rarr;</a>
       </div>
-    </div>
+    </aside>
   </div>
   <footer>
     <div class="footer-inner">
