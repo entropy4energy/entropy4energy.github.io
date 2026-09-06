@@ -77,9 +77,10 @@ header {
     gap: 14px;
     height: 61px;
     margin: 0 auto;
+    max-width: 1320px;
     min-width: $body-min-width;
-    padding: 0 20px;
-    width: 80%;
+    padding: 0 24px;
+    width: 100%;
   }
 
   .hero-logo {
@@ -96,7 +97,7 @@ header {
 
 nav {
   background-color: $color-main-2;
-  border-bottom: 1px solid #e6e2dc;
+  border-bottom: 1px solid #d8d3cc;
   position: sticky;
   top: 0;
   width: 100%;
@@ -130,9 +131,10 @@ nav {
     gap: 4px;
     justify-content: flex-start;
     margin: 0 auto;
+    max-width: 1320px;
     min-width: $body-min-width;
-    padding: 6px 20px;
-    width: 80%;
+    padding: 6px 12px;
+    width: 100%;
   }
 
   li {
@@ -571,12 +573,15 @@ footer {
 }
 
 .main-content-wrapper {
+  box-sizing: border-box;
   display: grid;
   flex: 1 0 auto;
   grid-template-columns: 75% 25%;
   margin: auto;
+  max-width: 1320px;
   min-width: $body-min-width;
-  width: 80%;
+  padding: 0 16px;
+  width: 100%;
 }
 
 .content-block {
