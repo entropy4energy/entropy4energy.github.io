@@ -43,7 +43,7 @@
       "title": "Hydrogen production",
       "text": [
         "Hydrogen is a backbone of the energy and chemical industries. It is used at enormous scale in refining, chemical manufacturing, and fertilizer production, and its role is expanding across energy technologies. Most hydrogen production relies on natural gas, tying its economics to natural-gas prices. New production routes can diversify how and where hydrogen is made.",
-        "We design materials for producing hydrogen from water using electricity or heat. Machine learning helps us explore complex alloys as alternatives to precious-metal catalysts, and we use first-principles calculations to understand how atomic arrangement changes catalytic behavior. We also design multicomponent redox oxides for thermochemical water splitting.",
+        "We design materials for producing hydrogen from water using electricity or heat. Machine learning helps us explore complex alloys as alternatives to precious-metal catalysts, and we use first-principles calculations to understand how atomic arrangement changes catalytic behavior.",
         "Students working in this area encounter catalysis, electronic structure, thermodynamics, machine learning, materials synthesis, and experimental characterization."
       ],
       "image": "hydrogen_catalyst_screening.png",
@@ -68,7 +68,7 @@
         "Growing electricity demand will require enormous amounts of reliable power. Nuclear fission is one of the few technologies already capable of supplying electricity continuously at that scale. Its continued and expanded use requires materials that can operate safely for long periods and durable approaches to nuclear waste.",
         "We design materials for both challenges. In recent work, we demonstrated for the first time that iodine can be incorporated directly into the crystal lattice of a pyrochlore, opening a new direction for nuclear waste forms. We also study chemically complex materials for demanding reactor environments.",
         "Fusion is one of the great scientific and engineering challenges of our time: reproducing on Earth the reactions that power the stars and turning them into a practical source of energy. Doing that is also a materials problem. Components near the plasma must survive conditions encountered almost nowhere else in engineering.",
-        "We investigate chemically complex materials for these extreme environments, including materials used near plasmas and in the production of fusion fuel.",
+        "We investigate chemically complex materials for these extreme environments, including materials that operate near fusion plasmas.",
         "Research in nuclear materials spans phase stability, defect chemistry, extreme environments, first-principles calculations, machine learning, synthesis, and characterization."
       ],
       "image": "nuclear_iodine_pyrochlore.png",
