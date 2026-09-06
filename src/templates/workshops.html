@@ -17,11 +17,11 @@
         <div class="workshop-card-body">
           <div class="workshop-card-date">{{ workshop.date }}</div>
           <div class="workshop-card-title">{{ workshop.title }}</div>
-          <div class="workshop-card-facts">
-            {{ workshop.sessions|length }} session{{ 's' if workshop.sessions|length != 1 }}
-            {% if workshop.n_recordings %} &middot; {{ workshop.n_recordings }} recording{{ 's' if workshop.n_recordings != 1 }}{% endif %}
-            {% if workshop.n_materials %} &middot; {{ workshop.n_materials }} hands-on notebook{{ 's' if workshop.n_materials != 1 }}{% endif %}
-          </div>
+          {% set facts = [] %}
+          {% if workshop.sessions %}{% set _ = facts.append(workshop.sessions|length ~ " session" ~ ("s" if workshop.sessions|length != 1 else "")) %}{% endif %}
+          {% if workshop.n_recordings %}{% set _ = facts.append(workshop.n_recordings ~ " recording" ~ ("s" if workshop.n_recordings != 1 else "")) %}{% endif %}
+          {% if workshop.n_materials %}{% set _ = facts.append(workshop.n_materials ~ " hands-on notebook" ~ ("s" if workshop.n_materials != 1 else "")) %}{% endif %}
+          {% if facts %}<div class="workshop-card-facts">{{ facts|join(" &middot; ") }}</div>{% endif %}
         </div>
       </a>
     {% endfor %}
@@ -53,6 +53,9 @@
             </a>
           {% endif %}
         </div>
+        {% for extra in workshop.extras %}
+          <p class="workshop-extra"><b>{{ extra.title }}.</b> {{ extra.description }}</p>
+        {% endfor %}
         {% if workshop.sessions %}
           <h3 class="workshop-sessions-title">Sessions</h3>
           <ol class="workshop-sessions">
