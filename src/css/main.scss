@@ -578,39 +578,98 @@ footer {
 
 /* Publications */
 
+.publications-kind {
+  border-bottom: none;
+  color: $color-muted;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  margin: 1.5rem 0 0;
+  text-transform: uppercase;
+}
+
+.publication-year-heading {
+  border-bottom: 1px solid $color-line-2;
+  color: $color-main-1;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  margin: 1.25rem 0 0.5rem;
+  padding-bottom: 0.25rem;
+}
+
 .publications-section {
   margin-bottom: 10px;
 }
 
 .publication {
+  border-bottom: 1px solid $color-line;
   display: grid;
-  grid-column-gap: 10px;
-  grid-template-columns: 2em auto auto;
-  margin-bottom: 30px;
-  margin-right: 10px;
+  gap: 0 1rem;
+  grid-template-columns: 220px 2.2rem minmax(0, 1fr);
+  padding: 0.85rem 0;
+  scroll-margin-top: 4em;
+
+  &-img img {
+    aspect-ratio: 348 / 225;
+    border: 1px solid $color-line-2;
+    border-radius: 6px;
+    display: block;
+    object-fit: cover;
+    width: 100%;
+  }
 
   &-number {
-    font-weight: bold;
-    margin-left: 350px;
+    color: $color-muted;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding-top: 0.15rem;
+    text-align: right;
   }
 
   &-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  &-authors {
+    color: $color-muted;
+    font-size: 0.92rem;
+    margin-top: 0.2rem;
+  }
+
+  &-venue {
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
+  }
+
+  &-journal,
+  &-book {
     font-style: italic;
   }
 
   &-volume {
-    font-weight: bold;
+    font-weight: 700;
   }
 
-  &-img {
-    padding-left: 10px;
+  &-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
 
-    img {
-      display: block;
-      width: 348px;
-      height: 225px;
-      border:1px solid black;
-      margin-top: 2px;
+    a {
+      border: 1px solid $color-main-1;
+      border-radius: 999px;
+      color: $color-main-1;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.1rem 0.65rem;
+      text-decoration: none;
+
+      &:hover {
+        background-color: $color-main-1;
+        color: $color-main-2;
+      }
     }
   }
 }
@@ -1323,12 +1382,12 @@ footer {
   }
 
 
-  .publication-img {
-    display: none;
+  .publication {
+    grid-template-columns: 2.2rem minmax(0, 1fr);
   }
 
-  .publication-number{
-    margin-left: 0px;
+  .publication-img {
+    display: none;
   }
 
 
@@ -1473,14 +1532,10 @@ footer {
   }
 
   .publication {
-    grid-template-columns: 2em auto;
+    grid-template-columns: 2.2rem minmax(0, 1fr);
 
     &-img {
       display: none;
-    }
-
-    &-number {
-      margin-left: 0px;
     }
   }
 
