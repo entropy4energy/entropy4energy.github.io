@@ -21,6 +21,7 @@
     "news": "News from the Entropy for Energy Laboratory at Johns Hopkins University.",
     "jobs": "Open positions and how to join the Entropy for Energy Laboratory at Johns Hopkins University: PhD students, postdoctoral researchers, and undergraduates.",
     "workshops": "Workshops on data-driven materials modeling organized by the Entropy for Energy Laboratory at Johns Hopkins University.",
+    "tools": "Databases and data platforms built by the Entropy for Energy Laboratory at Johns Hopkins University: CHAOS and LOOP.",
   } %}
   {% set description = descriptions.get(data.section, descriptions["home"]) %}
   {% set page_title = "Entropy for Energy Laboratory" if data.section == "home" else "S4E - " ~ (data.section | title) %}
@@ -85,7 +86,7 @@
         {% else %}
           {% set href = "." if header == "home" else header %}
         {% endif %}
-        {% set cls = ' class="active"' if header == data.section else "" %}
+        {% set cls = ' class="active"' if header == data.section or header == data.parent else "" %}
         <li>
           <a id="nav_{{ header }}" href="{{ href }}"{{ cls }}>
             {{ data.labels[header] }}
@@ -94,11 +95,12 @@
       {% endfor %}
     </ul>
   </nav>
-  {% if data.product and data.product.subnav %}
-    <div class="subnav" role="navigation" aria-label="{{ data.product.name }} sections">
+  {% if data.tools and (data.section == "tools" or data.parent == "tools") %}
+    <div class="subnav" role="navigation" aria-label="Data and Tools">
       <ul>
-        {% for item in data.product.subnav %}
-          <li><a href="{{ item.href }}"{% if item.active %} class="active"{% endif %}>{{ item.label }}</a></li>
+        <li><a href="tools"{% if data.section == "tools" %} class="active"{% endif %}>Overview</a></li>
+        {% for item in data.tools.products %}
+          <li><a href="{{ item.href }}"{% if item.id == data.section %} class="active"{% endif %}>{{ item.name }}</a></li>
         {% endfor %}
       </ul>
     </div>
