@@ -6,9 +6,8 @@
       "title": "Materials Modeling",
       "term": "Every fall since 2023",
       "text": [
-        "Students write scientific code in Python and use it to model materials. The course begins with the UNIX shell, Git, LaTeX, and Make, then develops numerical methods from their mathematical foundations. Topics include integration of equations of motion, relaxation methods for fields, eigenvalue problems, random numbers, and Monte Carlo sampling. Students apply these methods to density functional theory, high-throughput materials databases, molecular dynamics, and machine learning. The final unit introduces autonomous experimentation using the LEGOLAS low-cost autonomous laboratory kit, in which results from one experiment are used to select the next.",
-        "There are no written examinations. Each of the seven assignments consists of a working program and a report typeset in LaTeX and maintained in a GitHub repository. The semester ends with a group project presented in class. Students implement the numerical methods themselves rather than relying on libraries that already solve the problem, and they check their results against analytic limits, conservation laws, or convergence tests. The density functional theory, high-throughput modeling, and molecular dynamics assignments run on the university's research computing cluster.",
-        "The course enrolls 15 to 17 students each fall, mostly graduate students in materials science and related departments, and often has a waiting list. In course evaluations, students rate its intellectual challenge 4.6 of 5."
+        "Students write scientific code in Python and use it to model materials. The course begins with the UNIX shell, Git, LaTeX, and Make, then develops numerical methods from their mathematical foundations. Topics include integration of equations of motion, relaxation methods for fields, eigenvalue problems, random numbers, and Monte Carlo sampling. Students apply these methods to density functional theory, high-throughput materials databases, molecular dynamics, and machine learning. The final unit introduces autonomous experimentation using the LEGOLAS low-cost autonomous laboratory kit, with results from each experiment used to select the next.",
+        "There are no written examinations. Each of the seven assignments consists of a working program and a report typeset in LaTeX and maintained in a GitHub repository. The semester ends with a group project presented in class. Students implement the numerical methods themselves rather than relying on libraries that already solve the problem, and they check their results against analytic limits, conservation laws, or convergence tests. The density functional theory, high-throughput modeling, and molecular dynamics assignments run on the university's research computing cluster. The course enrolls 15 to 17 students each fall, mostly graduate students in materials science and related departments, and often has a waiting list. Across course evaluations, students rate its intellectual challenge 4.6 out of 5."
       ]
     },
     {
@@ -29,17 +28,16 @@
     }
   ],
   "workshops_text": [
-    "The group organizes hands-on workshops at Johns Hopkins University on data-driven materials modeling, quantum computing for materials, and translating energy research into applications. Recordings and notebooks from past events are on the <a href=\"workshops\">Workshops</a> page.",
-    "Prof. Oses co-organized schools on high-throughput computational materials science at Carnegie Mellon University, the University of Pennsylvania, Texas A&amp;M University, TU Dresden, and the University of Rwanda. He has also presented at the University of Maryland and NIST Machine Learning for Materials Research bootcamps since 2018."
+    "The group organizes hands-on workshops at Johns Hopkins University on data-driven materials modeling, quantum computing, and translating energy research into applications. Recordings and notebooks from past events are on the <a href=\"workshops\">Workshops</a> page. Prof. Oses has also co-organized schools on high-throughput computational materials science at Carnegie Mellon University, the University of Pennsylvania, Texas A&amp;M University, TU Dresden, and the University of Rwanda, and has presented at the University of Maryland and NIST Machine Learning for Materials Research bootcamps since 2018."
   ],
   "outreach": [
     {
       "title": "Research in the group",
-      "text": "Since 2022, the group has hosted nine undergraduate researchers, six high school researchers, five visiting students, and four master's students, in addition to its PhD students, postdoctoral associates, and research scientists. Undergraduates join through the Research on Sustainable Energy Technology and Systems (ROSETAS) summer program, a National Science Foundation Research Experience for Undergraduates site hosted by ROSEI, and through Johns Hopkins research credit. Four undergraduate researchers are co-authors on group publications."
+      "text": "Since 2022, the group has hosted nine undergraduate researchers, six high school researchers, five visiting students, and four master's students, in addition to its PhD students, postdoctoral associates, and research scientists. Undergraduates join through Johns Hopkins research credit and programs such as Research on Sustainable Energy Technology and Systems (ROSETAS), a National Science Foundation Research Experience for Undergraduates site hosted by ROSEI, and four undergraduate researchers are co-authors on group publications."
     },
     {
       "title": "High school research",
-      "text": "Since 2023, the group has mentored high school students through programs such as the Ingenuity Project Research Practicum at Baltimore Polytechnic Institute and the Johns Hopkins Engineering Innovation Research Program. Students build and program the LEGOLAS low-cost autonomous laboratory, a LEGO-based system that runs experiments and uses machine learning to select the next one, and take on other autonomous-laboratory projects. Each cohort helps train the students who follow. The same kit, developed at the University of Maryland and NIST, is used in the final unit of the Materials Modeling course."
+      "text": "Since 2023, the group has mentored high school students through programs such as the Ingenuity Project Research Practicum at Baltimore Polytechnic Institute and the Johns Hopkins Engineering Innovation Research Program. Students build and program the LEGOLAS low-cost autonomous laboratory, a LEGO-based system that runs experiments and uses machine learning to select the next one, as well as work on other autonomous-laboratory projects. Each cohort helps train the students who follow, and the same kit, developed at the University of Maryland and NIST, is used in the final unit of the Materials Modeling course."
     },
     {
       "title": "Society of Hispanic Professional Engineers",
@@ -77,7 +75,7 @@
     },
     {
       "year": "2024",
-      "text": "Early-Career Investigator Award in Materials Modelling, International Society of Materials Modeling"
+      "text": "Early-Career Investigator Award in Materials Modeling, International Society of Materials Modeling"
     },
     {
       "year": "2024",
