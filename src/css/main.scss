@@ -1137,6 +1137,19 @@ h2 {
 .workshop-extra {
   margin: 0 0 12px;
   max-width: 75ch;
+
+  p {
+    margin: 0 0 8px;
+  }
+}
+
+.workshop-links {
+  margin: 0;
+  padding-left: 1.2em;
+
+  li + li {
+    margin-top: 4px;
+  }
 }
 
 .workshop-chip {
