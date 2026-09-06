@@ -1,0 +1,45 @@
+{
+  "intro": "Databases and platforms the group builds and runs for the research community.",
+  "products": [
+    {
+      "id": "chaos",
+      "name": "CHAOS",
+      "kind": "Database",
+      "full_name": "Combinatorial High-throughput Analysis and Optimization for Synthesis",
+      "href": "chaos",
+      "description": "A first-principles database of high-entropy oxides with their ordered binary and ternary precursors and a library of structural and chemical descriptors. Bulk downloads by number of cations, a REST API, and CHAOS-GPT, a natural-language interface to the data.",
+      "links": [
+        {
+          "label": "API docs",
+          "href": "https://s4e.ai/API/chaos/?help",
+          "external": true
+        },
+        {
+          "label": "CHAOS-GPT",
+          "href": "chaos#gpt"
+        }
+      ]
+    },
+    {
+      "id": "loop",
+      "name": "LOOP",
+      "kind": "Data platform",
+      "full_name": "Learning and Optimization Platform",
+      "href": "https://s4e.ai/loop/",
+      "external": true,
+      "description": "A shared platform for high-entropy materials data: browse experimental, literature, and computational records, upload new results, run synthesizability predictions, and pull everything through an API with personal keys.",
+      "links": [
+        {
+          "label": "Browse",
+          "href": "https://s4e.ai/loop/browse/",
+          "external": true
+        },
+        {
+          "label": "API",
+          "href": "https://s4e.ai/loop/developers/",
+          "external": true
+        }
+      ]
+    }
+  ]
+}
