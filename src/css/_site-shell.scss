@@ -3,6 +3,8 @@
 // css/shell.css for LOOP, which includes the shell fragments from
 // dist/partials/. Keep page-specific rules out of this file.
 
+@use 'tokens' as *;
+
 header {
   @include contrast-main-1();
 
