@@ -1,5 +1,27 @@
 [
   {
+    "date": [2026, 8, 27],
+    "title": "The group welcomes <strong>Jonathan R. Owens</strong>, and <strong>Rongjian (Jimmy) Xue</strong>!",
+    "message": "<strong>Jonathan R. Owens</strong> is a senior scientist at GE Vernova Advanced Research. <strong>Rongjian (Jimmy) Xue</strong> comes from Zhejiang University where he studied Materials Science & Engineering. Welcome!",
+    "picture_alt": "Portraits of Jonathan R. Owens and Rongjian (Jimmy) Xue",
+    "picture_directory": "team",
+    "pictures": [
+      "jonathan_owens.jpg",
+      "rongjian_xue.jpg"
+    ]
+  },
+  {
+    "date": [2026, 7, 6],
+    "title": "The group welcomes <strong>Theodore Maranets</strong>, and <strong>Aritra Mukhopadhyaya</strong>!",
+    "message": "Theodore \"Teddy\" Maranets comes from the University of Nevada, Reno where he studied mechanical engineering. <strong>Aritra Mukhopadhyaya</strong> comes from the Institute of Nano Science and Technology Mohali where he studied computational nanoscience. Welcome!",
+    "picture_alt": "Portraits of Theodore Maranets and Aritra Mukhopadhyaya",
+    "picture_directory": "team",
+    "pictures": [
+      "theodore_maranets.jpg",
+      "aritra_mukhopadhyaya.jpg"
+    ]
+  },
+  {
     "date": [2026, 6, 11],
     "title": "Dr. Oses honored at National Academy of Sciences",
     "message": "Dr. Oses was honored at the ARPA-E IGNIITE Awards Ceremony at the National Academy of Sciences in Washington, DC.",
