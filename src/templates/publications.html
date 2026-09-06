@@ -27,15 +27,11 @@
           <span class="publication-journal">{{ pub.journal }}</span>
         {% endif %}
         {% if pub.volume %}
-          <span class="publication-volume">{{ pub.volume }}</span>
+          <span class="publication-volume">{{ pub.volume }}</span>{% if pub.issue %}<span class="publication-issue">({{ pub.issue }})</span>{% endif %}{% if pub.pages %}, <span class="publication-pages">{{ pub.pages }}</span>{% endif %}
+        {% elif pub.pages %}
+          <span class="publication-pages">{{ pub.pages }}</span>
         {% endif %}
-        {% if pub.issue %}
-          <span class="publication-issue">{{ pub.issue }}</span>
-        {% endif %}
-        {% if pub.status %}
-          <span class="publication-status">{{ pub.status }}</span>
-        {% endif %}
-        (<span class="publication-year">{{ pub.year }}</span>)
+        (<span class="publication-year">{{ pub.year }}</span>){% if pub.status %}, <span class="publication-status">{{ pub.status }}</span>{% endif %}
       </div>
       <div class="publication-links">
         {% if pub.url %}
@@ -43,7 +39,7 @@
         {% endif %}
         {% if pub.filename %}
           <a href="media/publications/{{ pub.filename }}.pdf" target="_blank">{{ pub.pdf_label }}</a>
-        {% elif "link" in pub %}
+        {% elif pub.link and not (pub.doi and pub.link == "https://doi.org/" ~ pub.doi) %}
           <a href="{{ pub.link }}" target="_blank">publisher</a>
         {% endif %}
       </div>
