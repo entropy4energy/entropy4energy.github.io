@@ -253,6 +253,9 @@ def process_team(data: dict[str, Any]):
 
     for member_id, member in data["team"].items():
         member["id"] = member_id
+        # A member without a headshot in src/media/team gets no <img> at all
+        # (a broken image with alt text is worse than a blank).
+        member["has_photo"] = (BASE_PATH / "media" / "team" / f"{member_id}.jpg").exists()
         member_socials = []
         if "socials" in member:
             for social in socials:

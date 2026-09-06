@@ -7,7 +7,9 @@
 {% macro member_html(member) %}
   <div class="member">
     <div class="member-img">
-      <img src="media/team/{{ member.id }}.jpg" alt="Portrait of {{ member.name }}">
+      {% if member.has_photo %}
+        <img src="media/team/{{ member.id }}.jpg" alt="Portrait of {{ member.name }}">
+      {% endif %}
     </div>
     <div class="member-data">
       <div class="member-data-name">{{ member.name }}</div>
