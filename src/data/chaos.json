@@ -13,24 +13,6 @@
   "product": {
     "name": "CHAOS",
     "full_name": "Combinatorial High-throughput Analysis and Optimization for Synthesis",
-    "subnav": [
-      {
-        "label": "Datasets",
-        "href": "chaos#datasets"
-      },
-      {
-        "label": "API",
-        "href": "chaos#api"
-      },
-      {
-        "label": "CHAOS-GPT",
-        "href": "chaos#gpt"
-      },
-      {
-        "label": "LOOP",
-        "href": "https://s4e.ai/loop/"
-      }
-    ],
     "contributors": [
       {
         "name": "Corey Oses",
