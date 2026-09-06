@@ -5,9 +5,9 @@
     "date": [
       [2026, 6, 11]
     ],
-    "description": "<strong><em>Laboratory to Launchpad: Bringing Your Energy IP to Life</em></strong> was a one-day conference hosted by Johns Hopkins University on Thursday, June 11, 2026, at the Hopkins Bloomberg Center, 555 Pennsylvania Ave, Washington, D.C. The event was designed for faculty, students, staff, postdocs, researchers, and innovators interested in translating research into real-world impact. While the conference was centered on energy-related technologies, the topics were broadly relevant to anyone interested in commercialization, intellectual property, startup formation, translational strategy, research communication, and moving discoveries from the lab into industry and society.",
+    "description": "<strong><em>Laboratory to Launchpad: Bringing Your Energy IP to Life</em></strong> was a one-day conference held on June 11, 2026, at the Hopkins Bloomberg Center in Washington, D.C. The conference brought together faculty, students, postdocs, researchers, and other innovators interested in moving research toward application. Sessions covered commercialization, intellectual property, federal funding, startup formation, research communication, and other aspects of translating research beyond the laboratory.",
     "highlights": [
-      "A featured talk from Dr. David Gates, CTO of Thea Energy",
+      "A featured talk by Dr. David Gates, CTO of Thea Energy",
       "Workshops on pitching research, securing federal funding, intellectual property, licensing, and startup growth",
       "A working lunch panel on cross-disciplinary innovation and translational research",
       "A live pitch competition with judges from D.C. venture capital firms",
@@ -28,7 +28,7 @@
       [2026, 2, 25],
       [2026, 2, 26]
     ],
-    "description": "Join us for an interactive workshop highlighting some of the latest developments in quantum computing, featuring hands-on sessions with quantum hardware and software platforms. Explore real-world applications and demonstrations across fields such as quantum chemistry, physics, materials science, biology, engineering, data science, and artificial intelligence. The program includes keynote talks, panel discussions, research presentations, and practical tutorials designed to inform, engage, and connect participants from diverse backgrounds in this rapidly evolving field.",
+    "description": "<strong><em>Quantum Computing in Practice: Hands On with Quantinuum</em></strong> was a two-day workshop on quantum computing and its applications across chemistry, physics, materials science, biology, engineering, data science, and artificial intelligence. The program included talks, discussions, research presentations, and hands-on tutorials using Quantinuum hardware and software.",
     "sessions": [
       {
         "presenter":"Dr. Corey Oses and Dr. Gregory Quiroz",
@@ -54,7 +54,7 @@
         "presenter":"Ciaran Ward",
         "title":"Resources",
         "links": [
-          {"label": "One-month trial access to InQuanto via Quantinuum Nexus", "href": "https://engineering.jhu.edu/materials/event/quantum-computing-in-practice-hands-on-with-quantinuum/"},
+          {"label": "One-month trial access to InQuanto via Quantinuum Nexus, offered to participants through the workshop page", "href": "https://engineering.jhu.edu/materials/event/quantum-computing-in-practice-hands-on-with-quantinuum/"},
           {"label": "Documentation for InQuanto, Nexus, and other Quantinuum products", "href": "https://docs.quantinuum.com/"},
           {"label": "Case-study tutorial: catalyzed nitrogen dissociation, based on the published workflow", "href": "https://docs.quantinuum.com/inquanto/tutorials/case_study_tutorials.html"},
           {"label": "Knowledge article: quantum error-corrected quantum phase estimation for quantum computational chemistry", "href": "https://docs.quantinuum.com/inquanto/tutorials/InQ_KA_h2xh2.html"}
@@ -69,11 +69,11 @@
       [2024, 5, 29],
       [2024, 5, 31]
     ],
-    "description": "Join us for the first Data-Driven Materials Modeling Workshop, happening Wednesday, May 29, through Friday, May 31. This three-day workshop will have a distinct theme for each day with expert speaker seminars in the mornings followed by hands-on workshop sessions in the afternoons. The morning session targets researchers—both experimental and computational—looking to integrate data-driven approaches into their projects and includes a keynote from a leading expert on the topic, followed by a talk highlighting developments within Hopkins. The hands-on session targets students looking to learn implementation details led by graduate students and postdocs.",
+    "description": "The first <strong><em>Data-Driven Materials Modeling Workshop</em></strong> was held May 29&ndash;31, 2024. Each day combined morning seminars with hands-on sessions in the afternoon. The seminars introduced data-driven approaches for experimental and computational materials research, and the hands-on sessions gave students experience implementing the methods with guidance from graduate students and postdoctoral researchers.",
     "sessions": [
       {
-        "description": "A welcome and a brief introduction about the Data-Driven Materials Modeling Workshop, followed by the AIMNet2.",
-        "presenter": "Prof. Olexander Isayev",
+        "description": "A welcome and brief introduction to the workshop, followed by a presentation on AIMNet2.",
+        "presenter": "Prof. Olexandr Isayev",
         "title": "Welcome and Introduction",
         "youtube_id": "Gi21PB98kUY"
       },
@@ -113,7 +113,7 @@
         "youtube_id": "sgM3dx3FOi0"
       },
       {
-        "materials": "https://https://s4e.ai/workshops/2024_ai_materials/DAY_2/",
+        "materials": "https://s4e.ai/workshops/2024_ai_materials/DAY_2/",
         "presenter": ["Prof. Brandon Bukowski", "Prof. Tine Curk"],
         "title": "Quantum Chemistry and Catalysis"
       },
