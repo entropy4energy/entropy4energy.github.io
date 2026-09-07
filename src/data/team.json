@@ -3,6 +3,10 @@
     "awards": [
       {
         "year": "2026",
+        "text": "Finalist, Advanced Nuclear Energy Technology Challenge, Defense TechConnect"
+      },
+      {
+        "year": "2026",
         "text": "Catalyst Early Career Award, Johns Hopkins University"
       },
       {
@@ -516,5 +520,13 @@
     ],
     "years": "2026\u2013present",
     "contact": "ilafleu1 at jh.edu"
+  },
+  "oliwia_lidwin": {
+    "name": "Oliwia Lidwin",
+    "titles": [
+      "Undergraduate Student"
+    ],
+    "years": "2025\u2013present",
+    "contact": "olidwin1 at jh.edu"
   }
 }
