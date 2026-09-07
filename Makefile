@@ -63,6 +63,12 @@ $(BLDDIR)/%.html: $(PREREQSALL) $(TEMPLATEDIR)/%.html $(DATADIR)/%.json
 
 $(BLDDIR)/news.html: $(DATADIR)/press.json
 
+# awards.json is generated from the CV (honors.json) by the s4e feed and carries
+# Prof. Oses's awards for the Team page block.
+$(BLDDIR)/team.html: $(PREREQSALL) $(TEMPLATEDIR)/team.html $(DATADIR)/team.json $(DATADIR)/awards.json
+	@mkdir -p $(@D)
+	$(PYTHON) $(BUILDPY) team --extra_data awards | $(HTMLC) $(HTMLCFLAGS) -o $@
+
 $(BLDDIR)/index.html: $(PREREQSALL) $(TEMPLATEDIR)/home.html $(DATADIR)/home.json $(DATADIR)/publications.json $(DATADIR)/research.json
 	@mkdir -p $(@D)
 	$(PYTHON) $(BUILDPY) home --extra_data publications research | $(HTMLC) $(HTMLCFLAGS) -o $@
