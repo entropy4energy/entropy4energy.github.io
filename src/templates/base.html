@@ -59,14 +59,14 @@
   {# The Latest News card is on every page except News itself. #}
   {% set with_sidebar = data.section != "news" %}
   <div class="main-content-wrapper{% if not with_sidebar %} no-sidebar{% endif %}">
+    <div class="content-block">
+      {% block content %}{% endblock %}
+    </div>
     {% if with_sidebar %}
       <aside class="sidebar">
         {% include "partials/sidebar.html" %}
       </aside>
     {% endif %}
-    <div class="content-block">
-      {% block content %}{% endblock %}
-    </div>
   </div>
   {% include "partials/footer.html" %}
   {% block body_extra %}{% endblock %}
