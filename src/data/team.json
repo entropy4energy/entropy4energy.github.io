@@ -82,6 +82,10 @@
   },
   "jiayue_hu": {
     "contact": "jhu130 at jh.edu",
+    "socials": {
+      "gscholar": "JtxSD94AAAAJ",
+      "orcid": "0009-0007-7396-8724"
+    },
     "name": "Jiayue Hu",
     "titles": [
       "Postdoctoral Associate"
@@ -90,6 +94,10 @@
   },
   "avi_bregman": {
     "contact": "Avi.Bregman at jhuapl.edu",
+    "socials": {
+      "gscholar": "nHtF0qYAAAAJ",
+      "orcid": "0000-0002-8788-6566"
+    },
     "name": "Avi Bregman",
     "titles": [
       "Research Scientist",
@@ -99,6 +107,10 @@
   },
   "jonathan_owens": {
     "contact": "jowens58 at jh.edu",
+    "socials": {
+      "gscholar": "E2xhYPAAAAAJ",
+      "orcid": "0000-0001-9140-1309"
+    },
     "name": "Jonathan R. Owens",
     "titles": [
       "Research Scientist",
@@ -108,6 +120,10 @@
   },
   "hashan_peiris": {
     "contact": "mpeiris1 at jh.edu",
+    "socials": {
+      "gscholar": "DJjjTBQAAAAJ",
+      "orcid": "0000-0002-8706-452X"
+    },
     "name": "M. D. Hashan C. Peiris",
     "titles": [
       "Postdoctoral Associate"
@@ -117,6 +133,10 @@
   },
   "aritra_mukhopadhyaya": {
     "contact": "amukhop3 at jh.edu",
+    "socials": {
+      "gscholar": "Ug_T9tUAAAAJ",
+      "orcid": "0000-0003-4260-2555"
+    },
     "name": "Aritra Mukhopadhyaya",
     "titles": [
       "Postdoctoral Associate"
@@ -126,6 +146,10 @@
   },
   "theodore_maranets": {
     "contact": "tmarane1 at jh.edu",
+    "socials": {
+      "gscholar": "1Eyky6wAAAAJ",
+      "orcid": "0009-0000-4177-3593"
+    },
     "name": "Theodore Maranets",
     "titles": [
       "Postdoctoral Associate"
@@ -135,6 +159,10 @@
   },
   "singh_shubham": {
     "contact": "ssing187 at jh.edu",
+    "socials": {
+      "gscholar": "QrwU9HoAAAAJ",
+      "orcid": "0009-0002-1583-1918"
+    },
     "name": "Shubham Singh",
     "titles": [
       "Postdoctoral Associate"
@@ -153,6 +181,10 @@
   },
   "tianhao_li": {
     "contact": "tli114 at jhu.edu",
+    "socials": {
+      "gscholar": "-r8JYL4AAAAJ",
+      "orcid": "0009-0006-2035-7754"
+    },
     "name": "Tianhao Li",
     "titles": [
       "PhD Student"
@@ -169,6 +201,9 @@
   },
   "xiao_xu": {
     "contact": "xxu115 at jhu.edu",
+    "socials": {
+      "orcid": "0009-0008-4118-4746"
+    },
     "name": "Xiao Xu",
     "titles": [
       "PhD Student"
