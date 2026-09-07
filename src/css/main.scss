@@ -1076,6 +1076,12 @@ h2 {
     }
   }
 
+  &-closed-note {
+    color: $color-muted;
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
   &-description {
     h2 {
       border-bottom: none;
