@@ -167,11 +167,11 @@ def process_publications(data: dict[str, Any]):
                 pub["pdf_label"] = "PDF"
                 if not pdf_file.exists():
                     #only open-access PDFs are hosted; a closed paper may still have its
-                    #arXiv preprint (the author's version), which is linked as "preprint"
+                    #arXiv version (the author's own, openly available), linked as "PDF"
+                    #like the others
                     arxiv = pub.get("arxiv")
                     if arxiv and (file_base / f"{arxiv}.pdf").exists():
                         pub["filename"] = arxiv
-                        pub["pdf_label"] = "preprint"
                     else:
                         del pub["filename"]
 
