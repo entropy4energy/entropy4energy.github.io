@@ -411,18 +411,22 @@ h2 {
       order: 3;
     }
 
+    /* same box as the link chips in the row (block with max-content width,
+       so no inline strut from the parent's line height) */
     summary {
       border: 1px solid $color-main-1;
       border-radius: 999px;
       color: $color-main-1;
       cursor: pointer;
-      display: inline-block;
+      display: block;
+      font: inherit;
       font-size: 0.8rem;
       font-weight: 600;
       line-height: 1.4;
       list-style: none;
       padding: 0.1rem 0.65rem;
       user-select: none;
+      width: max-content;
 
       &::-webkit-details-marker {
         display: none;
