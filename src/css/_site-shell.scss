@@ -230,20 +230,27 @@ footer {
   }
 }
 
+/* The Latest News card floats right and the page content wraps around it,
+   so the content takes the full width once it passes the card instead of
+   leaving an empty column down the page. Elements that must not slide
+   under the card (headings, paragraphs, figures, boxed notes) establish
+   their own formatting context; long wrappers are left alone so they can
+   widen again below the card. */
 .main-content-wrapper {
   box-sizing: border-box;
-  display: grid;
+  display: block;
   flex: 1 0 auto;
-  grid-template-columns: 75% 25%;
   margin: auto;
   max-width: 1320px;
   min-width: $body-min-width;
   padding: 0 16px;
   width: 100%;
-}
 
-.main-content-wrapper.no-sidebar {
-  grid-template-columns: 100%;
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
 }
 
 .content-block {
@@ -254,11 +261,30 @@ footer {
   li {
     max-width: 75ch;
   }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  ul,
+  ol,
+  blockquote,
+  figure,
+  details,
+  .join-note,
+  .eeo-statement,
+  .news-year,
+  .student-comment {
+    display: flow-root;
+  }
 }
 
 .sidebar {
-  margin-left: 20px;
-  margin-top: 40px;
+  box-sizing: border-box;
+  float: right;
+  margin: 40px 0 20px 20px;
+  width: 25%;
 
   &-card {
     background-color: $color-main-2;
@@ -349,8 +375,10 @@ $site-products: chaos loop;
   }
 
   .sidebar {
+    float: none;
     margin: 1rem 0;
     order: -1;
+    width: auto;
 
     &-card {
       padding: 0.6rem 0.9rem;
