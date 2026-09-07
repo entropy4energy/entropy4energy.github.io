@@ -38,7 +38,7 @@
           <h3>Awards and recognition</h3>
           <ul class="award-list">
             {% for award in member.awards %}
-              <li><span class="award-year">{{ award.year }}</span> {{ award.text }}</li>
+              <li><span class="award-year">{{ award.year }}</span><span class="award-text">{{ award.text }}</span></li>
             {% endfor %}
           </ul>
         </div>
