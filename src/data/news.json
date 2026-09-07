@@ -1,13 +1,13 @@
 [
   {
     "date": [2026, 8, 27],
-    "title": "The group welcomes <strong>Jonathan R. Owens</strong> and <strong>Rongjian (Jimmy) Xue</strong>",
-    "message": "<strong>Jonathan R. Owens</strong> is a senior scientist at GE Vernova Advanced Research. <strong>Rongjian (Jimmy) Xue</strong> comes from Zhejiang University where he studied Materials Science & Engineering. Welcome!",
-    "picture_alt": "Portraits of Jonathan R. Owens and Rongjian (Jimmy) Xue",
+    "title": "The group welcomes <strong>Rongjian (Jimmy) Xue</strong>; <strong>Jonathan R. Owens</strong> reappointed",
+    "message": "<strong>Rongjian (Jimmy) Xue</strong> comes from Zhejiang University where he studied Materials Science & Engineering. Welcome! <strong>Jonathan R. Owens</strong>, senior scientist at GE Vernova Advanced Research and ROSEI Visiting Scientist with the group since October 2025, is reappointed for 2026&ndash;27.",
+    "picture_alt": "Portraits of Rongjian (Jimmy) Xue and Jonathan R. Owens",
     "picture_directory": "team",
     "pictures": [
-      "jonathan_owens.jpg",
-      "rongjian_xue.jpg"
+      "rongjian_xue.jpg",
+      "jonathan_owens.jpg"
     ]
   },
   {
@@ -65,6 +65,16 @@
    "pictures": [
      "pic_amazon_tianhao.jpg",
      "pic_amazon_tianhao_2.jpg"
+    ]
+  },
+  {
+    "date": [2025, 10, 3],
+    "title": "<strong>Jonathan R. Owens</strong> joins the group as ROSEI Visiting Scientist",
+    "message": "<strong>Jonathan R. Owens</strong>, senior scientist at GE Vernova Advanced Research, joins the group as a Visiting Scientist through the Ralph O'Connor Sustainable Energy Institute (ROSEI) for 2025&ndash;26. Welcome!",
+    "picture_alt": "Portrait of Jonathan R. Owens",
+    "picture_directory": "team",
+    "pictures": [
+      "jonathan_owens.jpg"
     ]
   },
   {
