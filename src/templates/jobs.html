@@ -7,7 +7,7 @@
         {% if job.close %}
           <div class="job-date-close">Closes: <span class="job-date-close-text">{{ job.close }}</span></div>
         {% endif %}
-        <div class="job-date-stat noscript">Status: <span class="job-date-stat-text open">Open</span></div>
+        <div class="job-date-stat">Status: <span class="job-date-stat-text {{ job.status | lower }}">{{ job.status }}</span></div>
       </div>
       <div class="job-description">
         <h2>
@@ -26,6 +26,9 @@
           </ol>
         </p>
         <h3>Application Instructions</h3>
+        {% if job.links_removed %}
+          <p class="job-closed-note">This posting is closed; its application links have been removed.</p>
+        {% endif %}
         <p>{{ job.instructions }}</p>
       </div>
     </div>
