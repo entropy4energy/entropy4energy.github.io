@@ -68,10 +68,10 @@
         "We work at this interface. The group identifies materials problems, such as catalysis and chemical disorder, where quantum algorithms could make a difference, builds workflows that combine quantum and classical computation, and runs them on current hardware. In February 2026 we hosted a two-day workshop with Quantinuum that brought researchers from across Johns Hopkins hands-on with quantum hardware and software.",
         "Students in this area learn quantum algorithms for chemistry alongside classical electronic structure, and gain experience with the tools and hardware that the field is converging on."
       ],
-      "image": "quantum_workshop_2026.png",
-      "image_alt": "Participants of the Quantum Computing in Practice workshop at Johns Hopkins, February 2026",
-      "image_caption": "Quantum Computing in Practice: Hands On with Quantinuum, Johns Hopkins University, February 2026. See the <a href=\"workshops\">Workshops</a> page.",
-      "image_url": "workshops",
+      "image": "quantinuum_trapped_ions.png",
+      "image_alt": "Fluorescence image of individual trapped ions in a Quantinuum quantum computer",
+      "image_caption": "Individual trapped ions, each a qubit, imaged by their fluorescence in a Quantinuum quantum computer. Image courtesy of Quantinuum, provided by Mark Jackson. &copy; 2025 Quantinuum. All rights reserved.",
+      "image_url": "https://www.quantinuum.com/",
       "publications": [],
       "blurb": "Quantum algorithms and hybrid quantum-classical workflows for chemistry and disordered materials."
     },
