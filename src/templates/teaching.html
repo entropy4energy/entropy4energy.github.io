@@ -34,7 +34,7 @@
   <h3>Guest lectures</h3>
   <ul class="award-list">
     {% for item in data.teaching.guest_lectures %}
-      <li><span class="award-year">{{ item.year }}</span> {{ item.text }}</li>
+      <li><span class="award-year">{{ item.year }}</span><span class="award-text">{{ item.text }}</span></li>
     {% endfor %}
   </ul>
 
