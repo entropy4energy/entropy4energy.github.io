@@ -40,9 +40,8 @@ h2 {
 .nav-block {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin: 20px auto;
-  width: 100%;
+  gap: 0.5rem 2.5rem;
+  margin: 20px 0;
 
   a {
     color: $color-main-1;
@@ -700,7 +699,7 @@ h2 {
 /* Research */
 
 .research-figure {
-  margin: 10px auto 20px;
+  margin: 10px 0 20px;
   max-width: 700px;
   text-align: center;
 
