@@ -336,6 +336,11 @@ h2 {
   margin-bottom: 10px;
 }
 
+.publications-lead {
+  color: $color-muted;
+  margin: -0.25rem 0 1rem;
+}
+
 .publication {
   border-bottom: 1px solid $color-line;
   display: grid;
@@ -385,6 +390,22 @@ h2 {
 
   &-volume {
     font-weight: 700;
+  }
+
+  &-honors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.35rem;
+  }
+
+  &-honor {
+    background-color: #fff4d6;
+    border-radius: 999px;
+    color: #7a4b00;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.1rem 0.6rem;
   }
 
   &-links {
