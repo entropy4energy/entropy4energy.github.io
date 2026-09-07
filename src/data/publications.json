@@ -17,7 +17,8 @@
       "volume": "4",
       "doi": "10.1063/5.0339982",
       "filename": "10.1063_5.0339982",
-      "open_access": true
+      "open_access": true,
+      "bibtex": "@article{tseng2026structural,\n  author  = {Tseng, Shao-Yu and Han, Guangshuai and Li, Tianhao and Xu, Xiao and Hu, Jiayue and Qiu, Gengyao and Oses, Corey},\n  title   = {{Structural benchmarks overlook density-of-states errors in machine-learned interatomic potentials}},\n  journal = {APL Machine Learning},\n  volume  = {4},\n  year    = {2026},\n  doi     = {10.1063/5.0339982}\n}"
     },
     {
       "status": "published",
@@ -41,7 +42,8 @@
       "pages": "1211&ndash;1224",
       "doi": "10.1021/prechem.5c00467",
       "filename": "10.1021_prechem.5c00467",
-      "open_access": true
+      "open_access": true,
+      "bibtex": "@article{xu2026stabilizing,\n  author  = {Xu, Xiao and Han, Guangshuai and Li, Tianhao and Hu, Jiayue and Qiu, Guotao and Tseng, Shao-Yu and Han, Gyeong H. and Dupuy, Alexander and Hall, A. Shoji and Oses, Corey},\n  title   = {{Stabilizing Iodine in Pyrochlore: Toward New Nuclear Waste Forms}},\n  journal = {Precision Chemistry},\n  volume  = {4},\n  number  = {8},\n  pages   = {1211--1224},\n  year    = {2026},\n  doi     = {10.1021/prechem.5c00467}\n}"
     },
     {
       "status": "published",
@@ -62,7 +64,8 @@
       "pages": "045001",
       "doi": "10.1088/2399-1984/ae19b0",
       "filename": "10.1088_2399-1984_ae19b0",
-      "open_access": true
+      "open_access": true,
+      "bibtex": "@article{han2025search,\n  author  = {Han, Guangshuai and Li, Tianhao and Xu, Xiao and Lee, Jaehyung and Sequeira, Sabrina and Ajith, Akshaya and Oses, Corey},\n  title   = {{The search for high-entropy fuel-cell catalysts using disorder descriptors}},\n  journal = {Nano Futures},\n  volume  = {9},\n  pages   = {045001},\n  year    = {2025},\n  doi     = {10.1088/2399-1984/ae19b0}\n}"
     },
     {
       "honors": [
@@ -85,7 +88,8 @@
       "pages": "5946&ndash;5956",
       "doi": "10.1039/D5MH00356C",
       "filename": "10.1039_D5MH00356C",
-      "open_access": true
+      "open_access": true,
+      "bibtex": "@article{oses2025four,\n  author  = {Oses, Corey and Li, Tianhao and Xu, Xiao and Han, Guangshuai and Qiu, Guotao and Owens, Jonathan R.},\n  title   = {{Beyond the four core effects: revisiting thermoelectrics with a high-entropy design}},\n  journal = {Materials Horizons},\n  volume  = {12},\n  number  = {16},\n  pages   = {5946--5956},\n  year    = {2025},\n  doi     = {10.1039/D5MH00356C}\n}"
     },
     {
       "status": "published",
@@ -105,7 +109,8 @@
       "pages": "145",
       "doi": "10.1038/s41524-025-01594-6",
       "filename": "10.1038_s41524-025-01594-6",
-      "open_access": true
+      "open_access": true,
+      "bibtex": "@article{qiu2025high,\n  author  = {Qiu, Guotao and Li, Tianhao and Xu, Xiao and Liu, Yuxiang and Niyogi, Maya and Cariaga, Katie and Oses, Corey},\n  title   = {{High entropy powering green energy: hydrogen, batteries, electronics, and catalysis}},\n  journal = {npj Computational Materials},\n  volume  = {11},\n  pages   = {145},\n  year    = {2025},\n  doi     = {10.1038/s41524-025-01594-6}\n}"
     },
     {
       "status": "published",
@@ -127,7 +132,8 @@
       "pages": "510&ndash;518",
       "doi": "10.1021/jacs.4c11753",
       "filename": "10.1021_jacs.4c11753",
-      "open_access": false
+      "open_access": false,
+      "bibtex": "@article{gong2024atomic,\n  author  = {Gong, Tianyao and Qiu, Guotao and He, Mo-Rigen and Safonova, Olga V. and Yang, Wei-Chang and Raciti, David and Oses, Corey and Hall, A. Shoji},\n  title   = {{Atomic Ordering-Induced Ensemble Variation in Alloys Governs Electrocatalyst On/Off States}},\n  journal = {Journal of the American Chemical Society},\n  volume  = {147},\n  number  = {1},\n  pages   = {510--518},\n  year    = {2024},\n  doi     = {10.1021/jacs.4c11753}\n}"
     },
     {
       "status": "published",
@@ -146,7 +152,8 @@
       "pages": "120117",
       "doi": "10.1016/j.actamat.2024.120117",
       "filename": "10.1016_j.actamat.2024.120117",
-      "open_access": true
+      "open_access": true,
+      "bibtex": "@article{vecchio2024fermi,\n  author  = {Vecchio, Kenneth S. and Curtarolo, Stefano and Kaufmann, Kevin and Harrington, Tyler J. and Oses, Corey and Toher, Cormac},\n  title   = {{Fermi energy engineering of enhanced plasticity in high-entropy carbides}},\n  journal = {Acta Materialia},\n  volume  = {276},\n  pages   = {120117},\n  year    = {2024},\n  doi     = {10.1016/j.actamat.2024.120117}\n}"
     },
     {
       "status": "published",
@@ -219,7 +226,8 @@
       "doi": "10.1039/D4DD00039K",
       "filename": "10.1039_D4DD00039K",
       "open_access": true,
-      "arxiv": "2402.00572"
+      "arxiv": "2402.00572",
+      "bibtex": "@article{evans2024developments,\n  author  = {Evans, Matthew L. and Bergsma, Johan and Merkys, Andrius and Andersen, Casper W. and Andersson, Oskar B. and Beltr{\\'{a}}n, Daniel and Blokhin, Evgeny and Boland, Tara M. and Casta\\~{n}eda Balderas, Rub{\\'{e}}n and Choudhary, Kamal and D{\\'{i}}az D{\\'{i}}az, Alberto and Dom{\\'{i}}nguez Garc{\\'{i}}a, Rodrigo and Eckert, Hagen and Eimre, Kristjan and Fuentes-Montero, Maria Elena and Krajewski, Adam M. and Mortensen, Jens J{\\o}rgen and N{\\'{a}}poles-Duarte, Jos{\\'{e}} Manuel and Pietryga, Jacob and Qi, Ji and Trejo Carrillo, Felipe de Jes{\\'{u}}s and Vaitkus, Antanas and Yu, Jusong and Zettel, Adam C. and Baptista de Castro, Pedro and Carlsson, Johan and Cerqueira, Tiago F. T. and Divilov, Simon and Hajiyani, Hamidreza and Hanke, Felix and Jose, Kevin and Oses, Corey and Riebesell, Janosh and Schmidt, Jonathan and Winston, Donald and Xie, Christen and Yang, Xiaoyu and Bonella, Sara and Botti, Silvana and Curtarolo, Stefano and Draxl, Claudia and Fuentes Cobas, Luis Edmundo and Hospital, Adam and Liu, Zi-Kui and Marques, Miguel A. L. and Marzari, Nicola and Morris, Andrew J. and Ong, Shyue Ping and Orozco, Modesto and Persson, Kristin A. and Thygesen, Kristian S. and Wolverton, Chris and Scheidgen, Markus and Toher, Cormac and Conduit, Gareth J. and Pizzi, Giovanni and Gra\\v{z}ulis, Saulius and Rignanese, Gian-Marco and Armiento, Rickard},\n  title   = {{Developments and applications of the {OPTIMADE} {API} for materials discovery, design, and data exchange}},\n  journal = {Digital Discovery},\n  volume  = {3},\n  pages   = {1509--1533},\n  year    = {2024},\n  doi     = {10.1039/D4DD00039K}\n}"
     },
     {
       "status": "published",
@@ -255,7 +263,8 @@
       "pages": "66&ndash;73",
       "doi": "10.1038/s41586-023-06786-y",
       "filename": "10.1038_s41586-023-06786-y",
-      "open_access": true
+      "open_access": true,
+      "bibtex": "@article{divilov2024disordered,\n  author  = {Divilov, Simon and Eckert, Hagen and Hicks, David and Oses, Corey and Toher, Cormac and Friedrich, Rico and Esters, Marco and Mehl, Michael J. and Zettel, Adam C. and Lederer, Yoav and Zurek, Eva and Maria, Jon-Paul and Brenner, Donald W. and Campilongo, Xiomara and Filipovi{\\'{c}}, Suzana and Fahrenholtz, William G. and Ryan, Caillin J. and DeSalle, Christopher M. and Crealese, Ryan J. and Wolfe, Douglas E. and Calzolari, Arrigo and Curtarolo, Stefano},\n  title   = {{Disordered enthalpy-entropy descriptor for high-entropy ceramics discovery}},\n  journal = {Nature},\n  volume  = {625},\n  pages   = {66--73},\n  year    = {2024},\n  doi     = {10.1038/s41586-023-06786-y}\n}"
     },
     {
       "honors": [
@@ -281,7 +290,8 @@
       "doi": "10.1038/s41467-024-46753-3",
       "filename": "10.1038_s41467-024-46753-3",
       "open_access": true,
-      "arxiv": "2309.04053"
+      "arxiv": "2309.04053",
+      "bibtex": "@article{peters2024materials,\n  author  = {Peters, Adam B. and Zhang, Dajie and Chen, Samuel and Ott, Catherine and Oses, Corey and Curtarolo, Stefano and McCue, Ian and Pollock, Tresa and Prameela, Suhas Eswarappa},\n  title   = {{Materials Design for Hypersonics}},\n  journal = {Nature Communications},\n  volume  = {15},\n  pages   = {3328},\n  year    = {2024},\n  doi     = {10.1038/s41467-024-46753-3}\n}"
     },
     {
       "status": "published",
@@ -313,7 +323,8 @@
       "pages": "101682",
       "doi": "10.1016/j.mtla.2023.101682",
       "filename": "10.1016_j.mtla.2023.101682",
-      "open_access": false
+      "open_access": false,
+      "bibtex": "@article{wolfe2023influence,\n  author  = {Wolfe, Douglas E. and DeSalle, Christopher M. and Ryan, Caillin J. and Slapikas, Robert E. and Sweny, Ryan T. and Crealese, Ryan J. and Kolonin, Petr A. and Stepanoff, Sergei P. and Haque, Aman and Divilov, Simon and Eckert, Hagen and Oses, Corey and Esters, Marco and Brenner, Donald W. and Fahrenholtz, William G. and Maria, Jon-Paul and Toher, Cormac and Zurek, Eva and Curtarolo, Stefano},\n  title   = {{Influence of Processing on the Microstructural Evolution and Multiscale Hardness in Titanium Carbonitrides (TiCN) Produced via Field Assisted Sintering Technology}},\n  journal = {Materialia},\n  volume  = {27},\n  pages   = {101682},\n  year    = {2023},\n  doi     = {10.1016/j.mtla.2023.101682}\n}"
     },
     {
       "honors": [
@@ -350,7 +361,8 @@
       "doi": "10.1016/j.commatsci.2022.111889",
       "filename": "10.1016_j.commatsci.2022.111889",
       "open_access": false,
-      "arxiv": "2208.03052"
+      "arxiv": "2208.03052",
+      "bibtex": "@article{oses2023aflow,\n  author  = {Oses, Corey and Esters, Marco and Hicks, David and Divilov, Simon and Eckert, Hagen and Friedrich, Rico and Mehl, Michael J. and Smolyanyuk, Andriy and Campilongo, Xiomara and van de Walle, Axel and Schroers, Jan and Kusne, Aaron Gilad and Takeuchi, Ichiro and Zurek, Eva and Buongiorno Nardelli, Marco and Fornari, Marco and Lederer, Yoav and Levy, Ohad and Toher, Cormac and Curtarolo, Stefano},\n  title   = {{\\texttt{aflow++}: a \\texttt{C++} framework for autonomous materials design}},\n  journal = {Computational Materials Science},\n  volume  = {217},\n  pages   = {111889},\n  year    = {2023},\n  doi     = {10.1016/j.commatsci.2022.111889}\n}"
     },
     {
       "status": "published",
@@ -377,7 +389,8 @@
       "doi": "10.1016/j.commatsci.2022.111808",
       "filename": "10.1016_j.commatsci.2022.111808",
       "open_access": false,
-      "arxiv": "2207.09842"
+      "arxiv": "2207.09842",
+      "bibtex": "@article{esters2023afloworg,\n  author  = {Esters, Marco and Oses, Corey and Divilov, Simon and Eckert, Hagen and Friedrich, Rico and Hicks, David and Mehl, Michael J. and Rose, Frisco and Smolyanyuk, Andriy and Calzolari, Arrigo and Campilongo, Xiomara and Toher, Cormac and Curtarolo, Stefano},\n  title   = {{\\textsf{aflow.org}: a web ecosystem of databases, software and tools}},\n  journal = {Computational Materials Science},\n  volume  = {216},\n  pages   = {111808},\n  year    = {2023},\n  doi     = {10.1016/j.commatsci.2022.111808}\n}"
     },
     {
       "status": "published",
@@ -401,7 +414,8 @@
       "doi": "10.1016/j.actamat.2022.118594",
       "filename": "10.1016_j.actamat.2022.118594",
       "open_access": false,
-      "arxiv": "2212.00919"
+      "arxiv": "2212.00919",
+      "bibtex": "@article{esters2023qhpocc,\n  author  = {Esters, Marco and Smolyanyuk, Andriy and Oses, Corey and Hicks, David and Divilov, Simon and Eckert, Hagen and Campilongo, Xiomara and Toher, Cormac and Curtarolo, Stefano},\n  title   = {{{QH-POCC}: taming tiling entropy in thermal expansion calculations of disordered materials}},\n  journal = {Acta Materialia},\n  volume  = {245},\n  pages   = {118594},\n  year    = {2023},\n  doi     = {10.1016/j.actamat.2022.118594}\n}"
     },
     {
       "status": "published",
@@ -422,7 +436,8 @@
       "pages": "5993",
       "doi": "10.1038/s41467-022-33497-1",
       "filename": "10.1038_s41467-022-33497-1",
-      "open_access": true
+      "open_access": true,
+      "bibtex": "@article{calzolari2022plasmonic,\n  author  = {Calzolari, Arrigo and Oses, Corey and Toher, Cormac and Esters, Marco and Campilongo, Xiomara and Stepanoff, Sergei P. and Wolfe, Douglas E. and Curtarolo, Stefano},\n  title   = {{Plasmonic high-entropy carbides}},\n  journal = {Nature Communications},\n  volume  = {13},\n  pages   = {5993},\n  year    = {2022},\n  doi     = {10.1038/s41467-022-33497-1}\n}"
     },
     {
       "status": "published",
@@ -443,7 +458,8 @@
       "doi": "10.1002/anie.202205129",
       "filename": "10.1002_anie.202205129",
       "open_access": false,
-      "arxiv": "2204.03231"
+      "arxiv": "2204.03231",
+      "bibtex": "@article{wang2022microscopic,\n  author  = {Wang, Xiaoyu and Proserpio, Davide M. and Oses, Corey and Toher, Cormac and Curtarolo, Stefano and Zurek, Eva},\n  title   = {{The Microscopic Diamond Anvil Cell: Stabilization of Superhard, Superconducting Carbon Allotropes at Ambient Pressure}},\n  journal = {Angewandte Chemie},\n  volume  = {61},\n  number  = {32},\n  pages   = {e202205129},\n  year    = {2022},\n  doi     = {10.1002/anie.202205129}\n}"
     },
     {
       "status": "published",
@@ -504,7 +520,8 @@
       "pages": "023004",
       "doi": "10.1088/2516-1075/ac572f",
       "filename": "10.1088_2516-1075_ac572f",
-      "open_access": true
+      "open_access": true,
+      "bibtex": "@article{kulik2022roadmap,\n  author  = {Kulik, Heather J. and Hammerschmidt, Thomas and Schmidt, Jonathan and Botti, Silvana and Marques, Miguel A. L. and Boley, Mario and Scheffler, Matthias and Todorovi\\'{c}, Milica and Rinke, Patrick and Oses, Corey and Smolyanyuk, Andriy and Curtarolo, Stefano and Tkatchenko, Alexandre and Bart\\'{o}k, Albert P. and Manzhos, Sergei and Ihara, Manabu and Carrington, Tucker and Behler, J\\\"{o}rg and Isayev, Olexandr and Veit, Max and Grisafi, Andrea and Nigam, Jigyasa and Ceriotti, Michele and Sch\\\"{u}tt, Kristof T. and Westermayr, Julia and Gastegger, Michael and Maurer, Reinhard J. and Kalita, Bhupalee and Burke, Kieron and Nagai, Ryo and Akashi, Ryosuke and Sugino, Osamu and Hermann, Jan and No\\'{e}, Frank and Pilati, Sebastiano and Draxl, Claudia and Kuban, Martin and Rigamonti, Santiago and Scheidgen, Markus and Esters, Marco and Hicks, David and Toher, Cormac and Balachandran, Prasanna V. and Tamblyn, Isaac and Whitelam, Steven and Bellinger, Colin and Ghiringhelli, Luca M.},\n  title   = {{Roadmap on Machine Learning in Electronic Structure}},\n  journal = {Electronic Structure},\n  volume  = {4},\n  number  = {2},\n  pages   = {023004},\n  year    = {2022},\n  doi     = {10.1088/2516-1075/ac572f}\n}"
     },
     {
       "status": "published",
@@ -526,7 +543,8 @@
       "doi": "10.3389/fphy.2022.815863",
       "filename": "10.3389_fphy.2022.815863",
       "open_access": true,
-      "arxiv": "2111.07478"
+      "arxiv": "2111.07478",
+      "bibtex": "@article{kusne2022physics,\n  author  = {Kusne, Aaron Gilad and McDannald, Austin and DeCost, Brian and Oses, Corey and Toher, Cormac and Curtarolo, Stefano and Mehta, Apurva and Takeuchi, Ichiro},\n  title   = {{Physics in the Machine: Integrating Physical Knowledge in Autonomous Phase-Mapping}},\n  journal = {Frontiers in Physics},\n  volume  = {10},\n  pages   = {815863},\n  year    = {2022},\n  doi     = {10.3389/fphy.2022.815863}\n}"
     },
     {
       "status": "published",
@@ -549,7 +567,8 @@
       "doi": "10.1557/s43577-022-00281-x",
       "filename": "10.1557_s43577-022-00281-x",
       "open_access": false,
-      "arxiv": "2111.11519"
+      "arxiv": "2111.11519",
+      "bibtex": "@article{toher2022highentropy,\n  author  = {Toher, Cormac and Oses, Corey and Esters, Marco and Hicks, David and Kotsonis, George N. and Rost, Christina M. and Brenner, Donald W. and Maria, Jon-Paul and Curtarolo, Stefano},\n  title   = {{High-entropy ceramics: Propelling applications through disorder}},\n  journal = {MRS Bulletin},\n  volume  = {47},\n  pages   = {194--202},\n  year    = {2022},\n  doi     = {10.1557/s43577-022-00281-x}\n}"
     },
     {
       "honors": [
@@ -575,7 +594,8 @@
       "pages": "5747",
       "doi": "10.1038/s41467-021-25979-5",
       "filename": "10.1038_s41467-021-25979-5",
-      "open_access": true
+      "open_access": true,
+      "bibtex": "@article{esters2021settling,\n  author  = {Esters, Marco and Oses, Corey and Hicks, David and Mehl, Michael J. and Jahn\\'{a}tek, Michal and Hossain, Mohammad Delower and Maria, Jon-Paul and Brenner, Donald W. and Toher, Cormac and Curtarolo, Stefano},\n  title   = {{Settling the matter of the role of vibrations in the stability of high-entropy carbides}},\n  journal = {Nature Communications},\n  volume  = {12},\n  pages   = {5747},\n  year    = {2021},\n  doi     = {10.1038/s41467-021-25979-5}\n}"
     },
     {
       "status": "published",
@@ -601,7 +621,8 @@
       "pages": "2102904",
       "doi": "10.1002/adma.202102904",
       "filename": "10.1002_adma.202102904",
-      "open_access": false
+      "open_access": false,
+      "bibtex": "@article{hossain2021entropy,\n  author  = {Hossain, Mohammad Delower and Borman, Trent and Oses, Corey and Esters, Marco and Toher, Cormac and Feng, Lun and Kumar, Abinash and Fahrenholtz, William G. and Curtarolo, Stefano and Brenner, Donald W. and LeBeau, James M. and Maria, Jon-Paul},\n  title   = {{Entropy Landscaping of High-Entropy Carbides}},\n  journal = {Advanced Materials},\n  volume  = {33},\n  number  = {42},\n  pages   = {2102904},\n  year    = {2021},\n  doi     = {10.1002/adma.202102904}\n}"
     },
     {
       "status": "published",
@@ -672,7 +693,8 @@
       "doi": "10.1038/s41597-021-00974-z",
       "filename": "10.1038_s41597-021-00974-z",
       "open_access": true,
-      "arxiv": "2103.02068"
+      "arxiv": "2103.02068",
+      "bibtex": "@article{andersen2021optimade,\n  author  = {Andersen, Casper W. and Armiento, Rickard and Blokhin, Evgeny and Conduit, Gareth J. and Dwaraknath, Shyam and Evans, Matthew L. and Fekete, \\'{A}d\\'{a}m and Gopakumar, Abhijith and Gra\\v{z}ulis, Saulius and Merkys, Andrius and Mohamed, Fawzi and Oses, Corey and Pizzi, Giovanni and Rignanese, Gian-Marco and Scheidgen, Markus and Talirz, Leopold and Toher, Cormac and Winston, Donald and Aversa, Rossella and Choudhary, Kamal and Colinet, Pauline and Curtarolo, Stefano and Di Stefano, Davide and Draxl, Claudia and Er, Suleyman and Esters, Marco and Fornari, Marco and Giantomassi, Matteo and Govoni, Marco and Hautier, Geoffroy and Hegde, Vinay and Horton, Matthew K. and Huck, Patrick and Huhs, Georg and Hummelsh{\\o}j, Jens and Kariryaa, Ankit and Kozinsky, Boris and Kumbhar, Snehal and Liu, Mohan and Marzari, Nicola and Morris, Andrew J. and Mostofi, Arash and Persson, Kristin A. and Petretto, Guido and Purcell, Thomas and Ricci, Francesco and Rose, Frisco and Scheffler, Matthias and Speckhard, Daniel and Uhrin, Martin and Vaitkus, Antanas and Villars, Pierre and Waroquiers, David and Wolverton, Chris and Wu, Michael and Yang, Xiaoyu},\n  title   = {{\\small{OPTIMADE}: an \\small{API} for exchanging materials data}},\n  journal = {Scientific Data},\n  volume  = {8},\n  pages   = {217},\n  year    = {2021},\n  doi     = {10.1038/s41597-021-00974-z}\n}"
     },
     {
       "status": "published",
@@ -695,7 +717,8 @@
       "doi": "10.1103/PhysRevMaterials.5.043803",
       "filename": "10.1103_PhysRevMaterials.5.043803",
       "open_access": false,
-      "arxiv": "2101.02724"
+      "arxiv": "2101.02724",
+      "bibtex": "@article{friedrich2021automated,\n  author  = {Friedrich, Rico and Esters, Marco and Oses, Corey and Ki, Stuart and Brenner, Max J. and Hicks, David and Mehl, Michael J. and Toher, Cormac and Curtarolo, Stefano},\n  title   = {{Automated coordination corrected enthalpies with \\small{AFLOW-CCE}}},\n  journal = {Physical Review Materials},\n  volume  = {5},\n  pages   = {043803},\n  year    = {2021},\n  doi     = {10.1103/PhysRevMaterials.5.043803}\n}"
     },
     {
       "status": "published",
@@ -717,7 +740,8 @@
       "doi": "10.1016/j.commatsci.2021.110450",
       "filename": "10.1016_j.commatsci.2021.110450",
       "open_access": false,
-      "arxiv": "2012.05961"
+      "arxiv": "2012.05961",
+      "bibtex": "@article{hicks2021aflow,\n  author  = {Hicks, David and Mehl, Michael J. and Esters, Marco and Oses, Corey and Levy, Ohad and Hart, Gus L. W. and Toher, Cormac and Curtarolo, Stefano},\n  title   = {{The \\small{AFLOW} Library of Crystallographic Prototypes: Part 3}},\n  journal = {Computational Materials Science},\n  volume  = {199},\n  pages   = {110450},\n  year    = {2021},\n  doi     = {10.1016/j.commatsci.2021.110450}\n}"
     },
     {
       "status": "published",
@@ -741,7 +765,8 @@
       "doi": "10.1103/PhysRevMaterials.5.083608",
       "filename": "10.1103_PhysRevMaterials.5.083608",
       "open_access": false,
-      "arxiv": "2010.07168"
+      "arxiv": "2010.07168",
+      "bibtex": "@article{mehl2021tinpest,\n  author  = {Mehl, Michael J. and Ronquillo, Mateo and Hicks, David and Esters, Marco and Oses, Corey and Friedrich, Rico and Smolyanyuk, Andriy and Gossett, Eric and Finkenstadt, Daniel and Curtarolo, Stefano},\n  title   = {{Tin-pest problem as a test of density functionals using high-throughput calculations}},\n  journal = {Physical Review Materials},\n  volume  = {5},\n  pages   = {083608},\n  year    = {2021},\n  doi     = {10.1103/PhysRevMaterials.5.083608}\n}"
     },
     {
       "status": "published",
@@ -769,7 +794,8 @@
       "pages": "117051",
       "doi": "10.1016/j.actamat.2021.117051",
       "filename": "10.1016_j.actamat.2021.117051",
-      "open_access": false
+      "open_access": false,
+      "bibtex": "@article{hossain2021carbon,\n  author  = {Hossain, Mohammad Delower and Borman, Trent and Kumar, Abinash and Chen, Xi and Khosravani, Ali and Kalidindi, Surya R. and Paisley, Elizabeth A. and Esters, Marco and Oses, Corey and Toher, Cormac and Curtarolo, Stefano and LeBeau, James M. and Brenner, Donald W. and Maria, Jon-Paul},\n  title   = {{Carbon Stoichiometry and Mechanical Properties of High Entropy Carbides}},\n  journal = {Acta Materialia},\n  volume  = {215},\n  pages   = {117051},\n  year    = {2021},\n  doi     = {10.1016/j.actamat.2021.117051}\n}"
     },
     {
       "status": "published",
@@ -800,7 +826,8 @@
       "doi": "10.1038/s41467-020-19597-w",
       "filename": "10.1038_s41467-020-19597-w",
       "open_access": true,
-      "arxiv": "2006.06141"
+      "arxiv": "2006.06141",
+      "bibtex": "@article{kusne2020onthefly,\n  author  = {Kusne, Aaron Gilad and Yu, Heshan and Wu, Changming and Zhang, Huairuo and Hattrick-Simpers, Jason and DeCost, Brian and Sarker, Suchismita and Oses, Corey and Toher, Cormac and Curtarolo, Stefano and Davydov, Albert V. and Agarwal, Ritesh and Bendersky, Leonid A. and Li, Mo and Mehta, Apurva and Takeuchi, Ichiro},\n  title   = {{On-the-fly Closed-loop Autonomous Materials Discovery via Bayesian Active Learning}},\n  journal = {Nature Communications},\n  volume  = {11},\n  pages   = {5966},\n  year    = {2020},\n  doi     = {10.1038/s41467-020-19597-w}\n}"
     },
     {
       "status": "published",
@@ -823,7 +850,8 @@
       "pages": "42",
       "doi": "10.1038/s41524-020-0317-6",
       "filename": "10.1038_s41524-020-0317-6",
-      "open_access": true
+      "open_access": true,
+      "bibtex": "@article{kaufmann2020discovery,\n  author  = {Kaufmann, Kevin and Maryanovsky, Daniel and Mellor, William M. and Zhu, Chaoyi and Rosengarten, Alexander S. and Harrington, Tyler J. and Oses, Corey and Toher, Cormac and Curtarolo, Stefano and Vecchio, Kenneth S.},\n  title   = {{Discovery of novel high-entropy ceramics via machine learning}},\n  journal = {npj Computational Materials},\n  volume  = {6},\n  pages   = {42},\n  year    = {2020},\n  doi     = {10.1038/s41524-020-0317-6}\n}"
     },
     {
       "honors": [
@@ -842,7 +870,8 @@
       "pages": "295&ndash;309",
       "doi": "10.1038/s41578-019-0170-8",
       "filename": "10.1038_s41578-019-0170-8",
-      "open_access": false
+      "open_access": false,
+      "bibtex": "@article{oses2020highentropy,\n  author  = {Oses, Corey and Toher, Cormac and Curtarolo, Stefano},\n  title   = {{High-entropy ceramics}},\n  journal = {Nature Reviews Materials},\n  volume  = {5},\n  pages   = {295--309},\n  year    = {2020},\n  doi     = {10.1038/s41578-019-0170-8}\n}"
     },
     {
       "status": "published",
@@ -861,7 +890,8 @@
       "doi": "10.1016/j.actamat.2019.07.008",
       "filename": "10.1016_j.actamat.2019.07.008",
       "open_access": false,
-      "arxiv": "1902.00485"
+      "arxiv": "1902.00485",
+      "bibtex": "@article{ford2019metallic,\n  author  = {Ford, Denise C. and Hicks, David and Oses, Corey and Toher, Cormac and Curtarolo, Stefano},\n  title   = {{Metallic glasses for biodegradable implants}},\n  journal = {Acta Materialia},\n  volume  = {176},\n  pages   = {297--305},\n  year    = {2019},\n  doi     = {10.1016/j.actamat.2019.07.008}\n}"
     },
     {
       "status": "published",
@@ -883,7 +913,8 @@
       "doi": "10.1038/s41524-019-0226-8",
       "filename": "10.1038_s41524-019-0226-8",
       "open_access": true,
-      "arxiv": "1906.05886"
+      "arxiv": "1906.05886",
+      "bibtex": "@article{avery2019predicting,\n  author  = {Avery, Patrick and Wang, Xiaoyu and Oses, Corey and Gossett, Eric and Proserpio, Davide M. and Toher, Cormac and Curtarolo, Stefano and Zurek, Eva},\n  title   = {{Predicting Superhard Materials via a Machine Learning Informed Evolutionary Structure Search}},\n  journal = {npj Computational Materials},\n  volume  = {5},\n  pages   = {89},\n  year    = {2019},\n  doi     = {10.1038/s41524-019-0226-8}\n}"
     },
     {
       "status": "published",
@@ -901,7 +932,8 @@
       "doi": "10.1038/s41524-019-0206-z",
       "filename": "10.1038_s41524-019-0206-z",
       "open_access": true,
-      "arxiv": "1906.01085"
+      "arxiv": "1906.01085",
+      "bibtex": "@article{toher2019unavoidable,\n  author  = {Toher, Cormac and Oses, Corey and Hicks, David and Curtarolo, Stefano},\n  title   = {{Unavoidable disorder and entropy in multi-component systems}},\n  journal = {npj Computational Materials},\n  volume  = {5},\n  pages   = {69},\n  year    = {2019},\n  doi     = {10.1038/s41524-019-0206-z}\n}"
     },
     {
       "status": "published",
@@ -923,7 +955,8 @@
       "doi": "10.1038/s41524-019-0192-1",
       "filename": "10.1038_s41524-019-0192-1",
       "open_access": true,
-      "arxiv": "1811.08952"
+      "arxiv": "1811.08952",
+      "bibtex": "@article{friedrich2019coordination,\n  author  = {Friedrich, Rico and Usanmaz, Demet and Oses, Corey and Supka, Andrew R. and Fornari, Marco and Buongiorno Nardelli, Marco and Toher, Cormac and Curtarolo, Stefano},\n  title   = {{Coordination corrected ab initio formation enthalpies}},\n  journal = {npj Computational Materials},\n  volume  = {5},\n  pages   = {59},\n  year    = {2019},\n  doi     = {10.1038/s41524-019-0192-1}\n}"
     },
     {
       "status": "published",
@@ -945,7 +978,8 @@
       "doi": "10.1103/PhysRevMaterials.3.073801",
       "filename": "10.1103_PhysRevMaterials.3.073801",
       "open_access": false,
-      "arxiv": "1807.04669"
+      "arxiv": "1807.04669",
+      "bibtex": "@article{nath2019aflowqhap,\n  author  = {Nath, Pinku and Usanmaz, Demet and Hicks, David and Oses, Corey and Fornari, Marco and Buongiorno Nardelli, Marco and Toher, Cormac and Curtarolo, Stefano},\n  title   = {{{AFLOW-QHA3P}: Robust and automated method to compute thermodynamic properties of solids}},\n  journal = {Physical Review Materials},\n  volume  = {3},\n  pages   = {073801},\n  year    = {2019},\n  doi     = {10.1103/PhysRevMaterials.3.073801}\n}"
     },
     {
       "status": "published",
@@ -973,7 +1007,8 @@
       "doi": "10.1021/acs.jcim.8b00393",
       "filename": "10.1021_acs.jcim.8b00393",
       "open_access": false,
-      "arxiv": "1806.06901"
+      "arxiv": "1806.06901",
+      "bibtex": "@article{oses2018aflowchull,\n  author  = {Oses, Corey and Gossett, Eric and Hicks, David and Rose, Frisco and Mehl, Michael J. and Perim, Eric and Takeuchi, Ichiro and Sanvito, Stefano and Scheffler, Matthias and Lederer, Yoav and Levy, Ohad and Toher, Cormac and Curtarolo, Stefano},\n  title   = {{{AFLOW-CHULL}: Cloud-oriented platform for autonomous phase stability analysis}},\n  journal = {Journal of Chemical Information and Modeling},\n  volume  = {58},\n  number  = {12},\n  pages   = {2477--2490},\n  year    = {2018},\n  doi     = {10.1021/acs.jcim.8b00393}\n}"
     },
     {
       "status": "published",
@@ -991,7 +1026,8 @@
       "doi": "10.1557/mrs.2018.207",
       "filename": "10.1557_mrs.2018.207",
       "open_access": false,
-      "arxiv": "1803.05035"
+      "arxiv": "1803.05035",
+      "bibtex": "@article{oses2018datadriven,\n  author  = {Oses, Corey and Toher, Cormac and Curtarolo, Stefano},\n  title   = {{Data-driven design of inorganic materials with the Automatic Flow Framework for Materials Discovery}},\n  journal = {MRS Bulletin},\n  volume  = {43},\n  number  = {9},\n  pages   = {670--675},\n  year    = {2018},\n  doi     = {10.1557/mrs.2018.207}\n}"
     },
     {
       "status": "published",
@@ -1014,7 +1050,8 @@
       "pages": "4980",
       "doi": "10.1038/s41467-018-07160-7",
       "filename": "10.1038_s41467-018-07160-7",
-      "open_access": true
+      "open_access": true,
+      "bibtex": "@article{sarker2018highentropy,\n  author  = {Sarker, Pranab and Harrington, Tyler J. and Toher, Cormac and Oses, Corey and Samiee, Mojtaba and Maria, Jon-Paul and Brenner, Donald W. and Vecchio, Kenneth S. and Curtarolo, Stefano},\n  title   = {{High-entropy high-hardness metal carbides discovered by entropy descriptors}},\n  journal = {Nature Communications},\n  volume  = {9},\n  pages   = {4980},\n  year    = {2018},\n  doi     = {10.1038/s41467-018-07160-7}\n}"
     },
     {
       "status": "published",
@@ -1035,7 +1072,8 @@
       "doi": "10.1038/s41524-018-0085-8",
       "filename": "10.1038_s41524-018-0085-8",
       "open_access": true,
-      "arxiv": "1709.02727"
+      "arxiv": "1709.02727",
+      "bibtex": "@article{stanev2018machine,\n  author  = {Stanev, Valentin and Oses, Corey and Kusne, Aaron Gilad and Rodriguez, Efrain and Paglione, Johnpierre and Curtarolo, Stefano and Takeuchi, Ichiro},\n  title   = {{Machine learning modeling of superconducting critical temperature}},\n  journal = {npj Computational Materials},\n  volume  = {4},\n  pages   = {29},\n  year    = {2018},\n  doi     = {10.1038/s41524-018-0085-8}\n}"
     },
     {
       "honors": [
@@ -1063,7 +1101,8 @@
       "doi": "10.1016/j.commatsci.2018.03.075",
       "filename": "10.1016_j.commatsci.2018.03.075",
       "open_access": false,
-      "arxiv": "1711.10744"
+      "arxiv": "1711.10744",
+      "bibtex": "@article{gossett2018aflowml,\n  author  = {Gossett, Eric and Toher, Cormac and Oses, Corey and Isayev, Olexandr and Legrain, Fleur and Rose, Frisco and Zurek, Eva and Carrete, Jes\\'{u}s and Mingo, Natalio and Tropsha, Alexander and Curtarolo, Stefano},\n  title   = {{{AFLOW-ML}: A {REST}ful {API} for machine-learning prediction of materials properties}},\n  journal = {Computational Materials Science},\n  volume  = {152},\n  pages   = {134--145},\n  year    = {2018},\n  doi     = {10.1016/j.commatsci.2018.03.075}\n}"
     },
     {
       "status": "published",
@@ -1086,7 +1125,8 @@
       "doi": "10.1107/S2053273318003066",
       "filename": "10.1107_S2053273318003066",
       "open_access": false,
-      "arxiv": "1802.07977"
+      "arxiv": "1802.07977",
+      "bibtex": "@article{hicks2018aflowsym,\n  author  = {Hicks, David and Oses, Corey and Gossett, Eric and Gomez, Geena and Taylor, Richard H. and Toher, Cormac and Mehl, Michael J. and Levy, Ohad and Curtarolo, Stefano},\n  title   = {{{AFLOW-SYM}: platform for the complete, automatic and self-consistent symmetry analysis of crystals}},\n  journal = {Acta Crystallographica Section A},\n  volume  = {74},\n  pages   = {184--203},\n  year    = {2018},\n  doi     = {10.1107/S2053273318003066}\n}"
     },
     {
       "status": "published",
@@ -1106,7 +1146,8 @@
       "doi": "10.1021/acs.inorgchem.7b02462",
       "filename": "10.1021_acs.inorgchem.7b02462",
       "open_access": false,
-      "arxiv": "1703.04497"
+      "arxiv": "1703.04497",
+      "bibtex": "@article{hever2017structure,\n  author  = {Hever, Alon and Oses, Corey and Curtarolo, Stefano and Levy, Ohad and Natan, Amir},\n  title   = {{The structure and composition statistics of 6A binary and ternary structures}},\n  journal = {Inorganic Chemistry},\n  volume  = {57},\n  number  = {2},\n  pages   = {653--667},\n  year    = {2017},\n  doi     = {10.1021/acs.inorgchem.7b02462}\n}"
     },
     {
       "honors": [
@@ -1130,7 +1171,8 @@
       "doi": "10.1016/j.commatsci.2017.04.036",
       "filename": "10.1016_j.commatsci.2017.04.036",
       "open_access": false,
-      "arxiv": "1612.05130"
+      "arxiv": "1612.05130",
+      "bibtex": "@article{rose2017aflux,\n  author  = {Rose, Frisco and Toher, Cormac and Gossett, Eric and Oses, Corey and Buongiorno Nardelli, Marco and Fornari, Marco and Curtarolo, Stefano},\n  title   = {{{AFLUX}: The {LUX} materials search API for the {AFLOW} data repositories}},\n  journal = {Computational Materials Science},\n  volume  = {137},\n  pages   = {362--370},\n  year    = {2017},\n  doi     = {10.1016/j.commatsci.2017.04.036}\n}"
     },
     {
       "status": "published",
@@ -1151,7 +1193,8 @@
       "doi": "10.1038/ncomms15679",
       "filename": "10.1038_ncomms15679",
       "open_access": true,
-      "arxiv": "1608.04782"
+      "arxiv": "1608.04782",
+      "bibtex": "@article{isayev2017universal,\n  author  = {Isayev, Olexandr and Oses, Corey and Toher, Cormac and Gossett, Eric and Curtarolo, Stefano and Tropsha, Alexander},\n  title   = {{Universal Fragment Descriptors for Predicting Properties of Inorganic Crystals}},\n  journal = {Nature Communications},\n  volume  = {8},\n  pages   = {15679},\n  year    = {2017},\n  doi     = {10.1038/ncomms15679}\n}"
     },
     {
       "status": "published",
@@ -1176,7 +1219,8 @@
       "doi": "10.1103/PhysRevMaterials.1.015401",
       "filename": "10.1103_PhysRevMaterials.1.015401",
       "open_access": false,
-      "arxiv": "1611.05714"
+      "arxiv": "1611.05714",
+      "bibtex": "@article{toher2017combining,\n  author  = {Toher, Cormac and Oses, Corey and Plata, Jose J. and Hicks, David and Rose, Frisco and Levy, Ohad and de Jong, Maarten and Asta, Mark and Fornari, Marco and Buongiorno Nardelli, Marco and Curtarolo, Stefano},\n  title   = {{Combining the {AFLOW} {GIBBS} and elastic libraries to efficiently and robustly screen thermomechanical properties of solids}},\n  journal = {Physical Review Materials},\n  volume  = {1},\n  pages   = {015401},\n  year    = {2017},\n  doi     = {10.1103/PhysRevMaterials.1.015401}\n}"
     },
     {
       "status": "published",
@@ -1196,7 +1240,8 @@
       "doi": "10.1016/j.actamat.2016.09.017",
       "filename": "10.1016_j.actamat.2016.09.017",
       "open_access": false,
-      "arxiv": "1603.05967"
+      "arxiv": "1603.05967",
+      "bibtex": "@article{nyshadham2017computational,\n  author  = {Nyshadham, Chandramouli and Oses, Corey and Hansen, Jacob E. and Takeuchi, Ichiro and Curtarolo, Stefano and Hart, Gus L. W.},\n  title   = {{A Computational High-Throughput Search for New Ternary Superalloys}},\n  journal = {Acta Materialia},\n  volume  = {122},\n  pages   = {438--447},\n  year    = {2017},\n  doi     = {10.1016/j.actamat.2016.09.017}\n}"
     },
     {
       "status": "published",
@@ -1220,7 +1265,8 @@
       "pages": "e1602241",
       "doi": "10.1126/sciadv.1602241",
       "filename": "10.1126_sciadv.1602241",
-      "open_access": true
+      "open_access": true,
+      "bibtex": "@article{sanvito2017accelerated,\n  author  = {Sanvito, Stefano and Oses, Corey and Xue, Junkai and Tiwari, Anurag and \\v{Z}ic, Mario and Archer, Thomas and Tozman, Pelin and Venkatesan, Munuswamy and Coey, J. Michael D. and Curtarolo, Stefano},\n  title   = {{Accelerated Discovery of New Magnets in the Heusler Alloy Family}},\n  journal = {Science Advances},\n  volume  = {3},\n  number  = {4},\n  pages   = {e1602241},\n  year    = {2017},\n  doi     = {10.1126/sciadv.1602241}\n}"
     },
     {
       "status": "published",
@@ -1240,7 +1286,8 @@
       "doi": "10.1103/PhysRevX.6.041061",
       "filename": "10.1103_PhysRevX.6.041061",
       "open_access": true,
-      "arxiv": "1606.03279"
+      "arxiv": "1606.03279",
+      "bibtex": "@article{vanroekeghem2016highthroughput,\n  author  = {van Roekeghem, Ambroise and Carrete, Jes\\'{u}s and Oses, Corey and Curtarolo, Stefano and Mingo, Natalio},\n  title   = {{High-Throughput Computation of Thermal Conductivity of High-Temperature Solid Phases: The Case of Oxide and Fluoride Perovskites}},\n  journal = {Physical Review X},\n  volume  = {6},\n  number  = {4},\n  pages   = {041061},\n  year    = {2016},\n  doi     = {10.1103/PhysRevX.6.041061}\n}"
     },
     {
       "status": "published",
@@ -1258,7 +1305,8 @@
       "doi": "10.1021/acs.chemmater.6b01449",
       "filename": "10.1021_acs.chemmater.6b01449",
       "open_access": false,
-      "arxiv": "1511.04373"
+      "arxiv": "1511.04373",
+      "bibtex": "@article{yang2016modeling,\n  author  = {Yang, Kesong and Oses, Corey and Curtarolo, Stefano},\n  title   = {{Modeling Off-Stoichiometry Materials with a High-Throughput Ab-Initio Approach}},\n  journal = {Chemistry of Materials},\n  volume  = {28},\n  number  = {18},\n  pages   = {6484--6492},\n  year    = {2016},\n  doi     = {10.1021/acs.chemmater.6b01449}\n}"
     },
     {
       "honors": [
@@ -1286,7 +1334,8 @@
       "doi": "10.1016/j.commatsci.2015.07.019",
       "filename": "10.1016_j.commatsci.2015.07.019",
       "open_access": false,
-      "arxiv": "1506.00303"
+      "arxiv": "1506.00303",
+      "bibtex": "@article{calderon2015aflow,\n  author  = {Calderon, Camilo E. and Plata, Jose J. and Toher, Cormac and Oses, Corey and Levy, Ohad and Fornari, Marco and Natan, Amir and Mehl, Michael J. and Hart, Gus L. W. and Buongiorno Nardelli, Marco and Curtarolo, Stefano},\n  title   = {{The {AFLOW} Standard for High-Throughput Materials Science Calculations}},\n  journal = {Computational Materials Science},\n  volume  = {108A},\n  pages   = {233--238},\n  year    = {2015},\n  doi     = {10.1016/j.commatsci.2015.07.019}\n}"
     },
     {
       "honors": [
@@ -1312,7 +1361,8 @@
       "doi": "10.1021/cm503507h",
       "filename": "10.1021_cm503507h",
       "open_access": true,
-      "arxiv": "1412.4096"
+      "arxiv": "1412.4096",
+      "bibtex": "@article{isayev2015materials,\n  author  = {Isayev, Olexandr and Fourches, Denis and Muratov, Eugene N. and Oses, Corey and Rasch, Kevin M. and Tropsha, Alexander and Curtarolo, Stefano},\n  title   = {{Materials Cartography: Representing and Mining Materials Space Using Structural and Electronic Fingerprints}},\n  journal = {Chemistry of Materials},\n  volume  = {27},\n  number  = {3},\n  pages   = {735--743},\n  year    = {2015},\n  doi     = {10.1021/cm503507h}\n}"
     }
   ],
   "book": [
@@ -1333,7 +1383,8 @@
       "filename": "10.1002_9783527802265.ch7",
       "open_access": false,
       "url": "https://www.wiley.com/en-us/Materials+Informatics-p-9783527341214",
-      "arxiv": "1805.05309"
+      "arxiv": "1805.05309",
+      "bibtex": "@incollection{toher2019automated,\n  author    = {Toher, Cormac and Oses, Corey and Curtarolo, Stefano},\n  title     = {{Automated computation of materials properties}},\n  booktitle = {{Materials Informatics: Methods, Tools and Applications}},\n  chapter   = {7},\n  pages     = {181--222},\n  publisher = {WILEY-VCH},\n  year      = {2019},\n  doi       = {10.1002/9783527802265.ch7}\n}"
     },
     {
       "status": "published",
@@ -1351,7 +1402,8 @@
       ],
       "doi": "10.1007/978-3-319-50257-1_108-1",
       "filename": "10.1007_978-3-319-50257-1_108-1",
-      "open_access": false
+      "open_access": false,
+      "bibtex": "@incollection{sanvito2018machine,\n  author    = {Sanvito, Stefano and \\v{Z}ic, Mario and Nelson, James and Archer, Thomas and Oses, Corey and Curtarolo, Stefano},\n  title     = {{Machine learning and high-throughput approaches to magnetism}},\n  booktitle = {{Handbook of Materials Modeling. Volume 2 Applications: Current and Emerging Materials}},\n  publisher = {Springer},\n  year      = {2018},\n  doi       = {10.1007/978-3-319-50257-1_108-1}\n}"
     },
     {
       "status": "published",
@@ -1416,7 +1468,8 @@
       "doi": "10.1007/978-3-319-42913-7_63-2",
       "filename": "10.1007_978-3-319-42913-7_63-2",
       "open_access": false,
-      "arxiv": "1712.00422"
+      "arxiv": "1712.00422",
+      "bibtex": "@incollection{toher2018aflow,\n  author    = {Toher, Cormac and Oses, Corey and Hicks, David and Gossett, Eric and Rose, Frisco and Nath, Pinku and Usanmaz, Demet and Ford, Denise C. and Perim, Eric and Calderon, Camilo E. and Plata, Jose J. and Lederer, Yoav and Jahn\\'{a}tek, Michal and Setyawan, Wahyu and Wang, Shidong and Xue, Junkai and Rasch, Kevin M. and Chepulskii, Roman V. and Taylor, Richard H. and Gomez, Geena and Shi, Harvey and Supka, Andrew R. and Al Rahal Al Orabi, Rabih and Gopal, Priya and Cerasoli, Frank T. and Liyanage, Laalitha and Wang, Haihang and Siloi, Ilaria and Agapito, Luis A. and Nyshadham, Chandramouli and Hart, Gus L. W. and Carrete, Jes\\'{u}s and Legrain, Fleur and Mingo, Natalio and Zurek, Eva and Isayev, Olexandr and Tropsha, Alexander and Sanvito, Stefano and Hanson, Robert M. and Takeuchi, Ichiro and Mehl, Michael J. and Kolmogorov, Aleksey N. and Yang, Kesong and D'Amico, Pino and Calzolari, Arrigo and Costa, Marcio and De Gennaro, Riccardo and Buongiorno Nardelli, Marco and Fornari, Marco and Levy, Ohad and Curtarolo, Stefano},\n  title     = {{The AFLOW Fleet for Materials Discovery}},\n  booktitle = {{Handbook of Materials Modeling. Volume 1 Methods: Theory and Modeling}},\n  pages     = {1--28},\n  publisher = {Springer},\n  year      = {2018},\n  doi       = {10.1007/978-3-319-42913-7_63-2}\n}"
     }
   ]
 }
