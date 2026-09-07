@@ -1,10 +1,12 @@
 // Citation counts from OpenAlex, filled in after the page loads and shown
 // only when a count comes back. Nothing is displayed while the request is
 // in flight or if it fails, so the page never depends on the service.
+// JSON fields use bracket access: the build runs Closure in ADVANCED mode,
+// which renames dotted properties.
 (() => {
   const rows = [...document.querySelectorAll('.publication[data-doi]')];
   if (!rows.length || !window.fetch) return;
-  const byDoi = new Map(rows.map((row) => [row.dataset.doi.toLowerCase(), row]));
+  const byDoi = new Map(rows.map((row) => [row.dataset['doi'].toLowerCase(), row]));
   const dois = [...byDoi.keys()];
   // OpenAlex sometimes holds two records for one DOI (a preprint duplicate);
   // keep the larger count.
@@ -27,11 +29,11 @@
     // Give up after 8 s: a slow or unreachable service must never hold anything up.
     const ctl = ('AbortController' in window) ? new AbortController() : null;
     if (ctl) setTimeout(() => ctl.abort(), 8000);
-    fetch(url, ctl ? { signal: ctl.signal } : {}).then((r) => (r.ok ? r.json() : null)).then((data) => {
-      if (!data || !data.results) return;
-      for (const work of data.results) {
-        if (!work.doi) continue;
-        show(work.doi.replace(/^https?:\/\/doi\.org\//i, '').toLowerCase(), work.cited_by_count);
+    fetch(url, ctl ? {'signal': ctl.signal} : {}).then((r) => (r.ok ? r.json() : null)).then((data) => {
+      if (!data || !data['results']) return;
+      for (const work of data['results']) {
+        if (!work['doi']) continue;
+        show(work['doi'].replace(/^https?:\/\/doi\.org\//i, '').toLowerCase(), work['cited_by_count']);
       }
     }).catch(() => {});
   }

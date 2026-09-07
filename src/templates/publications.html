@@ -50,6 +50,20 @@
           <a href="{{ pub.link }}" target="_blank">publisher</a>
         {% endif %}
         {% if pub.doi %}<span class="publication-cites" hidden></span>{% endif %}
+        {% if pub.bibtex %}
+          <details class="publication-cite">
+            <summary>BibTeX</summary>
+            <div class="publication-cite-body">
+              <pre class="publication-bibtex">{{ pub.bibtex }}</pre>
+              {% if pub.doi %}
+                <p class="publication-cite-more">
+                  Other styles (APA, MLA, Chicago, ...):
+                  <a href="https://citation.crosscite.org/?doi={{ pub.doi }}" target="_blank">DOI citation formatter</a>
+                </p>
+              {% endif %}
+            </div>
+          </details>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -69,6 +83,8 @@
   <p class="publications-lead">
     Citation counts and the complete list are on
     <a href="https://scholar.google.com/citations?user=Za7m4CMAAAAJ" target="_blank">Google Scholar</a>.
+    Each entry below has a BibTeX record, or download
+    <a href="publications.bib" download="s4e_publications.bib">all of them as one file</a>.
   </p>
   <div class="jump-nav" role="navigation" aria-label="Jump to year">
     {% for year, pubs_year in data.publications.journal|dictsort(reverse=true) %}
@@ -88,4 +104,5 @@
 
 {% block body_extra %}
   <script src="js/citations.js?v={{ data.asset_version }}" defer></script>
+  <script src="js/cite.js?v={{ data.asset_version }}" defer></script>
 {% endblock %}
