@@ -33,6 +33,13 @@
         {% endif %}
         (<span class="publication-year">{{ pub.year }}</span>){% if pub.status %}, <span class="publication-status">{{ pub.status }}</span>{% endif %}
       </div>
+      {% if pub.honors %}
+        <div class="publication-honors">
+          {% for honor in pub.honors %}
+            <span class="publication-honor">{{ honor }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
       <div class="publication-links">
         {% if pub.url %}
           <span class="publication-url">{{ pub.url }}</span>
@@ -58,6 +65,10 @@
 
 {% block content %}
   <h1 id="articles">Publications</h1>
+  <p class="publications-lead">
+    Citation counts and the complete list are on
+    <a href="https://scholar.google.com/citations?user=Za7m4CMAAAAJ" target="_blank">Google Scholar</a>.
+  </p>
   <div class="jump-nav" role="navigation" aria-label="Jump to year">
     {% for year, pubs_year in data.publications.journal|dictsort(reverse=true) %}
       <a href="#publications_journal_{{ year }}">{{ year }}</a>
