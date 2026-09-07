@@ -65,6 +65,9 @@
       "open_access": true
     },
     {
+      "honors": [
+        "2025 Most Popular Articles, Royal Society of Chemistry: Materials Horizons (2026)"
+      ],
       "status": "published",
       "year": 2025,
       "title": "Beyond the four core effects: revisiting thermoelectrics with a high-entropy design",
@@ -255,6 +258,9 @@
       "open_access": true
     },
     {
+      "honors": [
+        "Editors' Highlight, Springer Nature (2024)"
+      ],
       "status": "published",
       "year": 2024,
       "title": "Materials Design for Hypersonics",
@@ -310,6 +316,9 @@
       "open_access": false
     },
     {
+      "honors": [
+        "Editor's Choice, Elsevier (2022)"
+      ],
       "status": "published",
       "year": 2023,
       "title": "aflow++: a C++ framework for autonomous materials design",
@@ -543,6 +552,9 @@
       "arxiv": "2111.11519"
     },
     {
+      "honors": [
+        "Editors' Highlight, Springer Nature (2021)"
+      ],
       "status": "published",
       "year": 2021,
       "title": "Settling the matter of the role of vibrations in the stability of high-entropy carbides",
@@ -814,6 +826,9 @@
       "open_access": true
     },
     {
+      "honors": [
+        "Hot paper, Web of Science (Clarivate Analytics) (Nov 16, 2021)"
+      ],
       "status": "published",
       "year": 2020,
       "title": "High-entropy ceramics",
@@ -1023,6 +1038,9 @@
       "arxiv": "1709.02727"
     },
     {
+      "honors": [
+        "Editor's Choice, Elsevier (2018)"
+      ],
       "status": "published",
       "year": 2018,
       "title": "AFLOW-ML: A RESTful API for machine-learning prediction of materials properties",
@@ -1091,6 +1109,9 @@
       "arxiv": "1703.04497"
     },
     {
+      "honors": [
+        "Editor's Choice, Elsevier (2017)"
+      ],
       "status": "published",
       "year": 2017,
       "title": "AFLUX: The LUX materials search API for the AFLOW data repositories",
@@ -1240,6 +1261,9 @@
       "arxiv": "1511.04373"
     },
     {
+      "honors": [
+        "Editor's Choice, Elsevier (2015)"
+      ],
       "status": "published",
       "year": 2015,
       "title": "The AFLOW Standard for High-Throughput Materials Science Calculations",
@@ -1265,6 +1289,10 @@
       "arxiv": "1506.00303"
     },
     {
+      "honors": [
+        "Top 10 most highly downloaded papers for the month of January 2015, American Chemical Society (2015)",
+        "Editors' Choice, American Chemical Society (2015)"
+      ],
       "status": "published",
       "year": 2015,
       "title": "Materials Cartography: Representing and Mining Materials Space Using Structural and Electronic Fingerprints",
