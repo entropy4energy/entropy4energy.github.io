@@ -197,6 +197,7 @@ def process_team(data: dict[str, Any]):
         {
             "positions": ["Professor", "Assistant Professor"],
             "title": "",
+            "implied": [],
         },
         {
             "positions": ["Research Scientist"],
@@ -209,6 +210,7 @@ def process_team(data: dict[str, Any]):
         {
             "positions": ["PhD Student", "Graduate Student", "Master Student", "Master's Student"],
             "title": "Graduate Students",
+            "implied": [],
         },
         {
             "positions": ["Undergraduate Student"],
@@ -271,6 +273,13 @@ def process_team(data: dict[str, Any]):
             for position in group["positions"]:
                 if position in member["titles"]:
                     member["rank"] = p  # for sorting
+                    # The title line repeats the group heading for most
+                    # groups ("Postdoctoral Associate" under "Postdocs"), so
+                    # it is dropped there; Graduate Students keeps it because
+                    # PhD and master's students share the group.
+                    implied = group.get("implied", group["positions"])
+                    member["titles_shown"] = [
+                        t for t in member["titles"] if t not in implied]
                     team[key][g]["members"].append(member)
                     break
                 p += 1
