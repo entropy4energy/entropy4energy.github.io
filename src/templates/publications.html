@@ -57,8 +57,10 @@
               <pre class="publication-bibtex">{{ pub.bibtex }}</pre>
               {% if pub.doi %}
                 <p class="publication-cite-more">
-                  Other styles (APA, MLA, Chicago, ...):
-                  <a href="https://citation.crosscite.org/?doi={{ pub.doi }}" target="_blank">DOI citation formatter</a>
+                  Formatted citation (opens as text):
+                  <a href="https://citation.doi.org/format?doi={{ pub.doi }}&amp;style=apa&amp;lang=en-US" target="_blank">APA</a>,
+                  <a href="https://citation.doi.org/format?doi={{ pub.doi }}&amp;style=modern-language-association&amp;lang=en-US" target="_blank">MLA</a>,
+                  <a href="https://citation.doi.org/format?doi={{ pub.doi }}&amp;style=chicago-author-date&amp;lang=en-US" target="_blank">Chicago</a>
                 </p>
               {% endif %}
             </div>
