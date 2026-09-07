@@ -68,10 +68,10 @@
         "We focus on applications: identifying materials problems, including catalysis and chemical disorder, where quantum computation could make a difference; casting them in a form a quantum computer can solve; and combining quantum and classical calculations into workflows that produce predictions that can be tested experimentally. The goal is not a better benchmark, but a material or mechanism that would otherwise have been difficult to find. In February 2026, we hosted a two-day workshop with Quantinuum that gave researchers from across Johns Hopkins hands-on experience with quantum hardware and software.",
         "Students in this area learn quantum algorithms for chemistry alongside classical electronic structure and gain experience with the software and hardware used in current quantum-computing workflows."
       ],
-      "image": "quantinuum_trapped_ions.png",
-      "image_alt": "Fluorescence image of individual trapped ions in a Quantinuum quantum computer",
-      "image_caption": "Individual trapped ions, each a qubit, imaged by their fluorescence in a Quantinuum quantum computer. Image courtesy of Quantinuum, provided by Mark Jackson. &copy; 2025 Quantinuum. All rights reserved.",
-      "image_url": "https://www.quantinuum.com/",
+      "image": "quantum_helios_ions.jpg",
+      "image_alt": "Ninety-eight trapped ions illuminated by laser light in the Helios trap, with the ring storage, cache, and quantum logic regions outlined",
+      "image_caption": "Ninety-eight trapped ions, each a qubit, illuminated by laser light in the Helios trap. Adapted from Ransford <i>et al.</i>, <i>Nature</i> <b>655</b>, 81 (2026), CC BY 4.0. Image provided by Mark Jackson, Quantinuum.",
+      "image_url": "https://doi.org/10.1038/s41586-026-10676-4",
       "publications": [],
       "blurb": "Putting quantum computers to work on materials problems, from catalysis to chemical disorder.",
       "card_image": "quantum_workshop_2026.png"
