@@ -103,10 +103,27 @@ def process_home(data: dict[str, Any]):
 
 
 def process_jobs(data: dict[str, Any]):
+    # Status is decided here at build time (archived, or closing date passed);
+    # jobs.js only flips a posting to Closed if its date passes after the build.
+    # Archived postings lose their external application links (Interfolio and
+    # program portals expire), keeping the link text; local flyers stay.
+    ext_link = re.compile(r'<a\s[^>]*href="(?:https?:)?//[^"]*"[^>]*>(.*?)</a>', re.S)
+    today = date.today()
     for job in data["jobs"]:
+        close = job.get("close")
+        closed = bool(job.get("archived")) or (close is not None and date(*close) < today)
+        job["status"] = "Closed" if closed else "Open"
         job["open"] = format_date(job["open"])
-        if close := job.get("close"):
+        if close:
             job["close"] = format_date(close)
+        if job.get("archived"):
+            for field in ("description", "instructions"):
+                text = job.get(field) or ""
+                stripped, n = ext_link.subn(r"\1", text)
+                if n:
+                    job[field] = stripped
+                    job["links_removed"] = True
+            job["quals"] = [ext_link.sub(r"\1", q) for q in job.get("quals", [])]
 
 
 def process_publications(data: dict[str, Any]):
