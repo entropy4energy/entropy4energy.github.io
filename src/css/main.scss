@@ -392,6 +392,12 @@ h2 {
     font-weight: 700;
   }
 
+  &-cites {
+    color: $color-muted;
+    font-size: 0.8rem;
+    margin-left: 0.25rem;
+  }
+
   &-honors {
     display: flex;
     flex-wrap: wrap;
