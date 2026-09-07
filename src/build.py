@@ -81,7 +81,7 @@ def process_home(data: dict[str, Any]):
         if "doi" in pub:
             pub["url"] = f"https://doi.org/{pub['doi']}"
         elif "arxiv" in pub:
-            pub["url"] = f"https://arxiv.org/{pub['arxiv']}"
+            pub["url"] = f"https://arxiv.org/abs/{pub['arxiv']}"
         elif "url" not in pub:
             continue
 
@@ -172,7 +172,7 @@ def process_publications(data: dict[str, Any]):
                 #PDFs and arXiv preprints are hosted), so the snapshot links to the DOI
                 pub.setdefault("link", f"https://doi.org/{doi}")
             elif arxiv := pub.get("arxiv"):
-                pub["url"] = f'<a href="https://arxiv.org/{arxiv}" target="_blank">ArXiV</a>'
+                pub["url"] = f'<a href="https://arxiv.org/abs/{arxiv}" target="_blank">arXiv</a>'
             elif url := pub.get("url"):
                 pub["url"] = f'<a href="{url}" target="_blank">publication</a>'
 
@@ -191,6 +191,11 @@ def process_publications(data: dict[str, Any]):
                         pub["filename"] = arxiv
                     else:
                         del pub["filename"]
+
+            # A closed-access article with no hosted copy still has a public author
+            # version on arXiv; link it rather than leaving the row without full text.
+            if not pub.get("filename") and (arxiv := pub.get("arxiv")):
+                pub["arxiv_url"] = f"https://arxiv.org/abs/{arxiv}"
 
             if bib := pub.get("bibtex"):
                 pub["bibtex_key"] = bib.split("{", 1)[1].split(",", 1)[0]
