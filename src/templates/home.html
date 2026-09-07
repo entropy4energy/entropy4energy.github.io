@@ -53,7 +53,7 @@
     <div class="direction-cards">
       {% for direction in data.research.directions %}
         <a class="direction-card" href="research#{{ direction.id }}">
-          <img src="media/research/{{ direction.image }}" alt="{{ direction.image_alt }}">
+          <img src="media/research/{{ direction.card_image or direction.image }}" alt="{{ direction.image_alt }}">
           <div class="direction-card-title">{{ direction.title }}</div>
           <div class="direction-card-text">{{ direction.blurb }}</div>
         </a>

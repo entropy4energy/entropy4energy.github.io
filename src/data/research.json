@@ -73,7 +73,8 @@
       "image_caption": "Individual trapped ions, each a qubit, imaged by their fluorescence in a Quantinuum quantum computer. Image courtesy of Quantinuum, provided by Mark Jackson. &copy; 2025 Quantinuum. All rights reserved.",
       "image_url": "https://www.quantinuum.com/",
       "publications": [],
-      "blurb": "Quantum algorithms and hybrid quantum-classical workflows for chemistry and disordered materials."
+      "blurb": "Quantum algorithms and hybrid quantum-classical workflows for chemistry and disordered materials.",
+      "card_image": "quantum_workshop_2026.png"
     },
     {
       "id": "hydrogen",
