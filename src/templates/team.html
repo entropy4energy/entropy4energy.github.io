@@ -13,7 +13,8 @@
     </div>
     <div class="member-data">
       <div class="member-data-name">{{ member.name }}</div>
-      <div class="member-data-line">{{ member.titles|join("<br>") }}</div>
+      {% set shown = member.titles_shown if member.titles_shown is defined else member.titles %}
+      {% if shown %}<div class="member-data-line">{{ shown|join("<br>") }}</div>{% endif %}
       {% if member.years %}
         <div class="member-data-line member-years">{{ member.years }}</div>
       {% endif %}
