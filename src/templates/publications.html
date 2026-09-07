@@ -55,9 +55,24 @@
         {% if pub.doi %}<span class="publication-cites" hidden></span>{% endif %}
         {% if pub.bibtex %}
           <details class="publication-cite">
-            <summary>BibTeX</summary>
+            <summary>Cite</summary>
             <div class="publication-cite-body">
-              <pre class="publication-bibtex">{{ pub.bibtex }}</pre>
+              {# BibTeX for LaTeX; RIS is what EndNote, Mendeley, Zotero, RefWorks and
+                 Citavi read, so it is what a Word user needs; CSL-JSON is Zotero and
+                 Pandoc native; .enw is EndNote's own tagged format. Without JavaScript
+                 only the first is shown, which is the sensible default. #}
+              <div class="publication-cite-tabs">
+                {% for key, label in [("bibtex", "BibTeX"), ("ris", "RIS"), ("csl", "CSL-JSON"), ("enw", "EndNote")] %}
+                  {% if pub[key] %}
+                    <button type="button" class="publication-cite-tab{% if loop.first %} is-on{% endif %}" data-fmt="{{ key }}">{{ label }}</button>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              {% for key, label in [("bibtex", "BibTeX"), ("ris", "RIS"), ("csl", "CSL-JSON"), ("enw", "EndNote")] %}
+                {% if pub[key] %}
+                  <pre class="publication-cite-text" data-fmt="{{ key }}"{% if not loop.first %} hidden{% endif %}>{{ pub[key] }}</pre>
+                {% endif %}
+              {% endfor %}
               {% if pub.doi %}
                 <p class="publication-cite-more">
                   Formatted citation (opens as text):
@@ -88,8 +103,9 @@
   <p class="publications-lead">
     Citation counts and the complete list are on
     <a href="https://scholar.google.com/citations?user=Za7m4CMAAAAJ" target="_blank">Google Scholar</a>.
-    Each entry below has a BibTeX record, or download
-    <a href="publications.bib" download="s4e_publications.bib">all of them as one file</a>.
+    Every entry can be cited as BibTeX, RIS, CSL-JSON or EndNote, or download the whole list as
+    <a href="publications.bib" download="s4e_publications.bib">BibTeX</a> or
+    <a href="publications.ris" download="s4e_publications.ris">RIS</a>.
     <sup>&dagger;</sup>&nbsp;contributed equally, *&nbsp;corresponding author.
   </p>
   <div class="jump-nav" role="navigation" aria-label="Jump to year">
