@@ -24,7 +24,10 @@
     const chunk = dois.slice(i, i + batch);
     const url = 'https://api.openalex.org/works?per-page=' + chunk.length
       + '&select=doi,cited_by_count&filter=doi:' + chunk.map(encodeURIComponent).join('|');
-    fetch(url).then((r) => (r.ok ? r.json() : null)).then((data) => {
+    // Give up after 8 s: a slow or unreachable service must never hold anything up.
+    const ctl = ('AbortController' in window) ? new AbortController() : null;
+    if (ctl) setTimeout(() => ctl.abort(), 8000);
+    fetch(url, ctl ? { signal: ctl.signal } : {}).then((r) => (r.ok ? r.json() : null)).then((data) => {
       if (!data || !data.results) return;
       for (const work of data.results) {
         if (!work.doi) continue;
