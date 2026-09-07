@@ -761,7 +761,7 @@ h2 {
 
 .member {
   display: grid;
-  grid-template-columns: 15% auto;
+  grid-template-columns: 150px auto;
   grid-column-gap: 20px;
   margin-bottom: 20px;
 
@@ -787,7 +787,7 @@ h2 {
 }
 
 .pi-details {
-  margin: -0.5rem 0 1.75rem calc(15% + 20px);
+  margin: -0.5rem 0 1.75rem 170px;
 
   & > summary {
     color: $color-main-1;
@@ -1251,6 +1251,14 @@ h2 {
 }
 
 @media screen and (max-width: $mobile-threshold) {
+  .member {
+    grid-template-columns: 100px auto;
+  }
+
+  .pi-details {
+    margin-left: 0;
+  }
+
   .pi-details {
     margin-left: 0;
   }
