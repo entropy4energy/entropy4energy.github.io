@@ -396,6 +396,97 @@ h2 {
     color: $color-muted;
     font-size: 0.8rem;
     margin-left: 0.25rem;
+    order: 2;
+  }
+
+  /* BibTeX record: the summary is a chip in the links row; the open record
+     moves after the citation count and takes the full width below the row */
+  &-cite {
+    display: block;
+    min-width: 0;
+    order: 1;
+
+    &[open] {
+      flex-basis: 100%;
+      order: 3;
+    }
+
+    summary {
+      border: 1px solid $color-main-1;
+      border-radius: 999px;
+      color: $color-main-1;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      line-height: 1.4;
+      list-style: none;
+      padding: 0.1rem 0.65rem;
+      user-select: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &:hover {
+        background-color: $color-main-1;
+        color: $color-main-2;
+      }
+    }
+
+    &-body {
+      margin-top: 0.4rem;
+      position: relative;
+    }
+
+    &-more {
+      color: $color-muted;
+      font-size: 0.8rem;
+      margin: 0.3rem 0 0;
+
+      a {
+        border: 0;
+        font-size: inherit;
+        font-weight: 400;
+        padding: 0;
+        text-decoration: underline;
+
+        &:hover {
+          background: none;
+          color: $color-main-1;
+        }
+      }
+    }
+  }
+
+  &-bibtex {
+    background-color: #f4f6fa;
+    border: 1px solid $color-line-2;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    margin: 0;
+    overflow-x: auto;
+    padding: 0.6rem 0.75rem;
+    white-space: pre;
+  }
+
+  &-copy {
+    background-color: $color-main-2;
+    border: 1px solid $color-line-2;
+    border-radius: 4px;
+    color: $color-main-1;
+    cursor: pointer;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.1rem 0.5rem;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.45rem;
+
+    &:hover {
+      border-color: $color-main-1;
+    }
   }
 
   &-honors {
