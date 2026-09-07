@@ -176,12 +176,30 @@ def process_publications(data: dict[str, Any]):
                     else:
                         del pub["filename"]
 
+            if bib := pub.get("bibtex"):
+                pub["bibtex_key"] = bib.split("{", 1)[1].split(",", 1)[0]
+
             year = pub["year"]
             if year not in pubs[typ].keys():
                 pubs[typ][year] = [pub]
             else:
                 pubs[typ][year].append(pub)
     data["publications"] = pubs
+
+
+def build_bibtex() -> str:
+    """All listed publications as one BibTeX file (dist/publications.bib)."""
+    data = {"publications": json.loads((DATA_DIR / "publications.json").read_text())}
+    process_publications(data)
+    entries = []
+    for typ in ("journal", "book"):
+        for year in sorted(data["publications"][typ], reverse=True):
+            entries += [pub["bibtex"] for pub in data["publications"][typ][year] if pub.get("bibtex")]
+    header = (
+        "% Publications of the Entropy for Energy (S4E) group, Johns Hopkins University\n"
+        f"% https://entropy4energy.ai/publications  (exported {date.today().isoformat()})\n"
+    )
+    return header + "\n" + "\n\n".join(entries) + "\n"
 
 
 def process_team(data: dict[str, Any]):
@@ -577,7 +595,9 @@ def build_partials(root: str, outdir: Path) -> list[Path]:
 if __name__ == "__main__":
     parser = arg_parser()
     args, _ = parser.parse_known_args()
-    if args.section == "partials":
+    if args.section == "bibtex":
+        print(build_bibtex(), end="")
+    elif args.section == "partials":
         for path in build_partials(args.root, Path(args.outdir)):
             print(path)
     else:

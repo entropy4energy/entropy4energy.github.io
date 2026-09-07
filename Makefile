@@ -94,13 +94,19 @@ $(CSSBLD)/%:
 	$(RSYNC) $(@:$(BLDDIR)/%=$(SRCDIR)/%) $(CSSBLD)/
 
 # JavaScript
-js: $(JSBLD)/slideshow.js $(JSBLD)/jobs.js
+js: $(JSBLD)/slideshow.js $(JSBLD)/jobs.js $(JSBLD)/citations.js $(JSBLD)/cite.js
 
 $(JSBLD)/%.js: $(JSSRC)/%.js
 	$(JSC) $(JSCFLAGS) --js $^ --js_output_file $@
 
 # Static targets
-static: $(BLDDIR)/media $(BLDDIR)/CNAME $(BLDDIR)/.htaccess
+# publications.bib is the whole publication list as BibTeX (the download
+# link on the Publications page), generated from the same feed as the page.
+static: $(BLDDIR)/media $(BLDDIR)/CNAME $(BLDDIR)/.htaccess $(BLDDIR)/publications.bib
+
+$(BLDDIR)/publications.bib: $(BUILDPY) $(DATADIR)/publications.json
+	@mkdir -p $(@D)
+	$(PYTHON) $(BUILDPY) bibtex > $@
 
 $(BLDDIR)/%:
 	$(RSYNC) $(@:$(BLDDIR)/%=$(SRCDIR)/%) $(BLDDIR)/
