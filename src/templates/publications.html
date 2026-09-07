@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% macro pub_html(pub) %}
-  <div class="publication" id="pub-{{ pub.number }}">
+  <div class="publication" id="pub-{{ pub.number }}"{% if pub.doi %} data-doi="{{ pub.doi }}"{% endif %}>
     <div class="publication-img">
       {% if "imgfile" in pub and "filename" in pub %}
         <a href="media/publications/{{ pub.filename }}.pdf" target="_blank">
@@ -49,6 +49,7 @@
         {% elif pub.link and not (pub.doi and pub.link == "https://doi.org/" ~ pub.doi) %}
           <a href="{{ pub.link }}" target="_blank">publisher</a>
         {% endif %}
+        {% if pub.doi %}<span class="publication-cites" hidden></span>{% endif %}
       </div>
     </div>
   </div>
@@ -83,4 +84,8 @@
   <div class="publications-section" id="publications_books">
     {{ build_publications(data.publications.book, "book") }}
   </div>
+{% endblock %}
+
+{% block body_extra %}
+  <script src="js/citations.js?v={{ data.asset_version }}"></script>
 {% endblock %}
