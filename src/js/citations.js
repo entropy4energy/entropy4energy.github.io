@@ -6,9 +6,13 @@
   if (!rows.length || !window.fetch) return;
   const byDoi = new Map(rows.map((row) => [row.dataset.doi.toLowerCase(), row]));
   const dois = [...byDoi.keys()];
+  // OpenAlex sometimes holds two records for one DOI (a preprint duplicate);
+  // keep the larger count.
+  const best = new Map();
   const show = (doi, count) => {
     const row = byDoi.get(doi);
-    if (!row || !(count > 0)) return;
+    if (!row || !(count > 0) || (best.get(doi) || 0) >= count) return;
+    best.set(doi, count);
     const el = row.querySelector('.publication-cites');
     if (!el) return;
     el.textContent = count === 1 ? '1 citation' : `${count.toLocaleString()} citations`;
