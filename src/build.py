@@ -209,19 +209,30 @@ def process_publications(data: dict[str, Any]):
     data["publications"] = pubs
 
 
-def build_bibtex() -> str:
-    """All listed publications as one BibTeX file (dist/publications.bib)."""
+def _publication_records(field: str) -> list:
+    """Every listed publication's record in one export format, newest year first."""
     data = {"publications": json.loads((DATA_DIR / "publications.json").read_text())}
     process_publications(data)
     entries = []
     for typ in ("journal", "book"):
         for year in sorted(data["publications"][typ], reverse=True):
-            entries += [pub["bibtex"] for pub in data["publications"][typ][year] if pub.get("bibtex")]
+            entries += [pub[field] for pub in data["publications"][typ][year] if pub.get(field)]
+    return entries
+
+
+def build_bibtex() -> str:
+    """All listed publications as one BibTeX file (dist/publications.bib)."""
     header = (
         "% Publications of the Entropy for Energy (S4E) group, Johns Hopkins University\n"
         f"% https://entropy4energy.ai/publications  (exported {date.today().isoformat()})\n"
     )
-    return header + "\n" + "\n\n".join(entries) + "\n"
+    return header + "\n" + "\n\n".join(_publication_records("bibtex")) + "\n"
+
+
+def build_ris() -> str:
+    """The same list as RIS (dist/publications.ris), which is what EndNote, Mendeley,
+    Zotero, RefWorks and Citavi import. RIS has no comment syntax, so no header."""
+    return "\n\n".join(_publication_records("ris")) + "\n"
 
 
 def process_team(data: dict[str, Any]):
@@ -626,6 +637,8 @@ if __name__ == "__main__":
     args, _ = parser.parse_known_args()
     if args.section == "bibtex":
         print(build_bibtex(), end="")
+    elif args.section == "ris":
+        print(build_ris(), end="")
     elif args.section == "partials":
         for path in build_partials(args.root, Path(args.outdir)):
             print(path)

@@ -108,11 +108,16 @@ $(JSBLD)/%.js: $(JSSRC)/%.js
 # Static targets
 # publications.bib is the whole publication list as BibTeX (the download
 # link on the Publications page), generated from the same feed as the page.
-static: $(BLDDIR)/media $(BLDDIR)/CNAME $(BLDDIR)/.htaccess $(BLDDIR)/publications.bib
+static: $(BLDDIR)/media $(BLDDIR)/CNAME $(BLDDIR)/.htaccess $(BLDDIR)/publications.bib $(BLDDIR)/publications.ris
 
 $(BLDDIR)/publications.bib: $(BUILDPY) $(DATADIR)/publications.json
 	@mkdir -p $(@D)
 	$(PYTHON) $(BUILDPY) bibtex > $@
+
+# the same list as RIS, for EndNote, Mendeley, Zotero and the rest
+$(BLDDIR)/publications.ris: $(BUILDPY) $(DATADIR)/publications.json
+	@mkdir -p $(@D)
+	$(PYTHON) $(BUILDPY) ris > $@
 
 $(BLDDIR)/%:
 	$(RSYNC) $(@:$(BLDDIR)/%=$(SRCDIR)/%) $(BLDDIR)/

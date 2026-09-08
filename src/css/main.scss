@@ -443,27 +443,35 @@ h2 {
       position: relative;
     }
 
+    // APA, MLA and Chicago as muted pills, the same shape as the format tabs above:
+    // navy chips are full text (DOI, PDF, arXiv), muted pills are citation styles
     &-more {
+      align-items: center;
       color: $color-muted;
-      font-size: 0.8rem;
-      margin: 0.3rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin: 0.4rem 0 0;
 
       a {
-        border: 0;
-        font-size: inherit;
-        font-weight: 400;
-        padding: 0;
-        text-decoration: underline;
+        border: 1px solid $color-line-2;
+        border-radius: 999px;
+        color: $color-muted;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 0.1rem 0.5rem;
+        text-decoration: none;
 
         &:hover {
           background: none;
+          border-color: $color-main-1;
           color: $color-main-1;
         }
       }
     }
   }
 
-  &-bibtex {
+  &-cite-text {
     background-color: #f4f6fa;
     border: 1px solid $color-line-2;
     border-radius: 6px;
@@ -475,6 +483,38 @@ h2 {
     white-space: pre;
   }
 
+  // format switcher: BibTeX for LaTeX, RIS for EndNote/Mendeley/Zotero/Word,
+  // CSL-JSON for Zotero and Pandoc, .enw for EndNote's own format
+  &-cite-tabs {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-bottom: 0.4rem;
+  }
+
+  &-cite-tab {
+    background-color: $color-main-2;
+    border: 1px solid $color-line-2;
+    border-radius: 999px;
+    color: $color-muted;
+    cursor: pointer;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.1rem 0.5rem;
+
+    &:hover {
+      border-color: $color-main-1;
+      color: $color-main-1;
+    }
+
+    &.is-on {
+      background-color: $color-main-1;
+      border-color: $color-main-1;
+      color: #fff;
+    }
+  }
+
   &-copy {
     background-color: $color-main-2;
     border: 1px solid $color-line-2;
@@ -483,10 +523,8 @@ h2 {
     cursor: pointer;
     font-size: 0.72rem;
     font-weight: 600;
+    margin-left: auto;
     padding: 0.1rem 0.5rem;
-    position: absolute;
-    right: 0.5rem;
-    top: 0.45rem;
 
     &:hover {
       border-color: $color-main-1;
