@@ -1,18 +1,43 @@
-// Adds a "Copy" button to each BibTeX record on the Publications page.
-// The records are plain <pre> text and work without this script.
+// The Cite panel: switch between BibTeX, RIS, CSL-JSON and EndNote, and copy the one
+// on screen. Every record is plain <pre> text in the page, so without this script the
+// panel still shows BibTeX and can be selected by hand.
 (() => {
-  if (!navigator.clipboard) return;
-  for (const pre of document.querySelectorAll('.publication-bibtex')) {
+  for (const panel of document.querySelectorAll('.publication-cite-body')) {
+    const tabs = [...panel.querySelectorAll('.publication-cite-tab')];
+    const texts = [...panel.querySelectorAll('.publication-cite-text')];
+    if (!tabs.length || !texts.length) continue;
+
+    const show = (fmt) => {
+      for (const t of tabs) t.classList.toggle('is-on', t.dataset.fmt === fmt);
+      for (const p of texts) p.hidden = p.dataset.fmt !== fmt;
+    };
+    // The tabs are a radio group: one format is always the visible one. Clicking the
+    // format that is ALREADY showing closes the panel instead, so a second click on
+    // the same button undoes the first, which is what it looks like it should do.
+    for (const tab of tabs) {
+      tab.addEventListener('click', () => {
+        const details = panel.closest('details');
+        if (tab.classList.contains('is-on') && details) {
+          details.open = false;
+          return;
+        }
+        show(tab.dataset.fmt);
+      });
+    }
+
+    if (!navigator.clipboard) continue;
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'publication-copy';
     button.textContent = 'Copy';
     button.addEventListener('click', () => {
-      navigator.clipboard.writeText(pre.textContent).then(() => {
+      const shown = texts.find((p) => !p.hidden);
+      if (!shown) return;
+      navigator.clipboard.writeText(shown.textContent).then(() => {
         button.textContent = 'Copied';
         setTimeout(() => { button.textContent = 'Copy'; }, 1500);
       }).catch(() => {});
     });
-    pre.parentNode.insertBefore(button, pre);
+    panel.querySelector('.publication-cite-tabs').appendChild(button);
   }
 })();
