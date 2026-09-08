@@ -443,20 +443,28 @@ h2 {
       position: relative;
     }
 
+    // APA, MLA and Chicago as muted pills, the same shape as the format tabs above:
+    // navy chips are full text (DOI, PDF, arXiv), muted pills are citation styles
     &-more {
+      align-items: center;
       color: $color-muted;
-      font-size: 0.8rem;
-      margin: 0.3rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin: 0.4rem 0 0;
 
       a {
-        border: 0;
-        font-size: inherit;
-        font-weight: 400;
-        padding: 0;
-        text-decoration: underline;
+        border: 1px solid $color-line-2;
+        border-radius: 999px;
+        color: $color-muted;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 0.1rem 0.5rem;
+        text-decoration: none;
 
         &:hover {
           background: none;
+          border-color: $color-main-1;
           color: $color-main-1;
         }
       }
