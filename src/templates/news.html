@@ -72,7 +72,7 @@
       {% for item in data.press %}
         <li>
           <span class="press-date">{{ item.date }}</span>
-          <a href="{{ item.url }}" target="_blank">{{ item.title }}</a>,
+          <a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a>,
           <span class="press-outlet">{{ item.outlet }}</span>
         </li>
       {% endfor %}

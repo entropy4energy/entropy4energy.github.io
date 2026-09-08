@@ -24,7 +24,7 @@
       {% if member.socials|length > 0 %}
         <div class="member-data-line">
           {% for social in member.socials %}
-            <a href="{{ social.href }}" target="_blank">{{ social.icon }}</a>
+            <a href="{{ social.href }}" target="_blank" rel="noopener">{{ social.icon }}</a>
           {% endfor %}
         </div>
       {% endif %}
@@ -55,7 +55,7 @@
         </div>
       {% endif %}
       {% if member.cv %}
-        <p class="pi-block-cv">Full CV at <a href="{{ member.cv }}" target="_blank">{{ member.cv|replace("https://", "") }}</a>.</p>
+        <p class="pi-block-cv">Full CV at <a href="{{ member.cv }}" target="_blank" rel="noopener">{{ member.cv|replace("https://", "") }}</a>.</p>
       {% endif %}
     </div>
     </details>
