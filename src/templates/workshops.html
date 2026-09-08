@@ -44,11 +44,11 @@
               </ul>
             {% endif %}
             {% if workshop.signup %}
-              <p><a class="workshop-button" href="{{ workshop.signup }}" target="_blank">Sign up</a></p>
+              <p><a class="workshop-button" href="{{ workshop.signup }}" target="_blank" rel="noopener">Sign up</a></p>
             {% endif %}
           </div>
           {% if workshop.has_flyer %}
-            <a class="workshop-flyer" href="media/workshops/{{ workshop.id }}/flyer.png" target="_blank">
+            <a class="workshop-flyer" href="media/workshops/{{ workshop.id }}/flyer.png" target="_blank" rel="noopener">
               <img src="media/workshops/{{ workshop.id }}/flyer.png" alt="Flyer for {{ workshop.title }}" loading="lazy">
             </a>
           {% endif %}
