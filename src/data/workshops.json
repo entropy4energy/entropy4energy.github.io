@@ -49,6 +49,7 @@
       {
         "title": "Links",
         "links": [
+          {"label": "Highlight video from the conference (Johns Hopkins Whiting School of Engineering)", "href": "https://youtu.be/dC9pgzGfDSM"},
           {"label": "Event page with the full program and speaker biographies (Johns Hopkins Department of Materials Science and Engineering)", "href": "https://engineering.jhu.edu/materials/laboratory-to-launchpad/"}
         ]
       }
