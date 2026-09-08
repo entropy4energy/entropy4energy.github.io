@@ -52,6 +52,11 @@
         {% if pub.arxiv_url %}
           <a href="{{ pub.arxiv_url }}" target="_blank">arXiv</a>
         {% endif %}
+        {# full text already hosted by a funder's public-access repository (OSTI for
+           DOE, NSF PAR). Linked, never copied here. #}
+        {% if pub.public_access_url %}
+          <a href="{{ pub.public_access_url }}" target="_blank">{{ pub.public_access_label }}</a>
+        {% endif %}
         {% if pub.doi %}<span class="publication-cites" hidden></span>{% endif %}
         {% if pub.bibtex %}
           <details class="publication-cite">
