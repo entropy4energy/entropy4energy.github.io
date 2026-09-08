@@ -167,14 +167,14 @@ def process_publications(data: dict[str, Any]):
 
             if "url" in pub: pub["link"] = str(pub["url"])   #make a copy as "link" since url is overwritten here
             if doi := pub.get("doi"):
-                pub["url"] = f'<a href="https://doi.org/{doi}" target="_blank">DOI:{doi}</a>'
+                pub["url"] = f'<a href="https://doi.org/{doi}" target="_blank" rel="noopener">DOI:{doi}</a>'
                 #closed-access papers have no PDF in media/publications (only open-access
                 #PDFs and arXiv preprints are hosted), so the snapshot links to the DOI
                 pub.setdefault("link", f"https://doi.org/{doi}")
             elif arxiv := pub.get("arxiv"):
-                pub["url"] = f'<a href="https://arxiv.org/abs/{arxiv}" target="_blank">arXiv</a>'
+                pub["url"] = f'<a href="https://arxiv.org/abs/{arxiv}" target="_blank" rel="noopener">arXiv</a>'
             elif url := pub.get("url"):
-                pub["url"] = f'<a href="{url}" target="_blank">publication</a>'
+                pub["url"] = f'<a href="{url}" target="_blank" rel="noopener">publication</a>'
 
             if filename := pub.get("filename"):
                 pdf_file = file_base / f"{filename}.pdf"
@@ -521,6 +521,17 @@ def asset_version() -> str:
     return h.hexdigest()[:10]
 
 
+def add_noopener(html: str) -> str:
+    """Give every new-tab link rel="noopener".
+
+    Applied to the rendered page rather than to the templates because many links
+    live inside hand-written HTML in news.json, jobs.json and workshops.json, which
+    the group edits. Doing it here covers those and anything added later, so nobody
+    has to remember the attribute.
+    """
+    return re.sub(r'target="_blank"(?![^>]*\brel=)', 'target="_blank" rel="noopener"', html)
+
+
 def build_html(section: str = "", extra_data: list = []) -> str:
     """Create a rendered HTML file.
 
@@ -573,7 +584,7 @@ def build_html(section: str = "", extra_data: list = []) -> str:
     loader = FileSystemLoader(TEMPLATE_DIR)
     env = Environment(loader=loader)
     template = env.get_template(f"{section}.html")
-    return template.render(data=data)
+    return add_noopener(template.render(data=data))
 
 
 # Shell fragments shared with LOOP (Peter's Django app at s4e.ai/loop).
