@@ -35,6 +35,30 @@
           <div class="workshop-about">
             <p class="workshop-date"><b>{{ workshop.date }}</b></p>
             <p>{{ workshop.description|replace("\n", "<br>")|safe }}</p>
+            {# A poster that becomes the player on click: the iframe is inside a
+               closed <details>, so nothing is fetched from YouTube until a
+               reader asks for it. #}
+            {% if workshop.has_video %}
+              <details class="workshop-video">
+                <summary>
+                  <span class="workshop-video-frame">
+                    <img src="media/workshops/{{ workshop.id }}/{{ workshop.video.poster }}"
+                         alt="Play the highlight video, {{ workshop.video.title }}"
+                         width="1280" height="720" loading="lazy">
+                    <span class="workshop-video-play" aria-hidden="true"></span>
+                  </span>
+                  <span class="workshop-video-meta">
+                    <span class="workshop-video-eyebrow">Highlight video</span>
+                    <span class="workshop-video-title">{{ workshop.video.title }}</span>
+                    <span class="workshop-video-credit">{{ workshop.video.credit }}</span>
+                  </span>
+                </summary>
+                <div class="workshop-session-video">
+                  <iframe src="https://www.youtube.com/embed/{{ workshop.video.youtube_id }}?autoplay=1"
+                          loading="lazy" title="{{ workshop.video.title }}" {{ iframe_properties }}></iframe>
+                </div>
+              </details>
+            {% endif %}
             {% if workshop.highlights %}
               <p><b>Highlights</b></p>
               <ul>
@@ -53,6 +77,26 @@
             </a>
           {% endif %}
         </div>
+        {# Photographs from the event. Every slide but the first is lazy, and the
+           hidden ones are display:none, so only the visible slide is fetched. #}
+        {% if workshop.slides %}
+          {% set ss = "slideshow_" ~ workshop.id %}
+          <div class="slideshow workshop" id="{{ ss }}">
+            <input type="checkbox" id="{{ ss }}_play" class="slideshow-play noscript" checked>
+            <label for="{{ ss }}_play" class="slideshow-indicator noscript"></label>
+            {% for slide in workshop.slides %}
+              <input type="radio" id="{{ ss }}_{{ loop.index0 }}" name="{{ ss }}_indicators"{% if loop.first %} checked{% endif %}>
+              <label class="slideshow-indicator" for="{{ ss }}_{{ loop.index0 }}">{{ loop.index }}</label>
+              <div class="slideshow-slide">
+                <div class="slideshow-slide-text">{{ slide.text }}</div>
+                <div class="slideshow-slide-img">
+                  <img src="media/workshops/{{ workshop.id }}/slides/{{ slide.file }}"
+                       alt="{{ slide.text }}"{% if not loop.first %} loading="lazy"{% endif %}>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
         {% for extra in workshop.extras %}
           <div class="workshop-extra">
             <h3 class="workshop-sessions-title">{{ extra.title }}</h3>
@@ -110,4 +154,8 @@
       </section>
     {% endfor %}
   </div>
+{% endblock %}
+
+{% block body_extra %}
+  <script src="js/slideshow.js?v={{ data.asset_version }}"></script>
 {% endblock %}
