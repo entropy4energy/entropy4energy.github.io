@@ -446,7 +446,6 @@ def process_workshops(data: dict[str, Any]):
             print(f"warning: {workshop['id']} has a video but no {video['poster']}",
                   file=sys.stderr)
         workshop["n_recordings"] = sum(1 for s in workshop["sessions"] if s.get("youtube_id"))
-        workshop["n_recordings"] += 1 if workshop["has_video"] else 0
         workshop["n_materials"] = sum(1 for s in workshop["sessions"] if s.get("materials"))
         plain = re.sub(r"<[^>]+>", "", workshop["description"]).replace("\n", " ")
         first = re.split(r"(?<=[.!?])\s+", plain.strip(), maxsplit=1)[0]

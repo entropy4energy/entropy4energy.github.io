@@ -13,14 +13,14 @@
       "poster": "video_poster_maxres2.jpg"
     },
     "slides": [
-      {"file": "slide_013.jpg", "text": "Prof. Oses opens the conference"},
+      {"file": "slide_013.jpg", "text": "Prof. Oses during the opening remarks"},
       {"file": "slide_026.jpg", "text": "Keynote: Dr. David Gates, CTO of Thea Energy"},
-      {"file": "slide_056.jpg", "text": "Prof. Oses in conversation with Dr. David Gates"},
-      {"file": "slide_065.jpg", "text": "Panel: working across disciplines"},
-      {"file": "slide_097.jpg", "text": "A question from the floor"},
-      {"file": "slide_122.jpg", "text": "Workshop: how to pitch your research effectively"},
-      {"file": "slide_186.jpg", "text": "The energy IP pitch competition"},
-      {"file": "slide_237.jpg", "text": "Speakers and organizers on stage"},
+      {"file": "slide_056.jpg", "text": "Prof. Oses in conversation with Dr. David Gates after the keynote"},
+      {"file": "slide_065.jpg", "text": "Panel: Working Across Disciplines"},
+      {"file": "slide_097.jpg", "text": "A question from the floor during the panel"},
+      {"file": "slide_122.jpg", "text": "Workshop: Fastballs and Curveballs, how to pitch your research effectively"},
+      {"file": "slide_186.jpg", "text": "The Energy IP Pitch Competition"},
+      {"file": "slide_237.jpg", "text": "On stage at the close of the pitch competition"},
       {"file": "slide_242.jpg", "text": "On the terrace of the Hopkins Bloomberg Center"},
       {"file": "slide_249.jpg", "text": "The closing reception"}
     ],
