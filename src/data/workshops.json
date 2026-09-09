@@ -6,6 +6,24 @@
       [2026, 6, 11]
     ],
     "description": "<strong><em>Laboratory to Launchpad: Bringing Your Energy IP to Life</em></strong> was a one-day conference held on June 11, 2026, at the Hopkins Bloomberg Center in Washington, D.C. The conference brought together faculty, students, postdocs, researchers, and other innovators interested in moving research toward application. Sessions covered commercialization, intellectual property, federal funding, startup formation, research communication, and other aspects of translating research beyond the laboratory. The conference was organized by the Energy Translation Steering Committee at Johns Hopkins (Corey Oses, Steven Cohen, Jonah Erlebacher, and Avi Bregman) with a Nexus Convening Grant from the Provost's Office, co-sponsored by the Carey Business School, the Whiting School of Engineering, and the Applied Physics Laboratory.",
+    "video": {
+      "youtube_id": "dC9pgzGfDSM",
+      "title": "Lab to Launch",
+      "credit": "Johns Hopkins Whiting School of Engineering",
+      "poster": "video_poster_maxres2.jpg"
+    },
+    "slides": [
+      {"file": "slide_013.jpg", "text": "Prof. Oses opens the conference"},
+      {"file": "slide_026.jpg", "text": "Keynote: Dr. David Gates, CTO of Thea Energy"},
+      {"file": "slide_056.jpg", "text": "Prof. Oses in conversation with Dr. David Gates"},
+      {"file": "slide_065.jpg", "text": "Panel: working across disciplines"},
+      {"file": "slide_097.jpg", "text": "A question from the floor"},
+      {"file": "slide_122.jpg", "text": "Workshop: how to pitch your research effectively"},
+      {"file": "slide_186.jpg", "text": "The energy IP pitch competition"},
+      {"file": "slide_237.jpg", "text": "Speakers and organizers on stage"},
+      {"file": "slide_242.jpg", "text": "On the terrace of the Hopkins Bloomberg Center"},
+      {"file": "slide_249.jpg", "text": "The closing reception"}
+    ],
     "highlights": [
       "A featured talk by Dr. David Gates, CTO of Thea Energy",
       "Workshops on pitching research, securing federal funding, intellectual property, licensing, and startup growth",
@@ -49,7 +67,6 @@
       {
         "title": "Links",
         "links": [
-          {"label": "Highlight video from the conference (Johns Hopkins Whiting School of Engineering)", "href": "https://youtu.be/dC9pgzGfDSM"},
           {"label": "Event page with the full program and speaker biographies (Johns Hopkins Department of Materials Science and Engineering)", "href": "https://engineering.jhu.edu/materials/laboratory-to-launchpad/"}
         ]
       }
