@@ -20,6 +20,7 @@
           {% set facts = [] %}
           {% if workshop.sessions %}{% set _ = facts.append(workshop.sessions|length ~ " session" ~ ("s" if workshop.sessions|length != 1 else "")) %}{% endif %}
           {% if workshop.n_recordings %}{% set _ = facts.append(workshop.n_recordings ~ " recording" ~ ("s" if workshop.n_recordings != 1 else "")) %}{% endif %}
+          {% if workshop.has_video %}{% set _ = facts.append("highlight video") %}{% endif %}
           {% if workshop.n_materials %}{% set _ = facts.append(workshop.n_materials ~ " notebook" ~ ("s" if workshop.n_materials != 1 else "")) %}{% endif %}
           {% if facts %}<div class="workshop-card-facts">{{ facts|join(" &middot; ") }}</div>{% endif %}
         </div>
