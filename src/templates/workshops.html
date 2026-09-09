@@ -98,6 +98,19 @@
             {% endfor %}
           </div>
         {% endif %}
+        {# Two or three photographs read better stacked than in a slideshow:
+           both are visible at once and the captions do not hide on hover. #}
+        {% if workshop.photos %}
+          <div class="workshop-photos">
+            {% for photo in workshop.photos %}
+              <figure class="workshop-photo">
+                <img src="media/workshops/{{ workshop.id }}/slides/{{ photo.file }}"
+                     alt="{{ photo.text }}" width="960" height="640" loading="lazy">
+                <figcaption>{{ photo.text }}</figcaption>
+              </figure>
+            {% endfor %}
+          </div>
+        {% endif %}
         {% for extra in workshop.extras %}
           <div class="workshop-extra">
             <h3 class="workshop-sessions-title">{{ extra.title }}</h3>

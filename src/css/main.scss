@@ -1467,6 +1467,33 @@ h2 {
   }
 }
 
+/* Stacked event photographs, for entries with too few for a slideshow. */
+.workshop-photos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0 1.4rem;
+  max-width: 640px;
+}
+
+.workshop-photo {
+  margin: 0;
+
+  img {
+    border: 1px solid $color-line-2;
+    border-radius: 6px;
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+
+  figcaption {
+    color: $color-muted;
+    font-size: 0.9rem;
+    margin-top: 0.35rem;
+  }
+}
+
 .workshop-extra {
   margin: 0 0 12px;
   max-width: 75ch;
