@@ -9,6 +9,10 @@
     <div class="member-img">
       {% if member.has_photo %}
         <img src="media/team/{{ member.id }}.jpg" alt="Portrait of {{ member.name }}">
+      {% else %}
+        {# No headshot yet: initials on a plain tile, so the row keeps its
+           shape. Decorative, since the name sits right beside it. #}
+        <span class="member-monogram" aria-hidden="true">{{ member.initials }}</span>
       {% endif %}
     </div>
     <div class="member-data">

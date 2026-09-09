@@ -946,6 +946,26 @@ h2 {
     }
   }
 
+  /* Stands in for a headshot that does not exist yet. Quiet on purpose:
+     it should read as a gap waiting to be filled, not as a portrait. */
+  &-monogram {
+    align-items: center;
+    background-color: $color-surface-2;
+    border: 1px solid $color-line-2;
+    /* the border sits inside, so the tile matches a 150px photo exactly */
+    box-sizing: border-box;
+    color: $color-main-1;
+    display: flex;
+    font-size: 2.9rem;
+    font-weight: 600;
+    height: 150px;
+    justify-content: center;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    text-indent: 0.06em;
+    width: 150px;
+  }
+
   &-data {
     &-line {
       margin-bottom: 0.25em;

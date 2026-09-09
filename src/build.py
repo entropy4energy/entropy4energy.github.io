@@ -235,6 +235,19 @@ def build_ris() -> str:
     return "\n\n".join(_publication_records("ris")) + "\n"
 
 
+def initials(name: str) -> str:
+    """First and last initial, for the placeholder tile on the Team page.
+
+    Nicknames in parentheses are skipped, so "Joseph (JT) Anderson" gives JA,
+    and hyphenated surnames give one letter, so "Abel-Skinner" gives A.
+    """
+    words = [w for w in name.split() if w[:1].isalpha()]
+    if not words:
+        return ""
+    first, last = words[0], words[-1]
+    return (first[0] + (last[0] if last is not first else "")).upper()
+
+
 def process_team(data: dict[str, Any]):
     def member_key(member):
         # Order within a group: position first (PhD students above master's
@@ -314,6 +327,8 @@ def process_team(data: dict[str, Any]):
         # A member without a headshot in src/media/team gets no <img> at all
         # (a broken image with alt text is worse than a blank).
         member["has_photo"] = (BASE_PATH / "media" / "team" / f"{member_id}.jpg").exists()
+        if not member["has_photo"]:
+            member["initials"] = initials(member["name"])
         member_socials = []
         if "socials" in member:
             for social in socials:
