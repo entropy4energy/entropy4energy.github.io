@@ -3,6 +3,7 @@ import functools
 import hashlib
 import json
 import re
+import sys
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -437,7 +438,15 @@ def process_workshops(data: dict[str, Any]):
         extras = [s for s in workshop["sessions"] if s["title"] in ("Registration", "Resources", "Links")]
         workshop["sessions"] = [s for s in workshop["sessions"] if s not in extras]
         workshop["extras"] = [s for s in extras if s["title"] != "Registration" or workshop["upcoming"]]
+        # A workshop-level video is a poster that swaps itself for the player,
+        # so the poster image has to be committed; without it, skip the card.
+        video = workshop.get("video")
+        workshop["has_video"] = bool(video) and (workshop_dir / video["poster"]).exists()
+        if video and not workshop["has_video"]:
+            print(f"warning: {workshop['id']} has a video but no {video['poster']}",
+                  file=sys.stderr)
         workshop["n_recordings"] = sum(1 for s in workshop["sessions"] if s.get("youtube_id"))
+        workshop["n_recordings"] += 1 if workshop["has_video"] else 0
         workshop["n_materials"] = sum(1 for s in workshop["sessions"] if s.get("materials"))
         plain = re.sub(r"<[^>]+>", "", workshop["description"]).replace("\n", " ")
         first = re.split(r"(?<=[.!?])\s+", plain.strip(), maxsplit=1)[0]
