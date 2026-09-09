@@ -19,8 +19,11 @@
       {"file": "slide_065.jpg", "text": "Panel: Working Across Disciplines"},
       {"file": "slide_097.jpg", "text": "A question from the floor during the panel"},
       {"file": "slide_122.jpg", "text": "Workshop: Fastballs and Curveballs, how to pitch your research effectively"},
+      {"file": "slide_166.jpg", "text": "Students working together at the tables"},
+      {"file": "slide_170.jpg", "text": "Comparing notes during the session"},
       {"file": "slide_186.jpg", "text": "The Energy IP Pitch Competition"},
       {"file": "slide_237.jpg", "text": "On stage at the close of the pitch competition"},
+      {"file": "slide_241.jpg", "text": "Students on the terrace, with the Capitol behind"},
       {"file": "slide_242.jpg", "text": "On the terrace of the Hopkins Bloomberg Center"},
       {"file": "slide_249.jpg", "text": "The closing reception"}
     ],
@@ -74,6 +77,10 @@
   },
   {
     "id": "2026_quantum",
+    "slides": [
+      {"file": "slide_panel.jpg", "text": "Panel: state and federal quantum initiatives"},
+      {"file": "slide_participants.jpg", "text": "Workshop participants"}
+    ],
     "title": "Quantum Computing in Practice: Hands On with Quantinuum",
     "date": [
       [2026, 2, 25],
@@ -147,6 +154,13 @@
   },
   {
     "id": "2024_ai_materials",
+    "slides": [
+      {"file": "workshop_group_outdoors.jpg", "text": "Workshop participants"},
+      {"file": "workshop_speaker.jpg", "text": "A morning seminar"},
+      {"file": "workshop_wide.jpg", "text": "The room during a seminar"},
+      {"file": "workshop_front_table.jpg", "text": "Leading a session from the front"},
+      {"file": "workshop_participants_3.jpg", "text": "A hands-on afternoon session"}
+    ],
     "title": "Data-Driven Materials Modeling Workshop",
     "date": [
       [2024, 5, 29],
