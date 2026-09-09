@@ -81,6 +81,19 @@ h2 {
     width: 450px;
   }
 
+  /* Event photographs on a workshop entry: 3:2, the aspect the camera shot. */
+  &.workshop {
+    height: 427px;
+    width: 640px;
+  }
+
+  /* The Home slideshow hides its controls and simply advances on a timer.
+     Ten photographs are worth stepping through, so this variant shows the
+     numbered indicators and the play/pause control. */
+  &.workshop input + label {
+    display: flex !important;
+  }
+
   &-slide {
     border: 1px solid $color-main-3;
     display: none;
@@ -1346,6 +1359,114 @@ h2 {
   }
 }
 
+/* Video poster card: a closed <details> whose summary is the poster. Opening it
+   is what loads the YouTube iframe, so the page costs one image, not an embed. */
+.workshop-video {
+  margin: 0.9rem 0 1.1rem;
+  max-width: 520px;
+
+  > summary {
+    background-color: $color-main-2;
+    border: 1px solid $color-line-2;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    list-style: none;
+    overflow: hidden;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: 0 6px 18px rgba(0, 45, 114, 0.12);
+      transform: translateY(-2px);
+    }
+  }
+
+  &[open] > summary {
+    display: none;
+  }
+
+  &-frame {
+    display: block;
+    position: relative;
+
+    img {
+      aspect-ratio: 16 / 9;
+      display: block;
+      /* the width/height attributes keep the space reserved, so the used
+         height has to be released for aspect-ratio to take over */
+      height: auto;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  &-play {
+    align-items: center;
+    background-color: rgba(0, 45, 114, 0.88);
+    border-radius: 8px;
+    display: flex;
+    height: 2.6rem;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 3.8rem;
+
+    &::after {
+      border-color: transparent transparent transparent $color-main-2;
+      border-style: solid;
+      border-width: 0.5rem 0 0.5rem 0.85rem;
+      content: "";
+      display: block;
+      margin-left: 0.15rem;
+    }
+  }
+
+  &-meta {
+    display: block;
+    padding: 0.8rem 1rem 0.9rem;
+  }
+
+  &-eyebrow {
+    color: $color-muted;
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &-title {
+    color: $color-main-1;
+    display: block;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0.2rem 0 0.35rem;
+  }
+
+  &-credit {
+    color: $color-muted;
+    display: block;
+    font-size: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workshop-video > summary {
+    transition: none;
+
+    &:hover,
+    &:focus-visible {
+      transform: none;
+    }
+  }
+}
+
 .workshop-extra {
   margin: 0 0 12px;
   max-width: 75ch;
@@ -1405,6 +1526,12 @@ h2 {
 
     &.top {
       height: 225px;
+      min-width: 340px;
+      width: 340px;
+    }
+
+    &.workshop {
+      height: 227px;
       min-width: 340px;
       width: 340px;
     }
