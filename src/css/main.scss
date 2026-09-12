@@ -958,12 +958,13 @@ h2 {
     display: flex;
     font-size: 2.9rem;
     font-weight: 600;
-    height: 150px;
+    /* fill the photo column (150px, 100px on phones) instead of a fixed size */
+    aspect-ratio: 1 / 1;
     justify-content: center;
     letter-spacing: 0.06em;
     line-height: 1;
     text-indent: 0.06em;
-    width: 150px;
+    width: 100%;
   }
 
   &-data {
@@ -1592,6 +1593,10 @@ h2 {
 @media screen and (max-width: $mobile-threshold) {
   .member {
     grid-template-columns: 100px auto;
+
+    &-monogram {
+      font-size: 2rem;
+    }
   }
 
   .pi-details {
