@@ -7,7 +7,7 @@
       "kind": "Database",
       "full_name": "Combinatorial High-throughput Analysis and Optimization for Synthesis",
       "href": "chaos",
-      "description": "A first-principles database of high-entropy oxides with their ordered binary and ternary precursors and a library of structural and chemical descriptors. Bulk downloads by number of cations, a REST API, and CHAOS-GPT, a natural-language interface to the data.",
+      "description": "A first-principles database of high-entropy oxides with their ordered binary and ternary precursors and a library of structural and chemical descriptors. Bulk downloads by number of cations, a REST API, and Chaos-Agent, a natural-language interface to the data.",
       "links": [
         {
           "label": "API docs",
@@ -15,7 +15,7 @@
           "external": true
         },
         {
-          "label": "CHAOS-GPT",
+          "label": "Chaos-Agent",
           "href": "chaos#gpt"
         }
       ]
