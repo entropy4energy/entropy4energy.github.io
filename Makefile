@@ -63,6 +63,18 @@ $(BLDDIR)/%.html: $(PREREQSALL) $(TEMPLATEDIR)/%.html $(DATADIR)/%.json
 
 $(BLDDIR)/news.html: $(DATADIR)/press.json
 
+# Some pages ask the filesystem what exists rather than reading it from JSON:
+# a team photo, a publication snapshot or PDF, a workshop flyer or video poster.
+# Adding one of those files changes no .json and no template, so without these
+# prerequisites an incremental build (mintaka) leaves the page as it was while a
+# clean build (the GitHub Action) picks the file up. A directory's timestamp
+# moves when a file is added or removed inside it, which is exactly the case
+# that changes the page.
+MEDIASRC=$(SRCDIR)/media
+$(BLDDIR)/team.html: $(MEDIASRC)/team
+$(BLDDIR)/publications.html $(BLDDIR)/index.html: $(MEDIASRC)/publications
+$(BLDDIR)/workshops.html: $(MEDIASRC)/workshops $(wildcard $(MEDIASRC)/workshops/*)
+
 # awards.json is generated from the CV (honors.json) by the s4e feed and carries
 # Prof. Oses's awards for the Team page block.
 $(BLDDIR)/team.html: $(PREREQSALL) $(TEMPLATEDIR)/team.html $(DATADIR)/team.json $(DATADIR)/awards.json
