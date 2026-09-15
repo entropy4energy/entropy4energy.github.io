@@ -21,7 +21,8 @@
     "jobs": "Open positions and how to join the Entropy for Energy Laboratory at Johns Hopkins University: PhD students, postdoctoral researchers, and undergraduates.",
     "teaching": "Courses, workshops, outreach, service, and awards of the Entropy for Energy Laboratory and Corey Oses at Johns Hopkins University.",
     "workshops": "Workshops on data-driven materials modeling organized by the Entropy for Energy Laboratory at Johns Hopkins University.",
-    "tools": "Databases and data platforms built by the Entropy for Energy Laboratory at Johns Hopkins University: CHAOS and LOOP.",
+    "tools": "Databases and data platforms built by the Entropy for Energy Laboratory at Johns Hopkins University: CHAOS, LOOP and Fusion Mirror.",
+    "fusion-mirror": "Fusion Mirror: a local-file explorer for DFT optical constants and normal-incidence reflectivity. Code-only preview from the Entropy for Energy Laboratory.",
   } %}
   {% set description = descriptions.get(data.section, descriptions["home"]) %}
   {% set page_title = "Entropy for Energy Laboratory" if data.section == "home" else "S4E - " ~ (data.section | title) %}
@@ -38,6 +39,7 @@
   <meta name="twitter:description" content="{{ description }}">
   <meta name="twitter:image" content="https://entropy4energy.ai/media/icons/s4e_share.png">
   <link rel="icon" href="media/icons/s4e.png">
+  {% if data.section != "fusion-mirror" %}
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJ7FYTHH45"></script>
   <script>
@@ -46,6 +48,7 @@
     gtag('js', new Date());
     gtag('config', 'G-HJ7FYTHH45');
   </script>
+  {% endif %}
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="css/main.css?v={{ data.asset_version }}">
   {% block head_extra %}{% endblock %}
