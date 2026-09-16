@@ -1064,10 +1064,13 @@ h2 {
 .alumni-archive {
   margin-top: 2rem;
 
+  // The summary is a section heading in everything but the tag name, so it
+  // takes the heading face like the h2s above it.
   & > summary {
     border-bottom: 1px solid gray;
     color: $color-main-1;
     cursor: pointer;
+    font-family: 'Hopkins Slab', Georgia, serif;
     font-size: 1.5em;
     font-weight: bold;
     padding-bottom: 0.2rem;
