@@ -5,14 +5,14 @@
     <div class="publication-img">
       {% if "imgfile" in pub and "filename" in pub %}
         <a href="media/publications/{{ pub.filename }}.pdf" target="_blank" rel="noopener">
-          <img src="media/publications/{{ pub.imgfile }}.png" alt="Graphical abstract for {{ pub.title }}" loading="lazy">
+          <img src="media/publications/{{ pub.imgfile }}" alt="Graphical abstract for {{ pub.title }}" loading="lazy">
         </a>
       {% elif "imgfile" in pub and "link" in pub %}
         <a href="{{ pub.link }}" target="_blank" rel="noopener">
-          <img src="media/publications/{{ pub.imgfile }}.png" alt="Graphical abstract for {{ pub.title }}" loading="lazy">
+          <img src="media/publications/{{ pub.imgfile }}" alt="Graphical abstract for {{ pub.title }}" loading="lazy">
         </a>
       {% elif "imgfile" in pub %}
-        <img src="media/publications/{{ pub.imgfile }}.png" alt="Graphical abstract for {{ pub.title }}" loading="lazy">
+        <img src="media/publications/{{ pub.imgfile }}" alt="Graphical abstract for {{ pub.title }}" loading="lazy">
       {% endif %}
     </div>
     <div class="publication-number">{{ pub.number }}</div>

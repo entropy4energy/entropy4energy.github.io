@@ -8,7 +8,7 @@
   <div class="member">
     <div class="member-img">
       {% if member.has_photo %}
-        <img src="media/team/{{ member.id }}.jpg" alt="Portrait of {{ member.name }}">
+        <img src="media/team/{{ member.id }}.webp" alt="Portrait of {{ member.name }}" loading="lazy">
       {% else %}
         {# No headshot yet: initials on a plain tile, so the row keeps its
            shape. Decorative, since the name sits right beside it. #}

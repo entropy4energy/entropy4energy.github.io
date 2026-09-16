@@ -12,7 +12,7 @@
     {% for workshop in data.workshops %}
       <a class="workshop-card" href="#{{ workshop.id }}">
         {% if workshop.has_flyer %}
-          <img src="media/workshops/{{ workshop.id }}/flyer.png" alt="" loading="lazy">
+          <img src="media/workshops/{{ workshop.id }}/flyer.webp" alt="" loading="lazy">
         {% endif %}
         <div class="workshop-card-body">
           <div class="workshop-card-date">{{ workshop.date }}</div>
@@ -73,8 +73,8 @@
             {% endif %}
           </div>
           {% if workshop.has_flyer %}
-            <a class="workshop-flyer" href="media/workshops/{{ workshop.id }}/flyer.png" target="_blank" rel="noopener">
-              <img src="media/workshops/{{ workshop.id }}/flyer.png" alt="Flyer for {{ workshop.title }}" loading="lazy">
+            <a class="workshop-flyer" href="media/workshops/{{ workshop.id }}/flyer.webp" target="_blank" rel="noopener">
+              <img src="media/workshops/{{ workshop.id }}/flyer.webp" alt="Flyer for {{ workshop.title }}" loading="lazy">
             </a>
           {% endif %}
         </div>
