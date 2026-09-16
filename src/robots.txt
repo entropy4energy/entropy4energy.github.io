@@ -1,7 +1,0 @@
-# The dev build is published under /__dev__/ on the same host as the live site.
-# It is a full copy of every page and should never be indexed.
-User-agent: *
-Allow: /
-Disallow: /__dev__/
-
-Sitemap: https://entropy4energy.ai/sitemap.xml

@@ -127,6 +127,20 @@ $(JSBLD)/%.js: $(JSSRC)/%.js
 # link on the Publications page), generated from the same feed as the page.
 static: $(BLDDIR)/media $(BLDDIR)/CNAME $(BLDDIR)/.htaccess $(BLDDIR)/robots.txt $(BLDDIR)/sitemap.xml $(BLDDIR)/publications.bib $(BLDDIR)/publications.ris
 
+# robots.txt and sitemap.xml name the host this build is published on, so the
+# two hosts never advertise each other's URLs. The build that carries the tools
+# data is the one mintaka serves at the root of s4e.ai; every other build is the
+# lab site. Deriving it here keeps dev from having to override it.
+CANONICAL_HOST?=$(if $(wildcard $(DATADIR)/tools.json),https://s4e.ai/,https://entropy4energy.ai/)
+
+$(BLDDIR)/robots.txt: $(BUILDPY)
+	@mkdir -p $(@D)
+	$(PYTHON) $(BUILDPY) robots --host $(CANONICAL_HOST) > $@
+
+$(BLDDIR)/sitemap.xml: $(BUILDPY)
+	@mkdir -p $(@D)
+	$(PYTHON) $(BUILDPY) sitemap --host $(CANONICAL_HOST) > $@
+
 $(BLDDIR)/publications.bib: $(BUILDPY) $(DATADIR)/publications.json
 	@mkdir -p $(@D)
 	$(PYTHON) $(BUILDPY) bibtex > $@
