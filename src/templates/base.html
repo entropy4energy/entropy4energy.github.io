@@ -87,6 +87,12 @@
     </script>
   {% endif %}
   <link rel="icon" href="media/icons/s4e.png">
+  {# Unpublished: s4e.ai serves dev at its root and robots.txt
+     allows /, so this page needs the meta tag, not a Disallow
+     line. Remove when the data are released. #}
+  {% if data.section == "fusion-mirror" %}
+  <meta name="robots" content="noindex, nofollow">
+  {% endif %}
   {% if data.section != "fusion-mirror" %}
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJ7FYTHH45"></script>
