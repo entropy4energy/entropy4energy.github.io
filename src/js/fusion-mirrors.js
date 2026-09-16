@@ -16,6 +16,11 @@ const appRoot=document.getElementById('fusion-mirrors-app');
 const number=(x,d=4)=>Number.isFinite(x)?x.toLocaleString('en-US',{maximumFractionDigits:d}):'—';
 const plain=(x,d=6)=>Number.isFinite(x)?Number(x.toPrecision(d)).toString():'';
 function status(message,error=false){$('status').textContent=message;$('status').classList.toggle('error',error);}
+//n, k, R, E and the Cartesian axes are variables, so they are italic wherever
+//the page writes them as prose. These build nodes rather than markup strings so
+//material names and numbers are never interpolated into HTML.
+function ital(text){const e=document.createElement('i');e.textContent=text;return e;}
+function setParts(el,...parts){el.replaceChildren(...parts.map(p=>typeof p==='string'?document.createTextNode(p):p));}
 function option(value,text){const e=document.createElement('option');e.value=value;e.textContent=text;return e;}
 function svgEl(tag,attrs={},text){const e=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;return e;}
 function formatFormula(s){return s.replace(/[₀₁₂₃₄₅₆₇₈₉]/g,c=>'₀₁₂₃₄₅₆₇₈₉'.indexOf(c)).toLowerCase().replace(/[^a-z0-9]/g,'');}
@@ -119,14 +124,20 @@ function plottedRows(){return loaded.flatMap(d=>windowRows(d).map(r=>({material:
   valid_normal_z:r[d.index.valid_normal_z]})));}
 function renderEmpty(){for(const k of ['n','k','R'])$(`chart-${k}`).replaceChildren();for(const id of ['data-table','probe-result','provenance','legend','table-count'])$(id).replaceChildren();$('points-value').textContent='—';$('support-value').textContent='—';}
 function render(){
-  $('selection-detail').textContent=`${state.channel==='density'?'Density–density':'Current–current'} response · ${modeLabels[state.component]} · ${state.polarization==='unpolarized'?'unpolarized reflection':`reflection for incident E along ${state.polarization}`}`;
+  const head=`${state.channel==='density'?'Density–density':'Current–current'} response · ${modeLabels[state.component]} · `;
+  if(state.polarization==='unpolarized')setParts($('selection-detail'),head+'unpolarized reflection');
+  else setParts($('selection-detail'),head+'reflection for incident ',ital('E'),' along ',ital(state.polarization));
   $('range-value').textContent=`${number(state.min,2)}–${number(state.max,2)} nm`;
   const spans=branches().map(b=>selected.runs[b].channels[state.channel].native.range_nm).filter(Boolean);
   $('support-value').textContent=spans.length?`${number(Math.min(...spans.map(r=>r[0])),2)}–${number(Math.max(...spans.map(r=>r[1])),2)} nm`:'No valid samples';
   const points=loaded.reduce((n,d)=>n+windowRows(d).length,0);
   const hidden=loaded.reduce((n,d)=>n+windowRows(d).filter(r=>pick(d,r,'n')===null||pick(d,r,'k')===null||pick(d,r,'R')===null).length,0);
   $('points-value').textContent=`${number(points,0)}${loaded.length>1?' across both datasets':''}`;
-  $('quality-note').textContent=`*Native span${loaded.length>1?' is the union of selected datasets':''}; internal gaps may exist. ${hidden} selected row(s) have at least one unavailable plotted value. ${'xyz'.includes(state.component)?'Cartesian n/k are diagonal diagnostics; reflectivity still uses the full tensor. ':''}${selected.excluded?'This composition is excluded from the fusion-feasible screen. ':''}${state.material==='C_graphene'?'The archived family assignment is retained; a bulk half-space model of a periodic graphene cell is not an isolated-sheet optical model. ':''}No spectral averaging or extrapolation is used.`;
+  const cartesian='xyz'.includes(state.component);
+  const noteHead=`*Native span${loaded.length>1?' is the union of selected datasets':''}; internal gaps may exist. ${hidden} selected row(s) have at least one unavailable plotted value. `;
+  const noteTail=`${selected.excluded?'This composition is excluded from the fusion-feasible screen. ':''}${state.material==='C_graphene'?'The archived family assignment is retained; a bulk half-space model of a periodic graphene cell is not an isolated-sheet optical model. ':''}No spectral averaging or extrapolation is used.`;
+  if(cartesian)setParts($('quality-note'),noteHead,'Cartesian ',ital('n'),'/',ital('k'),' are diagonal diagnostics; reflectivity still uses the full tensor. ',noteTail);
+  else setParts($('quality-note'),noteHead+noteTail);
   $('legend').replaceChildren(...loaded.map(d=>{const e=document.createElement('span');e.className='legend-item';const line=document.createElement('span');line.className='legend-line'+(d.branch==='GW'?' gw':'');line.setAttribute('aria-hidden','true');e.append(line,document.createTextNode(labels[d.branch]));return e;}));
   for(const k of ['n','k','R'])drawChart(k);
   renderTable();renderProvenance();renderProbe();
@@ -165,7 +176,10 @@ function drawChart(kind){
   }
   if(!values.length)root.append(svgEl('text',{x:L+PW/2,y:T+PH/2,'text-anchor':'middle',fill:'#536b77','font-family':'Arial,sans-serif','font-size':13},'No valid data in this wavelength window'));
   root.append(svgEl('text',{x:L+PW/2,y:H-11,'text-anchor':'middle',fill:'#193340','font-family':'Arial,sans-serif','font-size':12},`Wavelength (nm)${state.log?' · logarithmic':''}`));
-  root.append(svgEl('text',{transform:`translate(15 ${T+PH/2}) rotate(-90)`,'text-anchor':'middle',fill:'#193340','font-family':'Arial,sans-serif','font-size':12},kind==='R'?'Reflectivity (%)':`${kind} (dimensionless)`));
+  const ylab=svgEl('text',{transform:`translate(15 ${T+PH/2}) rotate(-90)`,'text-anchor':'middle',fill:'#193340','font-family':'Arial,sans-serif','font-size':12});
+  if(kind==='R'){ylab.append(svgEl('tspan',{'font-style':'italic'},'R'),svgEl('tspan',{},' reflectivity (%)'));}
+  else{ylab.append(svgEl('tspan',{'font-style':'italic'},kind),svgEl('tspan',{},' (dimensionless)'));}
+  root.append(ylab);
   root.addEventListener('pointermove',e=>{
     const box=root.getBoundingClientRect(),sx=(e.clientX-box.left)*W/box.width;
     if(sx<L||sx>L+PW){$('tooltip').hidden=true;return;}
@@ -231,10 +245,10 @@ function renderProbe(){
     }else{
       let nearest=rows[0];for(const row of rows)if(Math.abs(row[wi]-target)<Math.abs(nearest[wi]-target))nearest=row;
       const values=['n','k','R'].map(k=>pick(d,nearest,k));
-      p.textContent=labels[d.branch]+': requested '+number(target,6)+' nm; sample '+number(nearest[wi],6)+
-        ' nm (offset '+number(nearest[wi]-target,6)+' nm) — n '+number(values[0],6)+
-        ', k '+number(values[1],6)+', R '+number(values[2],6)+' %'+
-        (values.some(v=>v===null)?' · unavailable values are marked —.':'');
+      setParts(p,labels[d.branch]+': requested '+number(target,6)+' nm; sample '+number(nearest[wi],6)+
+        ' nm (offset '+number(nearest[wi]-target,6)+' nm) — ',ital('n'),' '+number(values[0],6)+', ',
+        ital('k'),' '+number(values[1],6)+', ',ital('R'),' '+number(values[2],6)+' %'+
+        (values.some(v=>v===null)?' · unavailable values are marked —.':''));
     }
     out.append(p);
   }
