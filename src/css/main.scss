@@ -1,17 +1,32 @@
 @use 'tokens' as *;
 @use 'site-shell';
 
-@import 'https://fonts.googleapis.com/css?family=Work+Sans:300,400,600,700';
+// Both faces are served from this site. Work Sans is the variable font, so one
+// file covers every weight the site uses; Hopkins Slab is the university
+// display face, beta release, and carries headings only. All four files are
+// subset to Latin. Replace the Hopkins Slab files when a final release ships.
+@font-face {
+  font-display: swap;
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 300 700;
+  src: url('../media/fonts/work-sans.woff2') format('woff2');
+}
 
-// Hopkins Slab is the university display face, used here for headings only.
-// The files are the beta release, subset to Latin; replace them when a final
-// release is published.
+@font-face {
+  font-display: swap;
+  font-family: 'Work Sans';
+  font-style: italic;
+  font-weight: 300 700;
+  src: url('../media/fonts/work-sans-italic.woff2') format('woff2');
+}
+
 @font-face {
   font-display: swap;
   font-family: 'Hopkins Slab';
   font-style: normal;
   font-weight: 400;
-  src: url('../media/fonts/hopkins-slab-regular.woff') format('woff');
+  src: url('../media/fonts/hopkins-slab-regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -19,7 +34,7 @@
   font-family: 'Hopkins Slab';
   font-style: normal;
   font-weight: 700;
-  src: url('../media/fonts/hopkins-slab-bold.woff') format('woff');
+  src: url('../media/fonts/hopkins-slab-bold.woff2') format('woff2');
 }
 
 :root {
@@ -57,7 +72,7 @@ h1 {
 }
 
 h2 {
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid $color-line-2;
   scroll-margin-top: 4em;
 }
 
@@ -227,7 +242,7 @@ h2 {
     text-decoration: none;
 
     &:hover {
-      background-color: rgba(0, 45, 114, 0.06);
+      background-color: rgba($color-main-1, 0.06);
     }
   }
 }
@@ -509,7 +524,7 @@ h2 {
   }
 
   &-cite-text {
-    background-color: #f4f6fa;
+    background-color: $color-surface-2;
     border: 1px solid $color-line-2;
     border-radius: 6px;
     font-size: 0.78rem;
@@ -548,7 +563,7 @@ h2 {
     &.is-on {
       background-color: $color-main-1;
       border-color: $color-main-1;
-      color: #fff;
+      color: $color-main-2;
     }
   }
 
@@ -687,7 +702,7 @@ h2 {
   transition: box-shadow 0.15s ease, transform 0.15s ease;
 
   &:hover {
-    box-shadow: 0 6px 18px rgba(0, 45, 114, 0.12);
+    box-shadow: 0 6px 18px rgba($color-main-1, 0.12);
     transform: translateY(-2px);
   }
 
@@ -830,7 +845,7 @@ h2 {
   }
 
   &-term {
-    color: gray;
+    color: $color-muted;
     font-size: 0.9em;
   }
 
@@ -864,7 +879,7 @@ h2 {
   }
 
   &-source {
-    color: gray;
+    color: $color-muted;
     font-size: 0.9em;
   }
 }
@@ -890,7 +905,7 @@ h2 {
 }
 
 .press-outlet {
-  color: gray;
+  color: $color-muted;
 }
 
 /* Research */
@@ -901,7 +916,7 @@ h2 {
   text-align: center;
 
   img {
-    border: 1px solid gray;
+    border: 1px solid $color-line-2;
     display: block;
     margin: 0 auto;
     max-height: 420px;
@@ -910,7 +925,7 @@ h2 {
   }
 
   figcaption {
-    color: gray;
+    color: $color-muted;
     font-size: 0.85em;
     margin-top: 6px;
     text-align: center;
@@ -936,7 +951,7 @@ h2 {
 /* Jobs: joining note */
 
 .join-note {
-  background-color: #f2f6fc;
+  background-color: $color-surface-2;
   border-left: 4px solid $color-main-1;
   margin-bottom: 25px;
   padding: 10px 15px;
@@ -1067,7 +1082,7 @@ h2 {
   // The summary is a section heading in everything but the tag name, so it
   // takes the heading face like the h2s above it.
   & > summary {
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid $color-line-2;
     color: $color-main-1;
     cursor: pointer;
     font-family: 'Hopkins Slab', Georgia, serif;
@@ -1204,7 +1219,7 @@ h2 {
 }
 
 .job-archive {
-  border-top: 1px solid gray;
+  border-top: 1px solid $color-line-2;
   margin-top: 30px;
   padding-top: 10px;
 
@@ -1242,7 +1257,7 @@ h2 {
   transition: box-shadow 0.15s ease, transform 0.15s ease;
 
   &:hover {
-    box-shadow: 0 6px 18px rgba(0, 45, 114, 0.12);
+    box-shadow: 0 6px 18px rgba($color-main-1, 0.12);
     transform: translateY(-2px);
   }
 
@@ -1429,7 +1444,7 @@ h2 {
 
     &:hover,
     &:focus-visible {
-      box-shadow: 0 6px 18px rgba(0, 45, 114, 0.12);
+      box-shadow: 0 6px 18px rgba($color-main-1, 0.12);
       transform: translateY(-2px);
     }
   }
@@ -1455,7 +1470,7 @@ h2 {
 
   &-play {
     align-items: center;
-    background-color: rgba(0, 45, 114, 0.88);
+    background-color: rgba($color-main-1, 0.88);
     border-radius: 8px;
     display: flex;
     height: 2.6rem;
