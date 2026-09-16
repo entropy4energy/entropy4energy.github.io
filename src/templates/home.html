@@ -20,7 +20,7 @@
       <div class="slideshow-slide top">
         <div class="slideshow-slide-text">{{ slide.title }}</div>
         <div class="slideshow-slide-img">
-          <img src="media/home/{{ slide.file }}" alt="{{ slide.title }}">
+          <img src="media/home/{{ slide.file }}" alt="{{ slide.title }}"{% if not loop.first %} loading="lazy"{% endif %}>
         </div>
       </div>
     {% endfor %}
@@ -55,7 +55,7 @@
     <div class="direction-cards">
       {% for direction in data.research.directions %}
         <a class="direction-card" href="research#{{ direction.id }}">
-          <img src="media/research/{{ direction.card_image or direction.image }}" alt="{{ direction.image_alt }}">
+          <img src="media/research/{{ direction.card_image or direction.image }}" alt="{{ direction.image_alt }}" loading="lazy">
           <div class="direction-card-title">{{ direction.title }}</div>
           <div class="direction-card-text">{{ direction.blurb }}</div>
         </a>
@@ -84,7 +84,7 @@
         <div class="slideshow-slide top">
           <div class="slideshow-slide-text">{{ slide.text }}</div>
           <a class="slideshow-slide-img" href="{{ slide.url }}" target="_blank" rel="noopener">
-            <img src="{{ slide.img }}" alt="{{slide.text}}">
+            <img src="{{ slide.img }}" alt="{{slide.text}}" loading="lazy">
           </a>
         </div>
       {% endfor %}

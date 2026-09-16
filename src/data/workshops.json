@@ -46,22 +46,22 @@
       "youtube_id": "dC9pgzGfDSM",
       "title": "Lab to Launch",
       "credit": "Johns Hopkins Whiting School of Engineering",
-      "poster": "video_poster_maxres2.jpg"
+      "poster": "video_poster_maxres2.webp"
     },
     "slides": [
-      {"file": "slide_013.jpg", "text": "Prof. Oses during the opening remarks"},
-      {"file": "slide_026.jpg", "text": "Keynote: Dr. David Gates, CTO of Thea Energy"},
-      {"file": "slide_056.jpg", "text": "Prof. Oses in conversation with Dr. David Gates after the keynote"},
-      {"file": "slide_065.jpg", "text": "Panel: Working Across Disciplines"},
-      {"file": "slide_097.jpg", "text": "A question from the floor during the panel"},
-      {"file": "slide_122.jpg", "text": "Workshop: Fastballs and Curveballs, how to pitch your research effectively"},
-      {"file": "slide_166.jpg", "text": "Students working together at the tables"},
-      {"file": "slide_170.jpg", "text": "Comparing notes during the session"},
-      {"file": "slide_186.jpg", "text": "The Energy IP Pitch Competition"},
-      {"file": "slide_237.jpg", "text": "On stage at the close of the pitch competition"},
-      {"file": "slide_241.jpg", "text": "Students on the terrace, with the Capitol behind"},
-      {"file": "slide_242.jpg", "text": "On the terrace of the Hopkins Bloomberg Center"},
-      {"file": "slide_249.jpg", "text": "The closing reception"}
+      {"file": "slide_013.webp", "text": "Prof. Oses during the opening remarks"},
+      {"file": "slide_026.webp", "text": "Keynote: Dr. David Gates, CTO of Thea Energy"},
+      {"file": "slide_056.webp", "text": "Prof. Oses in conversation with Dr. David Gates after the keynote"},
+      {"file": "slide_065.webp", "text": "Panel: Working Across Disciplines"},
+      {"file": "slide_097.webp", "text": "A question from the floor during the panel"},
+      {"file": "slide_122.webp", "text": "Workshop: Fastballs and Curveballs, how to pitch your research effectively"},
+      {"file": "slide_166.webp", "text": "Students working together at the tables"},
+      {"file": "slide_170.webp", "text": "Comparing notes during the session"},
+      {"file": "slide_186.webp", "text": "The Energy IP Pitch Competition"},
+      {"file": "slide_237.webp", "text": "On stage at the close of the pitch competition"},
+      {"file": "slide_241.webp", "text": "Students on the terrace, with the Capitol behind"},
+      {"file": "slide_242.webp", "text": "On the terrace of the Hopkins Bloomberg Center"},
+      {"file": "slide_249.webp", "text": "The closing reception"}
     ],
     "highlights": [
       "A featured talk by Dr. David Gates, CTO of Thea Energy",
@@ -114,8 +114,8 @@
   {
     "id": "2026_quantum",
     "photos": [
-      {"file": "slide_panel.jpg", "text": "Panel: state and federal quantum initiatives"},
-      {"file": "slide_participants.jpg", "text": "Workshop participants"}
+      {"file": "slide_panel.webp", "text": "Panel: state and federal quantum initiatives"},
+      {"file": "slide_participants.webp", "text": "Workshop participants"}
     ],
     "title": "Quantum Computing in Practice: Hands On with Quantinuum",
     "date": [
@@ -191,11 +191,11 @@
   {
     "id": "2024_ai_materials",
     "slides": [
-      {"file": "workshop_group_outdoors.jpg", "text": "Workshop participants"},
-      {"file": "workshop_speaker.jpg", "text": "A morning seminar"},
-      {"file": "workshop_wide.jpg", "text": "The room during a seminar"},
-      {"file": "workshop_front_table.jpg", "text": "Leading a session from the front"},
-      {"file": "workshop_participants_3.jpg", "text": "A hands-on afternoon session"}
+      {"file": "workshop_group_outdoors.webp", "text": "Workshop participants"},
+      {"file": "workshop_speaker.webp", "text": "A morning seminar"},
+      {"file": "workshop_wide.webp", "text": "The room during a seminar"},
+      {"file": "workshop_front_table.webp", "text": "Leading a session from the front"},
+      {"file": "workshop_participants_3.webp", "text": "A hands-on afternoon session"}
     ],
     "title": "Data-Driven Materials Modeling Workshop",
     "date": [

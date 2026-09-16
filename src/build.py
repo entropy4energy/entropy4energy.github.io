@@ -88,12 +88,12 @@ def process_home(data: dict[str, Any]):
 
         if "filename" not in pub:
             continue
-        img_file = img_base / f"{pub['filename']}.png"
-        if not img_file.exists():
+        img_name = image_for(img_base, pub["filename"])
+        if img_name is None:
             continue
 
         slide = {
-            "img": f"media/publications/{pub['filename']}.png",
+            "img": f"media/publications/{img_name}",
             "text": pub["title"],
             "url": pub["url"],
         }
@@ -141,7 +141,7 @@ def process_publications(data: dict[str, Any]):
         data["publications"][typ] = [
             pub for pub in data["publications"][typ]
             if not (pub.get("status") == "press"
-                    and not (file_base / f"{pub.get('filename', '')}.png").exists())
+                    and image_for(file_base, pub.get("filename", "")) is None)
         ]
     for typ in pubs.keys():
         npubs = len(data["publications"][typ])
@@ -179,9 +179,9 @@ def process_publications(data: dict[str, Any]):
 
             if filename := pub.get("filename"):
                 pdf_file = file_base / f"{filename}.pdf"
-                img_file = file_base / f"{filename}.png"
-                if img_file.exists():
-                    pub["imgfile"] = filename
+                img_name = image_for(file_base, filename)
+                if img_name is not None:
+                    pub["imgfile"] = img_name
                 pub["pdf_label"] = "PDF"
                 if not pdf_file.exists():
                     #only open-access PDFs are hosted; a closed paper may still have its
@@ -326,7 +326,7 @@ def process_team(data: dict[str, Any]):
         member["index"] = index
         # A member without a headshot in src/media/team gets no <img> at all
         # (a broken image with alt text is worse than a blank).
-        member["has_photo"] = (BASE_PATH / "media" / "team" / f"{member_id}.jpg").exists()
+        member["has_photo"] = (BASE_PATH / "media" / "team" / f"{member_id}.webp").exists()
         if not member["has_photo"]:
             member["initials"] = initials(member["name"])
         member_socials = []
@@ -427,7 +427,7 @@ def process_workshops(data: dict[str, Any]):
         workshop_date = [date(*d) for d in workshop["date"]]
         workshop["date"] = format_date(workshop_date)
         workshop_dir = Path(BASE_PATH, "media", "workshops", workshop["id"])
-        workshop["has_flyer"] = (workshop_dir / "flyer.png").exists()
+        workshop["has_flyer"] = (workshop_dir / "flyer.webp").exists()
         for session in workshop["sessions"]:
             presenter = session.get("presenter", [])
             if isinstance(presenter, str):
@@ -533,6 +533,15 @@ def arg_parser() -> argparse.ArgumentParser:
         help="Where the partials are written (partials only).",
     )
     return parser
+
+
+def image_for(base: Path, stem: str) -> str | None:
+    """Filename of the image for `stem` in `base`, or None. Most images are
+    webp; a few line-art figures stayed png because webp was larger."""
+    for ext in (".webp", ".png", ".jpg", ".jpeg"):
+        if (base / f"{stem}{ext}").exists():
+            return f"{stem}{ext}"
+    return None
 
 
 def asset_version() -> str:

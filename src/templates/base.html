@@ -86,13 +86,24 @@
     </script>
   {% endif %}
   <link rel="icon" href="media/icons/s4e.png">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJ7FYTHH45"></script>
+  <!-- Google tag (gtag.js). The queue is set up here and the tag itself is
+       fetched after load, so its 159 KB and its main-thread work stay off the
+       critical path. Events recorded before it arrives are replayed. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-HJ7FYTHH45');
+    addEventListener('load', function () {
+      var load = function () {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HJ7FYTHH45';
+        document.head.appendChild(s);
+      };
+      if (window.requestIdleCallback) { requestIdleCallback(load, {timeout: 3000}); }
+      else { setTimeout(load, 1200); }
+    });
   </script>
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="css/main.css?v={{ data.asset_version }}">
@@ -107,9 +118,9 @@
   {# The Latest News card is on every page except News itself. #}
   {% set with_sidebar = data.section != "news" %}
   <div class="main-content-wrapper{% if not with_sidebar %} no-sidebar{% endif %}">
-    <div class="content-block">
+    <main class="content-block">
       {% block content %}{% endblock %}
-    </div>
+    </main>
     {% if with_sidebar %}
       <aside class="sidebar">
         {% include "partials/sidebar.html" %}
