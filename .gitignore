@@ -5,3 +5,10 @@ node_modules
 venv/
 __pycache__/
 *.py[cod]
+
+# Fusion Mirror: keep unpublished inputs and local review outputs out of Git.
+private-data/
+local-data/
+review-output/
+.env
+.env.*
