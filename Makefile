@@ -53,7 +53,7 @@ all: $(BUILDTARGETS)
 # HTML targets
 # HTML embeds a content hash of the CSS and JS sources (cache busting),
 # so every page must be rebuilt when those change.
-PREREQSALL=$(BUILDPY) $(DATADIR)/news.json $(DATADIR)/tools.json $(TEMPLATEDIR)/base.html $(PARTIALSRC) $(wildcard $(CSSSRC)/*.scss) $(wildcard $(JSSRC)/*.js)
+PREREQSALL=$(BUILDPY) $(DATADIR)/news.json $(wildcard $(DATADIR)/tools.json) $(TEMPLATEDIR)/base.html $(PARTIALSRC) $(wildcard $(CSSSRC)/*.scss) $(wildcard $(JSSRC)/*.js)
 HTMLFILES=index jobs news publications research teaching team workshops tools chaos fusion-mirror
 html: $(foreach HTML,$(HTMLFILES),$(BLDDIR)/$(HTML).html)
 
@@ -95,7 +95,7 @@ PARTIALSRC=$(wildcard $(TEMPLATEDIR)/partials/*.html)
 PARTIALBLD=$(BLDDIR)/partials
 partials: $(PARTIALBLD)/nav.html
 
-$(PARTIALBLD)/nav.html: $(PREREQSALL) $(wildcard $(DATADIR)/tools.json) $(wildcard $(DATADIR)/chaos.json) $(wildcard $(DATADIR)/loop.json) $(DATADIR)/fusion-mirror.json
+$(PARTIALBLD)/nav.html: $(PREREQSALL) $(wildcard $(DATADIR)/tools.json) $(wildcard $(DATADIR)/chaos.json) $(wildcard $(DATADIR)/loop.json) $(wildcard $(DATADIR)/fusion-mirror.json)
 	$(PYTHON) $(BUILDPY) partials --root $(SITE_ROOT) --outdir $(PARTIALBLD)
 
 # CSS targets

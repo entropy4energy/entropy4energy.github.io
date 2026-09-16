@@ -201,11 +201,15 @@ def main():
                                 assert all(len(r) == len(d['columns']) for r in d['rows'])
                                 nfiles += 1
                 check(nfiles > 0, f'All {nfiles} private spectrum schemas validated')
-                sample_ids = ['Ag', 'Mg', 'In', 'Ir', 'Bi', 'MgScAlO4', 'Os', 'BaTiO3']
-                for mid in sample_ids:
-                    material = next((m for m in catalog['materials'] if m['id'] == mid), None)
-                    if material is None:
-                        continue
+                # Illustrative ids only. Ids absent from the loaded catalogue are
+                # skipped, and if none match the first entries are exercised instead,
+                # so the checks below run against whatever authorized set is supplied.
+                sample_ids = ['Cu', 'Ni', 'Ti', 'Cr', 'Al2O3', 'Ta', 'Zn', 'SrTiO3']
+                present = [m['id'] for m in catalog['materials'] if m['id'] in sample_ids]
+                if not present:
+                    present = [m['id'] for m in catalog['materials'][:len(sample_ids)]]
+                for mid in present:
+                    material = next(m for m in catalog['materials'] if m['id'] == mid)
                     page.select_option('#material', mid)
                     page.locator('body[data-ready="true"]').wait_for()
                     for branch, run in material['runs'].items():
@@ -233,7 +237,8 @@ def main():
                                         valid = row[index['valid_normal_z']] if key == 'R_percent' else valid_nk
                                         assert got[key] == (row[index[col]] if valid else None), (mid, branch, channel, scope, key)
                                         report['private_checks'] += 1
-                page.select_option('#material', 'Ag')
+                shot_id = present[0]
+                page.select_option('#material', shot_id)
                 page.locator('body[data-ready="true"]').wait_for()
                 page.select_option('#branch', 'both')
                 page.locator('body[data-ready="true"]').wait_for()
@@ -243,15 +248,16 @@ def main():
                 page.locator('body[data-ready="true"]').wait_for()
                 page.locator('[data-range="all"]').click()
                 page.locator('body[data-ready="true"]').wait_for()
-                page.locator('#fusion-mirror-app').screenshot(path=str(private_out / 'Ag-private-desktop.png'))
-                page.locator('.charts').screenshot(path=str(private_out / 'Ag-private-plots.png'))
+                page.locator('#fusion-mirror-app').screenshot(path=str(private_out / f'{shot_id}-private-desktop.png'))
+                page.locator('.charts').screenshot(path=str(private_out / f'{shot_id}-private-plots.png'))
                 page.set_viewport_size({'width': 390, 'height': 844})
                 check(page.evaluate('document.documentElement.scrollWidth <= innerWidth'), 'Loaded private plots fit mobile width')
-                page.locator('.charts').screenshot(path=str(private_out / 'Ag-private-mobile-plots.png'))
+                page.locator('.charts').screenshot(path=str(private_out / f'{shot_id}-private-mobile-plots.png'))
                 page.set_viewport_size({'width': 1440, 'height': 1100})
-                page.select_option('#material', 'BaTiO3')
+                gap_id = present[-1]
+                page.select_option('#material', gap_id)
                 page.locator('body[data-ready="true"]').wait_for()
-                page.locator('.charts').screenshot(path=str(private_out / 'BaTiO3-private-validity-gaps.png'))
+                page.locator('.charts').screenshot(path=str(private_out / f'{gap_id}-private-validity-gaps.png'))
                 (private_out / 'README.txt').write_text('PRIVATE: screenshots contain unpublished DFT values. Do not attach to public PRs.\n')
 
             check(not errors, 'No browser JavaScript errors: ' + repr(errors))
