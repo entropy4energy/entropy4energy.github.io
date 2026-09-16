@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block head_extra %}
-  <link rel="stylesheet" href="css/fusion-mirror.css?v={{ data.asset_version }}">
+  <link rel="stylesheet" href="css/fusion-mirrors.css?v={{ data.asset_version }}">
 {% endblock %}
 
 {% block content %}
-<div id="fusion-mirror-app">
+<div id="fusion-mirrors-app">
   <h1>Fusion Mirrors</h1>
   <p class="fm-lead">Explore DFT optical constants and Air/material reflectivity by composition, wavelength and dielectric response.</p>
   <div class="fm-review"><strong>Code-only preview · data not released</strong><p>Open an authorized local explorer data folder to view spectra. The explorer reads selected files in your browser; it does not upload their contents. No DFT dataset is bundled with this page.</p>
@@ -60,4 +60,4 @@
   <noscript>Enable JavaScript to open local data and plot spectra. No DFT values are included in this page.</noscript>
 </div>
 {% endblock %}
-{% block body_extra %}<script src="js/fusion-mirror.js?v={{ data.asset_version }}" defer></script>{% endblock %}
+{% block body_extra %}<script src="js/fusion-mirrors.js?v={{ data.asset_version }}" defer></script>{% endblock %}

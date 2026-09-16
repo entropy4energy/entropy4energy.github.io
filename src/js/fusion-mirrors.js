@@ -12,7 +12,7 @@ let catalog, selected, loaded=[], generation=0, tableLimit=80, activeRange='all'
 let state={material:'Ag',branch:'PBE',channel:'density',component:'mode1',polarization:'unpolarized',sampling:'screening',min:200,max:1200,log:false};
 const cache=new Map();
 let localFiles=new Map(), importGeneration=0;
-const appRoot=document.getElementById('fusion-mirror-app');
+const appRoot=document.getElementById('fusion-mirrors-app');
 const number=(x,d=4)=>Number.isFinite(x)?x.toLocaleString('en-US',{maximumFractionDigits:d}):'—';
 const plain=(x,d=6)=>Number.isFinite(x)?Number(x.toPrecision(d)).toString():'';
 function status(message,error=false){$('status').textContent=message;$('status').classList.toggle('error',error);}

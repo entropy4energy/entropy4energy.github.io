@@ -22,7 +22,7 @@
     "teaching": "Courses, workshops, outreach, service, and awards of the Entropy for Energy Laboratory and Corey Oses at Johns Hopkins University.",
     "workshops": "Workshops and conferences organized by the Entropy for Energy Laboratory at Johns Hopkins: data-driven materials modeling, quantum computing, AI and energy, and research translation.",
     "tools": "Databases and data platforms built by the Entropy for Energy Laboratory at Johns Hopkins University: CHAOS, LOOP and Fusion Mirrors.",
-    "fusion-mirror": "Fusion Mirrors: a local-file explorer for DFT optical constants and normal-incidence reflectivity. Code-only preview from the Entropy for Energy Laboratory.",
+    "fusion-mirrors": "Fusion Mirrors: a local-file explorer for DFT optical constants and normal-incidence reflectivity. Code-only preview from the Entropy for Energy Laboratory.",
   } %}
   {% set description = descriptions.get(data.section, descriptions["home"]) %}
   {% set page_title = "Entropy for Energy Laboratory | Johns Hopkins" if data.section == "home" else (data.section | title) ~ " | Entropy for Energy Laboratory | Johns Hopkins" %}
@@ -90,10 +90,10 @@
   {# Unpublished: s4e.ai serves dev at its root and robots.txt
      allows /, so this page needs the meta tag, not a Disallow
      line. Remove when the data are released. #}
-  {% if data.section == "fusion-mirror" %}
+  {% if data.section == "fusion-mirrors" %}
   <meta name="robots" content="noindex, nofollow">
   {% endif %}
-  {% if data.section != "fusion-mirror" %}
+  {% if data.section != "fusion-mirrors" %}
   <!-- Google tag (gtag.js). The queue is set up here and the tag itself is
        fetched after load, so its 159 KB and its main-thread work stay off the
        critical path. Events recorded before it arrives are replayed. -->

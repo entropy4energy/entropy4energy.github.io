@@ -1,7 +1,7 @@
 @use 'tokens' as *;
 
 // App-only rules: the existing S4E header, navigation and sidebar are unchanged.
-#fusion-mirror-app {
+#fusion-mirrors-app {
   color: $color-ink;
   .fm-lead { font-size: 1.08rem; max-width: 68ch; }
   .fm-review { background: $color-surface-2; border-left: 3px solid $color-main-1; padding: 16px 20px; margin: 20px 0; }
@@ -81,5 +81,5 @@
 
 // Constrain the inherited horizontal news strip on this page only.
 @media (max-width: 1000px) {
-  body#fusion-mirror .main-content-wrapper > .sidebar { width: 100%; min-width: 0; }
+  body#fusion-mirrors .main-content-wrapper > .sidebar { width: 100%; min-width: 0; }
 }
