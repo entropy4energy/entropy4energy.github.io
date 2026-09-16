@@ -31,6 +31,31 @@ LABELS = {
 # Nav entries that leave the static site (apps served alongside it).
 EXTERNAL_LINKS: dict[str, str] = {}
 
+# The same sources build two sites. The lab pages are canonical to
+# entropy4energy.ai; the tools pages are canonical to s4e.ai, which serves the
+# whole build at its root. Each host gets its own robots.txt and sitemap naming
+# only the pages that belong to it, so neither advertises the other's URLs.
+# Pages are listed in crawl-priority order. fusion-mirrors is absent on purpose:
+# it carries a noindex tag until the data are released.
+LAB_HOST = "https://entropy4energy.ai/"
+TOOLS_HOST = "https://s4e.ai/"
+SITEMAP = {
+    LAB_HOST: [
+        ("", 1.0),
+        ("research", 0.9),
+        ("publications", 0.9),
+        ("team", 0.8),
+        ("workshops", 0.8),
+        ("teaching", 0.7),
+        ("news", 0.7),
+        ("jobs", 0.7),
+    ],
+    TOOLS_HOST: [
+        ("tools", 0.9),
+        ("chaos", 0.8),
+    ],
+}
+
 BASE_PATH = Path(__file__).parent
 DATA_DIR = BASE_PATH / "data"
 TEMPLATE_DIR = BASE_PATH / "templates"
@@ -233,6 +258,38 @@ def build_ris() -> str:
     """The same list as RIS (dist/publications.ris), which is what EndNote, Mendeley,
     Zotero, RefWorks and Citavi import. RIS has no comment syntax, so no header."""
     return "\n\n".join(_publication_records("ris")) + "\n"
+
+
+def build_sitemap(host: str) -> str:
+    """The sitemap for one host: the pages canonical to it, and nothing else.
+    Add a page here when it is added to HTMLFILES in the Makefile."""
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ]
+    for page, priority in SITEMAP[host]:
+        lines.append(f"  <url><loc>{host}{page}</loc>"
+                     f"<priority>{priority}</priority></url>")
+    lines.append("</urlset>")
+    return "\n".join(lines) + "\n"
+
+
+def build_robots(host: str) -> str:
+    """robots.txt for one host. Every page stays crawlable: each host serves a
+    copy of the other's pages, and it is the canonical link in the page, not a
+    Disallow line, that tells a crawler which copy counts. A crawler that is
+    kept out cannot read the canonical link at all. The dev build published
+    under /__dev__/ is the exception, being a second copy of the live site on
+    the live host."""
+    lines = ["User-agent: *", "Allow: /"]
+    if host == LAB_HOST:
+        lines += [
+            "",
+            "# A full copy of every page, rebuilt from the dev branch.",
+            "Disallow: /__dev__/",
+        ]
+    lines += ["", f"Sitemap: {host}sitemap.xml"]
+    return "\n".join(lines) + "\n"
 
 
 def initials(name: str) -> str:
@@ -528,6 +585,12 @@ def arg_parser() -> argparse.ArgumentParser:
         help="URL prefix for links in the shell (partials only), e.g. https://s4e.ai/",
     )
     parser.add_argument(
+        "--host",
+        default=LAB_HOST,
+        choices=sorted(SITEMAP),
+        help="Canonical host of this build (robots and sitemap only).",
+    )
+    parser.add_argument(
         "--outdir",
         default="dist/partials",
         help="Where the partials are written (partials only).",
@@ -687,6 +750,10 @@ if __name__ == "__main__":
         print(build_bibtex(), end="")
     elif args.section == "ris":
         print(build_ris(), end="")
+    elif args.section == "robots":
+        print(build_robots(args.host), end="")
+    elif args.section == "sitemap":
+        print(build_sitemap(args.host), end="")
     elif args.section == "partials":
         for path in build_partials(args.root, Path(args.outdir)):
             print(path)
