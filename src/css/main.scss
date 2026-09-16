@@ -3,8 +3,9 @@
 
 // Both faces are served from this site. Work Sans is the variable font, so one
 // file covers every weight the site uses; Hopkins Slab is the university
-// display face, beta release, and carries headings only. All four files are
-// subset to Latin. Replace the Hopkins Slab files when a final release ships.
+// display face, beta release, and carries the page title only, at 400, so the
+// bold cut is not shipped. Both are subset to Latin. Replace the Hopkins Slab
+// file when a final release ships.
 @font-face {
   font-display: swap;
   font-family: 'Work Sans';
@@ -27,14 +28,6 @@
   font-style: normal;
   font-weight: 400;
   src: url('../media/fonts/hopkins-slab-regular.woff2') format('woff2');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Hopkins Slab';
-  font-style: normal;
-  font-weight: 700;
-  src: url('../media/fonts/hopkins-slab-bold.woff2') format('woff2');
 }
 
 :root {
@@ -62,9 +55,12 @@ body {
   min-width: $body-min-width;
 }
 
-h1,
-h2 {
+// Hopkins Slab carries the page title and nothing else. At heading sizes the
+// slab needs no bold, so the h1 stays at 400 and the face reads as a design
+// rather than a weight. Every other heading is Work Sans.
+h1 {
   font-family: 'Hopkins Slab', Georgia, serif;
+  font-weight: 400;
 }
 
 h1 {
@@ -1079,13 +1075,10 @@ h2 {
 .alumni-archive {
   margin-top: 2rem;
 
-  // The summary is a section heading in everything but the tag name, so it
-  // takes the heading face like the h2s above it.
   & > summary {
     border-bottom: 1px solid $color-line-2;
     color: $color-main-1;
     cursor: pointer;
-    font-family: 'Hopkins Slab', Georgia, serif;
     font-size: 1.5em;
     font-weight: bold;
     padding-bottom: 0.2rem;
