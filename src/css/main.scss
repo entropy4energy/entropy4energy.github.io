@@ -1,11 +1,30 @@
 @use 'tokens' as *;
 @use 'site-shell';
 
-@import 'https://fonts.googleapis.com/css?family=Lato:300,400,600,700';
+@import 'https://fonts.googleapis.com/css?family=Work+Sans:300,400,600,700';
+
+// Hopkins Slab is the university display face, used here for headings only.
+// The files are the beta release, subset to Latin; replace them when a final
+// release is published.
+@font-face {
+  font-display: swap;
+  font-family: 'Hopkins Slab';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../media/fonts/hopkins-slab-regular.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Hopkins Slab';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../media/fonts/hopkins-slab-bold.woff') format('woff');
+}
 
 :root {
   @include contrast-main-2();
-  font-family: 'Lato';
+  font-family: 'Work Sans', Tahoma, sans-serif;
   font-size: 1em;
 }
 
@@ -26,6 +45,11 @@ body {
   margin: 0;
   min-height: 100vh;
   min-width: $body-min-width;
+}
+
+h1,
+h2 {
+  font-family: 'Hopkins Slab', Georgia, serif;
 }
 
 h1 {
@@ -1288,7 +1312,7 @@ h2 {
     text-decoration: none;
 
     &:hover {
-      background-color: $color-main-4;
+      background-color: $color-main-5;
     }
   }
 
