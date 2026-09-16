@@ -3,9 +3,9 @@
 <head>
   <title>
     {% if data.section == "home" %}
-      Entropy for Energy Laboratory
+      Entropy for Energy Laboratory | Johns Hopkins
     {% else %}
-      Entropy for Energy Laboratory | {{ data.section | title }}
+      {{ data.section | title }} | Entropy for Energy Laboratory | Johns Hopkins
     {% endif %}
   </title>
   <!-- Meta tags -->
@@ -24,7 +24,7 @@
     "tools": "Databases and data platforms built by the Entropy for Energy Laboratory at Johns Hopkins University: CHAOS and LOOP.",
   } %}
   {% set description = descriptions.get(data.section, descriptions["home"]) %}
-  {% set page_title = "Entropy for Energy Laboratory" if data.section == "home" else "Entropy for Energy Laboratory | " ~ (data.section | title) %}
+  {% set page_title = "Entropy for Energy Laboratory | Johns Hopkins" if data.section == "home" else (data.section | title) ~ " | Entropy for Energy Laboratory | Johns Hopkins" %}
   <meta name="description" content="{{ description }}">
   <meta property="og:type" content="website">
   {# The site is served from two hosts: entropy4energy.ai carries the lab, s4e.ai
@@ -44,6 +44,47 @@
   <meta name="twitter:title" content="{{ page_title }}">
   <meta name="twitter:description" content="{{ description }}">
   <meta name="twitter:image" content="https://entropy4energy.ai/media/icons/s4e_share.png">
+  {# Structured data for the lab itself. Search engines read this to connect the
+     lab, the university, and the PI; the visible page carries the same facts. #}
+  {% if data.section == "home" %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ResearchOrganization",
+      "name": "Entropy for Energy Laboratory",
+      "alternateName": "S4E",
+      "url": "https://entropy4energy.ai/",
+      "logo": "https://entropy4energy.ai/media/icons/s4e.png",
+      "image": "https://entropy4energy.ai/media/icons/s4e_share.png",
+      "description": {{ description | tojson }},
+      "parentOrganization": {
+        "@type": "CollegeOrUniversity",
+        "name": "Johns Hopkins University",
+        "url": "https://www.jhu.edu/"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Baltimore",
+        "addressRegion": "MD",
+        "addressCountry": "US"
+      },
+      "member": {
+        "@type": "Person",
+        "name": "Corey Oses",
+        "jobTitle": "Assistant Professor",
+        "url": "https://entropy4energy.ai/team",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "Johns Hopkins University"
+        },
+        "sameAs": [
+          "https://orcid.org/0000-0002-3790-1377",
+          "https://scholar.google.com/citations?user=Za7m4CMAAAAJ"
+        ]
+      }
+    }
+    </script>
+  {% endif %}
   <link rel="icon" href="media/icons/s4e.png">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJ7FYTHH45"></script>

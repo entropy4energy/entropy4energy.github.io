@@ -83,10 +83,12 @@
         {% if workshop.slides %}
           {% set ss = "slideshow_" ~ workshop.id %}
           <div class="slideshow workshop" id="{{ ss }}">
-            <input type="checkbox" id="{{ ss }}_play" class="slideshow-play noscript" checked>
+            <input type="checkbox" id="{{ ss }}_play" class="slideshow-play noscript" checked
+                   aria-label="Pause the slideshow">
             <label for="{{ ss }}_play" class="slideshow-indicator noscript"></label>
             {% for slide in workshop.slides %}
-              <input type="radio" id="{{ ss }}_{{ loop.index0 }}" name="{{ ss }}_indicators"{% if loop.first %} checked{% endif %}>
+              <input type="radio" id="{{ ss }}_{{ loop.index0 }}" name="{{ ss }}_indicators"{% if loop.first %} checked{% endif %}
+                   aria-label="Show photograph {{ loop.index }}, {{ slide.text }}">
               <label class="slideshow-indicator" for="{{ ss }}_{{ loop.index0 }}">{{ loop.index }}</label>
               <div class="slideshow-slide">
                 <div class="slideshow-slide-text">{{ slide.text }}</div>
