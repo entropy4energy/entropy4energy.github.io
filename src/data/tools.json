@@ -43,7 +43,7 @@
     },
     {
       "id": "fusion-mirror",
-      "name": "Fusion Mirror",
+      "name": "Fusion Mirrors",
       "kind": "Optical-data explorer",
       "full_name": "DFT optical constants and reflectivity",
       "href": "fusion-mirror",

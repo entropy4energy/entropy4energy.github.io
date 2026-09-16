@@ -5,7 +5,7 @@
       "We develop AI and computational methods that learn from these spaces and propose new materials for nuclear energy, hydrogen production, chemical manufacturing, and extreme environments. Our goal is to move beyond brute-force screening toward models that can generate materials with the chemistry and atomic structure needed for a particular function.",
       "Students in the <i>S4E</i> lab can follow a material from computational prediction through synthesis and experimental testing. Our current research centers on <a href=\"#data\">AI-driven materials design</a>, <a href=\"#nuclear\">materials for fission and fusion</a>, <a href=\"#quantum\">quantum computing for materials</a>, and <a href=\"#hydrogen\">hydrogen production</a>."
     ],
-    "image": "intro_high_entropy_energy.png",
+    "image": "intro_high_entropy_energy.webp",
     "image_alt": "High-entropy materials for hydrogen, batteries, electronics, and catalysis",
     "image_caption": "High-entropy materials for energy applications. Adapted from Qiu <i>et al.</i>, <i>npj Comput. Mater.</i> <b>11</b>, 145 (2025), CC BY 4.0.",
     "image_url": "https://doi.org/10.1038/s41524-025-01594-6"
@@ -19,7 +19,7 @@
         "We build AI models that learn both which elements belong in a material and how those elements arrange themselves at the atomic scale, and we test what those models get right and wrong against first-principles calculations. This creates a path from predicting known materials to generating new ones with targeted chemistry and disorder, and from prediction to synthesis and testing in the laboratory.",
         "Students in this area work at the intersection of materials science, physics, AI, and scientific computing. Projects can involve electronic-structure calculations, machine-learned potentials, molecular dynamics, large-scale materials data, generative modeling, and open scientific software."
       ],
-      "image": "data_doping_to_high_entropy.png",
+      "image": "data_doping_to_high_entropy.webp",
       "image_alt": "From doping to alloying to high-entropy oxides: increasing configurational entropy",
       "image_caption": "From doping to high-entropy design. Adapted from Oses <i>et al.</i>, <i>Mater. Horiz.</i> <b>12</b>, 5946 (2025), CC BY 3.0.",
       "image_url": "https://doi.org/10.1039/D5MH00356C",
@@ -48,7 +48,7 @@
         "For fusion, components near the plasma face intense heat, particle bombardment, and neutron damage at the same time. We use AI-driven design to find chemically complex alloys and ceramics for these environments, moving from computational screening to synthesis and testing with collaborators.",
         "Research in nuclear materials spans phase stability, defect chemistry, radiation effects, first-principles calculations, machine learning, synthesis, and characterization."
       ],
-      "image": "nuclear_iodine_pyrochlore.png",
+      "image": "nuclear_iodine_pyrochlore.webp",
       "image_alt": "Iodine loading in pyrochlore ceramics increased by high-entropy design",
       "image_caption": "Iodine loading in pyrochlores by high-entropy design. Adapted from Xu <i>et al.</i>, <i>Precis. Chem.</i> <b>4</b>, 1211 (2026), CC BY-NC-ND 4.0.",
       "image_url": "https://doi.org/10.1021/prechem.5c00467",
@@ -68,13 +68,13 @@
         "We focus on applications: identifying materials problems, including catalysis and chemical disorder, where quantum computation could make a difference; casting them in a form a quantum computer can solve; and combining quantum and classical calculations into workflows that produce predictions that can be tested experimentally. The goal is not a better benchmark, but a material or mechanism that would otherwise have been difficult to find. In February 2026, we hosted a two-day workshop with Quantinuum that gave researchers from across Johns Hopkins hands-on experience with quantum hardware and software.",
         "Students in this area learn quantum algorithms for chemistry alongside classical electronic structure and gain experience with the software and hardware used in current quantum-computing workflows."
       ],
-      "image": "quantum_helios_ions.jpg",
+      "image": "quantum_helios_ions.webp",
       "image_alt": "Ninety-eight trapped ions illuminated by laser light in the Helios trap, with the ring storage, cache, and quantum logic regions outlined",
       "image_caption": "Ninety-eight trapped ions, each a qubit, illuminated by laser light in the Helios trap. Adapted from Ransford <i>et al.</i>, <i>Nature</i> <b>655</b>, 81 (2026), CC BY 4.0. Image provided by Mark Jackson, Quantinuum.",
       "image_url": "https://doi.org/10.1038/s41586-026-10676-4",
       "publications": [],
       "blurb": "Putting quantum computers to work on materials problems, from catalysis to chemical disorder.",
-      "card_image": "quantum_workshop_2026.png"
+      "card_image": "quantum_workshop_2026.webp"
     },
     {
       "id": "hydrogen",
@@ -84,7 +84,7 @@
         "We design materials for producing hydrogen from water using electricity or heat. Machine learning helps us explore complex alloys as alternatives to precious-metal catalysts, and we use first-principles calculations to understand how atomic arrangement changes catalytic behavior.",
         "Students working in this area encounter catalysis, electronic structure, thermodynamics, machine learning, materials synthesis, and experimental characterization."
       ],
-      "image": "hydrogen_catalyst_screening.png",
+      "image": "hydrogen_catalyst_screening.webp",
       "image_alt": "Screening workflow for high-entropy fuel-cell catalysts using disorder descriptors",
       "image_caption": "Disorder descriptors for fuel-cell catalyst screening. Adapted from Han <i>et al.</i>, <i>Nano Futures</i> <b>9</b>, 045001 (2025), CC BY 4.0.",
       "image_url": "https://doi.org/10.1088/2399-1984/ae19b0",
