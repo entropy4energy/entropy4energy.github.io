@@ -1,20 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Home</h1>
+  <h1>Entropy for Energy Laboratory</h1>
   <div class="index-header">
-    Welcome to the <i>Entropy for Energy</i> Laboratory at Johns Hopkins University.
+    Department of Materials Science and Engineering, Johns Hopkins University
   </div>
 
   <div class="slideshow top" id="top_slideshow">
-    <input type="checkbox" id="top_slideshow_play" class="slideshow-play" checked>
+    <input type="checkbox" id="top_slideshow_play" class="slideshow-play" checked
+           aria-label="Pause the slideshow">
     <label for="top_slideshow_play" class="slideshow-indicator"></label>
     {% for slide in data.home.slides %}
       {% if loop.index == 1 %}
         {% set checked = " checked" %}
       {% endif %}
-      <input type="radio" id="top_slideshow_{{ loop.index - 1}}" name="top_slideshow_indicators"{{ checked }}>
-      <label class="slideshow-indicator" for="top_slideshow_{{ loop.index - 1 }}">{{ loop.index - 1 }}</label>
+      <input type="radio" id="top_slideshow_{{ loop.index - 1}}" name="top_slideshow_indicators"{{ checked }}
+             aria-label="Show slide {{ loop.index }}, {{ slide.title }}">
+      <label class="slideshow-indicator" for="top_slideshow_{{ loop.index - 1 }}">{{ loop.index }}</label>
       <div class="slideshow-slide top">
         <div class="slideshow-slide-text">{{ slide.title }}</div>
         <div class="slideshow-slide-img">
@@ -67,13 +69,15 @@
   </p>
   {% if data.slideshow_publications %}
     <div class="slideshow bottom" id="bottom_slideshow">
-      <input type="checkbox" id="bottom_slideshow_play" class="slideshow-play noscript" checked>
+      <input type="checkbox" id="bottom_slideshow_play" class="slideshow-play noscript" checked
+             aria-label="Pause the slideshow">
       <label for="bottom_slideshow_play" class="slideshow-indicator noscript"></label>
       {% for slide in data.slideshow_publications %}
         {% if loop.index == 1 %}
           {% set checked = " checked" %}
         {% endif %}
-        <input type="radio" id="bottom_slideshow_{{ loop.index - 1 }}" name="bottom_slideshow_indicators"{{ checked }}>
+        <input type="radio" id="bottom_slideshow_{{ loop.index - 1 }}" name="bottom_slideshow_indicators"{{ checked }}
+               aria-label="Show publication {{ loop.index }}, {{ slide.text }}">
         <label class="slideshow-indicator" for="bottom_slideshow_{{ loop.index - 1 }}">
           {{ loop.index }}
         </label>
