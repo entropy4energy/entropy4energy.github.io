@@ -54,7 +54,7 @@ all: $(BUILDTARGETS)
 # HTML embeds a content hash of the CSS and JS sources (cache busting),
 # so every page must be rebuilt when those change.
 PREREQSALL=$(BUILDPY) $(DATADIR)/news.json $(wildcard $(DATADIR)/tools.json) $(TEMPLATEDIR)/base.html $(PARTIALSRC) $(wildcard $(CSSSRC)/*.scss) $(wildcard $(JSSRC)/*.js)
-HTMLFILES=index jobs news publications research teaching team workshops tools chaos fusion-mirrors
+HTMLFILES=index jobs news publications research teaching team workshops tools chaos fusion-mirrors synthesizability-game
 html: $(foreach HTML,$(HTMLFILES),$(BLDDIR)/$(HTML).html)
 
 $(BLDDIR)/%.html: $(PREREQSALL) $(TEMPLATEDIR)/%.html $(DATADIR)/%.json
@@ -95,13 +95,13 @@ PARTIALSRC=$(wildcard $(TEMPLATEDIR)/partials/*.html)
 PARTIALBLD=$(BLDDIR)/partials
 partials: $(PARTIALBLD)/nav.html
 
-$(PARTIALBLD)/nav.html: $(PREREQSALL) $(wildcard $(DATADIR)/tools.json) $(wildcard $(DATADIR)/chaos.json) $(wildcard $(DATADIR)/loop.json) $(wildcard $(DATADIR)/fusion-mirrors.json)
+$(PARTIALBLD)/nav.html: $(PREREQSALL) $(wildcard $(DATADIR)/tools.json) $(wildcard $(DATADIR)/chaos.json) $(wildcard $(DATADIR)/loop.json) $(wildcard $(DATADIR)/fusion-mirrors.json) $(wildcard $(DATADIR)/synthesizability-game.json)
 	$(PYTHON) $(BUILDPY) partials --root $(SITE_ROOT) --outdir $(PARTIALBLD)
 
 # CSS targets
 # main.css is the site stylesheet; shell.css holds only the shell rules and
 # is loaded by LOOP together with the fragments above.
-css: $(CSSBLD)/academicons-1.9.1 $(CSSBLD)/main.css $(CSSBLD)/shell.css $(CSSBLD)/fusion-mirrors.css
+css: $(CSSBLD)/academicons-1.9.1 $(CSSBLD)/main.css $(CSSBLD)/shell.css $(CSSBLD)/fusion-mirrors.css $(CSSBLD)/synthesizability-game.css
 
 $(CSSBLD)/%.css: $(CSSSRC)/%.scss $(wildcard $(CSSSRC)/_*.scss)
 	@mkdir -p $(@D)
@@ -112,10 +112,15 @@ $(CSSBLD)/%:
 	$(RSYNC) $(@:$(BLDDIR)/%=$(SRCDIR)/%) $(CSSBLD)/
 
 # JavaScript
-js: $(JSBLD)/slideshow.js $(JSBLD)/jobs.js $(JSBLD)/citations.js $(JSBLD)/cite.js $(JSBLD)/fusion-mirrors.js
+js: $(JSBLD)/slideshow.js $(JSBLD)/jobs.js $(JSBLD)/citations.js $(JSBLD)/cite.js $(JSBLD)/fusion-mirrors.js $(JSBLD)/synthesizability-game.js
 
 # Keep external catalogue field names intact (Closure ADVANCED renames them).
 $(JSBLD)/fusion-mirrors.js: $(JSSRC)/fusion-mirrors.js
+	@mkdir -p $(@D)
+	cp $< $@
+
+# Copied as written too: this is the build that was tested in a browser.
+$(JSBLD)/synthesizability-game.js: $(JSSRC)/synthesizability-game.js
 	@mkdir -p $(@D)
 	cp $< $@
 
