@@ -1,0 +1,85 @@
+@use 'tokens' as *;
+
+// App-only rules: the existing S4E header, navigation and sidebar are unchanged.
+#fusion-mirror-app {
+  color: $color-ink;
+  .fm-lead { font-size: 1.08rem; max-width: 68ch; }
+  .fm-review { background: $color-surface-2; border-left: 3px solid $color-main-1; padding: 16px 20px; margin: 20px 0; }
+  .fm-review p { margin: 8px 0; }
+  .fm-file-label { color: $color-main-1; margin-top: 12px; }
+  #local-folder { max-width: 100%; padding: 6px 0; border: none; background: transparent; }
+  #status { padding: 10px 0; border-bottom: 1px solid $color-line; min-height: 1.5em; }
+  #status.error { color: #9b2c20; }
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  .fm-selectors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 14px 0; }
+  .fm-four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  label { display: block; font-size: .88rem; font-weight: 700; margin: 5px 0; }
+  input, select, button { font: inherit; box-sizing: border-box; border: 1px solid $color-line-2; border-radius: 4px; padding: 8px 10px; color: $color-ink; background: white; }
+  select, input:not([type=checkbox]):not([type=file]) { width: 100%; min-width: 0; }
+  button { cursor: pointer; font-size: .86rem; }
+  button:hover:not(:disabled) { border-color: $color-main-1; background: $color-surface-2; }
+  button.primary, button.selected { background: $color-main-1; color: white; border-color: $color-main-1; }
+  button.primary:hover:not(:disabled), button.selected:hover:not(:disabled) { background: #00418e; color: white; }
+  :focus-visible { outline: 3px solid $color-main-4; outline-offset: 2px; }
+  button:disabled { cursor: not-allowed; opacity: .58; }
+  input:disabled, select:disabled { color: $color-muted; background: #f7f7f7; }
+  .check { display: flex; gap: 8px; align-items: center; font-weight: 400; font-size: .85rem; }
+  .check input { margin: 0; accent-color: $color-main-1; }
+  .hint, .section-label, .fm-counts, #selection-detail { color: $color-muted; font-size: .82rem; }
+  .hint { line-height: 1.55; }
+  details { margin: 14px 0; }
+  summary { cursor: pointer; color: $color-main-1; font-weight: 600; }
+  h2 { margin-top: 24px; font-size: 1.2rem; }
+  h3 { font-size: 1rem; color: $color-main-1; margin: 0; }
+  .presets { display: flex; flex-wrap: wrap; gap: 6px; }
+  .range-inputs { display: grid; grid-template-columns: 1fr 1fr auto 1.6fr; gap: 8px; align-items: end; margin: 12px 0; }
+  .material-heading, .table-header { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-top: 24px; }
+  .material-heading h2 { border: 0; margin: 0; font-size: 1.6rem; }
+  .material-heading h2 span { font-size: 1rem; margin-left: 10px; font-weight: 400; }
+  .material-heading p { margin: 5px 0; }
+  .fm-counts { text-align: right; white-space: nowrap; }
+  .data-strip { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; border-block: 1px solid $color-line; padding: 12px 0; margin-top: 15px; }
+  .data-strip small, .data-strip strong { display: block; font-size: .76rem; }
+  .data-strip small { color: $color-muted; }
+  .data-strip strong { font-weight: 600; margin-top: 4px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: .8rem; margin: 14px 0; }
+  .legend-item { display: flex; align-items: center; gap: 7px; }
+  .legend-line { width: 24px; border-top: 3px solid $color-main-1; }
+  .legend-line.gw { border-color: #b85c00; border-top-style: dashed; }
+  .charts { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+  .chart-card { border: 1px solid $color-line; border-radius: 4px; padding: 12px; min-width: 0; }
+  .chart-title { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+  .chart-title button { padding: 4px 6px; font-size: .72rem; }
+  .reflectivity { grid-column: 1/-1; }
+  .plot { min-height: 145px; display: grid; place-items: center; }
+  .plot p { color: $color-muted; font-size: .88rem; }
+  .plot svg { width: 100%; height: auto; display: block; }
+  .reflectivity .plot { min-height: 180px; }
+  .fm-query { padding: 0 0 12px; }
+  #probe-form { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  #probe-form input { width: 110px; }
+  #probe-result { font-size: .88rem; margin-top: 10px; }
+  .table-header h2 { margin-top: 0; border: 0; }
+  .table-wrap { overflow: auto; max-height: 260px; border: 1px solid $color-line; }
+  table { width: 100%; border-collapse: collapse; font-size: .82rem; white-space: nowrap; }
+  th, td { padding: 8px; text-align: right; border-bottom: 1px solid $color-line; }
+  th:first-child, td:first-child, th:last-child, td:last-child { text-align: left; }
+  th { color: $color-main-1; background: $color-surface-2; position: sticky; top: 0; }
+  .table-footer { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 8px; font-size: .8rem; }
+  .provenance { font-size: .84rem; overflow-wrap: anywhere; }
+  .provenance dl { display: grid; grid-template-columns: minmax(100px,1fr) 3fr; gap: 6px; }
+  dd { margin: 0; }
+  .source-links { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0; }
+  .source-links button { font-size: .8rem; }
+  .methods { font-size: .9rem; margin-top: 30px; }
+  .fm-acknowledgement { border-top: 1px solid $color-line; padding-top: 16px; font-size: .88rem; margin-top: 24px; }
+  .tooltip { position: fixed; z-index: 100; pointer-events: none; white-space: pre-line; background: $color-main-1; color: white; padding: 9px 12px; border-radius: 4px; font-size: .8rem; }
+  .fm-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  @media (max-width: 700px) { .fm-selectors, .fm-four, .range-inputs { grid-template-columns: repeat(2,minmax(0,1fr)); } .charts { grid-template-columns: 1fr; } .data-strip { grid-template-columns: repeat(2,minmax(0,1fr)); } .table-header { flex-wrap: wrap; } }
+  @media (max-width: 400px) { .fm-selectors { grid-template-columns: 1fr; } .fm-counts { display: none; } .chart-title { flex-wrap: wrap; } }
+}
+
+// Constrain the inherited horizontal news strip on this page only.
+@media (max-width: 1000px) {
+  body#fusion-mirror .main-content-wrapper > .sidebar { width: 100%; min-width: 0; }
+}
