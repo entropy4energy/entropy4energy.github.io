@@ -6,7 +6,11 @@ const NS='http://www.w3.org/2000/svg';
 const names={Ag:'Silver',Al:'Aluminium',Au:'Gold',Bi:'Bismuth',Co:'Cobalt',Cr:'Chromium',Cu:'Copper',Fe:'Iron',Ge:'Germanium',Hf:'Hafnium',In:'Indium',Ir:'Iridium',K:'Potassium',Li:'Lithium',Lu:'Lutetium',Mg:'Magnesium',Mo:'Molybdenum',Na:'Sodium',Nb:'Niobium',Ni:'Nickel',Os:'Osmium',P:'Phosphorus',Pb:'Lead',Pd:'Palladium',Pt:'Platinum',Re:'Rhenium',Rh:'Rhodium',Ru:'Ruthenium',Si:'Silicon',Ta:'Tantalum',Ti:'Titanium',V:'Vanadium',W:'Tungsten',Zn:'Zinc',Zr:'Zirconium',SiO2:'Silicon dioxide',Al2O3:'Aluminium oxide',MgScAlO4:'Magnesium scandium aluminium oxide'};
 const labels={PBE:'Standard PAW / PBE',GW:'GW-oriented PAW / PBE'};
 const colors={PBE:'#002D72',GW:'#b85c00'};
-const modeLabels={mode1:'Normal-z mode 1',mode2:'Normal-z mode 2',x:'Cartesian x diagonal diagnostic',y:'Cartesian y diagonal diagnostic',z:'Cartesian z diagonal diagnostic'};
+//[before, axis, after]: the axis letter is a variable and is set in italics
+//wherever the label is shown. modeLabels keeps the flat text for the exported
+//metadata, where markup would be wrong.
+const modeParts={mode1:['Normal-','z',' mode 1'],mode2:['Normal-','z',' mode 2'],x:['Cartesian ','x',' diagonal diagnostic'],y:['Cartesian ','y',' diagonal diagnostic'],z:['Cartesian ','z',' diagonal diagnostic']};
+const modeLabels=Object.fromEntries(Object.entries(modeParts).map(([k,v])=>[k,v.join('')]));
 const presets={all:[200,1200],uv:[200,400],visible:[400,700],nir:[700,1200]};
 let catalog, selected, loaded=[], generation=0, tableLimit=80, activeRange='all';
 let state={material:'Ag',branch:'PBE',channel:'density',component:'mode1',polarization:'unpolarized',sampling:'screening',min:200,max:1200,log:false};
@@ -124,9 +128,10 @@ function plottedRows(){return loaded.flatMap(d=>windowRows(d).map(r=>({material:
   valid_normal_z:r[d.index.valid_normal_z]})));}
 function renderEmpty(){for(const k of ['n','k','R'])$(`chart-${k}`).replaceChildren();for(const id of ['data-table','probe-result','provenance','legend','table-count'])$(id).replaceChildren();$('points-value').textContent='—';$('support-value').textContent='—';}
 function render(){
-  const head=`${state.channel==='density'?'Density–density':'Current–current'} response · ${modeLabels[state.component]} · `;
-  if(state.polarization==='unpolarized')setParts($('selection-detail'),head+'unpolarized reflection');
-  else setParts($('selection-detail'),head+'reflection for incident ',ital('E'),' along ',ital(state.polarization));
+  const mp=modeParts[state.component];
+  const head=[`${state.channel==='density'?'Density–density':'Current–current'} response · ${mp[0]}`,ital(mp[1]),`${mp[2]} · `];
+  if(state.polarization==='unpolarized')setParts($('selection-detail'),...head,'unpolarized reflection');
+  else setParts($('selection-detail'),...head,'reflection for incident ',ital('E'),' along ',ital(state.polarization));
   $('range-value').textContent=`${number(state.min,2)}–${number(state.max,2)} nm`;
   const spans=branches().map(b=>selected.runs[b].channels[state.channel].native.range_nm).filter(Boolean);
   $('support-value').textContent=spans.length?`${number(Math.min(...spans.map(r=>r[0])),2)}–${number(Math.max(...spans.map(r=>r[1])),2)} nm`:'No valid samples';
@@ -152,8 +157,18 @@ function drawChart(kind){
   const wide=kind==='R',W=wide?1040:520,H=wide?320:315,L=59,T=84,B=54,R=18,PW=W-L-R,PH=H-T-B;
   const root=svgEl('svg',{xmlns:NS,viewBox:`0 0 ${W} ${H}`,width:W,height:H,role:'img',tabindex:'0','aria-label':`${state.material}, ${kind==='R'?'Air/material reflectivity in percent':kind+' optical constant'}, wavelength ${state.min} to ${state.max} nm. Data table below.`});
   root.append(svgEl('title',{},`${state.material} — ${kind==='R'?'Air/material reflectivity (%)':kind}`),svgEl('desc',{},JSON.stringify(viewMetadata())),svgEl('rect',{width:W,height:H,fill:'#fff'}));
-  const title=`${state.material} · ${kind==='R'?`R (%) · ${state.polarization} · normal z`:kind+' · '+modeLabels[state.component]}`;
-  root.append(svgEl('text',{x:L,y:20,fill:'#193340','font-family':'Arial,sans-serif','font-size':12,'font-weight':600},title));
+  const svgIt=text=>svgEl('tspan',{'font-style':'italic'},text);
+  const titleEl=svgEl('text',{x:L,y:20,fill:'#193340','font-family':'Arial,sans-serif','font-size':12,'font-weight':600});
+  titleEl.append(svgEl('tspan',{},`${state.material} · `));
+  if(kind==='R'){
+    titleEl.append(svgIt('R'),svgEl('tspan',{},' (%) · '),
+      state.polarization==='unpolarized'?svgEl('tspan',{},'unpolarized'):svgIt(state.polarization),
+      svgEl('tspan',{},' · normal '),svgIt('z'));
+  }else{
+    const mode=modeParts[state.component];
+    titleEl.append(svgIt(kind),svgEl('tspan',{},' · '+mode[0]),svgIt(mode[1]),svgEl('tspan',{},mode[2]));
+  }
+  root.append(titleEl);
   root.append(svgEl('text',{x:L,y:38,fill:'#536b77','font-family':'Arial,sans-serif','font-size':10},`${state.channel} · ${state.sampling} · PBE electronic structure`));
   loaded.forEach((d,j)=>{const lx=L+j*175;root.append(svgEl('line',{x1:lx,x2:lx+24,y1:55,y2:55,stroke:colors[d.branch],'stroke-width':2.3,'stroke-dasharray':d.branch==='GW'?'7 4':'none'}));root.append(svgEl('text',{x:lx+30,y:59,fill:'#536b77','font-family':'Arial,sans-serif','font-size':10},d.branch==='PBE'?'Standard PAW':'GW-oriented PAW'));});
   const values=loaded.flatMap(d=>windowRows(d).map(r=>pick(d,r,kind)).filter(v=>v!==null));
