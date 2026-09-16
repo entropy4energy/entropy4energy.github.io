@@ -26,7 +26,8 @@
       },
       {
         "presenter": "Dr. Jessica Granderson, Lawrence Berkeley National Laboratory",
-        "title": "Invited talk, title to be announced"
+        "title": "Research and Applications of AI in Buildings",
+        "description": "Buildings are vitally important to our economy, energy systems, and daily lives. Nationally, the commercial sector accounts for nearly 20% of primary energy use, over a third of electricity use, and nearly $200B in annual energy expenditures. 17% of our GDP is attributed to the real estate and construction industries alone. As we enter the AI era, we are asking more of our buildings than ever before &ndash; that they operate as efficient cost centers, provide low-energy, comfortable indoor environments, and increasingly, be dynamically coordinated with the power grid. This talk will highlight current trends in the industry, and research on the potential for AI to advance building performance across the lifecycle. With a focus on software tools for the operational phase, Dr. Granderson will present recent findings on how AI is being used in today's commercial products and services. She will conclude with highlights of ongoing research underway at Lawrence Berkeley National Laboratory, spanning advances in AI-ready data infrastructure, autonomous control and operation, and robotics for inspection and maintenance."
       },
       {
         "title": "Afternoon: AI + Energy roadmap workshop",

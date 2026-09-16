@@ -3,9 +3,9 @@
 <head>
   <title>
     {% if data.section == "home" %}
-      Entropy for Energy
+      Entropy for Energy Laboratory
     {% else %}
-      S4E - {{ data.section | title }}
+      Entropy for Energy Laboratory | {{ data.section | title }}
     {% endif %}
   </title>
   <!-- Meta tags -->
@@ -24,9 +24,16 @@
     "tools": "Databases and data platforms built by the Entropy for Energy Laboratory at Johns Hopkins University: CHAOS and LOOP.",
   } %}
   {% set description = descriptions.get(data.section, descriptions["home"]) %}
-  {% set page_title = "Entropy for Energy Laboratory" if data.section == "home" else "S4E - " ~ (data.section | title) %}
+  {% set page_title = "Entropy for Energy Laboratory" if data.section == "home" else "Entropy for Energy Laboratory | " ~ (data.section | title) %}
   <meta name="description" content="{{ description }}">
   <meta property="og:type" content="website">
+  {# The site is served from two hosts: entropy4energy.ai carries the lab, s4e.ai
+     carries the tools and LOOP. Every page names the host it belongs to, so the
+     two copies are not read as duplicates. #}
+  {% set canonical_host = "https://s4e.ai/" if data.section == "tools" or data.parent == "tools" else "https://entropy4energy.ai/" %}
+  {% set canonical_url = canonical_host ~ ("" if data.section == "home" else data.section) %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta property="og:url" content="{{ canonical_url }}">
   <meta property="og:site_name" content="Entropy for Energy Laboratory">
   <meta property="og:title" content="{{ page_title }}">
   <meta property="og:description" content="{{ description }}">

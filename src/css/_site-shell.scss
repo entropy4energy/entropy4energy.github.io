@@ -24,6 +24,18 @@ header {
     width: 100%;
   }
 
+  .hero-jhu {
+    display: block;
+    line-height: 0;
+    margin-left: auto;
+
+    img {
+      display: block;
+      height: 38px;
+      width: auto;
+    }
+  }
+
   .hero-logo {
     display: block;
     flex: 0 0 auto;
@@ -401,6 +413,10 @@ $site-products: chaos loop;
   header .hero {
     font-size: 1.1rem;
     padding: 0.6rem 12px;
+
+    .hero-jhu {
+      display: none;
+    }
 
     .hero-full-name,
     .hero-sep:has(+ .hero-full-name) {
