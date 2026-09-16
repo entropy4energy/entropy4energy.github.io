@@ -53,8 +53,8 @@ all: $(BUILDTARGETS)
 # HTML targets
 # HTML embeds a content hash of the CSS and JS sources (cache busting),
 # so every page must be rebuilt when those change.
-PREREQSALL=$(BUILDPY) $(DATADIR)/news.json $(TEMPLATEDIR)/base.html $(PARTIALSRC) $(wildcard $(CSSSRC)/*.scss) $(wildcard $(JSSRC)/*.js)
-HTMLFILES=index jobs news publications research teaching team workshops tools chaos
+PREREQSALL=$(BUILDPY) $(DATADIR)/news.json $(DATADIR)/tools.json $(TEMPLATEDIR)/base.html $(PARTIALSRC) $(wildcard $(CSSSRC)/*.scss) $(wildcard $(JSSRC)/*.js)
+HTMLFILES=index jobs news publications research teaching team workshops tools chaos fusion-mirror
 html: $(foreach HTML,$(HTMLFILES),$(BLDDIR)/$(HTML).html)
 
 $(BLDDIR)/%.html: $(PREREQSALL) $(TEMPLATEDIR)/%.html $(DATADIR)/%.json
@@ -95,13 +95,13 @@ PARTIALSRC=$(wildcard $(TEMPLATEDIR)/partials/*.html)
 PARTIALBLD=$(BLDDIR)/partials
 partials: $(PARTIALBLD)/nav.html
 
-$(PARTIALBLD)/nav.html: $(PREREQSALL) $(wildcard $(DATADIR)/tools.json) $(wildcard $(DATADIR)/chaos.json) $(wildcard $(DATADIR)/loop.json)
+$(PARTIALBLD)/nav.html: $(PREREQSALL) $(wildcard $(DATADIR)/tools.json) $(wildcard $(DATADIR)/chaos.json) $(wildcard $(DATADIR)/loop.json) $(DATADIR)/fusion-mirror.json
 	$(PYTHON) $(BUILDPY) partials --root $(SITE_ROOT) --outdir $(PARTIALBLD)
 
 # CSS targets
 # main.css is the site stylesheet; shell.css holds only the shell rules and
 # is loaded by LOOP together with the fragments above.
-css: $(CSSBLD)/academicons-1.9.1 $(CSSBLD)/main.css $(CSSBLD)/shell.css
+css: $(CSSBLD)/academicons-1.9.1 $(CSSBLD)/main.css $(CSSBLD)/shell.css $(CSSBLD)/fusion-mirror.css
 
 $(CSSBLD)/%.css: $(CSSSRC)/%.scss $(wildcard $(CSSSRC)/_*.scss)
 	@mkdir -p $(@D)
@@ -112,7 +112,12 @@ $(CSSBLD)/%:
 	$(RSYNC) $(@:$(BLDDIR)/%=$(SRCDIR)/%) $(CSSBLD)/
 
 # JavaScript
-js: $(JSBLD)/slideshow.js $(JSBLD)/jobs.js $(JSBLD)/citations.js $(JSBLD)/cite.js
+js: $(JSBLD)/slideshow.js $(JSBLD)/jobs.js $(JSBLD)/citations.js $(JSBLD)/cite.js $(JSBLD)/fusion-mirror.js
+
+# Keep external catalogue field names intact (Closure ADVANCED renames them).
+$(JSBLD)/fusion-mirror.js: $(JSSRC)/fusion-mirror.js
+	@mkdir -p $(@D)
+	cp $< $@
 
 $(JSBLD)/%.js: $(JSSRC)/%.js
 	$(JSC) $(JSCFLAGS) --js $^ --js_output_file $@
