@@ -54,6 +54,20 @@
           "href": "fusion-mirrors#methods"
         }
       ]
+    },
+    {
+      "id": "synthesizability-game",
+      "name": "Synthesizability Game",
+      "kind": "Interactive game",
+      "full_name": "High-entropy nuclear waste forms",
+      "href": "synthesizability-game",
+      "description": "Choose elements for the two cation sites of a high-entropy waste form and look for a combination that scores as synthesizable. Shown at the 2026 ARPA-E Energy Innovation Summit in San Diego.",
+      "links": [
+        {
+          "label": "How to play",
+          "href": "synthesizability-game#how"
+        }
+      ]
     }
   ]
 }
