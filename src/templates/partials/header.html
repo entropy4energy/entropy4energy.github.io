@@ -1,7 +1,7 @@
 {#- Site header. Shared with LOOP through dist/partials/header*.html -#}
 <header>
   <div class="hero">
-    <a href="{{ data.root or '.' }}" class="hero-logo"><img src="{{ data.root }}media/icons/s4e.png" alt="S4E"></a>
+    <a href="{{ data.root or '.' }}" class="hero-logo"><img src="{{ data.root }}media/icons/s4e.png?v={{ data.asset_version }}" alt="S4E"></a>
     <span class="hero-title">
       {% if data.product %}
         <span class="hero-site">Entropy for Energy Laboratory</span>
@@ -16,7 +16,7 @@
       {% endif %}
     </span>
     <a class="hero-jhu" href="https://www.jhu.edu" target="_blank" rel="noopener">
-      <img src="{{ data.root }}media/icons/jhu_shield.svg" alt="Johns Hopkins University" width="60" height="60">
+      <img src="{{ data.root }}media/icons/jhu_shield.svg?v={{ data.asset_version }}" alt="Johns Hopkins University" width="60" height="60">
     </a>
   </div>
 </header>
