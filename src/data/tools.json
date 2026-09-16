@@ -42,16 +42,16 @@
       ]
     },
     {
-      "id": "fusion-mirror",
+      "id": "fusion-mirrors",
       "name": "Fusion Mirrors",
       "kind": "Optical-data explorer",
       "full_name": "DFT optical constants and reflectivity",
-      "href": "fusion-mirror",
+      "href": "fusion-mirrors",
       "description": "Explore optical constants and normal-incidence Air/material reflectivity by wavelength and chemical family. Code-only preview: open an authorized local dataset in your browser; unpublished DFT data are not hosted here.",
       "links": [
         {
           "label": "Methods & scope",
-          "href": "fusion-mirror#methods"
+          "href": "fusion-mirrors#methods"
         }
       ]
     }

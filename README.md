@@ -14,16 +14,16 @@ make
 python -m http.server 8080 --bind 127.0.0.1 --directory dist
 ```
 
-Open `http://127.0.0.1:8080/fusion-mirror.html`. The production server supports extensionless links; Python's basic server needs `.html` when opening the Tools and Fusion Mirror pages directly. Do not serve a parent directory containing private data.
+Open `http://127.0.0.1:8080/fusion-mirrors.html`. The production server supports extensionless links; Python's basic server needs `.html` when opening the Tools and Fusion Mirror pages directly. Do not serve a parent directory containing private data.
 
 ## What is included
 
-- `src/templates/fusion-mirror.html`: interface, scope and acknowledgement.
-- `src/css/fusion-mirror.scss`: styling scoped to this tool, using S4E navy `#002D72` and white.
-- `src/js/fusion-mirror.js`: local-file loading, plotting, validity masks, wavelength lookup and downloads. No runtime JavaScript dependencies.
-- `src/data/fusion-mirror.json` and the entry in `tools.json`: product metadata only, **not DFT values**.
-- `tests/test_fusion_mirror.py`: browser checks using clearly synthetic fixtures generated in a temporary directory. Optional private-data verification writes only to an explicitly chosen review directory.
-- [Methods, data contract and release notes](docs/fusion-mirror.md).
+- `src/templates/fusion-mirrors.html`: interface, scope and acknowledgement.
+- `src/css/fusion-mirrors.scss`: styling scoped to this tool, using S4E navy `#002D72` and white.
+- `src/js/fusion-mirrors.js`: local-file loading, plotting, validity masks, wavelength lookup and downloads. No runtime JavaScript dependencies.
+- `src/data/fusion-mirrors.json` and the entry in `tools.json`: product metadata only, **not DFT values**.
+- `tests/test_fusion_mirrors.py`: browser checks using clearly synthetic fixtures generated in a temporary directory. Optional private-data verification writes only to an explicitly chosen review directory.
+- [Methods, data contract and release notes](docs/fusion-mirrors.md).
 
 ## Data and privacy
 
@@ -38,7 +38,7 @@ Raw calculations, reproduction scripts, heavy analysis and source CSVs remain in
 ```sh
 python -m pip install -r tests/requirements.txt
 python -m playwright install chromium
-python tests/test_fusion_mirror.py --dist dist --output /tmp/fusion-mirror-review
+python tests/test_fusion_mirrors.py --dist dist --output /tmp/fusion-mirrors-review
 ```
 
 The test starts a loopback-only server, checks desktop/mobile rendering, folder import, quality gaps, PAW comparison, selected-window exports, source downloads and failure handling. Its public screenshots show the **unloaded** page only. Private-data testing is opt-in; see `--help`. Never commit test output.

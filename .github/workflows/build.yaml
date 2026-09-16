@@ -31,7 +31,7 @@ jobs:
           git checkout main
           # Unpublished products never reach the public site: refuse to
           # build main if their data files are present.
-          for f in src/data/chaos.json src/data/chaos-gpt.json src/data/tools.json src/data/loop.json src/data/fusion-mirror.json; do
+          for f in src/data/chaos.json src/data/chaos-gpt.json src/data/tools.json src/data/loop.json src/data/fusion-mirrors.json; do
             if [ -e "$f" ]; then echo "::error::$f is on main; CHAOS, LOOP and Fusion Mirror are unpublished" && exit 1; fi
           done
           make install-packages

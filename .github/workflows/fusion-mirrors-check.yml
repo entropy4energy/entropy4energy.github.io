@@ -6,7 +6,7 @@ on:
       - 'src/**'
       - 'Makefile'
       - 'tests/**'
-      - '.github/workflows/fusion-mirror-check.yml'
+      - '.github/workflows/fusion-mirrors-check.yml'
 permissions:
   contents: read
 jobs:
@@ -26,6 +26,6 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: python -m pip install -r requirements.txt -r tests/requirements.txt
       - run: python -m playwright install --with-deps chromium
-      - run: node --check src/js/fusion-mirror.js
+      - run: node --check src/js/fusion-mirrors.js
       - run: make -j2
-      - run: python tests/test_fusion_mirror.py --dist dist --output /tmp/fusion-mirror-review
+      - run: python tests/test_fusion_mirrors.py --dist dist --output /tmp/fusion-mirrors-review

@@ -97,7 +97,7 @@ def main():
     threading.Thread(target=server.serve_forever, daemon=True).start()
     origin = f'http://127.0.0.1:{server.server_port}'
     try:
-        with tempfile.TemporaryDirectory(prefix='fusion-mirror-synthetic-') as tmp, sync_playwright() as pw:
+        with tempfile.TemporaryDirectory(prefix='fusion-mirrors-synthetic-') as tmp, sync_playwright() as pw:
             fixture = Path(tmp) / 'data'
             synthetic_export(fixture)
             browser = pw.chromium.launch()
@@ -109,17 +109,17 @@ def main():
             # No external fonts/analytics required for deterministic offline screenshots.
             context.route('**/*', lambda route: route.continue_() if route.request.url.startswith(origin)
                           or route.request.url.startswith(('blob:', 'data:')) else route.abort())
-            page.goto(origin + '/fusion-mirror')
+            page.goto(origin + '/fusion-mirrors')
             page.locator('body[data-ready="empty"]').wait_for()
             check(page.locator('#material').is_disabled(), 'Unloaded controls disabled')
-            check(page.locator('#fusion-mirror-app').get_by_text('This work was supported by the Seaver Institute.', exact=False).count() == 1,
+            check(page.locator('#fusion-mirrors-app').get_by_text('This work was supported by the Seaver Institute.', exact=False).count() == 1,
                   'Seaver Institute acknowledgement present')
             check(page.locator('script[src*="googletagmanager"]').count() == 0, 'No analytics script on explorer')
             check(not any('/data/' in url for _, url in requests), 'No automatic dataset request')
-            page.screenshot(path=str(public / 'fusion-mirror-desktop.png'), full_page=True)
+            page.screenshot(path=str(public / 'fusion-mirrors-desktop.png'), full_page=True)
             page.set_viewport_size({'width': 390, 'height': 844})
             check(page.evaluate('document.documentElement.scrollWidth <= innerWidth'), 'No horizontal overflow at 390 px')
-            page.screenshot(path=str(public / 'fusion-mirror-mobile.png'), full_page=True)
+            page.screenshot(path=str(public / 'fusion-mirrors-mobile.png'), full_page=True)
             page.set_viewport_size({'width': 1440, 'height': 1100})
             page.goto(origin + '/tools')
             check(page.get_by_role('link', name='Open CHAOS', exact=True).count() == 1, 'CHAOS entry retained')
@@ -248,7 +248,7 @@ def main():
                 page.locator('body[data-ready="true"]').wait_for()
                 page.locator('[data-range="all"]').click()
                 page.locator('body[data-ready="true"]').wait_for()
-                page.locator('#fusion-mirror-app').screenshot(path=str(private_out / f'{shot_id}-private-desktop.png'))
+                page.locator('#fusion-mirrors-app').screenshot(path=str(private_out / f'{shot_id}-private-desktop.png'))
                 page.locator('.charts').screenshot(path=str(private_out / f'{shot_id}-private-plots.png'))
                 page.set_viewport_size({'width': 390, 'height': 844})
                 check(page.evaluate('document.documentElement.scrollWidth <= innerWidth'), 'Loaded private plots fit mobile width')
