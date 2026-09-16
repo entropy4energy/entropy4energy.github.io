@@ -537,10 +537,16 @@ def arg_parser() -> argparse.ArgumentParser:
 
 
 def asset_version() -> str:
-    """Short content hash of the stylesheet and scripts, used as a
-    cache-busting query string on their URLs."""
+    """Short content hash of the stylesheet, the scripts, and the marks in the
+    header and footer, used as a cache-busting query string on their URLs.
+    The logos are in the hash because they are replaced in place: without it a
+    reader keeps the copy their browser cached months ago."""
     h = hashlib.sha1()
-    for path in sorted((BASE_PATH / "css").glob("*.scss")) + sorted((BASE_PATH / "js").glob("*.js")):
+    paths = (sorted((BASE_PATH / "css").glob("*.scss"))
+             + sorted((BASE_PATH / "js").glob("*.js"))
+             + sorted((BASE_PATH / "media" / "footer").glob("*"))
+             + sorted((BASE_PATH / "media" / "icons").glob("*")))
+    for path in paths:
         h.update(path.read_bytes())
     return h.hexdigest()[:10]
 
