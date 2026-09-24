@@ -118,7 +118,7 @@ def process_home(data: dict[str, Any]):
             continue
 
         slide = {
-            "img": f"media/publications/{img_name}",
+            "img": f"media/publications/{img_name}{media_version(img_base, img_name)}",
             "text": pub["title"],
             "url": pub["url"],
         }
@@ -206,7 +206,7 @@ def process_publications(data: dict[str, Any]):
                 pdf_file = file_base / f"{filename}.pdf"
                 img_name = image_for(file_base, filename)
                 if img_name is not None:
-                    pub["imgfile"] = img_name
+                    pub["imgfile"] = img_name + media_version(file_base, img_name)
                 pub["pdf_label"] = "PDF"
                 if not pdf_file.exists():
                     #only open-access PDFs are hosted; a closed paper may still have its
@@ -605,6 +605,19 @@ def image_for(base: Path, stem: str) -> str | None:
         if (base / f"{stem}{ext}").exists():
             return f"{stem}{ext}"
     return None
+
+
+def media_version(base: Path, name: str) -> str:
+    """?v=<hash> for a media file served under a name that never changes.
+
+    A re-rendered snapshot keeps its filename and the server sends
+    max-age=14400, so without this a reader keeps the old picture for hours
+    after a release. Same idea as asset_version, per file."""
+    try:
+        return "?v=" + hashlib.sha1((base / name).read_bytes()).hexdigest()[:10]
+    except OSError:
+        return ""
+
 
 
 def asset_version() -> str:
