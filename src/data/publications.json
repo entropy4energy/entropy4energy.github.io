@@ -21,7 +21,7 @@
       "enw": "%0 Journal Article\n%A Oses, Corey\n%A Rost, Christina M.\n%A Heron, John T.\n%A Arr\u00f3yave, Raymundo\n%T Editorial: ``High-Entropy Materials''\n%J Materials Letters\n%P 141613\n%D 2026\n%R 10.1016/j.matlet.2026.141613"
     },
     {
-      "status": "press",
+      "status": "published",
       "year": 2026,
       "title": "Structural benchmarks overlook density-of-states errors in machine-learned interatomic potentials",
       "authors": [
@@ -35,13 +35,14 @@
       ],
       "journal": "APL Machine Learning",
       "volume": "4",
+      "pages": "036117",
       "doi": "10.1063/5.0339982",
       "filename": "10.1063_5.0339982",
       "open_access": true,
-      "bibtex": "@article{tseng2026structural,\n  author  = {Tseng, Shao-Yu and Han, Guangshuai and Li, Tianhao and Xu, Xiao and Hu, Jiayue and Qiu, Gengyao and Oses, Corey},\n  title   = {Structural benchmarks overlook density-of-states errors in machine-learned interatomic potentials},\n  journal = {APL Machine Learning},\n  volume  = {4},\n  year    = {2026},\n  doi     = {10.1063/5.0339982}\n}",
-      "ris": "TY  - JOUR\nAU  - Tseng, Shao-Yu\nAU  - Han, Guangshuai\nAU  - Li, Tianhao\nAU  - Xu, Xiao\nAU  - Hu, Jiayue\nAU  - Qiu, Gengyao\nAU  - Oses, Corey\nTI  - Structural benchmarks overlook density-of-states errors in machine-learned interatomic potentials\nJO  - APL Machine Learning\nJF  - APL Machine Learning\nVL  - 4\nPY  - 2026\nDO  - 10.1063/5.0339982\nUR  - https://doi.org/10.1063/5.0339982\nER  -",
-      "csl": "{\n \"type\": \"article-journal\",\n \"title\": \"Structural benchmarks overlook density-of-states errors in machine-learned interatomic potentials\",\n \"author\": [\n  {\"family\": \"Tseng\", \"given\": \"Shao-Yu\"},\n  {\"family\": \"Han\", \"given\": \"Guangshuai\"},\n  {\"family\": \"Li\", \"given\": \"Tianhao\"},\n  {\"family\": \"Xu\", \"given\": \"Xiao\"},\n  {\"family\": \"Hu\", \"given\": \"Jiayue\"},\n  {\"family\": \"Qiu\", \"given\": \"Gengyao\"},\n  {\"family\": \"Oses\", \"given\": \"Corey\"}\n ],\n \"issued\": {\"date-parts\": [[2026]]},\n \"container-title\": \"APL Machine Learning\",\n \"volume\": \"4\",\n \"DOI\": \"10.1063/5.0339982\"\n}",
-      "enw": "%0 Journal Article\n%A Tseng, Shao-Yu\n%A Han, Guangshuai\n%A Li, Tianhao\n%A Xu, Xiao\n%A Hu, Jiayue\n%A Qiu, Gengyao\n%A Oses, Corey\n%T Structural benchmarks overlook density-of-states errors in machine-learned interatomic potentials\n%J APL Machine Learning\n%V 4\n%D 2026\n%R 10.1063/5.0339982"
+      "bibtex": "@article{tseng2026structural,\n  author  = {Tseng, Shao-Yu and Han, Guangshuai and Li, Tianhao and Xu, Xiao and Hu, Jiayue and Qiu, Gengyao and Oses, Corey},\n  title   = {Structural benchmarks overlook density-of-states errors in machine-learned interatomic potentials},\n  journal = {APL Machine Learning},\n  volume  = {4},\n  pages   = {036117},\n  year    = {2026},\n  doi     = {10.1063/5.0339982}\n}",
+      "ris": "TY  - JOUR\nAU  - Tseng, Shao-Yu\nAU  - Han, Guangshuai\nAU  - Li, Tianhao\nAU  - Xu, Xiao\nAU  - Hu, Jiayue\nAU  - Qiu, Gengyao\nAU  - Oses, Corey\nTI  - Structural benchmarks overlook density-of-states errors in machine-learned interatomic potentials\nJO  - APL Machine Learning\nJF  - APL Machine Learning\nVL  - 4\nSP  - 036117\nPY  - 2026\nDO  - 10.1063/5.0339982\nUR  - https://doi.org/10.1063/5.0339982\nER  -",
+      "csl": "{\n \"type\": \"article-journal\",\n \"title\": \"Structural benchmarks overlook density-of-states errors in machine-learned interatomic potentials\",\n \"author\": [\n  {\"family\": \"Tseng\", \"given\": \"Shao-Yu\"},\n  {\"family\": \"Han\", \"given\": \"Guangshuai\"},\n  {\"family\": \"Li\", \"given\": \"Tianhao\"},\n  {\"family\": \"Xu\", \"given\": \"Xiao\"},\n  {\"family\": \"Hu\", \"given\": \"Jiayue\"},\n  {\"family\": \"Qiu\", \"given\": \"Gengyao\"},\n  {\"family\": \"Oses\", \"given\": \"Corey\"}\n ],\n \"issued\": {\"date-parts\": [[2026]]},\n \"container-title\": \"APL Machine Learning\",\n \"volume\": \"4\",\n \"page\": \"036117\",\n \"DOI\": \"10.1063/5.0339982\"\n}",
+      "enw": "%0 Journal Article\n%A Tseng, Shao-Yu\n%A Han, Guangshuai\n%A Li, Tianhao\n%A Xu, Xiao\n%A Hu, Jiayue\n%A Qiu, Gengyao\n%A Oses, Corey\n%T Structural benchmarks overlook density-of-states errors in machine-learned interatomic potentials\n%J APL Machine Learning\n%V 4\n%P 036117\n%D 2026\n%R 10.1063/5.0339982"
     },
     {
       "status": "published",

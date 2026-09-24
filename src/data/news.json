@@ -1,5 +1,18 @@
 [
   {
+    "date": [
+      2026,
+      9,
+      23
+    ],
+    "title": "Prof. Oses wins $10,000 in the <strong><em>Advanced Nuclear Energy Technology Challenge</em></strong>",
+    "message": "Prof. Oses was named a winner of the <strong><em>Advanced Nuclear Energy Technology Challenge</em></strong> and received a $10,000 award, following the live finalist pitch at the Defense TechConnect Innovation Summit in National Harbor, Maryland on September 23, 2026. The challenge is presented by TechConnect and powered by ATI, in partnership with MathWorks, and looks for technologies that make nuclear energy smaller, smarter, faster to deploy, and easier to integrate into modern energy systems. Details are on the <a href=\"https://events.techconnect.org/DTCFall/Advanced-Nuclear-Energy-Technology-Challenge/\" target=\"_blank\">challenge page</a>.",
+    "picture_alt": "Advanced Nuclear Energy Technology Challenge winner award",
+    "pictures": [
+      "pic_oses_techconnect_nuclear_2026.webp"
+    ]
+  },
+  {
     "date": [2026, 9, 14],
     "title": "Registration open for <strong><em>AI-Enabled Energy Systems</em></strong>",
     "message": "<strong><em>AI-Enabled Energy Systems: Technologies, Intelligence, and Security</em></strong> is a one-day conference on October 28, 2026 in the Glass Pavilion on the Homewood campus. Invited talks from academia, industry, and government run through the morning, and an AI + Energy roadmap workshop follows in the afternoon. Speakers are Dr. Jessica Granderson (Lawrence Berkeley National Laboratory), Prof. Stefano Sanvito (Trinity College Dublin), and Dr. Jasmine Brewer (Quantinuum). Details and registration are on the <a href=\"https://ai.jhu.edu/event/ai-enabled-energy-systems-conference-technologies-intelligence-and-security/\" target=\"_blank\">event page</a>.",
