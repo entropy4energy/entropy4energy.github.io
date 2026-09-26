@@ -353,6 +353,16 @@ $sg-cats: (
     }
   }
 
+  .sg-disclaimer {
+    border-top: 1px solid $color-line;
+    color: $color-muted;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    margin: 0.7rem 0 0;
+    padding-top: 0.5rem;
+    text-transform: uppercase;
+  }
+
   .sg-after {
     display: flex;
     flex-wrap: wrap;
