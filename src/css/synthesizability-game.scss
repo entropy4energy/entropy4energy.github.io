@@ -1,0 +1,579 @@
+@use 'sass:list';
+@use 'tokens' as *;
+
+// Synthesizability Game. Rules are scoped to #sg-app; the shared shell is
+// unchanged.
+
+$sg-yes: #1d7a46;
+$sg-no: #a3302a;
+
+#sg-app {
+  color: $color-ink;
+
+  button {
+    font: inherit;
+  }
+
+  :focus-visible {
+    outline: 3px solid $color-main-4;
+    outline-offset: 2px;
+  }
+
+  .sg-lead {
+    font-size: 1.08rem;
+  }
+
+  .sg-steps {
+    margin: 0.75rem 0 1.25rem;
+    padding-left: 1.4rem;
+
+    li {
+      margin: 0.2rem 0;
+    }
+  }
+
+  h2 {
+    margin-top: 2rem;
+  }
+}
+
+// Category colors, shared by table cells, chips and the legend.
+$sg-cats: (
+  a: (#cfe9ef, #6aa8b8),
+  e: (#ffdede, #d89898),
+  t: (#e2d9f0, #9a88b8),
+  p: (#d6eed6, #7aac7a),
+  m: (#efe6d6, #b8a080),
+  n: (#d8e6ff, #7a9ed4),
+  g: (#ffe0f4, #d898c8),
+  l: (#fbf0c8, #c9ac4a),
+);
+
+@each $key, $pair in $sg-cats {
+  #sg-app .sg-cat-#{$key} {
+    background-color: list.nth($pair, 1);
+    border-color: list.nth($pair, 2);
+  }
+}
+
+#sg-app {
+  // Desktop: sites and result beside the lattice picture, table below.
+  // Phone: sites, then the table right under them, then result and picture.
+  .sg-board {
+    align-items: start;
+    display: grid;
+    gap: 0.9rem 1.25rem;
+    grid-template-areas:
+      "controls lattice"
+      "outcome lattice"
+      "table table";
+    grid-template-columns: minmax(0, 1fr) minmax(200px, 36%);
+    margin-bottom: 1rem;
+  }
+
+  .sg-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    grid-area: controls;
+    min-width: 0;
+  }
+
+  .sg-outcome {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    grid-area: outcome;
+    min-width: 0;
+  }
+
+  .sg-tablebox {
+    grid-area: table;
+    min-width: 0;
+  }
+
+  .sg-lattice {
+    grid-area: lattice;
+  }
+
+  button {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  // Site picker and Check button
+  .sg-target,
+  .sg-check {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .sg-target-label {
+    color: $color-muted;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-right: 0.25rem;
+    text-transform: uppercase;
+  }
+
+  .sg-target-btn,
+  .sg-btn {
+    background: $color-main-2;
+    border: 1px solid $color-line-2;
+    border-radius: 6px;
+    color: $color-main-1;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0.45rem 0.95rem;
+
+    @media (hover: hover) {
+      &:hover:not(:disabled) {
+        border-color: $color-main-1;
+        background: $color-surface-2;
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  .sg-target-btn[aria-pressed="true"],
+  .sg-btn-primary {
+    background: $color-main-1;
+    border-color: $color-main-1;
+    color: $color-main-2;
+
+    @media (hover: hover) {
+      &:hover:not(:disabled) {
+        background: $color-main-5;
+        border-color: $color-main-5;
+        color: $color-main-2;
+      }
+    }
+  }
+
+  .sg-check .sg-btn {
+    font-size: 1.05rem;
+    padding: 0.55rem 2rem;
+  }
+
+  // Sites
+  .sg-sites {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sg-site {
+    background: $color-surface-2;
+    border: 2px dashed $color-line-2;
+    border-radius: 8px;
+    cursor: pointer;
+    min-height: 7.5rem;
+    padding: 0.5rem 0.65rem 0.65rem;
+    transition: border-color 0.15s;
+
+    &.is-active {
+      border-color: $color-main-1;
+      border-style: solid;
+    }
+
+    &.is-over {
+      background: #e8eef8;
+      border-color: $color-main-5;
+    }
+  }
+
+  .sg-site-head {
+    align-items: baseline;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+
+  .sg-site-title {
+    border: 0;
+    color: $color-main-1;
+    font-size: 1.05rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .sg-link {
+    background: none;
+    border: 0;
+    color: $color-main-5;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0.1rem 0.2rem;
+    pointer-events: auto;
+    text-decoration: underline;
+
+    &:disabled {
+      color: $color-muted;
+      cursor: default;
+      opacity: 0.5;
+      text-decoration: none;
+    }
+  }
+
+  .sg-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin: 0;
+    }
+  }
+
+  .sg-site-empty {
+    color: $color-muted;
+    display: none;
+    font-size: 0.85rem;
+    margin: 0.5rem 0 0;
+    pointer-events: none;
+  }
+
+  .sg-site.is-empty .sg-site-empty {
+    display: block;
+  }
+
+  .sg-chip {
+    align-items: center;
+    border: 1px solid;
+    border-radius: 999px;
+    color: $color-ink;
+    cursor: pointer;
+    display: inline-flex;
+    font-weight: 600;
+    gap: 0.35rem;
+    padding: 0.2rem 0.55rem 0.2rem 0.35rem;
+
+    .sg-el-dot {
+      margin: 0;
+      width: calc(5px + var(--sg-d) * 13px);
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  .sg-chip-x {
+    color: $color-muted;
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  &.is-locked .sg-chip-x {
+    display: none;
+  }
+
+  // Result
+  .sg-result {
+    border: 1px solid $color-line-2;
+    border-radius: 8px;
+    padding: 0.75rem 1rem 0.85rem;
+  }
+
+  .sg-score-row {
+    align-items: baseline;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .sg-score-label {
+    font-weight: 700;
+    margin-right: auto;
+  }
+
+  .sg-score {
+    color: $color-line-2;
+    font-family: 'Hopkins Slab', Georgia, serif;
+    font-size: 2.2rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .sg-score-max {
+    color: $color-muted;
+  }
+
+  .sg-meter {
+    background: $color-line;
+    border-radius: 999px;
+    height: 10px;
+    margin: 0.6rem 0 0.5rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .sg-meter-fill {
+    background: $color-muted;
+    height: 100%;
+    transition: width 0.6s ease-out;
+    width: 0;
+  }
+
+  .sg-meter-mark {
+    background: $color-ink;
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    width: 2px;
+  }
+
+  .sg-verdict {
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .sg-tally {
+    color: $color-muted;
+    font-size: 0.9rem;
+    margin: 0.25rem 0 0;
+  }
+
+  .sg-note {
+    color: $color-muted;
+    font-size: 0.85rem;
+    margin: 0.7rem 0 0;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  .sg-disclaimer {
+    border-top: 1px solid $color-line;
+    color: $color-muted;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    margin: 0.7rem 0 0;
+    padding-top: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .sg-after {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  .sg-result.is-yes {
+    border-color: $sg-yes;
+
+    .sg-score,
+    .sg-verdict {
+      color: $sg-yes;
+    }
+
+    .sg-meter-fill {
+      background: $sg-yes;
+    }
+  }
+
+  .sg-result.is-no {
+    border-color: $sg-no;
+
+    .sg-score,
+    .sg-verdict {
+      color: $sg-no;
+    }
+
+    .sg-meter-fill {
+      background: $sg-no;
+    }
+  }
+
+  // Lattice picture
+  .sg-lattice {
+    margin: 0;
+
+    img {
+      display: block;
+      height: auto;
+      width: 100%;
+    }
+
+    figcaption {
+      color: $color-muted;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  }
+
+  // Periodic table
+  .sg-table-wrap {
+    margin: 0.5rem 0 0;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+
+  .sg-table {
+    display: grid;
+    gap: 3px;
+    grid-template-columns: repeat(18, minmax(34px, 1fr));
+    min-width: 640px;
+  }
+
+  .sg-gap {
+    grid-column: 1 / -1;
+    height: 0.4rem;
+  }
+
+  .sg-el {
+    align-items: center;
+    aspect-ratio: 1 / 1.1;
+    border: 1px solid;
+    border-radius: 4px;
+    color: $color-ink;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 0;
+    padding: 2px 0 3px;
+    position: relative;
+
+    @media (hover: hover) {
+      &:hover:not(:disabled) {
+        filter: brightness(0.94);
+      }
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+
+    &.is-placed {
+      box-shadow: inset 0 0 0 2px $color-main-1;
+    }
+  }
+
+  .sg-el-dot {
+    aspect-ratio: 1;
+    background: #6495ed;
+    border-radius: 50%;
+    display: block;
+    flex: none;
+    margin: auto 0;
+    width: calc(var(--sg-d) * 62%);
+  }
+
+  .sg-el-sym {
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .sg-el-badge {
+    background: $color-main-1;
+    font-style: italic;
+    border-radius: 3px;
+    color: $color-main-2;
+    display: none;
+    font-size: 0.6rem;
+    font-weight: 700;
+    left: 2px;
+    line-height: 1;
+    padding: 2px 3px;
+    position: absolute;
+    top: 2px;
+  }
+
+  .sg-el.is-placed .sg-el-badge {
+    display: block;
+  }
+
+  .sg-scroll-hint {
+    color: $color-muted;
+    display: none;
+    font-size: 0.8rem;
+    margin: 0.5rem 0 0;
+  }
+
+  .sg-legend {
+    color: $color-muted;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    gap: 0.35rem 1rem;
+    list-style: none;
+    margin: 0.75rem 0 0;
+    padding: 0;
+
+    li {
+      align-items: center;
+      display: inline-flex;
+      gap: 0.35rem;
+      margin: 0;
+    }
+  }
+
+  .sg-swatch {
+    border: 1px solid;
+    border-radius: 3px;
+    height: 12px;
+    width: 12px;
+  }
+
+  .sg-dot {
+    background: #6495ed;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+  }
+}
+
+@media screen and (max-width: $small-threshold) {
+  #sg-app .sg-board {
+    grid-template-columns: minmax(0, 1fr) minmax(160px, 34%);
+  }
+}
+
+@media screen and (max-width: $mobile-threshold) {
+  #sg-app {
+    .sg-board {
+      grid-template-areas:
+        "controls"
+        "table"
+        "outcome"
+        "lattice";
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sg-lattice {
+      margin: 0 auto;
+      max-width: 260px;
+    }
+
+    .sg-site {
+      min-height: 5.5rem;
+      padding: 0.4rem 0.5rem 0.5rem;
+    }
+
+    .sg-site-empty {
+      font-size: 0.8rem;
+    }
+
+    .sg-scroll-hint {
+      display: block;
+      margin-top: 0;
+    }
+  }
+}

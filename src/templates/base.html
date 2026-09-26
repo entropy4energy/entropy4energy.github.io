@@ -20,6 +20,7 @@
     "news": "News from the Entropy for Energy Laboratory at Johns Hopkins University.",
     "jobs": "Open positions and how to join the Entropy for Energy Laboratory at Johns Hopkins University: PhD students, postdoctoral researchers, and undergraduates.",
     "teaching": "Courses, workshops, outreach, service, and awards of the Entropy for Energy Laboratory and Corey Oses at Johns Hopkins University.",
+    "synthesizability-game": "Synthesizability Game: choose elements for the two cation sites of a high-entropy nuclear waste form and see whether the composition is predicted to be synthesizable. From the Entropy for Energy Laboratory at Johns Hopkins University.",
     "workshops": "Workshops and conferences organized by the Entropy for Energy Laboratory at Johns Hopkins: data-driven materials modeling, quantum computing, AI and energy, and research translation.",
     "tools": "Databases and data platforms built by the Entropy for Energy Laboratory at Johns Hopkins University: CHAOS and LOOP.",
   } %}
@@ -30,7 +31,11 @@
   {# The site is served from two hosts: entropy4energy.ai carries the lab, s4e.ai
      carries the tools and LOOP. Every page names the host it belongs to, so the
      two copies are not read as duplicates. #}
-  {% set canonical_host = "https://s4e.ai/" if data.section == "tools" or data.parent == "tools" else "https://entropy4energy.ai/" %}
+  {# Named page by page rather than by family: the Synthesizability Game sits
+     under Data and Tools on s4e.ai and under Teaching on the lab site, and the
+     lab copy is the canonical one. #}
+  {% set tools_pages = ["tools", "chaos", "loop", "fusion-mirrors"] %}
+  {% set canonical_host = "https://s4e.ai/" if data.section in tools_pages else "https://entropy4energy.ai/" %}
   {% set canonical_url = canonical_host ~ ("" if data.section == "home" else data.section) %}
   <link rel="canonical" href="{{ canonical_url }}">
   <meta property="og:url" content="{{ canonical_url }}">

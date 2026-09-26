@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block head_extra %}
+  <link rel="stylesheet" href="css/synthesizability-game.css?v={{ data.asset_version }}">
+{% endblock %}
+
+{% block content %}
+<div id="sg-app">
+  <h1>Synthesizability Game</h1>
+  <p class="sg-lead">
+    A high-entropy ceramic for nuclear waste can contain several elements on
+    each of two cation sites.
+    Some compositions are synthesizable; others are not.
+    Your goal is to find one that is.
+  </p>
+
+  <ol class="sg-steps" id="how">
+    <li>Choose the <i>A</i> or <i>B</i> site, then select elements from the
+      periodic table.
+      You can also drag elements directly onto a site.</li>
+    <li>Press Check to calculate the synthesizability score, from 0 to 100.</li>
+    <li>A score of 50 or higher is classified as synthesizable. If the score is
+      below 50, change the elements and try again.</li>
+  </ol>
+
+  <div class="sg-board">
+    <section class="sg-controls" aria-label="Composition">
+      <div class="sg-target" role="group" aria-label="Site to fill">
+        <span class="sg-target-label">Adding to</span>
+        <button type="button" class="sg-target-btn" data-site="a" aria-pressed="true"><i>A</i> site</button>
+        <button type="button" class="sg-target-btn" data-site="b" aria-pressed="false"><i>B</i> site</button>
+      </div>
+
+      <div class="sg-sites">
+        <div class="sg-site is-active" data-site="a">
+          <div class="sg-site-head">
+            <h2 class="sg-site-title"><i>A</i> site</h2>
+            <button type="button" class="sg-link" data-clear="a">Clear</button>
+          </div>
+          <ul class="sg-chips" aria-label="Elements on the A site"></ul>
+          <p class="sg-site-empty">Tap elements to add them here.</p>
+        </div>
+        <div class="sg-site" data-site="b">
+          <div class="sg-site-head">
+            <h2 class="sg-site-title"><i>B</i> site</h2>
+            <button type="button" class="sg-link" data-clear="b">Clear</button>
+          </div>
+          <ul class="sg-chips" aria-label="Elements on the B site"></ul>
+          <p class="sg-site-empty">Tap elements to add them here.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="sg-tablebox">
+      <p class="sg-scroll-hint">Swipe sideways to see the whole table.</p>
+      <div class="sg-table-wrap">
+        <div class="sg-table" id="sg-table" aria-label="Periodic table"></div>
+      </div>
+      <ul class="sg-legend" aria-label="Element groups">
+        <li><span class="sg-swatch sg-cat-a"></span>Alkali metals</li>
+        <li><span class="sg-swatch sg-cat-e"></span>Alkaline earth metals</li>
+        <li><span class="sg-swatch sg-cat-t"></span>Transition metals</li>
+        <li><span class="sg-swatch sg-cat-p"></span>Post-transition metals</li>
+        <li><span class="sg-swatch sg-cat-m"></span>Metalloids</li>
+        <li><span class="sg-swatch sg-cat-n"></span>Nonmetals</li>
+        <li><span class="sg-swatch sg-cat-g"></span>Noble gases</li>
+        <li><span class="sg-swatch sg-cat-l"></span>Lanthanides</li>
+        <li><span class="sg-dot"></span>Circle size: relative ionic radius</li>
+      </ul>
+    </div>
+
+    <section class="sg-outcome" aria-label="Result">
+      <div class="sg-check">
+        <button type="button" class="sg-btn sg-btn-primary" data-action="check" disabled>Check</button>
+      </div>
+
+      <div class="sg-result" aria-live="polite">
+        <div class="sg-score-row">
+          <span class="sg-score-label">Synthesizability</span>
+          <span class="sg-score" id="sg-score">??</span>
+          <span class="sg-score-max">/ 100</span>
+        </div>
+        <div class="sg-meter" aria-hidden="true">
+          <div class="sg-meter-fill"></div>
+          <div class="sg-meter-mark"></div>
+        </div>
+        <p class="sg-verdict" id="sg-verdict">Press Check to see the score.</p>
+        <p class="sg-tally" id="sg-tally" hidden></p>
+        <div class="sg-after" hidden>
+          <button type="button" class="sg-btn" data-action="edit">Change elements</button>
+          <button type="button" class="sg-btn" data-action="new">Start over</button>
+        </div>
+        <p class="sg-note" id="sg-predict" hidden></p>
+        <p class="sg-disclaimer">For educational purposes only.</p>
+      </div>
+    </section>
+
+    <figure class="sg-lattice">
+      <img id="sg-lattice-img" src="media/tools/synthesizability-game/lattice-start.webp"
+        width="800" height="686"
+        alt="Cartoon unit cell of a ceramic with one element on each cation site">
+      <figcaption id="sg-lattice-caption">The crystal before mixing.</figcaption>
+    </figure>
+  </div>
+
+  <h2>About the game</h2>
+  <p>
+    We presented this game at the 2026 ARPA-E Energy Innovation Summit in San
+    Diego.
+  </p>
+  <p>
+    <strong>This game is for educational purposes only.</strong>
+    Every element carries a weight for the <i>A</i> site and a weight for the
+    <i>B</i> site.
+    We set those weights by hand for the demonstration, from chemical judgment
+    about which elements suit which site, and they combine into one score
+    between 0 and 100.
+    A research question about a specific composition needs first-principles
+    calculations for that composition, followed by synthesis and testing.
+  </p>
+  <p>
+    The research behind the game is published in
+    <a href="https://doi.org/10.1021/prechem.5c00467" target="_blank" rel="noopener">Xu
+    <i>et al.</i>, Stabilizing iodine in pyrochlore: toward new nuclear waste
+    forms, <i>Precis. Chem.</i> <b>4</b>, 1211 (2026)</a>, and described on the
+    <a href="research#nuclear">Research page</a>.
+  </p>
+  <noscript><p>Enable JavaScript to play the game.</p></noscript>
+</div>
+{% endblock %}
+{% block body_extra %}<script src="js/synthesizability-game.js?v={{ data.asset_version }}" defer></script>{% endblock %}

@@ -49,6 +49,7 @@ SITEMAP = {
         ("teaching", 0.7),
         ("news", 0.7),
         ("jobs", 0.7),
+        ("synthesizability-game", 0.6),
     ],
     TOOLS_HOST: [
         ("tools", 0.9),
