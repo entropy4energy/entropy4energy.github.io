@@ -14,6 +14,17 @@ TEMPLATEDIR=$(SRCDIR)/templates
 # Build file
 BUILDPY=$(SRCDIR)/build.py
 
+# Pages and assets that only one branch builds. dev carries CHAOS, LOOP and
+# Fusion Mirrors and sets these in its own branch.mk, which main does not have,
+# so the two branches never edit the same line and merging main into dev stays
+# clean.
+EXTRA_PREREQS=
+EXTRA_HTMLFILES=
+EXTRA_CSSTARGETS=
+EXTRA_JSTARGETS=
+EXTRA_JSCOPY=
+-include branch.mk
+
 # HTML
 HTMLC=$(NODEBIN)/html-minifier-terser
 HTMLCFLAGS=--collapse-whitespace --collapse-inline-tag-whitespace \
@@ -53,8 +64,8 @@ all: $(BUILDTARGETS)
 # HTML targets
 # HTML embeds a content hash of the CSS and JS sources (cache busting),
 # so every page must be rebuilt when those change.
-PREREQSALL=$(BUILDPY) $(DATADIR)/news.json $(wildcard $(DATADIR)/tools.json) $(TEMPLATEDIR)/base.html $(PARTIALSRC) $(wildcard $(CSSSRC)/*.scss) $(wildcard $(JSSRC)/*.js)
-HTMLFILES=index jobs news publications research teaching team workshops tools chaos fusion-mirrors synthesizability-game
+PREREQSALL=$(BUILDPY) $(DATADIR)/news.json $(TEMPLATEDIR)/base.html $(PARTIALSRC) $(wildcard $(CSSSRC)/*.scss) $(wildcard $(JSSRC)/*.js) $(EXTRA_PREREQS)
+HTMLFILES=index jobs news publications research teaching team workshops synthesizability-game $(EXTRA_HTMLFILES)
 html: $(foreach HTML,$(HTMLFILES),$(BLDDIR)/$(HTML).html)
 
 $(BLDDIR)/%.html: $(PREREQSALL) $(TEMPLATEDIR)/%.html $(DATADIR)/%.json
@@ -101,7 +112,8 @@ $(PARTIALBLD)/nav.html: $(PREREQSALL) $(wildcard $(DATADIR)/tools.json) $(wildca
 # CSS targets
 # main.css is the site stylesheet; shell.css holds only the shell rules and
 # is loaded by LOOP together with the fragments above.
-css: $(CSSBLD)/academicons-1.9.1 $(CSSBLD)/main.css $(CSSBLD)/shell.css $(CSSBLD)/fusion-mirrors.css $(CSSBLD)/synthesizability-game.css
+CSSTARGETS=$(CSSBLD)/academicons-1.9.1 $(CSSBLD)/main.css $(CSSBLD)/shell.css $(CSSBLD)/synthesizability-game.css $(EXTRA_CSSTARGETS)
+css: $(CSSTARGETS)
 
 $(CSSBLD)/%.css: $(CSSSRC)/%.scss $(wildcard $(CSSSRC)/_*.scss)
 	@mkdir -p $(@D)
@@ -112,15 +124,14 @@ $(CSSBLD)/%:
 	$(RSYNC) $(@:$(BLDDIR)/%=$(SRCDIR)/%) $(CSSBLD)/
 
 # JavaScript
-js: $(JSBLD)/slideshow.js $(JSBLD)/jobs.js $(JSBLD)/citations.js $(JSBLD)/cite.js $(JSBLD)/fusion-mirrors.js $(JSBLD)/synthesizability-game.js
+JSTARGETS=$(JSBLD)/slideshow.js $(JSBLD)/jobs.js $(JSBLD)/citations.js $(JSBLD)/cite.js $(JSBLD)/synthesizability-game.js $(EXTRA_JSTARGETS)
+js: $(JSTARGETS)
 
-# Keep external catalogue field names intact (Closure ADVANCED renames them).
-$(JSBLD)/fusion-mirrors.js: $(JSSRC)/fusion-mirrors.js
-	@mkdir -p $(@D)
-	cp $< $@
-
-# Copied as written too: this is the build that was tested in a browser.
-$(JSBLD)/synthesizability-game.js: $(JSSRC)/synthesizability-game.js
+# Scripts copied as written, skipping Closure: the build tested in a browser is
+# the build that ships, and ADVANCED renames the external field names some of
+# them read.
+JSCOPY=$(JSBLD)/synthesizability-game.js $(EXTRA_JSCOPY)
+$(JSCOPY): $(JSBLD)/%.js: $(JSSRC)/%.js
 	@mkdir -p $(@D)
 	cp $< $@
 
