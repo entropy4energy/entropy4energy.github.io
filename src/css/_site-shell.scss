@@ -370,6 +370,11 @@ $site-products: chaos loop;
     margin: 1rem 0;
     order: -1;
     position: static;
+    // The news strip below is a row of fixed-width items, and the wrapper is a
+    // column flex box aligned to start, so without these the card takes its
+    // max-content width and widens the whole page past a phone screen.
+    min-width: 0;
+    width: 100%;
 
     &-card {
       padding: 0.6rem 0.9rem;

@@ -8,18 +8,18 @@
 <div id="sg-app">
   <h1>Synthesizability Game</h1>
   <p class="sg-lead">
-    A high-entropy ceramic for nuclear waste holds several elements on each
-    of its two cation sites.
-    Some of these mixtures can be made in the laboratory and some cannot.
-    Find a combination of elements that can be made.
+    A high-entropy ceramic for nuclear waste can contain several elements on
+    each of two cation sites.
+    Some compositions are synthesizable; others are not.
+    Your goal is to find one that is.
   </p>
 
   <ol class="sg-steps" id="how">
-    <li>Pick the A site or the B site, then tap elements in the periodic
-      table to add them. Elements can also be dragged onto a site.</li>
-    <li>Press Check to see the synthesizability score, from 0 to 100.</li>
-    <li>A score of 50 or more means the composition can be made. Below 50,
-      change the elements and check again.</li>
+    <li>Choose the A or B site, then select elements from the periodic table.
+      You can also drag elements directly onto a site.</li>
+    <li>Press Check to calculate the synthesizability score, from 0 to 100.</li>
+    <li>A score of 50 or higher is classified as synthesizable. If the score is
+      below 50, change the elements and try again.</li>
   </ol>
 
   <div class="sg-board">
@@ -89,6 +89,7 @@
           <button type="button" class="sg-btn" data-action="edit">Change elements</button>
           <button type="button" class="sg-btn" data-action="new">Start over</button>
         </div>
+        <p class="sg-note" id="sg-predict" hidden></p>
       </div>
     </section>
 
@@ -102,8 +103,24 @@
 
   <h2>About the game</h2>
   <p>
-    The group presented this game at the 2026 ARPA-E Energy Innovation Summit
-    in San Diego.
+    We presented this game at the 2026 ARPA-E Energy Innovation Summit in San
+    Diego.
+  </p>
+  <p>
+    Every element carries a weight for the A site and a weight for the B site.
+    We set those weights by hand for the demonstration, from chemical judgment
+    about which elements suit which site, and they combine into one score
+    between 0 and 100.
+    Use the scores for teaching and demonstration.
+    A research question about a specific composition needs first-principles
+    calculations for that composition, followed by synthesis and testing.
+  </p>
+  <p>
+    The research behind the game is published in
+    <a href="https://doi.org/10.1021/prechem.5c00467" target="_blank" rel="noopener">Xu
+    <i>et al.</i>, Stabilizing iodine in pyrochlore: toward new nuclear waste
+    forms, <i>Precis. Chem.</i> <b>4</b>, 1211 (2026)</a>, and described on the
+    <a href="research#nuclear">Research page</a>.
   </p>
   <noscript><p>Enable JavaScript to play the game.</p></noscript>
 </div>

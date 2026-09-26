@@ -343,6 +343,16 @@ $sg-cats: (
     margin: 0.25rem 0 0;
   }
 
+  .sg-note {
+    color: $color-muted;
+    font-size: 0.85rem;
+    margin: 0.7rem 0 0;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
   .sg-after {
     display: flex;
     flex-wrap: wrap;
@@ -522,14 +532,6 @@ $sg-cats: (
 @media screen and (max-width: $small-threshold) {
   #sg-app .sg-board {
     grid-template-columns: minmax(0, 1fr) minmax(160px, 34%);
-  }
-
-  // The Latest News strip above the page is a row of fixed-width items; without
-  // this it widens the whole layout past a phone or tablet screen (same fix as
-  // Fusion Mirrors).
-  body#synthesizability-game .main-content-wrapper > .sidebar {
-    min-width: 0;
-    width: 100%;
   }
 }
 

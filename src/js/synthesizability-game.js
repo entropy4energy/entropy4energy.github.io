@@ -65,6 +65,7 @@
   var scoreEl = document.getElementById('sg-score');
   var verdictEl = document.getElementById('sg-verdict');
   var tallyEl = document.getElementById('sg-tally');
+  var predictEl = document.getElementById('sg-predict');
   var latticeImg = document.getElementById('sg-lattice-img');
   var latticeCap = document.getElementById('sg-lattice-caption');
   var result = app.querySelector('.sg-result');
@@ -234,8 +235,11 @@
     result.classList.add('is-revealed');
     result.classList.toggle('is-yes', made);
     result.classList.toggle('is-no', !made);
-    verdictEl.textContent = made ? 'Synthesizable. This composition can be made.' :
-      'Not synthesizable. Change the elements and check again.';
+    verdictEl.textContent = made ? 'Synthesizable.' :
+      'Not synthesizable. Change the elements and try again.';
+    predictEl.textContent = made ? 'This composition is predicted to form.' :
+      'This composition is not predicted to form.';
+    predictEl.hidden = false;
     tallyEl.hidden = false;
     tallyEl.textContent = 'Synthesizable compositions found: ' + state.found + ' in ' + state.tries +
       (state.tries === 1 ? ' try' : ' tries');
@@ -254,6 +258,7 @@
     fill.style.width = '0';
     result.classList.remove('is-revealed', 'is-yes', 'is-no');
     verdictEl.textContent = 'Press Check to see the score.';
+    predictEl.hidden = true;
     after.hidden = true;
     setLattice('start');
     render();
