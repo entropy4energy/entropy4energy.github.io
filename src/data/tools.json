@@ -1,5 +1,5 @@
 {
-  "intro": "Databases and platforms the group builds and runs for the research community.",
+  "intro": "Databases and research tools developed by the group.",
   "products": [
     {
       "id": "chaos",
@@ -7,7 +7,7 @@
       "kind": "Database",
       "full_name": "Combinatorial High-throughput Analysis and Optimization for Synthesis",
       "href": "chaos",
-      "description": "A first-principles database of high-entropy oxides with their ordered binary and ternary precursors and a library of structural and chemical descriptors. Bulk downloads by number of cations, a REST API, and Chaos-Agent, a natural-language interface to the data.",
+      "description": "A first-principles database of high-entropy oxides, their ordered binary and ternary precursors, and structural and chemical descriptors. Data are available for bulk download or through the REST API. Chaos-Agent provides a natural-language interface to the database.",
       "links": [
         {
           "label": "API docs",
@@ -27,7 +27,7 @@
       "full_name": "Learning and Optimization Platform",
       "href": "https://s4e.ai/loop/",
       "external": true,
-      "description": "A shared platform for high-entropy materials data: browse experimental, literature, and computational records, upload new results, run synthesizability predictions, and pull everything through an API with personal keys.",
+      "description": "A platform for high-entropy materials data. Browse experimental, literature, and computational results, upload new data, run synthesizability predictions, or access the data through the API.",
       "links": [
         {
           "label": "Browse",
@@ -47,7 +47,7 @@
       "kind": "Optical-data explorer",
       "full_name": "DFT optical constants and reflectivity",
       "href": "fusion-mirrors",
-      "description": "Explore optical constants and normal-incidence Air/material reflectivity by wavelength and chemical family. Code-only preview: open an authorized local dataset in your browser; unpublished DFT data are not hosted here.",
+      "description": "Explore calculated optical constants and normal-incidence reflectivity by wavelength and chemical family. The current code-only preview opens an authorized local dataset in the browser; unpublished DFT data are not hosted here.",
       "links": [
         {
           "label": "Methods & scope",
@@ -61,7 +61,7 @@
       "kind": "Interactive game",
       "full_name": "High-entropy nuclear waste forms",
       "href": "synthesizability-game",
-      "description": "Choose elements for the two cation sites of a high-entropy waste form and look for a combination that scores as synthesizable. Shown at the 2026 ARPA-E Energy Innovation Summit in San Diego.",
+      "description": "Choose elements for the two cation sites and see whether the resulting composition is predicted to be synthesizable. We presented the game at the 2026 ARPA-E Energy Innovation Summit in San Diego.",
       "links": [
         {
           "label": "How to play",
