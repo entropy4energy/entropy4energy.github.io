@@ -58,11 +58,12 @@
       <div class="chaos-stat-value">{{ n("derived.two_cation_pct", ox.coverage_two_cation_pct) }}%</div>
       <div class="chaos-stat-label">of two-cation sub-oxides calculated</div>
       <div class="chaos-stat-note">and all single-cation oxides, for the
-        {{ n("oxide.coverage_systems", ox.coverage_systems) }} disordered oxide systems</div>
+        {{ n("oxide.coverage_systems", ox.coverage_systems) }} systems whose only anion is oxygen</div>
     </div>
   </div>
   <p class="chaos-total">
-    In all, {{ n("entries", st.entries) }} entries across
+    The whole public database, high-entropy alloys included, holds
+    {{ n("entries", st.entries) }} entries across
     {{ n("elements", st.elements) }} elements:
     {{ n("ordered_entries", st.ordered_entries) }} ordered structures,
     {{ n("supercell_entries", st.supercell_entries) }} supercells, and
@@ -106,9 +107,9 @@
       <p>
         Chemical disorder is represented by the symmetrically distinct
         supercells that reproduce each composition's site occupancies. Every
-        supercell is relaxed with DFT and weighted by its degeneracy and a
-        Boltzmann factor, so each composition carries a distribution of
-        enthalpies and relaxed structures. The rocksalt systems have between
+        supercell is relaxed with DFT and counted by its degeneracy, so each
+        composition carries a distribution of enthalpies and relaxed
+        structures. The rocksalt systems have between
         {{ n("oxide.rocksalt_supercells_min", ox.rocksalt_supercells_min) }} and
         {{ n("oxide.rocksalt_supercells_max", ox.rocksalt_supercells_max) }}
         supercells each, typically {{ n("oxide.rocksalt_supercells_median", ox.rocksalt_supercells_median) }}.
@@ -117,10 +118,11 @@
     <div class="chaos-feature">
       <h3>Formability and disorder descriptors</h3>
       <p>
-        The spread of the supercell enthalpies gives a formability descriptor:
-        a narrow spread means many configurations lie close in enthalpy. The
-        relaxed supercells give the lattice distortion and the root-mean-square
-        atomic displacement at 0 and 300&nbsp;K. These, with the
+        The spread of the supercell enthalpies, weighted by degeneracy, gives
+        a formability descriptor: a narrow spread means many configurations
+        lie close in enthalpy. The relaxed supercells give the lattice
+        distortion and the root-mean-square atomic displacement, averaged with
+        Boltzmann weights at 300&nbsp;K. These, with the
         atomic-solubility parameter, configurational entropy, valence electron
         concentration and the Miedema mixing enthalpy, are stored for the
         disordered systems and can be used as filters in API queries.
@@ -132,8 +134,10 @@
         The ordered binary and ternary oxides are calculated at the same level
         of theory, so each disordered system can be compared with the ordered
         phases that compete with it. For the
-        {{ n("oxide.coverage_systems", ox.coverage_systems) }} disordered oxide
-        systems, all {{ n("oxide.coverage_one_cation.1", ox.coverage_one_cation[1]) }}
+        {{ n("oxide.coverage_systems", ox.coverage_systems) }} disordered
+        systems whose only anion is oxygen (the other
+        {{ n("derived.mixed_anion", ox.mixed_anion_systems) }} also contain
+        another anion), all {{ n("oxide.coverage_one_cation.1", ox.coverage_one_cation[1]) }}
         single-cation oxides and {{ n("oxide.coverage_two_cation.0", ox.coverage_two_cation[0]) }}
         of {{ n("oxide.coverage_two_cation.1", ox.coverage_two_cation[1]) }} two-cation oxide
         systems have ordered entries.
@@ -151,39 +155,72 @@
   </div>
 
   <h2 id="properties">Properties</h2>
-  {% set mx = st.matrix %}
-  <p>
-    What is calculated at each level of the oxide data: the disordered
-    systems, the relaxed supercells in their ensembles, and the ordered
-    oxides. Each cell is the number of entries that carry the property.
-  </p>
-  <div class="chaos-table-wrap">
-  <table class="chaos-table chaos-matrix">
+  {# Two tables: the disordered oxides (each system, and each supercell in its
+     ensemble) and the ordered reference oxides. Rows are looked up by name in
+     the counts block, so the served block may hold rows not shown here. #}
+  {% macro prop_rows(defs, col, rows) -%}
+    {% for key, label, unit in defs %}
+    {% set row = rows | selectattr("key", "equalto", key) | first %}
+    <tr>
+      <td>{{ label }}{% if unit %}<span class="unit">{{ unit }}</span>{% endif %}</td>
+      <td class="num">{{ n("mc." ~ key ~ "." ~ col, row.counts[col]) }}</td>
+    </tr>
+    {% endfor %}
+  {%- endmacro %}
+  {% set system_rows = [
+    ("formability", "Formability", "(eV/atom)⁻¹"),
+    ("formation_enthalpy", "Formation enthalpy (degeneracy-weighted mean)", "eV/atom"),
+    ("distortion", "Lattice distortion", "300 K"),
+    ("displacement", "Root-mean-square atomic displacement", "Å, 300 K"),
+    ("solubility", "Atomic-solubility parameter", "GPa Å³, 300 K"),
+    ("s_config", "Configurational entropy", ""),
+    ("vec", "Valence electron concentration", "e/atom"),
+    ("mixing_enthalpy", "Miedema mixing enthalpy", "eV/atom"),
+  ] %}
+  {% set structure_rows = [
+    ("structure", "Relaxed structure and space group", ""),
+    ("formation_enthalpy", "Formation enthalpy", "eV/atom"),
+    ("bader", "Bader charges and atomic volumes", "e, Å³"),
+  ] %}
+  {% set cols = {} %}
+  {% for c in st.matrix.columns %}{% set _ = cols.update({c.key: c.n}) %}{% endfor %}
+
+  <h3 class="chaos-props-title">Disordered oxides</h3>
+  <table class="chaos-table chaos-props">
     <thead>
-      <tr>
-        <th>Property</th>
-        {% for c in mx.columns %}
-        <th class="num">{{ c.label }}<span class="unit">{{ n("mn." ~ c.key, c.n) }}</span></th>
-        {% endfor %}
-      </tr>
+      <tr><th>Property</th><th class="num">Count</th></tr>
     </thead>
     <tbody>
-      {% for r in mx.rows %}
-      <tr>
-        <td>{{ r.label }}{% if r.unit %}<span class="unit">{{ r.unit }}</span>{% endif %}</td>
-        {% for c in mx.columns %}
-        {% set v = r.counts[c.key] %}
-        <td class="num"><span data-stat="mc.{{ r.key }}.{{ c.key }}" data-zero="&#8212;">{% if v is none %}&#8230;{% elif v == 0 %}&#8212;{% else %}{{ "{:,}".format(v) }}{% endif %}</span></td>
-        {% endfor %}
+      <tr class="chaos-props-group">
+        <th colspan="2">Each system ({{ n("mn.systems", cols.systems) }})</th>
       </tr>
-      {% endfor %}
+      {{ prop_rows(system_rows, "systems", st.matrix.rows) }}
+      <tr class="chaos-props-group">
+        <th colspan="2">Each supercell in the ensembles ({{ n("mn.supercells", cols.supercells) }})</th>
+      </tr>
+      {{ prop_rows(structure_rows, "supercells", st.matrix.rows) }}
     </tbody>
   </table>
-  </div>
+
+  <h3 class="chaos-props-title">Ordered oxides</h3>
+  <table class="chaos-table chaos-props">
+    <thead>
+      <tr><th>Property</th><th class="num">Count</th></tr>
+    </thead>
+    <tbody>
+      <tr class="chaos-props-group">
+        <th colspan="2">Each ordered oxide ({{ n("mn.ordered", cols.ordered) }})</th>
+      </tr>
+      {{ prop_rows(structure_rows, "ordered", st.matrix.rows) }}
+    </tbody>
+  </table>
+
   <p class="chaos-note">
-    All values come from density functional theory with the
+    The DFT calculations use the
     <u>P</u>erdew&ndash;<u>B</u>urke&ndash;<u>E</u>rnzerhof (PBE)
-    generalized-gradient functional. Counts are for the public database as of
+    generalized-gradient functional. Configurational entropy, valence
+    electron concentration and the Miedema mixing enthalpy are computed from
+    the composition. Counts are for the public database as of
     <span data-stat-date>{{ data.chaos.as_of_text }}</span>. An entry is one
     calculation: an ordered structure, one supercell of an ensemble, or one
     disordered system.
@@ -191,9 +228,9 @@
 
   <h2 id="coverage">Coverage</h2>
   <p>
-    Cations of the {{ n("oxide.disordered_systems", ox.disordered_systems) }}
-    disordered oxide systems. The number in each cell is how many of these
-    systems contain the element.
+    Cations of the {{ n("oxide.coverage_systems", ox.coverage_systems) }}
+    disordered oxide systems whose only anion is oxygen. The number in each
+    cell is how many of these systems contain the element.
   </p>
   <div class="ptable-wrap">
     <div class="ptable" role="img"
@@ -259,7 +296,11 @@
       .then(function (st) {
         if (!st || !st.oxide) return;
         var two = st.oxide.coverage_two_cation || [0, 0];
-        st.derived = { two_cation_pct: two[1] ? Math.round(100 * two[0] / two[1]) : null };
+        var mixed = st.oxide.disordered_systems - st.oxide.coverage_systems;
+        st.derived = {
+          two_cation_pct: two[1] ? Math.round(100 * two[0] / two[1]) : null,
+          mixed_anion: isFinite(mixed) ? mixed : null
+        };
         // The properties table is matched by row and column name, so rows
         // can be added or dropped on either side without shifting numbers.
         st.mc = {}; st.mn = {};
