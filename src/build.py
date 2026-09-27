@@ -532,6 +532,79 @@ CHAOS_SET_LABELS = {
 }
 
 
+# Periodic table layout for the CHAOS coverage map: one line per grid row,
+# "." for an empty cell; the blank line separates the f-block rows.
+CHAOS_PTABLE = [
+    "H . . . . . . . . . . . . . . . . He",
+    "Li Be . . . . . . . . . . B C N O F Ne",
+    "Na Mg . . . . . . . . . . Al Si P S Cl Ar",
+    "K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr",
+    "Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe",
+    "Cs Ba La Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn",
+    "Fr Ra Ac Rf Db Sg Bh Hs Mt Ds Rg Cn Nh Fl Mc Lv Ts Og",
+    "",
+    ". . . Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu",
+    ". . . Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr",
+]
+
+
+def chaos_stats(data: dict[str, Any]):
+    """Derived numbers, the coverage map, and the schema.org Dataset record
+    for the CHAOS page, all from the "stats" block of chaos.json."""
+    st = data["chaos"].get("stats")
+    if not st:
+        return
+    ox = st["oxide"]
+    present, needed = ox["coverage_two_cation"]
+    ox["coverage_two_cation_pct"] = round(100 * present / needed) if needed else 0
+    as_of = date.fromisoformat(st["as_of"])
+    data["chaos"]["as_of_text"] = f"{as_of:%B} {as_of.day}, {as_of.year}"
+    per = ox["systems_per_cation"]
+    ordered = set(ox["ordered_elements"])
+    cells = []
+    for row, line in enumerate(CHAOS_PTABLE, start=1):
+        for col, sym in enumerate(line.split(), start=1):
+            if sym == ".":
+                continue
+            n = per.get(sym, 0)
+            if sym == "O":
+                level, title = "anion", "O: the anion of every oxide system"
+            elif n:
+                level = "l3" if n >= 150 else "l2" if n >= 20 else "l1"
+                title = f"{sym}: {n} disordered oxide systems"
+            elif sym in ordered:
+                level, title = "ref", f"{sym}: ordered oxide calculations"
+            else:
+                level, title = "none", sym
+            cells.append({"symbol": sym, "row": row, "col": col, "level": level,
+                          "systems": n, "title": title})
+    st["ptable"] = cells
+    data["chaos"]["jsonld"] = {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "name": "CHAOS: Combinatorial High-throughput Analysis and Optimization for Synthesis",
+        "alternateName": "CHAOS",
+        "url": "https://s4e.ai/chaos",
+        "description": (
+            "The first database of first-principles calculations dedicated to "
+            f"high-entropy oxides: {ox['disordered_systems']:,} disordered oxide systems, "
+            f"each represented by an ensemble of relaxed DFT supercells ({ox['supercells']:,} "
+            "in all), with formability, lattice-distortion, solubility and "
+            f"configurational-entropy descriptors, and {ox['ordered_entries']:,} ordered "
+            "oxide reference calculations. All calculations use density functional "
+            "theory with the PBE functional."),
+        "keywords": ["high-entropy oxides", "density functional theory", "chemical disorder",
+                     "formability", "configurational ensembles", "materials database"],
+        "measurementTechnique": "Density functional theory (PBE)",
+        "variableMeasured": [r["label"] for r in (st.get("matrix") or {}).get("rows", [])],
+        "creator": {"@type": "Organization",
+                    "name": "Entropy for Energy Laboratory, Johns Hopkins University",
+                    "url": "https://entropy4energy.ai"},
+        "isAccessibleForFree": True,
+        "dateModified": st["as_of"],
+    }
+
+
 def process_chaos(data: dict[str, Any]):
     """Turn the flat file list into table rows: label, name, snapshot date."""
     rows = []
@@ -546,6 +619,7 @@ def process_chaos(data: dict[str, Any]):
             snapshot = ""
         rows.append({"label": label, "name": name, "date": snapshot})
     data["chaos"]["file_rows"] = rows
+    chaos_stats(data)
 
 
 PROCESS_DATA = {
@@ -746,7 +820,8 @@ def build_partials(root: str, outdir: Path) -> list[Path]:
     # One header and footer per product: "product" comes from tools.json,
     # contributors from the product's own data file when it exists.
     for item in (data["tools"] or {}).get("products", []):
-        product = {"name": item["name"], "full_name": item.get("full_name")}
+        product = {"name": item["name"], "full_name": item.get("full_name"),
+                   "full_name_html": item.get("full_name_html")}
         product_file = DATA_DIR / f"{item['id']}.json"
         if product_file.exists():
             extra = json.loads(product_file.read_text()).get("product", {})

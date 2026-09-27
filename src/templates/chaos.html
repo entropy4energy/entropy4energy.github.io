@@ -1,41 +1,225 @@
 {% extends "base.html" %}
 
+{% block head_extra %}
+  {% if data.chaos.jsonld %}
+  <script type="application/ld+json">{{ data.chaos.jsonld | tojson }}</script>
+  {% endif %}
+{% endblock %}
+
+{# Every number carries data-stat, the path of its value in the counts block.
+   The page is built with the counts in chaos.json; when it loads, the script
+   at the end fetches the current counts from the API (?stats) and updates
+   them in place. Without the script, or if the request fails, the built
+   numbers stay. #}
+{% macro n(path, value) -%}
+  <span data-stat="{{ path }}">{{ "{:,}".format(value) }}</span>
+{%- endmacro %}
+
 {% block content %}
+  {% set st = data.chaos.stats %}
+  {% set ox = st.oxide %}
   <h1>CHAOS</h1>
+  <p class="chaos-claim">
+    The first database of first-principles calculations dedicated to
+    high-entropy oxides.
+  </p>
   <p class="chaos-lead">
     <u>C</u>ombinatorial <u>H</u>igh-throughput <u>A</u>nalysis and
-    <u>O</u>ptimization for <u>S</u>ynthesis: a first-principles database of
-    high-entropy oxides, their ordered binary and ternary precursors, and a
-    library of structural and chemical descriptors for synthesis-oriented
-    screening.
+    <u>O</u>ptimization for <u>S</u>ynthesis.
+    Each disordered oxide is represented by an ensemble of relaxed
+    <u>d</u>ensity <u>f</u>unctional <u>t</u>heory (DFT) supercells and
+    connected to its ordered binary and
+    ternary reference oxides, so the information available from composition
+    alone can be compared with structural and thermodynamic information from
+    explicit calculations.
+  </p>
+
+  <div class="chaos-stats" aria-label="What CHAOS holds">
+    <div class="chaos-stat">
+      <div class="chaos-stat-value">{{ n("oxide.disordered_systems", ox.disordered_systems) }}</div>
+      <div class="chaos-stat-label">disordered oxide systems</div>
+      <div class="chaos-stat-note">{{ n("oxide.rocksalt", ox.rocksalt) }} rocksalt,
+        {{ n("oxide.perovskite", ox.perovskite) }} perovskite,
+        {{ n("oxide.other_structures", ox.other_structures) }} other structures</div>
+    </div>
+    <div class="chaos-stat">
+      <div class="chaos-stat-value">{{ n("oxide.supercells", ox.supercells) }}</div>
+      <div class="chaos-stat-label">relaxed DFT supercells in their ensembles</div>
+      <div class="chaos-stat-note">typically {{ n("oxide.rocksalt_supercells_median", ox.rocksalt_supercells_median) }}
+        per rocksalt system</div>
+    </div>
+    <div class="chaos-stat">
+      <div class="chaos-stat-value">{{ n("oxide.ordered_entries", ox.ordered_entries) }}</div>
+      <div class="chaos-stat-label">ordered oxide calculations</div>
+      <div class="chaos-stat-note">{{ n("oxide.ordered_compounds", ox.ordered_compounds) }} compounds in
+        {{ n("oxide.ordered_chemical_systems", ox.ordered_chemical_systems) }} chemical systems</div>
+    </div>
+    <div class="chaos-stat">
+      <div class="chaos-stat-value">{{ n("derived.two_cation_pct", ox.coverage_two_cation_pct) }}%</div>
+      <div class="chaos-stat-label">of two-cation sub-oxides calculated</div>
+      <div class="chaos-stat-note">and all single-cation oxides, for the
+        {{ n("oxide.coverage_systems", ox.coverage_systems) }} disordered oxide systems</div>
+    </div>
+  </div>
+  <p class="chaos-total">
+    In all, {{ n("entries", st.entries) }} entries across
+    {{ n("elements", st.elements) }} elements:
+    {{ n("ordered_entries", st.ordered_entries) }} ordered structures,
+    {{ n("supercell_entries", st.supercell_entries) }} supercells, and
+    {{ n("disordered_systems", st.disordered_systems) }} disordered systems.
   </p>
 
   <div class="jump-nav" role="navigation" aria-label="CHAOS sections">
+    <a href="#contents">Contents</a>
+    <a href="#properties">Properties</a>
+    <a href="#coverage">Coverage</a>
     <a href="#access">Access</a>
     <a href="#api">API</a>
-    <a href="#agent">Chaos-Agent</a>
+    <a href="#agent">CHAOS-Agent</a>
   </div>
   <div class="access-cards">
     <a class="access-card" href="#access">
       <div class="access-card-title">Account</div>
       <div class="access-card-text">
-        Create an account, then sign in to use the API and Chaos-Agent.
+        Create an account, then sign in to use the API and CHAOS-Agent.
       </div>
     </a>
     <a class="access-card" href="#api">
       <div class="access-card-title">API</div>
       <div class="access-card-text">
-        Query entries and descriptors over HTTP from scripts and notebooks.
+        Query entries and descriptors over HTTP.
       </div>
     </a>
     <a class="access-card" href="#agent">
-      <div class="access-card-title">Chaos-Agent</div>
+      <div class="access-card-title">CHAOS-Agent</div>
       <div class="access-card-text">
         Ask questions in plain language; the agent turns them into database
         retrievals.
       </div>
     </a>
   </div>
+
+  <h2 id="contents">Contents</h2>
+  <div class="chaos-features">
+    <div class="chaos-feature">
+      <h3>Ensembles of relaxed supercells</h3>
+      <p>
+        Chemical disorder is represented by the symmetrically distinct
+        supercells that reproduce each composition's site occupancies. Every
+        supercell is relaxed with DFT and weighted by its degeneracy and a
+        Boltzmann factor, so each composition carries a distribution of
+        enthalpies and relaxed structures. The rocksalt systems have between
+        {{ n("oxide.rocksalt_supercells_min", ox.rocksalt_supercells_min) }} and
+        {{ n("oxide.rocksalt_supercells_max", ox.rocksalt_supercells_max) }}
+        supercells each, typically {{ n("oxide.rocksalt_supercells_median", ox.rocksalt_supercells_median) }}.
+      </p>
+    </div>
+    <div class="chaos-feature">
+      <h3>Formability and disorder descriptors</h3>
+      <p>
+        The spread of the supercell enthalpies gives a formability descriptor:
+        a narrow spread means many configurations lie close in enthalpy. The
+        relaxed supercells give the lattice distortion and the root-mean-square
+        atomic displacement at 0 and 300&nbsp;K. These, with the
+        atomic-solubility parameter, configurational entropy, valence electron
+        concentration and the Miedema mixing enthalpy, are stored for the
+        disordered systems and can be used as filters in API queries.
+      </p>
+    </div>
+    <div class="chaos-feature">
+      <h3>Ordered reference oxides</h3>
+      <p>
+        The ordered binary and ternary oxides are calculated at the same level
+        of theory, so each disordered system can be compared with the ordered
+        phases that compete with it. For the
+        {{ n("oxide.coverage_systems", ox.coverage_systems) }} disordered oxide
+        systems, all {{ n("oxide.coverage_one_cation.1", ox.coverage_one_cation[1]) }}
+        single-cation oxides and {{ n("oxide.coverage_two_cation.0", ox.coverage_two_cation[0]) }}
+        of {{ n("oxide.coverage_two_cation.1", ox.coverage_two_cation[1]) }} two-cation oxide
+        systems have ordered entries.
+      </p>
+    </div>
+    <div class="chaos-feature">
+      <h3>Charges and volumes per atom</h3>
+      <p>
+        Bader charges and atomic volumes are stored for
+        {{ n("bader_atoms", st.bader_atoms) }} atoms, including the
+        {{ n("oxide.supercell_atoms_with_bader", ox.supercell_atoms_with_bader) }}
+        atoms inside the disordered oxide supercells.
+      </p>
+    </div>
+  </div>
+
+  <h2 id="properties">Properties</h2>
+  {% set mx = st.matrix %}
+  <p>
+    What is calculated at each level of the oxide data: the disordered
+    systems, the relaxed supercells in their ensembles, and the ordered
+    oxides. Each cell is the number of entries that carry the property.
+  </p>
+  <div class="chaos-table-wrap">
+  <table class="chaos-table chaos-matrix">
+    <thead>
+      <tr>
+        <th>Property</th>
+        {% for c in mx.columns %}
+        <th class="num">{{ c.label }}<span class="unit">{{ n("mn." ~ c.key, c.n) }}</span></th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in mx.rows %}
+      <tr>
+        <td>{{ r.label }}{% if r.unit %}<span class="unit">{{ r.unit }}</span>{% endif %}</td>
+        {% for c in mx.columns %}
+        {% set v = r.counts[c.key] %}
+        <td class="num"><span data-stat="mc.{{ r.key }}.{{ c.key }}" data-zero="&#8212;">{% if v is none %}&#8230;{% elif v == 0 %}&#8212;{% else %}{{ "{:,}".format(v) }}{% endif %}</span></td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  <p class="chaos-note">
+    All values come from density functional theory with the
+    <u>P</u>erdew&ndash;<u>B</u>urke&ndash;<u>E</u>rnzerhof (PBE)
+    generalized-gradient functional. Counts are for the public database as of
+    <span data-stat-date>{{ data.chaos.as_of_text }}</span>. An entry is one
+    calculation: an ordered structure, one supercell of an ensemble, or one
+    disordered system.
+  </p>
+
+  <h2 id="coverage">Coverage</h2>
+  <p>
+    Cations of the {{ n("oxide.disordered_systems", ox.disordered_systems) }}
+    disordered oxide systems. The number in each cell is how many of these
+    systems contain the element.
+  </p>
+  <div class="ptable-wrap">
+    <div class="ptable" role="img"
+         aria-label="Periodic table shaded by the number of disordered oxide systems containing each cation">
+      {% for c in st.ptable %}
+      <div class="ptable-cell ptable-{{ c.level }}" style="grid-row:{{ c.row }};grid-column:{{ c.col }}"
+           title="{{ c.title }}">
+        <span class="ptable-symbol">{{ c.symbol }}</span>
+        {% if c.systems %}<span class="ptable-count" data-stat="oxide.systems_per_cation.{{ c.symbol }}">{{ c.systems }}</span>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="ptable-legend">
+    <span><i class="ptable-l3"></i>150 or more systems</span>
+    <span><i class="ptable-l2"></i>20 to 149</span>
+    <span><i class="ptable-l1"></i>1 to 19</span>
+    <span><i class="ptable-ref"></i>ordered oxide calculations only</span>
+    <span><i class="ptable-anion"></i>oxygen</span>
+  </div>
+  <p class="chaos-note">
+    The public database also holds
+    {{ n("alloys.disordered_systems", st.alloys.disordered_systems) }}
+    high-entropy alloy systems ({{ n("alloys.bcc", st.alloys.bcc) }} bcc and
+    {{ n("alloys.fcc", st.alloys.fcc) }} fcc) with the same ensemble descriptors.
+  </p>
 
   <h2 id="access">Access</h2>
   <p>
@@ -58,10 +242,45 @@
     <a href="https://s4e.ai/API/chaos/?help">s4e.ai/API/chaos/?help</a>.
   </p>
 
-  <h2 id="agent">Chaos-Agent</h2>
+  <h2 id="agent">CHAOS-Agent</h2>
   <p>
-    A natural-language interface to the database, in the browser.
-    After signing in, open
-    <a href="https://s4e.ai/chaos/agent/">Chaos-Agent</a>.
+    A natural-language interface to the database. After signing in, open
+    <a href="https://s4e.ai/chaos/agent/">CHAOS-Agent</a>.
   </p>
+{% endblock %}
+
+{% block body_extra %}
+<script>
+  (function () {
+    var nodes = document.querySelectorAll("[data-stat]");
+    if (!nodes.length || !window.fetch) return;
+    fetch("/API/chaos/?stats", { headers: { Accept: "application/json" } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (st) {
+        if (!st || !st.oxide) return;
+        var two = st.oxide.coverage_two_cation || [0, 0];
+        st.derived = { two_cation_pct: two[1] ? Math.round(100 * two[0] / two[1]) : null };
+        // The properties table is matched by row and column name, so rows
+        // can be added or dropped on either side without shifting numbers.
+        st.mc = {}; st.mn = {};
+        ((st.matrix || {}).rows || []).forEach(function (r) { st.mc[r.key] = r.counts; });
+        ((st.matrix || {}).columns || []).forEach(function (c) { st.mn[c.key] = c.n; });
+        Array.prototype.forEach.call(nodes, function (el) {
+          var v = el.getAttribute("data-stat").split(".").reduce(function (o, k) {
+            return o == null ? o : o[k];
+          }, st);
+          if (typeof v !== "number") return;
+          el.textContent = v === 0 && el.hasAttribute("data-zero")
+            ? el.getAttribute("data-zero") : v.toLocaleString("en-US");
+        });
+        var d = document.querySelector("[data-stat-date]");
+        var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(st.as_of || "");
+        if (d && m) {
+          d.textContent = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3])).toLocaleDateString(
+            "en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+        }
+      })
+      .catch(function () {});
+  })();
+</script>
 {% endblock %}

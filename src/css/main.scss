@@ -763,6 +763,234 @@ h2 {
   }
 }
 
+.chaos-claim {
+  color: $color-main-1;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 0.5rem;
+}
+
+.chaos-stats {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  margin: 1.25rem 0 0.75rem;
+}
+
+.chaos-stat {
+  background-color: $color-surface-2;
+  border-radius: 0 0 8px 8px;
+  border-top: 3px solid $color-main-5;
+  padding: 0.8rem 1rem 0.9rem;
+
+  &-value {
+    color: $color-main-1;
+    font-size: 2rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  &-label {
+    color: $color-ink;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  &-note {
+    color: $color-muted;
+    font-size: 0.82rem;
+    margin-top: 0.3rem;
+  }
+}
+
+.chaos-total {
+  color: $color-muted;
+  font-size: 0.9rem;
+  margin: 0 0 1.25rem;
+}
+
+.chaos-features {
+  display: grid;
+  gap: 1rem 1.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0.5rem 0 1rem;
+
+  @media screen and (max-width: $mobile-threshold) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.chaos-feature {
+  h3 {
+    color: $color-main-1;
+    font-size: 1rem;
+    margin: 0 0 0.3rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+}
+
+.chaos-table {
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  width: 100%;
+
+  th,
+  td {
+    border-bottom: 1px solid $color-line;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background-color: $color-surface-2;
+    color: $color-main-1;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  td:nth-child(2) {
+    color: $color-muted;
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .unit {
+    color: $color-muted;
+    display: block;
+    font-size: 0.8rem;
+  }
+
+  @media screen and (max-width: $mobile-threshold) {
+    font-size: 0.85rem;
+
+    th,
+    td {
+      padding: 0.45rem 0.35rem;
+    }
+  }
+}
+
+.chaos-table-wrap {
+  overflow-x: auto;
+}
+
+.chaos-matrix {
+  th.num {
+    font-size: 0.7rem;
+    line-height: 1.3;
+    min-width: 5.5rem;
+  }
+
+  th .unit {
+    font-size: 0.75rem;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  td:first-child {
+    width: 40%;
+  }
+
+  td:nth-child(2) {
+    color: $color-ink;
+  }
+}
+
+.ptable-wrap {
+  margin: 0.75rem 0 0.5rem;
+  overflow-x: auto;
+}
+
+.ptable {
+  display: grid;
+  gap: 3px;
+  grid-template-columns: repeat(18, minmax(30px, 1fr));
+  grid-template-rows: repeat(7, auto) 0.6rem repeat(2, auto);
+  max-width: 760px;
+  min-width: 560px;
+}
+
+.ptable-cell {
+  align-items: center;
+  aspect-ratio: 1;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.1;
+}
+
+.ptable-symbol {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.ptable-count {
+  font-size: 0.62rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.ptable-none {
+  border: 1px solid #f0ede9;
+  color: #cfc9c1;
+}
+
+.ptable-ref {
+  background-color: $color-surface-2;
+  border: 1px solid $color-line-2;
+  color: $color-muted;
+}
+
+.ptable-l1 {
+  background-color: #d9e8f8;
+  color: $color-ink;
+}
+
+.ptable-l2 {
+  background-color: $color-main-4;
+  color: $color-ink;
+}
+
+.ptable-l3 {
+  background-color: $color-main-5;
+  color: $color-main-2;
+}
+
+.ptable-anion {
+  background-color: $color-main-1;
+  color: $color-main-2;
+}
+
+.ptable-legend {
+  color: $color-muted;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  gap: 0.4rem 1.1rem;
+  margin: 0.25rem 0 0.75rem;
+
+  i {
+    border-radius: 3px;
+    display: inline-block;
+    height: 0.85rem;
+    margin-right: 0.35rem;
+    vertical-align: -0.1rem;
+    width: 0.85rem;
+  }
+}
+
 /* Data and Tools */
 
 .tools-lead {
