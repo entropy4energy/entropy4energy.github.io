@@ -557,6 +557,7 @@ def chaos_stats(data: dict[str, Any]):
     ox = st["oxide"]
     present, needed = ox["coverage_two_cation"]
     ox["coverage_two_cation_pct"] = round(100 * present / needed) if needed else 0
+    ox["mixed_anion_systems"] = ox["disordered_systems"] - ox["coverage_systems"]
     as_of = date.fromisoformat(st["as_of"])
     data["chaos"]["as_of_text"] = f"{as_of:%B} {as_of.day}, {as_of.year}"
     per = ox["systems_per_cation"]
@@ -591,8 +592,8 @@ def chaos_stats(data: dict[str, Any]):
             f"each represented by an ensemble of relaxed DFT supercells ({ox['supercells']:,} "
             "in all), with formability, lattice-distortion, solubility and "
             f"configurational-entropy descriptors, and {ox['ordered_entries']:,} ordered "
-            "oxide reference calculations. All calculations use density functional "
-            "theory with the PBE functional."),
+            "oxide reference calculations. The DFT calculations use the PBE "
+            "functional."),
         "keywords": ["high-entropy oxides", "density functional theory", "chemical disorder",
                      "formability", "configurational ensembles", "materials database"],
         "measurementTechnique": "Density functional theory (PBE)",
