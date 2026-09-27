@@ -156,65 +156,65 @@
   </div>
 
   <h2 id="properties">Properties</h2>
-  {# Two tables: the disordered oxides (each system, and each supercell in its
-     ensemble) and the ordered reference oxides. Rows are looked up by name in
-     the counts block, so the served block may hold rows not shown here. #}
-  {% macro prop_rows(defs, col, rows) -%}
-    {% for key, label, unit in defs %}
-    {% set row = rows | selectattr("key", "equalto", key) | first %}
-    <tr>
-      <td>{{ label }}{% if unit %}<span class="unit">{{ unit }}</span>{% endif %}</td>
-      <td class="num">{{ n("mc." ~ key ~ "." ~ col, row.counts[col]) }}</td>
-    </tr>
-    {% endfor %}
-  {%- endmacro %}
-  {% set system_rows = [
-    ("formability", "Formability", "(eV/atom)⁻¹"),
-    ("formation_enthalpy", "Formation enthalpy (degeneracy-weighted mean)", "eV/atom"),
-    ("distortion", "Lattice distortion", "300 K"),
-    ("displacement", "Root-mean-square atomic displacement", "Å, 300 K"),
-    ("solubility", "Atomic-solubility parameter", "GPa Å³, 300 K"),
-    ("s_config", "Configurational entropy", ""),
-    ("vec", "Valence electron concentration", "e/atom"),
-    ("mixing_enthalpy", "Miedema mixing enthalpy", "eV/atom"),
-  ] %}
-  {% set structure_rows = [
-    ("structure", "Relaxed structure and space group", ""),
-    ("formation_enthalpy", "Formation enthalpy", "eV/atom"),
-    ("bader", "Bader charges and atomic volumes", "e, Å³"),
-  ] %}
+  {# What each kind of entry holds. The kinds are counted in the tiles at the
+     top; counts appear here only for values some entries lack. #}
+  <div class="chaos-features chaos-props">
+    <div class="chaos-feature">
+      <h3>Each disordered oxide system</h3>
+      <ul class="chaos-props-list">
+        <li>Formability<span class="unit">(eV/atom)&#8315;&sup1;</span></li>
+        <li>Formation enthalpy, the degeneracy-weighted mean over its supercells<span class="unit">eV/atom</span></li>
+        <li>Lattice distortion at 0 and 300&nbsp;K</li>
+        <li>Root-mean-square atomic displacement at 0 and 300&nbsp;K<span class="unit">&Aring;</span></li>
+        <li>Atomic-solubility parameter at 0 and 300&nbsp;K<span class="unit">GPa&nbsp;&Aring;&sup3;</span></li>
+        <li>Configurational entropy<span class="unit">k<sub>B</sub>/atom</span></li>
+        <li>Valence electron concentration<span class="unit">e/atom</span></li>
+        <li>Miedema mixing enthalpy<span class="unit">eV/atom</span></li>
+      </ul>
+    </div>
+    <div class="chaos-feature">
+      <h3>Each supercell and each ordered oxide</h3>
+      <ul class="chaos-props-list">
+        <li>Relaxed structure and space group</li>
+        <li>Formation enthalpy<span class="unit">eV/atom</span></li>
+        <li>Bader charges and atomic volumes<span class="unit">e, &Aring;&sup3;</span></li>
+      </ul>
+    </div>
+  </div>
+
+  {# Values some entries lack, from the counts block (rows by name). #}
   {% set cols = {} %}
   {% for c in st.matrix.columns %}{% set _ = cols.update({c.key: c.n}) %}{% endfor %}
-
-  <h3 class="chaos-props-title">Disordered oxides</h3>
-  <table class="chaos-table chaos-props">
-    <thead>
-      <tr><th>Property</th><th class="num">Count</th></tr>
-    </thead>
-    <tbody>
-      <tr class="chaos-props-group">
-        <th colspan="2">Each system ({{ n("mn.systems", cols.systems) }})</th>
-      </tr>
-      {{ prop_rows(system_rows, "systems", st.matrix.rows) }}
-      <tr class="chaos-props-group">
-        <th colspan="2">Each supercell in the ensembles ({{ n("mn.supercells", cols.supercells) }})</th>
-      </tr>
-      {{ prop_rows(structure_rows, "supercells", st.matrix.rows) }}
-    </tbody>
-  </table>
-
-  <h3 class="chaos-props-title">Ordered oxides</h3>
-  <table class="chaos-table chaos-props">
-    <thead>
-      <tr><th>Property</th><th class="num">Count</th></tr>
-    </thead>
-    <tbody>
-      <tr class="chaos-props-group">
-        <th colspan="2">Each ordered oxide ({{ n("mn.ordered", cols.ordered) }})</th>
-      </tr>
-      {{ prop_rows(structure_rows, "ordered", st.matrix.rows) }}
-    </tbody>
-  </table>
+  {% set mc = {} %}
+  {% for r in st.matrix.rows %}{% set _ = mc.update({r.key: r.counts}) %}{% endfor %}
+  {% set dk = namespace(key="distortion") %}
+  {% for k in ["distortion", "displacement", "solubility", "s_config", "vec", "mixing_enthalpy"] %}
+    {% if mc[k] and mc[k].systems < mc[dk.key].systems %}{% set dk.key = k %}{% endif %}
+  {% endfor %}
+  {% set kinds = {"systems": "disordered oxide systems", "supercells": "supercells", "ordered": "ordered oxides"} %}
+  {% set gaps = [] %}
+  {% for key, what, col in [
+    ("formability", "formability", "systems"),
+    ("formation_enthalpy", "formation enthalpy", "systems"),
+    (dk.key, "disorder descriptors", "systems"),
+    ("structure", "relaxed structure", "supercells"),
+    ("formation_enthalpy", "formation enthalpy", "supercells"),
+    ("bader", "Bader charges", "supercells"),
+    ("structure", "relaxed structure", "ordered"),
+    ("formation_enthalpy", "formation enthalpy", "ordered"),
+    ("bader", "Bader charges", "ordered"),
+  ] %}
+    {% if mc[key] and mc[key][col] < cols[col] %}{% set _ = gaps.append((key, what, col)) %}{% endif %}
+  {% endfor %}
+  {% if gaps %}
+  <p class="chaos-note chaos-gaps">
+    Not every entry has every value yet:
+    {% for key, what, col in gaps -%}
+      {{ what }} for {{ n("mc." ~ key ~ "." ~ col, mc[key][col]) }} of the
+      {{ n("mn." ~ col, cols[col]) }} {{ kinds[col] }}{{ "; " if not loop.last else "." }}
+    {% endfor %}
+  </p>
+  {% endif %}
 
   <p class="chaos-note">
     The DFT calculations use the
