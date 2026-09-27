@@ -8,7 +8,7 @@
       <div class="tool-card">
         <div class="tool-card-kind">{{ tool.kind }}</div>
         <h2 class="tool-card-title">{{ tool.name }}</h2>
-        <div class="tool-card-full">{{ tool.full_name }}</div>
+        <div class="tool-card-full">{% if tool.full_name_html %}{{ tool.full_name_html | safe }}{% else %}{{ tool.full_name }}{% endif %}</div>
         <p class="tool-card-text">{{ tool.description }}</p>
         <div class="tool-card-actions">
           <a class="workshop-button" href="{{ tool.href }}"{% if tool.external %} target="_blank" rel="noopener noreferrer"{% endif %}>Open {{ tool.name }}</a>

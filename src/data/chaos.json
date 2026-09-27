@@ -62,6 +62,277 @@
         "name": "Bryan Lim",
         "years": "2026–present"
       }
-    ]
+    ],
+    "full_name_html": "<u>C</u>ombinatorial <u>H</u>igh-throughput <u>A</u>nalysis and <u>O</u>ptimization for <u>S</u>ynthesis"
+  },
+  "stats": {
+    "as_of": "2026-09-26",
+    "view": "public",
+    "entries": 242796,
+    "elements": 85,
+    "ordered_entries": 178106,
+    "supercell_entries": 63532,
+    "disordered_systems": 1158,
+    "ordered_compounds": 55986,
+    "ordered_chemical_systems": 6595,
+    "prototypes": 9331,
+    "space_groups": 215,
+    "bader_atoms": 2300224,
+    "oxide": {
+      "disordered_systems": 551,
+      "rocksalt": 525,
+      "perovskite": 14,
+      "other_structures": 12,
+      "supercells": 10549,
+      "rocksalt_supercells_median": 18,
+      "rocksalt_supercells_min": 14,
+      "rocksalt_supercells_max": 49,
+      "ordered_entries": 95693,
+      "ordered_compounds": 20285,
+      "ordered_chemical_systems": 1442,
+      "coverage_systems": 542,
+      "coverage_one_cation": [
+        2205,
+        2205
+      ],
+      "coverage_two_cation": [
+        3348,
+        3422
+      ],
+      "coverage_full_systems": 504,
+      "supercell_atoms_with_bader": 99217,
+      "systems_per_cation": {
+        "Ba": 9,
+        "Ca": 167,
+        "Cd": 175,
+        "Ce": 2,
+        "Co": 119,
+        "Cr": 4,
+        "Cu": 74,
+        "Fe": 154,
+        "Ga": 1,
+        "Ge": 2,
+        "Hf": 13,
+        "Mg": 200,
+        "Mn": 183,
+        "Mo": 2,
+        "Nb": 126,
+        "Ni": 118,
+        "Sn": 203,
+        "Sr": 168,
+        "Ta": 2,
+        "Tc": 10,
+        "Ti": 138,
+        "V": 120,
+        "W": 1,
+        "Y": 1,
+        "Zn": 200,
+        "Zr": 13
+      },
+      "ordered_elements": [
+        "Ac",
+        "Ag",
+        "Al",
+        "As",
+        "Au",
+        "B",
+        "Ba",
+        "Be",
+        "Bi",
+        "Ca",
+        "Cd",
+        "Ce",
+        "Co",
+        "Cr",
+        "Cs",
+        "Cu",
+        "Dy",
+        "Er",
+        "Eu",
+        "Fe",
+        "Ga",
+        "Gd",
+        "Ge",
+        "H",
+        "He",
+        "Hf",
+        "Hg",
+        "Ho",
+        "In",
+        "Ir",
+        "K",
+        "La",
+        "Li",
+        "Lu",
+        "Mg",
+        "Mn",
+        "Mo",
+        "Na",
+        "Nb",
+        "Nd",
+        "Ni",
+        "O",
+        "Os",
+        "P",
+        "Pb",
+        "Pd",
+        "Pm",
+        "Pr",
+        "Pt",
+        "Rb",
+        "Re",
+        "Rh",
+        "Ru",
+        "Sb",
+        "Sc",
+        "Se",
+        "Si",
+        "Sm",
+        "Sn",
+        "Sr",
+        "Ta",
+        "Tb",
+        "Tc",
+        "Te",
+        "Th",
+        "Ti",
+        "Tl",
+        "Tm",
+        "V",
+        "W",
+        "Xe",
+        "Y",
+        "Yb",
+        "Zn",
+        "Zr"
+      ]
+    },
+    "alloys": {
+      "disordered_systems": 601,
+      "bcc": 515,
+      "fcc": 86,
+      "supercells": 24862
+    },
+    "matrix": {
+      "columns": [
+        {
+          "key": "systems",
+          "label": "Disordered oxide systems",
+          "n": 551
+        },
+        {
+          "key": "supercells",
+          "label": "Supercells in their ensembles",
+          "n": 10549
+        },
+        {
+          "key": "ordered",
+          "label": "Ordered oxides",
+          "n": 95693
+        }
+      ],
+      "rows": [
+        {
+          "key": "structure",
+          "label": "Relaxed structure and space group",
+          "unit": "",
+          "counts": {
+            "systems": 0,
+            "supercells": 10549,
+            "ordered": 95693
+          }
+        },
+        {
+          "key": "formation_enthalpy",
+          "label": "Formation enthalpy",
+          "unit": "eV/atom",
+          "counts": {
+            "systems": 551,
+            "supercells": 10549,
+            "ordered": 93860
+          }
+        },
+        {
+          "key": "bader",
+          "label": "Bader charges and atomic volumes",
+          "unit": "e, Å³",
+          "counts": {
+            "systems": 0,
+            "supercells": 10546,
+            "ordered": 95690
+          }
+        },
+        {
+          "key": "formability",
+          "label": "Formability",
+          "unit": "(eV/atom)⁻¹",
+          "counts": {
+            "systems": 551,
+            "supercells": 0,
+            "ordered": 0
+          }
+        },
+        {
+          "key": "distortion",
+          "label": "Lattice distortion",
+          "unit": "0 and 300 K",
+          "counts": {
+            "systems": 550,
+            "supercells": 0,
+            "ordered": 0
+          }
+        },
+        {
+          "key": "displacement",
+          "label": "Root-mean-square atomic displacement",
+          "unit": "Å, 0 and 300 K",
+          "counts": {
+            "systems": 550,
+            "supercells": 0,
+            "ordered": 0
+          }
+        },
+        {
+          "key": "solubility",
+          "label": "Atomic-solubility parameter",
+          "unit": "GPa Å³",
+          "counts": {
+            "systems": 550,
+            "supercells": 0,
+            "ordered": 0
+          }
+        },
+        {
+          "key": "s_config",
+          "label": "Configurational entropy",
+          "unit": "",
+          "counts": {
+            "systems": 550,
+            "supercells": 0,
+            "ordered": 0
+          }
+        },
+        {
+          "key": "vec",
+          "label": "Valence electron concentration",
+          "unit": "e/atom",
+          "counts": {
+            "systems": 550,
+            "supercells": 0,
+            "ordered": 0
+          }
+        },
+        {
+          "key": "mixing_enthalpy",
+          "label": "Miedema mixing enthalpy",
+          "unit": "eV/atom",
+          "counts": {
+            "systems": 550,
+            "supercells": 0,
+            "ordered": 0
+          }
+        }
+      ]
+    }
   }
 }

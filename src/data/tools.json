@@ -7,7 +7,7 @@
       "kind": "Database",
       "full_name": "Combinatorial High-throughput Analysis and Optimization for Synthesis",
       "href": "chaos",
-      "description": "A first-principles database of high-entropy oxides, their ordered binary and ternary precursors, and structural and chemical descriptors. Registered users query it through the REST API or through Chaos-Agent, a natural-language interface to the database.",
+      "description": "The first database of first-principles calculations dedicated to high-entropy oxides. Disordered oxides are stored as ensembles of relaxed DFT supercells, alongside their ordered binary and ternary reference oxides and structural and chemical descriptors. Registered users query it through the REST API or through CHAOS-Agent, a natural-language interface to the database.",
       "links": [
         {
           "label": "API docs",
@@ -15,10 +15,11 @@
           "external": true
         },
         {
-          "label": "Chaos-Agent",
+          "label": "CHAOS-Agent",
           "href": "chaos#agent"
         }
-      ]
+      ],
+      "full_name_html": "<u>C</u>ombinatorial <u>H</u>igh-throughput <u>A</u>nalysis and <u>O</u>ptimization for <u>S</u>ynthesis"
     },
     {
       "id": "loop",
