@@ -844,80 +844,30 @@ h2 {
   }
 }
 
-.chaos-table {
-  border-collapse: collapse;
+.chaos-props {
+  margin-bottom: 0.75rem;
+}
+
+.chaos-props-list {
   font-size: 0.95rem;
-  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
-  th,
-  td {
+  li {
     border-bottom: 1px solid $color-line;
-    padding: 0.5rem 0.75rem;
-    text-align: left;
-    vertical-align: top;
-  }
-
-  th {
-    background-color: $color-surface-2;
-    color: $color-main-1;
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  td:nth-child(2) {
-    color: $color-muted;
-  }
-
-  .num {
-    font-variant-numeric: tabular-nums;
-    text-align: right;
-    white-space: nowrap;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: space-between;
+    padding: 0.4rem 0;
   }
 
   .unit {
     color: $color-muted;
-    display: block;
-    font-size: 0.8rem;
-  }
-
-  @media screen and (max-width: $mobile-threshold) {
-    font-size: 0.85rem;
-
-    th,
-    td {
-      padding: 0.45rem 0.35rem;
-    }
-  }
-}
-
-.chaos-table-wrap {
-  overflow-x: auto;
-}
-
-.chaos-props-title {
-  color: $color-main-1;
-  font-size: 1.05rem;
-  margin: 1.1rem 0 0.4rem;
-}
-
-.chaos-props {
-  margin-bottom: 0.5rem;
-
-  td:first-child {
-    width: 75%;
-  }
-
-  td:nth-child(2) {
-    color: $color-ink;
-  }
-
-  .chaos-props-group th {
-    background-color: transparent;
-    border-bottom: 1px solid $color-line-2;
-    color: $color-muted;
-    font-size: 0.72rem;
-    padding-top: 0.8rem;
+    flex-shrink: 0;
+    font-size: 0.82rem;
+    text-align: right;
+    white-space: nowrap;
   }
 }
 
