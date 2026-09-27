@@ -11,16 +11,15 @@
   </p>
 
   <div class="jump-nav" role="navigation" aria-label="CHAOS sections">
-    <a href="#datasets">Datasets</a>
+    <a href="#access">Access</a>
     <a href="#api">API</a>
-    <a href="#gpt">Chaos-Agent</a>
+    <a href="#agent">Chaos-Agent</a>
   </div>
   <div class="access-cards">
-    <a class="access-card" href="#datasets">
-      <div class="access-card-title">Download</div>
+    <a class="access-card" href="#access">
+      <div class="access-card-title">Account</div>
       <div class="access-card-text">
-        Bulk files by number of cations, {{ data.chaos.files|length - 1 }}
-        compressed JSON Lines archives with an MD5 checksum list.
+        Create an account, then sign in to use the API and Chaos-Agent.
       </div>
     </a>
     <a class="access-card" href="#api">
@@ -29,7 +28,7 @@
         Query entries and descriptors over HTTP from scripts and notebooks.
       </div>
     </a>
-    <a class="access-card" href="#gpt">
+    <a class="access-card" href="#agent">
       <div class="access-card-title">Chaos-Agent</div>
       <div class="access-card-text">
         Ask questions in plain language; the agent turns them into database
@@ -38,49 +37,31 @@
     </a>
   </div>
 
-  <h2 id="datasets">Datasets</h2>
-  <table class="chaos-files">
-    <thead>
-      <tr>
-        <th>Set</th>
-        <th>File</th>
-        <th>Snapshot</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for file in data.chaos.file_rows %}
-        <tr>
-          <td>{{ file.label }}</td>
-          <td><a href="https://s4e.ai/API/zips/{{ file.name }}">{{ file.name }}</a></td>
-          <td>{{ file.date }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <p class="chaos-note">
-    Files are gzip-compressed JSON Lines, one entry per line.
-    Verify downloads against <code>checksum.md5</code>.
-    More sets will be added as calculations complete.
+  <h2 id="access">Access</h2>
+  <p>
+    CHAOS is available to registered users.
+    <a href="https://s4e.ai/loop/accounts/signup/">Create an account</a>
+    and confirm your email address from the message you receive; the S4E
+    Laboratory then approves the account.
+    If you already have an account,
+    <a href="https://s4e.ai/loop/accounts/login/?next=/chaos.html">sign in</a>.
   </p>
 
   <h2 id="api">API access</h2>
   <p>
-    The REST API serves the same entries and descriptors.
+    The REST API serves the database entries and descriptors to signed-in
+    users.
+    Scripts send a LOOP API key in the <code>X-API-Key</code> header; create
+    one under <a href="https://s4e.ai/loop/developers/">Developers</a> after
+    signing in.
     Documentation and examples:
     <a href="https://s4e.ai/API/chaos/?help">s4e.ai/API/chaos/?help</a>.
   </p>
 
-  <h2 id="gpt">Chaos-Agent interface</h2>
-  <p class="chaos-note">
-    A natural-language interface to the database.
-    It runs in the panel below or full screen at
-    <a href="https://chaos.boctor.dev/" target="_blank" rel="noopener noreferrer">chaos.boctor.dev</a>.
+  <h2 id="agent">Chaos-Agent</h2>
+  <p>
+    A natural-language interface to the database, in the browser.
+    After signing in, open
+    <a href="https://s4e.ai/chaos/agent/">Chaos-Agent</a>.
   </p>
-  <div class="chaos-gpt">
-    <iframe
-      src="https://chaos.boctor.dev/"
-      title="Chaos-Agent"
-      loading="lazy">
-    </iframe>
-  </div>
 {% endblock %}
