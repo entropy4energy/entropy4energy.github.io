@@ -680,6 +680,15 @@ h2 {
   font-size: 1.05rem;
 }
 
+// The site caps paragraphs at 75ch, which depends on each paragraph's font
+// size; on this page the text lines up with the tiles and tables instead.
+.content-block .chaos-page {
+  p,
+  li {
+    max-width: none;
+  }
+}
+
 .access-cards {
   display: grid;
   gap: 1rem;
@@ -922,7 +931,6 @@ h2 {
   gap: 3px;
   grid-template-columns: repeat(18, minmax(30px, 1fr));
   grid-template-rows: repeat(7, auto) 0.6rem repeat(2, auto);
-  max-width: 760px;
   min-width: 560px;
 }
 
