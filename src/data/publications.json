@@ -1,7 +1,7 @@
 {
   "journal": [
     {
-      "status": "press",
+      "status": "published",
       "year": 2026,
       "title": "Editorial: &quot;High-Entropy Materials&quot;",
       "authors": [
@@ -11,14 +11,15 @@
         "R.&nbsp;Arr&oacute;yave"
       ],
       "journal": "Materials Letters",
+      "volume": "425",
       "pages": "141613",
       "doi": "10.1016/j.matlet.2026.141613",
       "filename": "10.1016_j.matlet.2026.141613",
       "open_access": false,
-      "bibtex": "@article{oses2026editorial,\n  author  = {Oses, Corey and Rost, Christina~M. and Heron, John~T. and Arr\\'{o}yave, Raymundo},\n  title   = {Editorial: ``High-Entropy Materials''},\n  journal = {Materials Letters},\n  pages   = {141613},\n  year    = {2026},\n  doi     = {10.1016/j.matlet.2026.141613}\n}",
-      "ris": "TY  - JOUR\nAU  - Oses, Corey\nAU  - Rost, Christina M.\nAU  - Heron, John T.\nAU  - Arr\u00f3yave, Raymundo\nTI  - Editorial: ``High-Entropy Materials''\nJO  - Materials Letters\nJF  - Materials Letters\nSP  - 141613\nPY  - 2026\nDO  - 10.1016/j.matlet.2026.141613\nUR  - https://doi.org/10.1016/j.matlet.2026.141613\nER  -",
-      "csl": "{\n \"type\": \"article-journal\",\n \"title\": \"Editorial: ``High-Entropy Materials''\",\n \"author\": [\n  {\"family\": \"Oses\", \"given\": \"Corey\"},\n  {\"family\": \"Rost\", \"given\": \"Christina M.\"},\n  {\"family\": \"Heron\", \"given\": \"John T.\"},\n  {\"family\": \"Arr\u00f3yave\", \"given\": \"Raymundo\"}\n ],\n \"issued\": {\"date-parts\": [[2026]]},\n \"container-title\": \"Materials Letters\",\n \"page\": \"141613\",\n \"DOI\": \"10.1016/j.matlet.2026.141613\"\n}",
-      "enw": "%0 Journal Article\n%A Oses, Corey\n%A Rost, Christina M.\n%A Heron, John T.\n%A Arr\u00f3yave, Raymundo\n%T Editorial: ``High-Entropy Materials''\n%J Materials Letters\n%P 141613\n%D 2026\n%R 10.1016/j.matlet.2026.141613"
+      "bibtex": "@article{oses2026editorial,\n  author  = {Oses, Corey and Rost, Christina~M. and Heron, John~T. and Arr\\'{o}yave, Raymundo},\n  title   = {Editorial: ``High-Entropy Materials''},\n  journal = {Materials Letters},\n  volume  = {425},\n  pages   = {141613},\n  year    = {2026},\n  doi     = {10.1016/j.matlet.2026.141613}\n}",
+      "ris": "TY  - JOUR\nAU  - Oses, Corey\nAU  - Rost, Christina M.\nAU  - Heron, John T.\nAU  - Arr\u00f3yave, Raymundo\nTI  - Editorial: ``High-Entropy Materials''\nJO  - Materials Letters\nJF  - Materials Letters\nVL  - 425\nSP  - 141613\nPY  - 2026\nDO  - 10.1016/j.matlet.2026.141613\nUR  - https://doi.org/10.1016/j.matlet.2026.141613\nER  -",
+      "csl": "{\n \"type\": \"article-journal\",\n \"title\": \"Editorial: ``High-Entropy Materials''\",\n \"author\": [\n  {\"family\": \"Oses\", \"given\": \"Corey\"},\n  {\"family\": \"Rost\", \"given\": \"Christina M.\"},\n  {\"family\": \"Heron\", \"given\": \"John T.\"},\n  {\"family\": \"Arr\u00f3yave\", \"given\": \"Raymundo\"}\n ],\n \"issued\": {\"date-parts\": [[2026]]},\n \"container-title\": \"Materials Letters\",\n \"volume\": \"425\",\n \"page\": \"141613\",\n \"DOI\": \"10.1016/j.matlet.2026.141613\"\n}",
+      "enw": "%0 Journal Article\n%A Oses, Corey\n%A Rost, Christina M.\n%A Heron, John T.\n%A Arr\u00f3yave, Raymundo\n%T Editorial: ``High-Entropy Materials''\n%J Materials Letters\n%V 425\n%P 141613\n%D 2026\n%R 10.1016/j.matlet.2026.141613"
     },
     {
       "status": "published",
