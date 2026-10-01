@@ -57,12 +57,12 @@
     <a href="#contents">Contents</a>
     <a href="#access">Access</a>
     <a href="#api">API</a>
-    <a href="https://s4e.ai/loop/">Open LOOP</a>
+    <a href="https://s4e.ai/loop/accounts/login/?next=/loop/" data-loop-open>Sign in</a>
   </div>
   <div class="access-cards">
-    <a class="access-card" href="#access">
-      <div class="access-card-title">Account</div>
-      <div class="access-card-text">
+    <a class="access-card" href="#access" data-loop-account>
+      <div class="access-card-title" data-loop-account-title>Account</div>
+      <div class="access-card-text" data-loop-account-text>
         Create an account, or sign in to search, browse and add data.
       </div>
     </a>
@@ -143,6 +143,30 @@
 
 {% block body_extra %}
 <script>
+  // A signed-in visitor (the LOOP tab and the Tools card lead here) gets
+  // "Open LOOP" in place of "Sign in", from LOOP's /api/v1/access/, which
+  // describes only the visitor. Without the script, or for anyone signed
+  // out, the page offers the sign-in.
+  (function () {
+    if (!window.fetch) return;
+    fetch("/loop/api/v1/access/", { headers: { Accept: "application/json" }, credentials: "same-origin" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (a) {
+        if (!a || !a.data || !a.data.authenticated) return;
+        var open = document.querySelector("[data-loop-open]");
+        if (open) {
+          open.href = "https://s4e.ai/loop/";
+          open.textContent = "Open LOOP";
+        }
+        var card = document.querySelector("[data-loop-account]");
+        if (card) {
+          card.href = "https://s4e.ai/loop/";
+          card.querySelector("[data-loop-account-title]").textContent = "Open LOOP";
+          card.querySelector("[data-loop-account-text]").textContent = "Search, browse and add data.";
+        }
+      })
+      .catch(function () {});
+  })();
   (function () {
     var nodes = document.querySelectorAll("[data-stat]");
     if (!nodes.length || !window.fetch) return;
