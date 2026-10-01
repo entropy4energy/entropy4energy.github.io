@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{# The LOOP front page. LOOP itself, a Django app, runs at /loop/, and
+   signed-out visitors to its landing page are sent here. The layout and its
+   styles are shared with the CHAOS page (chaos.html). Every number carries
+   data-stat, the name of its value in the counts block: the page is built
+   with the counts in loop.json, and when it loads, the script at the end
+   fetches the current counts from LOOP (/loop/api/v1/stats/) and updates
+   them in place. Without the script, or if the request fails, the built
+   numbers stay. The counts are LOOP's own records: most materials and
+   nearly all DFT records in LOOP are imported from CHAOS, which has its own
+   page, so the calculations shown are the total less those imported. #}
+{% macro n(path, value) -%}
+  <span data-stat="{{ path }}">{{ "{:,}".format(value) }}</span>
+{%- endmacro %}
+
+{% block content %}
+<div class="chaos-page loop-page">
+  {% set st = data.loop.stats %}
+  {% set own_calculations = st.calculations - st.calculations_from_chaos %}
+  <h1>LOOP</h1>
+  <p class="chaos-claim">
+    The laboratory's catalog of high-entropy materials: experiments,
+    literature and calculations, kept together for each material.
+  </p>
+  <p class="chaos-lead">
+    <u>L</u>earning and <u>O</u>ptimizati<u>o</u>n <u>P</u>latform.
+    Every record has an identifier derived from its content (an AUID), so a
+    material or recipe entered from different sources is one record.
+  </p>
+
+  <div class="chaos-stats" aria-label="What LOOP holds">
+    <div class="chaos-stat">
+      <div class="chaos-stat-value">{{ n("materials_with_recipes", st.materials_with_recipes) }}</div>
+      <div class="chaos-stat-label">materials with synthesis recipes</div>
+    </div>
+    <div class="chaos-stat">
+      <div class="chaos-stat-value">{{ n("experiments", st.experiments) }}</div>
+      <div class="chaos-stat-label">experiments</div>
+      <div class="chaos-stat-note">trials of {{ n("recipes", st.recipes) }} synthesis recipes</div>
+    </div>
+    <div class="chaos-stat">
+      <div class="chaos-stat-value">{{ n("literature", st.literature) }}</div>
+      <div class="chaos-stat-label">literature results</div>
+    </div>
+    <div class="chaos-stat">
+      <div class="chaos-stat-value">{{ n("own_calculations", own_calculations) }}</div>
+      <div class="chaos-stat-label">calculations</div>
+      <div class="chaos-stat-note"><u>d</u>ensity <u>f</u>unctional <u>t</u>heory (DFT)</div>
+    </div>
+  </div>
+  <p class="chaos-total">
+    Records entered in LOOP as of
+    <span data-stat-date>{{ data.loop.as_of_text }}</span>.
+    Material pages also list the material's calculations from
+    <a href="chaos">CHAOS</a>, which are counted on its page.
+    Browse shows the records your organization can see.
+  </p>
+
+  <div class="jump-nav" role="navigation" aria-label="LOOP sections">
+    <a href="#contents">Contents</a>
+    <a href="#access">Access</a>
+    <a href="#api">API</a>
+    <a href="https://s4e.ai/loop/">Open LOOP</a>
+  </div>
+  <div class="access-cards">
+    <a class="access-card" href="#access">
+      <div class="access-card-title">Account</div>
+      <div class="access-card-text">
+        Create an account, or sign in to search, browse and add data.
+      </div>
+    </a>
+    <a class="access-card" href="https://s4e.ai/loop/browse/">
+      <div class="access-card-title">Browse</div>
+      <div class="access-card-text">
+        Search the catalog by material, composition or DOI.
+      </div>
+    </a>
+    <a class="access-card" href="#api">
+      <div class="access-card-title">API</div>
+      <div class="access-card-text">
+        Read and add records over HTTP with an API key.
+      </div>
+    </a>
+  </div>
+
+  <h2 id="contents">Contents</h2>
+  <div class="chaos-features">
+    <div class="chaos-feature">
+      <h3>Experiments</h3>
+      <p>
+        Synthesis recipes and the trials made with them, with X-ray
+        diffraction patterns and Rietveld refinements.
+      </p>
+    </div>
+    <div class="chaos-feature">
+      <h3>Literature</h3>
+      <p>
+        Results reported in publications, attached to the recipes they
+        describe, with their DOI.
+      </p>
+    </div>
+    <div class="chaos-feature">
+      <h3>Calculations</h3>
+      <p>
+        DFT results, attached to the materials they describe.
+      </p>
+    </div>
+    <div class="chaos-feature">
+      <h3>Predictions</h3>
+      <p>
+        Candidate high-entropy oxides of five 3d transition metals, ranked by
+        the concerns flagged for their elements and processing, then by
+        formability.
+      </p>
+    </div>
+  </div>
+
+  <h2 id="access">Access</h2>
+  <p>
+    LOOP is open to members of the Entropy for Energy Laboratory and of its
+    partners, with an approved account.
+    The partners are the Johns Hopkins University <u>A</u>pplied
+    <u>P</u>hysics <u>L</u>aboratory (APL) and the <u>M</u>assachusetts
+    <u>I</u>nstitute of <u>T</u>echnology (MIT).
+    <a href="https://s4e.ai/loop/accounts/signup/">Create an account</a>
+    and confirm your email address from the message you receive; the S4E
+    Laboratory then approves the account.
+    If you already have an account,
+    <a href="https://s4e.ai/loop/accounts/login/?next=/loop/">sign in</a>.
+  </p>
+  <p>
+    Records are shared by organization. Laboratory accounts see every
+    record, and an account from a partner organization sees the records
+    shared with its organization.
+  </p>
+
+  <h2 id="api">API access</h2>
+  <p>
+    The REST API returns the records your account can see, as JSON.
+    The <a href="https://s4e.ai/loop/developers/">API documentation</a> is
+    open to everyone.
+    To use the API, sign in, create a key under
+    <a href="https://s4e.ai/loop/developers/keys/">API keys</a> and send it
+    in the <code>X-API-Key</code> header.
+  </p>
+</div>
+{% endblock %}
+
+{% block body_extra %}
+<script>
+  (function () {
+    var nodes = document.querySelectorAll("[data-stat]");
+    if (!nodes.length || !window.fetch) return;
+    fetch("/loop/api/v1/stats/", { headers: { Accept: "application/json" } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (st) {
+        if (!st) return;
+        if (typeof st.calculations === "number" && typeof st.calculations_from_chaos === "number") {
+          st.own_calculations = st.calculations - st.calculations_from_chaos;
+        }
+        Array.prototype.forEach.call(nodes, function (el) {
+          var v = st[el.getAttribute("data-stat")];
+          if (typeof v === "number") el.textContent = v.toLocaleString("en-US");
+        });
+        var d = document.querySelector("[data-stat-date]");
+        var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(st.as_of || "");
+        if (d && m) {
+          d.textContent = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3])).toLocaleDateString(
+            "en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+        }
+      })
+      .catch(function () {});
+  })();
+</script>
+{% endblock %}

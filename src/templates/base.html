@@ -5,7 +5,7 @@
     {% if data.section == "home" %}
       Entropy for Energy Laboratory | Johns Hopkins
     {% else %}
-      {{ data.section | title }} | Entropy for Energy Laboratory | Johns Hopkins
+      {{ data.product.name if data.product else data.section | title }} | Entropy for Energy Laboratory | Johns Hopkins
     {% endif %}
   </title>
   <!-- Meta tags -->
@@ -22,13 +22,14 @@
     "teaching": "Courses, workshops, outreach, service, and awards of the Entropy for Energy Laboratory and Corey Oses at Johns Hopkins University.",
     "synthesizability-game": "Synthesizability Game: choose elements for the two cation sites of a high-entropy nuclear waste form and see whether the composition is predicted to be synthesizable. From the Entropy for Energy Laboratory at Johns Hopkins University.",
     "workshops": "Workshops and conferences organized by the Entropy for Energy Laboratory at Johns Hopkins: data-driven materials modeling, quantum computing, AI and energy, and research translation.",
+    "loop": "LOOP, the Entropy for Energy Laboratory's catalog of high-entropy materials: synthesis experiments, literature results and DFT calculations kept together for each material, with a REST API. From the Entropy for Energy Laboratory at Johns Hopkins University.",
     "chaos": "CHAOS, the first database of first-principles calculations dedicated to high-entropy oxides: disordered oxides as ensembles of relaxed DFT supercells, formability and disorder descriptors, and ordered reference oxides. From the Entropy for Energy Laboratory at Johns Hopkins University.",
     "tools": "Databases and data platforms built by the Entropy for Energy Laboratory at Johns Hopkins University: CHAOS, LOOP, Fusion Mirrors and the Synthesizability Game.",
     "fusion-mirrors": "Fusion Mirrors: a local-file explorer for DFT optical constants and normal-incidence reflectivity. Code-only preview from the Entropy for Energy Laboratory.",
     "synthesizability-game": "Synthesizability Game: choose elements for the two cation sites of a high-entropy nuclear waste form and see whether the composition is predicted to be synthesizable. From the Entropy for Energy Laboratory at Johns Hopkins University.",
   } %}
   {% set description = descriptions.get(data.section, descriptions["home"]) %}
-  {% set page_title = "Entropy for Energy Laboratory | Johns Hopkins" if data.section == "home" else (data.section | title) ~ " | Entropy for Energy Laboratory | Johns Hopkins" %}
+  {% set page_title = "Entropy for Energy Laboratory | Johns Hopkins" if data.section == "home" else (data.product.name if data.product else data.section | title) ~ " | Entropy for Energy Laboratory | Johns Hopkins" %}
   <meta name="description" content="{{ description }}">
   <meta property="og:type" content="website">
   {# The site is served from two hosts: entropy4energy.ai carries the lab, s4e.ai
