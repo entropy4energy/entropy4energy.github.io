@@ -11,10 +11,10 @@ python -m venv venv
 venv/bin/pip install -r requirements.txt
 npm ci
 make
-python -m http.server 8080 --bind 127.0.0.1 --directory dist
+python -m http.server 8080 --bind localhost --directory dist
 ```
 
-Open `http://127.0.0.1:8080/fusion-mirrors.html`. The production server supports extensionless links; Python's basic server needs `.html` when opening the Tools and Fusion Mirror pages directly. Do not serve a parent directory containing private data.
+Open `http://localhost:8080/fusion-mirrors.html`. The production server supports extensionless links; Python's basic server needs `.html` when opening the Tools and Fusion Mirror pages directly. Do not serve a parent directory containing private data.
 
 ## What is included
 
@@ -27,7 +27,7 @@ Open `http://127.0.0.1:8080/fusion-mirrors.html`. The production server supports
 
 ## Data and privacy
 
-This PR does **not** release the unpublished DFT data. There is no dataset in the repository, no remote-data URL and no upload API. A reviewer with authorized data can select an existing explorer export's `data/` folder, containing `catalog.json`, `spectra/` and `source_csv/`. The folder picker selects files on the computer running the browser, not on a remote SSH server. File contents are read locally in the browser. Reloading clears the selection. Local material choices are not placed in the URL or persistent browser storage, and the new page does not load the site's analytics script.
+This PR does **not** release the unpublished DFT data. There is no dataset in the repository, no remote-data URL and no upload API. A reviewer with authorized data can select an existing explorer export's `data/` folder, containing `catalog.json`, `spectra/` and `source_csv/`. The folder picker selects files on the computer running the browser, not on a remote server. File contents are read locally in the browser. Reloading clears the selection. Local material choices are not placed in the URL or persistent browser storage, and the new page does not load the site's analytics script.
 
 The underlying calculations are VASP independent-particle PBE dielectric responses. “GW” labels denote GW-oriented PAW potentials used within PBE; they are not quasiparticle GW results. The explorer reads preprocessed optical constants and full-tensor normal-incidence Air/material reflectivity. It does not run VASP, recalculate TMM, mix response channels, extrapolate missing data or introduce spectral averages.
 
