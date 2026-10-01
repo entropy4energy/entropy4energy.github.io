@@ -1,7 +1,18 @@
 {
+  "stats": {
+    "as_of": "2026-09-30",
+    "materials": 37319,
+    "materials_with_recipes": 463,
+    "recipes": 1009,
+    "experiments": 292,
+    "literature": 360,
+    "calculations": 243451,
+    "calculations_from_chaos": 242796
+  },
   "product": {
     "name": "LOOP",
     "full_name": "Learning and Optimization Platform",
+    "full_name_html": "<u>L</u>earning and <u>O</u>ptimizati<u>o</u>n <u>P</u>latform",
     "contributors": [
       {"name": "Corey Oses", "years": "2026–present"},
       {"name": "Peter Boctor", "years": "2026–present"},

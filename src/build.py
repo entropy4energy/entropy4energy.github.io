@@ -55,6 +55,7 @@ SITEMAP = {
     TOOLS_HOST: [
         ("tools", 0.9),
         ("chaos", 0.8),
+        ("loop", 0.8),
     ],
 }
 
@@ -623,9 +624,19 @@ def process_chaos(data: dict[str, Any]):
     chaos_stats(data)
 
 
+def process_loop(data: dict[str, Any]):
+    """The date of the counts on the LOOP page, from the "stats" block of
+    loop.json."""
+    st = data["loop"].get("stats")
+    if st:
+        as_of = date.fromisoformat(st["as_of"])
+        data["loop"]["as_of_text"] = f"{as_of:%B} {as_of.day}, {as_of.year}"
+
+
 PROCESS_DATA = {
     "chaos": process_chaos,
     "home": process_home,
+    "loop": process_loop,
     "jobs": process_jobs,
     "publications": process_publications,
     "team": process_team,
