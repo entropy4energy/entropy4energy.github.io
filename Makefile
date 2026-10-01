@@ -77,7 +77,7 @@ $(BLDDIR)/news.html: $(DATADIR)/press.json
 # Some pages ask the filesystem what exists rather than reading it from JSON:
 # a team photo, a publication snapshot or PDF, a workshop flyer or video poster.
 # Adding one of those files changes no .json and no template, so without these
-# prerequisites an incremental build (mintaka) leaves the page as it was while a
+# prerequisites an incremental build (the web server's) leaves the page as it was while a
 # clean build (the GitHub Action) picks the file up. A directory's timestamp
 # moves when a file is added or removed inside it, which is exactly the case
 # that changes the page.
@@ -145,7 +145,7 @@ static: $(BLDDIR)/media $(BLDDIR)/CNAME $(BLDDIR)/.htaccess $(BLDDIR)/robots.txt
 
 # robots.txt and sitemap.xml name the host this build is published on, so the
 # two hosts never advertise each other's URLs. The build that carries the tools
-# data is the one mintaka serves at the root of s4e.ai; every other build is the
+# data is the one served at the root of s4e.ai; every other build is the
 # lab site. Deriving it here keeps dev from having to override it.
 CANONICAL_HOST?=$(if $(wildcard $(DATADIR)/tools.json),https://s4e.ai/,https://entropy4energy.ai/)
 
