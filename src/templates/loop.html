@@ -1,17 +1,14 @@
 {% extends "base.html" %}
 
-{# The LOOP front page. LOOP itself, a Django app, runs at /loop/, and
-   signed-out visitors to its landing page are sent here. The layout and its
-   styles are shared with the CHAOS page (chaos.html). Every number carries
-   data-stat, the name of its value in the counts block: the page is built
-   with the counts in loop.json, and when it loads, the script at the end
-   fetches the current counts from LOOP (/loop/api/v1/stats/) and updates
-   them in place. Without the script, or if the request fails, the built
-   numbers stay. The counts are LOOP's own records: most materials and
-   nearly all DFT records in LOOP are imported from CHAOS, which has its own
-   page, and LOOP's list of computational records can also hold records
-   that are not calculations (its ChemScreen sync writes predictions and
-   candidates there), so no calculation count is shown. #}
+{# The LOOP page. LOOP itself, a Django app, runs at /loop/; signed-out
+   visitors to its landing page are sent here, and the LOOP tab and the Tools
+   card lead here. Text by Corey Oses, 2026-10-01: what LOOP is, what is in
+   it and how to use it; CHAOS adds the calculations. The styles are the
+   CHAOS page's. Every number carries data-stat, the name of its value in the
+   counts block: the page is built with the counts in loop.json, and when it
+   loads, the script at the end fetches the current counts from LOOP
+   (/loop/api/v1/stats/) and updates them in place. Without the script, or if
+   the request fails, the built numbers stay. #}
 {% macro n(path, value) -%}
   <span data-stat="{{ path }}">{{ "{:,}".format(value) }}</span>
 {%- endmacro %}
@@ -21,13 +18,16 @@
   {% set st = data.loop.stats %}
   <h1>LOOP</h1>
   <p class="chaos-claim">
-    The laboratory's catalog of high-entropy materials: experiments,
-    literature and calculations, kept together for each material.
+    High-entropy materials from the laboratory, the literature and
+    computation, in one place.
   </p>
   <p class="chaos-lead">
-    <u>L</u>earning and <u>O</u>ptimizati<u>o</u>n <u>P</u>latform.
-    Every record has an identifier derived from its content (an AUID), so a
-    material or recipe entered from different sources is one record.
+    LOOP is the <u>L</u>earning and <u>O</u>ptimizati<u>o</u>n
+    <u>P</u>latform.
+    It brings together synthesis recipes, experiments and published results
+    so you can see what has been made, how it was made and what happened.
+    First-principles calculations from <a href="chaos">CHAOS</a> add the
+    computational side.
   </p>
 
   <div class="chaos-stats" aria-label="What LOOP holds">
@@ -38,115 +38,96 @@
     <div class="chaos-stat">
       <div class="chaos-stat-value">{{ n("experiments", st.experiments) }}</div>
       <div class="chaos-stat-label">experiments</div>
-      <div class="chaos-stat-note">trials of {{ n("recipes", st.recipes) }} synthesis recipes</div>
     </div>
     <div class="chaos-stat">
       <div class="chaos-stat-value">{{ n("literature", st.literature) }}</div>
-      <div class="chaos-stat-label">literature results</div>
+      <div class="chaos-stat-label">results from the literature</div>
     </div>
   </div>
   <p class="chaos-total">
-    Records entered in LOOP as of
-    <span data-stat-date>{{ data.loop.as_of_text }}</span>.
-    Material pages also list the material's calculations from
-    <a href="chaos">CHAOS</a>, which are counted on its page.
-    Browse shows the records your organization can see.
+    Data in LOOP as of <span data-stat-date>{{ data.loop.as_of_text }}</span>.
   </p>
 
-  <div class="jump-nav" role="navigation" aria-label="LOOP sections">
-    <a href="#contents">Contents</a>
-    <a href="#access">Access</a>
-    <a href="#api">API</a>
-    <a href="https://s4e.ai/loop/accounts/login/?next=/loop/" data-loop-open>Sign in</a>
-  </div>
+  {# Open LOOP goes through LOOP's sign-in for a visitor who is signed out
+     (LOOP's own landing page would send them straight back here); the
+     script at the end points it at LOOP for a visitor who is signed in. #}
   <div class="access-cards">
-    <a class="access-card" href="#access" data-loop-account>
-      <div class="access-card-title" data-loop-account-title>Account</div>
-      <div class="access-card-text" data-loop-account-text>
-        Create an account, or sign in to search, browse and add data.
-      </div>
+    <a class="access-card" href="https://s4e.ai/loop/accounts/login/?next=/loop/" data-loop-open>
+      <div class="access-card-title">Open LOOP</div>
+      <div class="access-card-text">Search, browse and add data.</div>
     </a>
     <a class="access-card" href="https://s4e.ai/loop/browse/">
       <div class="access-card-title">Browse</div>
-      <div class="access-card-text">
-        Search the catalog by material, composition or DOI.
-      </div>
+      <div class="access-card-text">Find materials, compositions and papers.</div>
     </a>
-    <a class="access-card" href="#api">
-      <div class="access-card-title">API</div>
+    <a class="access-card" href="chaos">
+      <div class="access-card-title">CHAOS</div>
       <div class="access-card-text">
-        Read and add records over HTTP with an API key.
+        Explore first-principles calculations of high-entropy oxides.
       </div>
     </a>
   </div>
 
-  <h2 id="contents">Contents</h2>
+  <h2 id="contents">What's in LOOP</h2>
   <div class="chaos-features">
     <div class="chaos-feature">
       <h3>Experiments</h3>
       <p>
-        Synthesis recipes and the trials made with them, with X-ray
-        diffraction patterns and Rietveld refinements.
+        See how materials were synthesized and what happened when they were
+        made. Experimental records can include X-ray diffraction patterns
+        and Rietveld refinements.
       </p>
     </div>
     <div class="chaos-feature">
       <h3>Literature</h3>
       <p>
-        Results reported in publications, attached to the recipes they
-        describe, with their DOI.
+        Find high-entropy materials and synthesis results reported in
+        published papers.
       </p>
     </div>
     <div class="chaos-feature">
       <h3>Calculations</h3>
       <p>
-        <u>D</u>ensity <u>f</u>unctional <u>t</u>heory (DFT) results,
-        attached to the materials they describe.
+        Material pages include <u>d</u>ensity <u>f</u>unctional
+        <u>t</u>heory (DFT) calculations from <a href="chaos">CHAOS</a>,
+        including calculated structures and properties.
       </p>
     </div>
     <div class="chaos-feature">
       <h3>Predictions</h3>
       <p>
-        Candidate high-entropy oxides of five 3d transition metals, ranked by
-        the concerns flagged for their elements and processing, then by
-        formability.
+        Explore high-entropy oxide candidates selected for future
+        experiments.
       </p>
     </div>
   </div>
 
   <h2 id="access">Access</h2>
   <p>
-    LOOP is open to members of the Entropy for Energy Laboratory at Johns
-    Hopkins University and its partners, with an approved account.
-    <a href="https://s4e.ai/loop/accounts/signup/">Create an account</a>
-    and confirm your email address from the message you receive; the S4E
-    Laboratory then approves the account.
-    If you already have an account,
+    LOOP is available to the S4E Laboratory and collaborating groups with an
+    approved account.
+  </p>
+  <p>
+    <a href="https://s4e.ai/loop/accounts/signup/">Create an account</a> or
     <a href="https://s4e.ai/loop/accounts/login/?next=/loop/">sign in</a>.
   </p>
   <p>
-    Records are shared by organization. Laboratory accounts see every
-    record, and an account from a partner organization sees the records
-    shared with its organization.
+    You will see the records shared with your organization.
   </p>
 
-  <h2 id="api">API access</h2>
+  <h2 id="api">API</h2>
   <p>
-    The REST API returns the records your account can see, as JSON.
-    The <a href="https://s4e.ai/loop/developers/">API documentation</a> is
-    open to everyone.
-    To use the API, sign in, create a key under
-    <a href="https://s4e.ai/loop/developers/keys/">API keys</a> and send it
-    in the <code>X-API-Key</code> header.
+    LOOP can also be accessed from code.
+    <a href="https://s4e.ai/loop/developers/">See the API documentation</a>
+    or <a href="https://s4e.ai/loop/developers/keys/">create an API key</a>.
   </p>
 </div>
 {% endblock %}
 
 {% block body_extra %}
 <script>
-  // A signed-in visitor (the LOOP tab and the Tools card lead here) gets
-  // "Open LOOP" in place of "Sign in", from LOOP's /api/v1/access/, which
-  // describes only the visitor. Without the script, or for anyone signed
-  // out, the page offers the sign-in.
+  // For a visitor who is signed in, Open LOOP goes straight to LOOP. LOOP's
+  // /api/v1/access/ describes only the visitor.
   (function () {
     if (!window.fetch) return;
     fetch("/loop/api/v1/access/", { headers: { Accept: "application/json" }, credentials: "same-origin" })
@@ -154,16 +135,7 @@
       .then(function (a) {
         if (!a || !a.data || !a.data.authenticated) return;
         var open = document.querySelector("[data-loop-open]");
-        if (open) {
-          open.href = "https://s4e.ai/loop/";
-          open.textContent = "Open LOOP";
-        }
-        var card = document.querySelector("[data-loop-account]");
-        if (card) {
-          card.href = "https://s4e.ai/loop/";
-          card.querySelector("[data-loop-account-title]").textContent = "Open LOOP";
-          card.querySelector("[data-loop-account-text]").textContent = "Search, browse and add data.";
-        }
+        if (open) open.href = "https://s4e.ai/loop/";
       })
       .catch(function () {});
   })();
