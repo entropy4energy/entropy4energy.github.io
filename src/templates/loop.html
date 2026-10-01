@@ -9,7 +9,9 @@
    them in place. Without the script, or if the request fails, the built
    numbers stay. The counts are LOOP's own records: most materials and
    nearly all DFT records in LOOP are imported from CHAOS, which has its own
-   page, so the calculations shown are the total less those imported. #}
+   page, and LOOP's list of computational records can also hold records
+   that are not calculations (its ChemScreen sync writes predictions and
+   candidates there), so no calculation count is shown. #}
 {% macro n(path, value) -%}
   <span data-stat="{{ path }}">{{ "{:,}".format(value) }}</span>
 {%- endmacro %}
@@ -17,7 +19,6 @@
 {% block content %}
 <div class="chaos-page loop-page">
   {% set st = data.loop.stats %}
-  {% set own_calculations = st.calculations - st.calculations_from_chaos %}
   <h1>LOOP</h1>
   <p class="chaos-claim">
     The laboratory's catalog of high-entropy materials: experiments,
@@ -42,11 +43,6 @@
     <div class="chaos-stat">
       <div class="chaos-stat-value">{{ n("literature", st.literature) }}</div>
       <div class="chaos-stat-label">literature results</div>
-    </div>
-    <div class="chaos-stat">
-      <div class="chaos-stat-value">{{ n("own_calculations", own_calculations) }}</div>
-      <div class="chaos-stat-label">calculations</div>
-      <div class="chaos-stat-note"><u>d</u>ensity <u>f</u>unctional <u>t</u>heory (DFT)</div>
     </div>
   </div>
   <p class="chaos-total">
@@ -103,7 +99,8 @@
     <div class="chaos-feature">
       <h3>Calculations</h3>
       <p>
-        DFT results, attached to the materials they describe.
+        <u>D</u>ensity <u>f</u>unctional <u>t</u>heory (DFT) results,
+        attached to the materials they describe.
       </p>
     </div>
     <div class="chaos-feature">
@@ -118,11 +115,8 @@
 
   <h2 id="access">Access</h2>
   <p>
-    LOOP is open to members of the Entropy for Energy Laboratory and of its
-    partners, with an approved account.
-    The partners are the Johns Hopkins University <u>A</u>pplied
-    <u>P</u>hysics <u>L</u>aboratory (APL) and the <u>M</u>assachusetts
-    <u>I</u>nstitute of <u>T</u>echnology (MIT).
+    LOOP is open to members of the Entropy for Energy Laboratory at Johns
+    Hopkins University and its partners, with an approved account.
     <a href="https://s4e.ai/loop/accounts/signup/">Create an account</a>
     and confirm your email address from the message you receive; the S4E
     Laboratory then approves the account.
@@ -156,9 +150,6 @@
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (st) {
         if (!st) return;
-        if (typeof st.calculations === "number" && typeof st.calculations_from_chaos === "number") {
-          st.own_calculations = st.calculations - st.calculations_from_chaos;
-        }
         Array.prototype.forEach.call(nodes, function (el) {
           var v = st[el.getAttribute("data-stat")];
           if (typeof v === "number") el.textContent = v.toLocaleString("en-US");
