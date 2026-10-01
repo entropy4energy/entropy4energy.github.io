@@ -93,9 +93,9 @@ def main():
         for file in ['css/main.css', 'css/shell.css', 'js/cite.js', 'js/citations.js', 'js/jobs.js', 'js/slideshow.js']:
             check((dist / file).read_bytes() == (args.baseline / file).read_bytes(), f'Shared asset unchanged: {file}')
 
-    server = ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(Handler, directory=str(dist)))
+    server = ThreadingHTTPServer(('localhost', 0), functools.partial(Handler, directory=str(dist)))
     threading.Thread(target=server.serve_forever, daemon=True).start()
-    origin = f'http://127.0.0.1:{server.server_port}'
+    origin = f'http://localhost:{server.server_port}'
     try:
         with tempfile.TemporaryDirectory(prefix='fusion-mirrors-synthetic-') as tmp, sync_playwright() as pw:
             fixture = Path(tmp) / 'data'
