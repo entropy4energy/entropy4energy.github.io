@@ -3,7 +3,8 @@
  * and check its 0-100 score, looking for a composition that can be made.
  * Element tables are packed strings in atomic-number order: one letter per
  * element for the group color and circle size, four base-36 digits per
- * element for each site. Nothing is stored or sent anywhere. */
+ * element for each site. Each Check is sent to the s4e.ai usage record
+ * (record below); nothing is stored in the browser. */
 (function () {
   'use strict';
 
@@ -36,6 +37,42 @@
 
   var index = {};
   ELEMENTS.forEach(function (sym, i) { index[sym] = i; });
+
+  // Usage record (decided by Corey Oses, 2026-10-03): each Check goes to
+  // https://s4e.ai/API/events with the elements on each site, the score shown
+  // and the try number; the record adds the address and browser, and on
+  // s4e.ai the visitor's account when they are signed in (never on the lab
+  // site).
+  // VISIT ties one visit's tries together; it is drawn at each load and kept
+  // only in memory. Other hosts (a local test server) send nothing unless
+  // window.S4E_EVENTS_URL names an address.
+  var EVENTS = window.S4E_EVENTS_URL ||
+    (/^(s4e\.ai|(www\.)?entropy4energy\.ai)$/.test(location.hostname) ? 'https://s4e.ai/API/events' : '');
+  var VISIT = (function () {
+    var bytes = new Uint8Array(8);
+    var hex = '';
+    if (window.crypto && crypto.getRandomValues) { crypto.getRandomValues(bytes); }
+    for (var i = 0; i < 8; i++) {
+      var b = (window.crypto && crypto.getRandomValues) ? bytes[i] : Math.floor(Math.random() * 256);
+      hex += (b < 16 ? '0' : '') + b.toString(16);
+    }
+    return hex;
+  }());
+
+  function record(event, fields) {
+    if (!EVENTS) { return; }
+    var data = { tool: 'synthesizability-game', event: event, visit: VISIT, page: location.pathname };
+    Object.keys(fields).forEach(function (k) { data[k] = fields[k]; });
+    var body = JSON.stringify(data);
+    try {
+      // text/plain needs no CORS preflight, so the lab site can send it too.
+      if (navigator.sendBeacon && navigator.sendBeacon(EVENTS, new Blob([body], { type: 'text/plain;charset=UTF-8' }))) {
+        return;
+      }
+      fetch(EVENTS, { method: 'POST', body: body, mode: 'no-cors', credentials: 'include', keepalive: true,
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' } }).catch(function () {});
+    } catch (e) { /* the game never depends on the record */ }
+  }
 
   function unpack(packed, i) {
     return parseInt(packed.substr(4 * i, 4), 36) / 1e6;
@@ -231,6 +268,8 @@
     state.tries += 1;
     if (made) { state.found += 1; }
     scoreEl.textContent = String(Math.floor(value));
+    record('check', { a: state.a.slice(), b: state.b.slice(), score: Math.floor(value),
+      synthesizable: made, attempt: state.tries });
     fill.style.width = value.toFixed(1) + '%';
     result.classList.add('is-revealed');
     result.classList.toggle('is-yes', made);
