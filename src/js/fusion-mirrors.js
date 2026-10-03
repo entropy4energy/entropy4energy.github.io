@@ -19,6 +19,39 @@ let localFiles=new Map(), importGeneration=0;
 const appRoot=document.getElementById('fusion-mirrors-app');
 const number=(x,d=4)=>Number.isFinite(x)?x.toLocaleString('en-US',{maximumFractionDigits:d}):'—';
 const plain=(x,d=6)=>Number.isFinite(x)?Number(x.toPrecision(d)).toString():'';
+// Usage record (decided by Corey Oses, 2026-10-03): what a visitor chooses and
+// downloads goes to https://s4e.ai/API/events: that a folder was opened, the
+// view once it has loaded and settled, each wavelength looked up, each
+// download. The record adds the address and browser, and on s4e.ai the
+// account of a signed-in visitor. Nothing taken from the data is sent: no
+// values, no counts, no file names or contents, and no window for the full
+// range (that window is the data's own coverage). VISIT ties one visit's
+// events together; it is drawn at each load and kept only in memory. Other
+// hosts (a local test server) send nothing unless window.S4E_EVENTS_URL names
+// an address.
+const EVENTS=window.S4E_EVENTS_URL||(/^(s4e\.ai|(www\.)?entropy4energy\.ai)$/.test(location.hostname)?'https://s4e.ai/API/events':'');
+const VISIT=Array.from(crypto.getRandomValues(new Uint8Array(8)),b=>b.toString(16).padStart(2,'0')).join('');
+function record(event,fields){
+  if(!EVENTS)return;
+  const body=JSON.stringify({tool:'fusion-mirrors',event,visit:VISIT,page:location.pathname,...fields});
+  try{
+    // text/plain needs no CORS preflight.
+    if(navigator.sendBeacon?.(EVENTS,new Blob([body],{type:'text/plain;charset=UTF-8'})))return;
+    fetch(EVENTS,{method:'POST',body,mode:'no-cors',credentials:'include',keepalive:true,headers:{'Content-Type':'text/plain;charset=UTF-8'}}).catch(()=>{});
+  }catch(e){/* the explorer never depends on the record */}
+}
+// The full range's window is the data's own coverage (fullWindow); it is
+// sent as range 'full' without numbers, also when the visitor later applies
+// or keeps that same window under another name.
+let fullWindow=null;
+function viewFields(){const full=activeRange==='full'||(fullWindow!==null&&state.min===fullWindow[0]&&state.max===fullWindow[1]);
+  const f={material:state.material,branch:state.branch,channel:state.channel,sampling:state.sampling,
+  range:full?'full':activeRange,log:state.log,component:state.component,polarization:state.polarization};
+  if(!full){f.min=state.min;f.max=state.max;}return f;}
+// The view is recorded once it has loaded and stayed the same for 1.5 s, and
+// not again until it changes. A new load (refresh) cancels a pending one.
+let viewTimer,lastView='';
+function noteView(){clearTimeout(viewTimer);viewTimer=setTimeout(()=>{if(!loaded.length)return;const f=viewFields(),key=JSON.stringify(f);if(key!==lastView){lastView=key;record('view',f);}},1500);}
 function status(message,error=false){$('status').textContent=message;$('status').classList.toggle('error',error);}
 //n, k, R, E and the Cartesian axes are variables, so they are italic wherever
 //the page writes them as prose. These build nodes rather than markup strings so
@@ -58,7 +91,8 @@ function viewMetadata(){return {website_version:'s4e-local-review-1',material:st
   source_manifest_sha256:catalog.manifest_sha256,
   sources:branches().map(b=>({branch:b,calculation:selected.runs[b].metadata,
     csv_sources:selected.runs[b].channels[state.channel][state.sampling].sources}))};}
-// Do not place private selections in URLs, browser history or analytics.
+// Selections stay out of URLs and browser history; the usage record gets
+// them through record() above.
 function updateURL(){}
 function syncRange(){
   $('min-wl').value=state.min;$('max-wl').value=state.max;$('sampling').value=state.sampling;$('log-axis').checked=state.log;
@@ -98,17 +132,18 @@ async function getData(url){
   return data;
 }
 async function refresh(){
+  clearTimeout(viewTimer);
   const token=++generation;document.body.dataset.ready='loading';setBusy(true);status(`Loading ${state.material} · ${state.channel} response…`);
   try{
     if(activeRange==='full'){
       state.sampling='native';const ranges=branches().map(b=>selected.runs[b].channels[state.channel].native.range_nm).filter(Boolean);
-      if(ranges.length){state.min=Math.min(...ranges.map(r=>r[0]));state.max=Math.max(...ranges.map(r=>r[1]));state.log=state.max/state.min>30;}
+      if(ranges.length){state.min=Math.min(...ranges.map(r=>r[0]));state.max=Math.max(...ranges.map(r=>r[1]));state.log=state.max/state.min>30;fullWindow=[state.min,state.max];}
       syncRange();
     }
     const datasets=await Promise.all(branches().map(async branch=>({branch,data:await getData(selected.runs[branch].channels[state.channel][state.sampling].url)})));
     if(token!==generation)return;
     loaded=datasets.map(d=>({...d,index:Object.fromEntries(d.data.columns.map((c,i)=>[c,i]))}));
-    tableLimit=80;render();updateURL();setBusy(false);
+    tableLimit=80;render();updateURL();noteView();setBusy(false);
     status(`${selected.id} loaded · ${labels[state.branch]||'two PAW datasets, both PBE'} · ${state.sampling==='native'?'native energy sampling':'1 nm screening grid'}${selected.excluded?' · excluded from the fusion-feasible screening':''}`);
     document.body.dataset.ready='true';
   }catch(error){if(token!==generation)return;loaded=[];document.body.dataset.ready='error';status(`${error.message}. Select a complete explorer data folder or another available response.`,true);renderEmpty();}
@@ -230,9 +265,10 @@ function renderProvenance(){
 function saveBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);}
 function fileStem(){return `${state.material}_${state.branch}_${state.channel}_${state.sampling}_${plain(state.min)}-${plain(state.max)}nm_${state.component}_${state.polarization}`;}
 function csvCell(v){if(v===null||v===undefined)return '';const raw=String(v),s=typeof v==='string'&&/^[=+@\-]/.test(raw)?"'"+raw:raw;return /[",\n\r]/.test(s)?'"'+s.replaceAll('"','""')+'"':s;}
-function downloadCSV(){const rows=plottedRows(),keys=['material','family','branch','method','channel','sampling','optical_index','reflectivity_polarization','wavelength_nm','energy_eV','n','k','R_percent','finite_epsilon','passive_epsilon','rounding_uncertain_absorption','valid_normal_z'];const text=keys.join(',')+'\r\n'+rows.map(r=>keys.map(k=>csvCell(r[k])).join(',')).join('\r\n')+'\r\n';saveBlob(new Blob([text],{type:'text/csv;charset=utf-8'}),fileStem()+'.csv');}
+function downloadCSV(){const rows=plottedRows();record('download',{what:'csv',...viewFields()});const keys=['material','family','branch','method','channel','sampling','optical_index','reflectivity_polarization','wavelength_nm','energy_eV','n','k','R_percent','finite_epsilon','passive_epsilon','rounding_uncertain_absorption','valid_normal_z'];const text=keys.join(',')+'\r\n'+rows.map(r=>keys.map(k=>csvCell(r[k])).join(',')).join('\r\n')+'\r\n';saveBlob(new Blob([text],{type:'text/csv;charset=utf-8'}),fileStem()+'.csv');}
 async function downloadFigure(kind,format){
   const original=$(`chart-${kind}`).querySelector('svg');if(!original)return;
+  record('download',{what:'figure',chart:kind,format,...viewFields()});
   const node=original.cloneNode(true);node.removeAttribute('tabindex');
   const meta=svgEl('metadata',{},JSON.stringify(viewMetadata()));node.prepend(meta);
   const text=new XMLSerializer().serializeToString(node),blob=new Blob([text],{type:'image/svg+xml;charset=utf-8'});
@@ -250,6 +286,8 @@ function resetState(){
   for(const k of ['branch','channel','component','polarization','sampling'])$(k).value=state[k];
   syncRange();
 }
+// A wavelength the visitor asks for (not the redraws that follow a change of view).
+function probe(){const target=Number($('probe-wl').value);if(loaded.length&&Number.isFinite(target)&&target>0)record('probe',{wavelength:target,...viewFields()});renderProbe();}
 function renderProbe(){
   const target=Number($('probe-wl').value),out=$('probe-result');out.replaceChildren();
   if(!(Number.isFinite(target)&&target>0)){out.textContent='Enter a positive wavelength.';return;}
@@ -270,7 +308,7 @@ function renderProbe(){
 }
 async function importFolder(files){
   if(!files.length)return;
-  const token=++importGeneration;++generation;loaded=[];cache.clear();localFiles.clear();
+  const token=++importGeneration;++generation;loaded=[];cache.clear();localFiles.clear();clearTimeout(viewTimer);lastView='';fullWindow=null;
   $('explorer-controls').disabled=true;setBusy(true);renderEmpty();
   document.body.dataset.ready='loading';status('Reading the selected local catalogue…');
   try{
@@ -302,6 +340,7 @@ async function importFolder(files){
     $('family').replaceChildren(option('all','All families'));
     for(const[k,v]of Object.entries(catalog.families).sort((a,b)=>a[1].localeCompare(b[1])))$('family').append(option(k,v));
     resetState();$('explorer-controls').disabled=false;updateMaterialList(state.material);
+    record('open',{});
   }catch(error){
     if(token!==importGeneration)return;
     document.body.dataset.ready='error';$('total-materials').textContent='—';$('total-runs').textContent='—';
@@ -311,20 +350,20 @@ async function importFolder(files){
 }
 function start(){
   $('local-folder').addEventListener('change',e=>importFolder(Array.from(e.target.files)));
-  $('probe-form').addEventListener('submit',e=>{e.preventDefault();renderProbe();});
-  for(const b of appRoot.querySelectorAll('[data-probe]'))b.addEventListener('click',()=>{$('probe-wl').value=b.dataset.probe;renderProbe();});
+  $('probe-form').addEventListener('submit',e=>{e.preventDefault();probe();});
+  for(const b of appRoot.querySelectorAll('[data-probe]'))b.addEventListener('click',()=>{$('probe-wl').value=b.dataset.probe;probe();});
     let timer;$('search').addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(()=>updateMaterialList(),180);});
     for(const id of ['family','include-excluded'])$(id).addEventListener('change',()=>updateMaterialList());
     $('material').addEventListener('change',selectMaterial);
     for(const id of ['branch','channel'])$(id).addEventListener('change',()=>{state[id]=$(id).value;refresh();});
-    for(const id of ['component','polarization'])$(id).addEventListener('change',()=>{state[id]=$(id).value;render();updateURL();});
+    for(const id of ['component','polarization'])$(id).addEventListener('change',()=>{state[id]=$(id).value;render();updateURL();noteView();});
     $('sampling').addEventListener('change',()=>{state.sampling=$('sampling').value;if(state.sampling==='screening'&&(state.min<200||state.max>1200)){state.min=200;state.max=1200;activeRange='all';state.log=false;}else activeRange='custom';syncRange();refresh();});
-    $('log-axis').addEventListener('change',()=>{state.log=$('log-axis').checked;render();updateURL();});
+    $('log-axis').addEventListener('change',()=>{state.log=$('log-axis').checked;render();updateURL();noteView();});
     for(const b of appRoot.querySelectorAll('[data-range]'))b.addEventListener('click',()=>{activeRange=b.dataset.range;if(activeRange!=='full'){[state.min,state.max]=presets[activeRange];state.log=false;}syncRange();refresh();});
     $('range-form').addEventListener('submit',e=>{e.preventDefault();const lo=Number($('min-wl').value),hi=Number($('max-wl').value);if(!(Number.isFinite(lo)&&Number.isFinite(hi)&&lo>0&&hi>lo)){status('Enter a positive lower wavelength and a higher upper wavelength.',true);return;}state.min=lo;state.max=hi;activeRange='custom';if(lo<200||hi>1200)state.sampling='native';syncRange();refresh();});
     $('more-rows').addEventListener('click',()=>{tableLimit+=200;renderTable();});
     $('download-csv').addEventListener('click',downloadCSV);
-    $('download-view').addEventListener('click',()=>saveBlob(new Blob([JSON.stringify(viewMetadata(),null,2)],{type:'application/json'}),fileStem()+'_metadata.json'));
+    $('download-view').addEventListener('click',()=>{record('download',{what:'metadata',...viewFields()});saveBlob(new Blob([JSON.stringify(viewMetadata(),null,2)],{type:'application/json'}),fileStem()+'_metadata.json');});
     for(const b of appRoot.querySelectorAll('[data-download]'))b.addEventListener('click',()=>downloadFigure(b.dataset.download,b.dataset.format));
     window.DFTExplorer={getState:()=>({...state}),getRows:plottedRows,getMetadata:viewMetadata};
   syncRange();setBusy(true);

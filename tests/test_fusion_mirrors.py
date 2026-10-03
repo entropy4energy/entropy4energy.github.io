@@ -109,6 +109,15 @@ def main():
             # No external fonts/analytics required for deterministic offline screenshots.
             context.route('**/*', lambda route: route.continue_() if route.request.url.startswith(origin)
                           or route.request.url.startswith(('blob:', 'data:')) else route.abort())
+            # Usage events (the s4e.ai record) go to a stand-in here; the page
+            # sends none from other hosts unless S4E_EVENTS_URL is set.
+            events = []
+
+            def take_event(route):
+                events.append(json.loads(route.request.post_data or 'null'))
+                route.fulfill(status=204)
+            context.add_init_script(f"window.S4E_EVENTS_URL = '{origin}/__events';")
+            context.route(origin + '/__events', take_event)
             page.goto(origin + '/fusion-mirrors')
             page.locator('body[data-ready="empty"]').wait_for()
             check(page.locator('#material').is_disabled(), 'Unloaded controls disabled')
@@ -124,13 +133,14 @@ def main():
             page.goto(origin + '/tools')
             check(page.get_by_role('link', name='Open CHAOS', exact=True).count() == 1, 'CHAOS entry retained')
             check(page.get_by_role('link', name='Open LOOP', exact=True).count() == 1, 'LOOP entry retained')
-            check(page.get_by_role('link', name='Open Fusion Mirror', exact=True).count() == 1, 'Fusion Mirror Tools entry')
+            check(page.get_by_role('link', name='Open Fusion Mirrors', exact=True).count() == 1, 'Fusion Mirror Tools entry')
             page.screenshot(path=str(public / 'tools-desktop.png'), full_page=True)
-            page.get_by_role('link', name='Open Fusion Mirror', exact=True).click()
+            page.get_by_role('link', name='Open Fusion Mirrors', exact=True).click()
             page.locator('#local-folder').set_input_files(str(fixture))
             page.locator('body[data-ready="true"]').wait_for()
             check(page.locator('#chart-R svg').count() == 1, 'Local folder produces charts')
             check(page.evaluate('DFTExplorer.getRows().length') == 7, 'Exact synthetic samples retained')
+            page.wait_for_timeout(1800)  # the view is recorded once it has settled for 1.5 s
             check('?' not in page.url, 'No private selection in URL')
             page.select_option('#branch', 'both')
             page.locator('body[data-ready="true"]').wait_for()
@@ -261,7 +271,25 @@ def main():
                 (private_out / 'README.txt').write_text('PRIVATE: screenshots contain unpublished DFT values. Do not attach to public PRs.\n')
 
             check(not errors, 'No browser JavaScript errors: ' + repr(errors))
-            check(not any(method not in ['GET', 'HEAD'] for method, _ in requests), 'No upload requests')
+            check(all(method == 'POST' and url == origin + '/__events' for method, url in requests
+                      if method not in ['GET', 'HEAD']), 'No upload requests other than the usage events')
+            kinds = [e['event'] for e in events]
+            check(kinds.count('open') == 1 and kinds.count('probe') == 2 and 'view' in kinds,
+                  'Usage events: folder opened, view, each wavelength looked up')
+            first_view = next(e for e in events if e['event'] == 'view')
+            check(first_view['material'] == 'TestMetal' and first_view['branch'] == 'PBE' and
+                  first_view['min'] == 200 and first_view['max'] == 1200, 'Usage events: the view as chosen')
+            check(sorted((e['what'], e.get('chart'), e.get('format')) for e in events if e['event'] == 'download') ==
+                  [('csv', None, None), ('figure', 'R', 'png'), ('figure', 'R', 'svg')], 'Usage events: each download')
+            allowed = {'tool', 'event', 'visit', 'page', 'wavelength', 'what', 'chart', 'format', 'material',
+                       'branch', 'channel', 'sampling', 'range', 'min', 'max', 'log', 'component', 'polarization'}
+            check(all(e['tool'] == 'fusion-mirrors' and set(e) <= allowed and re.fullmatch('[0-9a-f]{16}', e['visit'])
+                      for e in events), 'Usage events carry only the recorded fields')
+            sent = json.dumps(events)
+            check(not any(s in sent for s in ['catalog.json', 'spectra', 'source_csv', 'SYNTHETIC', 'data/']),
+                  'Usage events carry no file names or file contents')
+            check(set(next(e for e in events if e['event'] == 'open')) == {'tool', 'event', 'visit', 'page'},
+                  'Usage events: nothing about the opened folder')
             check(not any('/data/' in url for _, url in requests), 'No network requests for selected DFT files')
             browser.close()
         report['result'] = 'PASS'

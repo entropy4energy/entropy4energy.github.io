@@ -43,7 +43,7 @@ The UI performs structural checks and applies archived validity flags; it does n
 
 ## Integration boundary
 
-Only the new tool has new CSS rules. Existing shared styles, header/footer templates and CHAOS/LOOP code are untouched. The shared base template changes only the tool description, metadata for the new page, and analytics exclusion for that page. Tools navigation is generated from `tools.json`. The Makefile includes the new HTML/CSS/JS; the JS is copied intact to preserve external JSON field names that Closure ADVANCED might rename.
+Only the new tool has new CSS rules. Existing shared styles, header/footer templates and CHAOS/LOOP code are untouched. The shared base template changes only the tool description, metadata for the new page, and analytics exclusion for that page. The page's usage events go to the group's own record instead (README, Data and privacy). Tools navigation is generated from `tools.json`. The Makefile includes the new HTML/CSS/JS; the JS is copied intact to preserve external JSON field names that Closure ADVANCED might rename.
 
 No figure assets or datasets are needed to build the site. The default unloaded preview is intentionally honest: it does not display synthetic science as if it were real DFT. Test fixtures are explicitly synthetic, created at test time and not offered as data.
 
