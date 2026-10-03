@@ -28,7 +28,7 @@
       "full_name": "Learning and Optimization Platform",
       "full_name_html": "<u>L</u>earning and <u>O</u>ptimizati<u>o</u>n <u>P</u>latform",
       "href": "loop",
-      "description": "A platform for high-entropy materials data. Browse experimental, literature, and computational results, upload new data, run synthesizability predictions, or access the data through the API.",
+      "description": "A platform for high-entropy materials data. Browse experimental and literature results, upload new data, run synthesizability predictions, or access the data through the API.",
       "links": [
         {
           "label": "Browse",
