@@ -2,6 +2,7 @@ name: Fusion Mirror code-only check
 on:
   pull_request:
     branches: [dev]
+    types: [opened, reopened, ready_for_review, synchronize]
     paths:
       - 'src/**'
       - 'Makefile'
@@ -11,6 +12,7 @@ permissions:
   contents: read
 jobs:
   check:
+    if: ${{ github.event_name != 'pull_request' || !github.event.pull_request.draft }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
