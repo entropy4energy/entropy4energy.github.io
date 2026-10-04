@@ -1,0 +1,184 @@
+@use 'tokens' as *;
+
+// CHAOS system pages (chaos-systems.js). Scoped to #cs-app so the site's
+// header, navigation and footer keep their own rules.
+$cs-priority: #0b6b3a;
+$cs-warn-bg: #fdf1ee;
+$cs-warn-line: #e3b3a8;
+
+#cs-app {
+  color: $color-ink;
+  font-size: .95rem;
+
+  h1 { margin-bottom: 8px; }
+  a { color: $color-main-5; }
+  .cs-lead { font-size: 1.05rem; max-width: 72ch; }
+  .cs-dim { color: $color-muted; font-size: .85rem; }
+  .cs-note { color: $color-muted; font-size: .82rem; margin-top: 28px; border-top: 1px solid $color-line; padding-top: 10px; }
+  .cs-status { padding: 12px 0; }
+  .cs-status.error p:first-of-type { color: #9b2c20; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  sub, sup { font-size: .72em; line-height: 0; }
+
+  // buttons and chips
+  .cs-button {
+    display: inline-block; font: inherit; font-size: .88rem; padding: 7px 12px; margin: 0 6px 6px 0;
+    border: 1px solid $color-line-2; border-radius: 4px; background: white; color: $color-main-1;
+    text-decoration: none; cursor: pointer;
+    &:hover { border-color: $color-main-1; background: $color-surface-2; }
+    &.primary { background: $color-main-1; border-color: $color-main-1; color: white; }
+    &.primary:hover { background: #00418e; }
+  }
+  :focus-visible { outline: 3px solid $color-main-4; outline-offset: 2px; }
+  .cs-chip {
+    display: inline-block; padding: 3px 9px; border-radius: 12px; font-size: .74rem; font-weight: 700;
+    letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; background: #eef0f3; color: $color-muted;
+    &.priority { background: #e3f4ea; color: $cs-priority; }
+    &.formability { background: #e6f0fb; color: $color-main-1; }
+    &.compatibility { background: #f3eefb; color: #5a3d8a; }
+  }
+
+  // list view
+  .cs-controls { display: grid; grid-template-columns: 2fr repeat(3, minmax(0, 1fr)); gap: 10px; margin: 18px 0 8px; }
+  .cs-field label { display: block; font-size: .8rem; font-weight: 700; margin-bottom: 4px; }
+  input, select {
+    font: inherit; font-size: .9rem; box-sizing: border-box; width: 100%; padding: 7px 9px;
+    border: 1px solid $color-line-2; border-radius: 4px; background: white; color: $color-ink;
+  }
+  .cs-browse { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 20px; align-items: start; }
+  .cs-browse-map { margin: 0; position: sticky; top: 10px; }
+  .cs-count { font-size: .85rem; color: $color-muted; margin: 0 0 6px; }
+  figcaption { color: $color-muted; font-size: .8rem; line-height: 1.45; margin-top: 4px; }
+
+  // tables
+  .cs-scroll { overflow-x: auto; max-width: 100%; }
+  .cs-table {
+    border-collapse: collapse; width: 100%; font-size: .88rem;
+    th { text-align: left; font-size: .74rem; text-transform: uppercase; letter-spacing: .03em; color: $color-muted;
+         border-bottom: 2px solid $color-line-2; padding: 6px 8px; white-space: nowrap; }
+    td { border-bottom: 1px solid $color-line; padding: 6px 8px; vertical-align: top; }
+    th.num { text-align: right; }
+    tr.cs-group td { background: $color-surface-2; font-size: .8rem; font-weight: 700; color: $color-main-1; }
+  }
+
+  // the map
+  .cs-map { width: 100%; height: auto; display: block; font-family: inherit; }
+  .cs-map-frame { fill: none; stroke: $color-line-2; }
+  .cs-map-zone { fill: rgba($cs-priority, .09); }
+  .cs-map-zone-label { fill: $cs-priority; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+  .cs-map-t { stroke: $color-muted; stroke-dasharray: 4 3; }
+  .cs-map-tick { fill: $color-muted; font-size: 10px; }
+  .cs-map-axis { fill: $color-ink; font-size: 11px; }
+  .cs-map-dot { fill: rgba(0, 45, 114, .28); }
+  .cs-map-dot.hit { fill: $color-main-1; }
+  a .cs-map-dot:hover { fill: $color-main-5; r: 5; }
+  .cs-map-me { fill: none; stroke: $color-main-5; stroke-width: 3; }
+
+  // one system: identity and bar
+  .cs-identity { background: $color-main-1; color: white; padding: 18px 22px 16px; border-radius: 4px; margin-bottom: 0; }
+  .cs-identity a { color: #cfe3fa; }
+  .cs-crumbs { margin: 0 0 10px; font-size: .82rem; }
+  .cs-kicker { font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .cs-identity .cs-kicker { color: #cfe3fa; margin: 0; }
+  .cs-title { font-size: 2.3rem; margin: 4px 0 6px; color: white; border: 0; line-height: 1.15; overflow-wrap: anywhere; }
+  .cs-sub { margin: 0; font-size: .9rem; }
+  .cs-auid { margin: 6px 0 0; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .78rem; color: #cfe3fa; }
+  .cs-bar {
+    position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
+    background: white; border-bottom: 1px solid $color-line-2; padding: 9px 4px; margin-bottom: 8px;
+  }
+  .cs-bar-item { font-size: .85rem; color: $color-muted; b { color: $color-ink; } }
+  .cs-jump { margin-left: auto; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: .84rem; }
+  .cs-jump a { text-decoration: none; font-weight: 600; }
+
+  // sections
+  .cs-sec { border-bottom: 1px solid $color-line; padding: 4px 0; }
+  .cs-sec > summary {
+    list-style: none; cursor: pointer; display: flex; gap: 12px; align-items: flex-start; padding: 14px 0 10px;
+    &::-webkit-details-marker { display: none; }
+    &::after { content: "+"; margin-left: auto; color: $color-main-1; font-size: 1.3rem; line-height: 1; }
+  }
+  .cs-sec[open] > summary::after { content: "−"; }
+  .cs-num {
+    flex: none; width: 24px; height: 24px; border: 1.5px solid $color-main-1; border-radius: 4px; color: $color-main-1;
+    font-weight: 700; font-size: .82rem; display: grid; place-items: center; margin-top: 2px;
+  }
+  .cs-sec-head { display: flex; flex-direction: column; gap: 2px; }
+  .cs-sec-head .cs-kicker { color: $color-main-5; }
+  .cs-sec-title { font-size: 1.35rem; font-weight: 600; color: $color-main-1; }
+  .cs-sec-sum { color: $color-muted; font-size: .85rem; }
+  .cs-sec-body { padding: 0 0 18px 36px; }
+
+  .cs-decide { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+  .cs-decide-map { margin: 0; }
+  .cs-headline { font-size: 1.45rem; line-height: 1.3; font-weight: 600; margin: 0 0 10px; color: $color-ink; }
+  .cs-caveat { border-left: 3px solid $color-line-2; padding: 2px 0 2px 12px; color: $color-muted; font-size: .86rem; }
+  .cs-teaser { background: $color-surface-2; padding: 10px 12px; border-radius: 4px; font-size: .9rem; }
+  .cs-actions { margin-top: 12px; }
+
+  .cs-make { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 24px; align-items: start; }
+  .cs-inline { font-weight: 700; font-size: .88rem; }
+  .cs-inline input { width: 6em; display: inline-block; margin: 0 4px; }
+  .cs-card { border: 1px solid $color-line-2; border-radius: 4px; padding: 12px 14px; }
+  .cs-card-title { font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: $color-muted; margin: 0 0 6px; }
+  .cs-dl {
+    display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 0; font-size: .88rem;
+    dt { color: $color-muted; }
+    dd { margin: 0; overflow-wrap: anywhere; }
+  }
+  .cs-sub-details summary { cursor: pointer; color: $color-main-1; font-weight: 600; font-size: .88rem; margin: 10px 0 4px; }
+
+  .cs-warn { background: $cs-warn-bg; border: 1px solid $cs-warn-line; border-radius: 4px; padding: 10px 12px; margin: 0 0 12px; }
+  .cs-ok { color: $cs-priority; font-weight: 600; }
+  .cs-two { margin: 4px 0 0; padding-left: 18px; font-size: .9rem; }
+
+  .cs-evidence td { vertical-align: middle; }
+  .cs-strip {
+    display: block; position: relative; height: 8px; border-radius: 4px; margin: 4px 0 4px;
+    background: linear-gradient(90deg, #e9edf3, #c9d6ea); min-width: 120px;
+    span { position: absolute; top: -4px; width: 3px; height: 16px; background: $color-ink; transform: translateX(-1px); }
+  }
+  .cs-big { font-size: 1.4rem; color: $color-main-5; font-weight: 600; }
+
+  .cs-matrix {
+    border-collapse: collapse; font-size: .82rem;
+    th { padding: 4px 8px; font-weight: 700; color: $color-muted; }
+    td { width: 42px; height: 30px; text-align: center; border: 2px solid white; padding: 0; }
+    td a { display: block; line-height: 30px; text-decoration: none; color: $color-ink; font-weight: 600; }
+    td.up { background: rgba(0, 119, 216, calc(.12 + .5 * var(--a))); }
+    td.down { background: rgba(181, 64, 44, calc(.12 + .5 * var(--a))); }
+    td.same { background: #eef0f3; }
+    td.empty { background: repeating-linear-gradient(45deg, #f6f6f6, #f6f6f6 4px, white 4px, white 8px); }
+  }
+
+  .cs-props { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+  .cs-prop { border: 1px solid $color-line; border-radius: 4px; padding: 9px 11px; font-size: .85rem;
+    .cs-dim { display: block; font-size: .78rem; margin-bottom: 4px; }
+    b { font-size: 1.15rem; }
+  }
+  .cs-code {
+    background: $color-surface-2; border: 1px solid $color-line; border-radius: 4px; padding: 10px 12px;
+    font-size: .82rem; white-space: pre-wrap; overflow-wrap: anywhere;
+  }
+
+  @media (max-width: $small-threshold) {
+    .cs-browse, .cs-decide, .cs-make { grid-template-columns: minmax(0, 1fr); }
+    .cs-browse-map { position: static; max-width: 520px; }
+    .cs-controls { grid-template-columns: 1fr 1fr; }
+    .cs-jump { margin-left: 0; }
+  }
+  @media (max-width: $mobile-threshold) {
+    .cs-controls { grid-template-columns: 1fr; }
+    .cs-title { font-size: 1.7rem; }
+    .cs-sec-body { padding-left: 0; }
+    .cs-sec-title { font-size: 1.15rem; }
+    .cs-identity { padding: 14px 14px 12px; }
+    .cs-bar { position: static; }
+    // the evidence table stacks: descriptor, strip, then value and score
+    .cs-evidence thead { display: none; }
+    .cs-evidence tr { display: grid; grid-template-columns: 1fr auto; border-bottom: 1px solid $color-line; padding: 6px 0; }
+    .cs-evidence td { border: 0; padding: 2px 4px; }
+    .cs-evidence td:nth-child(1), .cs-evidence td:nth-child(2), .cs-evidence tr.cs-group td { grid-column: 1 / -1; }
+    .cs-evidence td:nth-child(3) { text-align: left; align-self: center; }
+  }
+}

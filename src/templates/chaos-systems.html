@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{#- CHAOS system pages: the list of disordered systems, and one page per
+    system with ?id=. The page is a shell: chaos-systems.js fetches the
+    profiles from /API/chaos/profiles/, which the CHAOS API gate serves to
+    signed-in accounts only, so nothing here is data. -#}
+{% block head_extra %}
+  <link rel="stylesheet" href="css/chaos-systems.css?v={{ data.asset_version }}">
+{% endblock %}
+
+{% block content %}
+<div id="cs-app" class="cs-app">
+  <h1>CHAOS systems</h1>
+  <p class="cs-lead">One page for each disordered system in CHAOS, for signed-in accounts.</p>
+  <noscript><p>These pages need JavaScript. The same data are available through the
+    <a href="https://s4e.ai/API/chaos/?help">CHAOS API</a>.</p></noscript>
+</div>
+{% endblock %}
+{% block body_extra %}<script src="js/chaos-systems.js?v={{ data.asset_version }}" defer></script>{% endblock %}
