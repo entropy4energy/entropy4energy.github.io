@@ -54,7 +54,6 @@
     var s = n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th";
     return n + s;
   }
-  function pct(p) { return p == null ? "–" : String(Math.round(p * 100)); }
   function unit(u) {
     if (!u) return "";
     if (u === "%") return "%";
@@ -108,8 +107,8 @@
     var next = encodeURIComponent(here());
     var b = err.body || {};
     if (err.status === 401) {
-      status('<h1>CHAOS systems</h1><p>The system pages are for signed-in CHAOS accounts. Each one shows whether to try making a ' +
-        "composition, what to weigh out, what might form instead, and the descriptors behind the call.</p>" +
+      status('<h1>CHAOS systems</h1><p>The system pages are for signed-in CHAOS accounts. Each gives a disordered system\'s ' +
+        "synthesis ranking, precursors, competing phases and descriptors.</p>" +
         '<p><a class="cs-button primary" href="' + LOGIN + "?next=" + next + '">Sign in</a> ' +
         '<a class="cs-button" href="chaos#access">How to get an account</a></p>', "signin");
     } else if (err.status === 403 && b.profile) {
@@ -164,51 +163,58 @@
   }
 
   // ------------------------------------------------------------ the list
+  // Cohort tabs, an element search, verdict filters with counts, the map of
+  // the cohort and the table. The state is kept in the address (q, cohort,
+  // v, sort), so a filtered list can be bookmarked or sent; cohort=all is
+  // every system.
   function listView(index) {
     var systems = index.systems || [];
     var cohorts = index.cohorts || [];
+    var first = cohorts[0] ? cohorts[0].key : "";
     var all = {};
     systems.forEach(function (s) { (s.elements || []).forEach(function (e) { all[e] = true; }); });
     var q = params();
+    var c0 = q.get("cohort");
     var state = {
       q: q.get("q") || "",
-      cohort: q.get("cohort") || (cohorts[0] ? cohorts[0].key : ""),
-      v: q.get("v") || "",
-      sort: q.get("sort") || "pf",
+      cohort: c0 === "all" ? "" : c0 && cohorts.some(function (c) { return c.key === c0; }) ? c0 : first,
+      v: Object.prototype.hasOwnProperty.call(VERDICTS, q.get("v")) ? q.get("v") : "",
+      sort: ["pf", "s", "label"].indexOf(q.get("sort")) >= 0 ? q.get("sort") : "pf",
       shown: 100,
     };
-    var cohortOpts = cohorts.map(function (c) {
-      return '<option value="' + esc(c.key) + '">' + esc(c.name) + " (" + c.n + ")</option>";
-    }).join("") + '<option value="">All systems (' + systems.length + ")</option>";
-    var vOpts = '<option value="">Any verdict</option>' + Object.keys(VERDICTS).map(function (k) {
-      return '<option value="' + k + '">' + VERDICTS[k].chip + "</option>";
+    var tabs = cohorts.map(function (c) {
+      return '<button type="button" class="cs-tab" data-cohort="' + esc(c.key) + '">' + esc(c.name) +
+        ' <span class="cs-tab-n">' + c.n.toLocaleString("en-US") + "</span></button>";
+    }).join("") + '<button type="button" class="cs-tab" data-cohort="">all systems <span class="cs-tab-n">' + systems.length.toLocaleString("en-US") + "</span></button>";
+    var vButtons = Object.keys(VERDICTS).map(function (k) {
+      return '<button type="button" class="cs-vf ' + VERDICTS[k].cls + '" data-v="' + k + '" aria-pressed="false">' + VERDICTS[k].chip +
+        ' <span class="cs-vf-n"></span></button>';
     }).join("");
     app.innerHTML =
-      '<h1>CHAOS systems</h1>' +
-      '<p class="cs-lead">One page for each disordered system in CHAOS: whether to try making it, what to weigh out, ' +
-      "what might form instead, and the descriptors behind the call. Each system is ranked within its cohort, the " +
-      "systems of the same family on the same parent lattice.</p>" +
+      "<h1>CHAOS systems</h1>" +
+      '<p class="cs-lead">Disordered systems in CHAOS, each ranked within its cohort: the systems of the same family on the same ' +
+      "parent lattice, with small groups pooled across lattices. " +
+      "Each page gives the synthesis ranking, precursors, competing phases and the quantities behind the ranking.</p>" +
+      '<div class="cs-tabs" role="group" aria-label="Cohort">' + tabs + "</div>" +
       '<div class="cs-controls">' +
-      '<div class="cs-field cs-grow"><label for="cs-q">Elements or name</label><input id="cs-q" type="search" placeholder="Co Cu Mg" autocomplete="off"></div>' +
-      '<div class="cs-field"><label for="cs-cohort">Cohort</label><select id="cs-cohort">' + cohortOpts + "</select></div>" +
-      '<div class="cs-field"><label for="cs-v">Verdict</label><select id="cs-v">' + vOpts + "</select></div>" +
+      '<div class="cs-field cs-grow"><label for="cs-q">Elements or name</label><input id="cs-q" type="search" placeholder="Co Mg Ni" autocomplete="off">' +
+      '<span class="cs-hint">Systems with all the listed elements</span></div>' +
       '<div class="cs-field"><label for="cs-sort">Order</label><select id="cs-sort">' +
       '<option value="pf">Formability, highest first</option><option value="s">Compatibility, highest first</option>' +
       '<option value="label">Name</option></select></div></div>' +
-      '<div class="cs-browse"><figure class="cs-browse-map" id="cs-map"></figure><div class="cs-browse-list"><p class="cs-count" id="cs-count" role="status"></p>' +
-      '<div class="cs-scroll"><table class="cs-table" id="cs-table"></table></div><p id="cs-more"></p></div></div>' +
+      '<div class="cs-vfs" role="group" aria-label="Verdict">' + vButtons + "</div>" +
+      '<div class="cs-browse"><div class="cs-browse-list"><p class="cs-count" id="cs-count" role="status"></p>' +
+      '<div class="cs-scroll"><table class="cs-table cs-list" id="cs-table" tabindex="-1"></table></div>' +
+      '<p class="cs-actions" id="cs-more"></p></div><figure class="cs-browse-map" id="cs-map"></figure></div>' +
       '<p class="cs-note">Computed from the CHAOS database on ' + released(index.release) + ". Ranks are within each cohort. " +
-      'How the verdict is made: open any system and see “What drives the verdict”.</p>';
+      "Verdicts combine formability rank and compatibility: a synthesis priority has formability in the top quartile of its cohort and " +
+      "a compatibility score of at least 0.75; high formability and high compatibility meet one of the two.</p>";
     document.title = "CHAOS systems | Entropy for Energy Laboratory | Johns Hopkins";
     var $ = function (id) { return document.getElementById(id); };
     $("cs-q").value = state.q;
-    $("cs-cohort").value = state.cohort;
-    $("cs-v").value = state.v;
     $("cs-sort").value = state.sort;
 
-    function matches(s) {
-      if (state.cohort && s.cohort !== state.cohort) return false;
-      if (state.v && s.v !== state.v) return false;
+    function matchesText(s) {
       var words = state.q.split(/[^A-Za-z]+/).filter(Boolean);
       for (var i = 0; i < words.length; i++) {
         var w = words[i];
@@ -221,54 +227,105 @@
       }
       return true;
     }
+    function inCohort(s) { return !state.cohort || s.cohort === state.cohort; }
+
+    function csv(rows) {
+      var head = ["system", "auid_digits", "family", "lattice", "cohort", "formability_eV_atom_inv", "formability_percentile",
+        "compatibility", "compatibility_percentile", "verdict", "supercells"];
+      var cohortName = {};
+      cohorts.forEach(function (c) { cohortName[c.key] = c.name; });
+      var cell = function (x) { x = x == null ? "" : String(x); return /[",\n]/.test(x) ? '"' + x.replace(/"/g, '""') + '"' : x; };
+      var lines = [head.join(",")].concat(rows.map(function (s) {
+        return [s.label, s.id, s.family, s.lattice, cohortName[s.cohort] || s.cohort, s.f, s.pf, s.s, s.ps,
+          (VERDICTS[s.v] || VERDICTS.unranked).chip, s.n_sc].map(cell).join(",");
+      }));
+      return lines.join("\n") + "\n";
+    }
 
     function render() {
-      var rows = systems.filter(matches);
+      var pool = systems.filter(function (s) { return inCohort(s) && matchesText(s); });
+      var rows = pool.filter(function (s) { return !state.v || s.v === state.v; });
       var key = state.sort;
       rows.sort(function (a, b) {
         if (key === "label") return a.label < b.label ? -1 : a.label > b.label ? 1 : 0;
         var x = key === "s" ? a.s : a.pf, y = key === "s" ? b.s : b.pf;
         return (y == null ? -1 : y) - (x == null ? -1 : x);
       });
-      var inCohort = systems.filter(function (s) { return !state.cohort || s.cohort === state.cohort; });
+      Array.prototype.forEach.call(app.querySelectorAll(".cs-tab"), function (b) {
+        var on = b.getAttribute("data-cohort") === state.cohort;
+        b.classList.toggle("on", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      var counts = {};
+      pool.forEach(function (s) { counts[s.v] = (counts[s.v] || 0) + 1; });
+      Array.prototype.forEach.call(app.querySelectorAll(".cs-vf"), function (b) {
+        var k = b.getAttribute("data-v");
+        b.querySelector(".cs-vf-n").textContent = (counts[k] || 0).toLocaleString("en-US");
+        b.setAttribute("aria-pressed", state.v === k ? "true" : "false");
+        b.hidden = !counts[k] && state.v !== k;
+      });
+      var cohortRows = systems.filter(inCohort);
       var hit = {};
       rows.forEach(function (s) { hit[s.id] = true; });
-      var filtered = rows.length !== inCohort.length;
+      var filtered = rows.length !== cohortRows.length;
       var cname = state.cohort ? (cohorts.filter(function (c) { return c.key === state.cohort; })[0] || {}).name : "all systems";
-      $("cs-map").innerHTML = map(inCohort.map(function (s) {
+      $("cs-map").innerHTML = map(cohortRows.map(function (s) {
         return { p: s.pf, s: s.s, id: s.id, label: s.label, hit: filtered && hit[s.id] };
       }), null, { label: "Formability percentile against compatibility score, " + cname }) +
-        "<figcaption>" + esc(cname.charAt(0).toUpperCase() + cname.slice(1)) + (filtered ? "; the systems that match are darker" : "") +
-        ". Select a point to open its page.</figcaption>";
-      $("cs-count").textContent = rows.length + (rows.length === 1 ? " system" : " systems");
-      var head = "<thead><tr><th>System</th><th>Lattice</th><th class=num>Formability</th><th class=num>Percentile</th><th class=num>Compatibility</th><th>Verdict</th></tr></thead>";
+        "<figcaption>" + cohortRows.length.toLocaleString("en-US") + " " + (state.cohort ? esc(cname) : "systems; percentiles are within each system's cohort") +
+        (filtered ? ". The systems in the list are darker" : "") + ". Each point links to its page.</figcaption>";
+      $("cs-count").textContent = rows.length.toLocaleString("en-US") + (rows.length === 1 ? " system" : " systems");
+      // all systems, or a cohort pooled across lattices (key "<family>|*")
+      var showLattice = !state.cohort || /\|\*$/.test(state.cohort);
+      var head = "<thead><tr><th>System</th>" + (showLattice ? "<th class=cs-sm-hide>Lattice</th>" : "") +
+        "<th class='num cs-sm-hide'>Formability <span class=cs-th-unit>(eV/atom)<sup>−1</sup></span></th><th class=num>Percentile</th>" +
+        "<th class='num cs-sm-hide'>Compatibility</th><th>Verdict</th></tr></thead>";
       var body = rows.slice(0, state.shown).map(function (s) {
         var v = VERDICTS[s.v] || VERDICTS.unranked;
-        return "<tr><td><a href=\"" + link(s.id) + "\">" + formula(s.label) + "</a></td><td>" + esc(s.lattice) +
-          "</td><td class=num>" + sig(s.f, 3) + "</td><td class=num>" + ordinal(s.pf) + "</td><td class=num>" +
+        return "<tr><td><a href=\"" + link(s.id) + "\">" + formula(s.label) + "</a></td>" +
+          (showLattice ? "<td class=cs-sm-hide>" + esc(s.lattice) + "</td>" : "") +
+          "<td class='num cs-sm-hide'>" + sig(s.f, 3) + "</td><td class=num>" + ordinal(s.pf) + "</td><td class='num cs-sm-hide'>" +
           (s.s == null ? "–" : s.s.toFixed(2)) + '</td><td><span class="cs-chip ' + v.cls + '">' + v.chip + "</span></td></tr>";
       }).join("");
       $("cs-table").innerHTML = head + "<tbody>" + body + "</tbody>";
-      $("cs-more").innerHTML = rows.length > state.shown
-        ? '<button type="button" class="cs-button" id="cs-show">Show all ' + rows.length + "</button>" : "";
-      if (rows.length > state.shown) $("cs-show").onclick = function () { state.shown = Infinity; render(); };
+      $("cs-more").innerHTML = (rows.length > state.shown
+        ? '<button type="button" class="cs-button" id="cs-show">Show all ' + rows.length.toLocaleString("en-US") + "</button>" : "") +
+        (rows.length ? '<button type="button" class="cs-button" id="cs-csv">Download this list (CSV)</button>' : "");
+      if (rows.length > state.shown) {
+        $("cs-show").onclick = function () { state.shown = Infinity; render(); $("cs-table").focus(); };
+      }
+      if (rows.length) {
+        $("cs-csv").onclick = function () {
+          var blob = new Blob([csv(rows)], { type: "text/csv" });
+          var a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = "chaos-systems-" + (index.release || "list").slice(0, 8) + ".csv";
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 0);
+        };
+      }
       var u = new URLSearchParams();
       if (state.q) u.set("q", state.q);
-      if (state.cohort !== (cohorts[0] ? cohorts[0].key : "")) u.set("cohort", state.cohort);
+      if (state.cohort !== first) u.set("cohort", state.cohort || "all");
       if (state.v) u.set("v", state.v);
       if (state.sort !== "pf") u.set("sort", state.sort);
       history.replaceState(null, "", location.pathname + (u.toString() ? "?" + u.toString() : ""));
     }
     $("cs-q").oninput = function () { state.q = this.value; state.shown = 100; render(); };
-    $("cs-cohort").onchange = function () { state.cohort = this.value; state.shown = 100; render(); };
-    $("cs-v").onchange = function () { state.v = this.value; render(); };
     $("cs-sort").onchange = function () { state.sort = this.value; render(); };
+    Array.prototype.forEach.call(app.querySelectorAll(".cs-tab"), function (b) {
+      b.onclick = function () { state.cohort = b.getAttribute("data-cohort"); state.shown = 100; render(); };
+    });
+    Array.prototype.forEach.call(app.querySelectorAll(".cs-vf"), function (b) {
+      b.onclick = function () { var k = b.getAttribute("data-v"); state.v = state.v === k ? "" : k; state.shown = 100; render(); };
+    });
     render();
   }
 
   // ------------------------------------------------------------ one system
   var HELP = {
-    formability: "inverse of the energy spread of the supercells",
+    formability: "inverse of the enthalpy spread of the supercells",
     distortion: "how far the relaxed supercells move from the ideal lattice",
     displacement: "root-mean-square displacement of the atoms in relaxation",
     size_mismatch: "spread of covalent radii on the mixed site",
@@ -276,13 +333,15 @@
     geometric: "configurational entropy over the size mismatch squared",
     vec: "valence electrons per atom",
   };
+  var SECTIONS = [
+    ["ranking", "Ranking"], ["synthesis", "Synthesis"], ["competing", "Competing phases"], ["ensemble", "Ensemble"],
+    ["neighbors", "Neighbors"], ["properties", "Properties"], ["data", "Data"],
+  ];
 
-  function section(n, id, kicker, title, summary, body, open) {
-    return '<details class="cs-sec" id="' + id + '"' + (open ? " open" : "") + "><summary>" +
-      '<span class="cs-num">' + n + '</span><span class="cs-sec-head"><span class="cs-kicker">' + kicker +
-      '</span><span class="cs-sec-title">' + title + "</span>" +
-      (summary ? '<span class="cs-sec-sum">' + summary + "</span>" : "") + "</span></summary>" +
-      '<div class="cs-sec-body">' + body + "</div></details>";
+  function section(n, id, title, summary, body) {
+    return '<section class="cs-sec" id="' + id + '" aria-labelledby="' + id + '-h"><h2 class="cs-sec-h" id="' + id + '-h">' +
+      '<span class="cs-num">' + n + "</span>" + title + "</h2>" +
+      (summary ? '<p class="cs-sec-sum">' + summary + "</p>" : "") + '<div class="cs-sec-body">' + body + "</div></section>";
   }
 
   function structureText(s) {
@@ -306,16 +365,17 @@
     var anionFamily = p.family !== "alloy";
     var lat = p.lattice || {};
     var latName = lat.name || (lat.pearson ? "Pearson " + lat.pearson : "its parent lattice");
-    var cohortN = p.cohort.n;
+    var cohortN = esc(p.cohort.n);
     var cohortName = p.cohort.name;
     var spread = d.spread.value;
     var sc = p.n_supercells;
+    var name = formula(p.label);
 
-    // ---- identity and bar
+    // ---- identity, summary and the section links
     var kick = [p.family, lat.name, nMain + (anionFamily ? " cations" : " elements") + " on the mixed site"];
     if (p.equimolar) kick.push("equimolar");
     var sub = [];
-    if (lat.sg) sub.push((lat.sg_symbol ? esc(lat.sg_symbol) + " " : "") + "(" + lat.sg + ")");
+    if (lat.sg) sub.push((lat.sg_symbol ? esc(lat.sg_symbol) + " " : "") + "(" + esc(lat.sg) + ")");
     if (lat.pearson) sub.push("Pearson " + esc(lat.pearson));
     if (sc) sub.push(sc + " ordered supercells");
     var distP = d.distortion.p;
@@ -324,145 +384,53 @@
       '<div class="cs-identity"><p class="cs-crumbs"><a href="chaos-systems">CHAOS systems</a> / ' +
       '<a href="chaos-systems?cohort=' + encodeURIComponent(p.cohort.key) + '">' + esc(cohortName) + "</a></p>" +
       '<p class="cs-kicker">' + esc(kick.filter(Boolean).join(" · ")) + "</p>" +
-      '<h1 class="cs-title">' + formula(p.label) + "</h1>" +
+      '<h1 class="cs-title">' + name + "</h1>" +
       '<p class="cs-sub">' + sub.join(" · ") + '</p><p class="cs-auid">' + esc(p.auid) + "</p></div>" +
       '<div class="cs-bar"><span class="cs-chip ' + v.cls + '">' + v.chip + "</span>" +
-      '<span class="cs-bar-item">Formability <b>' + ordinal(pf) + "</b></span>" +
+      '<span class="cs-bar-item">Formability <b>' + ordinal(pf) + " percentile</b></span>" +
       '<span class="cs-bar-item">Compatibility <b>' + (S == null ? "–" : S.toFixed(2)) + "</b></span>" +
-      '<span class="cs-bar-item">Distortion <b>' + distWord + "</b></span>" +
-      '<nav class="cs-jump" aria-label="Sections"><a href="#decide">Decide</a><a href="#make">Make</a><a href="#watch">Watch out</a>' +
-      '<a href="#evidence">Evidence</a><a href="#neighbors">Neighbors</a><a href="#data">Data</a></nav></div>';
+      '<span class="cs-bar-item">Distortion <b>' + distWord + "</b></span></div>" +
+      '<nav class="cs-jump" aria-label="Sections">' + SECTIONS.map(function (s) {
+        return '<a href="#' + s[0] + '">' + s[1] + "</a>";
+      }).join("") + "</nav>";
 
-    // ---- 1 decide
-    var headline = {
-      priority: "A synthesis priority: formability in the top quarter of its cohort and a compatibility score of at least 0.75.",
-      formability: "Formability in the top quarter of its cohort; the compatibility score is below 0.75.",
-      compatibility: "A compatibility score of at least 0.75; the formability is below the top quarter of its cohort.",
-      lower: "Formability below the top quarter of its cohort, and a compatibility score below 0.75.",
-      unranked: "Not ranked: a value needed for the ranking is missing.",
-    }[p.verdict] || "";
-    var facts = "Among the " + cohortN + " " + esc(cohortName) + " in CHAOS, this composition is in the <b>" + ordinal(pf) +
-      " percentile</b> for formability";
-    facts += S == null ? "." : ", and its compatibility score is <b>" + S.toFixed(2) + "</b> (the " + ordinal(p.scores.p_compatibility) + " percentile).";
-    if (sc && spread) {
-      facts += " The enthalpies of its " + sc + " supercells have a standard deviation of " + sig(spread * 1000, 3) +
-        " meV/atom, weighted by degeneracy; formability is the inverse of that spread.";
+    // ---- 1 ranking
+    var facts;
+    if (p.verdict === "unranked") {
+      facts = "Not ranked: a value needed for the ranking is missing.";
+    } else {
+      facts = "Among the " + cohortN + " " + esc(cohortName) + " in CHAOS, " + name + " ranks in the " + ordinal(pf) +
+        " percentile for formability";
+      facts += S == null ? " and has no compatibility score." : " and the " + ordinal(p.scores.p_compatibility) +
+        " percentile for compatibility (score " + S.toFixed(2) + ").";
     }
+    if (sc && spread) {
+      facts += " Its " + sc + " ordered supercells have a degeneracy-weighted enthalpy spread (standard deviation) of " +
+        sig(spread * 1000, 3) + " meV/atom; formability is the inverse of this spread.";
+    }
+    var rule = "A synthesis priority has formability in the top quartile of its cohort and a compatibility score of at least 0.75.";
     var caveat = anionFamily
-      ? "Formability ranks what to try first; it does not predict the phase that forms. Oxygen partial pressure, precursor reactivity, " +
-        "cation valence, defect equilibria and kinetic trapping are not in this number, and magnetic and vibrational entropy are not treated."
-      : "Formability ranks what to try first; it does not predict the phase that forms. Processing route, cooling rate and kinetic " +
-        "trapping are not in this number, and magnetic and vibrational entropy are not treated.";
+      ? "Formability ranks candidates; it does not predict which phase forms. The metric does not include oxygen partial pressure, " +
+        "precursor reactivity, cation valence, defect equilibria or kinetic trapping. Magnetic and vibrational entropy are also not included."
+      : "Formability ranks candidates; it does not predict which phase forms. The metric does not include the processing route, " +
+        "cooling rate or kinetic trapping. Magnetic and vibrational entropy are also not included.";
     var nb = p.neighbors.list;
     var better = nb.filter(function (n) { return n.d_p != null && n.d_p > 0; });
-    var teaser;
+    var nbLine;
     if (!nb.length) {
-      teaser = "No one-swap neighbor of this composition is in CHAOS.";
+      nbLine = "No one-swap neighbor of this composition is in CHAOS.";
     } else if (!better.length) {
-      teaser = "None of its " + nb.length + " one-swap neighbors in CHAOS ranks higher in formability.";
+      nbLine = "None of the " + nb.length + " one-swap neighbors in CHAOS has higher formability.";
     } else {
       var best = better[0];
-      teaser = better.length + " of its " + nb.length + " one-swap neighbors in CHAOS rank higher in formability. The best is " +
-        '<a href="' + link(best.id) + '">' + formula(best.label) + "</a>, at the " + ordinal(best.p_formability) + " percentile.";
+      nbLine = better.length + " of the " + nb.length + ' <a href="#neighbors">one-swap neighbors</a> in CHAOS have higher formability; the highest is ' +
+        '<a href="' + link(best.id) + '">' + formula(best.label) + "</a> (" + ordinal(best.p_formability) + " percentile).";
     }
-    var lead = p.verdict === "priority" || !better.length
-      ? '<a class="cs-button primary" href="#make" data-open="make">What to weigh out</a><a class="cs-button" href="#neighbors" data-open="neighbors">Neighbors</a>'
-      : '<a class="cs-button primary" href="#neighbors" data-open="neighbors">Better neighbors</a><a class="cs-button" href="#make" data-open="make">What to weigh out</a>';
     var pts = p.cohort.points.map(function (q) { return { p: q[0], s: q[1] }; });
-    var decide =
-      '<div class="cs-decide"><div><p class="cs-headline">' + headline + "</p><p>" + facts + "</p>" +
-      '<p class="cs-caveat">' + caveat + "</p>" +
-      '<p class="cs-teaser">' + teaser + "</p><p class=\"cs-actions\">" + lead + "</p></div>" +
-      '<figure class="cs-decide-map">' + map(pts, { p: pf, s: S, label: p.label }, { label: "This system among its cohort" }) +
-      "<figcaption>The " + cohortN + " " + esc(cohortName) + " in CHAOS; the ring is this system. Dashed lines are the thresholds " +
-      "(formability percentile 0.75, compatibility score 0.75); the shaded corner, above both, is the priority region.</figcaption></figure></div>";
-
-    // ---- 2 make
-    var wo = p.weigh_out;
-    var em = {};
-    (p.end_members || []).forEach(function (m) { em[m.el] = m; });
-    var make = '<div class="cs-make"><div>';
-    make += '<p><label class="cs-inline" for="cs-batch">Batch of product <input id="cs-batch" type="number" min="0.01" step="any" value="5"> g</label> ' +
-      '<span class="cs-dim">Product ' + formula(wo.product.formula) + ", " + sig(wo.product.mass, 4) + " g/mol</span></p>";
-    if (wo.rows) {
-      make += '<div class="cs-scroll"><table class="cs-table"><thead><tr><th>' + (anionFamily ? "Precursor" : "Element") +
-        "</th><th>Lowest structure in CHAOS</th><th class=num>mol per mol</th><th class=num>Mass</th></tr></thead><tbody>";
-      wo.rows.forEach(function (r) {
-        var m = em[r.el];
-        make += "<tr><td>" + formula(r.formula) + "</td><td>" + (m && m.lowest ? structureText(m.lowest) : '<span class="cs-dim">not in CHAOS</span>') +
-          '</td><td class=num>' + sig(r.mol, 3) + '</td><td class=num><span class="cs-mass" data-mol="' + r.mol + '" data-mm="' + r.molar_mass + '"></span></td></tr>';
-      });
-      make += "</tbody></table></div>";
-      make += anionFamily
-        ? '<p class="cs-dim">Each precursor is an end member: one element alone on the mixed site, at the product\'s stoichiometry. ' +
-          "Masses are for a complete reaction. Carbonates, nitrates or oxides of another valence can stand in; weigh them to the element amounts below.</p>"
-        : '<p class="cs-dim">Pure elements, weighed to the composition. Masses are for the batch above.</p>';
-    } else {
-      make += "<p>No set of simple precursors is computed for this structure; weigh your precursors to the element amounts below.</p>";
-    }
-    make += '<details class="cs-sub-details"' + (wo.rows ? "" : " open") + '><summary>Element amounts</summary><div class="cs-scroll"><table class="cs-table"><thead><tr><th>Element</th><th class=num>mol per mol</th><th class=num>Mass</th></tr></thead><tbody>';
-    wo.elements.forEach(function (e) {
-      make += "<tr><td>" + esc(e.el) + "</td><td class=num>" + sig(e.mol, 3) + '</td><td class=num><span class="cs-mass" data-mol="' + e.mol +
-        '" data-mm="' + (e.mass / (e.mol || 1)) + '"></span></td></tr>';
-    });
-    make += "</tbody></table></div></details></div>";
-    var target = [["Lattice", esc(latName) + (lat.pearson && lat.name ? ' <span class="cs-dim">' + esc(lat.pearson) + "</span>" : "")]];
-    if (lat.sg) target.push(["Space group", (lat.sg_symbol ? esc(lat.sg_symbol) + " " : "") + "(" + lat.sg + ")"]);
-    target.push(["Mixed site", site.elements.map(function (e) { return esc(e.el) + " " + sig(e.x, 3); }).join(", ")]);
-    var prop = {};
-    p.properties.forEach(function (x) { prop[x.field || x.title] = x; });
-    if (prop.S_config_atom) target.push(["Configurational entropy", sig(prop.S_config_atom.value, 3) + unit(prop.S_config_atom.unit)]);
-    if (d.vec.value != null) target.push(["Valence electron concentration", sig(d.vec.value, 3) + unit(d.vec.unit)]);
-    if (sc) target.push(["Represented by", sc + " ordered supercells"]);
-    make += '<div class="cs-card"><p class="cs-card-title">The target</p><dl class="cs-dl">' + target.map(function (t) {
-      return "<dt>" + t[0] + "</dt><dd>" + t[1] + "</dd>";
-    }).join("") + "</dl></div></div>";
-
-    // ---- 3 watch out
-    var members = p.end_members || [];
-    var off = members.filter(function (m) { return m.takes_lattice === false && m.lowest; });
-    var none = members.filter(function (m) { return !m.lowest; });
-    var watch = "";
-    if (!members.length) {
-      watch += "<p>End members are not computed for systems with more than one mixed site.</p>";
-    } else if (off.length) {
-      var names = off.map(function (m) { return esc(m.el); });
-      var what = off.map(function (m) { return formula(m.formula) + " (" + esc(m.lowest.structure || m.lowest.pearson || "another structure") + ")"; });
-      watch += '<div class="cs-warn"><b>' + list(names) + ".</b> " +
-        (off.length === 1 ? "Its compound at the product's stoichiometry, " + what[0] + ", is lowest in CHAOS in another structure than " + esc(latName) +
-          ", so " + names[0] + " is the first element likely to leave the solid solution."
-          : "Their compounds at the product's stoichiometry, " + list(what) + ", are lowest in CHAOS in other structures than " + esc(latName) +
-          ", so these are the first elements likely to leave the solid solution.") + "</div>";
-    } else if (!none.length) {
-      watch += '<p class="cs-ok">Every end member is lowest in CHAOS on the ' + esc(latName) + " lattice.</p>";
-    }
-    if (none.length) {
-      watch += "<p>No compound of " + list(none.map(function (m) { return esc(m.el); })) + " at the product's stoichiometry is in CHAOS.</p>";
-    }
-    if (members.length) {
-      watch += '<div class="cs-scroll"><table class="cs-table"><thead><tr><th>Element</th><th>End member</th><th>Lowest in CHAOS</th>' +
-        "<th class=num>ΔH<sub>f</sub></th><th>On the " + esc(latName) + " lattice</th></tr></thead><tbody>";
-      members.forEach(function (m) {
-        var same = m.same_lattice
-          ? (m.takes_lattice ? "lowest" : "+" + sig(m.above * 1000, 3) + " meV/atom")
-          : m.lowest ? '<span class="cs-dim">not computed</span>' : "";
-        watch += "<tr><td>" + esc(m.el) + "</td><td>" + formula(m.formula || "") + "</td><td>" + (m.lowest ? structureText(m.lowest) : '<span class="cs-dim">not in CHAOS</span>') +
-          "</td><td class=num>" + (m.lowest ? sig(m.lowest.hf, 3) : "") + "</td><td>" + same + "</td></tr>";
-      });
-      watch += '</tbody></table></div><p class="cs-dim">ΔH<sub>f</sub>: formation enthalpy per atom, DFT. “On the lattice”: how far the end member on the product\'s lattice lies above the lowest structure of the same composition.</p>';
-    }
-    var two = p.two_cation;
-    if (two && two.compositions) {
-      watch += "<p>CHAOS holds " + two.compositions + " compositions with two elements of the mixed site" +
-        ". Lowest in formation enthalpy per atom:</p><ul class=\"cs-two\">" + two.lowest.map(function (c) {
-          return "<li>" + formula(c.formula) + " <span class=\"cs-dim\">" + esc(c.structure || c.pearson || "") + "</span> " + sig(c.hf, 3) + " eV/atom</li>";
-        }).join("") + "</ul>";
-    }
-
-    // ---- 4 evidence
     var rows = [["formability", d.formability]];
     ["distortion", "displacement", "size_mismatch", "en_mismatch", "geometric", "vec"].forEach(function (k) { rows.push([k, d[k]]); });
-    var ev = '<div class="cs-scroll"><table class="cs-table cs-evidence"><thead><tr><th>Descriptor</th><th>Where it falls in the cohort</th><th class=num>Value</th><th class=num>How much it helps</th></tr></thead><tbody>';
+    var ev = '<div class="cs-scroll"><table class="cs-table cs-evidence"><thead><tr><th>Descriptor</th><th>Cohort percentile</th>' +
+      "<th class=num>Value</th><th class=num>Contribution</th></tr></thead><tbody>";
     rows.forEach(function (r, i) {
       var k = r[0], x = r[1];
       var helps = x.p == null ? null : x.better === "lower" ? 1 - x.p : x.p;
@@ -470,27 +438,116 @@
       if (i === 3) ev += '<tr class="cs-group"><td colspan=4>Chemistry part: ' + (p.scores.chemistry == null ? "–" : p.scores.chemistry.toFixed(2)) + "</td></tr>";
       ev += "<tr><td><b>" + esc(x.title) + '</b><br><span class="cs-dim">' + HELP[k] + "</span></td><td>" +
         (x.p == null ? '<span class="cs-dim">no value</span>' : '<span class="cs-strip"><span style="left:' + (x.p * 100).toFixed(1) + '%"></span></span><span class="cs-dim">' +
-          ordinal(x.p) + " percentile; " + x.better + " is better</span>") +
-        "</td><td class=num>" + sig(x.value, 3) + unit(x.unit) + "</td><td class=num><b class=\"cs-big\">" + pct(helps) + "</b></td></tr>";
+          ordinal(x.p) + "; " + esc(x.better) + " is better</span>") +
+        "</td><td class=num>" + sig(x.value, 3) + unit(x.unit) + "</td><td class=num><b class=\"cs-big\">" + (i === 0 || helps == null ? '<span class="cs-dim">–</span>' : helps.toFixed(2)) + "</b></td></tr>";
     });
     ev += "</tbody></table></div>";
-    ev += "<p>The compatibility score is half the distortion part and half the chemistry part. Each part is the mean of its descriptors' " +
-      "“how much it helps”: the percentile when higher is better, one minus the percentile when lower is better. Percentiles are within the " +
-      cohortN + " " + esc(cohortName) + ".</p>";
+    ev += '<p class="cs-dim">The compatibility score is the mean of the distortion part and the chemistry part. Each part averages the ' +
+      "contributions of its descriptors: the cohort percentile when higher is better, one minus the percentile when lower is better. " +
+      "Percentiles are within the " + cohortN + " " + esc(cohortName) + ".</p>";
     if (p.scores.missing && p.scores.missing.length) {
       ev += '<p class="cs-warn">Scored without ' + list(p.scores.missing.map(function (k) { return esc(d[k].title.toLowerCase()); })) + ": no value in CHAOS.</p>";
     }
-    var evSum = "formability " + ordinal(pf) + " percentile · compatibility " + (S == null ? "–" : S.toFixed(2));
+    var ranking =
+      '<div class="cs-decide"><div><p>' + facts + "</p><p>" + rule + "</p>" +
+      '<p class="cs-caveat">' + caveat + "</p><p>" + nbLine + "</p></div>" +
+      '<figure class="cs-decide-map">' + map(pts, { p: pf, s: S, label: p.label }, { label: "This system among its cohort" }) +
+      "<figcaption>" + cohortN + " " + esc(cohortName) + " in CHAOS. The selected system is circled. Dashed lines mark the thresholds " +
+      "(formability percentile 0.75, compatibility score 0.75); the shaded upper-right region is the synthesis-priority region.</figcaption></figure></div>" +
+      '<h3 class="cs-h3">Descriptors</h3>' + ev;
 
-    // ---- 5 ensemble
-    var ens = "<p>" + (sc ? "This system is represented by " + sc + " ordered supercells" : "The supercells of this system") +
-      ", each relaxed with DFT and weighted by its degeneracy." +
-      (spread ? " The weighted standard deviation of their enthalpies is " + sig(spread * 1000, 3) + " meV/atom; formability is its inverse, " +
-        sig(d.formability.value, 3) + " (eV/atom)<sup>−1</sup>." : "") + "</p>" +
-      '<p class="cs-dim">The structures and energies of the individual supercells are shared on request: ' +
+    // ---- 2 synthesis
+    var wo = p.weigh_out;
+    var make = '<div class="cs-make"><div>';
+    make += '<p><label class="cs-inline" for="cs-batch">Target batch <input id="cs-batch" type="number" min="0.01" step="any" value="5"> g</label> ' +
+      '<span class="cs-dim">' + formula(wo.product.formula) + ", " + sig(wo.product.mass, 4) + " g/mol</span></p>";
+    if (wo.rows) {
+      make += '<div class="cs-scroll"><table class="cs-table"><thead><tr><th>' + (anionFamily ? "Precursor" : "Element") +
+        "</th><th class=num>mol per mol of product</th><th class=num>Mass</th></tr></thead><tbody>";
+      wo.rows.forEach(function (r) {
+        make += "<tr><td>" + formula(r.formula) + '</td><td class=num>' + sig(r.mol, 3) +
+          '</td><td class=num><span class="cs-mass" data-mol="' + esc(r.mol) + '" data-mm="' + esc(r.molar_mass) + '"></span></td></tr>';
+      });
+      make += "</tbody></table></div>";
+      make += anionFamily
+        ? '<p class="cs-dim">The precursors are the binary compounds at the product\'s stoichiometry, one for each mixed-site element. ' +
+          "Masses assume complete conversion to the target composition. Other precursors can be weighed to the element amounts below; " +
+          "this matches the stoichiometry only.</p>"
+        : '<p class="cs-dim">Pure elements at the target composition. Masses are for the batch above.</p>';
+    } else {
+      make += "<p>No simple precursor set is computed for this structure. The element amounts for the batch are below.</p>";
+    }
+    make += '<details class="cs-sub-details"' + (wo.rows ? "" : " open") + '><summary>Element amounts</summary><div class="cs-scroll"><table class="cs-table"><thead><tr><th>Element</th><th class=num>mol per mol of product</th><th class=num>Mass</th></tr></thead><tbody>';
+    wo.elements.forEach(function (e) {
+      make += "<tr><td>" + esc(e.el) + "</td><td class=num>" + sig(e.mol, 3) + '</td><td class=num><span class="cs-mass" data-mol="' + esc(e.mol) +
+        '" data-mm="' + esc(e.mass / (e.mol || 1)) + '"></span></td></tr>';
+    });
+    make += "</tbody></table></div></details></div>";
+    var target = [["Lattice", esc(latName) + (lat.pearson && lat.name ? ' <span class="cs-dim">' + esc(lat.pearson) + "</span>" : "")]];
+    if (lat.sg) target.push(["Space group", (lat.sg_symbol ? esc(lat.sg_symbol) + " " : "") + "(" + esc(lat.sg) + ")"]);
+    target.push(["Mixed site", site.elements.map(function (e) { return esc(e.el) + " " + sig(e.x, 3); }).join(", ")]);
+    var prop = {};
+    p.properties.forEach(function (x) { prop[x.field || x.title] = x; });
+    if (prop.S_config_atom) target.push(["Configurational entropy", sig(prop.S_config_atom.value, 3) + unit(prop.S_config_atom.unit)]);
+    if (d.vec.value != null) target.push(["Valence electron concentration", sig(d.vec.value, 3) + unit(d.vec.unit)]);
+    if (sc) target.push(["Ordered supercells", String(sc)]);
+    make += '<div class="cs-card"><p class="cs-card-title">Target</p><dl class="cs-dl">' + target.map(function (t) {
+      return "<dt>" + t[0] + "</dt><dd>" + t[1] + "</dd>";
+    }).join("") + "</dl></div></div>";
+
+    // ---- 3 competing phases
+    var members = p.end_members || [];
+    var off = members.filter(function (m) { return m.takes_lattice === false && m.lowest && m.same_lattice && m.above != null; });
+    var on = members.filter(function (m) { return m.takes_lattice === true; });
+    var none = members.filter(function (m) { return !m.lowest; });
+    var latWord = lat.name || latName;
+    var watch = "";
+    if (!members.length) {
+      watch += "<p>End members are not computed for systems with more than one mixed site.</p>";
+    } else {
+      var says = [];
+      if (off.length) {
+        says.push(list(off.map(function (m) { return formula(m.formula); })) + (off.length === 1 ? " has a lower-energy structure" : " have lower-energy structures") +
+          " in CHAOS than " + (off.length === 1 ? "its " : "their ") + esc(latWord) + (off.length === 1 ? " form." : " forms."));
+      }
+      if (on.length) {
+        says.push(list(on.map(function (m) { return formula(m.formula); })) + (on.length === 1 ? " is" : " are") + " lowest in " + esc(latWord) + ".");
+      }
+      if (none.length) {
+        says.push("No compound of " + list(none.map(function (m) { return esc(m.el); })) + " at the product's stoichiometry is in CHAOS.");
+      }
+      if (says.length) watch += "<p" + (off.length ? ' class="cs-flag"' : "") + ">" + says.join(" ") + "</p>";
+      watch += '<div class="cs-scroll"><table class="cs-table"><thead><tr><th>Element</th><th>End member</th><th>Lowest in CHAOS</th>' +
+        "<th class=num>ΔH<sub>f</sub> (eV/atom)</th><th class=num>" + esc(latWord.charAt(0).toUpperCase() + latWord.slice(1)) + " above ground state</th></tr></thead><tbody>";
+      members.forEach(function (m) {
+        var same = m.same_lattice
+          ? (m.takes_lattice ? "0 (ground state)" : m.above == null ? "–" : "+" + sig(m.above * 1000, 3) + " meV/atom")
+          : m.lowest ? '<span class="cs-dim">not computed</span>' : "";
+        watch += "<tr><td>" + esc(m.el) + "</td><td>" + formula(m.formula || "") + "</td><td>" + (m.lowest ? structureText(m.lowest) : '<span class="cs-dim">not in CHAOS</span>') +
+          "</td><td class=num>" + (m.lowest ? sig(m.lowest.hf, 3) : "") + "</td><td class=num>" + same + "</td></tr>";
+      });
+      watch += '</tbody></table></div><p class="cs-dim">ΔH<sub>f</sub> is the DFT formation enthalpy per atom of the lowest-energy structure. ' +
+        "“" + esc(latWord.charAt(0).toUpperCase() + latWord.slice(1)) + " above ground state” is the energy of the end member on the " + esc(latWord) +
+        " lattice relative to the lowest-energy structure in CHAOS at the same composition.</p>";
+    }
+    var two = p.two_cation;
+    if (two && two.compositions) {
+      watch += '<h3 class="cs-h3">' + (anionFamily ? "Two-cation compounds" : "Binary compounds") + "</h3><p>CHAOS also contains " + esc(two.compositions) +
+        " compositions formed from pairs of the mixed-site elements. The lowest in formation enthalpy per atom:</p>" +
+        '<div class="cs-scroll"><table class="cs-table cs-narrow"><thead><tr><th>Compound</th><th>Structure</th><th class=num>ΔH<sub>f</sub> (eV/atom)</th></tr></thead><tbody>' +
+        two.lowest.map(function (c) {
+          return "<tr><td>" + formula(c.formula) + "</td><td>" + esc(c.structure || c.pearson || "") + "</td><td class=num>" + sig(c.hf, 3) + "</td></tr>";
+        }).join("") + "</tbody></table></div>";
+    }
+
+    // ---- 4 ensemble
+    var ens = "<p>Each supercell is relaxed with DFT and weighted by its degeneracy." +
+      (spread ? " Formability, the inverse of the enthalpy spread, is " + sig(d.formability.value, 3) + " (eV/atom)<sup>−1</sup>." : "") + "</p>" +
+      '<p class="cs-dim">Structures and energies of the individual supercells are available on request: ' +
       '<a href="mailto:' + CONTACT + '">' + CONTACT + "</a>.</p>";
+    var ensSum = sc ? sc + " ordered supercells" + (spread ? " · degeneracy-weighted spread " + sig(spread * 1000, 3) + " meV/atom" : "") : "";
 
-    // ---- 6 neighbors
+    // ---- 5 neighbors
     var nbHtml;
     if (!nb.length) {
       nbHtml = "<p>No composition one swap away is in CHAOS.</p>";
@@ -516,18 +573,19 @@
         });
         nbHtml += "</tr>";
       });
-      nbHtml += "</tbody></table></div><p class=\"cs-dim\">Change in formability percentile when the row's element is swapped for the column's. " +
-        nb.length + " of the " + p.neighbors.possible + " swaps with elements found on this lattice in CHAOS are computed. Select a cell to open that system.</p>";
+      nbHtml += "</tbody></table></div><p class=\"cs-dim\">Change in formability percentile when the row's element is replaced by the column's. " +
+        nb.length + " of the " + esc(p.neighbors.possible) + " such swaps with elements found on this lattice in CHAOS are computed. Each cell links to that system.</p>";
     }
-    var nbSum = nb.length ? better.length + " of " + nb.length + " rank higher" : "none in CHAOS";
+    var nbSum = nb.length + " one-swap neighbor" + (nb.length === 1 ? "" : "s") + " · " + better.length + " with higher formability";
 
-    // ---- 7 properties
+    // ---- 6 properties
     var props = p.properties.map(function (x) {
       return '<div class="cs-prop"><span class="cs-dim">' + esc(x.title) + '</span><b>' + sig(x.value, 4) + "</b>" + unit(x.unit) + "</div>";
     }).join("");
     var propsHtml = props ? '<div class="cs-props">' + props + "</div>" : "<p>No further values for this system.</p>";
+    var propsSum = p.properties.length + " calculated value" + (p.properties.length === 1 ? "" : "s");
 
-    // ---- 8 data
+    // ---- 7 data
     var q = p.query;
     var others = (p.query_matches || 1) - 1;
     var dataHtml =
@@ -538,22 +596,22 @@
       '<p class="cs-actions"><button type="button" class="cs-button" id="cs-copy">Copy the query</button>' +
       '<a class="cs-button" href="' + QUERY_BASE + esc(q) + '">Run it</a>' +
       '<a class="cs-button" href="' + API + encodeURIComponent(p.id) + '">This page\'s data (JSON)</a>' +
-      '<a class="cs-button primary" href="' + AGENT + '">Ask CHAOS-Agent</a></p>' +
+      '<a class="cs-button" href="' + AGENT + '">CHAOS-Agent</a></p>' +
       '<dl class="cs-dl"><dt>AUID</dt><dd>' + esc(p.auid) + "</dd><dt>Computed on</dt><dd>" + released(p.release) + "</dd>" +
       "<dt>Cite</dt><dd>CHAOS, Entropy for Energy Laboratory, Johns Hopkins University, https://s4e.ai/chaos.</dd></dl>" +
-      '<p class="cs-dim">The fields and their units: <a href="https://s4e.ai/API/chaos/?schema">schema</a> and ' +
+      '<p class="cs-dim">Fields and units: <a href="https://s4e.ai/API/chaos/?schema">schema</a> and ' +
       '<a href="https://s4e.ai/API/chaos/?help">API help</a>.</p>';
 
-    html += section(1, "decide", "Decide", "Should you try to make this?", "", decide, true);
-    html += section(2, "make", "Make", "What to weigh out", "", make, true);
-    html += section(3, "watch", "Watch out", "What might form instead", "", watch, true);
-    html += section(4, "evidence", "Evidence", "What drives the verdict", esc(evSum), ev, false);
-    html += section(5, "ensemble", "Ensemble", "The supercells behind the formability", sc ? sc + " supercells" + (spread ? ", spread " + sig(spread * 1000, 3) + " meV/atom" : "") : "", ens, false);
-    html += section(6, "neighbors", "Neighbors", "One swap away", esc(nbSum), nbHtml, false);
-    html += section(7, "properties", "Properties", "Other values of this system", p.properties.length + " values", propsHtml, false);
-    html += section(8, "data", "Data", "Query, provenance, citation", "", dataHtml, false);
-    html += '<p class="cs-note">Ranks and scores are computed within the cohort from the current database, which uses covalent radii and ' +
-      "Pearson electronegativities; the manuscript's ranking used other scales, so values can differ from the paper.</p>";
+    html += section(1, "ranking", "Ranking", "", ranking);
+    html += section(2, "synthesis", "Synthesis", "", make);
+    html += section(3, "competing", "Competing phases", "", watch);
+    html += section(4, "ensemble", "Ensemble", esc(ensSum), ens);
+    html += section(5, "neighbors", "Neighbors", esc(nbSum), nbHtml);
+    html += section(6, "properties", "Properties", esc(propsSum), propsHtml);
+    html += section(7, "data", "Data", "Query · provenance · citation", dataHtml);
+    html += '<p class="cs-note">Ranks and scores are computed from the current CHAOS database using covalent radii and Pearson ' +
+      "electronegativities. The manuscript used the Ghosh radius and electronegativity scales, so the values reported here can differ " +
+      "from those in the paper.</p>";
     app.innerHTML = html;
     document.title = p.label + " | CHAOS systems | Entropy for Energy Laboratory | Johns Hopkins";
 
@@ -569,15 +627,44 @@
     }
     batch.oninput = masses;
     masses();
-    // open a collapsed section when its link is used
-    function openFor(hash) {
-      var target = hash && document.getElementById(hash.replace(/^#/, ""));
-      if (target && target.tagName === "DETAILS") target.open = true;
+    // The section links mark the section being read: the last one whose top
+    // has passed below the sticky links, or the last section once the page
+    // is scrolled to the end. A clicked link is marked at once.
+    var jump = app.querySelector(".cs-jump");
+    var links = jump ? jump.querySelectorAll("a") : [];
+    function mark(id) {
+      Array.prototype.forEach.call(links, function (a) {
+        var on = a.getAttribute("href") === "#" + id;
+        a.classList.toggle("on", on);
+        if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+      });
     }
-    Array.prototype.forEach.call(app.querySelectorAll('a[href^="#"]'), function (a) {
-      a.addEventListener("click", function () { openFor(a.getAttribute("href")); });
+    function current() {
+      var line = (jump ? jump.getBoundingClientRect().bottom : 0) + 24;
+      var id = null;
+      SECTIONS.forEach(function (s) {
+        var el = document.getElementById(s[0]);
+        if (el && el.getBoundingClientRect().top <= line) id = s[0];
+      });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) id = SECTIONS[SECTIONS.length - 1][0];
+      mark(id);
+    }
+    var ticking = false, hold = 0;
+    window.addEventListener("scroll", function () {
+      if (ticking || Date.now() < hold) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; current(); });
+    }, { passive: true });
+    Array.prototype.forEach.call(links, function (a) {
+      a.addEventListener("click", function () { hold = Date.now() + 400; mark(a.getAttribute("href").slice(1)); });
     });
-    openFor(location.hash);
+    // addresses from the first version of these pages (#decide, #make, ...)
+    var OLD = { decide: "ranking", evidence: "ranking", make: "synthesis", watch: "competing" };
+    var h = location.hash.slice(1);
+    if (OLD[h]) { h = OLD[h]; history.replaceState(null, "", "#" + h); }
+    var target = h && document.getElementById(h);
+    if (target) target.scrollIntoView();
+    current();
     var copy = document.getElementById("cs-copy");
     copy.onclick = function () {
       var done = function () { copy.textContent = "Copied"; setTimeout(function () { copy.textContent = "Copy the query"; }, 1500); };

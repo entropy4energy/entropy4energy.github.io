@@ -96,26 +96,57 @@ def main():
             check(page.locator("aside.sidebar").count() == 0, "no news sidebar")
             check(page.locator("body").get_attribute("data-s4e-product") == "chaos", "part of CHAOS")
             check(page.locator("#subnav_chaos.active").count() == 1, "CHAOS lit in the sub-navigation")
+            nav = page.locator('.product-nav[data-product="chaos"]')
+            check(nav.is_visible() and nav.locator("a").all_inner_texts() == ["Overview", "Systems", "API", "CHAOS-Agent"],
+                  "CHAOS's own pages in a second row")
+            check(nav.locator("a.active").inner_text() == "Systems", "Systems lit in that row")
 
             # ---- the list
             rows = page.locator("#cs-table tbody tr")
             check(rows.count() == 30, "the largest cohort is shown first")
-            first = rows.first.locator("td").nth(3).inner_text()
+            check(page.locator(".cs-tab.on").inner_text().startswith(fixture["index"]["cohorts"][0]["name"]), "its tab is lit")
+            check(page.locator(".cs-tab").count() == len(fixture["index"]["cohorts"]) + 1, "one tab per cohort, and all systems")
+            first = rows.first.locator("td").nth(2).inner_text()
             check(first == "100th", "highest formability first")
+            check(page.locator("#cs-table th", has_text="Lattice").count() == 0, "no lattice column within one cohort")
             check(page.locator("#cs-map circle").count() == 30, "every system of the cohort on the map")
             page.fill("#cs-q", "mg mn")
             check(all("Mg" in t and "Mn" in t for t in rows.locator("td:first-child").all_inner_texts()), "element search")
             check("q=mg+mn" in page.url or "q=mg%20mn" in page.url, "the search is kept in the address")
+            n_mgmn = rows.count()
+            page.fill("#cs-q", "Mg-Mn")
+            check(rows.count() == n_mgmn, "elements written with hyphens")
             check(page.locator("#cs-map circle.hit").count() == rows.count(), "matches are marked on the map")
             page.fill("#cs-q", "")
-            page.select_option("#cs-cohort", "")
+            page.click('.cs-tab[data-cohort=""]')
             check(rows.count() == len(fixture["index"]["systems"]), "all systems")
-            page.select_option("#cs-v", "formability")
-            check(all(t == "HIGH FORMABILITY" for t in rows.locator(".cs-chip").all_inner_texts()), "verdict filter")
+            check("cohort=all" in page.url, "all systems kept in the address")
+            check(page.locator("#cs-table th", has_text="Lattice").count() == 1, "the lattice column for all systems")
+            n_form = sum(1 for s in fixture["index"]["systems"] if s["v"] == "formability")
+            vf = page.locator('.cs-vf[data-v="formability"]')
+            check(vf.locator(".cs-vf-n").inner_text() == str(n_form), "verdict counts")
+            vf.click()
+            check(all(t == "HIGH FORMABILITY" for t in rows.locator(".cs-chip").all_inner_texts()) and rows.count() == n_form,
+                  "verdict filter")
+            check(vf.get_attribute("aria-pressed") == "true" and "v=formability" in page.url, "the filter is shown and kept")
+            with page.expect_download() as dl:
+                page.click("#cs-csv")
+            lines = Path(dl.value.path()).read_text().splitlines()
+            check(len(lines) == n_form + 1 and lines[0].startswith("system,auid_digits,"), "the list as CSV")
+            vf.click()
+            check(rows.count() == len(fixture["index"]["systems"]), "the filter clears")
+            page.goto(origin + "/chaos-systems?v=constructor&sort=bogus")
+            page.locator("#cs-table tbody tr").first.wait_for()
+            check(rows.count() == 30 and page.locator("#cs-sort").input_value() == "pf", "unknown filters in the address are ignored")
+            page.goto(origin + "/chaos-systems?q=Mg+oxide&cohort=all")
+            page.locator("#cs-table tbody tr").first.wait_for()
+            check(all("Mg" in t for t in rows.locator("td:first-child").all_inner_texts())
+                  and rows.count() == sum(1 for s in fixture["index"]["systems"] if "Mg" in s["elements"] and s["family"] == "oxide"),
+                  "an element and a family from the address (the CHAOS page's links)")
             if args.screenshots:
                 args.screenshots.mkdir(parents=True, exist_ok=True)
-                page.select_option("#cs-v", "")
-                page.select_option("#cs-cohort", fixture["index"]["cohorts"][0]["key"])
+                page.goto(origin + "/chaos-systems")
+                page.locator("#cs-table tbody tr").first.wait_for()
                 page.screenshot(path=str(args.screenshots / "list.png"), full_page=True)
 
             # ---- one system
@@ -125,9 +156,15 @@ def main():
             check(page.locator(".cs-title").inner_text() == "(Co,Cu,Fe,Mg,Mn)O", "title")
             check("(Co,Cu,Fe,Mg,Mn)O" in page.title(), "browser title")
             check(page.locator(".cs-bar .cs-chip").inner_text().lower() == "lower priority", "verdict in the bar")
-            check(page.locator("details.cs-sec[open]").count() == 3, "three sections open, the rest collapsed")
-            check("Cu" in page.locator(".cs-warn").first.inner_text() and "tenorite" in page.locator(".cs-warn").first.inner_text(),
-                  "the element whose end member takes another structure is named")
+            check(page.locator("section.cs-sec").count() == 7 and page.locator("details.cs-sec").count() == 0,
+                  "seven sections, none collapsed")
+            check(page.locator(".cs-jump a").all_inner_texts() ==
+                  ["Ranking", "Synthesis", "Competing phases", "Ensemble", "Neighbors", "Properties", "Data"], "the section links")
+            check(page.locator(".cs-sec-h").all_inner_texts()[0].endswith("Ranking"), "plain section headings")
+            check("CuO" in page.locator(".cs-flag").first.inner_text(),
+                  "the end member that is lowest in another structure is named")
+            check("tenorite" in page.locator("#competing table").inner_text(), "and its structure is in the table")
+            check(page.locator("#ranking .cs-evidence tbody tr").count() == 9, "the descriptors are in the ranking")
             mass = page.locator(".cs-mass").first
             m5 = float(mass.inner_text().split()[0])
             page.fill("#cs-batch", "10")
@@ -135,8 +172,16 @@ def main():
             check(abs(m10 - 2 * m5) < 0.002 * m10, "masses follow the batch size")
             want = 5 * p["weigh_out"]["rows"][0]["mol"] * p["weigh_out"]["rows"][0]["molar_mass"] / p["weigh_out"]["product"]["mass"]
             check(abs(m5 - want) < 0.001 * want, "mass of the first precursor for 5 g")
-            page.click('a[data-open="neighbors"]')
-            check(page.locator("details#neighbors").get_attribute("open") is not None, "a jump link opens its section")
+            page.click('.cs-jump a[href="#neighbors"]')
+            page.wait_for_function("location.hash === '#neighbors'")
+            check(page.evaluate("document.getElementById('neighbors').getBoundingClientRect().top") < 300, "a section link goes to its section")
+            page.click('.cs-jump a[href="#data"]')
+            page.wait_for_timeout(600)
+            page.mouse.wheel(0, 3000)
+            page.wait_for_timeout(300)
+            check(page.locator(".cs-jump a.on").inner_text() == "Data", "the last section is marked at the end of the page")
+            contributions = page.locator("#ranking .cs-evidence .cs-big").all_inner_texts()[1:]
+            check(all(re.fullmatch(r"[01]\.\d\d|–", c) for c in contributions), "contributions on the same 0 to 1 scale as the score")
             cells = page.locator(".cs-matrix td a")
             check(cells.count() == len(p["neighbors"]["list"]), "one cell per neighbor")
             check(page.locator("#cs-query").text_content() == p["query"], "the query")
@@ -158,14 +203,34 @@ def main():
             page.locator(".cs-identity, .cs-status").first.wait_for()
             check("id=" + rocksalt not in page.url, "a neighbor cell opens the neighbor")
 
+            page.goto(origin + "/chaos-systems?id=" + rocksalt + "#make")
+            page.locator(".cs-identity").wait_for()
+            check(page.evaluate("location.hash") == "#synthesis" and
+                  abs(page.evaluate("document.getElementById('synthesis').getBoundingClientRect().top")) < 120,
+                  "an address from the first version still opens its section")
+
             # other structures: no simple precursors for the perovskite, elements for the alloy
             page.goto(origin + "/chaos-systems?id=" + by_label["Sr(Hf,Mn,Sn,Ti,Zr)O3"])
             page.locator(".cs-identity").wait_for()
             check(page.locator("details.cs-sub-details[open]").count() == 1, "perovskite: element amounts shown open")
+            check(page.locator("#synthesis table th").first.text_content() == "Element", "perovskite: the element table")
             page.goto(origin + "/chaos-systems?id=" + by_label["(Co,Cr,Fe,Mn,Ni)"])
             page.locator(".cs-identity").wait_for()
-            check(page.locator("#make table th").first.text_content() == "Element", "alloy: weigh out the elements")
+            check(page.locator("#synthesis table th").first.text_content() == "Element", "alloy: weigh out the elements")
             check("oxygen" not in page.locator(".cs-caveat").inner_text().lower(), "alloy: no oxygen in the caveat")
+
+            # ---- the CHAOS page: search, cards, the periodic table's links
+            page.goto(origin + "/chaos")
+            check(page.locator('.product-nav[data-product="chaos"] a.active').inner_text() == "Overview", "Overview lit on the CHAOS page")
+            check(page.locator('a.ptable-cell[href*="chaos-systems?q="]').count() > 10, "cations link to their systems")
+            check(page.locator(".access-card").all_inner_texts()[0].startswith("Systems"), "the system pages come first")
+            page.fill("#chaos-find-q", "Mg Mn")
+            page.click(".chaos-find button")
+            page.locator("#cs-table tbody tr").first.wait_for()
+            check("q=Mg+Mn" in page.url and "cohort=all" in page.url, "the search opens the list for all systems")
+            check(all("Mg" in t and "Mn" in t for t in rows.locator("td:first-child").all_inner_texts()), "and filters it")
+            text = page.locator("main").inner_text()
+            check("—" not in text, "no em dashes on the CHAOS page")
 
             # ---- refusals and errors
             page.goto(origin + "/chaos-systems?id=0000000000000bad")

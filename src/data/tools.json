@@ -7,14 +7,40 @@
       "kind": "Database",
       "full_name": "Combinatorial High-throughput Analysis and Optimization for Synthesis",
       "href": "chaos",
-      "description": "The first database of first-principles calculations dedicated to high-entropy oxides. Disordered oxides are stored as ensembles of relaxed DFT supercells, alongside their ordered binary and ternary reference oxides and structural and chemical descriptors. Registered users query it through the REST API or through CHAOS-Agent, a natural-language interface to the database.",
+      "description": "The first database of first-principles calculations dedicated to high-entropy oxides. Disordered oxides are stored as ensembles of relaxed DFT supercells, alongside their ordered binary and ternary reference oxides and structural and chemical descriptors. Registered users open a page for each disordered system, query the database through the REST API, or use CHAOS-Agent, a natural-language interface.",
       "links": [
+        {
+          "label": "Systems",
+          "href": "chaos-systems"
+        },
         {
           "label": "API docs",
           "href": "https://s4e.ai/API/chaos/?help",
           "external": true
         },
         {
+          "label": "CHAOS-Agent",
+          "href": "https://s4e.ai/chaos/agent/"
+        }
+      ],
+      "sections": [
+        {
+          "id": "chaos",
+          "label": "Overview",
+          "href": "chaos"
+        },
+        {
+          "id": "chaos-systems",
+          "label": "Systems",
+          "href": "chaos-systems"
+        },
+        {
+          "id": "api",
+          "label": "API",
+          "href": "https://s4e.ai/API/chaos/?help"
+        },
+        {
+          "id": "agent",
           "label": "CHAOS-Agent",
           "href": "https://s4e.ai/chaos/agent/"
         }

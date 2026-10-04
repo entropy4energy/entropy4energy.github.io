@@ -162,6 +162,75 @@ header {
   }
 }
 
+/* A product's own pages (tools.json "sections"): a second row under the
+   sub-navigation, shown only on that product's pages. The CHAOS API gate's
+   documentation pages (main.api-docs) light API. */
+
+.product-nav {
+  background-color: white;
+  border-bottom: 1px solid $color-line;
+  display: none;
+
+  ul {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0 auto;
+    max-width: 1320px;
+    padding: 0 1rem;
+  }
+
+  a {
+    border-bottom: 2px solid transparent;
+    color: $color-main-1;
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.5rem 0.9rem;
+    text-decoration: none;
+
+    &:hover {
+      background-color: $color-surface-2;
+    }
+
+    &.active {
+      border-bottom-color: $color-main-1;
+      color: $color-ink;
+    }
+  }
+}
+
+body[data-s4e-product="chaos"] .product-nav[data-product="chaos"] {
+  display: block;
+}
+
+@media screen and (max-width: $mobile-threshold) {
+  .product-nav {
+    ul {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding: 0 0.5rem;
+    }
+
+    a {
+      padding: 0.5rem 0.55rem;
+      white-space: nowrap;
+
+      // inside the scrolling row, so the outline is drawn inward
+      &:focus-visible {
+        outline-offset: -3px;
+      }
+    }
+  }
+}
+
+body:has(main.api-docs) .product-nav a[data-k="api"] {
+  border-bottom-color: $color-main-1;
+  color: $color-ink;
+}
+
 footer {
   @include contrast-main-1();
   margin-top: auto;

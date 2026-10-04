@@ -1,6 +1,12 @@
 {#- Data and Tools family sub-navigation (Overview, CHAOS, LOOP, ...).
     Active entry: class="active" on the static site, data-s4e-product on
-    <body> for pages that include the fragment. -#}
+    <body> for pages that include the fragment.
+    A product with "sections" in tools.json (CHAOS: Overview, Systems, API,
+    CHAOS-Agent) gets a second row, shown only on that product's pages: the
+    stylesheet shows it when <body data-s4e-product> names the product, so
+    the same fragment works on the static pages and on the pages LOOP and the
+    CHAOS API gate wrap in it. The row carries "hidden", so a page whose
+    stylesheet predates it does not show it at all. -#}
 {% if data.tools %}
   <div class="subnav" role="navigation" aria-label="Data and Tools">
     <ul>
@@ -11,4 +17,14 @@
       {% endfor %}
     </ul>
   </div>
+  {% for item in data.tools.products if item.sections %}
+  <nav class="product-nav" data-product="{{ item.id }}" aria-label="{{ item.name }}" hidden>
+    <ul>
+      {% for s in item.sections %}
+        {% set href = s.href if "://" in s.href else data.root ~ s.href %}
+        <li><a href="{{ href }}" data-k="{{ s.id }}"{% if s.id == data.section %} class="active" aria-current="page"{% endif %}>{{ s.label }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+  {% endfor %}
 {% endif %}
