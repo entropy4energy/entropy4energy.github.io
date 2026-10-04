@@ -95,6 +95,28 @@
           "href": "synthesizability-game#how"
         }
       ]
+    },
+    {
+      "id": "xrd",
+      "name": "XRD Phase ID",
+      "kind": "Analysis service",
+      "full_name": "X-ray diffraction phase identification",
+      "full_name_html": "<u>X</u>-<u>r</u>ay <u>d</u>iffraction phase identification",
+      "href": "https://xrd.s4e.ai/",
+      "external": true,
+      "description": "Upload a powder X-ray diffraction scan to identify its phases, refine their lattice parameters, assign each reflection and generate structure files. Phases are searched among structure families with mixed cation sites and among reference structures from the Crystallography Open Database.",
+      "links": [
+        {
+          "label": "Examples",
+          "href": "https://xrd.s4e.ai/examples",
+          "external": true
+        },
+        {
+          "label": "API",
+          "href": "https://xrd.s4e.ai/api",
+          "external": true
+        }
+      ]
     }
   ]
 }
