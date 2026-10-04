@@ -206,7 +206,27 @@ body[data-s4e-product="chaos"] .product-nav[data-product="chaos"] {
   display: block;
 }
 
+// Phones: both rows stay one line and scroll sideways, so the page itself
+// starts higher on the screen.
 @media screen and (max-width: $mobile-threshold) {
+  .subnav {
+    ul {
+      flex-wrap: nowrap;
+      gap: 0;
+      overflow-x: auto;
+      padding: 0 0.5rem;
+    }
+
+    a {
+      padding: 0.55rem 0.6rem;
+      white-space: nowrap;
+
+      &:focus-visible {
+        outline-offset: -3px;
+      }
+    }
+  }
+
   .product-nav {
     ul {
       flex-wrap: nowrap;
@@ -468,6 +488,14 @@ $site-products: chaos loop;
     &-more {
       margin-top: 0.25rem;
     }
+  }
+
+  // On the Data and Tools pages, the CHAOS API help pages included, the
+  // page's own content comes first and the news strip follows it. LOOP's own
+  // pages (main.main-content-wrapper) keep their sidebar first: it holds
+  // LOOP's account card.
+  body[data-s4e-tab="tools"] div.main-content-wrapper > .sidebar {
+    order: 1;
   }
 
   .content-block {

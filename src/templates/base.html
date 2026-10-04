@@ -136,6 +136,17 @@
   {% include "partials/nav.html" %}
   {% if data.section == "tools" or data.parent == "tools" %}
     {% include "partials/subnav.html" %}
+    <script>
+      // On phones the Data and Tools row scrolls sideways: bring the current
+      // page's entry into view when it starts off the screen.
+      (function () {
+        var ul = document.querySelector(".subnav ul");
+        var a = ul && ul.querySelector("a.active");
+        if (!a) return;
+        var over = a.getBoundingClientRect().right - ul.getBoundingClientRect().right;
+        if (over > 0) ul.scrollLeft += over + 16;
+      })();
+    </script>
   {% endif %}
   {# The Latest News card is on every page except News itself and the CHAOS
      system pages, which need the width. #}

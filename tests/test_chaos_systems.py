@@ -267,6 +267,22 @@ def main():
                 pp.evaluate("document.querySelectorAll('details').forEach(function (d) { d.open = true })")
                 wide = pp.evaluate("document.documentElement.scrollWidth - window.innerWidth")
                 check(wide <= 0, f"no sideways scrolling at 390 px: {url} ({wide} px)")
+            # ---- phone width, Data and Tools pages: the page's content before
+            # the news strip, and the Data and Tools row on one line, scrolled
+            # so that the current page's entry shows
+            for url in ("/chaos", "/tools", "/synthesizability-game"):
+                pp.goto(origin + url)
+                got = pp.evaluate("""() => {
+                  const box = s => document.querySelector(s).getBoundingClientRect();
+                  const ul = document.querySelector('.subnav ul'), a = ul.querySelector('a.active');
+                  return {main: box('main').top, news: box('.sidebar').top, row: box('.subnav').height,
+                          shown: a.getBoundingClientRect().right <= ul.getBoundingClientRect().right + 1,
+                          wide: document.documentElement.scrollWidth - innerWidth}
+                }""")
+                check(got["main"] < got["news"], f"content before the news at 390 px: {url}")
+                check(got["row"] < 50, f"Data and Tools row on one line at 390 px: {url} ({got['row']:.0f} px)")
+                check(got["shown"], f"current page's entry in view at 390 px: {url}")
+                check(got["wide"] <= 0, f"no sideways scrolling at 390 px: {url} ({got['wide']} px)")
             if args.screenshots:
                 pp.screenshot(path=str(args.screenshots / "system_phone.png"), full_page=True)
             check(not errors, f"no script errors: {errors}")
