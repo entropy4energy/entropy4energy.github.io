@@ -779,9 +779,17 @@ def build_html(section: str = "", extra_data: list = []) -> str:
     # name, full_name, optional subnav [{label, href}] and contributors
     # [{name, years}]. base.html uses it for the hero, sub-nav and footer.
     data["product"] = (data.get(section) or {}).get("product") if isinstance(data.get(section), dict) else None
+    # A page that belongs to a product without being its main page (the CHAOS
+    # system pages) names the product as "part_of" in its data file, and takes
+    # the product's hero, sub-nav entry and footer contributors.
+    part_of = (data.get(section) or {}).get("part_of") if isinstance(data.get(section), dict) else None
+    product_id = part_of or section
+    if part_of:
+        data["product"] = json.loads((DATA_DIR / f"{part_of}.json").read_text()).get("product")
+    data["product_id"] = product_id
     # Which top-level tab is lit: a product page lights its family tab.
     data["parent"] = "tools" if data["tools"] and any(
-        p.get("id") == section for p in data["tools"].get("products", [])) else section
+        p.get("id") == product_id for p in data["tools"].get("products", [])) else section
 
     loader = FileSystemLoader(TEMPLATE_DIR)
     env = Environment(loader=loader)

@@ -26,6 +26,7 @@
     "chaos": "CHAOS, the first database of first-principles calculations dedicated to high-entropy oxides: disordered oxides as ensembles of relaxed DFT supercells, formability and disorder descriptors, and ordered reference oxides. From the Entropy for Energy Laboratory at Johns Hopkins University.",
     "tools": "Databases and data platforms built by the Entropy for Energy Laboratory at Johns Hopkins University: CHAOS, LOOP, Fusion Mirrors and the Synthesizability Game.",
     "fusion-mirrors": "Fusion Mirrors: a local-file explorer for DFT optical constants and normal-incidence reflectivity. Code-only preview from the Entropy for Energy Laboratory.",
+    "chaos-systems": "CHAOS system pages: one page for each disordered system in CHAOS, for signed-in accounts. From the Entropy for Energy Laboratory at Johns Hopkins University.",
     "synthesizability-game": "Synthesizability Game: choose elements for the two cation sites of a high-entropy nuclear waste form and see whether the composition is predicted to be synthesizable. From the Entropy for Energy Laboratory at Johns Hopkins University.",
   } %}
   {% set description = descriptions.get(data.section, descriptions["home"]) %}
@@ -38,7 +39,7 @@
   {# Named page by page rather than by family: the Synthesizability Game sits
      under Data and Tools on s4e.ai and under Teaching on the lab site, and the
      lab copy is the canonical one. #}
-  {% set tools_pages = ["tools", "chaos", "loop", "fusion-mirrors"] %}
+  {% set tools_pages = ["tools", "chaos", "loop", "fusion-mirrors", "chaos-systems"] %}
   {% set canonical_host = "https://s4e.ai/" if data.section in tools_pages else "https://entropy4energy.ai/" %}
   {% set canonical_url = canonical_host ~ ("" if data.section == "home" else data.section) %}
   <link rel="canonical" href="{{ canonical_url }}">
@@ -98,10 +99,14 @@
   {# Unpublished: s4e.ai serves dev at its root and robots.txt
      allows /, so this page needs the meta tag, not a Disallow
      line. Remove when the data are released. #}
-  {% if data.section == "fusion-mirrors" %}
+  {# The CHAOS system pages are for signed-in accounts: nothing to index, and
+     the system in the address stays out of Google Analytics (the gate keeps
+     its own usage record). #}
+  {% set private_pages = ["fusion-mirrors", "chaos-systems"] %}
+  {% if data.section in private_pages %}
   <meta name="robots" content="noindex, nofollow">
   {% endif %}
-  {% if data.section != "fusion-mirrors" %}
+  {% if data.section not in private_pages %}
   <!-- Google tag (gtag.js). The queue is set up here and the tag itself is
        fetched after load, so its 159 KB and its main-thread work stay off the
        critical path. Events recorded before it arrives are replayed. -->
@@ -126,14 +131,15 @@
   <link rel="stylesheet" type="text/css" href="css/main.css?v={{ data.asset_version }}">
   {% block head_extra %}{% endblock %}
 </head>
-<body id="{{ data.section }}" data-s4e-tab="{{ data.parent }}"{% if data.product %} data-s4e-product="{{ data.section }}"{% endif %}>
+<body id="{{ data.section }}" data-s4e-tab="{{ data.parent }}"{% if data.product %} data-s4e-product="{{ data.product_id or data.section }}"{% endif %}>
   {% include "partials/header.html" %}
   {% include "partials/nav.html" %}
   {% if data.section == "tools" or data.parent == "tools" %}
     {% include "partials/subnav.html" %}
   {% endif %}
-  {# The Latest News card is on every page except News itself. #}
-  {% set with_sidebar = data.section != "news" %}
+  {# The Latest News card is on every page except News itself and the CHAOS
+     system pages, which need the width. #}
+  {% set with_sidebar = data.section not in ["news", "chaos-systems"] %}
   <div class="main-content-wrapper{% if not with_sidebar %} no-sidebar{% endif %}">
     <main class="content-block">
       {% block content %}{% endblock %}
