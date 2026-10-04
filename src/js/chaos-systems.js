@@ -14,7 +14,6 @@
   var PROFILE = "/loop/accounts/profile/";
   var QUERY_BASE = "https://s4e.ai/API/chaos/?";
   var AGENT = "https://s4e.ai/chaos/agent/";
-  var CONTACT = "corey.oses@jhu.edu";
   var FORMAT = 1;
   var app = document.getElementById("cs-app");
   if (!app) return;
@@ -542,9 +541,7 @@
 
     // ---- 4 ensemble
     var ens = "<p>Each supercell is relaxed with DFT and weighted by its degeneracy." +
-      (spread ? " Formability, the inverse of the enthalpy spread, is " + sig(d.formability.value, 3) + " (eV/atom)<sup>−1</sup>." : "") + "</p>" +
-      '<p class="cs-dim">Structures and energies of the individual supercells are available on request: ' +
-      '<a href="mailto:' + CONTACT + '">' + CONTACT + "</a>.</p>";
+      (spread ? " Formability, the inverse of the enthalpy spread, is " + sig(d.formability.value, 3) + " (eV/atom)<sup>−1</sup>." : "") + "</p>";
     var ensSum = sc ? sc + " ordered supercells" + (spread ? " · degeneracy-weighted spread " + sig(spread * 1000, 3) + " meV/atom" : "") : "";
 
     // ---- 5 neighbors
