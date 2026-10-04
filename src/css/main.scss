@@ -793,6 +793,18 @@ h2 {
   border-top: 3px solid $color-main-5;
   padding: 0.8rem 1rem 0.9rem;
 
+  // the systems tile opens the system pages
+  &[href] {
+    color: inherit;
+    display: block;
+    text-decoration: none;
+    transition: box-shadow 0.15s ease;
+
+    &:hover {
+      box-shadow: 0 6px 18px rgba($color-main-1, 0.12);
+    }
+  }
+
   &-value {
     color: $color-main-1;
     font-size: 2rem;
@@ -818,6 +830,64 @@ h2 {
   color: $color-muted;
   font-size: 0.9rem;
   margin: 0 0 1.25rem;
+}
+
+// Find a system: a plain form to chaos-systems?q=
+.chaos-find {
+  margin: 1.25rem 0 0;
+
+  label {
+    color: $color-main-1;
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+
+  &-row {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 36rem;
+  }
+
+  input {
+    border: 1px solid $color-line-2;
+    border-radius: 4px;
+    box-sizing: border-box;
+    flex: 1;
+    font: inherit;
+    min-width: 0;
+    padding: 0.5rem 0.7rem;
+  }
+
+  button {
+    background-color: $color-main-1;
+    border: 1px solid $color-main-1;
+    border-radius: 4px;
+    color: $color-main-2;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+
+    &:hover {
+      background-color: #00418e;
+    }
+  }
+}
+
+.chaos-account {
+  color: $color-muted;
+  font-size: 0.9rem;
+  margin: -0.75rem 0 0.5rem;
+}
+
+.jump-nav-label {
+  align-self: center;
+  color: $color-muted;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-right: 0.25rem;
 }
 
 .chaos-features {
@@ -869,6 +939,16 @@ h2 {
     text-align: right;
     white-space: nowrap;
   }
+
+  // read by screen readers and kept in copied text, not shown
+  .sep {
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
 }
 
 .ptable-wrap {
@@ -892,6 +972,17 @@ h2 {
   flex-direction: column;
   justify-content: center;
   line-height: 1.1;
+}
+
+// a cation with systems links to them
+a.ptable-cell {
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    outline: 2px solid $color-main-1;
+    outline-offset: 1px;
+  }
 }
 
 .ptable-symbol {
