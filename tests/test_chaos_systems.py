@@ -19,7 +19,7 @@ from playwright.sync_api import sync_playwright
 
 FIXTURE = Path(__file__).resolve().parent / "fixtures" / "chaos_systems_madeup.json"
 # Words the public CHAOS text does not use (package and method names), as in
-# the CHAOS API documentation check. Field names and AUIDs are left out first.
+# the CHAOS API documentation check. Field names and identifiers are left out first.
 BANNED = re.compile(r"(?i)\bpocc\b|\bvasp\b|\bcce\b|entropy[- ]forming|\befa\b|misfit|\baflux\b|\baflow\b")
 
 
@@ -132,7 +132,7 @@ def main():
             with page.expect_download() as dl:
                 page.click("#cs-csv")
             lines = Path(dl.value.path()).read_text().splitlines()
-            check(len(lines) == n_form + 1 and lines[0].startswith("system,auid_digits,"), "the list as CSV")
+            check(len(lines) == n_form + 1 and lines[0].startswith("system,chaos_id_digits,"), "the list as CSV")
             vf.click()
             check(rows.count() == len(fixture["index"]["systems"]), "the filter clears")
             page.goto(origin + "/chaos-systems?v=constructor&sort=bogus")
