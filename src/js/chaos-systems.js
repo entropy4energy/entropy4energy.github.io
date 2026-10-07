@@ -229,7 +229,7 @@
     function inCohort(s) { return !state.cohort || s.cohort === state.cohort; }
 
     function csv(rows) {
-      var head = ["system", "auid_digits", "family", "lattice", "cohort", "formability_eV_atom_inv", "formability_percentile",
+      var head = ["system", "chaos_id_digits", "family", "lattice", "cohort", "formability_eV_atom_inv", "formability_percentile",
         "compatibility", "compatibility_percentile", "verdict", "supercells"];
       var cohortName = {};
       cohorts.forEach(function (c) { cohortName[c.key] = c.name; });
@@ -384,7 +384,7 @@
       '<a href="chaos-systems?cohort=' + encodeURIComponent(p.cohort.key) + '">' + esc(cohortName) + "</a></p>" +
       '<p class="cs-kicker">' + esc(kick.filter(Boolean).join(" · ")) + "</p>" +
       '<h1 class="cs-title">' + name + "</h1>" +
-      '<p class="cs-sub">' + sub.join(" · ") + '</p><p class="cs-auid">' + esc(p.auid) + "</p></div>" +
+      '<p class="cs-sub">' + sub.join(" · ") + '</p><p class="cs-chaos-id">' + esc(p.chaos_id || p.auid) + "</p></div>" +
       '<div class="cs-bar"><span class="cs-chip ' + v.cls + '">' + v.chip + "</span>" +
       '<span class="cs-bar-item">Formability <b>' + ordinal(pf) + " percentile</b></span>" +
       '<span class="cs-bar-item">Compatibility <b>' + (S == null ? "–" : S.toFixed(2)) + "</b></span>" +
@@ -594,7 +594,7 @@
       '<a class="cs-button" href="' + QUERY_BASE + esc(q) + '">Run it</a>' +
       '<a class="cs-button" href="' + API + encodeURIComponent(p.id) + '">This page\'s data (JSON)</a>' +
       '<a class="cs-button" href="' + AGENT + '">CHAOS-Agent</a></p>' +
-      '<dl class="cs-dl"><dt>AUID</dt><dd>' + esc(p.auid) + "</dd><dt>Computed on</dt><dd>" + released(p.release) + "</dd>" +
+      '<dl class="cs-dl"><dt>CHAOS identifier</dt><dd>' + esc(p.chaos_id || p.auid) + "</dd><dt>Computed on</dt><dd>" + released(p.release) + "</dd>" +
       "<dt>Cite</dt><dd>CHAOS, Entropy for Energy Laboratory, Johns Hopkins University, https://s4e.ai/chaos.</dd></dl>" +
       '<p class="cs-dim">Fields and units: <a href="https://s4e.ai/API/chaos/?schema">schema</a> and ' +
       '<a href="https://s4e.ai/API/chaos/?help">API help</a>.</p>';

@@ -819,7 +819,7 @@
   "00000000000000b6": {
    "format": 1,
    "id": "00000000000000b6",
-   "auid": "s4e:00000000000000b6",
+   "chaos_id": "s4e:00000000000000b6",
    "label": "Sr(Hf,Mn,Sn,Ti,Zr)O3",
    "label_exact": true,
    "species": [
@@ -1140,7 +1140,7 @@
   "0000000000000001": {
    "format": 1,
    "id": "0000000000000001",
-   "auid": "s4e:0000000000000001",
+   "chaos_id": "s4e:0000000000000001",
    "label": "(Co,Cu,Fe,Mg,Mn)O",
    "label_exact": true,
    "species": [
@@ -1418,7 +1418,7 @@
      "n": 2,
      "lowest": {
       "formula": "CoO",
-      "auid": "s4e:00000000000000c6",
+      "chaos_id": "s4e:00000000000000c6",
       "hf": -1.24,
       "hf_corr": -1.54,
       "structure": "rocksalt",
@@ -1428,7 +1428,7 @@
      },
      "same_lattice": {
       "formula": "CoO",
-      "auid": "s4e:00000000000000c6",
+      "chaos_id": "s4e:00000000000000c6",
       "hf": -1.24,
       "hf_corr": -1.54,
       "structure": "rocksalt",
@@ -1447,7 +1447,7 @@
      "n": 3,
      "lowest": {
       "formula": "CuO",
-      "auid": "s4e:00000000000000d6",
+      "chaos_id": "s4e:00000000000000d6",
       "hf": -0.8,
       "hf_corr": -1.1,
       "structure": "tenorite",
@@ -1457,7 +1457,7 @@
      },
      "same_lattice": {
       "formula": "CuO",
-      "auid": "s4e:00000000000000c8",
+      "chaos_id": "s4e:00000000000000c8",
       "hf": -0.7,
       "hf_corr": -1.0,
       "structure": "rocksalt",
@@ -1476,7 +1476,7 @@
      "n": 2,
      "lowest": {
       "formula": "FeO",
-      "auid": "s4e:00000000000000ca",
+      "chaos_id": "s4e:00000000000000ca",
       "hf": -1.42,
       "hf_corr": -1.72,
       "structure": "rocksalt",
@@ -1486,7 +1486,7 @@
      },
      "same_lattice": {
       "formula": "FeO",
-      "auid": "s4e:00000000000000ca",
+      "chaos_id": "s4e:00000000000000ca",
       "hf": -1.42,
       "hf_corr": -1.72,
       "structure": "rocksalt",
@@ -1505,7 +1505,7 @@
      "n": 2,
      "lowest": {
       "formula": "MgO",
-      "auid": "s4e:00000000000000cc",
+      "chaos_id": "s4e:00000000000000cc",
       "hf": -3.02,
       "hf_corr": -3.32,
       "structure": "rocksalt",
@@ -1515,7 +1515,7 @@
      },
      "same_lattice": {
       "formula": "MgO",
-      "auid": "s4e:00000000000000cc",
+      "chaos_id": "s4e:00000000000000cc",
       "hf": -3.02,
       "hf_corr": -3.32,
       "structure": "rocksalt",
@@ -1534,7 +1534,7 @@
      "n": 2,
      "lowest": {
       "formula": "MnO",
-      "auid": "s4e:00000000000000ce",
+      "chaos_id": "s4e:00000000000000ce",
       "hf": -1.99,
       "hf_corr": -2.29,
       "structure": "rocksalt",
@@ -1544,7 +1544,7 @@
      },
      "same_lattice": {
       "formula": "MnO",
-      "auid": "s4e:00000000000000ce",
+      "chaos_id": "s4e:00000000000000ce",
       "hf": -1.99,
       "hf_corr": -2.29,
       "structure": "rocksalt",
@@ -1800,7 +1800,7 @@
   "00000000000000c0": {
    "format": 1,
    "id": "00000000000000c0",
-   "auid": "s4e:00000000000000c0",
+   "chaos_id": "s4e:00000000000000c0",
    "label": "(Co,Cr,Fe,Mn,Ni)",
    "label_exact": true,
    "species": [
@@ -1962,7 +1962,7 @@
      "n": 2,
      "lowest": {
       "formula": "Co",
-      "auid": "s4e:00000000000000db",
+      "chaos_id": "s4e:00000000000000db",
       "hf": 0.0,
       "hf_corr": null,
       "structure": "bcc",
@@ -1972,7 +1972,7 @@
      },
      "same_lattice": {
       "formula": "Co",
-      "auid": "s4e:00000000000000dc",
+      "chaos_id": "s4e:00000000000000dc",
       "hf": 0.03,
       "hf_corr": null,
       "structure": "fcc",
@@ -1991,7 +1991,7 @@
      "n": 2,
      "lowest": {
       "formula": "Cr",
-      "auid": "s4e:00000000000000dd",
+      "chaos_id": "s4e:00000000000000dd",
       "hf": 0.0,
       "hf_corr": null,
       "structure": "bcc",
@@ -2001,7 +2001,7 @@
      },
      "same_lattice": {
       "formula": "Cr",
-      "auid": "s4e:00000000000000de",
+      "chaos_id": "s4e:00000000000000de",
       "hf": 0.03,
       "hf_corr": null,
       "structure": "fcc",
@@ -2020,7 +2020,7 @@
      "n": 2,
      "lowest": {
       "formula": "Fe",
-      "auid": "s4e:00000000000000df",
+      "chaos_id": "s4e:00000000000000df",
       "hf": 0.0,
       "hf_corr": null,
       "structure": "bcc",
@@ -2030,7 +2030,7 @@
      },
      "same_lattice": {
       "formula": "Fe",
-      "auid": "s4e:00000000000000e0",
+      "chaos_id": "s4e:00000000000000e0",
       "hf": 0.03,
       "hf_corr": null,
       "structure": "fcc",
@@ -2049,7 +2049,7 @@
      "n": 2,
      "lowest": {
       "formula": "Mn",
-      "auid": "s4e:00000000000000e1",
+      "chaos_id": "s4e:00000000000000e1",
       "hf": 0.0,
       "hf_corr": null,
       "structure": "bcc",
@@ -2059,7 +2059,7 @@
      },
      "same_lattice": {
       "formula": "Mn",
-      "auid": "s4e:00000000000000e2",
+      "chaos_id": "s4e:00000000000000e2",
       "hf": 0.03,
       "hf_corr": null,
       "structure": "fcc",
@@ -2078,7 +2078,7 @@
      "n": 2,
      "lowest": {
       "formula": "Ni",
-      "auid": "s4e:00000000000000e3",
+      "chaos_id": "s4e:00000000000000e3",
       "hf": 0.0,
       "hf_corr": null,
       "structure": "fcc",
@@ -2088,7 +2088,7 @@
      },
      "same_lattice": {
       "formula": "Ni",
-      "auid": "s4e:00000000000000e3",
+      "chaos_id": "s4e:00000000000000e3",
       "hf": 0.0,
       "hf_corr": null,
       "structure": "fcc",
