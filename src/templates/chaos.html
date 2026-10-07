@@ -19,6 +19,7 @@
 <div class="chaos-page">
   {% set st = data.chaos.stats %}
   {% set ox = st.oxide %}
+  {% set one = ox.coverage_one_cation %}
   <h1>CHAOS</h1>
   <p class="chaos-claim">
     The first database of first-principles calculations dedicated to
@@ -95,7 +96,12 @@
     <div class="chaos-stat">
       <div class="chaos-stat-value">{{ n("derived.two_cation_pct", ox.coverage_two_cation_pct) }}%</div>
       <div class="chaos-stat-label">of two-cation sub-oxides calculated</div>
-      <div class="chaos-stat-note">and all single-cation oxides, for the
+      {# "all" or "N of M": both are in the page, and the script shows the one
+         the current counts call for #}
+      <div class="chaos-stat-note">and
+        <span data-one-all{% if one[0] != one[1] %} hidden{% endif %}>all</span><span data-one-some{% if one[0] == one[1] %} hidden{% endif %}>{{ n("oxide.coverage_one_cation.0", one[0]) }}
+        of {{ n("oxide.coverage_one_cation.1", one[1]) }}</span>
+        single-cation oxides, for the
         {{ n("oxide.coverage_systems", ox.coverage_systems) }} systems whose only anion is oxygen</div>
     </div>
   </div>
@@ -104,9 +110,10 @@
     includes high-entropy alloys and contains
     {{ n("entries", st.entries) }} entries across
     {{ n("elements", st.elements) }} elements:
-    {{ n("ordered_entries", st.ordered_entries) }} ordered structures,
-    {{ n("supercell_entries", st.supercell_entries) }} supercells, and
+    {{ n("ordered_entries", st.ordered_entries) }} ordered structures and
     {{ n("disordered_systems", st.disordered_systems) }} disordered systems.
+    The supercells of the ensembles are used to compute each system's values
+    and are not part of the public database.
   </p>
 
   <div class="jump-nav" role="navigation" aria-label="On this page">
@@ -161,7 +168,9 @@
         {{ n("oxide.coverage_systems", ox.coverage_systems) }} disordered
         systems whose only anion is oxygen (the other
         {{ n("derived.mixed_anion", ox.mixed_anion_systems) }} also contain
-        another anion), all {{ n("oxide.coverage_one_cation.1", ox.coverage_one_cation[1]) }}
+        another anion),
+        <span data-one-all{% if one[0] != one[1] %} hidden{% endif %}>all</span><span data-one-some{% if one[0] == one[1] %} hidden{% endif %}>{{ n("oxide.coverage_one_cation.0", one[0]) }}
+        of</span> {{ n("oxide.coverage_one_cation.1", one[1]) }}
         single-cation oxides and {{ n("oxide.coverage_two_cation.0", ox.coverage_two_cation[0]) }}
         of {{ n("oxide.coverage_two_cation.1", ox.coverage_two_cation[1]) }} two-cation oxide
         systems have ordered entries. Each system page lists its end members
@@ -173,9 +182,9 @@
       <h3>Charges and volumes per atom</h3>
       <p>
         Bader charges and atomic volumes are stored for
-        {{ n("bader_atoms", st.bader_atoms) }} atoms, including the
-        {{ n("oxide.supercell_atoms_with_bader", ox.supercell_atoms_with_bader) }}
-        atoms inside the disordered oxide supercells.
+        {{ n("bader_atoms", st.bader_atoms) }} atoms in the public database,
+        and for {{ n("oxide.supercell_atoms_with_bader", ox.supercell_atoms_with_bader) }}
+        more inside the disordered oxide supercells.
       </p>
     </div>
   </div>
@@ -198,7 +207,7 @@
       </ul>
     </div>
     <div class="chaos-feature">
-      <h3>Each supercell and each ordered oxide</h3>
+      <h3>Each ordered oxide</h3>
       <ul class="chaos-props-list">
         <li>Relaxed structure and space group</li>
         <li>Formation enthalpy<span class="unit"><span class="sep">, in </span>eV/atom</span></li>
@@ -207,7 +216,15 @@
     </div>
   </div>
 
-  {# Values some entries lack, from the counts block (rows by name). #}
+  <p class="chaos-note">
+    The supercells of the ensembles also have relaxed structures, formation
+    enthalpies and Bader charges, but they are not available through the API
+    or CHAOS-Agent.
+  </p>
+
+  {# Values some entries lack, from the counts block (rows by name). The
+     supercells are not part of the public database, so their column is not
+     listed. #}
   {% set cols = {} %}
   {% for c in st.matrix.columns %}{% set _ = cols.update({c.key: c.n}) %}{% endfor %}
   {% set mc = {} %}
@@ -216,15 +233,12 @@
   {% for k in ["distortion", "displacement", "solubility", "s_config", "vec", "mixing_enthalpy"] %}
     {% if mc[k] and mc[k].systems < mc[dk.key].systems %}{% set dk.key = k %}{% endif %}
   {% endfor %}
-  {% set kinds = {"systems": "disordered oxide systems", "supercells": "supercells", "ordered": "ordered oxides"} %}
+  {% set kinds = {"systems": "disordered oxide systems", "ordered": "ordered oxides"} %}
   {% set gaps = [] %}
   {% for key, what, col in [
     ("formability", "formability", "systems"),
     ("formation_enthalpy", "formation enthalpy", "systems"),
     (dk.key, "disorder descriptors", "systems"),
-    ("structure", "relaxed structure", "supercells"),
-    ("formation_enthalpy", "formation enthalpy", "supercells"),
-    ("bader", "Bader charges", "supercells"),
     ("structure", "relaxed structure", "ordered"),
     ("formation_enthalpy", "formation enthalpy", "ordered"),
     ("bader", "Bader charges", "ordered"),
@@ -247,9 +261,9 @@
     generalized gradient approximation. Configurational entropy, valence
     electron concentration and the Miedema mixing enthalpy are computed from
     the composition. Counts are for the public database as of
-    <span data-stat-date>{{ data.chaos.as_of_text }}</span>. Database counts
-    treat each ordered structure, ensemble supercell and disordered-system
-    record as one entry.
+    <span data-stat-date>{{ data.chaos.as_of_text }}</span>; the supercell
+    counts are of the ensembles behind its disordered systems. Each ordered
+    structure and each disordered-system record counts as one entry.
   </p>
 
   <h2 id="coverage">Coverage</h2>
@@ -348,6 +362,16 @@
           el.textContent = v === 0 && el.hasAttribute("data-zero")
             ? el.getAttribute("data-zero") : v.toLocaleString("en-US");
         });
+        // "all" single-cation oxides, or "N of M", as the current counts say
+        var one = st.oxide.coverage_one_cation;
+        if (one && one.length === 2) {
+          Array.prototype.forEach.call(document.querySelectorAll("[data-one-all]"), function (el) {
+            el.hidden = one[0] !== one[1];
+          });
+          Array.prototype.forEach.call(document.querySelectorAll("[data-one-some]"), function (el) {
+            el.hidden = one[0] === one[1];
+          });
+        }
         var d = document.querySelector("[data-stat-date]");
         var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(st.as_of || "");
         if (d && m) {
