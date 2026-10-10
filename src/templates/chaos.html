@@ -112,8 +112,6 @@
     {{ n("elements", st.elements) }} elements:
     {{ n("ordered_entries", st.ordered_entries) }} ordered structures and
     {{ n("disordered_systems", st.disordered_systems) }} disordered systems.
-    The supercells of the ensembles are used to compute each system's values
-    and are not part of the public database.
   </p>
 
   <div class="jump-nav" role="navigation" aria-label="On this page">
@@ -182,9 +180,7 @@
       <h3>Charges and volumes per atom</h3>
       <p>
         Bader charges and atomic volumes are stored for
-        {{ n("bader_atoms", st.bader_atoms) }} atoms in the public database,
-        and for {{ n("oxide.supercell_atoms_with_bader", ox.supercell_atoms_with_bader) }}
-        more inside the disordered oxide supercells.
+        {{ n("bader_atoms", st.bader_atoms) }} atoms.
       </p>
     </div>
   </div>
@@ -216,15 +212,8 @@
     </div>
   </div>
 
-  <p class="chaos-note">
-    The supercells of the ensembles also have relaxed structures, formation
-    enthalpies and Bader charges, but they are not available through the API
-    or CHAOS-Agent.
-  </p>
-
   {# Values some entries lack, from the counts block (rows by name). The
-     supercells are not part of the public database, so their column is not
-     listed. #}
+     supercells are not served, so their column is not listed. #}
   {% set cols = {} %}
   {% for c in st.matrix.columns %}{% set _ = cols.update({c.key: c.n}) %}{% endfor %}
   {% set mc = {} %}
@@ -260,9 +249,8 @@
     <u>P</u>erdew&ndash;<u>B</u>urke&ndash;<u>E</u>rnzerhof (PBE)
     generalized gradient approximation. Configurational entropy, valence
     electron concentration and the Miedema mixing enthalpy are computed from
-    the composition. Counts are for the public database as of
-    <span data-stat-date>{{ data.chaos.as_of_text }}</span>; the supercell
-    counts are of the ensembles behind its disordered systems. Each ordered
+    the composition. Counts are as of
+    <span data-stat-date>{{ data.chaos.as_of_text }}</span>. Each ordered
     structure and each disordered-system record counts as one entry.
   </p>
 
