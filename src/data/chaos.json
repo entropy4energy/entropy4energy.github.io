@@ -66,30 +66,29 @@
     "full_name_html": "<u>C</u>ombinatorial <u>H</u>igh-throughput <u>A</u>nalysis and <u>O</u>ptimization for <u>S</u>ynthesis"
   },
   "stats": {
-    "as_of": "2026-09-26",
+    "as_of": "2026-10-04",
     "view": "public",
-    "entries": 242796,
+    "entries": 179145,
     "elements": 85,
-    "ordered_entries": 178106,
-    "supercell_entries": 63532,
-    "disordered_systems": 1158,
-    "ordered_compounds": 55986,
-    "ordered_chemical_systems": 6595,
-    "prototypes": 9331,
+    "ordered_entries": 177798,
+    "disordered_systems": 1347,
+    "ordered_compounds": 56183,
+    "ordered_chemical_systems": 6615,
+    "prototypes": 9341,
     "space_groups": 215,
-    "bader_atoms": 2300224,
+    "bader_atoms": 1886128,
     "oxide": {
       "disordered_systems": 551,
       "rocksalt": 525,
       "perovskite": 14,
       "other_structures": 12,
-      "supercells": 10549,
+      "supercells": 10586,
       "rocksalt_supercells_median": 18,
-      "rocksalt_supercells_min": 14,
+      "rocksalt_supercells_min": 18,
       "rocksalt_supercells_max": 49,
-      "ordered_entries": 95693,
-      "ordered_compounds": 20285,
-      "ordered_chemical_systems": 1442,
+      "ordered_entries": 95566,
+      "ordered_compounds": 20307,
+      "ordered_chemical_systems": 1448,
       "coverage_systems": 542,
       "coverage_one_cation": [
         2205,
@@ -100,7 +99,7 @@
         3422
       ],
       "coverage_full_systems": 504,
-      "supercell_atoms_with_bader": 99217,
+      "supercell_atoms_with_bader": 99569,
       "systems_per_cation": {
         "Ba": 9,
         "Ca": 167,
@@ -208,10 +207,10 @@
       ]
     },
     "alloys": {
-      "disordered_systems": 601,
+      "disordered_systems": 790,
       "bcc": 515,
-      "fcc": 86,
-      "supercells": 24862
+      "fcc": 275,
+      "supercells": 34122
     },
     "matrix": {
       "columns": [
@@ -223,12 +222,12 @@
         {
           "key": "supercells",
           "label": "Supercells in their ensembles",
-          "n": 10549
+          "n": 10586
         },
         {
           "key": "ordered",
           "label": "Ordered oxides",
-          "n": 95693
+          "n": 95566
         }
       ],
       "rows": [
@@ -238,8 +237,8 @@
           "unit": "",
           "counts": {
             "systems": 0,
-            "supercells": 10549,
-            "ordered": 95693
+            "supercells": 10586,
+            "ordered": 95566
           }
         },
         {
@@ -248,8 +247,8 @@
           "unit": "eV/atom",
           "counts": {
             "systems": 551,
-            "supercells": 10549,
-            "ordered": 93860
+            "supercells": 10586,
+            "ordered": 94926
           }
         },
         {
@@ -258,8 +257,8 @@
           "unit": "e, Å³",
           "counts": {
             "systems": 0,
-            "supercells": 10546,
-            "ordered": 95690
+            "supercells": 10583,
+            "ordered": 95563
           }
         },
         {
@@ -277,7 +276,7 @@
           "label": "Lattice distortion",
           "unit": "0 and 300 K",
           "counts": {
-            "systems": 550,
+            "systems": 530,
             "supercells": 0,
             "ordered": 0
           }
@@ -287,7 +286,7 @@
           "label": "Root-mean-square atomic displacement",
           "unit": "Å, 0 and 300 K",
           "counts": {
-            "systems": 550,
+            "systems": 530,
             "supercells": 0,
             "ordered": 0
           }
@@ -297,7 +296,7 @@
           "label": "Atomic-solubility parameter",
           "unit": "GPa Å³",
           "counts": {
-            "systems": 550,
+            "systems": 551,
             "supercells": 0,
             "ordered": 0
           }
@@ -307,7 +306,7 @@
           "label": "Configurational entropy",
           "unit": "",
           "counts": {
-            "systems": 550,
+            "systems": 551,
             "supercells": 0,
             "ordered": 0
           }
@@ -317,7 +316,7 @@
           "label": "Valence electron concentration",
           "unit": "e/atom",
           "counts": {
-            "systems": 550,
+            "systems": 551,
             "supercells": 0,
             "ordered": 0
           }
@@ -327,7 +326,7 @@
           "label": "Miedema mixing enthalpy",
           "unit": "eV/atom",
           "counts": {
-            "systems": 550,
+            "systems": 0,
             "supercells": 0,
             "ordered": 0
           }
