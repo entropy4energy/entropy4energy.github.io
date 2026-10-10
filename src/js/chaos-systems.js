@@ -441,7 +441,7 @@
         "</td><td class=num>" + sig(x.value, 3) + unit(x.unit) + "</td><td class=num><b class=\"cs-big\">" + (i === 0 || helps == null ? '<span class="cs-dim">–</span>' : helps.toFixed(2)) + "</b></td></tr>";
     });
     ev += "</tbody></table></div>";
-    ev += '<p class="cs-dim">The compatibility score is the mean of the distortion part and the chemistry part. Each part averages the ' +
+    ev += '<p class="cs-dim">The compatibility score (S<sub>CHAOS</sub> in the manuscript) is the mean of the distortion part and the chemistry part. Each part averages the ' +
       "contributions of its descriptors: the cohort percentile when higher is better, one minus the percentile when lower is better. " +
       "Percentiles are within the " + cohortN + " " + esc(cohortName) + ".</p>";
     if (p.scores.missing && p.scores.missing.length) {
