@@ -10,7 +10,6 @@
   "use strict";
 
   var API = "/API/chaos/profiles/";
-  var LOGIN = "/loop/accounts/login/";
   var PROFILE = "/loop/accounts/profile/";
   var QUERY_BASE = "https://s4e.ai/API/chaos/?";
   var AGENT = "https://s4e.ai/chaos/agent/";
@@ -106,16 +105,15 @@
     var next = encodeURIComponent(here());
     var b = err.body || {};
     if (err.status === 401) {
-      status('<h1>CHAOS systems</h1><p>The system pages are for signed-in CHAOS accounts. Each gives a disordered system\'s ' +
+      status('<h1>CHAOS systems</h1><p>The system pages are for registered CHAOS users. Each gives a disordered system\'s ' +
         "synthesis ranking, precursors, competing phases and descriptors.</p>" +
-        '<p><a class="cs-button primary" href="' + LOGIN + "?next=" + next + '">Sign in</a> ' +
-        '<a class="cs-button" href="chaos#access">How to get an account</a></p>', "signin");
+        '<p><a class="cs-button primary" href="https://chaos.s4e.ai/#access">How to get access</a></p>', "signin");
     } else if (err.status === 403 && b.profile) {
       status('<h1>CHAOS systems</h1><p>Complete your profile first: every account gives its institution, role and research area once.</p>' +
         '<p><a class="cs-button primary" href="' + PROFILE + "?next=" + next + '">Complete your profile</a></p>', "signin");
     } else if (err.status === 403) {
       status('<h1>CHAOS systems</h1><p>This account is not approved for CHAOS yet. ' +
-        '<a href="chaos#access">How access works</a>.</p>', "signin");
+        '<a href="https://chaos.s4e.ai/#access">How access works</a>.</p>', "signin");
     } else if (err.status === 404) {
       status('<h1>CHAOS systems</h1><p>There is no system with this address in the current release.</p>' +
         '<p><a href="chaos-systems">All systems</a></p>', "error");
