@@ -10,8 +10,8 @@
   "use strict";
 
   var API = "/API/chaos/profiles/";
-  var PROFILE = "/loop/accounts/profile/";
-  var QUERY_BASE = "https://s4e.ai/API/chaos/?";
+  var SIGNIN = "https://chaos.s4e.ai/API/signin";
+  var QUERY_BASE = "https://chaos.s4e.ai/API/?";
   var AGENT = "https://s4e.ai/chaos/agent/";
   var FORMAT = 1;
   var app = document.getElementById("cs-app");
@@ -107,10 +107,8 @@
     if (err.status === 401) {
       status('<h1>CHAOS systems</h1><p>The system pages are for registered CHAOS users. Each gives a disordered system\'s ' +
         "synthesis ranking, precursors, competing phases and descriptors.</p>" +
-        '<p><a class="cs-button primary" href="https://chaos.s4e.ai/#access">How to get access</a></p>', "signin");
-    } else if (err.status === 403 && b.profile) {
-      status('<h1>CHAOS systems</h1><p>Complete your profile first: every account gives its institution, role and research area once.</p>' +
-        '<p><a class="cs-button primary" href="' + PROFILE + "?next=" + next + '">Complete your profile</a></p>', "signin");
+        '<p><a class="cs-button primary" href="' + SIGNIN + "?next=" + next + '">Sign in with your API key</a> ' +
+        '<a class="cs-button" href="https://chaos.s4e.ai/#access">How to get access</a></p>', "signin");
     } else if (err.status === 403) {
       status('<h1>CHAOS systems</h1><p>This account is not approved for CHAOS yet. ' +
         '<a href="https://chaos.s4e.ai/#access">How access works</a>.</p>', "signin");
@@ -594,8 +592,8 @@
       '<a class="cs-button" href="' + AGENT + '">CHAOS-Agent</a></p>' +
       '<dl class="cs-dl"><dt>CHAOS identifier</dt><dd>' + esc(p.chaos_id || p.auid) + "</dd><dt>Computed on</dt><dd>" + released(p.release) + "</dd>" +
       "<dt>Cite</dt><dd>CHAOS, Entropy for Energy Laboratory, Johns Hopkins University, https://s4e.ai/chaos.</dd></dl>" +
-      '<p class="cs-dim">Fields and units: <a href="https://s4e.ai/API/chaos/?schema">schema</a> and ' +
-      '<a href="https://s4e.ai/API/chaos/?help">API help</a>.</p>';
+      '<p class="cs-dim">Fields and units: <a href="https://chaos.s4e.ai/API/?schema">schema</a> and ' +
+      '<a href="https://chaos.s4e.ai/API/?help">API help</a>.</p>';
 
     html += section(1, "ranking", "Ranking", "", ranking);
     html += section(2, "synthesis", "Synthesis", "", make);
