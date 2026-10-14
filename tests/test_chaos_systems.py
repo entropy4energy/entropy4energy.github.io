@@ -99,7 +99,7 @@ def main():
             check(page.locator("body").get_attribute("data-s4e-product") == "chaos", "part of CHAOS")
             check(page.locator("#subnav_chaos.active").count() == 1, "CHAOS lit in the sub-navigation")
             nav = page.locator('.product-nav[data-product="chaos"]')
-            check(nav.is_visible() and nav.locator("a").all_inner_texts() == ["Overview", "Systems", "API", "CHAOS-Agent"],
+            check(nav.is_visible() and nav.locator("a").all_inner_texts() == ["Overview", "Systems", "Materials", "API", "CHAOS-Agent"],
                   "CHAOS's own pages in a second row")
             check(nav.locator("a.active").inner_text() == "Systems", "Systems lit in that row")
 
@@ -181,6 +181,11 @@ def main():
             check(cells.count() == len(p["neighbors"]["list"]), "one cell per neighbor")
             check(page.locator("#cs-query").text_content() == p["query"], "the query")
             check(page.locator('a[href="https://chaos.s4e.ai/chaos/agent/"]').count() >= 1, "CHAOS-Agent link")
+            check(page.locator('#competing a[href="chaos-materials?f=CoO"]').count() >= 1, "end members open their material pages")
+            check(page.locator('#competing a[href*="chaos-materials?f="]').count() ==
+                  sum(1 for m in fixture["profiles"][rocksalt]["end_members"] if m["lowest"]) +
+                  len((fixture["profiles"][rocksalt].get("two_cation") or {}).get("lowest") or []),
+                  "only end members in CHAOS are linked")
             check("Johns Hopkins University, https://chaos.s4e.ai, release" in page.locator("#data").inner_text(),
                   "the citation names chaos.s4e.ai and the release")
             text = page.locator("#cs-app").inner_text()
