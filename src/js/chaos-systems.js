@@ -10,7 +10,6 @@
   "use strict";
 
   var API = "/API/chaos/profiles/";
-  var SIGNIN = "https://chaos.s4e.ai/API/signin";
   var QUERY_BASE = "https://chaos.s4e.ai/API/?";
   var AGENT = "https://chaos.s4e.ai/chaos/agent/";
   var FORMAT = 1;
@@ -18,51 +17,11 @@
   if (!app) return;
 
   // ------------------------------------------------------------ helpers
-  function esc(s) {
-    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
-    });
-  }
-  function formula(label) {
-    return esc(label).replace(/(\)|[A-Za-z])(\d+(?:\.\d+)?)/g, "$1<sub>$2</sub>");
-  }
-  // n significant digits, trailing zeros dropped (0.2, not 0.200)
-  function sig(x, n) {
-    var s = fixed(x, n);
-    return s.indexOf(".") < 0 ? s : s.replace(/\.?0+$/, "");
-  }
-  // n significant digits, kept (masses: 0.5970 g beside 1.110 g)
-  function fixed(x, n) {
-    if (x == null || !isFinite(x)) return "–";
-    if (x === 0) return "0";
-    var a = Math.abs(x);
-    var d = Math.max(0, (n || 3) - 1 - Math.floor(Math.log10(a)));
-    return x.toFixed(Math.min(d, 6));
-  }
-  // release names are UTC times: 20261004T041612Z -> October 4, 2026
-  function released(stamp) {
-    var m = /^(\d{4})(\d{2})(\d{2})T/.exec(stamp || "");
-    if (!m) return esc(stamp || "");
-    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    return months[+m[2] - 1] + " " + +m[3] + ", " + m[1];
-  }
-  function ordinal(p) {
-    if (p == null) return "–";
-    var n = Math.round(p * 100);
-    var s = n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th";
-    return n + s;
-  }
-  function unit(u) {
-    if (!u) return "";
-    if (u === "%") return "%";
-    return " " + esc(u).replace("(eV/atom)⁻¹", "(eV/atom)<sup>−1</sup>").replace("Å³", "Å<sup>3</sup>").replace("k_B", "k<sub>B</sub>");
-  }
-  function list(words) {
-    if (words.length < 2) return words.join("");
-    return words.slice(0, -1).join(", ") + " and " + words[words.length - 1];
-  }
+  // shared with the material pages (chaos-common.js)
+  var C = window.CHAOS;
+  var esc = C.esc, formula = C.formula, sig = C.sig, fixed = C.fixed, released = C.released, ordinal = C.ordinal,
+    unit = C.unit, list = C.list, params = C.params, section = C.section;
   function link(id) { return "chaos-systems?id=" + encodeURIComponent(id); }
-  function params() { return new URLSearchParams(location.search); }
 
   var VERDICTS = {
     priority: { chip: "Synthesis priority", cls: "priority" },
@@ -72,56 +31,17 @@
     unranked: { chip: "Not ranked", cls: "unranked" },
   };
 
-  function status(html, cls) {
-    app.innerHTML = '<div class="cs-status ' + (cls || "") + '" role="status">' + html + "</div>";
-  }
-
-  function here() { return location.pathname + location.search; }
-
-  // ------------------------------------------------------------ fetching
-  function load(path) {
-    return fetch(API + path, { credentials: "same-origin", headers: { Accept: "application/json" } }).then(
-      function (r) {
-        return r.text().then(function (text) {
-          var body = null;
-          try { body = JSON.parse(text); } catch (e) { body = null; }
-          if (r.ok && body) return body;
-          var err = new Error("status " + r.status);
-          err.status = r.status;
-          err.body = body || {};
-          throw err;
-        });
-      },
-      function () {
-        var err = new Error("network");
-        err.status = 0;
-        err.body = {};
-        throw err;
-      }
-    );
-  }
-
+  function status(html, cls) { C.status(app, html, cls); }
+  function load(path) { return C.load(API, path); }
   function failed(err) {
-    var next = encodeURIComponent(here());
-    var b = err.body || {};
-    if (err.status === 401) {
-      status('<h1>CHAOS systems</h1><p>The system pages are for registered CHAOS users. Each gives a disordered system\'s ' +
-        "synthesis ranking, precursors, competing phases and descriptors.</p>" +
-        '<p><a class="cs-button primary" href="' + SIGNIN + "?next=" + next + '">Sign in to CHAOS</a> ' +
-        '<a class="cs-button" href="https://chaos.s4e.ai/#access">How to get access</a></p>', "signin");
-    } else if (err.status === 403) {
-      status('<h1>CHAOS systems</h1><p>This account is not approved for CHAOS yet. ' +
-        '<a href="https://chaos.s4e.ai/#access">How access works</a>.</p>', "signin");
-    } else if (err.status === 404) {
-      status('<h1>CHAOS systems</h1><p>There is no system with this address in the current release.</p>' +
-        '<p><a href="chaos-systems">All systems</a></p>', "error");
-    } else if (err.status === 429) {
-      status("<h1>CHAOS systems</h1><p>" + esc(b.error || "Too many requests; try again shortly.") + "</p>", "error");
-    } else if (err.status === 0) {
-      status("<h1>CHAOS systems</h1><p>s4e.ai did not answer. Check your connection and reload the page.</p>", "error");
-    } else {
-      status("<h1>CHAOS systems</h1><p>The system pages are not available right now. Try again later.</p>", "error");
-    }
+    C.failed(app, err, {
+      title: "CHAOS systems",
+      lead: "The system pages are for registered CHAOS users. Each gives a disordered system's " +
+        "synthesis ranking, precursors, competing phases and descriptors.",
+      missing: "There is no system with this address in the current release.",
+      back: ["chaos-systems", "All systems"],
+      unavailable: "The system pages are not available right now. Try again later.",
+    });
   }
 
   // ------------------------------------------------------------ the map
@@ -262,12 +182,6 @@
     ["ranking", "Ranking"], ["synthesis", "Synthesis"], ["competing", "Competing phases"], ["ensemble", "Ensemble"],
     ["neighbors", "Neighbors"], ["properties", "Properties"], ["data", "Data"],
   ];
-
-  function section(n, id, title, summary, body) {
-    return '<section class="cs-sec" id="' + id + '" aria-labelledby="' + id + '-h"><h2 class="cs-sec-h" id="' + id + '-h">' +
-      '<span class="cs-num">' + n + "</span>" + title + "</h2>" +
-      (summary ? '<p class="cs-sec-sum">' + summary + "</p>" : "") + '<div class="cs-sec-body">' + body + "</div></section>";
-  }
 
   function structureText(s) {
     if (!s) return "–";
@@ -588,16 +502,11 @@
     var target = h && document.getElementById(h);
     if (target) target.scrollIntoView();
     current();
-    var copy = document.getElementById("cs-copy");
-    copy.onclick = function () {
-      var done = function () { copy.textContent = "Copied"; setTimeout(function () { copy.textContent = "Copy the query"; }, 1500); };
-      if (navigator.clipboard) navigator.clipboard.writeText(q).then(done, function () {});
-    };
+    C.copyButton(document.getElementById("cs-copy"), q, "Copy the query");
   }
 
   // ------------------------------------------------------------ start
-  var host = location.hostname;
-  if (host !== "chaos.s4e.ai" && host !== "localhost" && host !== "127.0.0.1") {
+  if (!C.onCHAOSHost()) {
     status('<h1>CHAOS systems</h1><p>The system pages are on chaos.s4e.ai: <a href="https://chaos.s4e.ai/chaos-systems">chaos.s4e.ai/chaos-systems</a>.</p>');
     return;
   }
