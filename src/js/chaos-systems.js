@@ -335,10 +335,10 @@
     }
     var rule = "A synthesis priority has formability in the top quartile of its cohort and a compatibility score of at least 0.75.";
     var caveat = anionFamily
-      ? "Formability ranks candidates; it does not predict which phase forms. The metric does not include oxygen partial pressure, " +
-        "precursor reactivity, cation valence, defect equilibria or kinetic trapping. Magnetic and vibrational entropy are also not included."
-      : "Formability ranks candidates; it does not predict which phase forms. The metric does not include the processing route, " +
-        "cooling rate or kinetic trapping. Magnetic and vibrational entropy are also not included.";
+      ? "Formability ranks candidates by how closely the configurations of the ensemble lie in enthalpy. " +
+        "Among the ranked candidates, the synthesis conditions, such as oxygen partial pressure, precursors and cooling rate, decide which phase forms."
+      : "Formability ranks candidates by how closely the configurations of the ensemble lie in enthalpy. " +
+        "Among the ranked candidates, the processing route and cooling rate decide which phase forms.";
     var nb = p.neighbors.list;
     var better = nb.filter(function (n) { return n.d_p != null && n.d_p > 0; });
     var nbLine;
@@ -521,7 +521,7 @@
       '<a class="cs-button" href="' + API + encodeURIComponent(p.id) + '">This page\'s data (JSON)</a>' +
       '<a class="cs-button" href="' + AGENT + '">CHAOS-Agent</a></p>' +
       '<dl class="cs-dl"><dt>CHAOS identifier</dt><dd>' + esc(p.chaos_id || p.auid) + "</dd><dt>Computed on</dt><dd>" + released(p.release) + "</dd>" +
-      "<dt>Cite</dt><dd>CHAOS, Entropy for Energy Laboratory, Johns Hopkins University, https://chaos.s4e.ai.</dd></dl>" +
+      "<dt>Cite</dt><dd>CHAOS, Entropy for Energy Laboratory, Johns Hopkins University, https://chaos.s4e.ai, release " + released(p.release) + ".</dd></dl>" +
       '<p class="cs-dim">Fields and units: <a href="https://chaos.s4e.ai/API/?schema">schema</a> and ' +
       '<a href="https://chaos.s4e.ai/API/?help">API help</a>.</p>';
 
