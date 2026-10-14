@@ -103,7 +103,7 @@
       "full_name": "X-ray diffraction phase identification",
       "full_name_html": "<u>X</u>-<u>r</u>ay <u>d</u>iffraction phase identification",
       "href": "xrd/",
-      "description": "Upload a powder X-ray diffraction scan to identify its phases, refine their lattice parameters, assign each reflection and generate structure files. Phases are searched among structure families with mixed cation sites and among reference structures from the Crystallography Open Database. Registered users work in the browser or through the API.",
+      "description": "Upload a powder X-ray diffraction scan to identify its phases, refine their lattice parameters, assign each reflection and generate structure files. It works in the browser or through the API, with no sign-in.",
       "links": [
         {
           "label": "Examples",
