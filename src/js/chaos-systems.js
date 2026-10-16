@@ -12,7 +12,7 @@
   var API = "/API/chaos/profiles/";
   var SIGNIN = "https://chaos.s4e.ai/API/signin";
   var QUERY_BASE = "https://chaos.s4e.ai/API/?";
-  var AGENT = "https://s4e.ai/chaos/agent/";
+  var AGENT = "https://chaos.s4e.ai/chaos/agent/";
   var FORMAT = 1;
   var app = document.getElementById("cs-app");
   if (!app) return;

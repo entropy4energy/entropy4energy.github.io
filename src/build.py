@@ -54,7 +54,6 @@ SITEMAP = {
     ],
     TOOLS_HOST: [
         ("tools", 0.9),
-        ("loop", 0.8),
     ],
 }
 
