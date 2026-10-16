@@ -1,4 +1,4 @@
-// CHAOS system pages (https://s4e.ai/chaos-systems): the list of disordered
+// CHAOS system pages (https://chaos.s4e.ai/chaos-systems): the list of disordered
 // systems, and one page per system with ?id=. Everything shown comes from
 // the system profiles that the CHAOS API gate serves to signed-in accounts
 // at /API/chaos/profiles/; this page holds no data of its own.
@@ -591,7 +591,7 @@
       '<a class="cs-button" href="' + API + encodeURIComponent(p.id) + '">This page\'s data (JSON)</a>' +
       '<a class="cs-button" href="' + AGENT + '">CHAOS-Agent</a></p>' +
       '<dl class="cs-dl"><dt>CHAOS identifier</dt><dd>' + esc(p.chaos_id || p.auid) + "</dd><dt>Computed on</dt><dd>" + released(p.release) + "</dd>" +
-      "<dt>Cite</dt><dd>CHAOS, Entropy for Energy Laboratory, Johns Hopkins University, https://s4e.ai/chaos.</dd></dl>" +
+      "<dt>Cite</dt><dd>CHAOS, Entropy for Energy Laboratory, Johns Hopkins University, https://chaos.s4e.ai.</dd></dl>" +
       '<p class="cs-dim">Fields and units: <a href="https://chaos.s4e.ai/API/?schema">schema</a> and ' +
       '<a href="https://chaos.s4e.ai/API/?help">API help</a>.</p>';
 
@@ -667,8 +667,8 @@
 
   // ------------------------------------------------------------ start
   var host = location.hostname;
-  if (host !== "s4e.ai" && host !== "localhost" && host !== "127.0.0.1") {
-    status('<h1>CHAOS systems</h1><p>The system pages are on s4e.ai: <a href="https://s4e.ai/chaos-systems">s4e.ai/chaos-systems</a>.</p>');
+  if (host !== "chaos.s4e.ai" && host !== "localhost" && host !== "127.0.0.1") {
+    status('<h1>CHAOS systems</h1><p>The system pages are on chaos.s4e.ai: <a href="https://chaos.s4e.ai/chaos-systems">chaos.s4e.ai/chaos-systems</a>.</p>');
     return;
   }
   var id = params().get("id");
