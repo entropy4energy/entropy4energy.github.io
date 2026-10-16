@@ -71,10 +71,12 @@
       </div>
     </a>
   </div>
-  <p class="chaos-account">
-    All three are for registered users:
-    <a href="https://chaos.s4e.ai/API/signin">sign in with your API key</a>
-    or <a href="https://chaos.s4e.ai/API/account">get a key</a>.
+  <p class="chaos-account" id="access">
+    All three are for registered users.
+    CHAOS accounts are open to anyone with a verified <code>.edu</code> email
+    address and, on approval, to others.
+    For questions, write to
+    <a href="mailto:s4e-chaos@jhu.edu">s4e-chaos@jhu.edu</a>.
   </p>
 
   <div class="chaos-stats" aria-label="What CHAOS holds">
@@ -123,9 +125,6 @@
     <a href="#contents">Contents</a>
     <a href="#properties">Properties</a>
     <a href="#coverage">Coverage</a>
-    <a href="#access">Access</a>
-    <a href="#api">API</a>
-    <a href="#agent">CHAOS-Agent</a>
   </div>
 
   <h2 id="contents">Contents</h2>
@@ -298,36 +297,6 @@
     high-entropy alloy systems ({{ n("alloys.bcc", st.alloys.bcc) }} bcc and
     {{ n("alloys.fcc", st.alloys.fcc) }} fcc) with the same ensemble descriptors
     and their own <a href="chaos-systems?q=alloy&amp;cohort=all">system pages</a>.
-  </p>
-
-  <h2 id="access">Access</h2>
-  <p>
-    CHAOS is available to registered users.
-    CHAOS accounts are open to anyone with a verified <code>.edu</code> email
-    address and, on approval, to others.
-    <a href="https://chaos.s4e.ai/API/account">Get an account and an API
-    key here</a>: a <code>.edu</code> address gets its key as soon as it is
-    confirmed, and others get theirs after approval.
-    The same page gives a new key for a lost one.
-    Questions: <a href="mailto:s4e-chaos@jhu.edu">s4e-chaos@jhu.edu</a>.
-    With a key,
-    <a href="https://chaos.s4e.ai/API/signin">sign in</a> once in your
-    browser, and query addresses open directly.
-  </p>
-
-  <h2 id="api">API</h2>
-  <p>
-    The REST API provides database entries and descriptors to registered
-    users.
-    Scripts send their API key in the <code>X-API-Key</code> header.
-    Documentation and examples:
-    <a href="https://chaos.s4e.ai/API/?help">chaos.s4e.ai/API/?help</a>.
-  </p>
-
-  <h2 id="agent">CHAOS-Agent</h2>
-  <p>
-    A natural-language interface to CHAOS:
-    <a href="https://chaos.s4e.ai/chaos/agent/">CHAOS-Agent</a>.
   </p>
 </div>
 {% endblock %}

@@ -23,6 +23,7 @@
   </p>
   <p class="product-signin">
     <a class="workshop-button" href="https://loop.s4e.ai/accounts/login/?next=/" data-loop-open>Sign in to LOOP</a>
+    <a class="workshop-chip" href="https://loop.s4e.ai/accounts/signup/">Get an account</a>
   </p>
   <p class="chaos-lead">
     LOOP is the <u>L</u>earning and <u>O</u>ptimizati<u>o</u>n
@@ -30,6 +31,23 @@
     It brings together synthesis recipes, experiments and published results
     so you can see what has been made, how it was made and what happened.
     First-principles calculations from CHAOS add the computational side.
+  </p>
+
+  <div class="access-cards">
+    <a class="access-card" href="https://loop.s4e.ai/browse/">
+      <div class="access-card-title">Browse</div>
+      <div class="access-card-text">Find materials, compositions and papers.</div>
+    </a>
+    <a class="access-card" href="https://loop.s4e.ai/developers/">
+      <div class="access-card-title">API</div>
+      <div class="access-card-text">Read and add data from code.</div>
+    </a>
+  </div>
+  <p class="chaos-account" id="access">
+    Both are for registered users.
+    LOOP accounts are only for the Entropy for Energy Laboratory and approved
+    collaborators.
+    You see the records shared with your organization.
   </p>
 
   <div class="chaos-stats" aria-label="What LOOP holds">
@@ -50,18 +68,7 @@
     Data in LOOP as of <span data-stat-date>{{ data.loop.as_of_text }}</span>.
   </p>
 
-  <div class="access-cards">
-    <a class="access-card" href="https://loop.s4e.ai/browse/">
-      <div class="access-card-title">Browse</div>
-      <div class="access-card-text">Find materials, compositions and papers.</div>
-    </a>
-    <a class="access-card" href="https://loop.s4e.ai/developers/">
-      <div class="access-card-title">API</div>
-      <div class="access-card-text">Read and add data from code.</div>
-    </a>
-  </div>
-
-  <h2 id="contents">What's in LOOP</h2>
+  <h2 id="contents">Contents</h2>
   <div class="chaos-features">
     <div class="chaos-feature">
       <h3>Experiments</h3>
@@ -94,26 +101,6 @@
       </p>
     </div>
   </div>
-
-  <h2 id="access">Access</h2>
-  <p>
-    LOOP is available to the S4E Laboratory and collaborating groups with an
-    approved account.
-  </p>
-  <p>
-    <a href="https://loop.s4e.ai/accounts/signup/">Create an account</a> or
-    <a href="https://loop.s4e.ai/accounts/login/?next=/">sign in</a>.
-  </p>
-  <p>
-    You will see the records shared with your organization.
-  </p>
-
-  <h2 id="api">API</h2>
-  <p>
-    LOOP can also be accessed from code.
-    <a href="https://loop.s4e.ai/developers/">See the API documentation</a>
-    or <a href="https://loop.s4e.ai/developers/keys/">create an API key</a>.
-  </p>
 </div>
 {% endblock %}
 
