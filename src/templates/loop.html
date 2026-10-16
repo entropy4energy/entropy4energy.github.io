@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{# The LOOP page. LOOP itself, a Django app, runs at /loop/; signed-out
-   visitors to its landing page are sent here, and the LOOP tab and the Tools
-   card lead here. Text by Corey Oses, 2026-10-01: what LOOP is, what is in
+{# The LOOP page, at https://loop.s4e.ai/about. LOOP itself, a Django app,
+   runs at https://loop.s4e.ai/; signed-out visitors to its landing page are
+   sent here. Text by Corey Oses, 2026-10-01: what LOOP is, what is in
    it and how to use it; CHAOS adds the calculations. The styles are the
    CHAOS page's. Every number carries data-stat, the name of its value in the
    counts block: the page is built with the counts in loop.json, and when it
    loads, the script at the end fetches the current counts from LOOP
-   (/loop/api/v1/stats/) and updates them in place. Without the script, or if
+   (/api/v1/stats/) and updates them in place. Without the script, or if
    the request fails, the built numbers stay. #}
 {% macro n(path, value) -%}
   <span data-stat="{{ path }}">{{ "{:,}".format(value) }}</span>
@@ -21,13 +21,15 @@
     High-entropy materials from the laboratory, the literature and
     computation, in one place.
   </p>
+  <p class="product-signin">
+    <a class="workshop-button" href="https://loop.s4e.ai/accounts/login/?next=/" data-loop-open>Sign in to LOOP</a>
+  </p>
   <p class="chaos-lead">
     LOOP is the <u>L</u>earning and <u>O</u>ptimizati<u>o</u>n
     <u>P</u>latform.
     It brings together synthesis recipes, experiments and published results
     so you can see what has been made, how it was made and what happened.
-    First-principles calculations from <a href="https://chaos.s4e.ai/">CHAOS</a> add the
-    computational side.
+    First-principles calculations from CHAOS add the computational side.
   </p>
 
   <div class="chaos-stats" aria-label="What LOOP holds">
@@ -48,23 +50,14 @@
     Data in LOOP as of <span data-stat-date>{{ data.loop.as_of_text }}</span>.
   </p>
 
-  {# Open LOOP goes through LOOP's sign-in for a visitor who is signed out
-     (LOOP's own landing page would send them straight back here); the
-     script at the end points it at LOOP for a visitor who is signed in. #}
   <div class="access-cards">
-    <a class="access-card" href="https://s4e.ai/loop/accounts/login/?next=/loop/" data-loop-open>
-      <div class="access-card-title">Open LOOP</div>
-      <div class="access-card-text">Search, browse and add data.</div>
-    </a>
-    <a class="access-card" href="https://s4e.ai/loop/browse/">
+    <a class="access-card" href="https://loop.s4e.ai/browse/">
       <div class="access-card-title">Browse</div>
       <div class="access-card-text">Find materials, compositions and papers.</div>
     </a>
-    <a class="access-card" href="https://chaos.s4e.ai/">
-      <div class="access-card-title">CHAOS</div>
-      <div class="access-card-text">
-        Explore first-principles calculations of high-entropy oxides.
-      </div>
+    <a class="access-card" href="https://loop.s4e.ai/developers/">
+      <div class="access-card-title">API</div>
+      <div class="access-card-text">Read and add data from code.</div>
     </a>
   </div>
 
@@ -89,7 +82,7 @@
       <h3>Calculations</h3>
       <p>
         Material pages include <u>d</u>ensity <u>f</u>unctional
-        <u>t</u>heory (DFT) calculations from <a href="https://chaos.s4e.ai/">CHAOS</a>,
+        <u>t</u>heory (DFT) calculations from CHAOS,
         including calculated structures and properties.
       </p>
     </div>
@@ -108,8 +101,8 @@
     approved account.
   </p>
   <p>
-    <a href="https://s4e.ai/loop/accounts/signup/">Create an account</a> or
-    <a href="https://s4e.ai/loop/accounts/login/?next=/loop/">sign in</a>.
+    <a href="https://loop.s4e.ai/accounts/signup/">Create an account</a> or
+    <a href="https://loop.s4e.ai/accounts/login/?next=/">sign in</a>.
   </p>
   <p>
     You will see the records shared with your organization.
@@ -118,31 +111,31 @@
   <h2 id="api">API</h2>
   <p>
     LOOP can also be accessed from code.
-    <a href="https://s4e.ai/loop/developers/">See the API documentation</a>
-    or <a href="https://s4e.ai/loop/developers/keys/">create an API key</a>.
+    <a href="https://loop.s4e.ai/developers/">See the API documentation</a>
+    or <a href="https://loop.s4e.ai/developers/keys/">create an API key</a>.
   </p>
 </div>
 {% endblock %}
 
 {% block body_extra %}
 <script>
-  // For a visitor who is signed in, Open LOOP goes straight to LOOP. LOOP's
-  // /api/v1/access/ describes only the visitor.
+  // For a visitor who is signed in, the sign-in button opens LOOP instead.
+  // LOOP's /api/v1/access/ describes only the visitor.
   (function () {
     if (!window.fetch) return;
-    fetch("/loop/api/v1/access/", { headers: { Accept: "application/json" }, credentials: "same-origin" })
+    fetch("/api/v1/access/", { headers: { Accept: "application/json" }, credentials: "same-origin" })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (a) {
         if (!a || !a.data || !a.data.authenticated) return;
         var open = document.querySelector("[data-loop-open]");
-        if (open) open.href = "https://s4e.ai/loop/";
+        if (open) { open.href = "https://loop.s4e.ai/"; open.textContent = "Open LOOP"; }
       })
       .catch(function () {});
   })();
   (function () {
     var nodes = document.querySelectorAll("[data-stat]");
     if (!nodes.length || !window.fetch) return;
-    fetch("/loop/api/v1/stats/", { headers: { Accept: "application/json" } })
+    fetch("/api/v1/stats/", { headers: { Accept: "application/json" } })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (st) {
         if (!st) return;
