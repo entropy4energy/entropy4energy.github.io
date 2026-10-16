@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
-{# The LOOP page, at https://loop.s4e.ai/about. LOOP itself, a Django app,
-   runs at https://loop.s4e.ai/; signed-out visitors to its landing page are
-   sent here. Text by Corey Oses, 2026-10-01: what LOOP is, what is in
-   it and how to use it; CHAOS adds the calculations. The styles are the
+{# The LOOP page, at https://loop.s4e.ai/ for visitors without a LOOP
+   session; LOOP itself, a Django app, answers there for the rest, and sends
+   a signed-out visitor with an old session to https://loop.s4e.ai/about,
+   which shows this page too (Apache, 69_loop_root). Text by Corey Oses,
+   2026-10-01: what LOOP is, what is in it and how to use it; CHAOS adds
+   the calculations. The styles are the
    CHAOS page's. Every number carries data-stat, the name of its value in the
    counts block: the page is built with the counts in loop.json, and when it
    loads, the script at the end fetches the current counts from LOOP
