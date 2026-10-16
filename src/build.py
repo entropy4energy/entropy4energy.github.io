@@ -54,7 +54,6 @@ SITEMAP = {
     ],
     TOOLS_HOST: [
         ("tools", 0.9),
-        ("chaos", 0.8),
         ("loop", 0.8),
     ],
 }
@@ -787,6 +786,12 @@ def build_html(section: str = "", extra_data: list = []) -> str:
     if part_of:
         data["product"] = json.loads((DATA_DIR / f"{part_of}.json").read_text()).get("product")
     data["product_id"] = product_id
+    # A page served on its product's own host (chaos.s4e.ai, loop.s4e.ai) names
+    # "site_root" in its data file: the lab site's menu, logo and footer then
+    # link to https://s4e.ai/ instead of to the product's host. Its style sheet
+    # stays relative: that host serves the site's files, and the fonts load
+    # only from the page's own host.
+    data["root"] = (data.get(section) or {}).get("site_root", "") if isinstance(data.get(section), dict) else ""
     # Which top-level tab is lit: a product page lights its family tab.
     data["parent"] = "tools" if data["tools"] and any(
         p.get("id") == product_id for p in data["tools"].get("products", [])) else section

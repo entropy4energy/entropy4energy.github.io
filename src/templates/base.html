@@ -42,6 +42,8 @@
   {% set tools_pages = ["tools", "chaos", "loop", "fusion-mirrors", "chaos-systems"] %}
   {% set canonical_host = "https://s4e.ai/" if data.section in tools_pages else "https://entropy4energy.ai/" %}
   {% set canonical_url = canonical_host ~ ("" if data.section == "home" else data.section) %}
+  {# CHAOS and LOOP have hosts of their own: their data files name the address. #}
+  {% if data[data.section] is mapping and data[data.section].canonical %}{% set canonical_url = data[data.section].canonical %}{% endif %}
   <link rel="canonical" href="{{ canonical_url }}">
   <meta property="og:url" content="{{ canonical_url }}">
   <meta property="og:site_name" content="Entropy for Energy Laboratory">

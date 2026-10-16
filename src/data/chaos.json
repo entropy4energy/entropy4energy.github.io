@@ -1,4 +1,6 @@
 {
+  "site_root": "https://s4e.ai/",
+  "canonical": "https://chaos.s4e.ai/",
   "files": [
     "1_unaries_2026-03-22.jsonl.gz",
     "2_binaries_2026-03-22.jsonl.gz",
