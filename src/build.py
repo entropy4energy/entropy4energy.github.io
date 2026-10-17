@@ -29,8 +29,9 @@ LABELS = {
     "tools": "Data and Tools",
 }
 
-# Nav entries that leave the static site (apps served alongside it).
-EXTERNAL_LINKS: dict[str, str] = {}
+# Nav entries that leave the static site (apps served alongside it). On
+# entropy4energy.ai, Data and Tools goes to s4e.ai, which serves the tools.
+EXTERNAL_LINKS: dict[str, str] = {"tools": "https://s4e.ai/tools"}
 
 # The same sources build two sites. The lab pages are canonical to
 # entropy4energy.ai; the tools pages are canonical to s4e.ai, which serves the
