@@ -101,14 +101,17 @@
     }
     </script>
   {% endif %}
-  <link rel="icon" href="media/icons/s4e.png">
+  {# The page-not-found page is served at any depth, so it names its files from
+     the site root ("asset_root" in its data file). #}
+  {% set asset_root = page_data.asset_root or "" %}
+  <link rel="icon" href="{{ asset_root }}media/icons/s4e.png">
   {# Unpublished: s4e.ai serves dev at its root and robots.txt
      allows /, so this page needs the meta tag, not a Disallow
      line. Remove when the data are released. #}
   {# The CHAOS system pages are for signed-in accounts: nothing to index, and
      the system in the address stays out of Google Analytics (the gate keeps
      its own usage record). #}
-  {% set private_pages = ["fusion-mirrors", "chaos-systems"] %}
+  {% set private_pages = ["fusion-mirrors", "chaos-systems", "404"] %}
   {% if data.section in private_pages %}
   <meta name="robots" content="noindex, nofollow">
   {% endif %}
@@ -134,7 +137,7 @@
   </script>
   {% endif %}
   <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="css/main.css?v={{ data.asset_version }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset_root }}css/main.css?v={{ data.asset_version }}">
   {% block head_extra %}{% endblock %}
 </head>
 <body id="{{ data.section }}" data-s4e-tab="{{ data.parent }}"{% if data.product %} data-s4e-product="{{ data.product_id or data.section }}"{% endif %}>
