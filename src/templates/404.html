@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{# Apache's page for an address on s4e.ai that does not exist (ErrorDocument
+   404 /404 in the s4e.ai host). Its links start at the site root, since the
+   page is shown at the address that was asked for. #}
+{% block content %}
+  <h1>Page not found</h1>
+  <p>There is no page at this address.</p>
+  <p><a href="/">Home</a> &middot; <a href="/tools">Data and Tools</a> &middot; <a href="/research">Research</a> &middot; <a href="/publications">Publications</a></p>
+{% endblock %}
