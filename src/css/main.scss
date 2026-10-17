@@ -1092,6 +1092,13 @@ a.ptable-cell {
     margin: 0 0 1rem;
   }
 
+  // Who can use the tool, one line above the buttons
+  &-access {
+    color: $color-muted;
+    font-size: 0.9rem;
+    margin: -0.5rem 0 1rem;
+  }
+
   &-actions {
     align-items: center;
     display: flex;

@@ -7,14 +7,15 @@
       "kind": "Database",
       "full_name": "Combinatorial High-throughput Analysis and Optimization for Synthesis",
       "href": "https://chaos.s4e.ai/",
-      "description": "The first database of first-principles calculations dedicated to high-entropy oxides. Disordered oxides are stored as ensembles of relaxed DFT supercells, alongside their ordered binary and ternary reference oxides and structural and chemical descriptors. Registered users open a page for each disordered system, query the database through the REST API, or use CHAOS-Agent, a natural-language interface.",
+      "description": "The first database of first-principles calculations dedicated to high-entropy oxides. Disordered oxides are stored as ensembles of relaxed DFT supercells, alongside their ordered binary and ternary reference oxides and structural and chemical descriptors. Each disordered system has its own page, and the database can be queried through the REST API or through CHAOS-Agent, a natural-language interface.",
+      "access": "Free account with a .edu email address, or on approval.",
       "links": [
         {
           "label": "Systems",
           "href": "https://chaos.s4e.ai/chaos-systems"
         },
         {
-          "label": "API docs",
+          "label": "API",
           "href": "https://chaos.s4e.ai/API/?help"
         },
         {
@@ -54,6 +55,7 @@
       "full_name_html": "<u>L</u>earning and <u>O</u>ptimizati<u>o</u>n <u>P</u>latform",
       "href": "https://loop.s4e.ai/",
       "description": "A platform for high-entropy materials data. Browse experimental and literature results, upload new data, run synthesizability predictions, or access the data through the API.",
+      "access": "Approved collaborators only.",
       "links": [
         {
           "label": "Browse",
@@ -72,6 +74,7 @@
       "full_name": "DFT optical constants and reflectivity",
       "href": "fusion-mirrors",
       "description": "Explore calculated optical constants and normal-incidence reflectivity by wavelength and chemical family. The current code-only preview opens an authorized local dataset in the browser; unpublished DFT data are not hosted here.",
+      "hidden": true,
       "links": [
         {
           "label": "Methods & scope",
@@ -86,6 +89,7 @@
       "full_name": "High-entropy nuclear waste forms",
       "href": "synthesizability-game",
       "description": "Choose elements for the two cation sites and see whether the resulting composition is predicted to be synthesizable. We presented the game at the 2026 ARPA-E Energy Innovation Summit in San Diego.",
+      "access": "Open to everyone.",
       "links": [
         {
           "label": "How to play",
@@ -100,7 +104,8 @@
       "full_name": "X-ray diffraction phase identification",
       "full_name_html": "<u>X</u>-<u>r</u>ay <u>d</u>iffraction phase identification",
       "href": "xrd/",
-      "description": "Upload a powder X-ray diffraction scan to identify its phases, refine their lattice parameters, assign each reflection and generate structure files. It works in the browser or through the API, with no sign-in.",
+      "description": "Upload a powder X-ray diffraction scan to identify its phases, refine their lattice parameters, assign each reflection and generate structure files. It works in the browser or through the API.",
+      "access": "Open to everyone, with no sign-in.",
       "links": [
         {
           "label": "Examples",

@@ -11,7 +11,7 @@
   <div class="subnav" role="navigation" aria-label="Data and Tools">
     <ul>
       <li><a id="subnav_tools" href="{{ data.root }}tools"{% if data.section == "tools" %} class="active"{% endif %}>Overview</a></li>
-      {% for item in data.tools.products %}
+      {% for item in data.tools.products if not item.hidden %}
         {% set href = item.href if "://" in item.href else data.root ~ item.href %}
         <li><a id="subnav_{{ item.id }}" href="{{ href }}"{% if item.id == (data.product_id or data.section) %} class="active"{% endif %}>{{ item.name }}</a></li>
       {% endfor %}
