@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {# The page's name in the tab: a "page_title" in the page's data file (the
+     CHAOS system pages), else its product, else its menu label. #}
+  {% set page_data = data[data.section] if data[data.section] is mapping else {} %}
+  {% set page_name = page_data.page_title or (data.product.name if data.product else data.labels.get(data.section, data.section | title)) %}
   <title>
     {% if data.section == "home" %}
       Entropy for Energy Laboratory | Johns Hopkins
     {% else %}
-      {{ data.product.name if data.product else data.section | title }} | Entropy for Energy Laboratory | Johns Hopkins
+      {{ page_name }} | Entropy for Energy Laboratory | Johns Hopkins
     {% endif %}
   </title>
   <!-- Meta tags -->
@@ -24,13 +28,13 @@
     "workshops": "Workshops and conferences organized by the Entropy for Energy Laboratory at Johns Hopkins: data-driven materials modeling, quantum computing, AI and energy, and research translation.",
     "loop": "LOOP: high-entropy materials from the laboratory, the literature and computation, in one place. Synthesis recipes, experiments and published results, with first-principles calculations from CHAOS. From the Entropy for Energy Laboratory at Johns Hopkins University.",
     "chaos": "CHAOS, the first database of first-principles calculations dedicated to high-entropy oxides: disordered oxides as ensembles of relaxed DFT supercells, formability and disorder descriptors, and ordered reference oxides. From the Entropy for Energy Laboratory at Johns Hopkins University.",
-    "tools": "Databases, data platforms and analysis tools built by the Entropy for Energy Laboratory at Johns Hopkins University: CHAOS, LOOP, Fusion Mirrors, the Synthesizability Game and XRD Phase ID.",
+    "tools": "Databases, data platforms and analysis tools built by the Entropy for Energy Laboratory at Johns Hopkins University: CHAOS, LOOP, the Synthesizability Game and XRD Phase ID.",
     "fusion-mirrors": "Fusion Mirrors: a local-file explorer for DFT optical constants and normal-incidence reflectivity. Code-only preview from the Entropy for Energy Laboratory.",
     "chaos-systems": "CHAOS system pages: one page for each disordered system in CHAOS, for signed-in accounts. From the Entropy for Energy Laboratory at Johns Hopkins University.",
     "synthesizability-game": "Synthesizability Game: choose elements for the two cation sites of a high-entropy nuclear waste form and see whether the composition is predicted to be synthesizable. From the Entropy for Energy Laboratory at Johns Hopkins University.",
   } %}
   {% set description = descriptions.get(data.section, descriptions["home"]) %}
-  {% set page_title = "Entropy for Energy Laboratory | Johns Hopkins" if data.section == "home" else (data.product.name if data.product else data.section | title) ~ " | Entropy for Energy Laboratory | Johns Hopkins" %}
+  {% set page_title = "Entropy for Energy Laboratory | Johns Hopkins" if data.section == "home" else page_name ~ " | Entropy for Energy Laboratory | Johns Hopkins" %}
   <meta name="description" content="{{ description }}">
   <meta property="og:type" content="website">
   {# The site is served from two hosts: entropy4energy.ai carries the lab, s4e.ai
