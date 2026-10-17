@@ -107,7 +107,7 @@
     if (err.status === 401) {
       status('<h1>CHAOS systems</h1><p>The system pages are for registered CHAOS users. Each gives a disordered system\'s ' +
         "synthesis ranking, precursors, competing phases and descriptors.</p>" +
-        '<p><a class="cs-button primary" href="' + SIGNIN + "?next=" + next + '">Sign in with your API key</a> ' +
+        '<p><a class="cs-button primary" href="' + SIGNIN + "?next=" + next + '">Sign in to CHAOS</a> ' +
         '<a class="cs-button" href="https://chaos.s4e.ai/#access">How to get access</a></p>', "signin");
     } else if (err.status === 403) {
       status('<h1>CHAOS systems</h1><p>This account is not approved for CHAOS yet. ' +
