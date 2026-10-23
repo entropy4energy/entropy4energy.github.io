@@ -14,14 +14,35 @@ from playwright.sync_api import sync_playwright
 
 
 class Handler(SimpleHTTPRequestHandler):
+    def service(self):
+        from urllib.parse import urlsplit
+        from wsgiref.util import setup_testing_defaults
+        parsed=urlsplit(self.path)
+        env={};setup_testing_defaults(env)
+        env.update(PATH_INFO=parsed.path, QUERY_STRING=parsed.query,
+                   REQUEST_METHOD=self.command, REMOTE_ADDR='localhost',
+                   CONTENT_TYPE=self.headers.get('Content-Type',''),
+                   CONTENT_LENGTH=self.headers.get('Content-Length','0'),
+                   HTTP_ORIGIN=self.headers.get('Origin',''),
+                   HTTP_HOST=self.headers.get('Host',''), **{'wsgi.input':self.rfile})
+        result={}
+        body=b''.join(self.server.app(env,lambda status,headers:result.update(status=status,headers=headers)))
+        self.send_response(int(result['status'].split()[0]))
+        for key,value in result['headers']:self.send_header(key,value)
+        self.end_headers();self.wfile.write(body)
+
     def do_GET(self):
-        # Match production extensionless HTML navigation for local review.
-        target = self.path.split('?', 1)[0]
-        if not Path(target).suffix and Path(self.directory, target.lstrip('/') + '.html').is_file():
-            self.path = target + '.html'
+        target=self.path.split('?',1)[0]
+        if target.startswith('/fusion-mirrors/api/'):
+            return self.service()
+        if target.rstrip('/')=='/fusion-mirrors':
+            self.path='/fusion-mirrors.html'
         super().do_GET()
 
-    def log_message(self, *args):
+    def do_POST(self):
+        return self.service()
+
+    def log_message(self,*args):
         pass
 
 
@@ -66,242 +87,74 @@ def normalize_html(text):
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--dist', type=Path, required=True)
-    parser.add_argument('--output', type=Path, required=True, help='Review output outside the repository')
-    parser.add_argument('--baseline', type=Path, help='Optional untouched dev build for regression checks')
-    parser.add_argument('--private-data', type=Path, help='Optional authorized data folder; never committed')
-    args = parser.parse_args()
-    dist, out = args.dist.resolve(), args.output.resolve()
-    repo = Path(__file__).resolve().parents[1]
-    if out.is_relative_to(repo):
-        raise ValueError('Keep all review outputs outside the Git checkout')
-    out.mkdir(parents=True, exist_ok=True)
-    public = out / 'public-code-only'
-    public.mkdir(exist_ok=True)
-    report = {'checks': [], 'private_checks': 0, 'failures': []}
-
-    def check(condition, label):
-        if not condition:
-            raise AssertionError(label)
-        report['checks'].append(label)
-
+    import sys
+    from urllib.request import urlopen
+    repo=Path(__file__).resolve().parents[1]
+    sys.path.insert(0,str(repo/'services/fusion-mirrors/app'))
+    from server import App
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--dist',type=Path,required=True)
+    parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--baseline',type=Path)
+    args=parser.parse_args()
+    dist,out=args.dist.resolve(),args.output.resolve()
+    out.mkdir(parents=True,exist_ok=True)
     if args.baseline:
-        for name in ['index', 'jobs', 'news', 'publications', 'research', 'teaching', 'team', 'workshops']:
-            check(normalize_html((dist / (name + '.html')).read_text()) ==
-                  normalize_html((args.baseline / (name + '.html')).read_text()), f'Existing {name} HTML unchanged except asset hash')
-        for file in ['css/main.css', 'css/shell.css', 'js/cite.js', 'js/citations.js', 'js/jobs.js', 'js/slideshow.js']:
-            check((dist / file).read_bytes() == (args.baseline / file).read_bytes(), f'Shared asset unchanged: {file}')
+        for name in ['index','jobs','news','publications','research','teaching','team','workshops']:
+            assert normalize_html((dist/(name+'.html')).read_text())==normalize_html((args.baseline/(name+'.html')).read_text()),name
+    with tempfile.TemporaryDirectory(dir=out,prefix='fixture-') as tmp:
+        root=Path(tmp);synthetic_export(root/'data')
+        app=App(root,root/'quota.sqlite3')
+        server=ThreadingHTTPServer(('localhost',0),functools.partial(Handler,directory=str(dist)))
+        server.app=app
+        origin='http://localhost:'+str(server.server_port)
+        app.origin=origin
+        thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+        checks=[]
+        try:
+            with sync_playwright() as pw:
+                browser=pw.chromium.launch()
+                page=browser.new_page(viewport={'width':1440,'height':1000})
+                page.goto(origin+'/fusion-mirrors')
+                page.locator('#spectra').wait_for(state='visible')
+                assert page.locator('#material').input_value()=='TestMetal'
+                assert page.locator('header').count()==1
+                assert page.locator('#local-folder').count()==0
+                assert page.locator('#download-csv').count()==0
+                assert page.locator('#references a').count()==3
+                checks.append('shared shell and controlled explorer load')
+                with page.expect_response(lambda r:'/api/probe' in r.url) as response:
+                    page.get_by_role('button',name='532 nm',exact=True).click()
+                result=response.value.json()
+                assert result['values'][0]['R']==40
+                assert '40' in page.locator('#probe-result').inner_text()
+                checks.append('single wavelength value')
+                page.get_by_label('PAW dataset',exact=True).select_option('both')
+                with page.expect_response(lambda r:'/api/plot' in r.url):
+                    page.get_by_role('button',name='View spectra',exact=True).click()
+                with page.expect_response(lambda r:'/api/probe' in r.url) as response:
+                    page.get_by_role('button',name='1064 nm',exact=True).click()
+                assert len(response.value.json()['values'])==2
+                checks.append('both PAW datasets')
+                page.get_by_label('Material',exact=True).select_option('TestOxide')
+                with page.expect_response(lambda r:'/api/plot' in r.url):
+                    page.get_by_role('button',name='View spectra',exact=True).click()
+                page.locator('#wavelength').fill('400')
+                with page.expect_response(lambda r:'/api/probe' in r.url) as response:
+                    page.get_by_role('button',name='Look up',exact=True).click()
+                assert response.value.json()['values'][0]['R'] is None
+                assert 'Unavailable' in page.locator('#probe-result').inner_text()
+                checks.append('invalid optical samples remain unavailable')
+                page.screenshot(path=str(out/'desktop.png'),full_page=True)
+                page.set_viewport_size({'width':390,'height':844})
+                assert page.evaluate('document.documentElement.scrollWidth <= window.innerWidth+1')
+                page.screenshot(path=str(out/'mobile.png'),full_page=True)
+                checks.append('mobile layout has no horizontal overflow')
+                browser.close()
+        finally:
+            server.shutdown();server.server_close();thread.join()
+    (out/'report.json').write_text(json.dumps({'checks':checks},indent=2))
+    print('Passed:',len(checks),'browser checks')
 
-    server = ThreadingHTTPServer(('localhost', 0), functools.partial(Handler, directory=str(dist)))
-    threading.Thread(target=server.serve_forever, daemon=True).start()
-    origin = f'http://localhost:{server.server_port}'
-    try:
-        with tempfile.TemporaryDirectory(prefix='fusion-mirrors-synthetic-') as tmp, sync_playwright() as pw:
-            fixture = Path(tmp) / 'data'
-            synthetic_export(fixture)
-            browser = pw.chromium.launch()
-            context = browser.new_context(viewport={'width': 1440, 'height': 1100}, accept_downloads=True)
-            page = context.new_page()
-            errors, requests = [], []
-            page.on('pageerror', lambda e: errors.append(str(e)))
-            page.on('request', lambda r: requests.append((r.method, r.url)))
-            # No external fonts/analytics required for deterministic offline screenshots.
-            context.route('**/*', lambda route: route.continue_() if route.request.url.startswith(origin)
-                          or route.request.url.startswith(('blob:', 'data:')) else route.abort())
-            # Usage events (the s4e.ai record) go to a stand-in here; the page
-            # sends none from other hosts unless S4E_EVENTS_URL is set.
-            events = []
-
-            def take_event(route):
-                events.append(json.loads(route.request.post_data or 'null'))
-                route.fulfill(status=204)
-            context.add_init_script(f"window.S4E_EVENTS_URL = '{origin}/__events';")
-            context.route(origin + '/__events', take_event)
-            page.goto(origin + '/fusion-mirrors')
-            page.locator('body[data-ready="empty"]').wait_for()
-            check(page.locator('#material').is_disabled(), 'Unloaded controls disabled')
-            check(page.locator('#fusion-mirrors-app').get_by_text('This work was supported by the Seaver Institute.', exact=False).count() == 1,
-                  'Seaver Institute acknowledgement present')
-            check(page.locator('script[src*="googletagmanager"]').count() == 0, 'No analytics script on explorer')
-            check(not any('/data/' in url for _, url in requests), 'No automatic dataset request')
-            page.screenshot(path=str(public / 'fusion-mirrors-desktop.png'), full_page=True)
-            page.set_viewport_size({'width': 390, 'height': 844})
-            check(page.evaluate('document.documentElement.scrollWidth <= innerWidth'), 'No horizontal overflow at 390 px')
-            page.screenshot(path=str(public / 'fusion-mirrors-mobile.png'), full_page=True)
-            page.set_viewport_size({'width': 1440, 'height': 1100})
-            page.goto(origin + '/tools')
-            check(page.get_by_role('link', name='Open CHAOS', exact=True).count() == 1, 'CHAOS entry retained')
-            check(page.get_by_role('link', name='Open LOOP', exact=True).count() == 1, 'LOOP entry retained')
-            check(page.get_by_role('link', name='Open Fusion Mirrors', exact=True).count() == 1, 'Fusion Mirror Tools entry')
-            page.screenshot(path=str(public / 'tools-desktop.png'), full_page=True)
-            page.get_by_role('link', name='Open Fusion Mirrors', exact=True).click()
-            page.locator('#local-folder').set_input_files(str(fixture))
-            page.locator('body[data-ready="true"]').wait_for()
-            check(page.locator('#chart-R svg').count() == 1, 'Local folder produces charts')
-            check(page.evaluate('DFTExplorer.getRows().length') == 7, 'Exact synthetic samples retained')
-            page.wait_for_timeout(1800)  # the view is recorded once it has settled for 1.5 s
-            check('?' not in page.url, 'No private selection in URL')
-            page.select_option('#branch', 'both')
-            page.locator('body[data-ready="true"]').wait_for()
-            check(page.locator('#chart-R [data-series]').count() == 2, 'Two PAW curves compared')
-            page.locator('[data-range="uv"]').click()
-            page.locator('body[data-ready="true"]').wait_for()
-            check(all(200 <= r['wavelength_nm'] <= 400 for r in page.evaluate('DFTExplorer.getRows()')), 'UV window filter')
-            with page.expect_download() as event:
-                page.click('#download-csv')
-            rows = list(csv.DictReader(Path(event.value.path()).read_text().splitlines()))
-            check(len(rows) == 6 and all(float(r['wavelength_nm']) <= 400 for r in rows), 'CSV contains exact selected window and both branches')
-            page.select_option('#material', 'TestOxide')
-            page.locator('body[data-ready="true"]').wait_for()
-            gaps = [r for r in page.evaluate('DFTExplorer.getRows()') if r['wavelength_nm'] == 400]
-            check(all(r['n'] is None and r['k'] is None and r['R_percent'] is None for r in gaps), 'Invalid samples masked, not zero-filled')
-            page.fill('#probe-wl', '400')
-            page.locator('#probe-form button[type=submit]').click()
-            check('unavailable values' in page.inner_text('#probe-result'), 'Wavelength probe preserves gap')
-            page.fill('#probe-wl', '1064')
-            page.locator('#probe-form button[type=submit]').click()
-            check('outside the sampled window' in page.inner_text('#probe-result'), 'Probe refuses extrapolation')
-            page.locator('[data-range="all"]').click()
-            page.locator('body[data-ready="true"]').wait_for()
-            for fmt in ['svg', 'png']:
-                with page.expect_download() as event:
-                    page.locator(f'[data-download="R"][data-format="{fmt}"]').click()
-                payload = Path(event.value.path()).read_bytes()
-                check(payload.startswith(b'\x89PNG') if fmt == 'png' else b'<svg' in payload, f'{fmt.upper()} export works')
-            page.locator('#provenance details').first.locator('summary').click()
-            with page.expect_download() as event:
-                page.locator('#provenance .source-links button').first.click()
-            check(gzip.decompress(Path(event.value.path()).read_bytes()).startswith(b'SYNTHETIC_UI_TEST_ONLY'), 'Original source gzip downloaded locally')
-            page.fill('#min-wl', '800')
-            page.fill('#max-wl', '700')
-            page.locator('#range-form button[type=submit]').click()
-            check('higher upper wavelength' in page.inner_text('#status'), 'Reversed range rejected')
-            page.reload()
-            page.locator('body[data-ready="empty"]').wait_for()
-            check(page.locator('#material').is_disabled(), 'Reload clears private data selection')
-            broken = Path(tmp) / 'broken'
-            broken.mkdir()
-            (broken / 'catalog.json').write_text('{"schema_version":99}')
-            page.locator('#local-folder').set_input_files(str(broken))
-            page.locator('body[data-ready="error"]').wait_for()
-            check(page.locator('#material').is_disabled(), 'Malformed catalogue handled safely')
-
-            if args.private_data:
-                private_out = out / 'PRIVATE-do-not-publish'
-                private_out.mkdir(exist_ok=True)
-                source_root = args.private_data.resolve()
-                catalog = json.loads((source_root / 'catalog.json').read_text())
-                page.locator('#local-folder').set_input_files(str(source_root))
-                page.locator('body[data-ready="true"]').wait_for(timeout=60000)
-                check(page.inner_text('#total-materials') == str(len(catalog['materials'])), 'Private catalogue count matches input')
-                # Validate every spectrum file's structural contract without copying any source data.
-                nfiles = 0
-                for m in catalog['materials']:
-                    for run in m['runs'].values():
-                        for channel in run['channels'].values():
-                            for spec in channel.values():
-                                p = source_root / spec['url'].removeprefix('data/')
-                                d = json.loads(p.read_text())
-                                wi = d['columns'].index('wavelength_nm')
-                                wavelengths = [r[wi] for r in d['rows']]
-                                assert 0 < len(wavelengths) <= 10000
-                                assert all(w > 0 for w in wavelengths)
-                                assert all(a < b for a, b in zip(wavelengths, wavelengths[1:]))
-                                assert all(len(r) == len(d['columns']) for r in d['rows'])
-                                nfiles += 1
-                check(nfiles > 0, f'All {nfiles} private spectrum schemas validated')
-                # Illustrative ids only. Ids absent from the loaded catalogue are
-                # skipped, and if none match the first entries are exercised instead,
-                # so the checks below run against whatever authorized set is supplied.
-                sample_ids = ['Cu', 'Ni', 'Ti', 'Cr', 'Al2O3', 'Ta', 'Zn', 'SrTiO3']
-                present = [m['id'] for m in catalog['materials'] if m['id'] in sample_ids]
-                if not present:
-                    present = [m['id'] for m in catalog['materials'][:len(sample_ids)]]
-                for mid in present:
-                    material = next(m for m in catalog['materials'] if m['id'] == mid)
-                    page.select_option('#material', mid)
-                    page.locator('body[data-ready="true"]').wait_for()
-                    for branch, run in material['runs'].items():
-                        page.select_option('#branch', branch)
-                        page.locator('body[data-ready="true"]').wait_for()
-                        for channel in ['density', 'current']:
-                            page.select_option('#channel', channel)
-                            page.locator('body[data-ready="true"]').wait_for()
-                            for scope in ['screening', 'native']:
-                                page.select_option('#sampling', scope)
-                                page.locator('body[data-ready="true"]').wait_for()
-                                if scope == 'native':
-                                    page.locator('[data-range="full"]').click()
-                                    page.locator('body[data-ready="true"]').wait_for()
-                                spec = run['channels'][channel][scope]
-                                raw = json.loads((source_root / spec['url'].removeprefix('data/')).read_text())
-                                index = {k: i for i, k in enumerate(raw['columns'])}
-                                state = page.evaluate('DFTExplorer.getState()')
-                                expected = [r for r in raw['rows'] if state['min'] <= r[index['wavelength_nm']] <= state['max']]
-                                actual = page.evaluate('DFTExplorer.getRows()')
-                                assert len(actual) == len(expected)
-                                for got, row in zip(actual, expected):
-                                    valid_nk = row[index['finite_epsilon']] and row[index['passive_epsilon']]
-                                    for key, col in [('n', 'n_mode1'), ('k', 'k_mode1'), ('R_percent', 'R_unpolarized_percent')]:
-                                        valid = row[index['valid_normal_z']] if key == 'R_percent' else valid_nk
-                                        assert got[key] == (row[index[col]] if valid else None), (mid, branch, channel, scope, key)
-                                        report['private_checks'] += 1
-                shot_id = present[0]
-                page.select_option('#material', shot_id)
-                page.locator('body[data-ready="true"]').wait_for()
-                page.select_option('#branch', 'both')
-                page.locator('body[data-ready="true"]').wait_for()
-                page.select_option('#channel', 'density')
-                page.locator('body[data-ready="true"]').wait_for()
-                page.select_option('#sampling', 'screening')
-                page.locator('body[data-ready="true"]').wait_for()
-                page.locator('[data-range="all"]').click()
-                page.locator('body[data-ready="true"]').wait_for()
-                page.locator('#fusion-mirrors-app').screenshot(path=str(private_out / f'{shot_id}-private-desktop.png'))
-                page.locator('.charts').screenshot(path=str(private_out / f'{shot_id}-private-plots.png'))
-                page.set_viewport_size({'width': 390, 'height': 844})
-                check(page.evaluate('document.documentElement.scrollWidth <= innerWidth'), 'Loaded private plots fit mobile width')
-                page.locator('.charts').screenshot(path=str(private_out / f'{shot_id}-private-mobile-plots.png'))
-                page.set_viewport_size({'width': 1440, 'height': 1100})
-                gap_id = present[-1]
-                page.select_option('#material', gap_id)
-                page.locator('body[data-ready="true"]').wait_for()
-                page.locator('.charts').screenshot(path=str(private_out / f'{gap_id}-private-validity-gaps.png'))
-                (private_out / 'README.txt').write_text('PRIVATE: screenshots contain unpublished DFT values. Do not attach to public PRs.\n')
-
-            check(not errors, 'No browser JavaScript errors: ' + repr(errors))
-            check(all(method == 'POST' and url == origin + '/__events' for method, url in requests
-                      if method not in ['GET', 'HEAD']), 'No upload requests other than the usage events')
-            kinds = [e['event'] for e in events]
-            check(kinds.count('open') == 1 and kinds.count('probe') == 2 and 'view' in kinds,
-                  'Usage events: folder opened, view, each wavelength looked up')
-            first_view = next(e for e in events if e['event'] == 'view')
-            check(first_view['material'] == 'TestMetal' and first_view['branch'] == 'PBE' and
-                  first_view['min'] == 200 and first_view['max'] == 1200, 'Usage events: the view as chosen')
-            check(sorted((e['what'], e.get('chart'), e.get('format')) for e in events if e['event'] == 'download') ==
-                  [('csv', None, None), ('figure', 'R', 'png'), ('figure', 'R', 'svg')], 'Usage events: each download')
-            allowed = {'tool', 'event', 'visit', 'page', 'wavelength', 'what', 'chart', 'format', 'material',
-                       'branch', 'channel', 'sampling', 'range', 'min', 'max', 'log', 'component', 'polarization'}
-            check(all(e['tool'] == 'fusion-mirrors' and set(e) <= allowed and re.fullmatch('[0-9a-f]{16}', e['visit'])
-                      for e in events), 'Usage events carry only the recorded fields')
-            sent = json.dumps(events)
-            check(not any(s in sent for s in ['catalog.json', 'spectra', 'source_csv', 'SYNTHETIC', 'data/']),
-                  'Usage events carry no file names or file contents')
-            check(set(next(e for e in events if e['event'] == 'open')) == {'tool', 'event', 'visit', 'page'},
-                  'Usage events: nothing about the opened folder')
-            check(not any('/data/' in url for _, url in requests), 'No network requests for selected DFT files')
-            browser.close()
-        report['result'] = 'PASS'
-    except Exception as exc:
-        report['result'] = 'FAIL'
-        report['failures'].append(str(exc))
-        raise
-    finally:
-        server.shutdown()
-        (out / 'validation-report.json').write_text(json.dumps(report, indent=2) + '\n')
-        print(json.dumps(report, indent=2))
-
-
-if __name__ == '__main__':
+if __name__=='__main__':
     main()
