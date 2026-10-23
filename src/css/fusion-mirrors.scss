@@ -239,9 +239,12 @@
     margin-bottom:7px
   }
   .values{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
+    display:flex;
+    flex-wrap:wrap;
     gap:8px
+  }
+  .values>div{
+    flex:1
   }
   .values span{
     font-size:11px;
