@@ -8,6 +8,7 @@ on:
       - 'Makefile'
       - 'tests/**'
       - 'services/fusion-mirrors/**'
+      - 'docs/site-style.md'
       - '.github/workflows/fusion-mirrors-check.yml'
 permissions:
   contents: read
@@ -31,5 +32,7 @@ jobs:
       - run: python -m playwright install --with-deps chromium
       - run: python -m unittest discover -s services/fusion-mirrors/tests -v
       - run: node --check src/js/fusion-mirrors.js
+      - run: python -m unittest discover -s tests -p test_site_style.py -v
       - run: make -j2
+      - run: python tests/check_site_style.py --dist dist
       - run: python tests/test_fusion_mirrors.py --dist dist --output review-output/fusion-mirrors
