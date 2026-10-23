@@ -1,0 +1,10 @@
+{
+  "family": "Work Sans",
+  "weight": 400,
+  "conversion": "Static TrueType instances from the existing site WOFF2 files using FontTools 4.67.0",
+  "license": "OFL.txt",
+  "sources": {
+    "work-sans.woff2": "a5bed54506ae92a7513e8d8964ca88cd3766f9bce1c72c968de2616c94a2f89c",
+    "work-sans-italic.woff2": "0c1da414beb52a1ea63797afdc4c09e11b6d988d3426115ec87fd71c93acbb60"
+  }
+}

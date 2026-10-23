@@ -74,7 +74,7 @@ function materials() {
     })));
     if (ms.some((m => m.id === previous))) $("material").value = previous; else if (!q && ms.some((m => m.id === "Rh"))) $("material").value = "Rh";
     branches();
-    $("selection").querySelector("button").disabled = !ms.length;
+    $("selection").querySelector("button[type=submit]").disabled = !ms.length;
     if (!ms.length) status("No materials match this selection.");
 }
 
@@ -181,9 +181,11 @@ async function probe() {
             const div = node("div", undefined, "readout");
             div.append(node("h3", v.branch));
             const values = node("div", undefined, "values");
-            for (const [key, label] of [ [ "n", "n" ], [ "k", "k" ], [ "R", "R (%)" ] ]) {
-                const cell = node("div");
-                cell.append(node("span", label), node("strong", v[key] === null ? "Unavailable" : String(v[key])));
+            for (const key of [ "n", "k", "R" ]) {
+                const cell = node("div"), label = node("span");
+                label.append(node("var", key));
+                if (key === "R") label.append(" (%)");
+                cell.append(label, node("strong", v[key] === null ? "Unavailable" : String(v[key])));
                 values.append(cell);
             }
             div.append(values, node("p", v.sample_nm === null ? "No supported sample at this wavelength." : `Requested ${v.requested_nm} nm · stored sample ${v.sample_nm} nm · offset ${v.offset_nm} nm`));
@@ -213,6 +215,25 @@ $("probe").addEventListener("submit", (e => {
 for (const b of document.querySelectorAll("[data-wavelength]")) b.addEventListener("click", (() => {
     $("wavelength").value = b.dataset.wavelength;
     probe();
+}));
+
+$("try-example").addEventListener("click", (async () => {
+    $("search").value = "";
+    $("family").value = "all";
+    materials();
+    $("material").value = "Rh";
+    $("branch").value = "PBE";
+    $("channel").value = "density";
+    $("band").value = "all";
+    branches();
+    $("wavelength").value = "532";
+    await view();
+    await probe();
+    $("probe-title").focus({preventScroll: true});
+    $("probe-title").scrollIntoView({
+        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "start"
+    });
 }));
 
 $("copy-view").addEventListener("click", (async () => {
@@ -250,6 +271,7 @@ $("copy-citation").addEventListener("click", (async () => {
         }
         branches();
         if (location.hostname === "127.0.0.1" || location.hostname === "localhost") $("preview-note").hidden = false;
+        $("try-example").disabled = !catalog.materials.some(m => m.id === "Rh");
         await view();
     } catch (e) {
         status("The material catalog is unavailable. " + e.message, true);

@@ -131,9 +131,10 @@ class Store:
         lo, hi = BANDS[band]
         image = Image.new('RGB', (1040, 720), 'white')
         draw = ImageDraw.Draw(image)
-        font = ImageFont.load_default(size=17)
-        small = ImageFont.load_default(size=14)
-        title = ImageFont.load_default(size=23)
+        font = ImageFont.truetype(str(HERE/'fonts/WorkSans-Regular.ttf'), size=17)
+        small = ImageFont.truetype(str(HERE/'fonts/WorkSans-Regular.ttf'), size=14)
+        title = ImageFont.truetype(str(HERE/'fonts/WorkSans-Regular.ttf'), size=23)
+        variable = ImageFont.truetype(str(HERE/'fonts/WorkSans-Italic.ttf'), size=17)
         draw.text((70, 14), f'{mid}  |  {channel} response  |  normal incidence', fill='#002d72', font=title)
         colors = {'PBE': '#002d72', 'GW': '#b85c00'}
         for field, top in zip(FIELDS, (72, 272, 472)):
@@ -147,7 +148,9 @@ class Store:
             ylo, yhi = (0, 100) if field == 'R' else (min([0]+finite), max([1]+finite)*1.08)
             if field == 'R' and finite:
                 ylo, yhi = min(0, min(finite)), max(100, max(finite))
-            draw.text((left-55, top-24), 'R (%)' if field == 'R' else field, fill='#002d72', font=font)
+            draw.text((left-55, top-24), field, fill='#002d72', font=variable)
+            if field == 'R':
+                draw.text((left-55+draw.textlength(field, font=variable), top-24), ' (%)', fill='#002d72', font=font)
             for t in range(5):
                 y = bottom-(bottom-top)*t/4
                 draw.line([(left,y),(right,y)], fill='#e4e9ee')
