@@ -73,7 +73,7 @@
       "kind": "Optical-data explorer",
       "full_name": "DFT optical constants and reflectivity",
       "href": "fusion-mirrors",
-      "description": "Explore calculated optical constants and normal-incidence reflectivity by wavelength and chemical family. The current code-only preview opens an authorized local dataset in the browser; unpublished DFT data are not hosted here.",
+      "description": "Explore calculated optical spectra, compare PAW datasets, and query individual wavelengths with method references and calculation settings.",
       "hidden": true,
       "links": [
         {
