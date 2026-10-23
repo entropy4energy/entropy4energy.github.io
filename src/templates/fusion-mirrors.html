@@ -5,8 +5,13 @@
 {% block content %}
 <div id="fusion-mirrors-app">
 
-<section class="hero"><p class="eyebrow">OPTICAL MATERIALS EXPLORER</p><h1>Fusion Mirrors</h1><p class="lead">Explore optical response at your diagnostic wavelength.</p><p>Compare calculated spectra, inspect the underlying methods, and look up individual wavelength values.</p><div class="tags"><span>Normal incidence</span><span>Bare Air/material interface</span><span>DFT optical response</span></div></section>
-<div id="preview-note" class="notice" hidden>Private preview using the existing dataset. The updated package has not been verified.</div>
+<section class="intro">
+  <h1>Fusion Mirrors</h1>
+  <p class="lead">Compare calculated spectra, inspect the underlying methods,
+    and look up individual wavelength values.</p>
+  <p class="scope">Normal incidence · Bare air/material interface · DFT optical response</p>
+</section>
+<div id="preview-note" class="notice" hidden>Local preview.</div>
 <form id="selection" class="controls" aria-label="Optical response selection">
 <label>Find a material<input id="search" type="search" placeholder="Symbol or formula" autocomplete="off"></label>
 <label>Family<select aria-label="Family" id="family"><option value="all">All families</option></select></label>
