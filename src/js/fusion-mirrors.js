@@ -181,9 +181,11 @@ async function probe() {
             const div = node("div", undefined, "readout");
             div.append(node("h3", v.branch));
             const values = node("div", undefined, "values");
-            for (const [key, label] of [ [ "n", "n" ], [ "k", "k" ], [ "R", "R (%)" ] ]) {
-                const cell = node("div");
-                cell.append(node("span", label), node("strong", v[key] === null ? "Unavailable" : String(v[key])));
+            for (const key of [ "n", "k", "R" ]) {
+                const cell = node("div"), label = node("span");
+                label.append(node("var", key));
+                if (key === "R") label.append(" (%)");
+                cell.append(label, node("strong", v[key] === null ? "Unavailable" : String(v[key])));
                 values.append(cell);
             }
             div.append(values, node("p", v.sample_nm === null ? "No supported sample at this wavelength." : `Requested ${v.requested_nm} nm · stored sample ${v.sample_nm} nm · offset ${v.offset_nm} nm`));

@@ -74,7 +74,7 @@
       "full_name": "DFT optical constants and reflectivity",
       "href": "fusion-mirrors",
       "description": "Explore calculated optical spectra, compare PAW datasets, and query individual wavelengths with method references and calculation settings.",
-      "hidden": true,
+      "hidden": false,
       "links": [
         {
           "label": "Methods & scope",
