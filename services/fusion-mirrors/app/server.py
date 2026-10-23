@@ -4,6 +4,7 @@ import io
 import json
 import math
 import os
+import re
 import sqlite3
 import time
 from bisect import bisect_left
@@ -23,6 +24,16 @@ REFERENCES = [
     {'title': 'Perdew, Burke, and Ernzerhof, Physical Review Letters 77, 3865 (1996)', 'url': 'https://doi.org/10.1103/PhysRevLett.77.3865'},
     {'title': 'Gajdoš et al., Physical Review B 73, 045112 (2006)', 'url': 'https://doi.org/10.1103/PhysRevB.73.045112'},
 ]
+
+def draw_formula(draw, position, identifier, font, subscript, fill):
+    formula={'C_graphene':'C (graphene)','CaMg_CO3_2':'CaMg(CO3)2'}.get(identifier,identifier)
+    x,y=position
+    for part in re.findall(r'\d+|[^\d]+',formula):
+        numeric=part.isdigit();face=subscript if numeric else font
+        draw.text((x,y+7 if numeric else y),part,font=face,fill=fill)
+        x+=draw.textlength(part,font=face)
+    return x
+
 
 class QueryError(Exception):
     pass
@@ -138,7 +149,8 @@ class Store:
         small = ImageFont.truetype(str(HERE/'fonts/WorkSans-Regular.ttf'), size=14)
         title = ImageFont.truetype(str(HERE/'fonts/WorkSans-Regular.ttf'), size=23)
         variable = ImageFont.truetype(str(HERE/'fonts/WorkSans-Italic.ttf'), size=17)
-        draw.text((70, 14), f'{mid}  |  {channel} response  |  normal incidence', fill='#002d72', font=title)
+        x=draw_formula(draw,(70,14),mid,title,small,'#002d72')
+        draw.text((x,14),f'  |  {channel} response  |  normal incidence',fill='#002d72',font=title)
         colors = {'PBE': '#002d72', 'GW': '#b85c00'}
         fields = ['R'] if reflectivity_only else list(FIELDS)
         for field, top in zip(fields, (80,) if reflectivity_only else (72, 272, 472)):

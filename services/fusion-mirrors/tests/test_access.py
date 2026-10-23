@@ -105,6 +105,26 @@ class AccessTests(unittest.TestCase):
         status,_=self.request('/api/plot',query='material=Test&quantity=rows',ip='other')
         self.assertEqual(status['status'],'400 Bad Request')
 
+    def test_spectral_regions_keep_their_colors(self):
+        from PIL import Image
+        image=Image.open(io.BytesIO(self.app.store.plot({**self.q,'quantity':'R'})))
+        for point,color in [((180,210),(244,241,251)),((450,210),(237,247,243)),((800,210),(237,243,250))]:
+            self.assertEqual(image.getpixel(point),color)
+
+    def test_plot_formula_digits_use_a_lower_baseline(self):
+        from PIL import Image,ImageDraw,ImageFont
+        from server import draw_formula,HERE
+        font=ImageFont.truetype(str(HERE/'fonts/WorkSans-Regular.ttf'),23)
+        small=ImageFont.truetype(str(HERE/'fonts/WorkSans-Regular.ttf'),14)
+        draw=ImageDraw.Draw(Image.new('RGB',(200,60),'white'))
+        with patch.object(draw,'text',wraps=draw.text) as text:
+            draw_formula(draw,(0,0),'Al2O3',font,small,'black')
+        regular=[c.args[0][1] for c in text.call_args_list if not c.args[1].isdigit()]
+        digits=[c for c in text.call_args_list if c.args[1].isdigit()]
+        self.assertEqual([c.args[1] for c in digits],['2','3'])
+        self.assertTrue(all(c.args[0][1]>max(regular) for c in digits))
+        self.assertTrue(all(c.kwargs['font'] is small for c in digits))
+
     def test_duplicate_query_values_rejected(self):
         s,_=self.request('/api/plot',query='material=Test&material=Other')
         self.assertEqual(s['status'],'400 Bad Request')

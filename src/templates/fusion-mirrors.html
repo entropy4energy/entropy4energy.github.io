@@ -24,11 +24,13 @@
 </div>
 <details class="material-filter"><summary>Find by name, formula or family</summary>
 <div class="advanced-controls">
-<label>Find a material<input id="search" type="search" placeholder="e.g., rhodium, tungsten, SiO2" autocomplete="off"></label>
+<label>Find a material<input id="search" type="search" placeholder="e.g., rhodium, tungsten, SiO₂" autocomplete="off"></label>
 <label>Family<select aria-label="Family" id="family"><option value="all">All families</option></select></label>
 </div><button type="submit">Show spectrum</button></details>
 <details class="advanced"><summary>Advanced options</summary>
-<p class="hint">Both PAW datasets use the PBE functional. The GW-oriented option selects a PAW dataset within PBE.</p>
+<p class="hint"><u>P</u>rojector-<u>a</u>ugmented-<u>w</u>ave (PAW) datasets use the
+<u>P</u>erdew-<u>B</u>urke-<u>E</u>rnzerhof (PBE) functional.
+The GW-oriented option selects a PAW dataset within PBE.</p>
 <div class="advanced-controls">
 <label>PAW dataset<select aria-label="PAW dataset" id="branch"><option value="PBE">Standard PAW / PBE</option><option value="GW">GW-oriented PAW / PBE</option><option value="both">Compare both</option></select></label>
 <label>Response<select aria-label="Response" id="channel"><option value="density">Density response</option><option value="current">Current response</option></select></label>
@@ -45,7 +47,7 @@ These calculations describe the optical response of ideal, uncoated materials.</
 
 </aside>
 </div>
-<section id="methods" class="sources card"><div><h2>Calculation details</h2><p>Density functional theory (DFT) optical responses were calculated with VASP. The spectra use the 1 nm wavelength grid from the screening calculations.</p><p>Standard and GW-oriented projector-augmented-wave (PAW) datasets both use the Perdew-Burke-Ernzerhof (PBE) functional. The GW label identifies a PAW dataset choice within PBE.</p><p>The spectra describe ideal, uncoated material surfaces at normal incidence.</p></div><div id="provenance"></div><div><h3>References</h3><ul id="references"></ul><button id="copy-citation" type="button">Copy references</button><span id="copy-status" role="status"></span></div></section>
+<section id="methods" class="sources card"><div><h2>Calculation details</h2><p><u>D</u>ensity <u>f</u>unctional <u>t</u>heory (DFT) optical responses were calculated with VASP. The spectra use the 1 nm wavelength grid from the screening calculations.</p><p>The spectra describe ideal, uncoated material surfaces at normal incidence.</p></div><div id="provenance"></div><div><h3>References</h3><ul id="references"></ul><button id="copy-citation" type="button">Copy references</button><span id="copy-status" role="status"></span></div></section>
 <p class="hint">We record material selections, wavelength queries, IP addresses, and browser information, with your site account when signed in.</p>
 </div>
 {% endblock %}

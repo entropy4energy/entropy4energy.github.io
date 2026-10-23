@@ -54,7 +54,7 @@ def synthetic_export(root):
                 'passive_epsilon', 'rounding_uncertain_absorption', 'valid_normal_z']
     root.mkdir(parents=True)
     materials = []
-    for mid in ['TestMetal', 'TestOxide']:
+    for mid in ['TestMetal', 'TestOxide', 'Al2O3', 'CaMg_CO3_2']:
         runs = {}
         for branch in ['PBE', 'GW']:
             channels = {}
@@ -76,7 +76,7 @@ def synthetic_export(root):
                                      'sources': [{'kind': 'optical-constants',
                                                   'download': 'data/' + source.relative_to(root).as_posix()}]}
                 channels[channel] = scopes
-            runs[branch] = {'metadata': {'method': 'SYNTHETIC UI TEST ONLY', 'formula': mid}, 'channels': channels}
+            runs[branch] = {'metadata': {'method': 'SYNTHETIC UI TEST ONLY', 'formula': mid, 'EDIFF_eV':1e-8}, 'channels': channels}
         materials.append({'id': mid, 'family': 'test', 'excluded': False, 'runs': runs})
     (root / 'catalog.json').write_text(json.dumps({'schema_version': 1, 'families': {'test': 'Synthetic test only'},
                                                 'materials': materials}))
@@ -128,7 +128,13 @@ def main():
                 assert not page.locator('.advanced').get_attribute('open')
                 page.get_by_text('Advanced options',exact=True).click()
                 assert page.get_by_label('PAW dataset',exact=True).is_visible()
-                checks.append('shared shell and controlled explorer load')
+                assert page.locator('#provenance sup').inner_text()=='−8'
+                assert page.evaluate("getComputedStyle(document.querySelector('h1')).fontFamily.includes('Hopkins Slab')")
+                assert page.evaluate("getComputedStyle(document.body).fontFamily.includes('Work Sans')")
+                assert page.evaluate("getComputedStyle(document.querySelector('.advanced u')).textDecorationLine.includes('underline')")
+                assert page.evaluate("getComputedStyle(document.querySelector('#references a')).textDecorationLine.includes('underline')")
+                assert page.evaluate("getComputedStyle(document.querySelector('#material-title')).borderBottomWidth === '1px'")
+                checks.append('shared shell, heading rules and scientific notation')
                 with page.expect_response(lambda r:'/api/probe' in r.url) as response:
                     page.get_by_role('button',name='532 nm',exact=True).click()
                 result=response.value.json()
@@ -159,6 +165,17 @@ def main():
                 assert page.get_by_role('button',name='1064 nm',exact=True).is_disabled()
                 assert page.locator('#wavelength').get_attribute('max')=='400'
                 checks.append('wavelength range controls and presets agree')
+                with page.expect_response(lambda r:'/api/plot' in r.url):
+                    page.get_by_label('Material',exact=True).select_option('Al2O3')
+                assert 'Al₂O₃' in page.locator('#material-title').inner_text()
+                assert 'Al₂O₃' in page.locator('#provenance').inner_text()
+                assert page.evaluate("getComputedStyle(document.querySelector('.result-guide var')).fontStyle === 'italic'")
+                with page.expect_response(lambda r:'/api/plot' in r.url):
+                    page.get_by_label('Material',exact=True).select_option('CaMg_CO3_2')
+                assert 'CaMg(CO₃)₂' in page.locator('#material-title').inner_text()
+                assert 'CaMg(CO₃)₂' in page.locator('#provenance').inner_text()
+                page.wait_for_function("document.getElementById('status').textContent.includes('CaMg(CO₃)₂')")
+                checks.append('chemical subscripts and italic variables')
                 page.screenshot(path=str(out/'desktop.png'),full_page=True)
                 page.set_viewport_size({'width':390,'height':844})
                 assert page.evaluate('document.documentElement.scrollWidth <= window.innerWidth+1')

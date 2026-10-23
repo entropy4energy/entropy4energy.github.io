@@ -39,11 +39,29 @@ const materialNames = {
     Pd: "Palladium", Pt: "Platinum", Re: "Rhenium", Rh: "Rhodium", Ru: "Ruthenium",
     Si: "Silicon", Ta: "Tantalum", Ti: "Titanium", V: "Vanadium", W: "Tungsten",
     Zn: "Zinc", Zr: "Zirconium", SiO2: "Silica", Al2O3: "Alumina",
-    HfO2: "Hafnia", ZrO2: "Zirconia", TiO2: "Titania", MgO: "Magnesia"
+    HfO2: "Hafnia", ZrO2: "Zirconia", TiO2: "Titania", MgO: "Magnesia",
+    C_graphene: "Graphene"
 };
 
+function formulaLabel(id) {
+    const formula = {C_graphene: "C", CaMg_CO3_2: "CaMg(CO3)2"}[id] || String(id);
+    return formula.replace(/[0-9]/g, digit => "₀₁₂₃₄₅₆₇₈₉"[Number(digit)]);
+}
+
 function materialLabel(id) {
-    return materialNames[id] ? `${materialNames[id]} (${id})` : id;
+    const formula = formulaLabel(id);
+    return materialNames[id] ? `${materialNames[id]} (${formula})` : formula;
+}
+
+function settingValue(key, value) {
+    const span = node("span");
+    const scientific = String(value).match(/^([+-]?[0-9]+(?:\.[0-9]+)?)e([+-]?[0-9]+)$/i);
+    if (key === "formula") span.textContent = formulaLabel(value);
+    else if (scientific) {
+        const exponent = String(Number(scientific[2])).replace("-", "−");
+        span.append(scientific[1] + " × 10", node("sup", exponent));
+    } else span.textContent = String(value);
+    return span;
 }
 
 const labels = {
@@ -81,7 +99,7 @@ function choices() {
 }
 
 function materials() {
-    const q = $("search").value.trim().toLowerCase(), f = $("family").value, previous = $("material").value;
+    const q = $("search").value.trim().toLowerCase().replace(/[₀-₉]/g, d => String("₀₁₂₃₄₅₆₇₈₉".indexOf(d))), f = $("family").value, previous = $("material").value;
     const ms = catalog.materials.filter((m => (f === "all" || m.family === f) && (m.id + " " + (materialNames[m.id] || "")).toLowerCase().includes(q)));
     $("material").replaceChildren(...ms.map((m => {
         const o = node("option", materialLabel(m.id));
@@ -128,7 +146,9 @@ function provenance(data) {
         };
         for (const [key, value] of Object.entries(calc.settings)) {
             if (value !== "" && value !== null) {
-                dl.append(node("dt", names[key] || key), node("dd", String(value)));
+                const dd = node("dd");
+                dd.append(settingValue(key, value));
+                dl.append(node("dt", names[key] || key), dd);
             }
         }
         box.append(dl);
@@ -161,7 +181,7 @@ async function view() {
         image.onload = () => {
             if (token !== generation) return;
             image.hidden = false;
-            status(data.material + " · " + labels[current.branch] + " · " + current.channel + " response");
+            status(materialLabel(data.material) + " · " + labels[current.branch] + " · " + current.channel + " response");
             document.body.dataset.ready = "true";
             record("view", {
                 ...current,
