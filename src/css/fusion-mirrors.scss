@@ -90,6 +90,21 @@
     margin:.5rem 0 0
   }
 
+  .material-shortcuts{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.4rem
+  }
+  .material-shortcuts button{
+    font-size:.8rem;
+    padding:.35rem .6rem
+  }
+  .material-filter button{
+    margin-top:.75rem
+  }
+  .advanced-controls{
+    margin-top:.75rem
+  }
   .getting-started{
     border-left:3px solid var(--navy);
     padding:.1rem 0 .1rem 1rem;
@@ -126,7 +141,7 @@
   }
   .controls{
     display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-columns:repeat(2,minmax(0,1fr));
     align-items:end;
     gap:13px;
     background:$color-surface-2;
@@ -134,7 +149,7 @@
     border-radius:8px;
     padding:1rem
   }
-  .controls>h2,.controls>.advanced{
+  .controls>h2,.controls>details,.controls>.material-shortcuts{
     grid-column:1/-1
   }
   .controls>h2{
@@ -348,7 +363,7 @@
   }
   @media(max-width:1050px){
     .controls{
-      grid-template-columns:repeat(3,minmax(0,1fr))
+      grid-template-columns:repeat(2,minmax(0,1fr))
     }
     .controls>button{
       grid-column:1/-1

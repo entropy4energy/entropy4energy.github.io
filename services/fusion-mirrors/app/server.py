@@ -42,8 +42,10 @@ class Store:
                 'references': REFERENCES}
 
     def selection(self, query):
-        if set(query) - {'material', 'branch', 'channel', 'band', 'wavelength'}:
+        if set(query) - {'material', 'branch', 'channel', 'band', 'wavelength', 'quantity'}:
             raise QueryError('Unsupported query field.')
+        if query.get('quantity', 'all') not in {'all', 'R'}:
+            raise QueryError('Choose reflectivity or all optical properties.')
         mid = query.get('material', 'Rh')
         if mid not in self.materials:
             raise QueryError('Choose an available material.')
@@ -129,7 +131,8 @@ class Store:
     def plot(self, query):
         mid, branches, channel, band = self.selection(query)
         lo, hi = BANDS[band]
-        image = Image.new('RGB', (1040, 720), 'white')
+        reflectivity_only = query.get('quantity') == 'R'
+        image = Image.new('RGB', (1040, 430 if reflectivity_only else 720), 'white')
         draw = ImageDraw.Draw(image)
         font = ImageFont.truetype(str(HERE/'fonts/WorkSans-Regular.ttf'), size=17)
         small = ImageFont.truetype(str(HERE/'fonts/WorkSans-Regular.ttf'), size=14)
@@ -137,8 +140,15 @@ class Store:
         variable = ImageFont.truetype(str(HERE/'fonts/WorkSans-Italic.ttf'), size=17)
         draw.text((70, 14), f'{mid}  |  {channel} response  |  normal incidence', fill='#002d72', font=title)
         colors = {'PBE': '#002d72', 'GW': '#b85c00'}
-        for field, top in zip(FIELDS, (72, 272, 472)):
-            left, right, bottom = 85, 1000, top+142
+        fields = ['R'] if reflectivity_only else list(FIELDS)
+        for field, top in zip(fields, (80,) if reflectivity_only else (72, 272, 472)):
+            left, right, bottom = 85, 1000, top+(235 if reflectivity_only else 142)
+            for start, end, label, color in [(200,400,'UV','#f4f1fb'), (400,700,'Visible','#edf7f3'), (700,1200,'Near-IR','#edf3fa')]:
+                a,b=max(lo,start),min(hi,end)
+                if b>a:
+                    x1=left+(a-lo)/(hi-lo)*(right-left);x2=left+(b-lo)/(hi-lo)*(right-left)
+                    draw.rectangle((x1,top,x2,bottom),fill=color)
+                    if reflectivity_only:draw.text(((x1+x2)/2,top-28),label,fill='#536273',font=font,anchor='mt')
             series = []
             for branch in branches:
                 rows, index, wavelengths = self.spectrum(mid, branch, channel)
@@ -174,11 +184,11 @@ class Store:
                 flush()
             if not finite:
                 draw.text((left+20,top+45),'No supported values in this band',fill='#536273',font=font)
-        draw.text((435, 652), 'Wavelength (nm)', fill='#536273', font=font)
+        draw.text((435, 350 if reflectivity_only else 652), 'Wavelength (nm)', fill='#536273', font=font)
         x = 85
         for branch in branches:
-            draw.line((x,697,x+24,697),fill=colors[branch],width=3)
-            draw.text((x+32,687),BRANCHES[branch],fill='#263849',font=small)
+            draw.line((x,405 if reflectivity_only else 697,x+24,405 if reflectivity_only else 697),fill=colors[branch],width=3)
+            draw.text((x+32,395 if reflectivity_only else 687),BRANCHES[branch],fill='#263849',font=small)
             x += 300
         stream = io.BytesIO(); image.save(stream, format='PNG')
         return stream.getvalue()

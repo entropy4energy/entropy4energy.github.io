@@ -126,7 +126,7 @@ def main():
                 assert page.locator('#download-csv').count()==0
                 assert page.locator('#references a').count()==3
                 assert not page.locator('.advanced').get_attribute('open')
-                page.get_by_text('Calculation settings and wavelength range',exact=True).click()
+                page.get_by_text('Advanced options',exact=True).click()
                 assert page.get_by_label('PAW dataset',exact=True).is_visible()
                 checks.append('shared shell and controlled explorer load')
                 with page.expect_response(lambda r:'/api/probe' in r.url) as response:
@@ -137,22 +137,28 @@ def main():
                 assert page.locator('#probe-result var').all_text_contents()==['n','k','R']
                 assert page.locator('.optical-definitions .hint var').all_text_contents()==['n','k','z','R','z']
                 checks.append('single wavelength value')
-                page.get_by_label('PAW dataset',exact=True).select_option('both')
                 with page.expect_response(lambda r:'/api/plot' in r.url):
-                    page.get_by_role('button',name='View spectra',exact=True).click()
+                    page.get_by_label('PAW dataset',exact=True).select_option('both')
                 with page.expect_response(lambda r:'/api/probe' in r.url) as response:
                     page.get_by_role('button',name='1064 nm',exact=True).click()
                 assert len(response.value.json()['values'])==2
-                checks.append('both PAW datasets')
-                page.get_by_label('Material',exact=True).select_option('TestOxide')
                 with page.expect_response(lambda r:'/api/plot' in r.url):
-                    page.get_by_role('button',name='View spectra',exact=True).click()
+                    page.get_by_label('Plot',exact=True).select_option('all')
+                assert page.locator('#spectra').get_attribute('alt').startswith('Calculated refractive index')
+                checks.append('both PAW datasets and optical constants')
+                with page.expect_response(lambda r:'/api/plot' in r.url):
+                    page.get_by_label('Material',exact=True).select_option('TestOxide')
                 page.locator('#wavelength').fill('400')
                 with page.expect_response(lambda r:'/api/probe' in r.url) as response:
                     page.get_by_role('button',name='Look up',exact=True).click()
                 assert response.value.json()['values'][0]['R'] is None
                 assert 'Unavailable' in page.locator('#probe-result').inner_text()
                 checks.append('invalid optical samples remain unavailable')
+                with page.expect_response(lambda r:'/api/plot' in r.url):
+                    page.get_by_label('Wavelength range',exact=True).select_option('uv')
+                assert page.get_by_role('button',name='1064 nm',exact=True).is_disabled()
+                assert page.locator('#wavelength').get_attribute('max')=='400'
+                checks.append('wavelength range controls and presets agree')
                 page.screenshot(path=str(out/'desktop.png'),full_page=True)
                 page.set_viewport_size({'width':390,'height':844})
                 assert page.evaluate('document.documentElement.scrollWidth <= window.innerWidth+1')
