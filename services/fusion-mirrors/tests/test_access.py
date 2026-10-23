@@ -95,6 +95,16 @@ class AccessTests(unittest.TestCase):
         self.assertTrue(raw.startswith(b'\x89PNG'))
         self.assertNotIn(b'wavelength_nm',raw)
 
+    def test_reflectivity_plot_and_optical_constants_remain_available(self):
+        from PIL import Image
+        for quantity,height in [('R',430),('all',720)]:
+            status,raw=self.request('/api/plot',query='material=Test&quantity='+quantity)
+            self.assertEqual(status['status'],'200 OK')
+            self.assertEqual(Image.open(io.BytesIO(raw)).size,(1040,height))
+            self.assertNotIn(b'wavelength_nm',raw)
+        status,_=self.request('/api/plot',query='material=Test&quantity=rows',ip='other')
+        self.assertEqual(status['status'],'400 Bad Request')
+
     def test_duplicate_query_values_rejected(self):
         s,_=self.request('/api/plot',query='material=Test&material=Other')
         self.assertEqual(s['status'],'400 Bad Request')

@@ -31,6 +31,21 @@ function record(event, fields = {}) {
     } catch (e) {}
 }
 
+const materialNames = {
+    Ag: "Silver", Al: "Aluminum", Au: "Gold", Bi: "Bismuth", Co: "Cobalt",
+    Cr: "Chromium", Cu: "Copper", Fe: "Iron", Ge: "Germanium", Hf: "Hafnium",
+    In: "Indium", Ir: "Iridium", Lu: "Lutetium", Mg: "Magnesium", Mo: "Molybdenum",
+    Nb: "Niobium", Ni: "Nickel", Os: "Osmium", P: "Phosphorus", Pb: "Lead",
+    Pd: "Palladium", Pt: "Platinum", Re: "Rhenium", Rh: "Rhodium", Ru: "Ruthenium",
+    Si: "Silicon", Ta: "Tantalum", Ti: "Titanium", V: "Vanadium", W: "Tungsten",
+    Zn: "Zinc", Zr: "Zirconium", SiO2: "Silica", Al2O3: "Alumina",
+    HfO2: "Hafnia", ZrO2: "Zirconia", TiO2: "Titania", MgO: "Magnesia"
+};
+
+function materialLabel(id) {
+    return materialNames[id] ? `${materialNames[id]} (${id})` : id;
+}
+
 const labels = {
     PBE: "Standard PAW / PBE",
     GW: "GW-oriented PAW / PBE",
@@ -60,15 +75,16 @@ function choices() {
         material: $("material").value,
         branch: $("branch").value,
         channel: $("channel").value,
-        band: $("band").value
+        band: $("band").value,
+        quantity: $("quantity").value
     };
 }
 
 function materials() {
     const q = $("search").value.trim().toLowerCase(), f = $("family").value, previous = $("material").value;
-    const ms = catalog.materials.filter((m => (f === "all" || m.family === f) && m.id.toLowerCase().includes(q)));
+    const ms = catalog.materials.filter((m => (f === "all" || m.family === f) && (m.id + " " + (materialNames[m.id] || "")).toLowerCase().includes(q)));
     $("material").replaceChildren(...ms.map((m => {
-        const o = node("option", m.id);
+        const o = node("option", materialLabel(m.id));
         o.value = m.id;
         return o;
     })));
@@ -104,11 +120,11 @@ function provenance(data) {
         const names = {
             formula: "Formula",
             source_structure_id: "Structure identifier",
-            ENCUT_eV: "ENCUT (eV)",
-            EDIFF_eV: "Electronic threshold (eV)",
-            NBANDS_effective: "Bands (NBANDS)",
-            CSHIFT_eV: "Broadening (eV)",
-            method: "Method"
+            ENCUT_eV: "Plane-wave cutoff (eV)",
+            EDIFF_eV: "Electronic convergence (eV)",
+            NBANDS_effective: "Number of electronic bands",
+            CSHIFT_eV: "Optical broadening (eV)",
+            method: "Optical calculation"
         };
         for (const [key, value] of Object.entries(calc.settings)) {
             if (value !== "" && value !== null) {
@@ -126,7 +142,13 @@ async function view() {
     const token = ++generation;
     ++probeGeneration;
     current = choices();
-    $("probe-result").replaceChildren(node("p", "Look up one wavelength in the selected band.", "hint"));
+    const ranges = {all: [200, 1200], uv: [200, 400], visible: [400, 700], nir: [700, 1200]};
+    const [lo, hi] = ranges[current.band];
+    $("wavelength").min = lo;
+    $("wavelength").max = hi;
+    if (Number($("wavelength").value) < lo || Number($("wavelength").value) > hi) $("wavelength").value = lo;
+    for (const b of document.querySelectorAll("[data-wavelength]")) b.disabled = Number(b.dataset.wavelength) < lo || Number(b.dataset.wavelength) > hi;
+    $("probe-result").replaceChildren(node("p", "Values use the nearest stored sample, without interpolation across gaps.", "hint"));
     $("spectra").hidden = true;
     status("Preparing the selected spectra…");
     const params = new URLSearchParams(current), image = $("spectra");
@@ -134,7 +156,8 @@ async function view() {
         const data = await json(base + "/api/provenance?" + params);
         if (token !== generation) return;
         provenance(data);
-        $("material-title").textContent = data.material + " · " + data.family;
+        $("material-title").textContent = materialLabel(data.material) + (current.quantity === "R" ? " · Calculated reflectivity" : " · Optical spectra");
+        image.alt = current.quantity === "R" ? "Calculated reflectivity spectrum" : "Calculated refractive index, extinction coefficient, and reflectivity spectra";
         image.onload = () => {
             if (token !== generation) return;
             image.hidden = false;
@@ -201,7 +224,8 @@ $("selection").addEventListener("submit", (e => {
     view();
 }));
 
-$("material").addEventListener("change", branches);
+$("material").addEventListener("change", () => { branches(); view(); });
+for (const id of ["branch", "channel", "band", "quantity"]) $(id).addEventListener("change", view);
 
 $("family").addEventListener("change", materials);
 
@@ -217,24 +241,14 @@ for (const b of document.querySelectorAll("[data-wavelength]")) b.addEventListen
     probe();
 }));
 
-$("try-example").addEventListener("click", (async () => {
+for (const b of document.querySelectorAll("[data-material]")) b.addEventListener("click", () => {
     $("search").value = "";
     $("family").value = "all";
     materials();
-    $("material").value = "Rh";
-    $("branch").value = "PBE";
-    $("channel").value = "density";
-    $("band").value = "all";
+    $("material").value = b.dataset.material;
     branches();
-    $("wavelength").value = "532";
-    await view();
-    await probe();
-    $("probe-title").focus({preventScroll: true});
-    $("probe-title").scrollIntoView({
-        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-        block: "start"
-    });
-}));
+    view();
+});
 
 $("copy-view").addEventListener("click", (async () => {
     try {
@@ -265,13 +279,13 @@ $("copy-citation").addEventListener("click", (async () => {
         }
         materials();
         const qs = new URLSearchParams(location.search);
-        for (const key of [ "material", "branch", "channel", "band" ]) {
+        for (const key of [ "material", "branch", "channel", "band", "quantity" ]) {
             const value = qs.get(key);
             if (value && Array.from($(key).options).some((o => o.value === value))) $(key).value = value;
         }
         branches();
         if (location.hostname === "127.0.0.1" || location.hostname === "localhost") $("preview-note").hidden = false;
-        $("try-example").disabled = !catalog.materials.some(m => m.id === "Rh");
+        for (const b of document.querySelectorAll("[data-material]")) b.disabled = !catalog.materials.some(m => m.id === b.dataset.material);
         await view();
     } catch (e) {
         status("The material catalog is unavailable. " + e.message, true);
