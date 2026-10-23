@@ -7,25 +7,38 @@
 
 <section class="intro">
   <h1>Fusion Mirrors</h1>
-  <p class="lead">Compare calculated spectra, inspect the underlying methods,
-    and look up individual wavelength values.</p>
+  <p class="lead">Explore the calculated optical properties of candidate mirror materials
+    from 200 to 1200 nm.</p>
   <p class="scope">Normal incidence · Bare air/material interface · DFT optical response</p>
 </section>
+<div class="getting-started">
+  <p>Start with rhodium at 532 nm, or choose a material below.</p>
+  <p class="hint">Choose a material, view its spectra, then look up a wavelength
+    for numerical values.</p>
+  <button id="try-example" type="button" class="primary" disabled>Try Rh at 532 nm</button>
+</div>
 <div id="preview-note" class="notice" hidden>Local preview.</div>
 <form id="selection" class="controls" aria-label="Optical response selection">
+<h2>1. Choose a material</h2>
 <label>Find a material<input id="search" type="search" placeholder="Symbol or formula" autocomplete="off"></label>
 <label>Family<select aria-label="Family" id="family"><option value="all">All families</option></select></label>
 <label>Material<select aria-label="Material" id="material" required></select></label>
-<label>PAW dataset<select aria-label="PAW dataset" id="branch"><option value="PBE">Standard PAW / PBE</option><option value="GW">GW-oriented PAW / PBE</option><option value="both">Compare both</option></select></label>
+<details class="advanced"><summary>Calculation settings and wavelength range</summary>
+<p class="hint">The standard PAW dataset and density response are selected by default.
+Both PAW datasets use the PBE functional.</p>
+<div class="advanced-controls"><label>PAW dataset<select aria-label="PAW dataset" id="branch"><option value="PBE">Standard PAW / PBE</option><option value="GW">GW-oriented PAW / PBE</option><option value="both">Compare both</option></select></label>
 <label>Response<select aria-label="Response" id="channel"><option value="density">Density</option><option value="current">Current</option></select></label>
 <label>Wavelength band<select aria-label="Wavelength band" id="band"><option value="all">200 to 1200 nm</option><option value="uv">UV · 200 to 400 nm</option><option value="visible">Visible · 400 to 700 nm</option><option value="nir">Near-IR · 700 to 1200 nm</option></select></label>
+</div></details>
 <button type="submit" class="primary">View spectra</button>
 </form>
 <p id="status" role="status" aria-live="polite">Loading available materials…</p>
 <div class="results">
-<section class="plot-card"><div class="card-title"><div><p class="eyebrow">MATERIAL SPECTRA</p><h2 id="material-title">Optical response</h2></div><button id="copy-view" type="button">Copy view link</button></div><img id="spectra" alt="Calculated refractive index, extinction coefficient, and reflectivity spectra" hidden><p class="hint"><var>n</var> and <var>k</var> denote the normal-<var>z</var> mode 1 refractive index and extinction coefficient. <var>R</var> is the unpolarized full-tensor reflectivity with Cartesian <var>z</var> as the surface normal. Gaps indicate unsupported or invalid values.</p></section>
+<section class="plot-card"><div class="card-title"><div><p class="eyebrow">2. EXPLORE THE SPECTRA</p><h2 id="material-title" tabindex="-1">Optical response</h2></div><button id="copy-view" type="button">Copy view link</button></div><img id="spectra" alt="Calculated refractive index, extinction coefficient, and reflectivity spectra" hidden><p class="result-guide">Reflectivity <var>R</var> is the percentage of incident light reflected.
+The other two plots show refractive index <var>n</var> and extinction coefficient <var>k</var>.</p>
+<details class="optical-definitions"><summary>Optical definitions</summary><p class="hint"><var>n</var> and <var>k</var> denote the normal-<var>z</var> mode 1 refractive index and extinction coefficient. <var>R</var> is the unpolarized full-tensor reflectivity with Cartesian <var>z</var> as the surface normal. Gaps indicate unsupported or invalid values.</p></details></section>
 <aside>
-<section class="card"><p class="eyebrow">AT YOUR WAVELENGTH</p><h2>Read a value</h2><form id="probe"><label for="wavelength">Wavelength (nm)</label><div class="input-row"><input id="wavelength" type="number" value="532" min="200" max="1200" step="any" required><button class="primary" type="submit">Look up</button></div></form><div class="presets"><button type="button" data-wavelength="532">532 nm</button><button type="button" data-wavelength="1064">1064 nm</button></div><div id="probe-result" aria-live="polite"><p class="hint">Look up one wavelength in the selected band. Values use the nearest stored sample and are rounded to four significant digits.</p></div></section>
+<section class="card"><p class="eyebrow">3. CHECK A WAVELENGTH</p><h2 id="probe-title" tabindex="-1">Read a value</h2><p class="hint">Enter a wavelength in nanometers, or use a preset below.</p><form id="probe"><label for="wavelength">Wavelength (nm)</label><div class="input-row"><input id="wavelength" type="number" value="532" min="200" max="1200" step="any" required><button class="primary" type="submit">Look up</button></div></form><div class="presets"><button type="button" data-wavelength="532">532 nm</button><button type="button" data-wavelength="1064">1064 nm</button></div><div id="probe-result" aria-live="polite"><p class="hint">Look up one wavelength in the selected band. Values use the nearest stored sample and are rounded to four significant digits.</p></div></section>
 
 </aside>
 </div>

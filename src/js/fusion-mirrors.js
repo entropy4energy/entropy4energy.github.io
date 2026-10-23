@@ -74,7 +74,7 @@ function materials() {
     })));
     if (ms.some((m => m.id === previous))) $("material").value = previous; else if (!q && ms.some((m => m.id === "Rh"))) $("material").value = "Rh";
     branches();
-    $("selection").querySelector("button").disabled = !ms.length;
+    $("selection").querySelector("button[type=submit]").disabled = !ms.length;
     if (!ms.length) status("No materials match this selection.");
 }
 
@@ -217,6 +217,25 @@ for (const b of document.querySelectorAll("[data-wavelength]")) b.addEventListen
     probe();
 }));
 
+$("try-example").addEventListener("click", (async () => {
+    $("search").value = "";
+    $("family").value = "all";
+    materials();
+    $("material").value = "Rh";
+    $("branch").value = "PBE";
+    $("channel").value = "density";
+    $("band").value = "all";
+    branches();
+    $("wavelength").value = "532";
+    await view();
+    await probe();
+    $("probe-title").focus({preventScroll: true});
+    $("probe-title").scrollIntoView({
+        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "start"
+    });
+}));
+
 $("copy-view").addEventListener("click", (async () => {
     try {
         await navigator.clipboard.writeText(location.href);
@@ -252,6 +271,7 @@ $("copy-citation").addEventListener("click", (async () => {
         }
         branches();
         if (location.hostname === "127.0.0.1" || location.hostname === "localhost") $("preview-note").hidden = false;
+        $("try-example").disabled = !catalog.materials.some(m => m.id === "Rh");
         await view();
     } catch (e) {
         status("The material catalog is unavailable. " + e.message, true);
