@@ -9,7 +9,7 @@
         <div class="tool-card-kind">{{ tool.kind }}</div>
         <h2 class="tool-card-title">{{ tool.name }}</h2>
         <div class="tool-card-full">{% if tool.full_name_html %}{{ tool.full_name_html | safe }}{% else %}{{ tool.full_name }}{% endif %}</div>
-        <p class="tool-card-text">{{ tool.description }}</p>
+        <p class="tool-card-text">{% if tool.description_html %}{{ tool.description_html | safe }}{% else %}{{ tool.description }}{% endif %}</p>
         {% if tool.access %}<p class="tool-card-access">{{ tool.access }}</p>{% endif %}
         <div class="tool-card-actions">
           <a class="workshop-button" href="{{ tool.href }}"{% if tool.external %} target="_blank" rel="noopener noreferrer"{% endif %}>Open {{ tool.name }}</a>
