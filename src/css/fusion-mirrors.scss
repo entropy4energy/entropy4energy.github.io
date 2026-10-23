@@ -1,11 +1,12 @@
+@use 'tokens' as *;
+
 #fusion-mirrors-app {
   &{
-    --navy:#002d72;
-    --ink:#263849;
-    --muted:#526477;
-    --line:#dce3eb;
-    --paper:#f4f6f9;
-    --gold:#aa650f
+    --navy:#{$color-main-1};
+    --ink:#{$color-ink};
+    --muted:#{$color-muted};
+    --line:#{$color-line-2};
+    --paper:#{$color-main-2}
   }
   *{
     box-sizing:border-box
@@ -14,7 +15,7 @@
     margin:0;
     background:var(--paper);
     color:var(--ink);
-    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+    font:inherit
   }
   a{
     color:var(--navy)
@@ -27,14 +28,15 @@
   }
   button{
     cursor:pointer;
-    border:1px solid #bbc9d8;
-    border-radius:6px;
+    border:1px solid var(--line);
+    border-radius:4px;
     background:white;
     color:var(--navy);
-    padding:9px 13px
+    padding:.55rem .9rem;
+    font-weight:600
   }
   button:hover{
-    background:#eef3fa
+    background:$color-surface-2
   }
   button:disabled{
     opacity:.55;
@@ -60,62 +62,51 @@
     margin:auto;
     padding:38px 25px 55px
   }
-  .hero{
-    margin-bottom:28px
+  .intro{
+    margin-bottom:1.25rem
   }
   .eyebrow{
-    font-size:11px;
-    letter-spacing:.14em;
+    font-size:.72rem;
+    letter-spacing:.05em;
     color:var(--navy);
     font-weight:700;
     margin:0 0 7px
   }
   h1{
-    font-size:46px;
-    line-height:1.1;
-    letter-spacing:-.035em;
-    margin:4px 0 12px;
-    color:var(--navy)
+    font-size:2rem;
+    line-height:1.25;
+    letter-spacing:normal;
+    margin:.67em 0;
+    font-weight:400
   }
   .lead{
-    font-size:23px;
-    letter-spacing:-.015em;
-    margin:0 0 7px
+    font-size:1.08rem;
+    letter-spacing:normal;
+    margin:0 0 .75rem
   }
-  .hero>p:last-of-type{
+  .scope{
     color:var(--muted);
-    margin-top:0
+    font-size:.85rem;
+    margin:.5rem 0 0
   }
-  .tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-top:17px
-  }
-  .tags span,.pill{
-    font-size:12px;
-    background:#e8eef6;
-    border-radius:20px;
-    padding:4px 10px;
-    color:var(--navy)
-  }
+
   .controls{
     display:grid;
-    grid-template-columns:1.1fr 1.1fr .7fr 1.3fr .8fr 1.1fr;
+    grid-template-columns:repeat(3,minmax(0,1fr));
     align-items:end;
     gap:13px;
-    background:white;
+    background:$color-surface-2;
     border:1px solid var(--line);
-    border-radius:10px;
-    padding:20px
+    border-radius:8px;
+    padding:1rem
   }
   .controls>button{
-    grid-column:6;
-    justify-self:stretch
+    grid-column:1/-1;
+    justify-self:start
   }
   label{
-    font-size:12px;
-    font-weight:650;
+    font-size:.85rem;
+    font-weight:600;
     display:block;
     color:var(--muted)
   }
@@ -124,15 +115,16 @@
     width:100%;
     min-width:0;
     background:white;
-    border:1px solid #bbc9d8;
-    border-radius:5px;
+    border:1px solid var(--line);
+    border-radius:4px;
     padding:9px 8px;
     color:var(--ink);
-    font-size:14px;
+    font-size:.95rem;
+    font-weight:400;
     margin-top:6px
   }
   #status{
-    font-size:13px;
+    font-size:.85rem;
     color:var(--muted);
     margin:13px 2px 19px;
     min-height:20px
@@ -149,24 +141,27 @@
   .plot-card,.card{
     background:white;
     border:1px solid var(--line);
-    border-radius:10px;
-    padding:23px
+    border-radius:8px;
+    padding:1rem
   }
   .card-title{
     display:flex;
     justify-content:space-between;
-    align-items:center
+    align-items:start;
+    flex-wrap:wrap;
+    gap:.75rem
+  }
+  .card-title>div{
+    flex:1 1 12rem;
+    min-width:0
   }
   .card-title h2{
     margin:0
   }
-  .pill{
-    align-self:center
-  }
   h2{
-    font-size:22px;
-    line-height:1.25;
-    letter-spacing:-.02em;
+    font-size:1.2rem;
+    line-height:1.35;
+    letter-spacing:normal;
     color:var(--navy);
     margin:0 0 15px
   }
@@ -184,7 +179,7 @@
     display:none
   }
   .hint{
-    font-size:12px;
+    font-size:.8rem;
     color:var(--muted);
     line-height:1.6
   }
@@ -199,10 +194,10 @@
     gap:20px
   }
   aside .card{
-    padding:22px
+    padding:1rem
   }
   aside p{
-    font-size:13px
+    font-size:.9rem
   }
   aside p:last-child{
     margin-bottom:0
@@ -262,11 +257,11 @@
   .sources{
     margin-top:20px;
     display:grid;
-    grid-template-columns:1fr 1fr 1fr;
+    grid-template-columns:repeat(3,minmax(0,1fr));
     gap:30px
   }
   .sources p,.sources li,.sources dd,.sources dt{
-    font-size:13px
+    font-size:.85rem
   }
   .sources dl{
     margin:0 0 16px
@@ -300,7 +295,7 @@
     padding:12px 16px;
     border:1px solid #d8b77e;
     background:#fff8ea;
-    border-radius:6px;
+    border-radius:4px;
     font-size:13px;
     margin-bottom:18px
   }
@@ -312,7 +307,7 @@
       grid-template-columns:repeat(3,minmax(0,1fr))
     }
     .controls>button{
-      grid-column:3
+      grid-column:1/-1
     }
     .results{
       grid-template-columns:minmax(0,1fr) 270px
@@ -332,14 +327,8 @@
     &{
       padding:26px 14px
     }
-    .hero{
-      padding:0 4px
-    }
-    h1{
-      font-size:36px
-    }
     .lead{
-      font-size:20px
+      font-size:1.08rem
     }
     .controls{
       grid-template-columns:repeat(2,minmax(0,1fr));
@@ -363,7 +352,7 @@
       grid-column:auto
     }
     .values strong{
-      font-size:22px
+      font-size:1.2rem
     }
     aside{
       display:grid;
@@ -384,11 +373,7 @@
     margin: 0;
     padding: 0;
   }
-  .hero {
-    display: block;
-    background: transparent;
-    border: 0;
-  }
+
   @container (max-width: 800px) {
     .controls {
       grid-template-columns: repeat(2, minmax(0, 1fr));
