@@ -1,6 +1,6 @@
 # S4E website · Fusion Mirror integration
 
-The Entropy for Energy Laboratory website, including a code-only preview of **Fusion Mirror**, a DFT optical materials explorer. Fusion Mirror appears under **Data and Tools**, alongside CHAOS and LOOP, and uses the existing S4E header, navigation, sidebar, footer and colour tokens.
+The Entropy for Energy Laboratory website includes Fusion Mirrors, a DFT optical materials explorer. The explorer uses the existing S4E header, navigation, sidebar, footer, and color tokens. Its Data and Tools entry remains hidden until the private-data service is verified.
 
 ## Local development
 
@@ -14,38 +14,45 @@ make
 python -m http.server 8080 --bind localhost --directory dist
 ```
 
-Open `http://localhost:8080/fusion-mirrors.html`. The production server supports extensionless links; Python's basic server needs `.html` when opening the Tools and Fusion Mirror pages directly. Do not serve a parent directory containing private data.
+Open `http://localhost:8080/fusion-mirrors.html` for the static shell. Interactive queries require the data service proxy described below. The production server supports extensionless links; Python's basic server needs `.html` when opening the Tools and Fusion Mirror pages directly. Do not serve a parent directory containing private data.
 
 ## What is included
 
 - `src/templates/fusion-mirrors.html`: interface, scope and acknowledgement.
 - `src/css/fusion-mirrors.scss`: styling scoped to this tool, using S4E navy `#002D72` and white.
-- `src/js/fusion-mirrors.js`: local-file loading, plotting, validity masks, wavelength lookup and downloads. No runtime JavaScript dependencies.
+- `src/js/fusion-mirrors.js`: server-generated plots, individual wavelength queries, and source references. No runtime JavaScript dependencies.
+- `services/fusion-mirrors/`: WSGI data service, deployment notes, and access tests.
 - `src/data/fusion-mirrors.json` and the entry in `tools.json`: product metadata only, **not DFT values**.
-- `tests/test_fusion_mirrors.py`: browser checks using clearly synthetic fixtures generated in a temporary directory. Optional private-data verification writes only to an explicitly chosen review directory.
+- `tests/test_fusion_mirrors.py`: browser checks using clearly synthetic fixtures generated in a temporary directory. Review output stays in an ignored directory.
 - [Methods, data contract and release notes](docs/fusion-mirrors.md).
 
 ## Data and privacy
 
-This PR does **not** release the unpublished DFT data. There is no dataset in the repository, no remote-data URL and no upload API. A reviewer with authorized data can select an existing explorer export's `data/` folder, containing `catalog.json`, `spectra/` and `source_csv/`. The folder picker selects files on the computer running the browser, not on a remote server. File contents are read locally in the browser. Reloading clears the selection. Local material choices are not placed in the URL or persistent browser storage, and the new page does not load the site's analytics script.
+The numerical package stays outside the website repository and public web
+root. Visitors receive PNG plots, individual wavelength results, method
+references, and selected calculation settings. The service has no bulk
+CSV, archive, raw-file, or spectrum-array endpoint.
 
-Since 2026-10-03 the page sends the group's own usage record (`https://s4e.ai/API/events`, kept on the group's server) what a visitor chooses and downloads: that a folder was opened, the material, calculation and response, the wavelength window (none for the full range, which is the data's own coverage), each wavelength looked up and each download. The record adds the address and browser, and on s4e.ai the account of a signed-in visitor. Nothing taken from the data is sent: no values, counts, file names or contents. Other hosts send nothing unless `window.S4E_EVENTS_URL` is set; the test sets it to a stand-in and checks every event.
+The production page retains the existing usage record for view choices and
+requested wavelengths, without calculated values or source-file paths.
+Local previews send no usage events. Copyable view links contain the
+selected material, PAW branch, response, and wavelength band.
 
-The underlying calculations are VASP independent-particle PBE dielectric responses. “GW” labels denote GW-oriented PAW potentials used within PBE; they are not quasiparticle GW results. The explorer reads preprocessed optical constants and full-tensor normal-incidence Air/material reflectivity. It does not run VASP, recalculate TMM, mix response channels, extrapolate missing data or introduce spectral averages.
+The calculations use independent-particle PBE. GW labels identify
+GW-oriented PAW datasets within PBE. The current service presents DFT
+bare-interface spectra. See [methods and access](docs/fusion-mirrors.md)
+and [service configuration](services/fusion-mirrors/README.md).
 
-Raw calculations, reproduction scripts, heavy analysis and source CSVs remain in the separate controlled DFT release. No VASP software or PAW potential files are included. Public hosting, data licensing, a versioned mirror address and the manuscript citation require separate approval. Exported CSVs, figures and metadata can contain unpublished results: do not add those exports or loaded-data screenshots to a public PR.
+## Review and deployment
 
-## Review and tests
+The dedicated workflow builds the page, runs the service access tests, and
+checks the integrated browser experience using synthetic fixtures. Test
+outputs belong in ignored `review-output/` directories.
 
-```sh
-python -m pip install -r tests/requirements.txt
-python -m playwright install chromium
-python tests/test_fusion_mirrors.py --dist dist --output /tmp/fusion-mirrors-review
-```
-
-The test starts a loopback-only server, checks desktop/mobile rendering, folder import, quality gaps, PAW comparison, selected-window exports, source downloads and failure handling. Its public screenshots show the **unloaded** page only. Private-data testing is opt-in; see `--help`. Never commit test output.
-
-Submit changes on a feature branch with **`dev` as the PR base**. Do not merge or deploy as part of this review. The existing deployment workflow is left unchanged; a dedicated Fusion Mirror check tests the PR checkout itself.
+Submit changes on a feature branch with **dev as the PR base**. The static
+site and WSGI service have separate deployment steps. Keep Fusion Mirrors
+hidden until the private package, reverse proxy, and public endpoint checks
+are verified. The normal static build does not start the WSGI service.
 
 ## Acknowledgement
 
