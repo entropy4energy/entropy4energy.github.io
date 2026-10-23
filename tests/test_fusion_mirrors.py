@@ -115,19 +115,27 @@ def main():
             with sync_playwright() as pw:
                 browser=pw.chromium.launch()
                 page=browser.new_page(viewport={'width':1440,'height':1000})
+                page.goto(origin+'/tools.html')
+                assert page.locator('a[href="fusion-mirrors"]').count()>=1
                 page.goto(origin+'/fusion-mirrors')
                 page.locator('#spectra').wait_for(state='visible')
                 assert page.locator('#material').input_value()=='TestMetal'
                 assert page.locator('header').count()==1
+                assert page.locator('#subnav_fusion-mirrors.active').count()==1
                 assert page.locator('#local-folder').count()==0
                 assert page.locator('#download-csv').count()==0
                 assert page.locator('#references a').count()==3
+                assert not page.locator('.advanced').get_attribute('open')
+                page.get_by_text('Calculation settings and wavelength range',exact=True).click()
+                assert page.get_by_label('PAW dataset',exact=True).is_visible()
                 checks.append('shared shell and controlled explorer load')
                 with page.expect_response(lambda r:'/api/probe' in r.url) as response:
                     page.get_by_role('button',name='532 nm',exact=True).click()
                 result=response.value.json()
                 assert result['values'][0]['R']==40
                 assert '40' in page.locator('#probe-result').inner_text()
+                assert page.locator('#probe-result var').all_text_contents()==['n','k','R']
+                assert page.locator('.optical-definitions .hint var').all_text_contents()==['n','k','z','R','z']
                 checks.append('single wavelength value')
                 page.get_by_label('PAW dataset',exact=True).select_option('both')
                 with page.expect_response(lambda r:'/api/plot' in r.url):

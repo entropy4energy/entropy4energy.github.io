@@ -90,6 +90,40 @@
     margin:.5rem 0 0
   }
 
+  .getting-started{
+    border-left:3px solid var(--navy);
+    padding:.1rem 0 .1rem 1rem;
+    margin:0 0 1.5rem
+  }
+  .getting-started p{
+    margin:0 0 .6rem
+  }
+  .getting-started button{
+    margin-top:.15rem
+  }
+  summary{
+    cursor:pointer;
+    color:var(--navy);
+    font-size:.85rem;
+    font-weight:600
+  }
+  summary:focus-visible{
+    outline:2px solid var(--navy);
+    outline-offset:4px
+  }
+  .advanced-controls{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:13px
+  }
+  .result-guide{
+    font-size:.85rem;
+    margin:.75rem 0
+  }
+  .optical-definitions{
+    border-top:1px solid var(--line);
+    padding-top:.75rem
+  }
   .controls{
     display:grid;
     grid-template-columns:repeat(3,minmax(0,1fr));
@@ -99,6 +133,12 @@
     border:1px solid var(--line);
     border-radius:8px;
     padding:1rem
+  }
+  .controls>h2,.controls>.advanced{
+    grid-column:1/-1
+  }
+  .controls>h2{
+    margin:0
   }
   .controls>button{
     grid-column:1/-1;
@@ -155,7 +195,11 @@
     flex:1 1 12rem;
     min-width:0
   }
+  #probe-title{
+    scroll-margin-top:110px
+  }
   .card-title h2{
+    scroll-margin-top:110px;
     margin:0
   }
   h2{
@@ -375,6 +419,9 @@
   }
 
   @container (max-width: 800px) {
+    .advanced-controls{
+      grid-template-columns:1fr
+    }
     .controls {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
