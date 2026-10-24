@@ -10,6 +10,7 @@
   <p class="lead">Explore how materials reflect light across the ultraviolet, visible,
     and near-infrared spectrum.</p>
   <p class="scope">Normal incidence · Uncoated material · Calculated data</p>
+  <p class="start-guide">Choose a material, compare candidates, then click a plot to read values at a wavelength.</p>
 </section>
 <div id="preview-note" class="notice" hidden>Local preview.</div>
 <form id="selection" class="controls" aria-label="Optical response selection">
@@ -22,6 +23,14 @@
 <button type="button" data-material="Au" disabled>Gold · Au</button>
 <button type="button" data-material="SiO2" disabled>Silica · SiO₂</button>
 </div>
+<fieldset class="comparison-controls"><legend>Compare materials</legend>
+<div class="comparison-selects">
+<label>Add a second material<select id="compare-1" aria-label="Second material"><option value="">None</option></select></label>
+<label>Add a third material<select id="compare-2" aria-label="Third material"><option value="">None</option></select></label>
+</div><div class="comparison-actions"><button id="compare-examples" type="button" disabled>Compare Rh, Mo and W</button><button id="clear-comparison" type="button">Clear comparison</button></div>
+<p class="hint">Comparisons use one wavelength range and response channel at normal incidence.</p>
+</fieldset>
+<label>Plot<select aria-label="Plot" id="quantity"><option value="all">All three plots</option><option value="R">Reflectivity only</option></select></label>
 <details class="material-filter"><summary>Find by name, formula or family</summary>
 <div class="advanced-controls">
 <label>Find a material<input id="search" type="search" placeholder="e.g., rhodium, tungsten, SiO₂" autocomplete="off"></label>
@@ -30,24 +39,41 @@
 <details class="advanced"><summary>Advanced options</summary>
 <p class="hint"><u>P</u>rojector-<u>a</u>ugmented-<u>w</u>ave (PAW) datasets use the
 <u>P</u>erdew-<u>B</u>urke-<u>E</u>rnzerhof (PBE) functional.
-The GW-oriented option selects a PAW dataset within PBE.</p>
+GW denotes the PAW dataset type. Both options use independent-particle PBE calculations.</p>
 <div class="advanced-controls">
 <label>PAW dataset<select aria-label="PAW dataset" id="branch"><option value="PBE">Standard PAW / PBE</option><option value="GW">GW-oriented PAW / PBE</option><option value="both">Compare both</option></select></label>
 <label>Response<select aria-label="Response" id="channel"><option value="density">Density response</option><option value="current">Current response</option></select></label>
-<label>Plot<select aria-label="Plot" id="quantity"><option value="R">Reflectivity</option><option value="all">All optical properties</option></select></label>
+
 </div></details>
 </form>
 <p id="status" role="status" aria-live="polite">Loading available materials…</p>
 <div class="results">
-<section class="plot-card"><div class="card-title"><div><h2 id="material-title" tabindex="-1">Optical response</h2></div><button id="copy-view" type="button">Copy link</button></div><img id="spectra" alt="Calculated reflectivity spectrum" hidden><p class="result-guide">Reflectivity <var>R</var> is the percentage of incident light reflected.
+<section class="plot-card"><div class="card-title"><div><h2 id="material-title" tabindex="-1">Optical response</h2></div><button id="copy-view" type="button">Copy link</button></div><div id="plot-stage" class="plot-stage" role="slider" tabindex="-1" aria-label="Wavelength guide" aria-valuemin="200" aria-valuemax="1200" aria-valuenow="532" aria-describedby="trace-help"><img id="spectra" alt="Calculated reflectivity, refractive index and extinction coefficient spectra" hidden><svg id="plot-guide" aria-hidden="true" hidden></svg></div>
+<output id="cursor-readout" class="cursor-readout">Move over a plot to choose a wavelength.</output>
+<div id="plot-readout" class="plot-readout" aria-live="polite"></div>
+<p id="trace-help" class="hint">Move the guide, then click or tap to look up values. With the guide focused, use arrow keys to move by 1 nm (Shift: 10 nm), then Enter to look up values. Numerical wavelength queries are limited to 40 per day; moving the guide uses no queries.</p><p class="result-guide">Reflectivity <var>R</var> is the percentage of incident light reflected.
 These calculations describe the optical response of ideal, uncoated materials.</p>
-<details class="optical-definitions"><summary>Optical definitions</summary><p class="hint"><var>n</var> and <var>k</var> denote the normal-<var>z</var> mode 1 refractive index and extinction coefficient. <var>R</var> is the unpolarized full-tensor reflectivity with Cartesian <var>z</var> as the surface normal. Gaps indicate unsupported or invalid values.</p></details></section>
+<details class="optical-definitions"><summary>Optical definitions</summary><p class="hint"><var>n</var> and <var>k</var> denote the normal-<var>z</var> mode 1 refractive index and extinction coefficient. <var>R</var> is the unpolarized full-tensor reflectivity with Cartesian <var>z</var> as the surface normal. For anisotropic materials, this mode-specific <var>n</var>, <var>k</var> pair and the full-tensor <var>R</var> describe different optical quantities. Gaps indicate unsupported or invalid values.</p></details></section>
 <aside>
-<section class="card"><h2 id="probe-title" tabindex="-1">Values at a wavelength</h2><p class="hint">Enter a wavelength within the selected range, or use a laser-wavelength preset.</p><form id="probe"><label for="wavelength">Wavelength (nm)</label><div class="input-row"><input id="wavelength" type="number" value="532" min="200" max="1200" step="any" required><button class="primary" type="submit">Look up</button></div></form><div class="presets"><button type="button" data-wavelength="532">532 nm</button><button type="button" data-wavelength="1064">1064 nm</button></div><div id="probe-result" aria-live="polite"><p class="hint">Look up one wavelength in the selected band. Values use the nearest stored sample and are rounded to four significant digits.</p></div></section>
+<section class="card plot-context"><h2>Reading the plots</h2>
+<p><var>R</var> (%) is the percentage of incident power reflected. <var>n</var> is the refractive index, and <var>k</var> is the extinction coefficient.</p>
+<p>The curves describe calculated, uncoated surfaces at normal incidence. Line colors and patterns identify the selected materials or calculation datasets. Gaps indicate unsupported values.</p>
+<p><a href="#methods">Calculation settings and references</a></p>
+</section>
+<section class="card"><h2 id="probe-title" tabindex="-1">Values at a wavelength</h2><p class="hint">Enter a wavelength within the selected range, or use a diagnostic-wavelength preset.</p><form id="probe"><label for="wavelength">Wavelength (nm)</label><div class="input-row"><input id="wavelength" type="number" value="532" min="200" max="1200" step="any" required><button class="primary" type="submit">Look up</button></div></form><div class="presets"><button type="button" data-wavelength="532">532 nm</button><button type="button" data-wavelength="656.3">656.3 nm</button><button type="button" data-wavelength="1064">1064 nm</button></div><div id="probe-result"><p class="hint">Look up one wavelength in the selected band. Values use the nearest stored 1 nm sample and are rounded to four significant digits. The readout reports the stored wavelength and its offset from your request.</p></div></section>
 
 </aside>
 </div>
-<section id="methods" class="sources card"><div><h2>Calculation details</h2><p><u>D</u>ensity <u>f</u>unctional <u>t</u>heory (DFT) optical responses were calculated with VASP. The spectra use the 1 nm wavelength grid from the screening calculations.</p><p>The spectra describe ideal, uncoated material surfaces at normal incidence.</p></div><div id="provenance"></div><div><h3>References</h3><ul id="references"></ul><button id="copy-citation" type="button">Copy references</button><span id="copy-status" role="status"></span></div></section>
+<section id="coating-study" class="study-context card" aria-labelledby="coating-study-title">
+<h2 id="coating-study-title">Coatings in the study</h2>
+<p>The study combines literature optical constants with calculated dielectric tensors for 115 compositions (227 optical responses). Use the plots above to compare bare interfaces. Coating calculations use homogeneous layers on semi-infinite metal substrates.</p>
+<p>The three-band score <var>R</var><sub>3</sub> is the equal-weight mean of reflectivity over 200–400, 400–700, and 700–1200 nm. The coating-induced change is Δ<var>R</var><sub>3</sub> = <var>R</var><sub>3,coated</sub> − <var>R</var><sub>3,bare</sub>, in percentage points. Negative values indicate lower reflectivity than the matching bare metal.</p>
+<table class="study-table" id="coating-losses"><caption>SiO<sub>2</sub> on Rh, Mo and W: Δ<var>R</var><sub>3</sub> at normal incidence, using standard PAW/PBE density tensors and unpolarized illumination.</caption><thead><tr><th scope="col">Metal</th><th scope="col">5 nm coating</th><th scope="col">100 nm coating</th></tr></thead><tbody><tr><th scope="row">Rh</th><td>−0.98</td><td>−10.21</td></tr><tr><th scope="row">Mo</th><td>−1.02</td><td>−14.66</td></tr><tr><th scope="row">W</th><td>−1.17</td><td>−14.22</td></tr></tbody></table>
+<p id="thickness-finding">Across the sampled 0.1–500 nm thicknesses, SiO<sub>2</sub> and Al<sub>2</sub>O<sub>3</sub> coatings on Rh, Mo and W lower the three-band score in both the literature and standard PAW/PBE models. Below 5 nm, the optical penalty approaches zero. Interference makes the full thickness dependence nonmonotonic.</p>
+<p id="line-finding">Coating order depends on wavelength. At 532 nm and 100 nm thickness, the standard PAW/PBE Al<sub>2</sub>O<sub>3</sub> coatings have smaller losses than SiO<sub>2</sub> on Rh, Mo and W, reversing their three-band order.</p>
+<p id="matched-finding">For 152 matched coated devices at 100 nm and normal incidence under unpolarized illumination, literature and standard PAW/PBE three-band scores differ by a mean absolute 10.64 percentage points.</p>
+</section>
+<section id="methods" class="sources card"><div><h2>Calculation details</h2><p><u>D</u>ensity <u>f</u>unctional <u>t</u>heory (DFT) optical responses were calculated with VASP. The spectra use the 1 nm wavelength grid from the screening calculations.</p><p id="interface-geometry">The incident medium has unit refractive index and relative permeability, representing vacuum (labeled air in the study). The material is homogeneous and semi-infinite, with Cartesian <var>z</var> as the surface normal. Unpolarized <var>R</var> averages the total reflected powers for the two transverse incident polarizations, including polarization conversion.</p><p id="study-method">The standard PAW dataset and density response match the study's main bare-interface calculation. The GW-oriented PAW option also uses PBE. The density and current response channels are kept separate.</p><p id="sampling-method">This explorer reads the stored 1 nm grid. At off-grid wavelengths such as 656.3 nm, it reports the nearest stored wavelength and offset. The study's diagnostic-line calculations interpolate complex dielectric components before solving the reflected fields.</p><p id="data-access">Supporting data and code are available from <a href="mailto:corey.oses@jhu.edu">Corey Oses</a> upon reasonable request.</p></div><div id="provenance"></div><div><h3>References</h3><ul id="references"></ul><button id="copy-citation" type="button">Copy references</button><span id="copy-status" role="status"></span></div></section>
 <p class="hint">We record material selections, wavelength queries, IP addresses, and browser information, with your site account when signed in.</p>
 </div>
 {% endblock %}

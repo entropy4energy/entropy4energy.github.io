@@ -10,7 +10,7 @@ import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import expect, sync_playwright
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -134,6 +134,13 @@ def main():
                 assert page.evaluate("getComputedStyle(document.querySelector('.advanced u')).textDecorationLine.includes('underline')")
                 assert page.evaluate("getComputedStyle(document.querySelector('#references a')).textDecorationLine.includes('underline')")
                 assert page.evaluate("getComputedStyle(document.querySelector('#material-title')).borderBottomWidth === '1px'")
+                assert page.locator('#quantity').input_value()=='all'
+                assert page.locator('#compare-1').is_visible()
+                assert page.locator('#compare-2').is_visible()
+                assert page.locator('#coating-study').is_visible()
+                assert page.locator('#coating-losses tbody tr').count()==3
+                assert '10.64 percentage points' in page.locator('#matched-finding').inner_text()
+                assert '656.3 nm' in page.locator('#sampling-method').inner_text()
                 checks.append('shared shell, heading rules and scientific notation')
                 with page.expect_response(lambda r:'/api/probe' in r.url) as response:
                     page.get_by_role('button',name='532 nm',exact=True).click()
@@ -141,16 +148,70 @@ def main():
                 assert result['values'][0]['R']==40
                 assert '40' in page.locator('#probe-result').inner_text()
                 assert page.locator('#probe-result var').all_text_contents()==['n','k','R']
-                assert page.locator('.optical-definitions .hint var').all_text_contents()==['n','k','z','R','z']
+                assert page.locator('.optical-definitions .hint var').all_text_contents()==['n','k','z','R','z','n','k','R']
                 checks.append('single wavelength value')
+                probes=[]
+                page.on('request',lambda request:probes.append(request.url) if '/api/probe' in request.url else None)
+                page.locator('#plot-stage').scroll_into_view_if_needed()
+                image=page.locator('#spectra').bounding_box()
+                stage=page.locator('#plot-stage')
+                layout=app.store.public_catalog()['plot_layouts']['all']
+                panel=layout['panels'][0]
+                def plot_point(wavelength):
+                    return (image['x']+(panel['left']+(wavelength-200)/1000*(panel['right']-panel['left']))/layout['width']*image['width'],
+                            image['y']+(panel['top']+30)/layout['height']*image['height'])
+                page.mouse.move(*plot_point(532))
+                assert '532 nm' in page.locator('#cursor-readout').inner_text()
+                assert len(probes)==0
+                assert page.locator('#plot-guide line').count()==3
+                with page.expect_response(lambda r:'/api/probe' in r.url) as response:
+                    page.mouse.click(*plot_point(532))
+                assert response.value.json()['values'][0]['requested_nm']==532
+                assert len(probes)==1
+                stage.focus()
+                stage.press('ArrowRight')
+                assert stage.get_attribute('aria-valuenow')=='533'
+                assert len(probes)==1
+                with page.expect_response(lambda r:'/api/probe' in r.url) as response:
+                    stage.press('Enter')
+                assert response.value.json()['values'][0]['requested_nm']==533
+                checks.append('guide movement is free of numerical queries; click and keyboard request one wavelength')
+                with page.expect_response(lambda r:'/api/plot' in r.url):
+                    page.get_by_label('Second material',exact=True).select_option('TestOxide')
+                page.locator('#spectra').wait_for(state='visible')
+                assert 'TestOxide' in page.locator('#material-title').inner_text()
+                # Assert the native option property for both transition directions.
+                expect(page.locator('#branch option[value=both]')).to_have_js_property('disabled',True)
+                with page.expect_response(lambda r:'/api/plot' in r.url):
+                    page.get_by_label('Third material',exact=True).select_option('Al2O3')
+                page.locator('#spectra').wait_for(state='visible')
+                with page.expect_response(lambda r:'/api/probe' in r.url) as response:
+                    page.get_by_role('button',name='532 nm',exact=True).click()
+                assert [v['material'] for v in response.value.json()['values']]==['TestMetal','TestOxide','Al2O3']
+                assert page.locator('#probe-result .readout').count()==3
+                saved_url=page.url
+                page.goto(saved_url)
+                page.locator('#spectra').wait_for(state='visible')
+                assert page.locator('#compare-1').input_value()=='TestOxide'
+                assert page.locator('#compare-2').input_value()=='Al2O3'
+                assert page.locator('#wavelength').input_value()=='532'
+                with page.expect_response(lambda r:'/api/plot' in r.url):
+                    page.get_by_role('button',name='Clear comparison',exact=True).click()
+                page.locator('#spectra').wait_for(state='visible')
+                expect(page.locator('#branch option[value=both]')).to_have_js_property('disabled',False)
+                page.get_by_text('Advanced options',exact=True).click()
+                checks.append('three-material comparison, shared-wavelength readouts and restored shared links')
+
                 with page.expect_response(lambda r:'/api/plot' in r.url):
                     page.get_by_label('PAW dataset',exact=True).select_option('both')
                 with page.expect_response(lambda r:'/api/probe' in r.url) as response:
                     page.get_by_role('button',name='1064 nm',exact=True).click()
                 assert len(response.value.json()['values'])==2
                 with page.expect_response(lambda r:'/api/plot' in r.url):
+                    page.get_by_label('Plot',exact=True).select_option('R')
+                with page.expect_response(lambda r:'/api/plot' in r.url):
                     page.get_by_label('Plot',exact=True).select_option('all')
-                assert page.locator('#spectra').get_attribute('alt').startswith('Calculated refractive index')
+                assert page.locator('#spectra').get_attribute('alt').startswith('Calculated reflectivity')
                 checks.append('both PAW datasets and optical constants')
                 with page.expect_response(lambda r:'/api/plot' in r.url):
                     page.get_by_label('Material',exact=True).select_option('TestOxide')

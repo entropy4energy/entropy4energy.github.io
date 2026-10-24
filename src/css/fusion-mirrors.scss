@@ -149,7 +149,7 @@
     border-radius:8px;
     padding:1rem
   }
-  .controls>h2,.controls>details,.controls>.material-shortcuts{
+  .controls>h2,.controls>details,.controls>.material-shortcuts,.controls>.comparison-controls{
     grid-column:1/-1
   }
   .controls>h2{
@@ -232,11 +232,30 @@
     display:block;
     width:100%;
     height:auto;
-    margin-top:16px
+    margin-top:0
   }
   #spectra[hidden]{
     display:none
   }
+  .start-guide{font-size:.9rem;margin:.75rem 0}
+  .comparison-controls{border:1px solid var(--line);border-radius:4px;padding:.75rem;min-width:0;margin:0}
+  .comparison-controls legend{font-weight:600;color:var(--navy);font-size:.9rem;padding:0 .3rem}
+  .comparison-selects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+  .comparison-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
+  .comparison-actions button{font-size:.8rem}
+  .comparison-controls .hint{margin-bottom:0}
+  .plot-stage{position:relative;margin-top:16px;touch-action:pan-y;cursor:crosshair}
+  .plot-stage:focus-visible{outline:2px solid var(--navy);outline-offset:4px}
+  #plot-guide{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  #plot-guide[hidden]{display:none}
+  #plot-guide line{stroke:#1c2430;stroke-width:2;stroke-dasharray:6 4}
+  .cursor-readout{display:block;min-height:1.7em;font-size:.85rem;color:var(--navy);font-variant-numeric:tabular-nums}
+  .plot-context p{font-size:.85rem}
+  .plot-readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+  .plot-readout .readout{margin:0;padding-top:.6rem}
+  .plot-readout .readout h3{font-size:.8rem}
+  .plot-readout .readout p{font-size:.7rem;margin-bottom:0}
+  .plot-readout:empty{display:none}
   .hint{
     font-size:.8rem;
     color:var(--muted);
@@ -277,6 +296,7 @@
   .presets{
     display:flex;
     gap:7px;
+    flex-wrap:wrap;
     margin:12px 0 20px
   }
   .presets button{
@@ -313,6 +333,12 @@
   .readout p{
     font-size:11px
   }
+  .study-context{margin-top:20px}
+  .study-context p,.study-table{font-size:.85rem}
+  .study-table{width:100%;border-collapse:collapse;margin:12px 0 18px}
+  .study-table caption{text-align:left;margin-bottom:8px;color:var(--navy)}
+  .study-table th,.study-table td{padding:7px 10px;text-align:left;border-bottom:1px solid $color-line-2}
+  .study-table td{font-variant-numeric:tabular-nums}
   .sources{
     margin-top:20px;
     display:grid;
@@ -417,11 +443,7 @@
       display:grid;
       grid-template-columns:1fr
     }
-    #spectra{
-      margin-left:-10px;
-      width:calc(100% + 20px);
-      max-width:none
-    }
+
     .card-title h2{
       font-size:20px
     }
@@ -433,6 +455,13 @@
     padding: 0;
   }
 
+  @container (max-width: 1100px) {
+    .results {grid-template-columns:1fr}
+    aside {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+  }
+  @container (max-width: 600px) {
+    aside,.comparison-selects {grid-template-columns:1fr}
+  }
   @container (max-width: 800px) {
     .advanced-controls{
       grid-template-columns:1fr
