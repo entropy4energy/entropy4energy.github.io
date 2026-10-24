@@ -71,7 +71,9 @@ def main():
             # ---- the shell and the search
             page.goto(origin + "/chaos-materials")
             page.locator("#cm-q").wait_for()
-            check(page.locator('meta[name="robots"][content*="noindex"]').count() == 1, "not indexed")
+            check(page.locator('meta[name="robots"]').count() == 1
+                  and page.locator('meta[name="robots"]').get_attribute("content") == "noindex, nofollow, noai, noimageai",
+                  "one robots tag: not indexed, no AI use")
             check(page.locator('script[src*="googletagmanager"]').count() == 0, "no analytics on the material pages")
             check(page.locator("aside.sidebar").count() == 0, "no news sidebar")
             check(page.locator("body").get_attribute("data-s4e-product") == "chaos", "part of CHAOS")
