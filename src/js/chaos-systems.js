@@ -158,10 +158,11 @@
   }
 
   // ------------------------------------------------------------ the list
-  // Cohort tabs, an element search, verdict filters with counts, the map of
-  // the cohort and the table. The state is kept in the address (q, cohort,
-  // v, sort), so a filtered list can be bookmarked or sent; cohort=all is
-  // every system.
+  // Cohort tabs, an element search and the table of names. The list file is
+  // not counted by the gate, so it carries names, families, lattices and
+  // elements only; a system's ranking and values are on its own page. The
+  // state is kept in the address (q, cohort), so a filtered list can be
+  // bookmarked or sent; cohort=all is every system.
   function listView(index) {
     var systems = index.systems || [];
     var cohorts = index.cohorts || [];
@@ -173,41 +174,28 @@
     var state = {
       q: q.get("q") || "",
       cohort: c0 === "all" ? "" : c0 && cohorts.some(function (c) { return c.key === c0; }) ? c0 : first,
-      v: Object.prototype.hasOwnProperty.call(VERDICTS, q.get("v")) ? q.get("v") : "",
-      sort: ["pf", "s", "label"].indexOf(q.get("sort")) >= 0 ? q.get("sort") : "pf",
       shown: 100,
     };
     var tabs = cohorts.map(function (c) {
       return '<button type="button" class="cs-tab" data-cohort="' + esc(c.key) + '">' + esc(c.name) +
         ' <span class="cs-tab-n">' + c.n.toLocaleString("en-US") + "</span></button>";
     }).join("") + '<button type="button" class="cs-tab" data-cohort="">all systems <span class="cs-tab-n">' + systems.length.toLocaleString("en-US") + "</span></button>";
-    var vButtons = Object.keys(VERDICTS).map(function (k) {
-      return '<button type="button" class="cs-vf ' + VERDICTS[k].cls + '" data-v="' + k + '" aria-pressed="false">' + VERDICTS[k].chip +
-        ' <span class="cs-vf-n"></span></button>';
-    }).join("");
     app.innerHTML =
       "<h1>CHAOS systems</h1>" +
-      '<p class="cs-lead">Disordered systems in CHAOS, each ranked within its cohort: the systems of the same family on the same ' +
+      '<p class="cs-lead">Disordered systems in CHAOS, grouped in cohorts: the systems of the same family on the same ' +
       "parent lattice, with small groups pooled across lattices. " +
-      "Each page gives the synthesis ranking, precursors, competing phases and the quantities behind the ranking.</p>" +
+      "Each page gives the system's synthesis ranking within its cohort, precursors, competing phases and the quantities behind the ranking.</p>" +
       '<div class="cs-tabs" role="group" aria-label="Cohort">' + tabs + "</div>" +
       '<div class="cs-controls">' +
       '<div class="cs-field cs-grow"><label for="cs-q">Elements or name</label><input id="cs-q" type="search" placeholder="Co Mg Ni" autocomplete="off">' +
-      '<span class="cs-hint">Systems with all the listed elements</span></div>' +
-      '<div class="cs-field"><label for="cs-sort">Order</label><select id="cs-sort">' +
-      '<option value="pf">Formability, highest first</option><option value="s">Compatibility, highest first</option>' +
-      '<option value="label">Name</option></select></div></div>' +
-      '<div class="cs-vfs" role="group" aria-label="Verdict">' + vButtons + "</div>" +
-      '<div class="cs-browse"><div class="cs-browse-list"><p class="cs-count" id="cs-count" role="status"></p>' +
+      '<span class="cs-hint">Systems with all the listed elements</span></div></div>' +
+      '<p class="cs-count" id="cs-count" role="status"></p>' +
       '<div class="cs-scroll"><table class="cs-table cs-list" id="cs-table" tabindex="-1"></table></div>' +
-      '<p class="cs-actions" id="cs-more"></p></div><figure class="cs-browse-map" id="cs-map"></figure></div>' +
-      '<p class="cs-note">Computed from the CHAOS database on ' + released(index.release) + ". Ranks are within each cohort. " +
-      "Verdicts combine formability rank and compatibility: a synthesis priority has formability in the top quartile of its cohort and " +
-      "a compatibility score of at least 0.75; high formability and high compatibility meet one of the two.</p>";
+      '<p class="cs-actions" id="cs-more"></p>' +
+      '<p class="cs-note">From the CHAOS database on ' + released(index.release) + ".</p>";
     document.title = "CHAOS systems | Entropy for Energy Laboratory | Johns Hopkins";
     var $ = function (id) { return document.getElementById(id); };
     $("cs-q").value = state.q;
-    $("cs-sort").value = state.sort;
 
     function matchesText(s) {
       var words = state.q.split(/[^A-Za-z]+/).filter(Boolean);
@@ -225,70 +213,37 @@
     function inCohort(s) { return !state.cohort || s.cohort === state.cohort; }
 
     function render() {
-      var pool = systems.filter(function (s) { return inCohort(s) && matchesText(s); });
-      var rows = pool.filter(function (s) { return !state.v || s.v === state.v; });
-      var key = state.sort;
-      rows.sort(function (a, b) {
-        if (key === "label") return a.label < b.label ? -1 : a.label > b.label ? 1 : 0;
-        var x = key === "s" ? a.s : a.pf, y = key === "s" ? b.s : b.pf;
-        return (y == null ? -1 : y) - (x == null ? -1 : x);
-      });
+      var rows = systems.filter(function (s) { return inCohort(s) && matchesText(s); });
+      rows.sort(function (a, b) { return a.label < b.label ? -1 : a.label > b.label ? 1 : 0; });
       Array.prototype.forEach.call(app.querySelectorAll(".cs-tab"), function (b) {
         var on = b.getAttribute("data-cohort") === state.cohort;
         b.classList.toggle("on", on);
         b.setAttribute("aria-pressed", on ? "true" : "false");
       });
-      var counts = {};
-      pool.forEach(function (s) { counts[s.v] = (counts[s.v] || 0) + 1; });
-      Array.prototype.forEach.call(app.querySelectorAll(".cs-vf"), function (b) {
-        var k = b.getAttribute("data-v");
-        b.querySelector(".cs-vf-n").textContent = (counts[k] || 0).toLocaleString("en-US");
-        b.setAttribute("aria-pressed", state.v === k ? "true" : "false");
-        b.hidden = !counts[k] && state.v !== k;
-      });
-      var cohortRows = systems.filter(inCohort);
-      var hit = {};
-      rows.forEach(function (s) { hit[s.id] = true; });
-      var filtered = rows.length !== cohortRows.length;
-      var cname = state.cohort ? (cohorts.filter(function (c) { return c.key === state.cohort; })[0] || {}).name : "all systems";
-      $("cs-map").innerHTML = map(cohortRows.map(function (s) {
-        return { p: s.pf, s: s.s, id: s.id, label: s.label, hit: filtered && hit[s.id] };
-      }), null, { label: "Formability percentile against compatibility score, " + cname }) +
-        "<figcaption>" + cohortRows.length.toLocaleString("en-US") + " " + (state.cohort ? esc(cname) : "systems; percentiles are within each system's cohort") +
-        (filtered ? ". The systems in the list are darker" : "") + ". Each point links to its page.</figcaption>";
       $("cs-count").textContent = rows.length.toLocaleString("en-US") + (rows.length === 1 ? " system" : " systems");
       // all systems, or a cohort pooled across lattices (key "<family>|*")
       var showLattice = !state.cohort || /\|\*$/.test(state.cohort);
-      var head = "<thead><tr><th>System</th>" + (showLattice ? "<th class=cs-sm-hide>Lattice</th>" : "") +
-        "<th class='num cs-sm-hide'>Formability <span class=cs-th-unit>(eV/atom)<sup>−1</sup></span></th><th class=num>Percentile</th>" +
-        "<th class='num cs-sm-hide'>Compatibility</th><th>Verdict</th></tr></thead>";
+      var head = "<thead><tr><th>System</th><th>Family</th>" + (showLattice ? "<th>Lattice</th>" : "") +
+        "<th class=num>Elements</th></tr></thead>";
       var body = rows.slice(0, state.shown).map(function (s) {
-        var v = VERDICTS[s.v] || VERDICTS.unranked;
-        return "<tr><td><a href=\"" + link(s.id) + "\">" + formula(s.label) + "</a></td>" +
-          (showLattice ? "<td class=cs-sm-hide>" + esc(s.lattice) + "</td>" : "") +
-          "<td class='num cs-sm-hide'>" + sig(s.f, 3) + "</td><td class=num>" + ordinal(s.pf) + "</td><td class='num cs-sm-hide'>" +
-          (s.s == null ? "–" : s.s.toFixed(2)) + '</td><td><span class="cs-chip ' + v.cls + '">' + v.chip + "</span></td></tr>";
+        return "<tr><td><a href=\"" + link(s.id) + "\">" + formula(s.label) + "</a></td><td>" + esc(s.family) + "</td>" +
+          (showLattice ? "<td>" + esc(s.lattice) + "</td>" : "") +
+          "<td class=num>" + esc(s.n_el != null ? s.n_el : (s.elements || []).length) + "</td></tr>";
       }).join("");
       $("cs-table").innerHTML = head + "<tbody>" + body + "</tbody>";
-      $("cs-more").innerHTML = (rows.length > state.shown
-        ? '<button type="button" class="cs-button" id="cs-show">Show all ' + rows.length.toLocaleString("en-US") + "</button>" : "");
+      $("cs-more").innerHTML = rows.length > state.shown
+        ? '<button type="button" class="cs-button" id="cs-show">Show all ' + rows.length.toLocaleString("en-US") + "</button>" : "";
       if (rows.length > state.shown) {
         $("cs-show").onclick = function () { state.shown = Infinity; render(); $("cs-table").focus(); };
       }
       var u = new URLSearchParams();
       if (state.q) u.set("q", state.q);
       if (state.cohort !== first) u.set("cohort", state.cohort || "all");
-      if (state.v) u.set("v", state.v);
-      if (state.sort !== "pf") u.set("sort", state.sort);
       history.replaceState(null, "", location.pathname + (u.toString() ? "?" + u.toString() : ""));
     }
     $("cs-q").oninput = function () { state.q = this.value; state.shown = 100; render(); };
-    $("cs-sort").onchange = function () { state.sort = this.value; render(); };
     Array.prototype.forEach.call(app.querySelectorAll(".cs-tab"), function (b) {
       b.onclick = function () { state.cohort = b.getAttribute("data-cohort"); state.shown = 100; render(); };
-    });
-    Array.prototype.forEach.call(app.querySelectorAll(".cs-vf"), function (b) {
-      b.onclick = function () { var k = b.getAttribute("data-v"); state.v = state.v === k ? "" : k; state.shown = 100; render(); };
     });
     render();
   }
