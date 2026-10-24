@@ -21,9 +21,19 @@ class AccessTests(unittest.TestCase):
               [500,3,0.3,30,True,False,False],[600,4,0.4,40,True,True,True],
               [800,5,0.5,50,True,True,True],[1200,6,0.6,60,True,True,True]]
         (self.root/'data/spectra/test.json').write_text(json.dumps({'columns':cols,'rows':rows}))
-        run={'metadata':{'formula':'Test','ENCUT_eV':520,'source_path':'private/secret','vasprun_xml':'private/raw.xml'},
+        run={'metadata':{'formula':'Test','source_structure_id':'external-structure-marker','ENCUT_eV':520,'source_path':'private/secret','vasprun_xml':'private/raw.xml'},
              'channels':{c:{'screening':{'url':'data/spectra/test.json'}} for c in ['density','current']}}
+        comparisons={}
+        for mid,delta in [('Second',1),('Third',2)]:
+            adjusted=[row[:1]+[row[1]+delta,row[2]+delta,row[3]+10*delta]+row[4:] for row in rows]
+            (self.root/('data/spectra/'+mid+'.json')).write_text(json.dumps({'columns':cols,'rows':adjusted}))
+            other=json.loads(json.dumps(run))
+            for response in other['channels'].values():
+                response['screening']['url']='data/spectra/'+mid+'.json'
+            comparisons[mid]=other
         cat={'families':{'test':'Synthetic tests'},'materials':[{'id':'Test','family':'test','excluded':False,'runs':{'PBE':run,'GW':run}},
+             {'id':'Second','family':'test','excluded':False,'runs':{'PBE':comparisons['Second'],'GW':comparisons['Second']}},
+             {'id':'Third','family':'test','excluded':False,'runs':{'PBE':comparisons['Third']}},
              {'id':'Excluded','family':'test','excluded':True,'runs':{'PBE':run}}]}
         (self.root/'data/catalog.json').write_text(json.dumps(cat))
         self.app=App(self.root,self.root/'quota.sqlite3',origin='https://example.org',probe_limit=2,plot_limit=2)
@@ -72,6 +82,48 @@ class AccessTests(unittest.TestCase):
         _,raw=self.request('/api/provenance',query='material=Test')
         self.assertNotIn(b'private/',raw);self.assertNotIn(b'vasprun',raw)
         self.assertNotIn(b'source_path',raw)
+        self.assertNotIn(b'source_structure_id',raw)
+        self.assertNotIn(b'external-structure-marker',raw)
+        self.assertEqual(json.loads(raw)['calculations'][0]['settings']['ENCUT_eV'],520)
+
+    def test_bounded_material_comparison_uses_one_wavelength(self):
+        query={**self.q,'compare':'Second,Third'}
+        status,raw=self.request('/api/probe','POST',query)
+        self.assertEqual(status['status'],'200 OK')
+        values=json.loads(raw)['values']
+        self.assertEqual([v['material'] for v in values],['Test','Second','Third'])
+        self.assertEqual([v['sample_nm'] for v in values],[400,400,400])
+        self.assertEqual([v['R'] for v in values],[20,30,40])
+        self.assertNotIn(b'rows',raw)
+        status,raw=self.request('/api/provenance',query='material=Test&compare=Second,Third')
+        self.assertEqual(status['status'],'200 OK')
+        self.assertEqual(len(json.loads(raw)['calculations']),3)
+        self.assertNotIn(b'external-structure-marker',raw)
+        status,raw=self.request('/api/plot',query='material=Test&compare=Second,Third&quantity=all')
+        self.assertEqual(status['status'],'200 OK')
+        self.assertTrue(raw.startswith(b'\x89PNG'))
+
+    def test_comparison_rejects_duplicates_excess_unavailable_and_mixed_paw(self):
+        for compared,branch in [('Test','PBE'),('Second,Second','PBE'),('Second,Third,Other','PBE'),
+                                ('Excluded','PBE'),('Missing','PBE'),('Third','GW'),('Second','both')]:
+            status,_=self.request('/api/probe','POST',{**self.q,'compare':compared,'branch':branch})
+            self.assertEqual(status['status'],'400 Bad Request',(compared,branch))
+
+    def test_comparison_queries_keep_the_same_daily_quota(self):
+        for _ in range(2):
+            status,_=self.request('/api/probe','POST',{**self.q,'compare':'Second,Third'})
+            self.assertEqual(status['status'],'200 OK')
+        status,_=self.request('/api/probe','POST',self.q)
+        self.assertEqual(status['status'],'429 Too Many Requests')
+
+    def test_plot_geometry_is_public_but_spectra_are_not(self):
+        status,raw=self.request('/api/materials')
+        data=json.loads(raw)
+        self.assertEqual([p['field'] for p in data['plot_layouts']['all']['panels']],['R','n','k'])
+        self.assertEqual(data['plot_layouts']['R']['height'],430)
+        self.assertEqual(data['bands']['visible'],[400,700])
+        for key in [b'rows',b'wavelength_nm',b'external-structure-marker',b'source_structure_id']:
+            self.assertNotIn(key,raw)
 
     def test_cross_origin_rejected(self):
         s,_=self.request('/api/probe','POST',self.q,origin='https://other.example')
@@ -108,7 +160,7 @@ class AccessTests(unittest.TestCase):
     def test_spectral_regions_keep_their_colors(self):
         from PIL import Image
         image=Image.open(io.BytesIO(self.app.store.plot({**self.q,'quantity':'R'})))
-        for point,color in [((180,210),(244,241,251)),((450,210),(237,247,243)),((800,210),(237,243,250))]:
+        for point,color in [((180,210),(221,204,244)),((450,210),(190,231,201)),((800,210),(194,220,245))]:
             self.assertEqual(image.getpixel(point),color)
 
     def test_plot_formula_digits_use_a_lower_baseline(self):

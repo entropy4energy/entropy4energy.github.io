@@ -11,3 +11,12 @@ State what the calculation or tool does, with section titles that name the subje
 The Fusion Mirrors view uses the actual calculated spectrum. Its UV, visible and near-infrared regions retain their shaded backgrounds. Numerical queries remain bounded to a single wavelength, with unsupported values shown as unavailable.
 
 After building, run `python tests/check_site_style.py --dist dist` and the site-style unit tests. The browser tests check the shared fonts and heading rule, italic variables, chemical subscripts and exponent markup. Service tests check the spectral-region colors. Review desktop and phone views against the reference images before publication.
+
+
+Fusion Mirrors displays all three optical properties by default. Material
+comparison uses shared axes, distinct line patterns and a maximum of three
+materials with common calculation settings. The wavelength guide uses
+public plot bounds and sends no numerical requests until a click, tap or
+keyboard confirmation. Optical arrays remain private. Service tests check
+comparison bounds and quotas, plot geometry and spectral colors; browser
+checks cover guide movement, shared links, readouts and mobile overflow.

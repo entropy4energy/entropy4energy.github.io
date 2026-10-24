@@ -19,6 +19,34 @@ PREFIX = '/fusion-mirrors'
 BANDS = {'all': (200, 1200), 'uv': (200, 400), 'visible': (400, 700), 'nir': (700, 1200)}
 BRANCHES = {'PBE': 'Standard PAW / PBE', 'GW': 'GW-oriented PAW / PBE'}
 FIELDS = {'n': 'n_mode1', 'k': 'k_mode1', 'R': 'R_unpolarized_percent'}
+PLOT_LAYOUTS = {
+    'R': {'width': 1040, 'height': 430, 'panels': [{'field': 'R', 'left': 85, 'right': 1000, 'top': 80, 'bottom': 315}]},
+    'all': {'width': 1040, 'height': 720, 'panels': [
+        {'field': field, 'left': 85, 'right': 1000, 'top': top, 'bottom': top+142}
+        for field, top in [('R', 72), ('n', 272), ('k', 472)]]},
+}
+
+
+def draw_curve(draw, points, color, pattern=()):
+    if len(points) == 1:
+        x,y=points[0];draw.ellipse((x-2,y-2,x+2,y+2),fill=color)
+    elif not pattern:
+        if points: draw.line(points,fill=color,width=3)
+    else:
+        phase=0;remaining=pattern[0]
+        for (x0,y0),(x1,y1) in zip(points,points[1:]):
+            length=math.hypot(x1-x0,y1-y0)
+            if not length: continue
+            offset=0
+            while offset < length:
+                step=min(remaining,length-offset)
+                if phase % 2 == 0:
+                    a=offset/length;b=(offset+step)/length
+                    draw.line((x0+(x1-x0)*a,y0+(y1-y0)*a,x0+(x1-x0)*b,y0+(y1-y0)*b),fill=color,width=3)
+                offset+=step;remaining-=step
+                if remaining < 1e-8:
+                    phase=(phase+1)%len(pattern);remaining=pattern[phase]
+
 REFERENCES = [
     {'title': 'Kresse and Furthmüller, Physical Review B 54, 11169 (1996)', 'url': 'https://doi.org/10.1103/PhysRevB.54.11169'},
     {'title': 'Perdew, Burke, and Ernzerhof, Physical Review Letters 77, 3865 (1996)', 'url': 'https://doi.org/10.1103/PhysRevLett.77.3865'},
@@ -50,10 +78,10 @@ class Store:
     def public_catalog(self):
         return {'materials': [{'id': m['id'], 'family': m['family'], 'branches': list(m['runs'])}
                               for m in self.materials.values()], 'families': self.families,
-                'references': REFERENCES}
+                'references': REFERENCES, 'plot_layouts': PLOT_LAYOUTS, 'bands': BANDS}
 
     def selection(self, query):
-        if set(query) - {'material', 'branch', 'channel', 'band', 'wavelength', 'quantity'}:
+        if set(query) - {'material', 'branch', 'channel', 'band', 'wavelength', 'quantity', 'compare'}:
             raise QueryError('Unsupported query field.')
         if query.get('quantity', 'all') not in {'all', 'R'}:
             raise QueryError('Choose reflectivity or all optical properties.')
@@ -71,7 +99,22 @@ class Store:
         band = query.get('band', 'all')
         if channel not in {'density', 'current'} or band not in BANDS:
             raise QueryError('Choose a supported response and wavelength band.')
+        comparison = query.get('compare', '')
+        if not isinstance(comparison, str):
+            raise QueryError('Choose at most two comparison materials.')
+        mids = [mid] + (comparison.split(',') if comparison else [])
+        if len(mids) > 3 or len(set(mids)) != len(mids) or any(m not in self.materials for m in mids):
+            raise QueryError('Choose up to three different available materials.')
+        if len(mids) > 1 and branch == 'both':
+            raise QueryError('Compare materials with one PAW dataset, or compare PAW datasets for one material.')
+        if any(b not in self.materials[m]['runs'] for m in mids for b in branches):
+            raise QueryError('The selected PAW dataset is unavailable for a comparison material.')
         return mid, branches, channel, band
+
+    def selected_series(self, query):
+        mid, branches, channel, band = self.selection(query)
+        mids = [mid] + (query['compare'].split(',') if query.get('compare') else [])
+        return [(m, b) for m in mids for b in branches], channel, band
 
     @lru_cache(maxsize=24)
     def spectrum(self, mid, branch, channel):
@@ -104,15 +147,16 @@ class Store:
         return None
 
     def provenance(self, query):
-        mid, branches, channel, band = self.selection(query)
-        safe = ('formula', 'source_structure_id', 'ENCUT_eV', 'EDIFF_eV', 'NBANDS_effective', 'CSHIFT_eV', 'method')
-        return {'material': mid, 'family': self.families[self.materials[mid]['family']],
-                'calculations': [{'branch': BRANCHES[b], 'settings': {k: v for k, v in
-                 self.materials[mid]['runs'][b]['metadata'].items() if k in safe}} for b in branches],
+        series, channel, band = self.selected_series(query)
+        safe = ('formula', 'ENCUT_eV', 'EDIFF_eV', 'NBANDS_effective', 'CSHIFT_eV', 'method')
+        return {'material': series[0][0], 'materials': list(dict.fromkeys(m for m,b in series)),
+                'family': self.families[self.materials[series[0][0]]['family']],
+                'calculations': [{'material': mid, 'branch': BRANCHES[b], 'settings': {k: v for k, v in
+                 self.materials[mid]['runs'][b]['metadata'].items() if k in safe}} for mid,b in series],
                 'references': REFERENCES}
 
     def probe(self, query):
-        mid, branches, channel, band = self.selection(query)
+        series, channel, band = self.selected_series(query)
         try:
             wavelength = float(query['wavelength'])
         except (ValueError, TypeError, KeyError):
@@ -123,9 +167,9 @@ class Store:
         if not lo <= wavelength <= hi:
             raise QueryError('The wavelength is outside the selected band.')
         values = []
-        for branch in branches:
+        for mid, branch in series:
             rows, index, wavelengths = self.spectrum(mid, branch, channel)
-            result = {'branch': BRANCHES[branch], 'requested_nm': wavelength, 'sample_nm': None,
+            result = {'material': mid, 'branch': BRANCHES[branch], 'requested_nm': wavelength, 'sample_nm': None,
                       'offset_nm': None, 'n': None, 'k': None, 'R': None}
             if wavelengths[0] <= wavelength <= wavelengths[-1]:
                 i = bisect_left(wavelengths, wavelength)
@@ -137,36 +181,42 @@ class Store:
                         v = self.value(rows[j], index, field)
                         result[field] = float(f'{v:.4g}') if v is not None else None
             values.append(result)
-        return {'material': mid, 'values': values}
+        return {'material': series[0][0], 'values': values}
 
     def plot(self, query):
-        mid, branches, channel, band = self.selection(query)
+        selected, channel, band = self.selected_series(query)
         lo, hi = BANDS[band]
         reflectivity_only = query.get('quantity') == 'R'
-        image = Image.new('RGB', (1040, 430 if reflectivity_only else 720), 'white')
+        layout = PLOT_LAYOUTS['R' if reflectivity_only else 'all']
+        image = Image.new('RGB', (layout['width'], layout['height']), 'white')
         draw = ImageDraw.Draw(image)
         font = ImageFont.truetype(str(HERE/'fonts/WorkSans-Regular.ttf'), size=17)
         small = ImageFont.truetype(str(HERE/'fonts/WorkSans-Regular.ttf'), size=14)
         title = ImageFont.truetype(str(HERE/'fonts/WorkSans-Regular.ttf'), size=23)
         variable = ImageFont.truetype(str(HERE/'fonts/WorkSans-Italic.ttf'), size=17)
-        x=draw_formula(draw,(70,14),mid,title,small,'#002d72')
-        draw.text((x,14),f'  |  {channel} response  |  normal incidence',fill='#002d72',font=title)
-        colors = {'PBE': '#002d72', 'GW': '#b85c00'}
-        fields = ['R'] if reflectivity_only else list(FIELDS)
-        for field, top in zip(fields, (80,) if reflectivity_only else (72, 272, 472)):
-            left, right, bottom = 85, 1000, top+(235 if reflectivity_only else 142)
-            for start, end, label, color in [(200,400,'UV','#f4f1fb'), (400,700,'Visible','#edf7f3'), (700,1200,'Near-IR','#edf3fa')]:
+        mids=list(dict.fromkeys(m for m,b in selected))
+        if len(mids)==1:
+            x=draw_formula(draw,(70,10),mids[0],title,small,'#002d72')
+        else:
+            draw.text((70,10),'Material comparison',fill='#002d72',font=title)
+            x=70+draw.textlength('Material comparison',font=title)
+        draw.text((x,10),f'  |  {channel} response  |  normal incidence',fill='#002d72',font=title)
+        colors = ['#002d72', '#a53b00', '#00624e']
+        patterns = [(), (12,6), (3,5)]
+        for panel_index, panel in enumerate(layout['panels']):
+            field=panel['field'];left=panel['left'];right=panel['right'];top=panel['top'];bottom=panel['bottom']
+            for start, end, label, color in [(200,400,'UV','#ddccf4'), (400,700,'Visible','#bee7c9'), (700,1200,'Near-IR','#c2dcf5')]:
                 a,b=max(lo,start),min(hi,end)
                 if b>a:
                     x1=left+(a-lo)/(hi-lo)*(right-left);x2=left+(b-lo)/(hi-lo)*(right-left)
                     draw.rectangle((x1,top,x2,bottom),fill=color)
-                    if reflectivity_only:draw.text(((x1+x2)/2,top-28),label,fill='#536273',font=font,anchor='mt')
+                    if panel_index==0:draw.text(((x1+x2)/2,top-27),label,fill='#263849',font=font,anchor='mt')
             series = []
-            for branch in branches:
+            for mid, branch in selected:
                 rows, index, wavelengths = self.spectrum(mid, branch, channel)
                 points = [(w, self.value(row, index, field)) for row, w in zip(rows, wavelengths) if lo <= w <= hi]
-                series.append((branch, points))
-            finite = [v for _, points in series for _, v in points if v is not None]
+                series.append(points)
+            finite = [v for points in series for _, v in points if v is not None]
             ylo, yhi = (0, 100) if field == 'R' else (min([0]+finite), max([1]+finite)*1.08)
             if field == 'R' and finite:
                 ylo, yhi = min(0, min(finite)), max(100, max(finite))
@@ -175,33 +225,28 @@ class Store:
                 draw.text((left-55+draw.textlength(field, font=variable), top-24), ' (%)', fill='#002d72', font=font)
             for t in range(5):
                 y = bottom-(bottom-top)*t/4
-                draw.line([(left,y),(right,y)], fill='#e4e9ee')
+                draw.line([(left,y),(right,y)], fill='#aab5c0')
                 v = ylo+(yhi-ylo)*t/4
                 draw.text((left-52,y-7), f'{v:.3g}', fill='#536273', font=small)
                 x = left+(right-left)*t/4
                 draw.text((x-14,bottom+7), f'{lo+(hi-lo)*t/4:g}', fill='#536273', font=small)
             draw.line([(left,top),(left,bottom),(right,bottom)], fill='#536273', width=1)
-            for branch, points in series:
+            for i, points in enumerate(series):
                 segment=[]
-                def flush():
-                    if len(segment)>1:
-                        draw.line(segment,fill=colors[branch],width=3)
-                    elif segment:
-                        x,y=segment[0]; draw.ellipse((x-2,y-2,x+2,y+2),fill=colors[branch])
                 for w,v in points:
                     if v is None:
-                        flush();segment=[]
+                        draw_curve(draw,segment,colors[i],patterns[i]);segment=[]
                     else:
                         segment.append((left+(w-lo)/(hi-lo)*(right-left),bottom-(v-ylo)/(yhi-ylo)*(bottom-top)))
-                flush()
+                draw_curve(draw,segment,colors[i],patterns[i])
             if not finite:
                 draw.text((left+20,top+45),'No supported values in this band',fill='#536273',font=font)
-        draw.text((435, 350 if reflectivity_only else 652), 'Wavelength (nm)', fill='#536273', font=font)
-        x = 85
-        for branch in branches:
-            draw.line((x,405 if reflectivity_only else 697,x+24,405 if reflectivity_only else 697),fill=colors[branch],width=3)
-            draw.text((x+32,395 if reflectivity_only else 687),BRANCHES[branch],fill='#263849',font=small)
-            x += 300
+        draw.text((435, 350 if reflectivity_only else 643), 'Wavelength (nm)', fill='#536273', font=font)
+        for i,(mid,branch) in enumerate(selected):
+            x=85+i*305;y=390 if reflectivity_only else 684
+            draw_curve(draw,[(x,y+5),(x+28,y+5)],colors[i],patterns[i])
+            draw_formula(draw,(x+36,y-5),mid,small,small,colors[i])
+            draw.text((x+36,y+14),BRANCHES[branch],fill='#263849',font=small)
         stream = io.BytesIO(); image.save(stream, format='PNG')
         return stream.getvalue()
 
