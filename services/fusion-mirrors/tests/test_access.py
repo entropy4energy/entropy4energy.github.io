@@ -57,6 +57,15 @@ class AccessTests(unittest.TestCase):
         d=json.loads(raw);self.assertEqual(d['values'][0]['R'],20)
         self.assertNotIn('rows',d);self.assertEqual(len(d['values']),1)
 
+    def test_off_grid_request_reports_stored_sample_and_offset(self):
+        _,raw=self.request('/api/probe','POST',{**self.q,'wavelength':'400.3'})
+        value=json.loads(raw)['values'][0]
+        self.assertEqual(value['requested_nm'],400.3)
+        self.assertEqual(value['sample_nm'],400)
+        self.assertEqual(value['offset_nm'],-0.3)
+        self.assertEqual(value['R'],20)
+        self.assertEqual(value['n'],2)
+
     def test_invalid_value_stays_missing(self):
         _,raw=self.request('/api/probe','POST',{**self.q,'wavelength':'500'})
         value=json.loads(raw)['values'][0]

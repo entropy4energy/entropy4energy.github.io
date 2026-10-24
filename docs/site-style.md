@@ -20,3 +20,13 @@ public plot bounds and sends no numerical requests until a click, tap or
 keyboard confirmation. Optical arrays remain private. Service tests check
 comparison bounds and quotas, plot geometry and spectral colors; browser
 checks cover guide movement, shared links, readouts and mobile overflow.
+
+
+For Fusion Mirrors changes, compare the page with the active study before
+publication. Preserve bare versus coated geometry, the two PAW types within
+PBE, response-channel separation, mode-specific n/k versus full-tensor R,
+regional weighting, and the sign and units of coating-induced changes.
+Off-grid stored-sample readouts must show their actual wavelength and offset.
+A selected coating result must name its thickness and optical-input model.
+The study summary does not expose optical arrays or remove access quotas.
+Run the paper-alignment tests alongside the style and service checks.

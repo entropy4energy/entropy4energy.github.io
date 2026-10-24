@@ -333,6 +333,12 @@
   .readout p{
     font-size:11px
   }
+  .study-context{margin-top:20px}
+  .study-context p,.study-table{font-size:.85rem}
+  .study-table{width:100%;border-collapse:collapse;margin:12px 0 18px}
+  .study-table caption{text-align:left;margin-bottom:8px;color:var(--navy)}
+  .study-table th,.study-table td{padding:7px 10px;text-align:left;border-bottom:1px solid $color-line-2}
+  .study-table td{font-variant-numeric:tabular-nums}
   .sources{
     margin-top:20px;
     display:grid;
