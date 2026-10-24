@@ -129,10 +129,8 @@ def main():
             check(all(t == "HIGH FORMABILITY" for t in rows.locator(".cs-chip").all_inner_texts()) and rows.count() == n_form,
                   "verdict filter")
             check(vf.get_attribute("aria-pressed") == "true" and "v=formability" in page.url, "the filter is shown and kept")
-            with page.expect_download() as dl:
-                page.click("#cs-csv")
-            lines = Path(dl.value.path()).read_text().splitlines()
-            check(len(lines) == n_form + 1 and lines[0].startswith("system,chaos_id_digits,"), "the list as CSV")
+            check(page.locator("#cs-csv").count() == 0 and "CSV" not in page.locator("#cs-app").inner_text(),
+                  "no download of the list")
             vf.click()
             check(rows.count() == len(fixture["index"]["systems"]), "the filter clears")
             page.goto(origin + "/chaos-systems?v=constructor&sort=bogus")
@@ -185,7 +183,7 @@ def main():
             cells = page.locator(".cs-matrix td a")
             check(cells.count() == len(p["neighbors"]["list"]), "one cell per neighbor")
             check(page.locator("#cs-query").text_content() == p["query"], "the query")
-            check(page.locator('a[href="https://s4e.ai/chaos/agent/"]').count() >= 1, "CHAOS-Agent link")
+            check(page.locator('a[href="https://chaos.s4e.ai/chaos/agent/"]').count() >= 1, "CHAOS-Agent link")
             text = page.locator("#cs-app").inner_text()
             prose = re.sub(r"\b\w+_\w+\b|aflow:[0-9a-f]+", " ", text)
             bad = sorted(set(m.group(0) for m in BANNED.finditer(prose)))
@@ -243,12 +241,13 @@ def main():
             page.goto(origin + "/chaos-systems?id=" + rocksalt)
             page.locator(".cs-status.signin").wait_for()
             href = page.locator(".cs-status a.primary").get_attribute("href")
-            check(href.startswith("/loop/accounts/login/?next=") and rocksalt in href, "sign-in, back to this page")
+            check(href.startswith("https://chaos.s4e.ai/API/signin?next=") and rocksalt in href, "sign-in, back to this page")
             answer["mode"] = "profile"
             page.reload()
             page.locator(".cs-status.signin").wait_for()
-            check(page.locator(".cs-status a.primary").get_attribute("href").startswith("/loop/accounts/profile/?next="),
-                  "profile first")
+            check("not approved" in page.locator(".cs-status").inner_text()
+                  and page.locator(".cs-status a").get_attribute("href") == "https://chaos.s4e.ai/#access",
+                  "an account without CHAOS access is told how access works")
             answer["mode"] = "429"
             page.reload()
             page.locator(".cs-status.error").wait_for()

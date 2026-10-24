@@ -224,19 +224,6 @@
     }
     function inCohort(s) { return !state.cohort || s.cohort === state.cohort; }
 
-    function csv(rows) {
-      var head = ["system", "chaos_id_digits", "family", "lattice", "cohort", "formability_eV_atom_inv", "formability_percentile",
-        "compatibility", "compatibility_percentile", "verdict", "supercells"];
-      var cohortName = {};
-      cohorts.forEach(function (c) { cohortName[c.key] = c.name; });
-      var cell = function (x) { x = x == null ? "" : String(x); return /[",\n]/.test(x) ? '"' + x.replace(/"/g, '""') + '"' : x; };
-      var lines = [head.join(",")].concat(rows.map(function (s) {
-        return [s.label, s.id, s.family, s.lattice, cohortName[s.cohort] || s.cohort, s.f, s.pf, s.s, s.ps,
-          (VERDICTS[s.v] || VERDICTS.unranked).chip, s.n_sc].map(cell).join(",");
-      }));
-      return lines.join("\n") + "\n";
-    }
-
     function render() {
       var pool = systems.filter(function (s) { return inCohort(s) && matchesText(s); });
       var rows = pool.filter(function (s) { return !state.v || s.v === state.v; });
@@ -284,21 +271,9 @@
       }).join("");
       $("cs-table").innerHTML = head + "<tbody>" + body + "</tbody>";
       $("cs-more").innerHTML = (rows.length > state.shown
-        ? '<button type="button" class="cs-button" id="cs-show">Show all ' + rows.length.toLocaleString("en-US") + "</button>" : "") +
-        (rows.length ? '<button type="button" class="cs-button" id="cs-csv">Download this list (CSV)</button>' : "");
+        ? '<button type="button" class="cs-button" id="cs-show">Show all ' + rows.length.toLocaleString("en-US") + "</button>" : "");
       if (rows.length > state.shown) {
         $("cs-show").onclick = function () { state.shown = Infinity; render(); $("cs-table").focus(); };
-      }
-      if (rows.length) {
-        $("cs-csv").onclick = function () {
-          var blob = new Blob([csv(rows)], { type: "text/csv" });
-          var a = document.createElement("a");
-          a.href = URL.createObjectURL(blob);
-          a.download = "chaos-systems-" + (index.release || "list").slice(0, 8) + ".csv";
-          document.body.appendChild(a);
-          a.click();
-          setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 0);
-        };
       }
       var u = new URLSearchParams();
       if (state.q) u.set("q", state.q);
