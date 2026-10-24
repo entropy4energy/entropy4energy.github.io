@@ -192,7 +192,7 @@ async function view() {
     $("wavelength").max = hi;
     if (Number($("wavelength").value) < lo || Number($("wavelength").value) > hi) $("wavelength").value = lo;
     for (const b of document.querySelectorAll("[data-wavelength]")) b.disabled = Number(b.dataset.wavelength) < lo || Number(b.dataset.wavelength) > hi;
-    $("probe-result").replaceChildren(node("p", "Values use the nearest stored sample, without interpolation across gaps.", "hint"));
+    $("probe-result").replaceChildren(node("p", "Values use the nearest stored 1 nm sample. The readout reports its wavelength and offset; no interpolation or extrapolation is used.", "hint"));
     $("plot-readout").replaceChildren();
     $("spectra").hidden = true;
     $("plot-stage").tabIndex = -1;

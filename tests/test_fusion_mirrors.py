@@ -137,6 +137,10 @@ def main():
                 assert page.locator('#quantity').input_value()=='all'
                 assert page.locator('#compare-1').is_visible()
                 assert page.locator('#compare-2').is_visible()
+                assert page.locator('#coating-study').is_visible()
+                assert page.locator('#coating-losses tbody tr').count()==3
+                assert '10.64 percentage points' in page.locator('#matched-finding').inner_text()
+                assert '656.3 nm' in page.locator('#sampling-method').inner_text()
                 checks.append('shared shell, heading rules and scientific notation')
                 with page.expect_response(lambda r:'/api/probe' in r.url) as response:
                     page.get_by_role('button',name='532 nm',exact=True).click()
@@ -144,7 +148,7 @@ def main():
                 assert result['values'][0]['R']==40
                 assert '40' in page.locator('#probe-result').inner_text()
                 assert page.locator('#probe-result var').all_text_contents()==['n','k','R']
-                assert page.locator('.optical-definitions .hint var').all_text_contents()==['n','k','z','R','z']
+                assert page.locator('.optical-definitions .hint var').all_text_contents()==['n','k','z','R','z','n','k','R']
                 checks.append('single wavelength value')
                 probes=[]
                 page.on('request',lambda request:probes.append(request.url) if '/api/probe' in request.url else None)
