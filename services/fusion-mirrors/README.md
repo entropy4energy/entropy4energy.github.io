@@ -14,10 +14,26 @@ that package into the website build or repository.
 | --- | --- |
 | `GET /fusion-mirrors/api/materials` | Material identifiers, families, PAW branches, method references |
 | `GET /fusion-mirrors/api/provenance` | Selected calculation settings and references |
-| `GET /fusion-mirrors/api/plot` | PNG containing n, k, and unpolarized reflectivity |
+| `GET /fusion-mirrors/api/plot` | PNG containing reflectivity, n, and k, or reflectivity alone |
 | `POST /fusion-mirrors/api/probe` | One wavelength sample per selected PAW branch |
 
 The service has no spectrum-array, raw-file, archive, CSV, or batch route.
+The default view shows three aligned plots: reflectivity, refractive index,
+and extinction coefficient. Up to three materials can share each set of
+axes, using one common PAW branch and response channel. Alternatively,
+one material can compare its two PAW datasets. Colors and line patterns
+identify series; UV, visible and near-infrared backgrounds use distinct
+shading. The public catalog supplies only plot geometry and band bounds
+for the wavelength guide, with no optical curve coordinates.
+
+Pointer movement and keyboard arrows update a local wavelength guide.
+Clicking, tapping or pressing Enter requests one wavelength, with at most
+three material results or two PAW results. Each such request consumes one
+of the existing 40 daily numerical-query allowances. Guide movement sends
+no numerical requests. Shared links retain comparison selections. Internal
+structure identifiers remain in the private source catalog and are omitted
+from public calculation settings.
+
 Queries use the nearest stored 1 nm screening sample within the selected
 band. Responses report its wavelength and offset and round optical values
 to four significant digits. Invalid samples remain missing. Both PAW
