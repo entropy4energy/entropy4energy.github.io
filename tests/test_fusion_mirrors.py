@@ -10,7 +10,7 @@ import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import expect, sync_playwright
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -180,7 +180,8 @@ def main():
                     page.get_by_label('Second material',exact=True).select_option('TestOxide')
                 page.locator('#spectra').wait_for(state='visible')
                 assert 'TestOxide' in page.locator('#material-title').inner_text()
-                assert page.locator('#branch option[value=both]').is_disabled()
+                # Assert the native option property for both transition directions.
+                expect(page.locator('#branch option[value=both]')).to_have_js_property('disabled',True)
                 with page.expect_response(lambda r:'/api/plot' in r.url):
                     page.get_by_label('Third material',exact=True).select_option('Al2O3')
                 page.locator('#spectra').wait_for(state='visible')
@@ -197,7 +198,7 @@ def main():
                 with page.expect_response(lambda r:'/api/plot' in r.url):
                     page.get_by_role('button',name='Clear comparison',exact=True).click()
                 page.locator('#spectra').wait_for(state='visible')
-                assert not page.locator('#branch option[value=both]').is_disabled()
+                expect(page.locator('#branch option[value=both]')).to_have_js_property('disabled',False)
                 page.get_by_text('Advanced options',exact=True).click()
                 checks.append('three-material comparison, shared-wavelength readouts and restored shared links')
 
@@ -206,6 +207,8 @@ def main():
                 with page.expect_response(lambda r:'/api/probe' in r.url) as response:
                     page.get_by_role('button',name='1064 nm',exact=True).click()
                 assert len(response.value.json()['values'])==2
+                with page.expect_response(lambda r:'/api/plot' in r.url):
+                    page.get_by_label('Plot',exact=True).select_option('R')
                 with page.expect_response(lambda r:'/api/plot' in r.url):
                     page.get_by_label('Plot',exact=True).select_option('all')
                 assert page.locator('#spectra').get_attribute('alt').startswith('Calculated reflectivity')
