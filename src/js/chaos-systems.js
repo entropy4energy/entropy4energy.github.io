@@ -21,17 +21,7 @@
   var C = window.CHAOS;
   var esc = C.esc, formula = C.formula, sig = C.sig, fixed = C.fixed, released = C.released, ordinal = C.ordinal,
     unit = C.unit, list = C.list, params = C.params, section = C.section;
-  // This page's own name and the material pages' name on the same host:
-  // chaos-systems and chaos-materials on chaos.s4e.ai, or systems and
-  // materials if the pages drop the prefix.
-  var PAGE = location.pathname.replace(/^.*\//, "").replace(/\.html$/, "") === "systems" ? "systems" : "chaos-systems";
-  var MATERIALS = PAGE === "systems" ? "materials" : "chaos-materials";
-  function link(id) { return PAGE + "?id=" + encodeURIComponent(id); }
-  // a formula linked to its material page when CHAOS has a structure of it
-  function material(f, inChaos) {
-    if (!f) return "";
-    return inChaos ? '<a href="' + MATERIALS + "?f=" + encodeURIComponent(f) + '">' + formula(f) + "</a>" : formula(f);
-  }
+  function link(id) { return "chaos-systems?id=" + encodeURIComponent(id); }
 
   var VERDICTS = {
     priority: { chip: "Synthesis priority", cls: "priority" },
@@ -49,7 +39,7 @@
       lead: "The system pages are for registered CHAOS users. Each gives a disordered system's " +
         "synthesis ranking, precursors, competing phases and descriptors.",
       missing: "There is no system with this address in the current release.",
-      back: [PAGE, "All systems"],
+      back: ["chaos-systems", "All systems"],
       unavailable: "The system pages are not available right now. Try again later.",
     });
   }
@@ -230,8 +220,8 @@
     var distP = d.distortion.p;
     var distWord = distP == null ? "–" : distP < 1 / 3 ? "low" : distP < 2 / 3 ? "medium" : "high";
     var html =
-      '<div class="cs-identity"><p class="cs-crumbs"><a href="' + PAGE + '">CHAOS systems</a> / ' +
-      '<a href="' + PAGE + "?cohort=" + encodeURIComponent(p.cohort.key) + '">' + esc(cohortName) + "</a></p>" +
+      '<div class="cs-identity"><p class="cs-crumbs"><a href="chaos-systems">CHAOS systems</a> / ' +
+      '<a href="chaos-systems?cohort=' + encodeURIComponent(p.cohort.key) + '">' + esc(cohortName) + "</a></p>" +
       '<p class="cs-kicker">' + esc(kick.filter(Boolean).join(" · ")) + "</p>" +
       '<h1 class="cs-title">' + name + "</h1>" +
       '<p class="cs-sub">' + sub.join(" · ") + '</p><p class="cs-chaos-id">' + esc(p.chaos_id || p.auid) + "</p></div>" +
@@ -372,7 +362,7 @@
         var same = m.same_lattice
           ? (m.takes_lattice ? "0 (ground state)" : m.above == null ? "–" : "+" + sig(m.above * 1000, 3) + " meV/atom")
           : m.lowest ? '<span class="cs-dim">not computed</span>' : "";
-        watch += "<tr><td>" + esc(m.el) + "</td><td>" + material(m.formula, !!m.lowest) + "</td><td>" + (m.lowest ? structureText(m.lowest) : '<span class="cs-dim">not in CHAOS</span>') +
+        watch += "<tr><td>" + esc(m.el) + "</td><td>" + formula(m.formula || "") + "</td><td>" + (m.lowest ? structureText(m.lowest) : '<span class="cs-dim">not in CHAOS</span>') +
           "</td><td class=num>" + (m.lowest ? sig(m.lowest.hf, 3) : "") + "</td><td class=num>" + same + "</td></tr>";
       });
       watch += '</tbody></table></div><p class="cs-dim">ΔH<sub>f</sub> is the DFT formation enthalpy per atom of the lowest-energy structure. ' +
@@ -385,7 +375,7 @@
         " compositions formed from pairs of the mixed-site elements. The lowest in formation enthalpy per atom:</p>" +
         '<div class="cs-scroll"><table class="cs-table cs-narrow"><thead><tr><th>Compound</th><th>Structure</th><th class=num>ΔH<sub>f</sub> (eV/atom)</th></tr></thead><tbody>' +
         two.lowest.map(function (c) {
-          return "<tr><td>" + material(c.formula, true) + "</td><td>" + esc(c.structure || c.pearson || "") + "</td><td class=num>" + sig(c.hf, 3) + "</td></tr>";
+          return "<tr><td>" + formula(c.formula) + "</td><td>" + esc(c.structure || c.pearson || "") + "</td><td class=num>" + sig(c.hf, 3) + "</td></tr>";
         }).join("") + "</tbody></table></div>";
     }
 

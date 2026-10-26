@@ -7,17 +7,13 @@
       "kind": "Database",
       "full_name": "Combinatorial High-throughput Analysis and Optimization for Synthesis",
       "href": "https://chaos.s4e.ai/",
-      "description": "The first database of first-principles calculations dedicated to high-entropy oxides. Disordered oxides are stored as ensembles of relaxed DFT supercells, alongside their ordered binary and ternary reference oxides and structural and chemical descriptors. Each disordered system and each ordered material has its own page, and the database can be queried through the REST API or through CHAOS-Agent, a natural-language interface.",
-      "description_html": "The first database of first-principles calculations dedicated to high-entropy oxides. Disordered oxides are stored as ensembles of relaxed <u>d</u>ensity <u>f</u>unctional <u>t</u>heory (DFT) supercells, alongside their ordered binary and ternary reference oxides and structural and chemical descriptors. Each disordered system and each ordered material has its own page, and the database can be queried through the REST API or through CHAOS-Agent, a natural-language interface.",
+      "description": "The first database of first-principles calculations dedicated to high-entropy oxides. Disordered oxides are stored as ensembles of relaxed DFT supercells, alongside their ordered binary and ternary reference oxides and structural and chemical descriptors. Each disordered system has its own page, and the database can be queried through the REST API or through CHAOS-Agent, a natural-language interface.",
+      "description_html": "The first database of first-principles calculations dedicated to high-entropy oxides. Disordered oxides are stored as ensembles of relaxed <u>d</u>ensity <u>f</u>unctional <u>t</u>heory (DFT) supercells, alongside their ordered binary and ternary reference oxides and structural and chemical descriptors. Each disordered system has its own page, and the database can be queried through the REST API or through CHAOS-Agent, a natural-language interface.",
       "access": "Free account with a .edu email address, or on approval.",
       "links": [
         {
           "label": "Systems",
           "href": "https://chaos.s4e.ai/chaos-systems"
-        },
-        {
-          "label": "Materials",
-          "href": "https://chaos.s4e.ai/chaos-materials"
         },
         {
           "label": "API",
@@ -38,11 +34,6 @@
           "id": "chaos-systems",
           "label": "Systems",
           "href": "https://chaos.s4e.ai/chaos-systems"
-        },
-        {
-          "id": "chaos-materials",
-          "label": "Materials",
-          "href": "https://chaos.s4e.ai/chaos-materials"
         },
         {
           "id": "api",

@@ -77,7 +77,6 @@ def main():
             check(page.locator('script[src*="googletagmanager"]').count() == 0, "no analytics on the material pages")
             check(page.locator("aside.sidebar").count() == 0, "no news sidebar")
             check(page.locator("body").get_attribute("data-s4e-product") == "chaos", "part of CHAOS")
-            check(page.locator('.product-nav[data-product="chaos"] a.active').inner_text() == "Materials", "Materials lit in the CHAOS row")
             page.fill("#cm-q", "co o")
             page.click("#cm-form button")
             page.locator("#cm-results tbody tr").first.wait_for()
