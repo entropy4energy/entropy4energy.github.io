@@ -31,7 +31,6 @@
     "tools": "Databases, data platforms and analysis tools built by the Entropy for Energy Laboratory at Johns Hopkins University: CHAOS, LOOP, the Synthesizability Game and XRD Phase ID.",
     "fusion-mirrors": "Fusion Mirrors: calculated optical spectra, individual wavelength queries, and method references from the Entropy for Energy Laboratory.",
     "chaos-systems": "CHAOS system pages: one page for each disordered system in CHAOS, for signed-in accounts. From the Entropy for Energy Laboratory at Johns Hopkins University.",
-    "chaos-materials": "CHAOS material pages: one page for each ordered composition and structure in CHAOS, for signed-in accounts. From the Entropy for Energy Laboratory at Johns Hopkins University.",
     "synthesizability-game": "Synthesizability Game: choose elements for the two cation sites of a high-entropy nuclear waste form and see whether the composition is predicted to be synthesizable. From the Entropy for Energy Laboratory at Johns Hopkins University.",
   } %}
   {% set description = descriptions.get(data.section, descriptions["home"]) %}
@@ -44,7 +43,7 @@
   {# Named page by page rather than by family: the Synthesizability Game sits
      under Data and Tools on s4e.ai and under Teaching on the lab site, and the
      lab copy is the canonical one. #}
-  {% set tools_pages = ["tools", "chaos", "loop", "fusion-mirrors", "chaos-systems", "chaos-materials"] %}
+  {% set tools_pages = ["tools", "chaos", "loop", "fusion-mirrors", "chaos-systems"] %}
   {% set canonical_host = "https://s4e.ai/" if data.section in tools_pages else "https://entropy4energy.ai/" %}
   {% set canonical_url = canonical_host ~ ("" if data.section == "home" else data.section) %}
   {# CHAOS and LOOP have hosts of their own: their data files name the address. #}
@@ -109,10 +108,10 @@
   {# Unpublished: s4e.ai serves dev at its root and robots.txt
      allows /, so this page needs the meta tag, not a Disallow
      line. Remove when the data are released. #}
-  {# The CHAOS system and material pages are for signed-in accounts: nothing to
-     index, and the system or material in the address stays out of Google Analytics (the gate keeps
+  {# The CHAOS system pages are for signed-in accounts: nothing to index, and
+     the system in the address stays out of Google Analytics (the gate keeps
      its own usage record). #}
-  {% set private_pages = ["fusion-mirrors", "chaos-systems", "chaos-materials", "404"] %}
+  {% set private_pages = ["fusion-mirrors", "chaos-systems", "404"] %}
   {# Every page reserves text and data mining (TDMRep) and AI use (noai,
      noimageai), with one robots tag a page: CHAOS's terms on model
      training, 2026-10-24. tdm-policy links the terms once they are
@@ -170,7 +169,7 @@
   {% endif %}
   {# The Latest News card is on every page except News itself and the CHAOS
      system pages, which need the width. #}
-  {% set with_sidebar = data.section not in ["news", "chaos-systems", "chaos-materials"] %}
+  {% set with_sidebar = data.section not in ["news", "chaos-systems"] %}
   <div class="main-content-wrapper{% if not with_sidebar %} no-sidebar{% endif %}">
     <main class="content-block">
       {% block content %}{% endblock %}
