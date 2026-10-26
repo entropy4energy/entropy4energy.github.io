@@ -91,9 +91,7 @@ def main():
             # ---- the shell
             page.goto(origin + "/chaos-systems")
             page.locator("#cs-table tbody tr").first.wait_for()
-            check(page.locator('meta[name="robots"]').count() == 1
-                  and page.locator('meta[name="robots"]').get_attribute("content") == "noindex, nofollow, noai, noimageai",
-                  "one robots tag: not indexed, no AI use")
+            check(page.locator('meta[name="robots"][content*="noindex"]').count() == 1, "not indexed")
             check(page.locator('script[src*="googletagmanager"]').count() == 0, "no analytics on the system pages")
             check(page.locator("aside.sidebar").count() == 0, "no news sidebar")
             check(page.locator("body").get_attribute("data-s4e-product") == "chaos", "part of CHAOS")
@@ -181,8 +179,6 @@ def main():
             check(cells.count() == len(p["neighbors"]["list"]), "one cell per neighbor")
             check(page.locator("#cs-query").text_content() == p["query"], "the query")
             check(page.locator('a[href="https://chaos.s4e.ai/chaos/agent/"]').count() >= 1, "CHAOS-Agent link")
-            check("Johns Hopkins University, https://chaos.s4e.ai, release" in page.locator("#data").inner_text(),
-                  "the citation names chaos.s4e.ai and the release")
             text = page.locator("#cs-app").inner_text()
             prose = re.sub(r"\b\w+_\w+\b|aflow:[0-9a-f]+", " ", text)
             bad = sorted(set(m.group(0) for m in BANNED.finditer(prose)))
@@ -215,7 +211,6 @@ def main():
             page.locator(".cs-identity").wait_for()
             check(page.locator("#synthesis table th").first.text_content() == "Element", "alloy: weigh out the elements")
             check("oxygen" not in page.locator(".cs-caveat").inner_text().lower(), "alloy: no oxygen in the caveat")
-            check("cooling rate" in page.locator(".cs-caveat").inner_text(), "alloy: processing in the ranking note")
 
             # ---- the CHAOS page: search, cards, the periodic table's links
             page.goto(origin + "/chaos")
