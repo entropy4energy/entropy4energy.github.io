@@ -80,12 +80,23 @@
   function structLink(id) { return PAGE + "?id=" + encodeURIComponent(id); }
   function sysLink(id) { return SYSTEMS + "?id=" + encodeURIComponent(id); }
   function meV(x) { return x == null ? "–" : (x > 0 ? "+" : "") + sig(x, 3); }
+  // The relaxed structure: its name where it has one (rocksalt, wurtzite), else its Pearson symbol.
   function structName(s) {
-    return s.structure ? esc(s.structure) : '<span class="cm-proto">' + esc(s.prototype || "–") + "</span>";
+    return s.structure ? esc(s.structure) : s.pearson ? esc(s.pearson) : "–";
   }
+  // The prototype a calculation started from (an AFLOW-style label, shown as code).
+  function protoText(s) {
+    return s.prototype ? '<span class="cm-proto">' + esc(s.prototype) + "</span>" : "–";
+  }
+  // A Hermann–Mauguin symbol as written in print: screw axes as subscripts (P2_1/c, P2_{1}/c),
+  // rotoinversions with an overbar (Fm-3m).
+  function sgSymbol(sym) {
+    return esc(sym).replace(/_\{?(\d)\}?/g, "<sub>$1</sub>").replace(/-(\d)/g, '<span class="cm-bar">$1</span>');
+  }
+  // The relaxed space group: symbol and number, both of the relaxed structure.
   function sgText(s) {
     if (!s.sg) return "–";
-    return (s.sg_symbol ? esc(s.sg_symbol).replace(/_(\d)/g, "<sub>$1</sub>") + " " : "") + "(" + esc(s.sg) + ")";
+    return (s.sg_symbol ? sgSymbol(s.sg_symbol) + " " : "") + "(" + esc(s.sg) + ")";
   }
 
   // ------------------------------------------------------------ search
@@ -209,7 +220,11 @@
     var low = rows.filter(function (r) { return r.id === c.lowest; })[0];
     var name = formula(c.label);
     var anyHull = rows.some(function (r) { return r.hull_meV != null; });
-    var sub = [esc(c.n) + (c.n === 1 ? " structure" : " structures"), "chemical system " + esc(c.system)];
+    var anyGap = rows.some(function (r) { return r.gap != null; });
+    var anyGroup = rows.some(function (r) { return (r.n || 1) > 1; });
+    var nCalc = rows.reduce(function (a, r) { return a + (r.n || 1); }, 0);
+    var sub = [esc(rows.length) + (rows.length === 1 ? " structure" : " structures") +
+      (nCalc > rows.length ? " from " + esc(nCalc) + " calculations" : ""), "chemical system " + esc(c.system)];
     var html = '<div class="cs-identity"><p class="cs-crumbs"><a href="' + PAGE + '">CHAOS materials</a> / ' + esc(c.system) + "</p>" +
       '<h1 class="cs-title">' + name + "</h1><p class=\"cs-sub\">" + sub.join(" · ") + "</p></div>";
     if (low) {
@@ -219,18 +234,23 @@
         (low.gap != null ? '<span class="cs-bar-item">Band gap <b>' + sig(low.gap, 3) + " eV</b></span>" : "") + "</div>";
     }
 
-    var t = '<p>All structures of ' + name + " in CHAOS, ordered by formation enthalpy. The energy above the lowest structure compares polymorphs at the same composition.</p>" +
-      '<div class="cs-scroll"><table class="cs-table" id="cm-structures"><thead><tr><th>Structure type</th><th>Space group</th>' +
-      "<th class=cs-sm-hide>Pearson</th><th class='num cs-sm-hide'>Atoms per cell</th><th class=num>ΔH<sub>f</sub> (eV/atom)</th>" +
-      "<th class=num>Above the lowest structure (meV/atom)</th>" + (anyHull ? "<th class=num>Distance to the hull (meV/atom)</th>" : "") +
-      "<th class='num cs-sm-hide'>Band gap (eV)</th></tr></thead><tbody>";
+    var t = '<p>The relaxed structures of ' + name + " in CHAOS, ordered by formation enthalpy. The energy above the lowest structure compares polymorphs at the same composition." +
+      (anyGroup ? " Calculations that relaxed to the same space group and Pearson symbol, within 2 meV/atom, share a row." : "") + "</p>" +
+      '<div class="cs-scroll"><table class="cs-table" id="cm-structures"><thead><tr><th>Relaxed structure</th><th>Space group</th>' +
+      "<th class='num cs-sm-hide'>Atoms in the cell</th>" + (anyGroup ? "<th class=num>Calculations</th>" : "") +
+      "<th class=num>ΔH<sub>f</sub> (eV/atom)</th><th class=num>Above the lowest structure (meV/atom)</th>" +
+      (anyHull ? "<th class=num>Distance to the hull (meV/atom)</th>" : "") +
+      (anyGap ? "<th class='num cs-sm-hide'>Band gap (eV)</th>" : "") + "<th class=cs-sm-hide>Starting prototype</th></tr></thead><tbody>";
     rows.forEach(function (r) {
       t += "<tr" + (r.id === c.lowest ? ' class="cm-lowest"' : "") + '><td><a href="' + structLink(r.id) + '">' + structName(r) + "</a></td><td>" + sgText(r) +
-        "</td><td class=cs-sm-hide>" + esc(r.pearson || "–") + "</td><td class='num cs-sm-hide'>" + esc(r.natoms) + "</td><td class=num>" + sig(r.hf, 3) +
-        "</td><td class=num>" + (r.above_lowest_meV === 0 ? "0" : meV(r.above_lowest_meV)) + "</td>" +
-        (anyHull ? "<td class=num>" + meV(r.hull_meV) + "</td>" : "") + "<td class='num cs-sm-hide'>" + (r.gap == null ? "–" : sig(r.gap, 3)) + "</td></tr>";
+        "</td><td class='num cs-sm-hide'>" + esc(r.natoms) + "</td>" + (anyGroup ? "<td class=num>" + esc(r.n || 1) + "</td>" : "") +
+        "<td class=num>" + sig(r.hf, 3) + "</td><td class=num>" + (r.above_lowest_meV === 0 ? "0" : meV(r.above_lowest_meV)) + "</td>" +
+        (anyHull ? "<td class=num>" + meV(r.hull_meV) + "</td>" : "") +
+        (anyGap ? "<td class='num cs-sm-hide'>" + (r.gap == null ? "–" : sig(r.gap, 3)) + "</td>" : "") +
+        "<td class=cs-sm-hide>" + protoText(r) + "</td></tr>";
     });
-    t += "</tbody></table></div>";
+    t += "</tbody></table></div>" +
+      "<p class=cs-dim>Atoms in the cell: the cell of the calculation. The Pearson symbol counts the atoms of the conventional cell, which can differ.</p>";
     var stab = c.stability ? stabilityText(c.stability, c.label) :
       low ? "<p>The lowest structure of " + name + " is " + structName(low) + ", " + sig(low.hf, 3) + " eV/atom.</p>" : "";
     var sys = systemsBlock(c.systems, c.label);
@@ -244,7 +264,7 @@
     var data = dataBlock(c.query, "c/" + c.key, c.release, "",
       "Every structure of the " + esc(c.system) + " chemical system, every field, as an API query:");
     var secs = [
-      ["structures", "Structures", esc(c.n + (c.n === 1 ? " structure" : " structures")), t],
+      ["structures", "Structures", esc(rows.length + (rows.length === 1 ? " structure" : " structures")), t],
       ["stability", "Stability", "", stab],
       ["systems", "Disordered systems", esc(sys.n + (sys.n === 1 ? " system" : " systems")), sys.html],
       ["related", "Same chemical system", "", rel],
@@ -275,6 +295,111 @@
     if (el === "O") return "#d1342c";
     var i = els.filter(function (e) { return e !== "O"; }).indexOf(el);
     return PALETTE[(i < 0 ? 0 : i) % PALETTE.length];
+  }
+
+  // ------------------------------------------------------------ the 3D viewer
+  // The cell in 3D with 3Dmol.js (BSD-3-Clause, js/vendor/, loaded on structure pages only), from
+  // the page's own data: balls and sticks, bonds from covalent radii, element colours of the Jmol
+  // scheme, atoms to scale, the cell box with a, b and c, the atoms on the cell's faces repeated, a
+  // 2×2×2 supercell, an orthographic or a perspective view, element and site on hover. Without
+  // WebGL, or when the library does not load, the SVG picture below stands in.
+  var lib3d = null;
+  function load3d() {
+    if (!lib3d) lib3d = new Promise(function (ok, no) {
+      if (window.$3Dmol) { ok(window.$3Dmol); return; }
+      var me = document.querySelector('script[src*="chaos-materials.js"]');
+      var v = me && /[?&]v=([^&]+)/.exec(me.getAttribute("src"));
+      var tag = document.createElement("script");
+      tag.src = "js/vendor/3Dmol-min.js" + (v ? "?v=" + v[1] : "");
+      tag.onload = function () { if (window.$3Dmol) ok(window.$3Dmol); else no(new Error("no viewer")); };
+      tag.onerror = function () { no(new Error("the viewer did not load")); };
+      document.head.appendChild(tag);
+    });
+    return lib3d;
+  }
+  function webgl() {
+    try {
+      var c = document.createElement("canvas");
+      return !!(window.WebGLRenderingContext && (c.getContext("webgl") || c.getContext("experimental-webgl")));
+    } catch (e) { return false; }
+  }
+  // The atoms of n×n×n cells, with those on the outer faces repeated; each keeps its site number.
+  function cellAtoms(s, n) {
+    var V = vectors(s.lattice), out = [];
+    s.sites.forEach(function (site, i) {
+      var f = site.xyz.map(function (x) { var y = ((x % 1) + 1) % 1; return y > 1 - 1e-3 ? 0 : y; });
+      var r = f.map(function (x) { var k, list = []; for (k = 0; k < n; k++) list.push(k); if (x < 1e-3) list.push(n); return list; });
+      r[0].forEach(function (i0) { r[1].forEach(function (i1) { r[2].forEach(function (i2) {
+        out.push({ el: site.el, site: i + 1, p: cart(V, [f[0] + i0, f[1] + i1, f[2] + i2]) });
+      }); }); });
+    });
+    return out;
+  }
+  function viewer3d(host, s) {
+    host.innerHTML = '<div class="cm-3d" role="img" aria-label="Unit cell of ' + esc(s.label) + ', turned by dragging; hover over an atom for its site"></div>' +
+      '<p class="cs-actions cm-3d-controls"><button type="button" class="cs-button" id="cm-3d-super" aria-pressed="false">2×2×2 cells</button>' +
+      '<button type="button" class="cs-button" id="cm-3d-proj" aria-pressed="false">Perspective</button>' +
+      '<button type="button" class="cs-button" id="cm-3d-reset">Reset view</button></p><p class="cm-legend"></p>';
+    var box = host.querySelector(".cm-3d");
+    return load3d().then(function ($3Dmol) {
+      var v = $3Dmol.createViewer(box, { backgroundColor: "white", antialias: true });
+      var V = vectors(s.lattice), n = 1, persp = false, shown = [];
+      var jmol = $3Dmol.elementColors && $3Dmol.elementColors.Jmol || {};
+      var hex = function (el) { var c = jmol[el]; return c == null ? "#888888" : "#" + ("000000" + c.toString(16)).slice(-6); };
+      function draw() {
+        v.removeAllModels(); v.removeAllShapes(); v.removeAllLabels();
+        shown = cellAtoms(s, n);
+        var xyz = shown.length + "\n" + s.label + "\n" + shown.map(function (a) {
+          return a.el + " " + a.p.map(function (x) { return x.toFixed(5); }).join(" ");
+        }).join("\n") + "\n";
+        var m = v.addModel(xyz, "xyz");
+        m.setStyle({}, { sphere: { scale: 0.28, colorscheme: "Jmol" }, stick: { radius: 0.12, colorscheme: "Jmol" } });
+        m.setHoverable({}, true, function (atom, viewer) {
+          if (atom.label) return;
+          var a = shown[atom.index] || {};
+          atom.label = viewer.addLabel(atom.elem + ", site " + a.site, { position: atom, inFront: true, fontSize: 13,
+            fontColor: "white", backgroundColor: "#222222", backgroundOpacity: 0.85 });
+        }, function (atom, viewer) { if (atom.label) { viewer.removeLabel(atom.label); delete atom.label; } });
+        // the cell box of the n×n×n block, and the three axes with their letters
+        var corner = function (i, j, k) { var p = cart(V, [i * n, j * n, k * n]); return { x: p[0], y: p[1], z: p[2] }; };
+        [[0,0,0,1,0,0],[0,0,0,0,1,0],[0,0,0,0,0,1],[1,0,0,1,1,0],[1,0,0,1,0,1],[0,1,0,1,1,0],[0,1,0,0,1,1],
+         [0,0,1,1,0,1],[0,0,1,0,1,1],[1,1,0,1,1,1],[1,0,1,1,1,1],[0,1,1,1,1,1]].forEach(function (e) {
+          v.addCylinder({ start: corner(e[0], e[1], e[2]), end: corner(e[3], e[4], e[5]), radius: 0.025, color: "#555555", fromCap: 1, toCap: 1 });
+        });
+        [["a", [1, 0, 0], "#c0392b"], ["b", [0, 1, 0], "#27ae60"], ["c", [0, 0, 1], "#2c6fbb"]].forEach(function (ax) {
+          var e = cart(V, ax[1]), t = cart(V, ax[1].map(function (x) { return x * 1.12; }));
+          v.addArrow({ start: { x: 0, y: 0, z: 0 }, end: { x: e[0] * 0.35, y: e[1] * 0.35, z: e[2] * 0.35 }, radius: 0.06, color: ax[2] });
+          v.addLabel(ax[0], { position: { x: t[0], y: t[1], z: t[2] }, fontSize: 14, fontColor: ax[2], backgroundOpacity: 0, inFront: true });
+        });
+        v.setProjection(persp ? "perspective" : "orthographic");
+        v.zoomTo(); v.zoom(1.25); v.render();
+        host.setAttribute("data-atoms", String(shown.length));
+      }
+      draw();
+      var sup = document.getElementById("cm-3d-super"), proj = document.getElementById("cm-3d-proj");
+      sup.onclick = function () {
+        n = n === 1 ? 2 : 1;
+        sup.textContent = n === 1 ? "2×2×2 cells" : "One cell";
+        sup.setAttribute("aria-pressed", n === 2 ? "true" : "false");
+        draw();
+      };
+      proj.onclick = function () {
+        persp = !persp;
+        proj.textContent = persp ? "Orthographic" : "Perspective";
+        proj.setAttribute("aria-pressed", persp ? "true" : "false");
+        v.setProjection(persp ? "perspective" : "orthographic"); v.render();
+        host.setAttribute("data-projection", persp ? "perspective" : "orthographic");
+      };
+      document.getElementById("cm-3d-reset").onclick = function () { v.zoomTo(); v.zoom(1.25); v.render(); };
+      host.setAttribute("data-projection", "orthographic");
+      var els = [];
+      s.sites.forEach(function (x) { if (els.indexOf(x.el) < 0) els.push(x.el); });
+      host.querySelector(".cm-legend").innerHTML = els.map(function (e) {
+        return '<span><i style="background:' + hex(e) + '"></i>' + esc(e) + "</span>";
+      }).join("");
+      host.setAttribute("data-viewer", "3d");
+      window.addEventListener("resize", function () { v.resize(); v.render(); });
+    });
   }
 
   // The cell as an SVG ball model, turned by dragging or the arrow keys.
@@ -405,7 +530,6 @@
     var sub = [];
     if (s.sg) sub.push("space group " + sgText(s));
     if (s.pearson) sub.push("Pearson " + esc(s.pearson));
-    sub.push(esc(s.natoms) + " atoms per cell");
     var html = '<div class="cs-identity"><p class="cs-crumbs"><a href="' + PAGE + '">CHAOS materials</a> / <a href="' + matLink(s.label) + '">' + name + "</a></p>" +
       '<p class="cs-kicker">' + (s.structure ? esc(s.structure) : "ordered structure") + "</p>" +
       '<h1 class="cs-title">' + name + "</h1><p class=\"cs-sub\">" + sub.join(" · ") + '</p><p class="cs-chaos-id">' + esc(s.chaos_id) + "</p></div>";
@@ -419,13 +543,19 @@
     var hasQ = s.sites.some(function (x) { return x.q != null; });
     var hasM = s.sites.some(function (x) { return x.m != null; });
     var cell = L.length === 6;
+    var K = s.conventional;
+    var abc = function (a, b, c, al, be, ga) {
+      return "a " + sig(a, 4) + " Å, b " + sig(b, 4) + " Å, c " + sig(c, 4) + " Å; α " + sig(al, 4) + "°, β " + sig(be, 4) + "°, γ " + sig(ga, 4) + "°";
+    };
     var st = '<div class="cm-structure">' + (cell ? '<figure class="cm-view-box" id="cm-viewer"></figure>' : "") + "<div>" +
       '<dl class="cs-dl">' +
-      (L.length ? "<dt>Lattice</dt><dd>a " + sig(L[0], 4) + " Å, b " + sig(L[1], 4) + " Å, c " + sig(L[2], 4) + " Å; α " + sig(L[3], 4) + "°, β " +
-        sig(L[4], 4) + "°, γ " + sig(L[5], 4) + "°</dd>" : "") +
+      (K ? "<dt>Relaxed structure</dt><dd>" + (K.system ? esc(K.system) + ", " : "") + (s.sg ? sgText(s) + ", " : "") +
+        "conventional cell " + (s.pearson ? esc(s.pearson) + ": " : "") + abc(K.a, K.b, K.c, K.alpha, K.beta, K.gamma) + "</dd>" : "") +
+      (L.length ? "<dt>Cell of the calculation</dt><dd>" + abc(L[0], L[1], L[2], L[3], L[4], L[5]) + "; " + esc(s.natoms) +
+        " atoms. The picture, the sites and the CIF use this cell.</dd>" : "") +
       (s.volume_atom != null ? "<dt>Volume per atom</dt><dd>" + sig(s.volume_atom, 4) + " Å<sup>3</sup></dd>" : "") +
       (s.density != null ? "<dt>Density</dt><dd>" + sig(s.density, 4) + " g/cm<sup>3</sup></dd>" : "") +
-      (s.prototype ? "<dt>Prototype</dt><dd><span class=\"cm-proto\">" + esc(s.prototype) + "</span></dd>" : "") +
+      (s.prototype ? "<dt>Starting prototype</dt><dd><span class=\"cm-proto\">" + esc(s.prototype) + "</span></dd>" : "") +
       (s.wyckoff ? "<dt>Wyckoff positions</dt><dd>" + esc(s.wyckoff) + "</dd>" : "") + "</dl>";
     if (s.pairs && s.pairs.length) {
       st += '<h3 class="cs-h3">Nearest-neighbor distances</h3><div class="cs-scroll"><table class="cs-table cs-narrow"><thead><tr><th>Pair</th><th class=num>Distance (Å)</th></tr></thead><tbody>' +
@@ -482,21 +612,28 @@
 
     // 4 electronic and magnetic
     var gapType = s.gap_type ? ' <span class="cs-dim">' + esc(s.gap_type) + "</span>" : "";
-    var el = "<dl class=\"cs-dl\"><dt>Band gap</dt><dd>" + (s.gap == null ? (s.gap_type ? esc(s.gap_type) : "–") : sig(s.gap, 3) + " eV" + gapType) + "</dd>" +
+    // only the values this structure has: the section is left out without any
+    var elRows = (s.gap != null ? "<dt>Band gap</dt><dd>" + sig(s.gap, 3) + " eV" + gapType + "</dd>" :
+        s.gap_type ? "<dt>Band gap</dt><dd>" + esc(s.gap_type) + "</dd>" : "") +
       (s.spin_cell != null ? "<dt>Magnetic moment per cell</dt><dd>" + sig(s.spin_cell, 3) + " μ<sub>B</sub></dd>" : "") +
-      (s.spin_atom != null ? "<dt>Magnetic moment per atom</dt><dd>" + sig(s.spin_atom, 3) + " μ<sub>B</sub></dd>" : "") + "</dl>" +
-      (hasM ? '<p class="cs-dim">Moments per site are in the sites table.</p>' : "");
+      (s.spin_atom != null ? "<dt>Magnetic moment per atom</dt><dd>" + sig(s.spin_atom, 3) + " μ<sub>B</sub></dd>" : "");
+    var el = elRows || hasM ? (elRows ? '<dl class="cs-dl">' + elRows + "</dl>" : "") +
+      (hasM ? '<p class="cs-dim">Moments per site are in the sites table.</p>' : "") : "";
 
     // 5 systems, 6 others, 7 data
     var sys = systemsBlock(s.systems, s.label);
     var others = comp.others || [];
     var oth = others.length
-      ? '<div class="cs-scroll"><table class="cs-table cs-narrow"><thead><tr><th>Structure type</th><th>Space group</th><th class=num>Above the lowest (meV/atom)</th></tr></thead><tbody>' +
+      ? '<div class="cs-scroll"><table class="cs-table cs-narrow"><thead><tr><th>Relaxed structure</th><th>Space group</th><th class=num>Above the lowest (meV/atom)</th></tr></thead><tbody>' +
         others.map(function (r) {
           return '<tr><td><a href="' + structLink(r.id) + '">' + structName(r) + "</a></td><td>" + sgText(r) + "</td><td class=num>" +
             (r.above_lowest_meV === 0 ? "0" : meV(r.above_lowest_meV)) + "</td></tr>";
-        }).join("") + "</tbody></table></div>" + '<p><a href="' + matLink(s.label) + '">All ' + esc(comp.n) + " structures of " + name + "</a></p>"
+        }).join("") + "</tbody></table></div>" + '<p><a href="' + matLink(s.label) + '">All structures of ' + name + "</a></p>"
       : "<p>This is the only structure of " + name + " in CHAOS.</p>";
+    if (comp.same_structure) {
+      oth = "<p>" + esc(comp.same_structure) + (comp.same_structure === 1 ? " other calculation" : " other calculations") +
+        " of " + name + " relaxed to this structure within 2 meV/atom.</p>" + oth;
+    }
     var set = s.settings || {};
     var data = dataBlock(s.query, "s/" + s.id.slice(0, 2) + "/" + s.id, s.release, "<dt>CHAOS identifier</dt><dd>" + esc(s.chaos_id) + "</dd>",
       "This structure, every field, as an API query:") +
@@ -505,23 +642,25 @@
       (set.kpoints ? "<dt>k-points</dt><dd>" + esc(set.kpoints) + "</dd>" : "") + "</dl>";
 
     var secs = [
-      ["structure", "Structure", esc(s.natoms + " atoms per cell"), st],
+      ["structure", "Structure", esc(s.natoms + " atoms in the cell"), st],
       ["stability", "Stability", "", stab],
       ["pattern", "Powder pattern", "Cu Kα<sub>1</sub>", pat],
       ["electronic", "Electronic and magnetic", "", el],
       ["systems", "Disordered systems", esc(sys.n + (sys.n === 1 ? " system" : " systems")), sys.html],
-      ["others", "Other structures", (comp.n || 1) > 1 ? esc((comp.n - 1) + " more at this composition") : "", oth],
+      ["others", "Other structures", others.length ? esc(others.length + " more at this composition") : "", oth],
       ["data", "Data", "Query · settings · citation", data],
     ].filter(function (x) { return x[3]; });
     html += '<nav class="cs-jump" aria-label="Sections">' + secs.map(function (x) { return '<a href="#' + x[0] + '">' + x[1] + "</a>"; }).join("") + "</nav>";
     secs.forEach(function (x, i) { html += section(i + 1, x[0], x[1], x[2], x[3]); });
     html += note();
     app.innerHTML = html;
-    document.title = s.label + " " + (s.structure || s.prototype || "") + " | CHAOS materials | Entropy for Energy Laboratory | Johns Hopkins";
+    document.title = s.label + " " + (s.structure || s.pearson || "") + " | CHAOS materials | Entropy for Energy Laboratory | Johns Hopkins";
 
     var stem = s.label + "_" + s.id;
     if (cell) {
-      viewer(document.getElementById("cm-viewer"), s);
+      var vhost = document.getElementById("cm-viewer");
+      var flat = function () { viewer(vhost, s); vhost.setAttribute("data-viewer", "svg"); };
+      if (webgl()) viewer3d(vhost, s).catch(flat); else flat();
       document.getElementById("cm-cif").onclick = function () { C.download(stem + ".cif", cif(s), "chemical/x-cif"); };
     }
     if (s.pattern && s.pattern.length) {

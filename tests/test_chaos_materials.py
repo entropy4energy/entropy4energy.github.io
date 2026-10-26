@@ -19,6 +19,8 @@ from playwright.sync_api import sync_playwright
 from test_chaos_systems import BANNED, Handler
 
 FIXTURE = Path(__file__).resolve().parent / "fixtures" / "chaos_materials_madeup.json"
+# CoO as the published database stores it, written by the generator (the first release's display bugs)
+STORED = Path(__file__).resolve().parent / "fixtures" / "chaos_materials_stored.json"
 
 
 def main():
@@ -27,6 +29,7 @@ def main():
     parser.add_argument("--screenshots", type=Path, help="write screenshots here (outside the checkout)")
     args = parser.parse_args()
     files = json.loads(FIXTURE.read_text())["files"]
+    stored = json.loads(STORED.read_text())["files"]
     checks = []
 
     def check(ok, label):
@@ -51,8 +54,9 @@ def main():
         if mode == "429":
             return route.fulfill(status=429, content_type="application/json",
                                  body=json.dumps({"error": "this account has opened 1,000 structure pages today"}))
-        if path in files:
-            return route.fulfill(status=200, content_type="application/json", body=json.dumps(files[path]))
+        fs = stored if answer.get("set") == "stored" else files
+        if path in fs:
+            return route.fulfill(status=200, content_type="application/json", body=json.dumps(fs[path]))
         return route.fulfill(status=404, content_type="application/json", body=json.dumps({"error": "no such material"}))
 
     def visible_text(page):
@@ -99,7 +103,8 @@ def main():
             check(rows.count() == 3, "every structure of CoO")
             check(rows.first.locator("td").first.inner_text() == "rocksalt", "lowest structure first")
             check(rows.first.get_attribute("class") == "cm-lowest", "the lowest structure is marked")
-            above = rows.locator("td:nth-child(6)").all_inner_texts()
+            col = [t.strip() for t in page.locator("#cm-structures th").all_text_contents()].index("Above the lowest structure (meV/atom)") + 1
+            above = rows.locator(f"td:nth-child({col})").all_inner_texts()
             check(above[0] == "0" and above[1] == "+50", f"energy above the lowest structure: {above}")
             check(page.locator("#cm-structures th", has_text="Distance to the hull").count() == 1, "hull column when the hull is known")
             check("Phase stability of Co-O" in page.locator("#stability").inner_text(), "link to the hull app")
@@ -116,14 +121,27 @@ def main():
 
             # ---- one structure
             rows.first.locator("a").click()
-            page.locator("#cm-viewer svg").wait_for()
+            page.locator("#cm-viewer[data-viewer]").wait_for()
             check(page.url.endswith("chaos-materials?id=00000000000000c6"), "structure address")
             check(seen[-1] == "materials/s/00/00000000000000c6", "the structure file is fetched from its folder")
-            check(page.locator("#cm-viewer circle").count() > 8, "the cell is drawn with the images on its faces")
-            before = page.locator("#cm-viewer svg").inner_html()
-            page.focus("#cm-viewer .cm-view-svg")
-            page.keyboard.press("ArrowRight")
-            check(page.locator("#cm-viewer svg").inner_html() != before, "the arrow keys turn the cell")
+            # the 3D viewer: the library from the site itself, the atoms on the cell's faces repeated, the supercell
+            v = page.locator("#cm-viewer")
+            check(v.get_attribute("data-viewer") == "3d" and page.locator("#cm-viewer canvas").count() >= 1, "the 3D viewer draws the cell")
+            check(any(u.startswith(origin + "/js/vendor/3Dmol-min.js") for u in page.evaluate("performance.getEntries().map(e => e.name)")),
+                  "the viewer's library comes from the site, not a CDN")
+            n_sites = len(files["materials/s/00/00000000000000c6"]["sites"])
+            n1 = int(v.get_attribute("data-atoms"))
+            check(n1 > n_sites, f"the atoms on the cell's faces are repeated ({n1} atoms for {n_sites} sites)")
+            page.click("#cm-3d-super")
+            n8 = int(v.get_attribute("data-atoms"))
+            check(n8 >= 8 * n_sites and page.locator("#cm-3d-super").get_attribute("aria-pressed") == "true", f"2×2×2 cells ({n8} atoms)")
+            page.click("#cm-3d-super")
+            check(int(v.get_attribute("data-atoms")) == n1, "back to one cell")
+            check(v.get_attribute("data-projection") == "orthographic", "orthographic at first")
+            page.click("#cm-3d-proj")
+            check(v.get_attribute("data-projection") == "perspective", "the perspective toggle")
+            page.click("#cm-3d-reset")
+            check(sorted(page.locator("#cm-viewer .cm-legend span").all_inner_texts()) == ["Co", "O"], "one legend entry per element")
             check(page.locator("#cm-sites tbody tr").count() == 8, "one row per site")
             check("Co1" in page.locator("#cm-sites").inner_text() and "+1.20 e" in page.locator("#structure").inner_text(),
                   "site labels and the mean Bader charge")
@@ -203,8 +221,8 @@ def main():
             pp = phone.new_page()
             pp.on("pageerror", lambda e: errors.append(str(e)))
             for url, sel in (("/chaos-materials", "#cm-q"), ("/chaos-materials?f=CoO", "#cm-structures"),
-                             ("/chaos-materials?id=00000000000000c6", "#cm-viewer svg"),
-                             ("/chaos-materials?id=00000000000001c3", "#cm-viewer svg")):
+                             ("/chaos-materials?id=00000000000000c6", "#cm-viewer[data-viewer]"),
+                             ("/chaos-materials?id=00000000000001c3", "#cm-viewer[data-viewer]")):
                 pp.goto(origin + url)
                 pp.locator(sel).wait_for()
                 wide = pp.evaluate("document.documentElement.scrollWidth - window.innerWidth")
@@ -220,11 +238,84 @@ def main():
                 args.screenshots.mkdir(parents=True, exist_ok=True)
                 pp.screenshot(path=str(args.screenshots / "material_phone.png"), full_page=True)
                 page.goto(origin + "/chaos-materials?id=00000000000000c6")
-                page.locator("#cm-viewer svg").wait_for()
+                page.locator("#cm-viewer[data-viewer]").wait_for()
                 page.screenshot(path=str(args.screenshots / "material_desktop.png"), full_page=True)
                 page.goto(origin + "/chaos-materials?f=CoO")
                 page.locator("#cm-structures").wait_for()
                 page.screenshot(path=str(args.screenshots / "composition_desktop.png"), full_page=True)
+            # ---- no WebGL viewer (the library blocked): the SVG picture stands in
+            flat = browser.new_context(viewport={"width": 1280, "height": 900})
+            flat.route("**/*", lambda route: route.abort() if "/js/vendor/3Dmol" in route.request.url
+                       else route.continue_() if route.request.url.startswith(origin) else route.abort())
+            flat.route(origin + "/API/chaos/profiles/**", gate)
+            fp = flat.new_page()
+            fp.goto(origin + "/chaos-materials?id=00000000000000c6")
+            fp.locator("#cm-viewer svg").wait_for()
+            check(fp.locator("#cm-viewer").get_attribute("data-viewer") == "svg", "without the 3D library, the SVG picture")
+            check(fp.locator("#cm-viewer circle").count() > 8, "the cell is drawn with the images on its faces")
+            before = fp.locator("#cm-viewer svg").inner_html()
+            fp.focus("#cm-viewer .cm-view-svg")
+            fp.keyboard.press("ArrowRight")
+            check(fp.locator("#cm-viewer svg").inner_html() != before, "the arrow keys turn the cell")
+            flat.close()
+
+            # ---- CoO as the published database stores it (the bugs of the first release)
+            answer["set"] = "stored"
+            for width in (1280, 390):
+                rc = browser.new_context(viewport={"width": width, "height": 900})
+                rc.route("**/*", lambda route: route.continue_() if route.request.url.startswith(origin) else route.abort())
+                rc.route(origin + "/API/chaos/profiles/**", gate)
+                rp = rc.new_page()
+                rp.on("pageerror", lambda e: errors.append(str(e)))
+                rp.goto(origin + "/chaos-materials?f=CoO")
+                rp.locator("#cm-structures").wait_for()
+                text = rp.locator("#cs-app").inner_text()
+                check('["' not in text and "_{" not in text and "#1" not in text, f"no raw stored text on the composition page at {width} px")
+                low_html = rp.locator(".cs-bar").inner_html()
+                check("P4<sub>2</sub>/mmc (131)" in low_html, f"the lowest structure's relaxed space group, written as in print, at {width} px")
+                heads = [t.strip() for t in rp.locator("#cm-structures th").all_text_contents()]
+                check("Band gap (eV)" not in heads, f"no band-gap column without a gap at {width} px")
+                check("Calculations" in heads and "Starting prototype" in heads and "Relaxed structure" in heads, f"the columns say what they hold at {width} px")
+                trs = rp.locator("#cm-structures tbody tr")
+                check(trs.count() == 3, f"one row per relaxed structure (3 for 11 calculations) at {width} px")
+                first = trs.first.locator("td").all_inner_texts()
+                check(first[0] == "tP4" and "P42/mmc (131)" in first[1].replace("\u200b", "") and first[3] == "8",
+                      f"the eight P4_2/mmc calculations in one row at {width} px: {first[:4]}")
+                rock = [r for r in trs.all_inner_texts() if r.startswith("rocksalt")]
+                check(len(rock) == 1 and "Fm3m (225)" in rock[0], f"rocksalt is listed, with its space group, at {width} px: {rock}")
+                check(rp.locator("#cm-structures .cm-bar").count() >= 1, "the rotoinversion's overbar")
+                if width == 390:
+                    wide = rp.evaluate("document.documentElement.scrollWidth - window.innerWidth")
+                    check(wide <= 0, f"no sideways scrolling at 390 px: stored format ({wide} px)")
+                rp.goto(origin + "/chaos-materials?id=c0c0000000000001")
+                rp.locator("#cm-viewer[data-viewer]").wait_for()
+                st = rp.locator("#structure").inner_text()
+                check("Co 2c, O 2e" in st and "[[" not in st, f"Wyckoff positions as Co 2c, O 2e at {width} px")
+                check("tetragonal" in st and "conventional cell tP4" in st and "a 2.7" in st and "c 5.13 Å" in st,
+                      f"the relaxed structure's conventional cell with its space group at {width} px")
+                check("Cell of the calculation" in st and "8 atoms" in st, f"the calculation's cell and its atoms at {width} px")
+                check(rp.locator("#electronic").count() == 0, f"no empty electronic section at {width} px")
+                check("P4<sub>2</sub>/mmc (131)" in rp.locator(".cs-sub").inner_html(), f"the header's space group at {width} px")
+                check(rp.locator("#cm-viewer").get_attribute("data-viewer") == "3d", f"the 3D viewer at {width} px")
+                if width == 390:
+                    wide = rp.evaluate("document.documentElement.scrollWidth - window.innerWidth")
+                    check(wide <= 0, f"no sideways scrolling at 390 px: stored format structure ({wide} px)")
+                # a cell of 48 atoms
+                rp.goto(origin + "/chaos-materials?id=b16c0000000000b1")
+                rp.locator("#cm-viewer[data-viewer]").wait_for()
+                nb = int(rp.locator("#cm-viewer").get_attribute("data-atoms"))
+                check(nb >= 48, f"a 48-atom cell in the 3D viewer at {width} px ({nb} atoms)")
+                rp.click("#cm-3d-super")
+                check(int(rp.locator("#cm-viewer").get_attribute("data-atoms")) >= 8 * 48, f"its 2×2×2 cells at {width} px")
+                if args.screenshots:
+                    rp.goto(origin + "/chaos-materials?id=c0c0000000000001")
+                    rp.locator("#cm-viewer[data-viewer]").wait_for()
+                    rp.screenshot(path=str(args.screenshots / f"stored_structure_{width}.png"), full_page=True)
+                    rp.goto(origin + "/chaos-materials?f=CoO")
+                    rp.locator("#cm-structures").wait_for()
+                    rp.screenshot(path=str(args.screenshots / f"stored_composition_{width}.png"), full_page=True)
+                rc.close()
+            answer["set"] = ""
             check(not errors, f"no script errors: {errors}")
             browser.close()
     finally:
