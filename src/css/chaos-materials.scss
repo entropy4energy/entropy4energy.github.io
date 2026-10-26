@@ -5,12 +5,15 @@
 // cell viewer, the powder pattern and the material tables. Scoped to #cs-app.
 #cs-app {
   .cm-proto { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85em; overflow-wrap: anywhere; }
+  .cm-bar { text-decoration: overline; }
   .cm-lowest td { background: $color-surface-2; }
   .cm-systems { columns: 2 16em; padding-left: 1.2em; margin: 4px 0 12px; }
   .cm-systems li { break-inside: avoid; margin-bottom: 2px; }
 
-  .cm-structure { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 24px; align-items: start; }
+  .cm-structure { display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: 24px; align-items: start; }
   .cm-view-box { margin: 0; }
+  .cm-3d { position: relative; width: 100%; height: 340px; border: 1px solid $color-line; border-radius: 4px; background: white; touch-action: none; }
+  .cm-3d-controls { margin: 8px 0 0; }
   .cm-view-svg { border: 1px solid $color-line; border-radius: 4px; background: white; touch-action: none; cursor: grab; }
   .cm-view-svg:active { cursor: grabbing; }
   .cm-view { display: block; width: 100%; height: auto; }
