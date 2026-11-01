@@ -9,7 +9,7 @@
         28
       ]
     ],
-    "description": "<strong><em>AI-Enabled Energy Systems: Technologies, Intelligence, and Security</em></strong> was a one-day conference held on October 28, 2026, in the Glass Pavilion on the Homewood campus in Baltimore, Maryland. Researchers from universities, national laboratories, industry, and government discussed where AI methods work across the energy system, how to validate them, and what they need before use in practice. Three invited talks on buildings, materials discovery, and quantum computing filled the morning, followed by a panel with the three speakers. In the afternoon, a panel on moving AI-enabled energy technology from research to deployment opened the AI and Energy roadmap workshop. Topic tables there identified the major research challenges for the next five to ten years. The conference was hosted by the <u>D</u>ata <u>S</u>cience and <u>AI</u> Institute (DSAI), the <u>R</u>alph <u>O</u>'Connor <u>S</u>ustainable <u>E</u>nergy <u>I</u>nstitute (ROSEI), and the <u>H</u>opkins <u>E</u>xtreme <u>M</u>aterials <u>I</u>nstitute (HEMI) at Johns Hopkins University. The conference was organized by Corey Oses (chair), Paulette Clancy, Susu Xu, Jan Drgona, Tim Rupert, Avi Bregman, Elizabeth Smyth, Ben Link, and Ben Schafer.",
+    "description": "A one-day conference on AI applications in energy, held October 28, 2026, in the Glass Pavilion on the Homewood campus. The morning featured invited talks on buildings, materials discovery, and quantum computing, followed by a panel with the three speakers. In the afternoon, a panel on taking AI technologies from research to deployment opened a workshop on a research roadmap for the next five to ten years.\n\nHosted by the Data Science and AI Institute, the Ralph O'Connor Sustainable Energy Institute, and the Hopkins Extreme Materials Institute. Organized by Corey Oses (chair), Paulette Clancy, Susu Xu, Jan Drgona, Tim Rupert, Avi Bregman, Elizabeth Smyth, Ben Link, and Ben Schafer.",
     "highlights": [
       "Invited talks by Jessica Granderson (Lawrence Berkeley National Laboratory), Stefano Sanvito (Trinity College Dublin), and Jasmine Brewer (Quantinuum)",
       "A panel from research to deployment with speakers from the Applied Physics Laboratory, FlexGrid, Ampere, the University of Delaware, and Orivia Tech",
@@ -18,7 +18,6 @@
     "sessions": [
       {
         "title": "Links",
-        "description": "The conference pages.",
         "links": [
           {
             "label": "Conference page with the program and abstracts",
@@ -86,7 +85,7 @@
         27
       ]
     ],
-    "description": "<strong><em>Artificial Intelligence and Human Learning</em></strong> was the <u>D</u>ata <u>S</u>cience and <u>AI</u> Institute (DSAI) Fall 2026 Symposium. It was held on October 27, 2026, in the Bloomberg Student Center on the Homewood campus in Baltimore, Maryland. Educators, researchers, students, and leaders from across Johns Hopkins examined how AI can advance teaching, learning, research, and student success. Keynotes and a featured panel opened the day, and three parallel subtracks followed in the afternoon: Foundations, Ethics, and Applications. A poster session came next, and the day closed with the Hopkins Forum debate in Shriver Hall. The symposium was organized by Corey Oses (chair), Christopher Douville, Louis Hyman, Anqi Liu, Debra Mathews, and Sri Sarma.",
+    "description": "A one-day symposium on how AI affects teaching and learning, held October 27, 2026, in the Bloomberg Student Center on the Homewood campus. The program included two keynotes, parallel sessions on foundations, ethics, and applications, a poster session, and an evening debate on whether generative AI helps or hurts college learning.\n\nOrganized by Corey Oses (chair), Christopher Douville, Louis Hyman, Anqi Liu, Debra Mathews, and Sri Sarma.",
     "highlights": [
       "Keynotes by Munther Dahleh (Massachusetts Institute of Technology) and Jay Aslam (Northeastern University)",
       "Six panels and six invited talks across the Foundations, Ethics, and Applications subtracks",
@@ -96,7 +95,6 @@
     "sessions": [
       {
         "title": "Links",
-        "description": "The symposium pages from DSAI.",
         "links": [
           {
             "label": "Symposium page (Johns Hopkins Data Science and AI Institute)",
@@ -232,7 +230,7 @@
     "date": [
       [2026, 10, 27]
     ],
-    "description": "<strong><em>The Hopkins Forum: Will Generative AI Enhance or Stunt College Learning?</em></strong> was a live debate held on October 27, 2026, in Shriver Hall on the Homewood campus in Baltimore, Maryland. Two teams argued whether student use of generative AI builds learning through tutoring and practice tools or replaces the work that produces it. Open to Debate recorded the debate for its podcast, its YouTube channel, and more than 250 NPR stations. Open to Debate and the SNF Agora Institute organized the debate with the <u>D</u>ata <u>S</u>cience and <u>AI</u> Institute (DSAI) as part of the DSAI Fall 2026 Symposium, <em>Artificial Intelligence and Human Learning</em>. The debate drew more than 100 students, faculty, and community members. Between the opening and closing audience votes, the share expecting generative AI to enhance learning rose from 26.4 to 39.5 percent, while the undecided share fell from 35.6 to 20.2 percent. <em>The Chronicle of Higher Education</em> and <em>GovTech</em> covered the debate the next day.",
+    "description": "A live debate on whether generative AI improves or undermines college learning, held October 27, 2026, in Shriver Hall. The audience voted before and after the debate, and support for the “enhance” position rose from 26.4 to 39.5 percent. <em>The Chronicle of Higher Education</em> and <em>GovTech</em> covered the debate the next day.\n\nRecorded by Open to Debate for its podcast, its YouTube channel, and more than 250 NPR stations. Organized by Open to Debate and the SNF Agora Institute with the Data Science and AI Institute, as part of its Fall 2026 Symposium.",
     "highlights": [
       "A student dinner and discussion with Dean Emily Braley before the debate",
       "Audience votes before and after the debate",
@@ -241,7 +239,6 @@
     "sessions": [
       {
         "title": "Links",
-        "description": "Coverage and event pages.",
         "links": [
           {
             "label": "The Chronicle of Higher Education: Debaters Tried to Change People\u2019s Minds About AI. Here\u2019s What Happened.",
@@ -287,7 +284,7 @@
     "date": [
       [2026, 6, 11]
     ],
-    "description": "<strong><em>Laboratory to Launchpad: Bringing Your Energy IP to Life</em></strong> was a one-day conference held on June 11, 2026, at the Hopkins Bloomberg Center in Washington, D.C. The conference brought together faculty, students, postdocs, researchers, and other innovators interested in moving research toward application. Sessions covered commercialization, intellectual property, federal funding, startup formation, research communication, and other aspects of translating research beyond the laboratory. The conference was organized by the Energy Translation Steering Committee at Johns Hopkins (Corey Oses, Steven Cohen, Jonah Erlebacher, and Avi Bregman) with a Nexus Convening Grant from the Provost's Office, co-sponsored by the Carey Business School, the Whiting School of Engineering, and the Applied Physics Laboratory.",
+    "description": "A one-day conference on turning research into commercial technologies, held June 11, 2026, at the Hopkins Bloomberg Center in Washington, D.C. Sessions covered intellectual property, federal funding, startups, and pitching research. The day included a fireside chat with the Chief Commercialization Officer of the U.S. Department of Energy and a live pitch competition.\n\nOrganized by the Energy Translation Steering Committee at Johns Hopkins University (Corey Oses, Steven Cohen, Jonah Erlebacher, and Avi Bregman) with a Nexus Convening Grant from the Provost's Office. Co-sponsored by the Carey Business School, the Whiting School of Engineering, and the Applied Physics Laboratory.",
     "video": {
       "youtube_id": "dC9pgzGfDSM",
       "title": "Lab to Launch",
@@ -368,7 +365,7 @@
       [2026, 2, 25],
       [2026, 2, 26]
     ],
-    "description": "<strong><em>Quantum Computing in Practice: Hands On with Quantinuum</em></strong> was a two-day workshop on quantum computing and its applications across chemistry, physics, materials science, biology, engineering, data science, and artificial intelligence. The program included talks, discussions, research presentations, and hands-on tutorials using Quantinuum hardware and software.",
+    "description": "A two-day workshop with Quantinuum, held February 25&ndash;26, 2026. It covered quantum computing applications in chemistry, physics, materials science, biology, and AI. Participants worked through talks, demonstrations, and hands-on tutorials on Quantinuum hardware and software. The tutorial notebooks and a recording are below.",
     "sessions": [
       {
         "presenter":"Prof. Corey Oses and Dr. Gregory Quiroz",
@@ -444,7 +441,7 @@
         16
       ]
     ],
-    "description": "<strong><em>AI in Daily Life</em></strong> was the <u>D</u>ata <u>S</u>cience and <u>AI</u> Institute (DSAI) Fall 2025 Symposium. It was held on September 16, 2025, in Shriver Hall Auditorium on the Homewood campus in Baltimore, Maryland. The program examined how AI is reshaping everyday life, from the energy use of data centers to robotic surgery and the future of work. Four invited talks, a panel, and student lightning talks filled the afternoon, and a poster session followed in the Great Hall, Levering Lounge, and Glass Pavilion. The symposium was organized by Corey Oses, Christopher Douville, Debra Mathews, Tianmin Shu, Swaroop Vedula, and Katie Vaught.",
+    "description": "An afternoon symposium on AI in everyday life, held September 16, 2025, in Shriver Hall on the Homewood campus. Topics ranged from the energy use of data centers to robotic surgery and the future of work. The program included four invited talks, a panel, student lightning talks, and a poster session.\n\nOrganized by Corey Oses, Christopher Douville, Debra Mathews, Tianmin Shu, Swaroop Vedula, and Katie Vaught.",
     "highlights": [
       "Invited talks by Benjamin Lee (University of Pennsylvania), John Tasioulas (University of Oxford), Mathias Unberath, and Axel Krieger (Johns Hopkins University)",
       "A panel on AI in daily life and three student lightning talks",
@@ -453,7 +450,6 @@
     "sessions": [
       {
         "title": "Links",
-        "description": "The symposium pages from DSAI.",
         "links": [
           {
             "label": "Symposium page (Johns Hopkins Data Science and AI Institute)",
@@ -535,7 +531,7 @@
       [2024, 5, 29],
       [2024, 5, 31]
     ],
-    "description": "The first <strong><em>Data-Driven Materials Modeling Workshop</em></strong> was held May 29&ndash;31, 2024, in Hodson Hall on the Homewood campus, sponsored by the Institute for Data-Intensive Engineering and Science (IDIES), the Ralph O'Connor Sustainable Energy Institute (ROSEI), and Advanced Research Computing at Hopkins (ARCH). Each day had a theme, a morning keynote and seminar, and a hands-on afternoon: high-throughput thermodynamic modeling, quantum chemistry and catalysis, and Monte Carlo and molecular dynamics. The seminars introduced data-driven approaches for experimental and computational materials research, and the hands-on sessions gave students experience implementing the methods with guidance from graduate students and postdoctoral researchers.",
+    "description": "A three-day workshop held May 29&ndash;31, 2024, in Hodson Hall on the Homewood campus. Each day paired a morning keynote and seminar with an afternoon of hands-on tutorials: high-throughput thermodynamic modeling, quantum chemistry and catalysis, and Monte Carlo and molecular dynamics. Recordings and tutorial notebooks are below.\n\nSponsored by the Institute for Data-Intensive Engineering and Science, the Ralph O'Connor Sustainable Energy Institute, and Advanced Research Computing at Hopkins.",
     "sessions": [
       {
         "title": "Day 1 keynote: Artificial intelligence solutions for computational and materials chemistry tasks",
