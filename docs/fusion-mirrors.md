@@ -1,54 +1,67 @@
-# Fusion Mirror: methods and integration notes
+# Fusion Mirrors methods and access
 
-## Scope
+Fusion Mirrors presents DFT optical constants and normal-incidence
+Air/material reflectivity. The data service reads a separately verified
+private package. The website repository contains application code and
+synthetic test fixtures.
 
-An interactive viewer for **DFT results only**: refractive index n, extinction coefficient k, and normal-incidence Air/material reflectivity. It is not an experimental database or a coating/thickness/angle solver. The original archived DFT data and preprocessing conventions are retained.
+## Optical quantities
 
-The interface prioritizes questions an experimentalist may ask: Is my wavelength covered? What n, k and R are available there? Are the numbers valid? Does the response depend on the PAW choice, tensor component or response channel? Can I download exactly what I plotted?
+Both the standard and GW-oriented PAW datasets use PBE electronic
+structure. Density and current responses remain separate. The n/k plots
+show normal-z mode 1. The reflectivity plot shows the full-tensor
+unpolarized response at an air interface, with Cartesian z as the surface
+normal and a semi-infinite material substrate.
 
-The wavelength lookup includes 532 and 1064 nm shortcuts and accepts arbitrary positive wavelengths. LIGO's main laser operates at 1064 nm ([LIGO](https://www.ligo.caltech.edu/LA/page/laser)); this is motivation for a convenient query, **not** a claim that the calculated bare materials are suitable LIGO mirrors. ITER's [diagnostics overview](https://www.iter.org/machine/supporting-systems/diagnostics) motivates spectral access for diagnostic optics, not a durability prediction. Coating loss, thermal noise, roughness, damage thresholds, radiation and plasma exposure remain outside this dataset.
+The service reads the stored screening grid. It retains invalid-value gaps
+and performs no interpolation, extrapolation, or band averaging. The
+wavelength query returns the nearest stored sample within the selected
+band and reports its wavelength and offset. Values are rounded to four
+significant digits. Method references and selected calculation settings
+accompany each view.
 
-## Numerical conventions
+## Data presentation
 
-| Choice | Meaning |
-| --- | --- |
-| Standard / GW-oriented PAW | Two potential datasets, both using PBE electronic structure; not PBE versus quasiparticle GW |
-| Density / current | Separate dielectric-response channels; density is the manuscript default |
-| Normal-z mode 1 / 2 | Indices derived from the full dielectric tensor, sorted at each wavelength |
-| Cartesian x / y / z | Square-root diagonal diagnostics; not a replacement for anisotropic reflection |
-| Reflectivity | Full-tensor reflected powers; Cartesian z surface normal; Air / semi-infinite bulk; 0°; no coating |
-| UV / visible / near-IR | 200–400 / 400–700 / 700–1,200 nm, with inclusive endpoints |
-| Screening / native | Preprocessed 1 nm study grid / original positive-energy sampling expressed in wavelength |
+The server generates PNG plots. Individual numerical queries return one
+wavelength for up to three materials on one PAW branch, or one material on up to two PAW branches. Complete spectra,
+source CSVs, tensor files, and archives remain outside the public web
+root. The frontend receives no complete spectrum arrays.
 
-Values and flags are read as stored. n/k require `finite_epsilon` and `passive_epsilon`; R requires `valid_normal_z` and a finite reflected power. Unavailable values are blank, never zero. Invalid rows interrupt curves. No new interpolation, extrapolation or averaging is performed; straight lines join neighbouring valid samples. A native min/max span does not prove uninterrupted support. The wavelength probe reports the **actual nearest sample and its offset**, refuses out-of-window queries and preserves invalid-value gaps.
+The service limits plots and numerical queries with shared persistent
+quotas. Plots can be digitized, and repeated queries can recover portions
+of the data. These controls restrict convenient bulk extraction.
 
-Plotted CSVs include all sampled rows in the selected window, with quality flags and blank unavailable outputs. Source `.csv.gz` downloads are the original selected File objects, retaining full tensor columns and unplotted rows. SVG and metadata JSON exports record the selection and source references. PNG exports are rasterized SVGs.
+The interactive service covers calculated bare interfaces. The separate
+study section reports selected coating results. It uses the same standard-PAW
+PBE density inputs, unit-index incident medium, Cartesian z surface normal,
+unpolarized powers and semi-infinite substrates as the paper. Coating changes
+are coated minus matching bare R3 in percentage points; R3 gives equal weight
+to the UV, visible and near-infrared means. The page distinguishes the fixed
+100 nm, 152-pair comparison from the thickness sweep and the 532 nm result.
 
-## Local export contract (schema version 1)
+The n/k view is mode 1; full-tensor R averages both incident polarizations,
+including conversion. A scalar Fresnel calculation from that one n/k pair
+need not reproduce full-tensor R for an anisotropic material. Off-grid web
+queries return the nearest stored sample and offset. The paper instead
+interpolates dielectric components for its diagnostic-line calculations.
+Both PAW types are independent-particle PBE calculations.
 
-Select a folder with exactly one `catalog.json`:
+The website makes no claim that the optical identity screen establishes
+fusion durability. Cs belongs to the paper's literature reference population,
+not its fixed device registry or this calculated-spectrum catalog. The paper's
+negative-k exclusion is a separate frozen-mask sensitivity test; it does not
+replace the primary discovery counts or alter these DFT spectra.
 
-```text
-data/
-  catalog.json
-  spectra/<family>/<material>/<branch>/<sampling>_<channel>.json
-  source_csv/.../*.csv.gz
-```
+## Implementation
 
-The catalogue supplies `schema_version: 1`, `families`, and a nonempty `materials` array. Each material has `id`, `family`, `excluded` and `runs`. Each PBE/GW run provides `metadata` and `channels.density/current.native/screening`, with `url`, `range_nm` and `sources`. Paths start with `data/` and resolve only within the selected folder. All indexed spectrum files must exist. Source entries provide `kind`, `download` and the archived provenance/hash fields; missing source downloads produce a visible error rather than requesting a network URL.
+- `src/templates/fusion-mirrors.html` uses the shared site shell.
+- `src/css/fusion-mirrors.scss` scopes styles to the explorer container.
+- `src/js/fusion-mirrors.js` requests images, settings, and individual values.
+- `services/fusion-mirrors/` contains the private-data service and its tests.
+- `tests/test_fusion_mirrors.py` checks the integrated page with synthetic data.
 
-Spectrum JSON has `columns` and `rows` arrays. Required columns are `wavelength_nm`, `energy_eV`, n/k for `mode1`, `mode2`, `x`, `y`, `z`, `R_unpolarized_percent`, `R_x_percent`, `R_y_percent`, `finite_epsilon`, `passive_epsilon`, `rounding_uncertain_absorption`, and `valid_normal_z`. Wavelength rows must be positive, finite and strictly increasing. JSON inputs are limited to 50 MB per file and spectra to 10,000 rows to avoid accidentally opening unrelated heavy outputs. The current exported format fits these limits.
+[Service configuration](../services/fusion-mirrors/README.md) describes the
+API, quotas, private storage, and reverse-proxy requirements. The tools
+entry is present in the shared navigation and tools overview.
 
-The UI performs structural checks and applies archived validity flags; it does not independently validate convergence or physical accuracy. Check the supplied release's validation and provenance before interpretation.
-
-## Integration boundary
-
-Only the new tool has new CSS rules. Existing shared styles, header/footer templates and CHAOS/LOOP code are untouched. The shared base template changes only the tool description, metadata for the new page, and analytics exclusion for that page. The page's usage events go to the group's own record instead (README, Data and privacy). Tools navigation is generated from `tools.json`. The Makefile includes the new HTML/CSS/JS; the JS is copied intact to preserve external JSON field names that Closure ADVANCED might rename.
-
-No figure assets or datasets are needed to build the site. The default unloaded preview is intentionally honest: it does not display synthetic science as if it were real DFT. Test fixtures are explicitly synthetic, created at test time and not offered as data.
-
-## Release boundary
-
-This code-only preview is not an access-control system for future publicly hosted datasets. Once approved for release, a separately reviewed change must establish the public data endpoint, immutable release/version/checksums, licence, manuscript citation and download policy. Do not simply place unpublished files in `src/media`, `dist` or a Git branch. A private local preview does not require copying any files into this repository.
-
-This work was supported by the **Seaver Institute**.
+This work was supported by the Seaver Institute.
