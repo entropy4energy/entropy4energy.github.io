@@ -38,6 +38,61 @@
     ]
   },
   {
+    "id": "2026_hopkins_forum",
+    "title": "The Hopkins Forum: Will Generative AI Enhance or Stunt College Learning?",
+    "date": [
+      [2026, 10, 27]
+    ],
+    "description": "<strong><em>The Hopkins Forum: Will Generative AI Enhance or Stunt College Learning?</em></strong> was a live debate held on October 27, 2026, in Shriver Hall on the Homewood campus in Baltimore, Maryland. Two teams argued whether student use of generative AI builds learning through tutoring and practice tools or replaces the work that produces it. Open to Debate recorded the debate for its podcast, its YouTube channel, and more than 250 NPR stations. Open to Debate and the SNF Agora Institute presented it as part of the <u>D</u>ata <u>S</u>cience and <u>AI</u> Institute (DSAI) Fall 2026 Symposium, <em>Artificial Intelligence and Human Learning</em>. Prof. Oses served on the DSAI planning committee. The debate drew more than 100 students, faculty, and community members. Between the opening and closing audience votes, the share expecting generative AI to enhance learning rose from 26.4 to 39.5 percent, while the undecided share fell from 35.6 to 20.2 percent. <em>The Chronicle of Higher Education</em> and <em>GovTech</em> covered the debate the next day.",
+    "highlights": [
+      "A student dinner and discussion with Dean Emily Braley before the debate",
+      "Audience votes before and after the debate",
+      "A reception after the debate"
+    ],
+    "sessions": [
+      {
+        "title": "Links",
+        "description": "Coverage and event pages.",
+        "links": [
+          {
+            "label": "The Chronicle of Higher Education: Debaters Tried to Change People\u2019s Minds About AI. Here\u2019s What Happened.",
+            "href": "https://www.chronicle.com/article/debaters-tried-to-change-peoples-minds-about-ai-heres-what-happened"
+          },
+          {
+            "label": "GovTech: Cognitive Surrender vs. AI Literacy: Higher-Ed Experts Debate AI",
+            "href": "https://www.govtech.com/education/higher-ed/cognitive-surrender-vs-ai-literacy-higher-ed-experts-debate-ai"
+          },
+          {
+            "label": "Open to Debate event page",
+            "href": "https://support.opentodebate.org/event/will-generative-ai-enhance-or-stunt-college-learning-live/e836358"
+          },
+          {
+            "label": "DSAI Fall 2026 Symposium",
+            "href": "https://ai.jhu.edu/event/data-science-and-ai-institute-fall-2026-symposium-artificial-intelligence-and-human-learning/"
+          }
+        ]
+      },
+      {
+        "presenter": [
+          "Dr. Ravi Pendse, University of Michigan",
+          "Dr. Edward Maloney, Georgetown University"
+        ],
+        "title": "Arguing \u201cEnhance\u201d"
+      },
+      {
+        "presenter": [
+          "Dr. Cathy O'Neil",
+          "Prof. Gary Marcus, New York University"
+        ],
+        "title": "Arguing \u201cStunt\u201d"
+      },
+      {
+        "presenter": "John Donvan, Open to Debate",
+        "title": "Moderator"
+      }
+    ]
+  },
+  {
     "id": "2026_L2L",
     "title": "Laboratory to Launchpad: Bringing Your Energy IP to Life",
     "date": [
