@@ -38,6 +38,156 @@
     ]
   },
   {
+    "id": "2026_dsai_symposium",
+    "title": "Johns Hopkins Data Science and AI Institute Fall 2026 Symposium: Artificial Intelligence and Human Learning",
+    "date": [
+      [
+        2026,
+        10,
+        27
+      ]
+    ],
+    "description": "<strong><em>Artificial Intelligence and Human Learning</em></strong> was the <u>D</u>ata <u>S</u>cience and <u>AI</u> Institute (DSAI) Fall 2026 Symposium. It was held on October 27, 2026, in the Bloomberg Student Center on the Homewood campus in Baltimore, Maryland. The program examined AI in teaching, learning, and research through three subtracks: Foundations, Ethics, and Applications. Two keynotes and a featured panel opened the day, and the three subtracks then ran in parallel through the afternoon. A poster session followed, and the day closed with the Hopkins Forum debate in Shriver Hall. Prof. Oses chaired the organizing committee and led the redesign of the symposium, from the single-track afternoon program of 2025 to a full day with three parallel subtracks. The other committee members were Christopher Douville, Louis Hyman, Anqi Liu, Debra Mathews, and Sri Sarma. The symposium's AI and energy subtrack grew into a separate conference the next day, <em>AI-Enabled Energy Systems</em>.",
+    "highlights": [
+      "Keynotes by Munther Dahleh (Massachusetts Institute of Technology) and Jay Aslam (Northeastern University)",
+      "Six panels and six invited talks across the Foundations, Ethics, and Applications subtracks",
+      "A poster session for students, postdoctoral fellows, and faculty",
+      "The Hopkins Forum debate in the evening, co-presented with Open to Debate and the SNF Agora Institute"
+    ],
+    "sessions": [
+      {
+        "title": "Links",
+        "description": "The symposium pages from DSAI.",
+        "links": [
+          {
+            "label": "Symposium page (Johns Hopkins Data Science and AI Institute)",
+            "href": "https://ai.jhu.edu/event/data-science-and-ai-institute-fall-2026-symposium-artificial-intelligence-and-human-learning/"
+          },
+          {
+            "label": "Agenda with speaker affiliations",
+            "href": "https://ai.jhu.edu/data-science-and-ai-institute-fall-2026-symposium-agenda/"
+          },
+          {
+            "label": "Poster session",
+            "href": "https://ai.jhu.edu/dsai-fall-2026-symposium-poster-session/"
+          }
+        ]
+      },
+      {
+        "presenter": "Prof. Munther Dahleh, Massachusetts Institute of Technology",
+        "title": "Keynote: AI and Decision Making: Perils, Pitfalls, and Promise",
+        "description": "Traditionally, decision making begins with people gathering information and then choosing how to act. Digital platforms are fundamentally changing this process. They increasingly determine what information people see and use that information to shape their decisions. These platforms influence how we navigate cities, consume energy, shop online, interact socially, allocate resources, vote on candidates, and participate in markets. AI is dramatically expanding their capabilities, enabling them to learn from data, interact continuously with users, and influence the decisions of millions of people and autonomous agents. Platforms such as navigation and e-commerce systems observe users\u2019 actions and develop detailed information about the state of the system. To influence decisions effectively, however, they must also understand users\u2019 private preferences, objectives, constraints, and valuations. Platforms can learn the probability distribution of these characteristics from accumulated data, while advertisements, recommendations, and other interactions allow them to refine their estimates. These estimates are imperfect, particularly when preferences change with context. Effective personalization therefore requires platforms to elicit private information in real time. This emerging architecture gives rise to a new control paradigm based on information markets. Rather than directly controlling the actions of autonomous agents, an information market designs the information each agent receives to influence collective behavior and achieve a desired system objective. It must also create appropriate incentives for agents to reveal their private information. The monetization of information introduces a new feedback loop involving both information and payments, effectively creating a market for data. Designing such a market requires the simultaneous design of elicitation mechanisms, personalized information, and learning algorithms in a distributed environment. This paradigm presents both promise and peril. Carefully designed information can improve individual decisions, coordinate collective behavior, and enhance system performance. The same architecture, however, can enable platforms to manipulate the information people see, exploit information asymmetries, and exercise market power. Recent class action lawsuits against major e-commerce platforms illustrate the risks of using informational power to influence prices, demand, and consumer behavior. This talk will examine how information can be designed to produce desired outcomes, when such design serves a societal objective, and when it becomes a mechanism for manipulation. Understanding this duality is essential to building AI-enabled platforms that realize the benefits of personalized information while limiting the risks of concentrated informational power."
+      },
+      {
+        "presenter": [
+          "Prof. Vikram Chib",
+          "Prof. Munther Dahleh",
+          "Prof. Mario Macis",
+          "Prof. Debra Mathews",
+          "Moderator: Prof. Sri Sarma"
+        ],
+        "title": "Panel: When AI Chooses What You See, Who Chooses What You Do? AI, Information, and Human Agency"
+      },
+      {
+        "presenter": "Prof. Javed (Jay) Aslam, Northeastern University",
+        "title": "Keynote: AI Readiness at the University",
+        "description": "As AI shifts from a tool we use to a partner we direct, the challenge for universities is no longer teaching individuals to prompt a model \u2014 it is learning, as institutions, to work alongside increasingly capable AI systems. Drawing on Northeastern\u2019s effort to weave AI readiness through its curriculum, faculty roles, and governance, this talk separates three competencies too often collapsed into one. Literacy is understanding what these systems are. Fluency is applying them skillfully within a discipline. Agency is the disposition to frame problems, direct and interrogate AI, and own the outcomes \u2014 to orchestrate human\u2013agent teams toward human ends. As AI grows more capable, the frontier of human learning moves from fluency to agency. I will offer a practical framework for what each requires, and the structures that make them real rather than aspirational."
+      },
+      {
+        "presenter": [
+          "Prof. David Dowdy",
+          "Prof. Emily Fisher",
+          "Prof. Louis Hyman",
+          "Prof. Illysa Izenberg",
+          "Brian Klaas",
+          "Jamie Young"
+        ],
+        "title": "Applications: AI in the Classroom (panel)"
+      },
+      {
+        "presenter": [
+          "Prof. Kristen Brown",
+          "Dr. Joseph Sakran",
+          "Prof. Jason Trageser",
+          "Moderator: Prof. Ibrahima Bah"
+        ],
+        "title": "Applications: Challenges and Opportunities for AI in the Sciences (panel)"
+      },
+      {
+        "presenter": [
+          "Prof. Lingxin Hao",
+          "Prof. Nicolas Jabko",
+          "Prof. Hyunku Kwon",
+          "Giovanna Maria Dora Dore",
+          "Moderator: Prof. Louis Hyman"
+        ],
+        "title": "Applications: Challenges and Opportunities for AI in the Social Sciences (panel)"
+      },
+      {
+        "presenter": [
+          "Prof. Debra Mathews",
+          "with Prof. Ruth Faden and Dr. Odia Kane"
+        ],
+        "title": "Ethics: The Importance of Knowledge and Understanding to Human Flourishing",
+        "description": "Human flourishing, which has a deep history in philosophy and religion, requires developing the abilities and living under conditions in which a good or decent life is securable. Accounts of human flourishing and human well-being usually feature prominently the skills and habits of mind necessary for persons to know, critically reflect upon, and understand the empirical world, as well as the abilities to form and revise conceptions of the good and of other-regarding morality. In addition to personal capabilities, humans must also live under conditions that are safe, adequately resourced, and well maintained by the appropriate institutions to enable them to effectively apply these skills and flourish. However, the potential for individuals to live good lives is heavily dependent on the social systems and institutions that define what is possible. These systems and institutions can nurture human flourishing or undermine it. Educational systems, including higher education, are designed to advance multiple elements of well-being, perhaps most notably, knowledge and understanding. The skills and abilities necessary for knowledge and understanding are developed in the first decades of life but must be supported over the course of a lifetime. For those fortunate enough to continue their education into their twenties, institutions of higher education have a special obligation to see that these abilities continue to develop, both generally and in ways specific to particular professions and callings. An urgent question for higher education is when and how AI use can degrade or deepen these abilities and what it means to advance knowledge and understanding as AI enters and seemingly takes over the chat."
+      },
+      {
+        "presenter": "Douglas Knecht, USC Candle",
+        "title": "Ethics: Learning to Crawl Before We Run: Education-as-Development in the Context of AI",
+        "description": "The culture of K-12 schools and institutions of higher ed typically reinforce a larger societal focus of students on educational outcomes. When adolescent students care more about work completion, GPAs, and college and job acceptances than they do about what they are meant to learn, why wouldn\u2019t they use genAI tools as a shortcut whenever they can? The ethics of cheating can\u2019t be the only answer because, simply, it\u2019s not enough to stem the tide when genAI is an everywhere tsunami. However, when we reframe the goal of learning as human development, a different pathway emerges for considering the educational use of AI in adolescence (ages 12 to 25). In this talk, we will explore recent neuroscience research demonstrating the developmental impact on adolescents of what Dr. Mary Helen Immordino-Yang calls \u201ctranscendent thinking.\u201d When comparing this kind of emotionally infused intellectual engagement in high school and undergraduate coursework to the act of crawling in young children, a larger argument for the strategic and careful use of AI by students and teachers takes shape. As adolescents rush ahead with AI tools that are, in many ways, running amok themselves, we must wrestle with how our youth are being cheated of powerful developmental opportunities to have emotions about ideas and make meaning of their world, themselves, and who they are becoming as young adults."
+      },
+      {
+        "presenter": "Michael Stevenson, International Baccalaureate and Wellington College",
+        "title": "Ethics: Education for Human Flourishing in an AI World: An OECD Perspective",
+        "description": "For several decades, education policymakers have focused on preparing young people for the labor market: the human capital theory of education. In recasting education purposes, the OECD high-performing education systems are looking to link education to the ancient ideal of human flourishing, while rebalancing it in the service of a broader idea: to nurture in all of us a suite of distinctive human capacities, that equip us not only to flourish as individuals but also to contribute to flourishing societies and economies, in harmony with the planet. The development of education for human flourishing coincides with rapid advances in AI. In the near term, AI threatens to undermine human meaning, human agency, and human security. In the longer term (which may not be very long at all), superintelligent AI could threaten the survival of humanity itself. Education for human flourishing, in broadening and rebalancing human capabilities, restoring meaning to human lives and creating fair and sustainable models for the future, may be our best shot at controlling it."
+      },
+      {
+        "presenter": [
+          "Prof. Jennifer Adams",
+          "Prof. Ruth Faden",
+          "Dr. Odia Kane",
+          "Douglas Knecht",
+          "Michael Stevenson",
+          "Moderator: Prof. Debra Mathews"
+        ],
+        "title": "Ethics: The Role and Responsibility of Higher Education in Preserving and Cultivating Knowledge and Understanding in the AI Era (panel)"
+      },
+      {
+        "presenter": "Prof. Erin Walker, University of Pittsburgh",
+        "title": "Foundations: Let\u2019s Collaborate: Shifting the Role of AI in Learning Interactions",
+        "description": "When people think of applying generative AI in education, they often place the AI in the role of an expert tutor, but this dynamic can offload too much cognitive work to the AI at the expense of student learning. In this talk, I argue that collaborative learning interactions between students and agents might be a more effective metaphor in some learning scenarios. I outline the different kinds of collaborative roles agents might fill with students, such as an agent acting as a protege, and when these roles might be appropriate. I then discuss considerations in computational modeling of these human-agent dialogic processes, as well as the technical foundations for creating theory-grounded dialogic interventions with generative AI."
+      },
+      {
+        "presenter": "Prof. Susu Zhang, University of Illinois Urbana-Champaign",
+        "title": "Foundations: Extending Psychometric Methods Beyond Ordinal Scores",
+        "description": "Measurement theory guides the development of tests and the interpretation of their scores. For a long time, psychometric methods (i.e., the statistical tools used to analyze test response data) have provided ways to empirically evaluate score reliability, flag questions with quality or fairness concerns, and estimate student proficiency, skill mastery, and other cognitive and non-cognitive characteristics with quantified uncertainty. As educational assessment moves beyond standardized tests with simple, structured responses (e.g., multiple-choice) toward more complex tasks, measurement theory principles remain useful, but many statistical models built for questions\u2019 ordinal scores cannot be applied directly to unstructured data (e.g., log files, open-ended responses). How can we extend psychometric tools as behavioral evidence moves beyond right/wrong or ordinal question scores? In this presentation, I will share several projects that use test-taking process data to address testing and educational questions, including test reliability (improving the accuracy of student proficiency scores), question fairness (understanding why a question was flagged for bias against a subgroup), and performance gaps between demographic groups (identifying problem-solving behaviors that explain the performance gap of students with learning disabilities and their peers). I will also discuss some future extensions for diagnostic assessment with complex tasks, where students\u2019 intermediate work and solution paths may provide evidence about specific skills."
+      },
+      {
+        "presenter": "Prof. Andrew Lan, University of Massachusetts Amherst",
+        "title": "Foundations: Student Modeling, Assessment, and Simulation in Tutoring Dialogues",
+        "description": "Effective tutoring requires a model of what a student knows, a way to measure how that knowledge changes, and realistic predictions of how the student will respond. This talk presents a line of work connecting these three goals in open-ended math tutoring dialogues. We first discuss how large language models (LLMs) can be used to identify knowledge components and assess response correctness from dialogue, enabling knowledge tracing, a common student modeling technique, in dialogues. We then detail a joint item-response framework that treats tutor-posed tasks in dialogues as formative assessment items alongside standard assessment items, and show that this framework improves item parameter estimation and student response prediction. We finally explore LLM-based student simulation in tutoring dialogues. We discuss evaluation criteria across linguistic, behavioral, and cognitive dimensions, which reveal that prompt-only simulators often create plausible but unfaithful students. We then show that grounding the student simulation task on their prior item response and dialogue history, learning how to summarize the history through reinforcement learning, substantially improves student simulation quality."
+      },
+      {
+        "presenter": [
+          "Prof. James Diamond",
+          "Prof. Jason Eisner",
+          "Prof. Andrew Lan",
+          "Prof. Erin Walker",
+          "Prof. Susu Zhang",
+          "Moderator: Mike Reese"
+        ],
+        "title": "Foundations: AI for Education: Preparing for the Future of Practice and Research (panel)"
+      },
+      {
+        "title": "Poster session"
+      },
+      {
+        "title": "The Hopkins Forum: Will Generative AI Enhance or Stunt College Learning?",
+        "description": "A live Open to Debate recording in Shriver Hall; see the entry below."
+      }
+    ]
+  },
+  {
     "id": "2026_hopkins_forum",
     "title": "The Hopkins Forum: Will Generative AI Enhance or Stunt College Learning?",
     "date": [
