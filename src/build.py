@@ -276,14 +276,54 @@ def build_sitemap(host: str) -> str:
     return "\n".join(lines) + "\n"
 
 
+# The crawlers that collect pages for training AI models or for AI answers,
+# by the names their operators publish. The tools host (s4e.ai, whose files
+# chaos.s4e.ai serves too) keeps them off every page, under CHAOS's terms on
+# model training (2026-10-24): no use for AI training or AI answers without
+# written permission from Johns Hopkins University. Search engines keep the
+# pages and the API's help.
+AI_CRAWLERS = [
+    "GPTBot", "ChatGPT-User", "OAI-SearchBot", "ClaudeBot", "Claude-User", "Claude-SearchBot", "anthropic-ai",
+    "claude-web", "Google-Extended", "Google-CloudVertexBot", "GoogleOther", "Applebot-Extended", "CCBot",
+    "PerplexityBot", "Perplexity-User", "Amazonbot", "Amzn-User", "meta-externalagent", "meta-externalfetcher",
+    "meta-webindexer", "MistralAI-Training", "MistralAI-Index", "MistralAI-User", "Bytespider", "cohere-ai",
+    "cohere-training-data-crawler", "Diffbot", "Omgilibot", "ImagesiftBot", "Timpibot", "YouBot", "DuckAssistBot",
+    "AI2Bot",
+]
+# The CHAOS Terms of Use, once published: robots.txt and the pages' tdm-policy
+# tag link it. Empty until then, and the links are left out.
+TERMS_URL = ""
+
+
 def build_robots(host: str) -> str:
-    """robots.txt for one host. Every page stays crawlable: each host serves a
-    copy of the other's pages, and it is the canonical link in the page, not a
-    Disallow line, that tells a crawler which copy counts. A crawler that is
-    kept out cannot read the canonical link at all. The dev build published
-    under /__dev__/ is the exception, being a second copy of the live site on
-    the live host."""
-    lines = ["User-agent: *", "Allow: /"]
+    """robots.txt for one host. Every page stays crawlable for search
+    engines: each host serves a copy of the other's pages, and it is the
+    canonical link in the page, not a Disallow line, that tells a crawler
+    which copy counts. A crawler that is kept out cannot read the canonical
+    link at all. The dev build published under /__dev__/ is the exception,
+    being a second copy of the live site on the live host. On the tools
+    host the AI crawlers are kept out of every page, every other crawler is
+    told the same in Content-Signal and Content-Usage, and the API and the
+    account pages are left out except the API's help and schema."""
+    if host == TOOLS_HOST:
+        terms = f" Terms: {TERMS_URL}" if TERMS_URL else ""
+        lines = [
+            "# No use of these pages for AI training or AI answers without written",
+            f"# permission from Johns Hopkins University.{terms}",
+            *[f"User-agent: {name}" for name in AI_CRAWLERS],
+            "Disallow: /",
+            "",
+            "User-agent: *",
+            "Content-Signal: search=yes, ai-input=no, ai-train=no",
+            "Content-Usage: train-ai=n",
+            "Allow: /API/?help",
+            "Allow: /API/?schema",
+            "Disallow: /API/",
+            "Disallow: /account",
+            "Allow: /",
+        ]
+    else:
+        lines = ["User-agent: *", "Allow: /"]
     if host == LAB_HOST:
         lines += [
             "",
@@ -786,6 +826,7 @@ def build_html(section: str = "", extra_data: list = []) -> str:
     if part_of:
         data["product"] = json.loads((DATA_DIR / f"{part_of}.json").read_text()).get("product")
     data["product_id"] = product_id
+    data["terms_url"] = TERMS_URL
     # A page served on its product's own host (chaos.s4e.ai, loop.s4e.ai) names
     # "site_root" in its data file: the lab site's menu, logo and footer then
     # link to https://s4e.ai/ instead of to the product's host. Its style sheet
