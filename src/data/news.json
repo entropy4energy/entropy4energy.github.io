@@ -2,6 +2,20 @@
   {
     "date": [
       2026,
+      10,
+      28
+    ],
+    "title": "DSAI symposium, Hopkins Forum debate, and <strong><em>AI-Enabled Energy Systems</em></strong>",
+    "message": "Prof. Oses chaired the Data Science and AI Institute Fall 2026 Symposium, <strong><em>Artificial Intelligence and Human Learning</em></strong>, on October 27. The day closed with the Hopkins Forum debate, <em>Will Generative AI Enhance or Stunt College Learning?</em>, which <em>The Chronicle of Higher Education</em> and <em>GovTech</em> covered the next day. On October 28, Prof. Oses chaired <strong><em>AI-Enabled Energy Systems: Technologies, Intelligence, and Security</em></strong>, a one-day conference with three invited talks and an AI and Energy roadmap workshop. Programs, abstracts, and links for all three events are on the <a href=\"workshops\">Workshops page</a>.",
+    "picture_alt": "Title card for the Data Science and AI Institute Fall 2026 Symposium, Artificial Intelligence and Human Learning",
+    "picture_directory": "workshops/2026_dsai_symposium",
+    "pictures": [
+      "flyer.webp"
+    ]
+  },
+  {
+    "date": [
+      2026,
       9,
       23
     ],
