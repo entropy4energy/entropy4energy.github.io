@@ -435,6 +435,93 @@
     ]
   },
   {
+    "id": "2025_dsai_symposium",
+    "title": "Johns Hopkins Data Science and AI Institute Fall 2025 Symposium: AI in Daily Life",
+    "date": [
+      [
+        2025,
+        9,
+        16
+      ]
+    ],
+    "description": "<strong><em>AI in Daily Life</em></strong> was the <u>D</u>ata <u>S</u>cience and <u>AI</u> Institute (DSAI) Fall 2025 Symposium. It was held on September 16, 2025, in Shriver Hall Auditorium on the Homewood campus in Baltimore, Maryland. The program examined how AI is reshaping everyday life, from the energy use of data centers to robotic surgery and the future of work. Four invited talks, a panel, and student lightning talks filled the afternoon, and a poster session followed in the Great Hall, Levering Lounge, and Glass Pavilion. The symposium was organized by Corey Oses, Christopher Douville, Debra Mathews, Tianmin Shu, Swaroop Vedula, and Katie Vaught.",
+    "highlights": [
+      "Invited talks by Benjamin Lee (University of Pennsylvania), John Tasioulas (University of Oxford), Mathias Unberath, and Axel Krieger (Johns Hopkins University)",
+      "A panel on AI in daily life and three student lightning talks",
+      "A poster session for students, postdoctoral fellows, and faculty"
+    ],
+    "sessions": [
+      {
+        "title": "Links",
+        "description": "The symposium pages from DSAI.",
+        "links": [
+          {
+            "label": "Symposium page (Johns Hopkins Data Science and AI Institute)",
+            "href": "https://ai.jhu.edu/event/fall-2025-symposium/"
+          },
+          {
+            "label": "Agenda with abstracts",
+            "href": "https://ai.jhu.edu/agenda-september-16-2025/"
+          },
+          {
+            "label": "Poster session",
+            "href": "https://ai.jhu.edu/fall-2025-symposium-poster-session/"
+          }
+        ]
+      },
+      {
+        "presenter": [
+          "Prof. Rama Chellappa, interim director, Data Science and AI Institute",
+          "Prof. Corey Oses"
+        ],
+        "title": "Introduction and welcome remarks"
+      },
+      {
+        "presenter": "Prof. Benjamin Lee, University of Pennsylvania",
+        "title": "Toward Sustainable Data Centers for Artificial Intelligence",
+        "description": "As the impact of artificial intelligence (AI) continues to proliferate, computer architects must assess and mitigate its energy demands. This talk will survey strategies for mitigating the energy used by AI computation and datacenter infrastructure, drawing on data and experiences from industrial, hyperscale systems. First, we analyze the energy implications of super-linear AI growth. Second, we re-think datacenter infrastructure and define a solution space for sustainable computation with renewable energy, utility-scale batteries, and job scheduling. Finally, we develop strategies for datacenter demand response, incentivizing workloads to modulate power usage in ways that reflect their performance goals. In summary, the talk provides a broad perspective on sustainable computing and outlines the many remaining directions for future work."
+      },
+      {
+        "presenter": "Prof. John Tasioulas, University of Oxford",
+        "title": "Worker, Citizen, Robot (pre-recorded)",
+        "description": "Two fundamental dimensions of \u201cdaily life\u201d are the activities we pursue as workers and as democratic citizens. The development of AI technology, with the threat it poses in terms of a massive reduction of job opportunities for humans, forces us to re-examine the values that are realised through work and the extent to which they can be achieved through non-work activities, such as play. Relatedly, we need to re-examine the connection between work and active democratic citizenship: to what extent does a healthy democratic ethos depend upon widespread participation on the part of citizens in work?"
+      },
+      {
+        "presenter": "Prof. Mathias Unberath, Johns Hopkins University",
+        "title": "Engineering Better Healthcare \u2013 An Incomplete Perspective",
+        "description": "Despite persistent criticism, AI is now undoubtedly part of everyday life including healthcare. The opportunities for AI and related technology to benefit healthcare delivery and operations and sheer limitless, ranging from decision support systems for scheduling and triage to autonomous surgery. In this talk, I will highlight some of our recent advances in AI-assisted healthcare showcasing some of the transformative potential this technology holds for delivering better care."
+      },
+      {
+        "presenter": "Prof. Axel Krieger, Johns Hopkins University",
+        "title": "Autonomous Robotic Surgery: Science Fiction or Reality?",
+        "description": "Robotic assisted surgery (RAS) systems incorporate highly dexterous tools, hand tremor filtering, and motion scaling to enable a minimally invasive surgical approach, reducing collateral damage and patient recovery times. However, current state-of-the-art telerobotic surgery requires a surgeon operating every motion of the robot, resulting in long procedure times and inconsistent results. The advantages of autonomous robotic functionality have been demonstrated in applications outside of medicine, such as manufacturing and aviation. A limited form of autonomous RAS with pre-planned functionality was introduced in orthopedic procedures, radiotherapy, and cochlear implants. Efforts in automating soft tissue surgeries have been limited so far to elemental tasks such as knot tying, needle insertion, and executing predefined motions. The fundamental problems in soft tissue surgery include unpredictable shape changes, tissue deformations, and perception challenges. The research goal is to transform current manual and teleoperated robotic soft tissue surgery to autonomous robotic surgery, improving patient outcomes by reducing the reliance on the operating surgeon, eliminating human errors, and increasing precision and speed. This presentation will discuss our novel strategies to overcome the challenges encountered in soft tissue autonomous surgery. Presentation topics will include a robotic system for supervised autonomous laparoscopic anastomosis and our latest work in end-to-end imitation learning of surgical tasks and procedures, which we recently published in Science Robotics."
+      },
+      {
+        "presenter": [
+          "Prof. Benjamin Lee",
+          "Prof. Axel Krieger",
+          "Prof. Mathias Unberath",
+          "Prof. Debra Mathews",
+          "Zih-Yun (Sarah) Chiu",
+          "Moderator: Prof. Swaroop Vedula"
+        ],
+        "title": "Panel discussion"
+      },
+      {
+        "presenter": [
+          "Cassie Chou",
+          "Junyue Jiang",
+          "Alexis Daniels"
+        ],
+        "title": "Lightning talks",
+        "description": "Machine Learning and Causal Inference for Extreme Event Attribution in Climate Science (Cassie Chou, Department of Biostatistics); Towards Sustainable Distributed Computing: Integrating Energy Costs and Benefits for Optimal Growth in Traffic Autonomy (Junyue Jiang, Department of Civil and Systems Engineering); Bridging the AI Literacy Chasm: Initial Insights from \u201cProject X: Algebra Engineering Lab\u201d in Baltimore City High Schools (Alexis Daniels, Center for Educational Outreach)."
+      },
+      {
+        "title": "Poster session"
+      }
+    ]
+  },
+  {
     "id": "2024_ai_materials",
     "slides": [
       {"file": "workshop_group_outdoors.webp", "text": "Workshop participants"},
