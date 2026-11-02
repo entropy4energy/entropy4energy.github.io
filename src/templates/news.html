@@ -5,11 +5,6 @@
   <ul class="news-list">
     {% for news in items %}
       <li class="news-row" id="{{ news.index }}">
-        <div class="news-thumbs">
-          {% for picture in news.pictures[:3] %}
-            <img src="media/{{ news.picture_directory|default('news') }}/{{ picture }}" alt="{{ news.picture_alt|default('Image for news ' ~ news.title) }}" loading="lazy">
-          {% endfor %}
-        </div>
         <div class="news-body">
           <div class="news-meta">
             <span class="news-date">{{ news.date_short }}</span>
@@ -18,6 +13,16 @@
           <div class="news-title">{{ news.title }}</div>
           <div class="news-text">{{ news.message }}</div>
         </div>
+        {% if news.pictures %}
+          <div class="news-pictures">
+            {% for picture in news.pictures[:3] %}
+              {% set src = 'media/' ~ news.picture_directory|default('news') ~ '/' ~ picture %}
+              <a href="{{ src }}" class="news-picture">
+                <img src="{{ src }}" alt="{{ news.picture_alt|default('Image for news ' ~ news.title) }}" loading="lazy">
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
       </li>
     {% endfor %}
   </ul>
@@ -53,6 +58,9 @@
       </details>
     {% endif %}
   </div>
+  <dialog id="news-lightbox" class="news-lightbox" aria-label="Picture">
+    <img alt="">
+  </dialog>
   <script>
     // Open the collapsed archive when a link points at an item inside it.
     (function () {
@@ -64,6 +72,22 @@
       }
       window.addEventListener("hashchange", reveal);
       reveal();
+    })();
+
+    // Open a news picture full size over the page instead of navigating to the file.
+    (function () {
+      var box = document.getElementById("news-lightbox");
+      var img = box.querySelector("img");
+      document.getElementById("news_items").addEventListener("click", function (e) {
+        var a = e.target.closest(".news-picture");
+        if (!a || !box.showModal) return;
+        e.preventDefault();
+        img.src = a.href;
+        img.alt = a.querySelector("img").alt;
+        box.showModal();
+      });
+      box.addEventListener("click", function () { box.close(); });
+      box.addEventListener("close", function () { img.removeAttribute("src"); });
     })();
   </script>
   {% if data.press %}
