@@ -693,6 +693,10 @@
     status("<p>Loading…</p>");
     load("c/" + encodeURIComponent(keyOf(counts))).then(compositionView, failed);
   } else {
-    searchView();
+    // the sign-in comes first: a visitor without access sees it instead of a search that cannot answer
+    status("<p>Loading…</p>");
+    load("meta.json").then(searchView, function (e) {
+      if (e && [401, 403, 429].indexOf(e.status) >= 0) failed(e); else searchView();
+    });
   }
 })();

@@ -201,6 +201,9 @@ def main():
             page.locator(".cs-status").wait_for()
             check("no material" in page.locator(".cs-status").inner_text().lower(), "an unknown formula")
             answer["mode"] = "401"
+            page.goto(origin + "/chaos-materials")
+            page.locator(".cs-status.signin").wait_for()
+            check(page.locator("#cm-q").count() == 0, "signed out, the bare page shows the sign-in and no search")
             page.goto(origin + "/chaos-materials?f=CoO")
             page.locator(".cs-status.signin").wait_for()
             href = page.locator(".cs-status a.primary").get_attribute("href")
