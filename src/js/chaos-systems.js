@@ -195,9 +195,9 @@
 
   function structureText(s) {
     if (!s) return "–";
-    var name = s.structure || (s.pearson ? s.pearson : "");
-    var sg = s.sg ? (s.sg_symbol ? s.sg_symbol + " (" + s.sg + ")" : "space group " + s.sg) : "";
-    return esc(name) + (sg ? ' <span class="cs-dim">' + esc(sg) + "</span>" : "");
+    var name = s.structure ? C.structure(s.structure) : s.pearson ? C.pearson(s.pearson) : "";
+    var sg = s.sg ? (s.sg_symbol ? C.spaceGroup(s.sg_symbol) + " (" + esc(s.sg) + ")" : "space group " + esc(s.sg)) : "";
+    return name + (sg ? ' <span class="cs-dim">' + sg + "</span>" : "");
   }
 
   function systemView(p) {
@@ -213,7 +213,7 @@
     var nMain = site.elements.length;
     var anionFamily = p.family !== "alloy";
     var lat = p.lattice || {};
-    var latName = lat.name || (lat.pearson ? "Pearson " + lat.pearson : "its parent lattice");
+    var latName = lat.name || (lat.pearson ? lat.pearson : "its parent lattice");
     var cohortN = esc(p.cohort.n);
     var cohortName = p.cohort.name;
     var spread = d.spread.value;
@@ -224,8 +224,8 @@
     var kick = [p.family, lat.name, nMain + (anionFamily ? " cations" : " elements") + " on the mixed site"];
     if (p.equimolar) kick.push("equimolar");
     var sub = [];
-    if (lat.sg) sub.push((lat.sg_symbol ? esc(lat.sg_symbol) + " " : "") + "(" + esc(lat.sg) + ")");
-    if (lat.pearson) sub.push("Pearson " + esc(lat.pearson));
+    if (lat.sg) sub.push((lat.sg_symbol ? C.spaceGroup(lat.sg_symbol) + " " : "") + "(" + esc(lat.sg) + ")");
+    if (lat.pearson) sub.push("Pearson symbol " + C.pearson(lat.pearson));
     if (sc) sub.push(sc + " ordered supercells");
     var distP = d.distortion.p;
     var distWord = distP == null ? "–" : distP < 1 / 3 ? "low" : distP < 2 / 3 ? "medium" : "high";
@@ -291,7 +291,7 @@
         "</td><td class=num>" + sig(x.value, 3) + unit(x.unit) + "</td><td class=num><b class=\"cs-big\">" + (i === 0 || helps == null ? '<span class="cs-dim">–</span>' : helps.toFixed(2)) + "</b></td></tr>";
     });
     ev += "</tbody></table></div>";
-    ev += '<p class="cs-dim">The compatibility score (S<sub>CHAOS</sub> in the manuscript) is the mean of the distortion part and the chemistry part. Each part averages the ' +
+    ev += '<p class="cs-dim">The compatibility score (<i>S</i><sub>CHAOS</sub> in the manuscript) is the mean of the distortion part and the chemistry part. Each part averages the ' +
       "contributions of its descriptors: the cohort percentile when higher is better, one minus the percentile when lower is better. " +
       "Percentiles are within the " + cohortN + " " + esc(cohortName) + ".</p>";
     if (p.scores.missing && p.scores.missing.length) {
@@ -332,8 +332,8 @@
         '" data-mm="' + esc(e.mass / (e.mol || 1)) + '"></span></td></tr>';
     });
     make += "</tbody></table></div></details></div>";
-    var target = [["Lattice", esc(latName) + (lat.pearson && lat.name ? ' <span class="cs-dim">' + esc(lat.pearson) + "</span>" : "")]];
-    if (lat.sg) target.push(["Space group", (lat.sg_symbol ? esc(lat.sg_symbol) + " " : "") + "(" + esc(lat.sg) + ")"]);
+    var target = [["Lattice", C.structure(latName) + (lat.pearson && lat.name ? ' <span class="cs-dim">' + C.pearson(lat.pearson) + "</span>" : "")]];
+    if (lat.sg) target.push(["Space group", (lat.sg_symbol ? C.spaceGroup(lat.sg_symbol) + " " : "") + "(" + esc(lat.sg) + ")"]);
     target.push(["Mixed site", site.elements.map(function (e) { return esc(e.el) + " " + sig(e.x, 3); }).join(", ")]);
     var prop = {};
     p.properties.forEach(function (x) { prop[x.field || x.title] = x; });
@@ -367,7 +367,7 @@
       }
       if (says.length) watch += "<p" + (off.length ? ' class="cs-flag"' : "") + ">" + says.join(" ") + "</p>";
       watch += '<div class="cs-scroll"><table class="cs-table"><thead><tr><th>Element</th><th>End member</th><th>Lowest in CHAOS</th>' +
-        "<th class=num>ΔH<sub>f</sub> (eV/atom)</th><th class=num>" + esc(latWord.charAt(0).toUpperCase() + latWord.slice(1)) + " above ground state</th></tr></thead><tbody>";
+        "<th class=num>Δ<i>H</i><sub>f</sub> (eV/atom)</th><th class=num>" + esc(latWord.charAt(0).toUpperCase() + latWord.slice(1)) + " above ground state</th></tr></thead><tbody>";
       members.forEach(function (m) {
         var same = m.same_lattice
           ? (m.takes_lattice ? "0 (ground state)" : m.above == null ? "–" : "+" + sig(m.above * 1000, 3) + " meV/atom")
@@ -375,7 +375,7 @@
         watch += "<tr><td>" + esc(m.el) + "</td><td>" + material(m.formula, !!m.lowest) + "</td><td>" + (m.lowest ? structureText(m.lowest) : '<span class="cs-dim">not in CHAOS</span>') +
           "</td><td class=num>" + (m.lowest ? sig(m.lowest.hf, 3) : "") + "</td><td class=num>" + same + "</td></tr>";
       });
-      watch += '</tbody></table></div><p class="cs-dim">ΔH<sub>f</sub> is the DFT formation enthalpy per atom of the lowest-energy structure. ' +
+      watch += '</tbody></table></div><p class="cs-dim">Δ<i>H</i><sub>f</sub> is the DFT formation enthalpy per atom of the lowest-energy structure. ' +
         "“" + esc(latWord.charAt(0).toUpperCase() + latWord.slice(1)) + " above ground state” is the energy of the end member on the " + esc(latWord) +
         " lattice relative to the lowest-energy structure in CHAOS at the same composition.</p>";
     }
@@ -383,7 +383,7 @@
     if (two && two.compositions) {
       watch += '<h3 class="cs-h3">' + (anionFamily ? "Two-cation compounds" : "Binary compounds") + "</h3><p>CHAOS also contains " + esc(two.compositions) +
         " compositions formed from pairs of the mixed-site elements. The lowest in formation enthalpy per atom:</p>" +
-        '<div class="cs-scroll"><table class="cs-table cs-narrow"><thead><tr><th>Compound</th><th>Structure</th><th class=num>ΔH<sub>f</sub> (eV/atom)</th></tr></thead><tbody>' +
+        '<div class="cs-scroll"><table class="cs-table cs-narrow"><thead><tr><th>Compound</th><th>Structure</th><th class=num>Δ<i>H</i><sub>f</sub> (eV/atom)</th></tr></thead><tbody>' +
         two.lowest.map(function (c) {
           return "<tr><td>" + material(c.formula, true) + "</td><td>" + esc(c.structure || c.pearson || "") + "</td><td class=num>" + sig(c.hf, 3) + "</td></tr>";
         }).join("") + "</tbody></table></div>";

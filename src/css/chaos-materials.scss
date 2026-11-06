@@ -5,7 +5,6 @@
 // cell viewer, the powder pattern and the material tables. Scoped to #cs-app.
 #cs-app {
   .cm-proto { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85em; overflow-wrap: anywhere; }
-  .cm-bar { text-decoration: overline; }
   .cm-lowest td { background: $color-surface-2; }
   .cm-systems { columns: 2 16em; padding-left: 1.2em; margin: 4px 0 12px; }
   .cm-systems li { break-inside: avoid; margin-bottom: 2px; }
