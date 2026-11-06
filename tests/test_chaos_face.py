@@ -16,7 +16,7 @@ from playwright.sync_api import sync_playwright
 
 from test_chaos_systems import Handler
 
-WIDTHS = [320, 375, 600, 768, 1024, 1440]
+WIDTHS = [320, 375, 600, 768, 800, 1024, 1100, 1440]
 BEHIND = re.compile(r"chaos-systems|chaos-materials|chaos-hull|chaos-pairs|chaos/agent")
 
 
@@ -81,6 +81,8 @@ def main():
                         page.set_viewport_size({"width": w, "height": 800})
                         over = page.evaluate("document.documentElement.scrollWidth - document.documentElement.clientWidth")
                         check(over <= 0, f"signed out, {w} px: no sideways scroll ({over})")
+                        rows = page.evaluate("new Set([...document.querySelectorAll('.chaos-hero .chaos-stat')].map(e => e.getBoundingClientRect().top)).size")
+                        check(rows in (1, 2, 4), f"signed out, {w} px: the four counts in even rows ({rows})")
                     page.set_viewport_size({"width": 1280, "height": 900})
                     if args.screenshots:
                         page.screenshot(path=str(args.screenshots / "face_out.png"), full_page=True)
