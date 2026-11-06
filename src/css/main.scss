@@ -1986,3 +1986,120 @@ a.ptable-cell {
     margin-bottom: 20px;
   }
 }
+
+// The public face of CHAOS: a band with the claim, the sign-in and the counts.
+.chaos-hero {
+  background-color: $color-main-1;
+  border-radius: 8px;
+  color: $color-main-2;
+  margin: 0 0 1.5rem;
+  padding: 1.75rem 1.75rem 1.5rem;
+
+  h1 {
+    color: $color-main-2;
+    font-size: 2.6rem;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    margin: 0 0 0.5rem;
+  }
+
+  .chaos-claim {
+    color: $color-main-2;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0 0 1.25rem;
+    max-width: 34rem;
+  }
+
+  .product-signin {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .workshop-button {
+    background-color: $color-main-2;
+    border-color: $color-main-2;
+    color: $color-main-1;
+  }
+
+  .workshop-chip {
+    background-color: transparent;
+    border-color: rgba($color-main-2, 0.6);
+    color: $color-main-2;
+  }
+
+  .chaos-signed {
+    font-weight: 600;
+  }
+
+  .chaos-stats {
+    margin: 0;
+  }
+
+  .chaos-stat {
+    background-color: transparent;
+    border-radius: 0;
+    border-top: 1px solid rgba($color-main-2, 0.35);
+    padding: 0.7rem 0 0;
+
+    &[href]:hover {
+      box-shadow: none;
+      text-decoration: underline;
+    }
+  }
+
+  .chaos-stat-value,
+  .chaos-stat-label {
+    color: $color-main-2;
+  }
+
+  .chaos-stat-note {
+    color: rgba($color-main-2, 0.78);
+  }
+}
+
+// What an account gives: a plain list, with nothing to press.
+.chaos-offer {
+  display: grid;
+  gap: 0.9rem 2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0.75rem 0 1.25rem;
+
+  dt {
+    color: $color-main-1;
+    font-weight: 700;
+  }
+
+  dd {
+    color: $color-muted;
+    font-size: 0.92rem;
+    margin: 0.15rem 0 0;
+  }
+}
+
+// The signed-in side, added by chaos-members.js
+.chaos-tools {
+  margin: 0 0 1.5rem;
+
+  .chaos-find {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .chaos-offer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .chaos-hero {
+    padding: 1.25rem 1rem 1.1rem;
+
+    h1 {
+      font-size: 2.1rem;
+    }
+  }
+}

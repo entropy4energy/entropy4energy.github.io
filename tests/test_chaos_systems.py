@@ -59,6 +59,9 @@ def main():
     def gate(route):
         req = route.request
         path = req.url.split("/API/chaos/profiles/", 1)[1].split("?")[0]
+        if path == "meta.json":  # chaos-members.js asks whether the sign-in opens the data
+            ok = answer.get("mode", "ok") == "ok"
+            return route.fulfill(status=200 if ok else 401, content_type="application/json", body=json.dumps({"release": "madeup"}))
         seen.append(path)
         mode = answer["mode"]
         if mode == "401":
@@ -98,6 +101,7 @@ def main():
             check(page.locator("aside.sidebar").count() == 0, "no news sidebar")
             check(page.locator("body").get_attribute("data-s4e-product") == "chaos", "part of CHAOS")
             check(page.locator("#subnav_chaos.active").count() == 1, "CHAOS lit in the sub-navigation")
+            page.wait_for_selector("html[data-chaos-member]")
             nav = page.locator('.product-nav[data-product="chaos"]')
             check(nav.is_visible() and nav.locator("a").all_inner_texts() == ["Overview", "Systems", "Materials", "API", "CHAOS-Agent"],
                   "CHAOS's own pages in a second row")
@@ -224,6 +228,7 @@ def main():
 
             # ---- the CHAOS page: search, cards, the periodic table's links
             page.goto(origin + "/chaos")
+            page.wait_for_selector("html[data-chaos-member]")
             check(page.locator('.product-nav[data-product="chaos"] a.active').inner_text() == "Overview", "Overview lit on the CHAOS page")
             check(page.locator('a.ptable-cell[href*="chaos-systems?q="]').count() > 10, "cations link to their systems")
             check(page.locator(".access-card").all_inner_texts()[0].startswith("Systems"), "the system pages come first")
