@@ -45,6 +45,9 @@ def main():
 
     def gate(route):
         path = route.request.url.split("/API/chaos/profiles/", 1)[1].split("?")[0]
+        if path == "meta.json":  # chaos-members.js asks whether the sign-in opens the data
+            ok = answer.get("mode", "ok") == "ok"
+            return route.fulfill(status=200 if ok else 401, content_type="application/json", body=json.dumps({"release": "madeup"}))
         seen.append(path)
         mode = answer["mode"]
         if mode == "401":
@@ -81,6 +84,7 @@ def main():
             check(page.locator('script[src*="googletagmanager"]').count() == 0, "no analytics on the material pages")
             check(page.locator("aside.sidebar").count() == 0, "no news sidebar")
             check(page.locator("body").get_attribute("data-s4e-product") == "chaos", "part of CHAOS")
+            page.wait_for_selector("html[data-chaos-member]")
             check(page.locator('.product-nav[data-product="chaos"] a.active').inner_text() == "Materials", "Materials lit in the CHAOS row")
             page.fill("#cm-q", "co o")
             page.click("#cm-form button")

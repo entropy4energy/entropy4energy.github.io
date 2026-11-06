@@ -29,7 +29,7 @@
     C.failed(app, err, {
       title: "CHAOS materials",
       lead: "The material pages are for registered CHAOS users. Each gives the structures of a composition, " +
-        "their formation enthalpies, calculated powder patterns and the disordered systems they belong to.",
+        "their formation enthalpies and the disordered systems they belong to.",
       missing: "There is no material with this address in the current release.",
       back: [PAGE, "Search materials"],
       unavailable: "The material pages are not available right now. Try again later.",

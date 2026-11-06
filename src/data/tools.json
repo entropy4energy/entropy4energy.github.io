@@ -12,20 +12,12 @@
       "access": "Free account with a .edu email address, or on approval.",
       "links": [
         {
-          "label": "Systems",
-          "href": "https://chaos.s4e.ai/chaos-systems"
-        },
-        {
-          "label": "Materials",
-          "href": "https://chaos.s4e.ai/chaos-materials"
+          "label": "Overview",
+          "href": "https://chaos.s4e.ai/"
         },
         {
           "label": "API",
           "href": "https://chaos.s4e.ai/API/?help"
-        },
-        {
-          "label": "CHAOS-Agent",
-          "href": "https://chaos.s4e.ai/chaos/agent/"
         }
       ],
       "sections": [
@@ -36,11 +28,13 @@
         },
         {
           "id": "chaos-systems",
+          "members": true,
           "label": "Systems",
           "href": "https://chaos.s4e.ai/chaos-systems"
         },
         {
           "id": "chaos-materials",
+          "members": true,
           "label": "Materials",
           "href": "https://chaos.s4e.ai/chaos-materials"
         },
@@ -51,6 +45,7 @@
         },
         {
           "id": "agent",
+          "members": true,
           "label": "CHAOS-Agent",
           "href": "https://chaos.s4e.ai/chaos/agent/"
         }
