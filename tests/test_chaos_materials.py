@@ -273,7 +273,7 @@ def main():
                 text = rp.locator("#cs-app").inner_text()
                 check('["' not in text and "_{" not in text and "#1" not in text, f"no raw stored text on the composition page at {width} px")
                 low_html = rp.locator(".cs-bar").inner_html()
-                check("P4<sub>2</sub>/mmc (131)" in low_html, f"the lowest structure's relaxed space group, written as in print, at {width} px")
+                check("<i>P</i>4<sub>2</sub>/<i>mmc</i> (131)" in low_html, f"the lowest structure's relaxed space group, written as in print, at {width} px")
                 heads = [t.strip() for t in rp.locator("#cm-structures th").all_text_contents()]
                 check("Band gap (eV)" not in heads, f"no band-gap column without a gap at {width} px")
                 check("Calculations" in heads and "Starting prototype" in heads and "Relaxed structure" in heads, f"the columns say what they hold at {width} px")
@@ -284,7 +284,7 @@ def main():
                       f"the eight P4_2/mmc calculations in one row at {width} px: {first[:4]}")
                 rock = [r for r in trs.all_inner_texts() if r.startswith("rocksalt")]
                 check(len(rock) == 1 and "Fm3m (225)" in rock[0], f"rocksalt is listed, with its space group, at {width} px: {rock}")
-                check(rp.locator("#cm-structures .cm-bar").count() >= 1, "the rotoinversion's overbar")
+                check(rp.locator("#cm-structures .cs-over").count() >= 1, "the rotoinversion's overbar")
                 if width == 390:
                     wide = rp.evaluate("document.documentElement.scrollWidth - window.innerWidth")
                     check(wide <= 0, f"no sideways scrolling at 390 px: stored format ({wide} px)")
@@ -292,11 +292,16 @@ def main():
                 rp.locator("#cm-viewer[data-viewer]").wait_for()
                 st = rp.locator("#structure").inner_text()
                 check("Co 2c, O 2e" in st and "[[" not in st, f"Wyckoff positions as Co 2c, O 2e at {width} px")
-                check("tetragonal" in st and "conventional cell tP4" in st and "a 2.7" in st and "c 5.13 Å" in st,
+                check("tetragonal" in st and "Conventional cell" in st and "tP4" in st and "a = 2.7" in st and "c = 5.13 Å" in st,
                       f"the relaxed structure's conventional cell with its space group at {width} px")
                 check("Cell of the calculation" in st and "8 atoms" in st, f"the calculation's cell and its atoms at {width} px")
+                html = rp.locator("#structure").inner_html()
+                check("<i>a</i> = 2.7" in html and "<i>α</i> = 90°" in html and "<i>x</i></th>" in html, f"cell lengths, angles and coordinates as italic variables at {width} px")
+                check("<i>tP</i>4" in html and "2<i>c</i>" in html, f"Pearson symbol and Wyckoff letters in italics at {width} px")
+                check("Δ<i>H</i><sub>f</sub>" in rp.locator("#cs-app").inner_html(), f"the formation enthalpy's symbol at {width} px")
+                check("-0.77" not in rp.locator("#cs-app").inner_text() and "−0.77" in rp.locator("#cs-app").inner_text(), f"a true minus sign at {width} px")
                 check(rp.locator("#electronic").count() == 0, f"no empty electronic section at {width} px")
-                check("P4<sub>2</sub>/mmc (131)" in rp.locator(".cs-sub").inner_html(), f"the header's space group at {width} px")
+                check("<i>P</i>4<sub>2</sub>/<i>mmc</i> (131)" in rp.locator(".cs-sub").inner_html(), f"the header's space group at {width} px")
                 check(rp.locator("#cm-viewer").get_attribute("data-viewer") == "3d", f"the 3D viewer at {width} px")
                 if width == 390:
                     wide = rp.evaluate("document.documentElement.scrollWidth - window.innerWidth")

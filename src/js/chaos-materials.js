@@ -82,17 +82,13 @@
   function meV(x) { return x == null ? "–" : (x > 0 ? "+" : "") + sig(x, 3); }
   // The relaxed structure: its name where it has one (rocksalt, wurtzite), else its Pearson symbol.
   function structName(s) {
-    return s.structure ? esc(s.structure) : s.pearson ? esc(s.pearson) : "–";
+    return s.structure ? C.structure(s.structure) : s.pearson ? C.pearson(s.pearson) : "–";
   }
   // The prototype a calculation started from (an AFLOW-style label, shown as code).
   function protoText(s) {
     return s.prototype ? '<span class="cm-proto">' + esc(s.prototype) + "</span>" : "–";
   }
-  // A Hermann–Mauguin symbol as written in print: screw axes as subscripts (P2_1/c, P2_{1}/c),
-  // rotoinversions with an overbar (Fm-3m).
-  function sgSymbol(sym) {
-    return esc(sym).replace(/_\{?(\d)\}?/g, "<sub>$1</sub>").replace(/-(\d)/g, '<span class="cm-bar">$1</span>');
-  }
+  var sgSymbol = C.spaceGroup;
   // The relaxed space group: symbol and number, both of the relaxed structure.
   function sgText(s) {
     if (!s.sg) return "–";
@@ -229,7 +225,7 @@
       '<h1 class="cs-title">' + name + "</h1><p class=\"cs-sub\">" + sub.join(" · ") + "</p></div>";
     if (low) {
       html += '<div class="cs-bar"><span class="cs-bar-item">Lowest <b>' + structName(low) + "</b> " + sgText(low) + "</span>" +
-        '<span class="cs-bar-item">ΔH<sub>f</sub> <b>' + sig(low.hf, 3) + " eV/atom</b></span>" +
+        '<span class="cs-bar-item">Δ<i>H</i><sub>f</sub> <b>' + sig(low.hf, 3) + " eV/atom</b></span>" +
         (low.hull_meV != null ? '<span class="cs-bar-item">Distance to the hull <b>' + meV(low.hull_meV) + " meV/atom</b></span>" : "") +
         (low.gap != null ? '<span class="cs-bar-item">Band gap <b>' + sig(low.gap, 3) + " eV</b></span>" : "") + "</div>";
     }
@@ -238,7 +234,7 @@
       (anyGroup ? " Calculations that relaxed to the same space group and Pearson symbol, within 2 meV/atom, share a row." : "") + "</p>" +
       '<div class="cs-scroll"><table class="cs-table" id="cm-structures"><thead><tr><th>Relaxed structure</th><th>Space group</th>' +
       "<th class='num cs-sm-hide'>Atoms in the cell</th>" + (anyGroup ? "<th class=num>Calculations</th>" : "") +
-      "<th class=num>ΔH<sub>f</sub> (eV/atom)</th><th class=num>Above the lowest structure (meV/atom)</th>" +
+      "<th class=num>Δ<i>H</i><sub>f</sub> (eV/atom)</th><th class=num>Above the lowest structure (meV/atom)</th>" +
       (anyHull ? "<th class=num>Distance to the hull (meV/atom)</th>" : "") +
       (anyGap ? "<th class='num cs-sm-hide'>Band gap (eV)</th>" : "") + "<th class=cs-sm-hide>Starting prototype</th></tr></thead><tbody>";
     rows.forEach(function (r) {
@@ -256,7 +252,7 @@
     var sys = systemsBlock(c.systems, c.label);
     var rel = (c.same_system || []).length
       ? "<p>Other compositions of " + esc(c.elements.join(", ")) + " in CHAOS:</p>" + '<div class="cs-scroll"><table class="cs-table cs-narrow"><thead><tr><th>Composition</th>' +
-        "<th class=num>Structures</th><th class=num>Lowest ΔH<sub>f</sub> (eV/atom)</th></tr></thead><tbody>" +
+        "<th class=num>Structures</th><th class=num>Lowest Δ<i>H</i><sub>f</sub> (eV/atom)</th></tr></thead><tbody>" +
         c.same_system.map(function (x) {
           return '<tr><td><a href="' + matLink(x.label) + '">' + formula(x.label) + "</a></td><td class=num>" + esc(x.n) + "</td><td class=num>" + sig(x.hf, 3) + "</td></tr>";
         }).join("") + "</tbody></table></div>"
@@ -366,7 +362,7 @@
          [0,0,1,1,0,1],[0,0,1,0,1,1],[1,1,0,1,1,1],[1,0,1,1,1,1],[0,1,1,1,1,1]].forEach(function (e) {
           v.addCylinder({ start: corner(e[0], e[1], e[2]), end: corner(e[3], e[4], e[5]), radius: 0.025, color: "#555555", fromCap: 1, toCap: 1 });
         });
-        [["a", [1, 0, 0], "#c0392b"], ["b", [0, 1, 0], "#27ae60"], ["c", [0, 0, 1], "#2c6fbb"]].forEach(function (ax) {
+        [["\uD835\uDC4E", [1, 0, 0], "#c0392b"], ["\uD835\uDC4F", [0, 1, 0], "#27ae60"], ["\uD835\uDC50", [0, 0, 1], "#2c6fbb"]].forEach(function (ax) {
           var e = cart(V, ax[1]), t = cart(V, ax[1].map(function (x) { return x * 1.12; }));
           v.addArrow({ start: { x: 0, y: 0, z: 0 }, end: { x: e[0] * 0.35, y: e[1] * 0.35, z: e[2] * 0.35 }, radius: 0.06, color: ax[2] });
           v.addLabel(ax[0], { position: { x: t[0], y: t[1], z: t[2] }, fontSize: 14, fontColor: ax[2], backgroundOpacity: 0, inFront: true });
@@ -499,7 +495,7 @@
     for (var t = 10; t <= 90; t += W < 420 ? 20 : 10) {
       out += '<text class="cs-map-tick" x="' + x(t) + '" y="' + (H - B + 14) + '" text-anchor="middle">' + t + "</text>";
     }
-    out += '<text class="cs-map-axis" x="' + (L + (W - L - R) / 2) + '" y="' + (H - 4) + '" text-anchor="middle">2θ (degrees)</text>';
+    out += '<text class="cs-map-axis" x="' + (L + (W - L - R) / 2) + '" y="' + (H - 4) + '" text-anchor="middle">2<tspan font-style="italic">θ</tspan> (degrees)</text>';
     out += '<text class="cs-map-axis" transform="translate(12 ' + (T + (H - T - B) / 2) + ') rotate(-90)" text-anchor="middle">intensity</text>';
     if (fwhm > 0) {
       var sigma = fwhm / 2.3548, pts = [], top = 0, vals = [];
@@ -529,11 +525,11 @@
     var L = s.lattice || [];
     var sub = [];
     if (s.sg) sub.push("space group " + sgText(s));
-    if (s.pearson) sub.push("Pearson " + esc(s.pearson));
+    if (s.pearson) sub.push("Pearson symbol " + C.pearson(s.pearson));
     var html = '<div class="cs-identity"><p class="cs-crumbs"><a href="' + PAGE + '">CHAOS materials</a> / <a href="' + matLink(s.label) + '">' + name + "</a></p>" +
-      '<p class="cs-kicker">' + (s.structure ? esc(s.structure) : "ordered structure") + "</p>" +
+      '<p class="cs-kicker">' + (s.structure ? C.structure(s.structure) : "ordered structure") + "</p>" +
       '<h1 class="cs-title">' + name + "</h1><p class=\"cs-sub\">" + sub.join(" · ") + '</p><p class="cs-chaos-id">' + esc(s.chaos_id) + "</p></div>";
-    html += '<div class="cs-bar">' + (s.hf != null ? '<span class="cs-bar-item">ΔH<sub>f</sub> <b>' + sig(s.hf, 3) + " eV/atom</b></span>" : "") +
+    html += '<div class="cs-bar">' + (s.hf != null ? '<span class="cs-bar-item">Δ<i>H</i><sub>f</sub> <b>' + sig(s.hf, 3) + " eV/atom</b></span>" : "") +
       (s.above_lowest_meV != null ? '<span class="cs-bar-item">Above the lowest structure <b>' + (s.above_lowest_meV === 0 ? "0" : meV(s.above_lowest_meV)) + " meV/atom</b></span>" : "") +
       (s.hull ? '<span class="cs-bar-item">Distance to the hull <b>' + meV(s.hull.distance_meV) + " meV/atom</b></span>" : "") +
       (s.gap != null ? '<span class="cs-bar-item">Band gap <b>' + sig(s.gap, 3) + " eV</b></span>" :
@@ -545,39 +541,42 @@
     var cell = L.length === 6;
     var K = s.conventional;
     var abc = function (a, b, c, al, be, ga) {
-      return "a " + sig(a, 4) + " Å, b " + sig(b, 4) + " Å, c " + sig(c, 4) + " Å; α " + sig(al, 4) + "°, β " + sig(be, 4) + "°, γ " + sig(ga, 4) + "°";
+      return "<i>a</i> = " + sig(a, 4) + " Å, <i>b</i> = " + sig(b, 4) + " Å, <i>c</i> = " + sig(c, 4) + " Å<br>" +
+        "<i>α</i> = " + sig(al, 4) + "°, <i>β</i> = " + sig(be, 4) + "°, <i>γ</i> = " + sig(ga, 4) + "°";
     };
     var st = '<div class="cm-structure">' + (cell ? '<figure class="cm-view-box" id="cm-viewer"></figure>' : "") + "<div>" +
       '<dl class="cs-dl">' +
-      (K ? "<dt>Relaxed structure</dt><dd>" + (K.system ? esc(K.system) + ", " : "") + (s.sg ? sgText(s) + ", " : "") +
-        "conventional cell " + (s.pearson ? esc(s.pearson) + ": " : "") + abc(K.a, K.b, K.c, K.alpha, K.beta, K.gamma) + "</dd>" : "") +
-      (L.length ? "<dt>Cell of the calculation</dt><dd>" + abc(L[0], L[1], L[2], L[3], L[4], L[5]) + "; " + esc(s.natoms) +
+      (K && K.system ? "<dt>Crystal system</dt><dd>" + esc(K.system) + "</dd>" : "") +
+      (s.sg ? "<dt>Space group</dt><dd>" + sgText(s) + "</dd>" : "") +
+      (s.pearson ? "<dt>Pearson symbol</dt><dd>" + C.pearson(s.pearson) + "</dd>" : "") +
+      (K ? "<dt>Conventional cell</dt><dd>" + abc(K.a, K.b, K.c, K.alpha, K.beta, K.gamma) + "</dd>" : "") +
+      (L.length ? "<dt>Cell of the calculation</dt><dd>" + abc(L[0], L[1], L[2], L[3], L[4], L[5]) + "<br>" + esc(s.natoms) +
         " atoms. The picture, the sites and the CIF use this cell.</dd>" : "") +
       (s.volume_atom != null ? "<dt>Volume per atom</dt><dd>" + sig(s.volume_atom, 4) + " Å<sup>3</sup></dd>" : "") +
       (s.density != null ? "<dt>Density</dt><dd>" + sig(s.density, 4) + " g/cm<sup>3</sup></dd>" : "") +
       (s.prototype ? "<dt>Starting prototype</dt><dd><span class=\"cm-proto\">" + esc(s.prototype) + "</span></dd>" : "") +
-      (s.wyckoff ? "<dt>Wyckoff positions</dt><dd>" + esc(s.wyckoff) + "</dd>" : "") + "</dl>";
+      (s.wyckoff ? "<dt>Wyckoff positions</dt><dd>" + C.wyckoff(s.wyckoff) + "</dd>" : "") + "</dl>";
     if (s.pairs && s.pairs.length) {
       st += '<h3 class="cs-h3">Nearest-neighbor distances</h3><div class="cs-scroll"><table class="cs-table cs-narrow"><thead><tr><th>Pair</th><th class=num>Distance (Å)</th></tr></thead><tbody>' +
         s.pairs.map(function (p) { return "<tr><td>" + esc(p[0]) + "–" + esc(p[1]) + "</td><td class=num>" + sig(p[2], 4) + "</td></tr>"; }).join("") + "</tbody></table></div>";
     }
     st += "</div></div>";
-    st += '<h3 class="cs-h3">Sites</h3><div class="cs-scroll"><table class="cs-table" id="cm-sites"><thead><tr><th>Site</th><th class=num>x</th><th class=num>y</th><th class=num>z</th>' +
-      (hasQ ? "<th class=num>Bader charge (e)</th><th class='num cs-sm-hide'>Atomic volume (Å<sup>3</sup>)</th>" : "") +
-      (hasM ? "<th class=num>Moment (μ<sub>B</sub>)</th>" : "") + "</tr></thead><tbody>";
+    st += '<h3 class="cs-h3">Sites</h3><div class="cs-scroll"><table class="cs-table" id="cm-sites"><thead><tr><th>Site</th><th class=num><i>x</i></th><th class=num><i>y</i></th><th class=num><i>z</i></th>' +
+      (hasQ ? "<th class=num>Bader charge (<i>e</i>)</th><th class='num cs-sm-hide'>Atomic volume (Å<sup>3</sup>)</th>" : "") +
+      (hasM ? "<th class=num>Moment (<i>μ</i><sub>B</sub>)</th>" : "") + "</tr></thead><tbody>";
     var count = {};
     s.sites.forEach(function (x) {
       count[x.el] = (count[x.el] || 0) + 1;
-      st += "<tr><td>" + esc(x.el) + count[x.el] + "</td>" + x.xyz.map(function (v) { return "<td class=num>" + v.toFixed(4) + "</td>"; }).join("") +
-        (hasQ ? "<td class=num>" + (x.q == null ? "–" : x.q.toFixed(2)) + "</td><td class='num cs-sm-hide'>" + (x.v == null ? "–" : x.v.toFixed(2)) + "</td>" : "") +
-        (hasM ? "<td class=num>" + (x.m == null ? "–" : x.m.toFixed(2)) + "</td>" : "") + "</tr>";
+      st += "<tr><td>" + esc(x.el) + count[x.el] + "</td>" + x.xyz.map(function (v) { return "<td class=num>" + v.toFixed(4).replace("-", "−") + "</td>"; }).join("") +
+        (hasQ ? "<td class=num>" + (x.q == null ? "–" : x.q.toFixed(2).replace("-", "−")) + "</td><td class='num cs-sm-hide'>" + (x.v == null ? "–" : x.v.toFixed(2)) + "</td>" : "") +
+        (hasM ? "<td class=num>" + (x.m == null ? "–" : x.m.toFixed(2).replace("-", "−")) + "</td>" : "") + "</tr>";
     });
     st += "</tbody></table></div>";
     if (hasQ) {
       var mean = {};
       s.sites.forEach(function (x) { if (x.q != null) { mean[x.el] = mean[x.el] || [0, 0]; mean[x.el][0] += x.q; mean[x.el][1]++; } });
       st += '<p class="cs-dim">Mean Bader charge per element: ' + Object.keys(mean).map(function (e) {
-        return esc(e) + " " + (mean[e][0] / mean[e][1] >= 0 ? "+" : "") + (mean[e][0] / mean[e][1]).toFixed(2) + " e";
+        return esc(e) + " " + (mean[e][0] / mean[e][1] >= 0 ? "+" : "") + (mean[e][0] / mean[e][1]).toFixed(2).replace("-", "−") + " <i>e</i>";
       }).join(", ") + ".</p>";
     }
     if (cell) st += '<p class="cs-actions"><button type="button" class="cs-button" id="cm-cif">Download CIF</button></p>';
@@ -600,7 +599,7 @@
         '<span id="cm-width-v">sticks</span></label></p>' +
         '<p class="cs-dim">Calculated powder pattern for Cu Kα<sub>1</sub> radiation (' + LAMBDA + " Å) from the relaxed structure, " +
         "the " + s.pattern.length + " strongest reflections between 10° and 90° 2θ. Peak width is set here for display.</p>" +
-        '<div class="cs-scroll"><table class="cs-table cs-narrow" id="cm-peaks"><thead><tr><th class=num>2θ (°)</th><th class=num>d (Å)</th><th class=num>Intensity</th><th>hkl</th></tr></thead><tbody>' +
+        '<div class="cs-scroll"><table class="cs-table cs-narrow" id="cm-peaks"><thead><tr><th class=num>2<i>θ</i> (°)</th><th class=num><i>d</i> (Å)</th><th class=num>Intensity</th><th><i>hkl</i></th></tr></thead><tbody>' +
         s.pattern.slice().sort(function (a, b) { return b[2] - a[2]; }).slice(0, 10).map(function (p) {
           return "<tr><td class=num>" + p[0].toFixed(2) + "</td><td class=num>" + sig(p[1], 4) + "</td><td class=num>" + p[2].toFixed(1) + "</td><td>" + esc(p[3]) + "</td></tr>";
         }).join("") + "</tbody></table></div>" +
@@ -615,8 +614,8 @@
     // only the values this structure has: the section is left out without any
     var elRows = (s.gap != null ? "<dt>Band gap</dt><dd>" + sig(s.gap, 3) + " eV" + gapType + "</dd>" :
         s.gap_type ? "<dt>Band gap</dt><dd>" + esc(s.gap_type) + "</dd>" : "") +
-      (s.spin_cell != null ? "<dt>Magnetic moment per cell</dt><dd>" + sig(s.spin_cell, 3) + " μ<sub>B</sub></dd>" : "") +
-      (s.spin_atom != null ? "<dt>Magnetic moment per atom</dt><dd>" + sig(s.spin_atom, 3) + " μ<sub>B</sub></dd>" : "");
+      (s.spin_cell != null ? "<dt>Magnetic moment per cell</dt><dd>" + sig(s.spin_cell, 3) + " <i>μ</i><sub>B</sub></dd>" : "") +
+      (s.spin_atom != null ? "<dt>Magnetic moment per atom</dt><dd>" + sig(s.spin_atom, 3) + " <i>μ</i><sub>B</sub></dd>" : "");
     var el = elRows || hasM ? (elRows ? '<dl class="cs-dl">' + elRows + "</dl>" : "") +
       (hasM ? '<p class="cs-dim">Moments per site are in the sites table.</p>' : "") : "";
 
@@ -639,7 +638,7 @@
       "This structure, every field, as an API query:") +
       '<dl class="cs-dl">' + (set.functional ? "<dt>Functional</dt><dd>" + esc(set.functional.replace(/^PAW_/, "")) + "</dd>" : "") +
       (set.cutoff_eV ? "<dt>Plane-wave cutoff</dt><dd>" + sig(set.cutoff_eV, 4) + " eV</dd>" : "") +
-      (set.kpoints ? "<dt>k-points</dt><dd>" + esc(set.kpoints) + "</dd>" : "") + "</dl>";
+      (set.kpoints ? "<dt><i>k</i>-points</dt><dd>" + esc(set.kpoints) + "</dd>" : "") + "</dl>";
 
     var secs = [
       ["structure", "Structure", esc(s.natoms + " atoms in the cell"), st],

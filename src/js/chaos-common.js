@@ -29,7 +29,34 @@
   // n significant digits, trailing zeros dropped (0.2, not 0.200)
   function sig(x, n) {
     var s = fixed(x, n);
-    return s.indexOf(".") < 0 ? s : s.replace(/\.?0+$/, "");
+    return (s.indexOf(".") < 0 ? s : s.replace(/\.?0+$/, "")).replace(/^-/, "−");
+  }
+  // Symbols as written in print: variables and lattice letters in italics, digits upright.
+  var DHF = "Δ<i>H</i><sub>f</sub>";
+  // A Pearson symbol: tP4 -> <i>tP</i>4
+  function pearson(p) {
+    return esc(p).replace(/^([a-z][A-Z])(\d+)$/, "<i>$1</i>$2");
+  }
+  // A Hermann–Mauguin symbol: letters in italics, screw axes as subscripts (P2_1/c, P2_{1}/c),
+  // rotoinversions with an overbar (Fm-3m).
+  function spaceGroup(sym) {
+    return String(sym).split(/(_\{?\d\}?|-\d|[A-Za-z]+)/).map(function (t) {
+      var m = /^_\{?(\d)\}?$/.exec(t);
+      if (m) return "<sub>" + m[1] + "</sub>";
+      m = /^-(\d)$/.exec(t);
+      if (m) return '<span class="cs-over">' + m[1] + "</span>";
+      return /^[A-Za-z]+$/.test(t) ? "<i>" + t + "</i>" : esc(t);
+    }).join("");
+  }
+  // Wyckoff positions: Co 2c, O 2e -> Co 2<i>c</i>, O 2<i>e</i>
+  function wyckoff(w) {
+    return esc(w).replace(/\b(\d+)([a-z])\b/g, "$1<i>$2</i>");
+  }
+  // A structure as the generators name it: "hR6 R-3m", a prototype such as AlB2, or a word.
+  function structure(s) {
+    var m = /^([a-z][A-Z]\d+)(?: (.+))?$/.exec(s || "");
+    if (m) return pearson(m[1]) + (m[2] ? " " + spaceGroup(m[2]) : "");
+    return /^[A-Z].*\d/.test(s || "") ? formula(s) : esc(s);
   }
   // release names are UTC times: 20261004T041612Z -> October 4, 2026
   function released(stamp) {
@@ -140,6 +167,7 @@
   }
 
   window.CHAOS = {
+    DHF: DHF, pearson: pearson, spaceGroup: spaceGroup, wyckoff: wyckoff, structure: structure,
     esc: esc, formula: formula, fixed: fixed, sig: sig, released: released, ordinal: ordinal, unit: unit, list: list,
     params: params, here: here, section: section, status: status, load: load, failed: failed,
     copyButton: copyButton, download: download, onCHAOSHost: onCHAOSHost,
