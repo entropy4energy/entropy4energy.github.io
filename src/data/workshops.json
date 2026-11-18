@@ -230,7 +230,7 @@
     "date": [
       [2026, 10, 27]
     ],
-    "description": "A live debate on whether generative AI improves or undermines college learning, held October 27, 2026, in Shriver Hall. The audience voted before and after the debate, and support for the “enhance” position rose from 26.4 to 39.5 percent. <em>The Chronicle of Higher Education</em> and <em>GovTech</em> covered the debate the next day.\n\nRecorded by Open to Debate for its podcast, its YouTube channel, and more than 250 NPR stations. Organized by Open to Debate and the SNF Agora Institute with the Data Science and AI Institute, as part of its Fall 2026 Symposium.",
+    "description": "A live debate on whether generative AI improves or undermines college learning, held October 27, 2026, in Shriver Hall. The audience voted before and after the debate, and support for the “enhance” position rose from 26.4 to 39.5 percent. <em>The Chronicle of Higher Education</em> and <em>GovTech</em> covered the debate the next day.\n\nRecorded by Open to Debate for its podcast, its YouTube channel, and more than 220 NPR stations. Organized by Open to Debate and the SNF Agora Institute with the Data Science and AI Institute, as part of its Fall 2026 Symposium.",
     "highlights": [
       "A student dinner and discussion with Dean Emily Braley before the debate",
       "Audience votes before and after the debate",
@@ -240,6 +240,22 @@
       {
         "title": "Links",
         "links": [
+          {
+            "label": "Full debate on YouTube",
+            "href": "https://youtu.be/6rAbtkqirx4"
+          },
+          {
+            "label": "Episode on Spotify",
+            "href": "https://open.spotify.com/episode/3lgDnZNmeiBOSPDaf6KTzI"
+          },
+          {
+            "label": "Episode on Apple Podcasts",
+            "href": "https://podcasts.apple.com/us/podcast/open-to-debate/id216713308?i=1000801705675"
+          },
+          {
+            "label": "Open to Debate on Substack",
+            "href": "https://opentodebate.substack.com/p/the-hopkins-forum-will-generative"
+          },
           {
             "label": "The Chronicle of Higher Education: Debaters Tried to Change People\u2019s Minds About AI. Here\u2019s What Happened.",
             "href": "https://www.chronicle.com/article/debaters-tried-to-change-peoples-minds-about-ai-heres-what-happened"
