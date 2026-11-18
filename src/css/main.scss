@@ -265,10 +265,7 @@ h2 {
 
 .news-row {
   border-bottom: 1px solid $color-line;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 5.5rem 1fr;
-  padding: 0.85rem 0;
+  padding: 1rem 0;
   scroll-margin-top: 4em;
 
   &:target {
@@ -277,21 +274,52 @@ h2 {
   }
 }
 
-.news-thumbs {
+// Pictures sit under the text at one height and their own width, so portraits,
+// squares and wide shots all show whole. A click opens the full picture.
+.news-pictures {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.news-picture {
+  border-radius: 6px;
+  cursor: zoom-in;
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
 
   img {
-    border-radius: 6px;
     display: block;
-    height: 5.5rem;
+    height: 14rem;
+    max-width: 100%;
     object-fit: cover;
-    width: 5.5rem;
+    transition: transform 0.2s ease;
+    width: auto;
   }
 
-  img + img {
-    height: 2.7rem;
+  &:hover img {
+    transform: scale(1.03);
+  }
+}
+
+.news-lightbox {
+  background: none;
+  border: 0;
+  cursor: zoom-out;
+  max-height: 100vh;
+  max-width: 100vw;
+  padding: 0;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  img {
+    display: block;
+    max-height: 90vh;
+    max-width: 92vw;
   }
 }
 
@@ -1938,11 +1966,6 @@ a.ptable-cell {
     }
   }
 
-  .news-row {
-    gap: 0.75rem;
-    grid-template-columns: 4rem 1fr;
-  }
-
   .alumni-member {
     grid-template-columns: 1fr 5rem;
 
@@ -1952,13 +1975,8 @@ a.ptable-cell {
     }
   }
 
-  .news-thumbs img {
-    height: 4rem;
-    width: 4rem;
-  }
-
-  .news-thumbs img + img {
-    display: none;
+  .news-picture img {
+    height: 10rem;
   }
 
   .job {
