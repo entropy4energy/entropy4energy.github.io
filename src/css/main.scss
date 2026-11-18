@@ -1986,3 +1986,65 @@ a.ptable-cell {
     margin-bottom: 20px;
   }
 }
+
+// The public face of CHAOS: the site's own heading, buttons and count tiles.
+.chaos-hero {
+  margin: 0 0 1.25rem;
+
+  .product-signin {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .chaos-signed {
+    font-weight: 600;
+  }
+
+  .chaos-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    @media (min-width: 1180px) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    @media (max-width: 420px) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}
+
+// What an account gives: a plain list, with nothing to press.
+.chaos-offer {
+  display: grid;
+  gap: 0.9rem 2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0.75rem 0 1.25rem;
+
+  dt {
+    color: $color-main-1;
+    font-weight: 700;
+  }
+
+  dd {
+    color: $color-muted;
+    font-size: 0.92rem;
+    margin: 0.15rem 0 0;
+  }
+}
+
+// The signed-in side, added by chaos-members.js
+.chaos-tools {
+  margin: 0 0 1.5rem;
+
+  .chaos-find {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .chaos-offer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
