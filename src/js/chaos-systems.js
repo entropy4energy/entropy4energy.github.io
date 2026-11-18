@@ -10,7 +10,6 @@
   "use strict";
 
   var API = "/API/chaos/profiles/";
-  var SIGNIN = "https://chaos.s4e.ai/API/signin";
   var QUERY_BASE = "https://chaos.s4e.ai/API/?";
   var AGENT = "https://chaos.s4e.ai/chaos/agent/";
   var FORMAT = 1;
@@ -18,51 +17,21 @@
   if (!app) return;
 
   // ------------------------------------------------------------ helpers
-  function esc(s) {
-    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
-    });
+  // shared with the material pages (chaos-common.js)
+  var C = window.CHAOS;
+  var esc = C.esc, formula = C.formula, sig = C.sig, fixed = C.fixed, released = C.released, ordinal = C.ordinal,
+    unit = C.unit, list = C.list, params = C.params, section = C.section;
+  // This page's own name and the material pages' name on the same host:
+  // chaos-systems and chaos-materials on chaos.s4e.ai, or systems and
+  // materials if the pages drop the prefix.
+  var PAGE = location.pathname.replace(/^.*\//, "").replace(/\.html$/, "") === "systems" ? "systems" : "chaos-systems";
+  var MATERIALS = PAGE === "systems" ? "materials" : "chaos-materials";
+  function link(id) { return PAGE + "?id=" + encodeURIComponent(id); }
+  // a formula linked to its material page when CHAOS has a structure of it
+  function material(f, inChaos) {
+    if (!f) return "";
+    return inChaos ? '<a href="' + MATERIALS + "?f=" + encodeURIComponent(f) + '">' + formula(f) + "</a>" : formula(f);
   }
-  function formula(label) {
-    return esc(label).replace(/(\)|[A-Za-z])(\d+(?:\.\d+)?)/g, "$1<sub>$2</sub>");
-  }
-  // n significant digits, trailing zeros dropped (0.2, not 0.200)
-  function sig(x, n) {
-    var s = fixed(x, n);
-    return s.indexOf(".") < 0 ? s : s.replace(/\.?0+$/, "");
-  }
-  // n significant digits, kept (masses: 0.5970 g beside 1.110 g)
-  function fixed(x, n) {
-    if (x == null || !isFinite(x)) return "–";
-    if (x === 0) return "0";
-    var a = Math.abs(x);
-    var d = Math.max(0, (n || 3) - 1 - Math.floor(Math.log10(a)));
-    return x.toFixed(Math.min(d, 6));
-  }
-  // release names are UTC times: 20261004T041612Z -> October 4, 2026
-  function released(stamp) {
-    var m = /^(\d{4})(\d{2})(\d{2})T/.exec(stamp || "");
-    if (!m) return esc(stamp || "");
-    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    return months[+m[2] - 1] + " " + +m[3] + ", " + m[1];
-  }
-  function ordinal(p) {
-    if (p == null) return "–";
-    var n = Math.round(p * 100);
-    var s = n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th";
-    return n + s;
-  }
-  function unit(u) {
-    if (!u) return "";
-    if (u === "%") return "%";
-    return " " + esc(u).replace("(eV/atom)⁻¹", "(eV/atom)<sup>−1</sup>").replace("Å³", "Å<sup>3</sup>").replace("k_B", "k<sub>B</sub>");
-  }
-  function list(words) {
-    if (words.length < 2) return words.join("");
-    return words.slice(0, -1).join(", ") + " and " + words[words.length - 1];
-  }
-  function link(id) { return "chaos-systems?id=" + encodeURIComponent(id); }
-  function params() { return new URLSearchParams(location.search); }
 
   var VERDICTS = {
     priority: { chip: "Synthesis priority", cls: "priority" },
@@ -72,56 +41,17 @@
     unranked: { chip: "Not ranked", cls: "unranked" },
   };
 
-  function status(html, cls) {
-    app.innerHTML = '<div class="cs-status ' + (cls || "") + '" role="status">' + html + "</div>";
-  }
-
-  function here() { return location.pathname + location.search; }
-
-  // ------------------------------------------------------------ fetching
-  function load(path) {
-    return fetch(API + path, { credentials: "same-origin", headers: { Accept: "application/json" } }).then(
-      function (r) {
-        return r.text().then(function (text) {
-          var body = null;
-          try { body = JSON.parse(text); } catch (e) { body = null; }
-          if (r.ok && body) return body;
-          var err = new Error("status " + r.status);
-          err.status = r.status;
-          err.body = body || {};
-          throw err;
-        });
-      },
-      function () {
-        var err = new Error("network");
-        err.status = 0;
-        err.body = {};
-        throw err;
-      }
-    );
-  }
-
+  function status(html, cls) { C.status(app, html, cls); }
+  function load(path) { return C.load(API, path); }
   function failed(err) {
-    var next = encodeURIComponent(here());
-    var b = err.body || {};
-    if (err.status === 401) {
-      status('<h1>CHAOS systems</h1><p>The system pages are for registered CHAOS users. Each gives a disordered system\'s ' +
-        "synthesis ranking, precursors, competing phases and descriptors.</p>" +
-        '<p><a class="cs-button primary" href="' + SIGNIN + "?next=" + next + '">Sign in to CHAOS</a> ' +
-        '<a class="cs-button" href="https://chaos.s4e.ai/#access">How to get access</a></p>', "signin");
-    } else if (err.status === 403) {
-      status('<h1>CHAOS systems</h1><p>This account is not approved for CHAOS yet. ' +
-        '<a href="https://chaos.s4e.ai/#access">How access works</a>.</p>', "signin");
-    } else if (err.status === 404) {
-      status('<h1>CHAOS systems</h1><p>There is no system with this address in the current release.</p>' +
-        '<p><a href="chaos-systems">All systems</a></p>', "error");
-    } else if (err.status === 429) {
-      status("<h1>CHAOS systems</h1><p>" + esc(b.error || "Too many requests; try again shortly.") + "</p>", "error");
-    } else if (err.status === 0) {
-      status("<h1>CHAOS systems</h1><p>s4e.ai did not answer. Check your connection and reload the page.</p>", "error");
-    } else {
-      status("<h1>CHAOS systems</h1><p>The system pages are not available right now. Try again later.</p>", "error");
-    }
+    C.failed(app, err, {
+      title: "CHAOS systems",
+      lead: "The system pages are for registered CHAOS users. Each gives a disordered system's " +
+        "synthesis ranking, precursors, competing phases and descriptors.",
+      missing: "There is no system with this address in the current release.",
+      back: [PAGE, "All systems"],
+      unavailable: "The system pages are not available right now. Try again later.",
+    });
   }
 
   // ------------------------------------------------------------ the map
@@ -263,17 +193,11 @@
     ["neighbors", "Neighbors"], ["properties", "Properties"], ["data", "Data"],
   ];
 
-  function section(n, id, title, summary, body) {
-    return '<section class="cs-sec" id="' + id + '" aria-labelledby="' + id + '-h"><h2 class="cs-sec-h" id="' + id + '-h">' +
-      '<span class="cs-num">' + n + "</span>" + title + "</h2>" +
-      (summary ? '<p class="cs-sec-sum">' + summary + "</p>" : "") + '<div class="cs-sec-body">' + body + "</div></section>";
-  }
-
   function structureText(s) {
     if (!s) return "–";
-    var name = s.structure || (s.pearson ? s.pearson : "");
-    var sg = s.sg ? (s.sg_symbol ? s.sg_symbol + " (" + s.sg + ")" : "space group " + s.sg) : "";
-    return esc(name) + (sg ? ' <span class="cs-dim">' + esc(sg) + "</span>" : "");
+    var name = s.structure ? C.structure(s.structure) : s.pearson ? C.pearson(s.pearson) : "";
+    var sg = s.sg ? (s.sg_symbol ? C.spaceGroup(s.sg_symbol) + " (" + esc(s.sg) + ")" : "space group " + esc(s.sg)) : "";
+    return name + (sg ? ' <span class="cs-dim">' + sg + "</span>" : "");
   }
 
   function systemView(p) {
@@ -289,7 +213,7 @@
     var nMain = site.elements.length;
     var anionFamily = p.family !== "alloy";
     var lat = p.lattice || {};
-    var latName = lat.name || (lat.pearson ? "Pearson " + lat.pearson : "its parent lattice");
+    var latName = lat.name || (lat.pearson ? lat.pearson : "its parent lattice");
     var cohortN = esc(p.cohort.n);
     var cohortName = p.cohort.name;
     var spread = d.spread.value;
@@ -300,14 +224,14 @@
     var kick = [p.family, lat.name, nMain + (anionFamily ? " cations" : " elements") + " on the mixed site"];
     if (p.equimolar) kick.push("equimolar");
     var sub = [];
-    if (lat.sg) sub.push((lat.sg_symbol ? esc(lat.sg_symbol) + " " : "") + "(" + esc(lat.sg) + ")");
-    if (lat.pearson) sub.push("Pearson " + esc(lat.pearson));
+    if (lat.sg) sub.push((lat.sg_symbol ? C.spaceGroup(lat.sg_symbol) + " " : "") + "(" + esc(lat.sg) + ")");
+    if (lat.pearson) sub.push("Pearson symbol " + C.pearson(lat.pearson));
     if (sc) sub.push(sc + " ordered supercells");
     var distP = d.distortion.p;
     var distWord = distP == null ? "–" : distP < 1 / 3 ? "low" : distP < 2 / 3 ? "medium" : "high";
     var html =
-      '<div class="cs-identity"><p class="cs-crumbs"><a href="chaos-systems">CHAOS systems</a> / ' +
-      '<a href="chaos-systems?cohort=' + encodeURIComponent(p.cohort.key) + '">' + esc(cohortName) + "</a></p>" +
+      '<div class="cs-identity"><p class="cs-crumbs"><a href="' + PAGE + '">CHAOS systems</a> / ' +
+      '<a href="' + PAGE + "?cohort=" + encodeURIComponent(p.cohort.key) + '">' + esc(cohortName) + "</a></p>" +
       '<p class="cs-kicker">' + esc(kick.filter(Boolean).join(" · ")) + "</p>" +
       '<h1 class="cs-title">' + name + "</h1>" +
       '<p class="cs-sub">' + sub.join(" · ") + '</p><p class="cs-chaos-id">' + esc(p.chaos_id || p.auid) + "</p></div>" +
@@ -335,10 +259,10 @@
     }
     var rule = "A synthesis priority has formability in the top quartile of its cohort and a compatibility score of at least 0.75.";
     var caveat = anionFamily
-      ? "Formability ranks candidates; it does not predict which phase forms. The metric does not include oxygen partial pressure, " +
-        "precursor reactivity, cation valence, defect equilibria or kinetic trapping. Magnetic and vibrational entropy are also not included."
-      : "Formability ranks candidates; it does not predict which phase forms. The metric does not include the processing route, " +
-        "cooling rate or kinetic trapping. Magnetic and vibrational entropy are also not included.";
+      ? "Formability ranks candidates by how closely the configurations of the ensemble lie in enthalpy. " +
+        "Among the ranked candidates, the synthesis conditions, such as oxygen partial pressure, precursors and cooling rate, decide which phase forms."
+      : "Formability ranks candidates by how closely the configurations of the ensemble lie in enthalpy. " +
+        "Among the ranked candidates, the processing route and cooling rate decide which phase forms.";
     var nb = p.neighbors.list;
     var better = nb.filter(function (n) { return n.d_p != null && n.d_p > 0; });
     var nbLine;
@@ -367,7 +291,7 @@
         "</td><td class=num>" + sig(x.value, 3) + unit(x.unit) + "</td><td class=num><b class=\"cs-big\">" + (i === 0 || helps == null ? '<span class="cs-dim">–</span>' : helps.toFixed(2)) + "</b></td></tr>";
     });
     ev += "</tbody></table></div>";
-    ev += '<p class="cs-dim">The compatibility score (S<sub>CHAOS</sub> in the manuscript) is the mean of the distortion part and the chemistry part. Each part averages the ' +
+    ev += '<p class="cs-dim">The compatibility score (<i>S</i><sub>CHAOS</sub> in the manuscript) is the mean of the distortion part and the chemistry part. Each part averages the ' +
       "contributions of its descriptors: the cohort percentile when higher is better, one minus the percentile when lower is better. " +
       "Percentiles are within the " + cohortN + " " + esc(cohortName) + ".</p>";
     if (p.scores.missing && p.scores.missing.length) {
@@ -408,8 +332,8 @@
         '" data-mm="' + esc(e.mass / (e.mol || 1)) + '"></span></td></tr>';
     });
     make += "</tbody></table></div></details></div>";
-    var target = [["Lattice", esc(latName) + (lat.pearson && lat.name ? ' <span class="cs-dim">' + esc(lat.pearson) + "</span>" : "")]];
-    if (lat.sg) target.push(["Space group", (lat.sg_symbol ? esc(lat.sg_symbol) + " " : "") + "(" + esc(lat.sg) + ")"]);
+    var target = [["Lattice", C.structure(latName) + (lat.pearson && lat.name ? ' <span class="cs-dim">' + C.pearson(lat.pearson) + "</span>" : "")]];
+    if (lat.sg) target.push(["Space group", (lat.sg_symbol ? C.spaceGroup(lat.sg_symbol) + " " : "") + "(" + esc(lat.sg) + ")"]);
     target.push(["Mixed site", site.elements.map(function (e) { return esc(e.el) + " " + sig(e.x, 3); }).join(", ")]);
     var prop = {};
     p.properties.forEach(function (x) { prop[x.field || x.title] = x; });
@@ -443,15 +367,15 @@
       }
       if (says.length) watch += "<p" + (off.length ? ' class="cs-flag"' : "") + ">" + says.join(" ") + "</p>";
       watch += '<div class="cs-scroll"><table class="cs-table"><thead><tr><th>Element</th><th>End member</th><th>Lowest in CHAOS</th>' +
-        "<th class=num>ΔH<sub>f</sub> (eV/atom)</th><th class=num>" + esc(latWord.charAt(0).toUpperCase() + latWord.slice(1)) + " above ground state</th></tr></thead><tbody>";
+        "<th class=num>Δ<i>H</i><sub>f</sub> (eV/atom)</th><th class=num>" + esc(latWord.charAt(0).toUpperCase() + latWord.slice(1)) + " above ground state</th></tr></thead><tbody>";
       members.forEach(function (m) {
         var same = m.same_lattice
           ? (m.takes_lattice ? "0 (ground state)" : m.above == null ? "–" : "+" + sig(m.above * 1000, 3) + " meV/atom")
           : m.lowest ? '<span class="cs-dim">not computed</span>' : "";
-        watch += "<tr><td>" + esc(m.el) + "</td><td>" + formula(m.formula || "") + "</td><td>" + (m.lowest ? structureText(m.lowest) : '<span class="cs-dim">not in CHAOS</span>') +
+        watch += "<tr><td>" + esc(m.el) + "</td><td>" + material(m.formula, !!m.lowest) + "</td><td>" + (m.lowest ? structureText(m.lowest) : '<span class="cs-dim">not in CHAOS</span>') +
           "</td><td class=num>" + (m.lowest ? sig(m.lowest.hf, 3) : "") + "</td><td class=num>" + same + "</td></tr>";
       });
-      watch += '</tbody></table></div><p class="cs-dim">ΔH<sub>f</sub> is the DFT formation enthalpy per atom of the lowest-energy structure. ' +
+      watch += '</tbody></table></div><p class="cs-dim">Δ<i>H</i><sub>f</sub> is the DFT formation enthalpy per atom of the lowest-energy structure. ' +
         "“" + esc(latWord.charAt(0).toUpperCase() + latWord.slice(1)) + " above ground state” is the energy of the end member on the " + esc(latWord) +
         " lattice relative to the lowest-energy structure in CHAOS at the same composition.</p>";
     }
@@ -459,9 +383,9 @@
     if (two && two.compositions) {
       watch += '<h3 class="cs-h3">' + (anionFamily ? "Two-cation compounds" : "Binary compounds") + "</h3><p>CHAOS also contains " + esc(two.compositions) +
         " compositions formed from pairs of the mixed-site elements. The lowest in formation enthalpy per atom:</p>" +
-        '<div class="cs-scroll"><table class="cs-table cs-narrow"><thead><tr><th>Compound</th><th>Structure</th><th class=num>ΔH<sub>f</sub> (eV/atom)</th></tr></thead><tbody>' +
+        '<div class="cs-scroll"><table class="cs-table cs-narrow"><thead><tr><th>Compound</th><th>Structure</th><th class=num>Δ<i>H</i><sub>f</sub> (eV/atom)</th></tr></thead><tbody>' +
         two.lowest.map(function (c) {
-          return "<tr><td>" + formula(c.formula) + "</td><td>" + esc(c.structure || c.pearson || "") + "</td><td class=num>" + sig(c.hf, 3) + "</td></tr>";
+          return "<tr><td>" + material(c.formula, true) + "</td><td>" + esc(c.structure || c.pearson || "") + "</td><td class=num>" + sig(c.hf, 3) + "</td></tr>";
         }).join("") + "</tbody></table></div>";
     }
 
@@ -521,7 +445,7 @@
       '<a class="cs-button" href="' + API + encodeURIComponent(p.id) + '">This page\'s data (JSON)</a>' +
       '<a class="cs-button" href="' + AGENT + '">CHAOS-Agent</a></p>' +
       '<dl class="cs-dl"><dt>CHAOS identifier</dt><dd>' + esc(p.chaos_id || p.auid) + "</dd><dt>Computed on</dt><dd>" + released(p.release) + "</dd>" +
-      "<dt>Cite</dt><dd>CHAOS, Entropy for Energy Laboratory, Johns Hopkins University, https://chaos.s4e.ai.</dd></dl>" +
+      "<dt>Cite</dt><dd>CHAOS, Entropy for Energy Laboratory, Johns Hopkins University, https://chaos.s4e.ai, release " + released(p.release) + ".</dd></dl>" +
       '<p class="cs-dim">Fields and units: <a href="https://chaos.s4e.ai/API/?schema">schema</a> and ' +
       '<a href="https://chaos.s4e.ai/API/?help">API help</a>.</p>';
 
@@ -588,16 +512,11 @@
     var target = h && document.getElementById(h);
     if (target) target.scrollIntoView();
     current();
-    var copy = document.getElementById("cs-copy");
-    copy.onclick = function () {
-      var done = function () { copy.textContent = "Copied"; setTimeout(function () { copy.textContent = "Copy the query"; }, 1500); };
-      if (navigator.clipboard) navigator.clipboard.writeText(q).then(done, function () {});
-    };
+    C.copyButton(document.getElementById("cs-copy"), q, "Copy the query");
   }
 
   // ------------------------------------------------------------ start
-  var host = location.hostname;
-  if (host !== "chaos.s4e.ai" && host !== "localhost" && host !== "127.0.0.1") {
+  if (!C.onCHAOSHost()) {
     status('<h1>CHAOS systems</h1><p>The system pages are on chaos.s4e.ai: <a href="https://chaos.s4e.ai/chaos-systems">chaos.s4e.ai/chaos-systems</a>.</p>');
     return;
   }

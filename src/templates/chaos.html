@@ -20,15 +20,49 @@
   {% set st = data.chaos.stats %}
   {% set ox = st.oxide %}
   {% set one = ox.coverage_one_cation %}
-  <h1>CHAOS</h1>
-  <p class="chaos-claim">
-    The first database of first-principles calculations dedicated to
-    high-entropy oxides.
-  </p>
-  <p class="product-signin">
-    <a class="workshop-button" href="https://chaos.s4e.ai/API/signin">Sign in to CHAOS</a>
-    <a class="workshop-chip" href="https://chaos.s4e.ai/API/account">Get an account</a>
-  </p>
+  <section class="chaos-hero">
+    <h1>CHAOS</h1>
+    <p class="chaos-claim">
+      The first database of first-principles calculations dedicated to
+      high-entropy oxides.
+    </p>
+    <p class="product-signin" id="chaos-cta">
+      <a class="workshop-button" href="https://chaos.s4e.ai/API/signin">Sign in to CHAOS</a>
+      <a class="workshop-chip" href="https://chaos.s4e.ai/API/account">Get an account</a>
+    </p>
+    <div class="chaos-stats" aria-label="What CHAOS holds">
+      <div class="chaos-stat" data-q="oxide">
+        <div class="chaos-stat-value">{{ n("oxide.disordered_systems", ox.disordered_systems) }}</div>
+        <div class="chaos-stat-label">disordered oxide systems</div>
+        <div class="chaos-stat-note">{{ n("oxide.rocksalt", ox.rocksalt) }} rocksalt,
+          {{ n("oxide.perovskite", ox.perovskite) }} perovskite,
+          {{ n("oxide.other_structures", ox.other_structures) }} other structures</div>
+      </div>
+      <div class="chaos-stat">
+        <div class="chaos-stat-value">{{ n("oxide.supercells", ox.supercells) }}</div>
+        <div class="chaos-stat-label">relaxed supercells in their ensembles</div>
+        <div class="chaos-stat-note">typically {{ n("oxide.rocksalt_supercells_median", ox.rocksalt_supercells_median) }}
+          per rocksalt system</div>
+      </div>
+      <div class="chaos-stat">
+        <div class="chaos-stat-value">{{ n("oxide.ordered_entries", ox.ordered_entries) }}</div>
+        <div class="chaos-stat-label">ordered oxide calculations</div>
+        <div class="chaos-stat-note">{{ n("oxide.ordered_compounds", ox.ordered_compounds) }} compounds in
+          {{ n("oxide.ordered_chemical_systems", ox.ordered_chemical_systems) }} chemical systems</div>
+      </div>
+      <div class="chaos-stat">
+        <div class="chaos-stat-value">{{ n("derived.two_cation_pct", ox.coverage_two_cation_pct) }}%</div>
+        <div class="chaos-stat-label">of two-cation sub-oxides calculated</div>
+        {# "all" or "N of M": both are in the page, and the script shows the one
+           the current counts call for #}
+        <div class="chaos-stat-note">and
+          <span data-one-all{% if one[0] != one[1] %} hidden{% endif %}>all</span><span data-one-some{% if one[0] == one[1] %} hidden{% endif %}>{{ n("oxide.coverage_one_cation.0", one[0]) }}
+          of {{ n("oxide.coverage_one_cation.1", one[1]) }}</span>
+          single-cation oxides, for the
+          {{ n("oxide.coverage_systems", ox.coverage_systems) }} systems whose only anion is oxygen</div>
+      </div>
+    </div>
+  </section>
   <p class="chaos-lead">
     CHAOS stands for <u>C</u>ombinatorial <u>H</u>igh-throughput
     <u>A</u>nalysis and <u>O</u>ptimization for <u>S</u>ynthesis.
@@ -39,78 +73,27 @@
     thermodynamic quantities from explicit calculations.
   </p>
 
-  {# The ways in: find a system, the API, CHAOS-Agent. The search is a plain
-     form, so it works before the page's script runs. #}
-  <form class="chaos-find" action="chaos-systems" method="get" role="search">
-    <label for="chaos-find-q">Find a disordered system</label>
-    <div class="chaos-find-row">
-      <input id="chaos-find-q" name="q" type="search" placeholder="Elements, for example Co Mg Ni" autocomplete="off">
-      <input type="hidden" name="cohort" value="all">
-      <button type="submit">Search</button>
+  {# The public face names what an account gives and links to nothing behind the
+     sign-in. The search, the tool cards and the links from the counts are not in
+     this page: chaos-members.js adds them once the gate accepts the visitor. #}
+  <section class="chaos-pitch" id="access">
+    <div id="chaos-pitch">
+      <h2>CHAOS accounts</h2>
+      <dl class="chaos-offer">
+        <div><dt>System pages</dt><dd>Ranking, synthesis quantities, competing phases and descriptors for each disordered system.</dd></div>
+        <div><dt>Material pages</dt><dd>The structures of each composition, their formation enthalpies and the disordered systems they belong to.</dd></div>
+        <div><dt>API</dt><dd>Entries and descriptors over HTTP. <a href="https://chaos.s4e.ai/API/?help">Documentation, fields and examples</a>.</dd></div>
+        <div><dt>CHAOS-Agent</dt><dd>Natural-language queries of the database.</dd></div>
+      </dl>
     </div>
-  </form>
-  <div class="access-cards">
-    <a class="access-card" href="chaos-systems">
-      <div class="access-card-title">Systems</div>
-      <div class="access-card-text">
-        Ranking, synthesis quantities, competing phases and descriptors for
-        each disordered system.
-      </div>
-    </a>
-    <a class="access-card" href="https://chaos.s4e.ai/API/?help">
-      <div class="access-card-title">API</div>
-      <div class="access-card-text">
-        Query entries and descriptors over HTTP. Documentation, fields and
-        examples.
-      </div>
-    </a>
-    <a class="access-card" href="https://chaos.s4e.ai/chaos/agent/">
-      <div class="access-card-title">CHAOS-Agent</div>
-      <div class="access-card-text">
-        Query the database in natural language.
-      </div>
-    </a>
-  </div>
-  <p class="chaos-account" id="access">
-    All three are for registered users.
-    CHAOS accounts are open to anyone with a verified <code>.edu</code> email
-    address and, on approval, to others.
-    For questions, write to
-    <a href="mailto:s4e-chaos@jhu.edu">s4e-chaos@jhu.edu</a>.
-  </p>
+    <p class="chaos-account">
+      CHAOS accounts are open to anyone with a verified <code>.edu</code> email
+      address and, on approval, to others.
+      For questions, write to
+      <a href="mailto:s4e-chaos@jhu.edu">s4e-chaos@jhu.edu</a>.
+    </p>
+  </section>
 
-  <div class="chaos-stats" aria-label="What CHAOS holds">
-    <a class="chaos-stat" href="chaos-systems?q=oxide&amp;cohort=all">
-      <div class="chaos-stat-value">{{ n("oxide.disordered_systems", ox.disordered_systems) }}</div>
-      <div class="chaos-stat-label">disordered oxide systems</div>
-      <div class="chaos-stat-note">{{ n("oxide.rocksalt", ox.rocksalt) }} rocksalt,
-        {{ n("oxide.perovskite", ox.perovskite) }} perovskite,
-        {{ n("oxide.other_structures", ox.other_structures) }} other structures</div>
-    </a>
-    <div class="chaos-stat">
-      <div class="chaos-stat-value">{{ n("oxide.supercells", ox.supercells) }}</div>
-      <div class="chaos-stat-label">relaxed DFT supercells in their ensembles</div>
-      <div class="chaos-stat-note">typically {{ n("oxide.rocksalt_supercells_median", ox.rocksalt_supercells_median) }}
-        per rocksalt system</div>
-    </div>
-    <div class="chaos-stat">
-      <div class="chaos-stat-value">{{ n("oxide.ordered_entries", ox.ordered_entries) }}</div>
-      <div class="chaos-stat-label">ordered oxide calculations</div>
-      <div class="chaos-stat-note">{{ n("oxide.ordered_compounds", ox.ordered_compounds) }} compounds in
-        {{ n("oxide.ordered_chemical_systems", ox.ordered_chemical_systems) }} chemical systems</div>
-    </div>
-    <div class="chaos-stat">
-      <div class="chaos-stat-value">{{ n("derived.two_cation_pct", ox.coverage_two_cation_pct) }}%</div>
-      <div class="chaos-stat-label">of two-cation sub-oxides calculated</div>
-      {# "all" or "N of M": both are in the page, and the script shows the one
-         the current counts call for #}
-      <div class="chaos-stat-note">and
-        <span data-one-all{% if one[0] != one[1] %} hidden{% endif %}>all</span><span data-one-some{% if one[0] == one[1] %} hidden{% endif %}>{{ n("oxide.coverage_one_cation.0", one[0]) }}
-        of {{ n("oxide.coverage_one_cation.1", one[1]) }}</span>
-        single-cation oxides, for the
-        {{ n("oxide.coverage_systems", ox.coverage_systems) }} systems whose only anion is oxygen</div>
-    </div>
-  </div>
   <p class="chaos-total">
     CHAOS is centered on high-entropy oxides. The public database also
     includes high-entropy alloys and contains
@@ -140,7 +123,7 @@
         {{ n("oxide.rocksalt_supercells_min", ox.rocksalt_supercells_min) }} and
         {{ n("oxide.rocksalt_supercells_max", ox.rocksalt_supercells_max) }}
         supercells each, typically {{ n("oxide.rocksalt_supercells_median", ox.rocksalt_supercells_median) }}.
-        Each <a href="chaos-systems">system page</a> gives the number of
+        Each system page gives the number of
         supercells and their enthalpy spread.
       </p>
     </div>
@@ -152,8 +135,8 @@
         spread means many configurations lie close in enthalpy. The relaxed supercells give the lattice distortion
         and the root-mean-square atomic displacement, averaged with Boltzmann
         weights at 300&nbsp;K. CHAOS also stores the atomic-solubility
-        parameter, configurational entropy, valence electron concentration and
-        Miedema mixing enthalpy for the disordered systems. These quantities
+        parameter, configurational entropy and valence electron concentration for
+        the disordered systems. These quantities
         can be used directly in API queries. Each system page shows the
         formability, lattice distortion, atomic displacement, size and
         electronegativity mismatch and valence electron concentration with
@@ -204,7 +187,6 @@
         <li>Atomic-solubility parameter at 0 and 300&nbsp;K<span class="unit"><span class="sep">, in </span>GPa&nbsp;&Aring;&sup3;</span></li>
         <li>Configurational entropy<span class="unit"><span class="sep">, in </span>k<sub>B</sub>/atom</span></li>
         <li>Valence electron concentration<span class="unit"><span class="sep">, in </span>e/atom</span></li>
-        <li>Miedema mixing enthalpy<span class="unit"><span class="sep">, in </span>eV/atom</span></li>
       </ul>
     </div>
     <div class="chaos-feature">
@@ -224,7 +206,7 @@
   {% set mc = {} %}
   {% for r in st.matrix.rows %}{% set _ = mc.update({r.key: r.counts}) %}{% endfor %}
   {% set dk = namespace(key="distortion") %}
-  {% for k in ["distortion", "displacement", "solubility", "s_config", "vec", "mixing_enthalpy"] %}
+  {% for k in ["distortion", "displacement", "solubility", "s_config", "vec"] %}
     {% if mc[k] and mc[k].systems < mc[dk.key].systems %}{% set dk.key = k %}{% endif %}
   {% endfor %}
   {% set kinds = {"systems": "disordered oxide systems", "ordered": "ordered oxides"} %}
@@ -252,9 +234,8 @@
   <p class="chaos-note">
     The DFT calculations use the
     <u>P</u>erdew&ndash;<u>B</u>urke&ndash;<u>E</u>rnzerhof (PBE)
-    generalized gradient approximation. Configurational entropy, valence
-    electron concentration and the Miedema mixing enthalpy are computed from
-    the composition. Counts are as of
+    generalized gradient approximation. Configurational entropy and valence
+    electron concentration are computed from the composition. Counts are as of
     <span data-stat-date>{{ data.chaos.as_of_text }}</span>. Each ordered
     structure and each disordered-system record counts as one entry.
   </p>
@@ -263,18 +244,18 @@
   <p>
     Cation coverage for the {{ n("oxide.coverage_systems", ox.coverage_systems) }}
     disordered systems whose only anion is oxygen. Each number gives the
-    number of systems containing that element; select an element to list them.
+    number of systems containing that element.
   </p>
   <div class="ptable-wrap">
     <div class="ptable" role="group"
-         aria-label="Periodic table shaded by the number of disordered oxide systems containing each cation; each cation links to its systems">
+         aria-label="Periodic table shaded by the number of disordered oxide systems containing each cation">
       {% for c in st.ptable %}
       {% if c.systems %}
-      <a class="ptable-cell ptable-{{ c.level }}" style="grid-row:{{ c.row }};grid-column:{{ c.col }}"
-         title="{{ c.title }}" href="chaos-systems?q={{ c.symbol }}+oxide&amp;cohort=all">
+      <div class="ptable-cell ptable-{{ c.level }}" style="grid-row:{{ c.row }};grid-column:{{ c.col }}"
+         title="{{ c.title }}" data-q="{{ c.symbol }} oxide">
         <span class="ptable-symbol">{{ c.symbol }}</span>
         <span class="ptable-count" data-stat="oxide.systems_per_cation.{{ c.symbol }}">{{ c.systems }}</span>
-      </a>
+      </div>
       {% else %}
       <div class="ptable-cell ptable-{{ c.level }}" style="grid-row:{{ c.row }};grid-column:{{ c.col }}"
            title="{{ c.title }}">
@@ -296,7 +277,7 @@
     {{ n("alloys.disordered_systems", st.alloys.disordered_systems) }}
     high-entropy alloy systems ({{ n("alloys.bcc", st.alloys.bcc) }} bcc and
     {{ n("alloys.fcc", st.alloys.fcc) }} fcc) with the same ensemble descriptors
-    and their own <a href="chaos-systems?q=alloy&amp;cohort=all">system pages</a>.
+    and their own <span data-q="alloy">system pages</span>.
   </p>
 </div>
 {% endblock %}
@@ -349,4 +330,5 @@
       .catch(function () {});
   })();
 </script>
+<script src="js/chaos-members.js?v={{ data.asset_version }}" defer></script>
 {% endblock %}

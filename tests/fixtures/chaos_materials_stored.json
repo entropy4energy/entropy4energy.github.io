@@ -1,0 +1,1983 @@
+{
+ "note": "Invented CoO in the format of the published database, written by the material-page generator.",
+ "files": {
+  "materials/c/CoO": {
+   "format": 1,
+   "key": "CoO",
+   "label": "CoO",
+   "elements": [
+    "Co",
+    "O"
+   ],
+   "system": "Co-O",
+   "n": 11,
+   "n_structures": 3,
+   "lowest": "c0c0000000000001",
+   "structures": [
+    {
+     "id": "c0c0000000000001",
+     "ids": [
+      "c0c0000000000001",
+      "c0c0000000000002",
+      "c0c0000000000003",
+      "c0c0000000000004",
+      "c0c0000000000005",
+      "c0c0000000000006",
+      "c0c0000000000007",
+      "c0c0000000000008"
+     ],
+     "n": 8,
+     "prototype": "AB_mP8_14_ab_e",
+     "structure": null,
+     "sg": 131,
+     "sg_symbol": "P4_2/mmc",
+     "pearson": "tP4",
+     "natoms": 8,
+     "hf": -0.77,
+     "above_lowest_meV": 0.0,
+     "hull_meV": null,
+     "gap": null
+    },
+    {
+     "id": "b16c0000000000b1",
+     "ids": [
+      "b16c0000000000b1"
+     ],
+     "n": 1,
+     "prototype": "AB_oI48_72_j_j",
+     "structure": null,
+     "sg": 72,
+     "sg_symbol": "Ibam",
+     "pearson": "oI48",
+     "natoms": 48,
+     "hf": -0.7,
+     "above_lowest_meV": 70.0,
+     "hull_meV": null,
+     "gap": null
+    },
+    {
+     "id": "c0c0000000000009",
+     "ids": [
+      "c0c0000000000009",
+      "c0c000000000000a"
+     ],
+     "n": 2,
+     "prototype": "AB_cF8_225_a_b",
+     "structure": "rocksalt",
+     "sg": 225,
+     "sg_symbol": "Fm-3m",
+     "pearson": "cF8",
+     "natoms": 2,
+     "hf": -0.52,
+     "above_lowest_meV": 250.0,
+     "hull_meV": null,
+     "gap": null
+    }
+   ],
+   "stability": null,
+   "systems": {
+    "end_member": [],
+    "two_cation": []
+   },
+   "same_system": [],
+   "query": "*,species(Co,O),nspecies(2)",
+   "release": "20261026T161624Z"
+  },
+  "materials/index/Co": {
+   "format": 1,
+   "element": "Co",
+   "release": "20261026T161624Z",
+   "compositions": [
+    [
+     "CoO",
+     "CoO",
+     11
+    ]
+   ]
+  },
+  "materials/index/O": {
+   "format": 1,
+   "element": "O",
+   "release": "20261026T161624Z",
+   "compositions": [
+    [
+     "CoO",
+     "CoO",
+     11
+    ]
+   ]
+  },
+  "materials/meta": {
+   "format": 1,
+   "release": "20261026T161624Z",
+   "counts": {
+    "rows": 11,
+    "ordered": 11,
+    "skipped_supercell": 0,
+    "skipped_disordered": 0,
+    "unreadable": 0,
+    "patterns": 0,
+    "patterns_computed": 0,
+    "bytes_raw": 19414,
+    "compositions": 1,
+    "elements": 2
+   }
+  },
+  "materials/s/b1/b16c0000000000b1": {
+   "format": 1,
+   "id": "b16c0000000000b1",
+   "chaos_id": "s4e:b16c0000000000b1",
+   "key": "CoO",
+   "label": "CoO",
+   "elements": [
+    "Co",
+    "O"
+   ],
+   "natoms": 48,
+   "prototype": "AB_oI48_72_j_j",
+   "prototype_relax": "AB_oI48_72_j_j",
+   "structure": null,
+   "sg": 72,
+   "sg_symbol": "Ibam",
+   "pearson": "oI48",
+   "wyckoff": "Co 8j 16k, O 8j 16k",
+   "conventional": {
+    "system": "orthorhombic",
+    "a": 9.1,
+    "b": 10.01,
+    "c": 5.46,
+    "alpha": 90.0,
+    "beta": 90.0,
+    "gamma": 90.0
+   },
+   "lattice": [
+    9.1,
+    10.01,
+    5.46,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "sites": [
+    {
+     "el": "Co",
+     "xyz": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.37,
+      0.21,
+      0.13
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.74,
+      0.42,
+      0.26
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.11,
+      0.63,
+      0.39
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.48,
+      0.84,
+      0.52
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.85,
+      0.05,
+      0.65
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.22,
+      0.26,
+      0.78
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.59,
+      0.47,
+      0.91
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.96,
+      0.68,
+      0.04
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.33,
+      0.89,
+      0.17
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.7,
+      0.1,
+      0.3
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.07,
+      0.31,
+      0.43
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.44,
+      0.52,
+      0.56
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.81,
+      0.73,
+      0.69
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.18,
+      0.94,
+      0.82
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.55,
+      0.15,
+      0.95
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.92,
+      0.36,
+      0.08
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.29,
+      0.57,
+      0.21
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.66,
+      0.78,
+      0.34
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.03,
+      0.99,
+      0.47
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.4,
+      0.2,
+      0.6
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.77,
+      0.41,
+      0.73
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.14,
+      0.62,
+      0.86
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.51,
+      0.83,
+      0.99
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.88,
+      0.04,
+      0.12
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.25,
+      0.25,
+      0.25
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.62,
+      0.46,
+      0.38
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.99,
+      0.67,
+      0.51
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.36,
+      0.88,
+      0.64
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.73,
+      0.09,
+      0.77
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.1,
+      0.3,
+      0.9
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.47,
+      0.51,
+      0.03
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.84,
+      0.72,
+      0.16
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.21,
+      0.93,
+      0.29
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.58,
+      0.14,
+      0.42
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.95,
+      0.35,
+      0.55
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.32,
+      0.56,
+      0.68
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.69,
+      0.77,
+      0.81
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.06,
+      0.98,
+      0.94
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.43,
+      0.19,
+      0.07
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.8,
+      0.4,
+      0.2
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.17,
+      0.61,
+      0.33
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.54,
+      0.82,
+      0.46
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.91,
+      0.03,
+      0.59
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.28,
+      0.24,
+      0.72
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.65,
+      0.45,
+      0.85
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.02,
+      0.66,
+      0.98
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.39,
+      0.87,
+      0.11
+     ]
+    }
+   ],
+   "pairs": null,
+   "density": null,
+   "volume_atom": null,
+   "hf": -0.7,
+   "gap": null,
+   "gap_type": null,
+   "spin_cell": null,
+   "spin_atom": null,
+   "settings": {
+    "functional": null,
+    "cutoff_eV": null,
+    "kpoints": null,
+    "pseudopotentials": null
+   },
+   "query": "*,chaos_id(s4e:b16c0000000000b1)",
+   "above_lowest_meV": 70.0,
+   "hull": null,
+   "pattern": null,
+   "release": "20261026T161624Z",
+   "composition": {
+    "n": 11,
+    "lowest": "c0c0000000000001",
+    "same_structure": 0,
+    "others": [
+     {
+      "id": "c0c0000000000001",
+      "ids": [
+       "c0c0000000000001",
+       "c0c0000000000002",
+       "c0c0000000000003",
+       "c0c0000000000004",
+       "c0c0000000000005",
+       "c0c0000000000006",
+       "c0c0000000000007",
+       "c0c0000000000008"
+      ],
+      "n": 8,
+      "prototype": "AB_mP8_14_ab_e",
+      "structure": null,
+      "sg": 131,
+      "sg_symbol": "P4_2/mmc",
+      "pearson": "tP4",
+      "natoms": 8,
+      "hf": -0.77,
+      "above_lowest_meV": 0.0,
+      "hull_meV": null,
+      "gap": null
+     },
+     {
+      "id": "c0c0000000000009",
+      "ids": [
+       "c0c0000000000009",
+       "c0c000000000000a"
+      ],
+      "n": 2,
+      "prototype": "AB_cF8_225_a_b",
+      "structure": "rocksalt",
+      "sg": 225,
+      "sg_symbol": "Fm-3m",
+      "pearson": "cF8",
+      "natoms": 2,
+      "hf": -0.52,
+      "above_lowest_meV": 250.0,
+      "hull_meV": null,
+      "gap": null
+     }
+    ]
+   },
+   "systems": {
+    "end_member": [],
+    "two_cation": []
+   }
+  },
+  "materials/s/c0/c0c0000000000001": {
+   "format": 1,
+   "id": "c0c0000000000001",
+   "chaos_id": "s4e:c0c0000000000001",
+   "key": "CoO",
+   "label": "CoO",
+   "elements": [
+    "Co",
+    "O"
+   ],
+   "natoms": 8,
+   "prototype": "AB_mP8_14_ab_e",
+   "prototype_relax": "AB_tP4_131_c_e",
+   "structure": null,
+   "sg": 131,
+   "sg_symbol": "P4_2/mmc",
+   "pearson": "tP4",
+   "wyckoff": "Co 2c, O 2e",
+   "conventional": {
+    "system": "tetragonal",
+    "a": 2.7,
+    "b": 2.7,
+    "c": 5.13,
+    "alpha": 90.0,
+    "beta": 90.0,
+    "gamma": 90.0
+   },
+   "lattice": [
+    3.9,
+    5.2,
+    3.9,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "sites": [
+    {
+     "el": "Co",
+     "xyz": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.37,
+      0.21,
+      0.13
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.74,
+      0.42,
+      0.26
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.11,
+      0.63,
+      0.39
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.48,
+      0.84,
+      0.52
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.85,
+      0.05,
+      0.65
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.22,
+      0.26,
+      0.78
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.59,
+      0.47,
+      0.91
+     ]
+    }
+   ],
+   "pairs": null,
+   "density": null,
+   "volume_atom": null,
+   "hf": -0.77,
+   "gap": null,
+   "gap_type": null,
+   "spin_cell": null,
+   "spin_atom": null,
+   "settings": {
+    "functional": null,
+    "cutoff_eV": null,
+    "kpoints": null,
+    "pseudopotentials": null
+   },
+   "query": "*,chaos_id(s4e:c0c0000000000001)",
+   "above_lowest_meV": 0.0,
+   "hull": null,
+   "pattern": null,
+   "release": "20261026T161624Z",
+   "composition": {
+    "n": 11,
+    "lowest": "c0c0000000000001",
+    "same_structure": 7,
+    "others": [
+     {
+      "id": "b16c0000000000b1",
+      "ids": [
+       "b16c0000000000b1"
+      ],
+      "n": 1,
+      "prototype": "AB_oI48_72_j_j",
+      "structure": null,
+      "sg": 72,
+      "sg_symbol": "Ibam",
+      "pearson": "oI48",
+      "natoms": 48,
+      "hf": -0.7,
+      "above_lowest_meV": 70.0,
+      "hull_meV": null,
+      "gap": null
+     },
+     {
+      "id": "c0c0000000000009",
+      "ids": [
+       "c0c0000000000009",
+       "c0c000000000000a"
+      ],
+      "n": 2,
+      "prototype": "AB_cF8_225_a_b",
+      "structure": "rocksalt",
+      "sg": 225,
+      "sg_symbol": "Fm-3m",
+      "pearson": "cF8",
+      "natoms": 2,
+      "hf": -0.52,
+      "above_lowest_meV": 250.0,
+      "hull_meV": null,
+      "gap": null
+     }
+    ]
+   },
+   "systems": {
+    "end_member": [],
+    "two_cation": []
+   }
+  },
+  "materials/s/c0/c0c0000000000002": {
+   "format": 1,
+   "id": "c0c0000000000002",
+   "chaos_id": "s4e:c0c0000000000002",
+   "key": "CoO",
+   "label": "CoO",
+   "elements": [
+    "Co",
+    "O"
+   ],
+   "natoms": 4,
+   "prototype": "AB_tP4_131_c_e",
+   "prototype_relax": "AB_tP4_131_c_e",
+   "structure": null,
+   "sg": 131,
+   "sg_symbol": "P4_2/mmc",
+   "pearson": "tP4",
+   "wyckoff": "Co 2c, O 2e",
+   "conventional": {
+    "system": "tetragonal",
+    "a": 2.7,
+    "b": 2.7,
+    "c": 5.13,
+    "alpha": 90.0,
+    "beta": 90.0,
+    "gamma": 90.0
+   },
+   "lattice": [
+    2.7,
+    2.7,
+    5.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "sites": [
+    {
+     "el": "Co",
+     "xyz": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.37,
+      0.21,
+      0.13
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.74,
+      0.42,
+      0.26
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.11,
+      0.63,
+      0.39
+     ]
+    }
+   ],
+   "pairs": null,
+   "density": null,
+   "volume_atom": null,
+   "hf": -0.7698,
+   "gap": null,
+   "gap_type": null,
+   "spin_cell": null,
+   "spin_atom": null,
+   "settings": {
+    "functional": null,
+    "cutoff_eV": null,
+    "kpoints": null,
+    "pseudopotentials": null
+   },
+   "query": "*,chaos_id(s4e:c0c0000000000002)",
+   "above_lowest_meV": 0.2,
+   "hull": null,
+   "pattern": null,
+   "release": "20261026T161624Z",
+   "composition": {
+    "n": 11,
+    "lowest": "c0c0000000000001",
+    "same_structure": 7,
+    "others": [
+     {
+      "id": "b16c0000000000b1",
+      "ids": [
+       "b16c0000000000b1"
+      ],
+      "n": 1,
+      "prototype": "AB_oI48_72_j_j",
+      "structure": null,
+      "sg": 72,
+      "sg_symbol": "Ibam",
+      "pearson": "oI48",
+      "natoms": 48,
+      "hf": -0.7,
+      "above_lowest_meV": 70.0,
+      "hull_meV": null,
+      "gap": null
+     },
+     {
+      "id": "c0c0000000000009",
+      "ids": [
+       "c0c0000000000009",
+       "c0c000000000000a"
+      ],
+      "n": 2,
+      "prototype": "AB_cF8_225_a_b",
+      "structure": "rocksalt",
+      "sg": 225,
+      "sg_symbol": "Fm-3m",
+      "pearson": "cF8",
+      "natoms": 2,
+      "hf": -0.52,
+      "above_lowest_meV": 250.0,
+      "hull_meV": null,
+      "gap": null
+     }
+    ]
+   },
+   "systems": {
+    "end_member": [],
+    "two_cation": []
+   }
+  },
+  "materials/s/c0/c0c0000000000003": {
+   "format": 1,
+   "id": "c0c0000000000003",
+   "chaos_id": "s4e:c0c0000000000003",
+   "key": "CoO",
+   "label": "CoO",
+   "elements": [
+    "Co",
+    "O"
+   ],
+   "natoms": 4,
+   "prototype": "AB_tP4_131_c_e",
+   "prototype_relax": "AB_tP4_131_c_e",
+   "structure": null,
+   "sg": 131,
+   "sg_symbol": "P4_2/mmc",
+   "pearson": "tP4",
+   "wyckoff": "Co 2c, O 2e",
+   "conventional": {
+    "system": "tetragonal",
+    "a": 2.7,
+    "b": 2.7,
+    "c": 5.13,
+    "alpha": 90.0,
+    "beta": 90.0,
+    "gamma": 90.0
+   },
+   "lattice": [
+    2.7,
+    2.7,
+    5.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "sites": [
+    {
+     "el": "Co",
+     "xyz": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.37,
+      0.21,
+      0.13
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.74,
+      0.42,
+      0.26
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.11,
+      0.63,
+      0.39
+     ]
+    }
+   ],
+   "pairs": null,
+   "density": null,
+   "volume_atom": null,
+   "hf": -0.7696,
+   "gap": null,
+   "gap_type": null,
+   "spin_cell": null,
+   "spin_atom": null,
+   "settings": {
+    "functional": null,
+    "cutoff_eV": null,
+    "kpoints": null,
+    "pseudopotentials": null
+   },
+   "query": "*,chaos_id(s4e:c0c0000000000003)",
+   "above_lowest_meV": 0.4,
+   "hull": null,
+   "pattern": null,
+   "release": "20261026T161624Z",
+   "composition": {
+    "n": 11,
+    "lowest": "c0c0000000000001",
+    "same_structure": 7,
+    "others": [
+     {
+      "id": "b16c0000000000b1",
+      "ids": [
+       "b16c0000000000b1"
+      ],
+      "n": 1,
+      "prototype": "AB_oI48_72_j_j",
+      "structure": null,
+      "sg": 72,
+      "sg_symbol": "Ibam",
+      "pearson": "oI48",
+      "natoms": 48,
+      "hf": -0.7,
+      "above_lowest_meV": 70.0,
+      "hull_meV": null,
+      "gap": null
+     },
+     {
+      "id": "c0c0000000000009",
+      "ids": [
+       "c0c0000000000009",
+       "c0c000000000000a"
+      ],
+      "n": 2,
+      "prototype": "AB_cF8_225_a_b",
+      "structure": "rocksalt",
+      "sg": 225,
+      "sg_symbol": "Fm-3m",
+      "pearson": "cF8",
+      "natoms": 2,
+      "hf": -0.52,
+      "above_lowest_meV": 250.0,
+      "hull_meV": null,
+      "gap": null
+     }
+    ]
+   },
+   "systems": {
+    "end_member": [],
+    "two_cation": []
+   }
+  },
+  "materials/s/c0/c0c0000000000004": {
+   "format": 1,
+   "id": "c0c0000000000004",
+   "chaos_id": "s4e:c0c0000000000004",
+   "key": "CoO",
+   "label": "CoO",
+   "elements": [
+    "Co",
+    "O"
+   ],
+   "natoms": 4,
+   "prototype": "AB_tP4_131_c_e",
+   "prototype_relax": "AB_tP4_131_c_e",
+   "structure": null,
+   "sg": 131,
+   "sg_symbol": "P4_2/mmc",
+   "pearson": "tP4",
+   "wyckoff": "Co 2c, O 2e",
+   "conventional": {
+    "system": "tetragonal",
+    "a": 2.7,
+    "b": 2.7,
+    "c": 5.13,
+    "alpha": 90.0,
+    "beta": 90.0,
+    "gamma": 90.0
+   },
+   "lattice": [
+    2.7,
+    2.7,
+    5.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "sites": [
+    {
+     "el": "Co",
+     "xyz": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.37,
+      0.21,
+      0.13
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.74,
+      0.42,
+      0.26
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.11,
+      0.63,
+      0.39
+     ]
+    }
+   ],
+   "pairs": null,
+   "density": null,
+   "volume_atom": null,
+   "hf": -0.7694,
+   "gap": null,
+   "gap_type": null,
+   "spin_cell": null,
+   "spin_atom": null,
+   "settings": {
+    "functional": null,
+    "cutoff_eV": null,
+    "kpoints": null,
+    "pseudopotentials": null
+   },
+   "query": "*,chaos_id(s4e:c0c0000000000004)",
+   "above_lowest_meV": 0.6,
+   "hull": null,
+   "pattern": null,
+   "release": "20261026T161624Z",
+   "composition": {
+    "n": 11,
+    "lowest": "c0c0000000000001",
+    "same_structure": 7,
+    "others": [
+     {
+      "id": "b16c0000000000b1",
+      "ids": [
+       "b16c0000000000b1"
+      ],
+      "n": 1,
+      "prototype": "AB_oI48_72_j_j",
+      "structure": null,
+      "sg": 72,
+      "sg_symbol": "Ibam",
+      "pearson": "oI48",
+      "natoms": 48,
+      "hf": -0.7,
+      "above_lowest_meV": 70.0,
+      "hull_meV": null,
+      "gap": null
+     },
+     {
+      "id": "c0c0000000000009",
+      "ids": [
+       "c0c0000000000009",
+       "c0c000000000000a"
+      ],
+      "n": 2,
+      "prototype": "AB_cF8_225_a_b",
+      "structure": "rocksalt",
+      "sg": 225,
+      "sg_symbol": "Fm-3m",
+      "pearson": "cF8",
+      "natoms": 2,
+      "hf": -0.52,
+      "above_lowest_meV": 250.0,
+      "hull_meV": null,
+      "gap": null
+     }
+    ]
+   },
+   "systems": {
+    "end_member": [],
+    "two_cation": []
+   }
+  },
+  "materials/s/c0/c0c0000000000005": {
+   "format": 1,
+   "id": "c0c0000000000005",
+   "chaos_id": "s4e:c0c0000000000005",
+   "key": "CoO",
+   "label": "CoO",
+   "elements": [
+    "Co",
+    "O"
+   ],
+   "natoms": 4,
+   "prototype": "AB_tP4_131_c_e",
+   "prototype_relax": "AB_tP4_131_c_e",
+   "structure": null,
+   "sg": 131,
+   "sg_symbol": "P4_2/mmc",
+   "pearson": "tP4",
+   "wyckoff": "Co 2c, O 2e",
+   "conventional": {
+    "system": "tetragonal",
+    "a": 2.7,
+    "b": 2.7,
+    "c": 5.13,
+    "alpha": 90.0,
+    "beta": 90.0,
+    "gamma": 90.0
+   },
+   "lattice": [
+    2.7,
+    2.7,
+    5.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "sites": [
+    {
+     "el": "Co",
+     "xyz": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.37,
+      0.21,
+      0.13
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.74,
+      0.42,
+      0.26
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.11,
+      0.63,
+      0.39
+     ]
+    }
+   ],
+   "pairs": null,
+   "density": null,
+   "volume_atom": null,
+   "hf": -0.7692,
+   "gap": null,
+   "gap_type": null,
+   "spin_cell": null,
+   "spin_atom": null,
+   "settings": {
+    "functional": null,
+    "cutoff_eV": null,
+    "kpoints": null,
+    "pseudopotentials": null
+   },
+   "query": "*,chaos_id(s4e:c0c0000000000005)",
+   "above_lowest_meV": 0.8,
+   "hull": null,
+   "pattern": null,
+   "release": "20261026T161624Z",
+   "composition": {
+    "n": 11,
+    "lowest": "c0c0000000000001",
+    "same_structure": 7,
+    "others": [
+     {
+      "id": "b16c0000000000b1",
+      "ids": [
+       "b16c0000000000b1"
+      ],
+      "n": 1,
+      "prototype": "AB_oI48_72_j_j",
+      "structure": null,
+      "sg": 72,
+      "sg_symbol": "Ibam",
+      "pearson": "oI48",
+      "natoms": 48,
+      "hf": -0.7,
+      "above_lowest_meV": 70.0,
+      "hull_meV": null,
+      "gap": null
+     },
+     {
+      "id": "c0c0000000000009",
+      "ids": [
+       "c0c0000000000009",
+       "c0c000000000000a"
+      ],
+      "n": 2,
+      "prototype": "AB_cF8_225_a_b",
+      "structure": "rocksalt",
+      "sg": 225,
+      "sg_symbol": "Fm-3m",
+      "pearson": "cF8",
+      "natoms": 2,
+      "hf": -0.52,
+      "above_lowest_meV": 250.0,
+      "hull_meV": null,
+      "gap": null
+     }
+    ]
+   },
+   "systems": {
+    "end_member": [],
+    "two_cation": []
+   }
+  },
+  "materials/s/c0/c0c0000000000006": {
+   "format": 1,
+   "id": "c0c0000000000006",
+   "chaos_id": "s4e:c0c0000000000006",
+   "key": "CoO",
+   "label": "CoO",
+   "elements": [
+    "Co",
+    "O"
+   ],
+   "natoms": 4,
+   "prototype": "AB_tP4_131_c_e",
+   "prototype_relax": "AB_tP4_131_c_e",
+   "structure": null,
+   "sg": 131,
+   "sg_symbol": "P4_2/mmc",
+   "pearson": "tP4",
+   "wyckoff": "Co 2c, O 2e",
+   "conventional": {
+    "system": "tetragonal",
+    "a": 2.7,
+    "b": 2.7,
+    "c": 5.13,
+    "alpha": 90.0,
+    "beta": 90.0,
+    "gamma": 90.0
+   },
+   "lattice": [
+    2.7,
+    2.7,
+    5.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "sites": [
+    {
+     "el": "Co",
+     "xyz": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.37,
+      0.21,
+      0.13
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.74,
+      0.42,
+      0.26
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.11,
+      0.63,
+      0.39
+     ]
+    }
+   ],
+   "pairs": null,
+   "density": null,
+   "volume_atom": null,
+   "hf": -0.769,
+   "gap": null,
+   "gap_type": null,
+   "spin_cell": null,
+   "spin_atom": null,
+   "settings": {
+    "functional": null,
+    "cutoff_eV": null,
+    "kpoints": null,
+    "pseudopotentials": null
+   },
+   "query": "*,chaos_id(s4e:c0c0000000000006)",
+   "above_lowest_meV": 1.0,
+   "hull": null,
+   "pattern": null,
+   "release": "20261026T161624Z",
+   "composition": {
+    "n": 11,
+    "lowest": "c0c0000000000001",
+    "same_structure": 7,
+    "others": [
+     {
+      "id": "b16c0000000000b1",
+      "ids": [
+       "b16c0000000000b1"
+      ],
+      "n": 1,
+      "prototype": "AB_oI48_72_j_j",
+      "structure": null,
+      "sg": 72,
+      "sg_symbol": "Ibam",
+      "pearson": "oI48",
+      "natoms": 48,
+      "hf": -0.7,
+      "above_lowest_meV": 70.0,
+      "hull_meV": null,
+      "gap": null
+     },
+     {
+      "id": "c0c0000000000009",
+      "ids": [
+       "c0c0000000000009",
+       "c0c000000000000a"
+      ],
+      "n": 2,
+      "prototype": "AB_cF8_225_a_b",
+      "structure": "rocksalt",
+      "sg": 225,
+      "sg_symbol": "Fm-3m",
+      "pearson": "cF8",
+      "natoms": 2,
+      "hf": -0.52,
+      "above_lowest_meV": 250.0,
+      "hull_meV": null,
+      "gap": null
+     }
+    ]
+   },
+   "systems": {
+    "end_member": [],
+    "two_cation": []
+   }
+  },
+  "materials/s/c0/c0c0000000000007": {
+   "format": 1,
+   "id": "c0c0000000000007",
+   "chaos_id": "s4e:c0c0000000000007",
+   "key": "CoO",
+   "label": "CoO",
+   "elements": [
+    "Co",
+    "O"
+   ],
+   "natoms": 4,
+   "prototype": "AB_tP4_131_c_e",
+   "prototype_relax": "AB_tP4_131_c_e",
+   "structure": null,
+   "sg": 131,
+   "sg_symbol": "P4_2/mmc",
+   "pearson": "tP4",
+   "wyckoff": "Co 2c, O 2e",
+   "conventional": {
+    "system": "tetragonal",
+    "a": 2.7,
+    "b": 2.7,
+    "c": 5.13,
+    "alpha": 90.0,
+    "beta": 90.0,
+    "gamma": 90.0
+   },
+   "lattice": [
+    2.7,
+    2.7,
+    5.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "sites": [
+    {
+     "el": "Co",
+     "xyz": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.37,
+      0.21,
+      0.13
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.74,
+      0.42,
+      0.26
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.11,
+      0.63,
+      0.39
+     ]
+    }
+   ],
+   "pairs": null,
+   "density": null,
+   "volume_atom": null,
+   "hf": -0.7688,
+   "gap": null,
+   "gap_type": null,
+   "spin_cell": null,
+   "spin_atom": null,
+   "settings": {
+    "functional": null,
+    "cutoff_eV": null,
+    "kpoints": null,
+    "pseudopotentials": null
+   },
+   "query": "*,chaos_id(s4e:c0c0000000000007)",
+   "above_lowest_meV": 1.2,
+   "hull": null,
+   "pattern": null,
+   "release": "20261026T161624Z",
+   "composition": {
+    "n": 11,
+    "lowest": "c0c0000000000001",
+    "same_structure": 7,
+    "others": [
+     {
+      "id": "b16c0000000000b1",
+      "ids": [
+       "b16c0000000000b1"
+      ],
+      "n": 1,
+      "prototype": "AB_oI48_72_j_j",
+      "structure": null,
+      "sg": 72,
+      "sg_symbol": "Ibam",
+      "pearson": "oI48",
+      "natoms": 48,
+      "hf": -0.7,
+      "above_lowest_meV": 70.0,
+      "hull_meV": null,
+      "gap": null
+     },
+     {
+      "id": "c0c0000000000009",
+      "ids": [
+       "c0c0000000000009",
+       "c0c000000000000a"
+      ],
+      "n": 2,
+      "prototype": "AB_cF8_225_a_b",
+      "structure": "rocksalt",
+      "sg": 225,
+      "sg_symbol": "Fm-3m",
+      "pearson": "cF8",
+      "natoms": 2,
+      "hf": -0.52,
+      "above_lowest_meV": 250.0,
+      "hull_meV": null,
+      "gap": null
+     }
+    ]
+   },
+   "systems": {
+    "end_member": [],
+    "two_cation": []
+   }
+  },
+  "materials/s/c0/c0c0000000000008": {
+   "format": 1,
+   "id": "c0c0000000000008",
+   "chaos_id": "s4e:c0c0000000000008",
+   "key": "CoO",
+   "label": "CoO",
+   "elements": [
+    "Co",
+    "O"
+   ],
+   "natoms": 4,
+   "prototype": "AB_tP4_131_c_e",
+   "prototype_relax": "AB_tP4_131_c_e",
+   "structure": null,
+   "sg": 131,
+   "sg_symbol": "P4_2/mmc",
+   "pearson": "tP4",
+   "wyckoff": "Co 2c, O 2e",
+   "conventional": {
+    "system": "tetragonal",
+    "a": 2.7,
+    "b": 2.7,
+    "c": 5.13,
+    "alpha": 90.0,
+    "beta": 90.0,
+    "gamma": 90.0
+   },
+   "lattice": [
+    2.7,
+    2.7,
+    5.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "sites": [
+    {
+     "el": "Co",
+     "xyz": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "el": "Co",
+     "xyz": [
+      0.37,
+      0.21,
+      0.13
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.74,
+      0.42,
+      0.26
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.11,
+      0.63,
+      0.39
+     ]
+    }
+   ],
+   "pairs": null,
+   "density": null,
+   "volume_atom": null,
+   "hf": -0.7686,
+   "gap": null,
+   "gap_type": null,
+   "spin_cell": null,
+   "spin_atom": null,
+   "settings": {
+    "functional": null,
+    "cutoff_eV": null,
+    "kpoints": null,
+    "pseudopotentials": null
+   },
+   "query": "*,chaos_id(s4e:c0c0000000000008)",
+   "above_lowest_meV": 1.4,
+   "hull": null,
+   "pattern": null,
+   "release": "20261026T161624Z",
+   "composition": {
+    "n": 11,
+    "lowest": "c0c0000000000001",
+    "same_structure": 7,
+    "others": [
+     {
+      "id": "b16c0000000000b1",
+      "ids": [
+       "b16c0000000000b1"
+      ],
+      "n": 1,
+      "prototype": "AB_oI48_72_j_j",
+      "structure": null,
+      "sg": 72,
+      "sg_symbol": "Ibam",
+      "pearson": "oI48",
+      "natoms": 48,
+      "hf": -0.7,
+      "above_lowest_meV": 70.0,
+      "hull_meV": null,
+      "gap": null
+     },
+     {
+      "id": "c0c0000000000009",
+      "ids": [
+       "c0c0000000000009",
+       "c0c000000000000a"
+      ],
+      "n": 2,
+      "prototype": "AB_cF8_225_a_b",
+      "structure": "rocksalt",
+      "sg": 225,
+      "sg_symbol": "Fm-3m",
+      "pearson": "cF8",
+      "natoms": 2,
+      "hf": -0.52,
+      "above_lowest_meV": 250.0,
+      "hull_meV": null,
+      "gap": null
+     }
+    ]
+   },
+   "systems": {
+    "end_member": [],
+    "two_cation": []
+   }
+  },
+  "materials/s/c0/c0c0000000000009": {
+   "format": 1,
+   "id": "c0c0000000000009",
+   "chaos_id": "s4e:c0c0000000000009",
+   "key": "CoO",
+   "label": "CoO",
+   "elements": [
+    "Co",
+    "O"
+   ],
+   "natoms": 2,
+   "prototype": "AB_cF8_225_a_b",
+   "prototype_relax": "AB_cF8_225_a_b",
+   "structure": "rocksalt",
+   "sg": 225,
+   "sg_symbol": "Fm-3m",
+   "pearson": "cF8",
+   "wyckoff": "Co 4a, O 4b",
+   "conventional": {
+    "system": "cubic",
+    "a": 4.3,
+    "b": 4.3,
+    "c": 4.3,
+    "alpha": 90.0,
+    "beta": 90.0,
+    "gamma": 90.0
+   },
+   "lattice": [
+    2.7,
+    2.7,
+    5.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "sites": [
+    {
+     "el": "Co",
+     "xyz": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.37,
+      0.21,
+      0.13
+     ]
+    }
+   ],
+   "pairs": null,
+   "density": null,
+   "volume_atom": null,
+   "hf": -0.52,
+   "gap": null,
+   "gap_type": null,
+   "spin_cell": null,
+   "spin_atom": null,
+   "settings": {
+    "functional": null,
+    "cutoff_eV": null,
+    "kpoints": null,
+    "pseudopotentials": null
+   },
+   "query": "*,chaos_id(s4e:c0c0000000000009)",
+   "above_lowest_meV": 250.0,
+   "hull": null,
+   "pattern": null,
+   "release": "20261026T161624Z",
+   "composition": {
+    "n": 11,
+    "lowest": "c0c0000000000001",
+    "same_structure": 1,
+    "others": [
+     {
+      "id": "c0c0000000000001",
+      "ids": [
+       "c0c0000000000001",
+       "c0c0000000000002",
+       "c0c0000000000003",
+       "c0c0000000000004",
+       "c0c0000000000005",
+       "c0c0000000000006",
+       "c0c0000000000007",
+       "c0c0000000000008"
+      ],
+      "n": 8,
+      "prototype": "AB_mP8_14_ab_e",
+      "structure": null,
+      "sg": 131,
+      "sg_symbol": "P4_2/mmc",
+      "pearson": "tP4",
+      "natoms": 8,
+      "hf": -0.77,
+      "above_lowest_meV": 0.0,
+      "hull_meV": null,
+      "gap": null
+     },
+     {
+      "id": "b16c0000000000b1",
+      "ids": [
+       "b16c0000000000b1"
+      ],
+      "n": 1,
+      "prototype": "AB_oI48_72_j_j",
+      "structure": null,
+      "sg": 72,
+      "sg_symbol": "Ibam",
+      "pearson": "oI48",
+      "natoms": 48,
+      "hf": -0.7,
+      "above_lowest_meV": 70.0,
+      "hull_meV": null,
+      "gap": null
+     }
+    ]
+   },
+   "systems": {
+    "end_member": [],
+    "two_cation": []
+   }
+  },
+  "materials/s/c0/c0c000000000000a": {
+   "format": 1,
+   "id": "c0c000000000000a",
+   "chaos_id": "s4e:c0c000000000000a",
+   "key": "CoO",
+   "label": "CoO",
+   "elements": [
+    "Co",
+    "O"
+   ],
+   "natoms": 2,
+   "prototype": "AB_tI4_139_a_b",
+   "prototype_relax": "AB_cF8_225_a_b",
+   "structure": "rocksalt",
+   "sg": 225,
+   "sg_symbol": "Fm-3m",
+   "pearson": "cF8",
+   "wyckoff": "Co 4a, O 4b",
+   "conventional": {
+    "system": "cubic",
+    "a": 4.3,
+    "b": 4.3,
+    "c": 4.3,
+    "alpha": 90.0,
+    "beta": 90.0,
+    "gamma": 90.0
+   },
+   "lattice": [
+    2.7,
+    2.7,
+    5.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "sites": [
+    {
+     "el": "Co",
+     "xyz": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "el": "O",
+     "xyz": [
+      0.37,
+      0.21,
+      0.13
+     ]
+    }
+   ],
+   "pairs": null,
+   "density": null,
+   "volume_atom": null,
+   "hf": -0.5198,
+   "gap": null,
+   "gap_type": null,
+   "spin_cell": null,
+   "spin_atom": null,
+   "settings": {
+    "functional": null,
+    "cutoff_eV": null,
+    "kpoints": null,
+    "pseudopotentials": null
+   },
+   "query": "*,chaos_id(s4e:c0c000000000000a)",
+   "above_lowest_meV": 250.2,
+   "hull": null,
+   "pattern": null,
+   "release": "20261026T161624Z",
+   "composition": {
+    "n": 11,
+    "lowest": "c0c0000000000001",
+    "same_structure": 1,
+    "others": [
+     {
+      "id": "c0c0000000000001",
+      "ids": [
+       "c0c0000000000001",
+       "c0c0000000000002",
+       "c0c0000000000003",
+       "c0c0000000000004",
+       "c0c0000000000005",
+       "c0c0000000000006",
+       "c0c0000000000007",
+       "c0c0000000000008"
+      ],
+      "n": 8,
+      "prototype": "AB_mP8_14_ab_e",
+      "structure": null,
+      "sg": 131,
+      "sg_symbol": "P4_2/mmc",
+      "pearson": "tP4",
+      "natoms": 8,
+      "hf": -0.77,
+      "above_lowest_meV": 0.0,
+      "hull_meV": null,
+      "gap": null
+     },
+     {
+      "id": "b16c0000000000b1",
+      "ids": [
+       "b16c0000000000b1"
+      ],
+      "n": 1,
+      "prototype": "AB_oI48_72_j_j",
+      "structure": null,
+      "sg": 72,
+      "sg_symbol": "Ibam",
+      "pearson": "oI48",
+      "natoms": 48,
+      "hf": -0.7,
+      "above_lowest_meV": 70.0,
+      "hull_meV": null,
+      "gap": null
+     }
+    ]
+   },
+   "systems": {
+    "end_member": [],
+    "two_cation": []
+   }
+  }
+ }
+}
