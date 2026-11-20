@@ -16,6 +16,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 import build  # noqa: E402
+build.TERMS_URL = ""
 
 
 class Robots(unittest.TestCase):
