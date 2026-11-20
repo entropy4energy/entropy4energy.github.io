@@ -292,7 +292,7 @@ AI_CRAWLERS = [
 ]
 # The CHAOS Terms of Use, once published: robots.txt and the pages' tdm-policy
 # tag link it. Empty until then, and the links are left out.
-TERMS_URL = ""
+TERMS_URL = "https://chaos.s4e.ai/terms"
 
 
 def build_robots(host: str) -> str:
@@ -642,6 +642,10 @@ def chaos_stats(data: dict[str, Any]):
                     "name": "Entropy for Energy Laboratory, Johns Hopkins University",
                     "url": "https://entropy4energy.ai"},
         "isAccessibleForFree": True,
+        "license": TERMS_URL,
+        "conditionsOfAccess": ("Free personal account, approved for a stated research purpose. "
+                               "Research and teaching use under the CHAOS Terms of Use; commercial "
+                               "use by license from Johns Hopkins University."),
         "dateModified": st["as_of"],
     }
 
