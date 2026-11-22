@@ -1,31 +1,38 @@
 {% extends "base.html" %}
 
-{# The CHAOS Terms of Use (tmp/phase2_20261120/make_terms_site.py writes this page from the text). #}
+{# The CHAOS Terms of Use, version 2026-12, and the data-use standard
+   (tmp/golive_20261122/make_terms_page.py writes this page from tmp/terms_202612_20261122). #}
 {% block content %}
   <h1>CHAOS Terms of Use</h1>
-  <p class="terms-status"><strong>Takes effect on a date to be announced; until then no new account is approved.</strong></p>
+  <p class="terms-status"><strong>Version 2026-12. Effective November 23, 2026.</strong></p>
   <div class="prose">
-    <p>Version 2026-11. Questions: <a href="mailto:s4e-chaos@jhu.edu">s4e-chaos@jhu.edu</a>.</p>
+    <p>Version 2026-12. Questions: <a href="mailto:s4e-chaos@jhu.edu">s4e-chaos@jhu.edu</a>.</p>
     <p>CHAOS is a database of density functional theory calculations of oxides and alloys, made by the Entropy for Energy Laboratory at Johns Hopkins University ("JHU"). These terms are an agreement between you and JHU. You accept them by checking the box when you ask for a CHAOS account, sign in, or ask for a key.</p>
     <p><strong>1. Accounts and approved purpose.</strong> An account is for one named person and one research purpose, which you describe when you ask for the account. JHU approves each account and may refuse, limit or close one without giving a reason. An email address or affiliation, at Johns Hopkins or elsewhere, does not by itself give access or permission. Your access is personal to the approved purpose. You may not give CHAOS data, your account or your keys to anyone else, including colleagues at your own institution, except by publishing as section 5 allows; each person needs an approved account. A new purpose, or a material change to the approved one, needs new approval.</p>
-    <p><strong>2. Research use is free.</strong> With an approved account, you may use CHAOS for the approved research or teaching at a university, college, non-profit research institute or government laboratory, including a national laboratory operated under contract with a government. You may publish results, figures and tables of values from CHAOS that support your work, with the citation in section 10.</p>
-    <p><strong>3. Research limits.</strong> An account may receive up to 50 disordered systems and 1,000 ordered structures in any 12 months. A record received again counts once. CHAOS stops serving new records at a limit and tells you so.</p>
+    <p><strong>2. Research use is free.</strong> With an approved account, you may use CHAOS for the approved research or teaching at a university, college, non-profit research institute or government laboratory, including a national laboratory operated under contract with a government. You may publish results, figures and tables of values from CHAOS that support your work, with the citation in section 10. Research that a company funds, or whose results a company has committed to receive or use, is commercial use under section 6(a).</p>
+    <p><strong>3. Research limits.</strong> An account may receive up to 50 disordered systems and 1,000 ordered structures in any 12 months. A record received again counts once. CHAOS stops serving new records at a limit and tells you so. JHU may raise these limits for an approved project, in writing, for the period it states. Higher limits granted for a project do not by themselves grant any permission under section 4.</p>
     <p><strong>4. Machine learning and AI models.</strong> Unless JHU has given you permission in writing, you may not use CHAOS data, in whole or in part, to:</p>
     <p>(a) train, pre-train, fine-tune or adapt any machine-learning or artificial-intelligence model, including language models, interatomic potentials and property predictors;</p>
     <p>(b) distill a model, or generate training data for a model, from CHAOS-Agent answers or from any other CHAOS output;</p>
     <p>(c) build embeddings, vector stores, retrieval indexes or other collections used to ground, prompt or augment a model;</p>
-    <p>(d) evaluate, validate or benchmark a model on CHAOS data in a systematic way, other than as allowed in section 5; or</p>
+    <p>(d) evaluate, validate or benchmark a model on CHAOS data, other than as allowed in section 5(b); or</p>
     <p>(e) give CHAOS data to another person or service so that they may do any of these things.</p>
-    <p>"CHAOS data" means values, records, files and text obtained, on or after the day you accept these terms, from the CHAOS API, from any CHAOS page or file shown after sign-in, and from CHAOS-Agent, and any copy, extract or derivative of them. It includes data read by you, by software you run, or by an AI agent acting for you.</p>
-    <p>Ask for permission at <a href="mailto:s4e-chaos@jhu.edu">s4e-chaos@jhu.edu</a>. JHU decides each request in writing and may refuse it. JHU charges no fee for permission given to universities, non-profit institutes and government laboratories for research. Training for or by a company, or for a product or service, is permitted only under a license from Johns Hopkins Technology Ventures. JHU does not permit the use of CHAOS data to train or improve general-purpose AI models.</p>
-    <p><strong>5. Ordinary scientific use.</strong> You may compare individual CHAOS values with your own calculations or measurements, and publish that comparison with the citation in section 10. You may also publish figures and tables of CHAOS values that support your work, within the limits in section 3.</p>
+    <p>"CHAOS data" means values, records, files and text obtained, on or after the day you accept these terms, from the CHAOS API, from any CHAOS page or file shown after sign-in, and from CHAOS-Agent, and any copy, extract or derivative of them. It includes data read by you, by software you run, or by an AI agent acting for you. This section does not apply to a CHAOS release used under that release's license (section 8).</p>
+    <p>A permission under this section states the access limits that apply to it.</p>
+    <p>Permission to train a model using CHAOS data does not include permission to release the model, its weights, or a service based on it. Such release requires separate written permission from JHU. This does not apply to a model trained only on data from a CHAOS release used under its own license.</p>
+    <p>When a permission ends, you delete the CHAOS data obtained under it. You may keep a model trained under the permission for internal research and reproducibility inside the approved group. It may not be released, redistributed, offered as a service, or trained further on CHAOS data without renewed permission.</p>
+    <p>Ask for permission at <a href="mailto:s4e-chaos@jhu.edu">s4e-chaos@jhu.edu</a>. JHU decides each request in writing, under the CHAOS data-use standard published at <a href="https://chaos.s4e.ai/terms">https://chaos.s4e.ai/terms</a>, usually within 10 working days, and may refuse it. JHU charges no fee for permission given to universities, non-profit institutes and government laboratories for research. Training for or by a company, or for a product or service, is permitted only under a license from Johns Hopkins Technology Ventures. JHU does not permit the use of CHAOS data to train or improve general-purpose AI models.</p>
+    <p><strong>5. Research, evaluation and training.</strong> These are three separate activities.</p>
+    <p>(a) Ordinary research. You may compare CHAOS values with your own calculations, experimental measurements or published results, systematically or not, and publish those comparisons, and figures and tables of CHAOS values that support your work, with the citation in section 10, within the limits in section 3.</p>
+    <p>(b) Model evaluation. You may compare the predictions of your own model with up to 20 CHAOS disordered systems or 200 CHAOS ordered structures without a request, provided those values were not used to train, tune or select the model. You may publish that comparison with the citation in section 10.</p>
+    <p>(c) Model training and any larger evaluation of a model. These need written permission under section 4 for CHAOS data from the live service.</p>
     <p><strong>6. Other uses that need written permission from JHU.</strong></p>
-    <p>(a) Commercial use: use by or for a company, or use in making, selling or supporting a product or service, including internal screening and consulting. JHU licenses commercial use through Johns Hopkins Technology Ventures.</p>
+    <p>(a) Commercial use: use by or for a company, or use in making, selling or supporting a product or service, including internal screening and consulting. Research that a company funds, or whose results a company has committed to receive or use, is commercial use under CHAOS's policy. JHU licenses commercial use through Johns Hopkins Technology Ventures.</p>
     <p>(b) Receiving more than the research limits, or building a database, data service or website from CHAOS.</p>
     <p>(c) Sharing CHAOS data, or anything made from them other than published results, with anyone.</p>
     <p>Ask at <a href="mailto:s4e-chaos@jhu.edu">s4e-chaos@jhu.edu</a>.</p>
     <p><strong>7. How you may access CHAOS.</strong> You may access CHAOS data only through the CHAOS API with your own key, and through the CHAOS pages in an ordinary browser, within the published limits. You may not scrape, crawl or copy CHAOS pages by automated means; use several accounts or keys, or other people's, to raise the limits; or get around a limit, a sign-in or any other technical measure. Your agreement to this section is a condition of your access.</p>
-    <p><strong>8. Data published with a paper.</strong> Data deposited with a publication are under the license stated in that deposit. These terms do not limit them.</p>
+    <p><strong>8. CHAOS releases.</strong> A CHAOS release is a fixed, versioned dataset that JHU publishes under its own license. That license governs the data contained in the release, however identical copies are obtained, and the release's own files are the record. New calculations, updated values and additional records in the live CHAOS service are not part of a release unless the release names them. These terms do not limit a release.</p>
     <p><strong>9. Use is recorded.</strong> JHU records each request with its account, key, address and the entries returned. JHU uses this record to run CHAOS, to report its use, and to enforce these terms.</p>
     <p><strong>10. Citation.</strong> Cite CHAOS as: CHAOS, Entropy for Energy Laboratory, Johns Hopkins University, <a href="https://chaos.s4e.ai">https://chaos.s4e.ai</a>, and the paper that describes it once published.</p>
     <p><strong>11. No warranty.</strong> CHAOS is provided as is. Calculated values can be wrong. JHU is not liable for any use of CHAOS.</p>
@@ -35,7 +42,60 @@
     <p>(c) you agree that money alone would not repair the harm, and that JHU may seek an injunction.</p>
     <p>Sections 1, 3, 4, 6, 7 and 12 continue to apply to CHAOS data you obtained while you had an account, after the account ends.</p>
     <p><strong>13. Changes.</strong> JHU will email account holders before changing these terms. A new version applies once you accept it, which CHAOS asks for at sign-in and key requests.</p>
-    <p><strong>14. Earlier licenses.</strong> Data you obtained from CHAOS before you accepted these terms stay under the license they were provided under. For everything you obtain after you accept, these terms replace any earlier statement of a license for CHAOS, including the Open Database License and any notice of it on a CHAOS page or in AFLOW documentation.</p>
+    <p><strong>14. Earlier licenses.</strong> Data obtained before acceptance of these terms remain subject to the license under which they were provided. These terms govern subsequent access to and use of controlled CHAOS data, except for separately licensed CHAOS releases under section 8.</p>
     <p><strong>15. Law.</strong> These terms are governed by the laws of the State of Maryland.</p>
   </div>
+  <h2 id="data-use-standard">CHAOS data-use standard</h2>
+  <div class="prose">
+    <p>JHU decides each request under section 4 of the terms by four questions: who benefits, whether the result would stand in for CHAOS, whether the request fits the limits, and who else will hold the data or the model. Company work, including research a company funds or has committed to receive, goes to Johns Hopkins Technology Ventures. We usually answer within 10 working days. A refusal gives its reason and can be appealed once, within 30 days.</p>
+    <p><strong>Standard conditions of an approval</strong></p>
+    <ol>
+      <li>Cite CHAOS as section 10 of the terms gives it, and name CHAOS and the date of the approval in the methods and the data availability statement.</li>
+      <li>No co-authorship is required. Collaboration is welcome.</li>
+      <li>The data stay with the people named in the approval. Training tables, folds and benchmark sets are published as CHAOS identifiers only.</li>
+      <li>Model weights are released only with a separate written permission, under a non-commercial license that names CHAOS.</li>
+      <li>Send a link to each preprint, paper, repository or model page within 30 days of it becoming public.</li>
+      <li>Each approval states its last day, normally 12 months after approval, and the access limits that apply to it. Renewal is one email.</li>
+      <li>At the end of the approval, delete the CHAOS data and confirm it by email. A model trained under the approval may stay inside the approved group for internal research and reproducibility. It may not be released, redistributed, offered as a service, or trained further on CHAOS data without renewed permission.</li>
+      <li>The approval covers the people and the use named in the request. A new person or a new use needs a new request.</li>
+    </ol>
+  </div>
+  <h3 id="request">Request form</h3>
+  <pre>CHAOS request: machine learning and AI use
+Send to s4e-chaos@jhu.edu. JHU answers within 10 working days.
+No request is needed to compare your own model's predictions with up to
+20 disordered systems or 200 ordered structures in a paper, if those
+values did not train, tune or select the model (Terms of Use, section 5(b)).
+No request is needed for academic use of a CHAOS release under its own
+license.
+
+1. Your name, position, institution, and CHAOS account email.
+2. If you are a student or postdoc: your supervisor's name and
+   institutional email. We will ask them to confirm by email.
+3. Who funds this work? Does any company fund it, take part in it, or
+   have a right or commitment to receive its results? Is it for a product
+   or service?
+4. What you are asking for (tick all that apply):
+   [ ] training or fine-tuning a model
+   [ ] evaluating a model on more than the section 5 allowance
+   [ ] a retrieval index or embeddings for a model
+   [ ] limits above 50 disordered systems or 1,000 ordered structures
+       for this project
+   [ ] releasing a model already trained under a CHAOS permission
+       (give the date of that permission)
+5. The model: what kind (property predictor, interatomic potential,
+   language model or agent, other) and what it predicts, in two or three
+   sentences.
+6. The CHAOS data: disordered systems, ordered structures or both; the
+   fields; how many of each. Name any other data you will combine with
+   them.
+7. What you will make public: paper, code, predictions, model weights
+   (only with a release permission, and under which license).
+8. Who else will have the data or the model, including any cloud or AI
+   service they pass through.
+9. How long you need the data (at most 12 months, then renewed on
+   request).
+
+[ ] I accept the standard conditions of a CHAOS approval:
+    https://chaos.s4e.ai/terms (data-use standard).</pre>
 {% endblock %}
