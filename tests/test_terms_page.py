@@ -1,6 +1,6 @@
 """tests/test_terms_page.py: the CHAOS Terms of Use page and the links to it, in the built site
-(make first). The page has its fifteen sections and the version line, and no interim or draft
-heading; robots.txt, the tdm-policy tag and the Dataset record link it; the CHAOS page
+(make first). The page has its fifteen sections and the version line, the line that it takes effect
+on a date to be announced (2026-11-22, B1), and no interim or draft heading; robots.txt, the tdm-policy tag and the Dataset record link it; the CHAOS page
 and the tools card say every account is approved by hand and name the terms, not a .edu address.
 
     python3 -m unittest tests/test_terms_page.py      from the repository root, after make
@@ -29,6 +29,10 @@ class TermsPage(unittest.TestCase):
         self.assertEqual(found, list(range(1, 16)))
         self.assertNotIn("[", re.sub(r"<[^>]+>", "", self.html.split('<div class="prose">')[1]))
         self.assertNotIn("Draft", self.html)
+
+    def test_effective_date_to_be_announced(self):
+        self.assertRegex(self.html, r"<h1>CHAOS Terms of Use</h1>\s*<p class=\"terms-status\"><strong>Takes effect on a date to be "
+                                    r"announced; until then no new account is approved\.</strong></p>")
 
     def test_in_force_not_interim(self):
         self.assertNotIn("Interim", self.html)
