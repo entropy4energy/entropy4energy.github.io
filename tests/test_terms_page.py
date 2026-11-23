@@ -33,20 +33,37 @@ class TermsPage(unittest.TestCase):
 
     def test_in_force_from_the_go_live_day(self):
         self.assertRegex(self.html, r"<h1>CHAOS Terms of Use</h1>\s*<p class=\"terms-status\"><strong>Version 2026-12\. Effective "
-                                    r"(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, 20\d\d\.</strong></p>")
+                                    r"November 23, 2026\.</strong> Wording revised November 23, 2026, with no change in substance\.</p>")
         self.assertNotIn("@GOLIVE_DAY@", self.html)
         self.assertNotIn("to be announced", self.html)
         self.assertNotIn("Takes effect on a date to be announced; until then no new account is approved", self.html, "B1's line is gone")
 
     def test_data_use_standard_and_request_form(self):
         self.assertRegex(self.html, r'<h2 id="data-use-standard">CHAOS data-use standard</h2>')
-        self.assertIn("who benefits, whether the result would stand in for CHAOS", self.html)
+        self.assertIn("whether the proposed output would reproduce or substitute for the CHAOS database", self.html)
         std = self.html.split('id="data-use-standard"')[1].split('id="request"')[0]
         self.assertEqual(len(re.findall(r"<li>", std)), 8)
         self.assertIn("Each approval states its last day, normally 12 months after approval", std)
         form = self.html.split('<h3 id="request">Request form</h3>')[1]
         self.assertRegex(form, r"^\s*<pre>CHAOS request: machine learning and AI use")
         self.assertIn("standard conditions of a CHAOS approval", form)
+
+    def test_editorial_revision_of_2026_11_23(self):
+        # Corey, 2026-11-23: plainer wording, no change in substance; the two points made explicit
+        text = " ".join(re.sub(r"<[^>]+>", " ", self.html).split())
+        self.assertIn("Each person who uses CHAOS data needs their own approved account, including the members of a research group named in an approval under section 4.", text)
+        self.assertIn("Company-funded research, and research whose results a company has committed to receive or use, is commercial use under section 6(a).", text)
+        for h in ("What data are covered.", "Training and model release.", "After an approval ends.", "How to request permission."):
+            self.assertIn(h, text)
+        for old in ("stand in for CHAOS", "Collaboration is welcome", "Renewal is one email", "These are three separate activities",
+                    "systematically or not", "however identical copies are obtained", "Calculated values can be wrong",
+                    "A record received again counts once", "made by the Entropy"):
+            self.assertNotIn(old, text)
+        # the substance kept: the limits, the evaluation allowance, the five prohibited uses, the breach clause
+        for kept in ("up to 50 disordered systems and 1,000 ordered structures in any 12 months", "up to 20 CHAOS disordered systems or 200 CHAOS ordered structures",
+                     "(e) give CHAOS data to another person or service", "JHU may seek an injunction", "general-purpose AI models",
+                     "A refusal gives its reason and can be appealed once, within 30 days."):
+            self.assertIn(kept, text)
 
     def test_names_no_other_database_or_license(self):
         text = re.sub(r"<[^>]+>", "", self.html)
