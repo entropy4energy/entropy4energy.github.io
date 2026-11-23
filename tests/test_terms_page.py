@@ -25,15 +25,19 @@ class TermsPage(unittest.TestCase):
 
     def test_sections_and_version(self):
         self.assertIn("<h1>CHAOS Terms of Use</h1>", self.html)
-        self.assertRegex(self.html, r"<p>Version 2026-12\. Questions: <a href=\"mailto:s4e-chaos@jhu\.edu\">s4e-chaos@jhu\.edu</a>\.</p>")
+        self.assertRegex(self.html, r"<p>Questions: <a href=\"mailto:s4e-chaos@jhu\.edu\">s4e-chaos@jhu\.edu</a>\.</p>")
         found = [int(n) for n in re.findall(r"<strong>(\d+)\. [^<]+</strong>", self.html)]
         self.assertEqual(found, list(range(1, 16)))
         self.assertNotIn("[", re.sub(r"<[^>]+>", "", self.html.split('<div class="prose">')[1]))
         self.assertNotIn("Draft", self.html)
 
     def test_in_force_from_the_go_live_day(self):
-        self.assertRegex(self.html, r"<h1>CHAOS Terms of Use</h1>\s*<p class=\"terms-status\"><strong>Version 2026-12\. Effective "
-                                    r"November 23, 2026\.</strong> Wording revised November 23, 2026, with no change in substance\.</p>")
+        # Corey, 2026-11-23: only the effective day; no version number, no revision history
+        self.assertRegex(self.html, r"<h1>CHAOS Terms of Use</h1>\s*<p class=\"terms-status\"><strong>Effective November 23, 2026\.</strong></p>")
+        text = re.sub(r"<[^>]+>", " ", self.html)
+        self.assertNotIn("2026-12", text, "no version number on the public page")
+        self.assertNotRegex(text, r"(?i)version\s+20\d\d|wording revised|no change in substance")   # section 13 keeps "a new version applies once you accept it"
+        self.assertNotIn("Wording revised", self.html, "the revision history is kept in the repository, not on the page")
         self.assertNotIn("@GOLIVE_DAY@", self.html)
         self.assertNotIn("to be announced", self.html)
         self.assertNotIn("Takes effect on a date to be announced; until then no new account is approved", self.html, "B1's line is gone")
@@ -43,26 +47,39 @@ class TermsPage(unittest.TestCase):
         self.assertIn("whether the proposed output would reproduce or substitute for the CHAOS database", self.html)
         std = self.html.split('id="data-use-standard"')[1].split('id="request"')[0]
         self.assertEqual(len(re.findall(r"<li>", std)), 8)
-        self.assertIn("Each approval states its last day, normally 12 months after approval", std)
-        form = self.html.split('<h3 id="request">Request form</h3>')[1]
-        self.assertRegex(form, r"^\s*<pre>CHAOS request: machine learning and AI use")
-        self.assertIn("standard conditions of a CHAOS approval", form)
+        self.assertIn("Each approval states its end date, normally 12 months after approval", std)
+        form = self.html.split('<h3 id="request">Request form</h3>')[1].split("</div>", 1)[0]   # the form's own section
+        self.assertIn("Send your answers to", form)
+        self.assertNotIn("<pre>", form, "the form is a formatted list, not pasted text")
+        self.assertNotIn("[ ]", form)
+        top = re.sub(r"<ul>.*?</ul>", "", form, flags=re.S)
+        self.assertEqual(len(re.findall(r"<li>", top)), 9, "nine questions")
+        self.assertEqual(len(re.findall(r"<li>", form)) - 9, 5, "five options under question 4")
+        self.assertIn("accept the standard conditions of an approval", form)
 
     def test_editorial_revision_of_2026_11_23(self):
-        # Corey, 2026-11-23: plainer wording, no change in substance; the two points made explicit
+        # Corey, 2026-11-23: conventional academic and administrative English, no change in substance
         text = " ".join(re.sub(r"<[^>]+>", " ", self.html).split())
-        self.assertIn("Each person who uses CHAOS data needs their own approved account, including the members of a research group named in an approval under section 4.", text)
-        self.assertIn("Company-funded research, and research whose results a company has committed to receive or use, is commercial use under section 6(a).", text)
-        for h in ("What data are covered.", "Training and model release.", "After an approval ends.", "How to request permission."):
+        self.assertIn("Every researcher who uses CHAOS data needs their own approved account, including members of a research group listed in an approval under Section 4.", text)
+        self.assertIn("Company-funded research, and research whose results a company has committed to receive or use, is commercial use under Section 6(a).", text)
+        for h in ("Data covered by these terms.", "Training and model release.", "When an approval ends.", "Requesting approval.", "How requests are reviewed.",
+                  "6. Uses requiring written approval.", "Cite CHAOS as described in Section 10"):
             self.assertIn(h, text)
-        for old in ("stand in for CHAOS", "Collaboration is welcome", "Renewal is one email", "These are three separate activities",
-                    "systematically or not", "however identical copies are obtained", "Calculated values can be wrong",
-                    "A record received again counts once", "made by the Entropy"):
+        for old in ("stand in for CHAOS", "Collaboration is welcome", "Renewal is one email", "These are three separate activities", "systematically or not",
+                    "however identical copies are obtained", "Calculated values can be wrong", "A record received again counts once", "made by the Entropy",
+                    "section 10 of the terms gives it", "written permission", "a CHAOS permission", "tick all that apply", "the section 5 allowance",
+                    "These terms do not limit a release", "JHU answers within"):
             self.assertNotIn(old, text)
-        # the substance kept: the limits, the evaluation allowance, the five prohibited uses, the breach clause
-        for kept in ("up to 50 disordered systems and 1,000 ordered structures in any 12 months", "up to 20 CHAOS disordered systems or 200 CHAOS ordered structures",
+        # the paper, as submitted (Corey, 2026-11-23: "put the actual paper information and just put 'submitted'")
+        self.assertIn('Cite CHAOS as: J. Hu, S.-Y. Tseng, M. Brownrigg, P. Boctor, G. Han, T. Li, W. Shiber, X. Xu, B. Lim, M. Niyogi, K. Clark, and C. Oses, '
+                      '"CHAOS: A First-Principles Database for High-Entropy Oxide Discovery," submitted (2026); and CHAOS, Entropy for Energy Laboratory, '
+                      'Johns Hopkins University, https://chaos.s4e.ai', text)
+        self.assertNotIn("once published", text)
+        self.assertNotIn("in preparation", text)
+        # the substance kept: the limits, the evaluation allowance, the five prohibited uses, the breach clause, the appeal
+        for kept in ("up to 50 disordered systems and 1,000 ordered structures in any 12-month period", "up to 20 CHAOS disordered systems or 200 CHAOS ordered structures",
                      "(e) give CHAOS data to another person or service", "JHU may seek an injunction", "general-purpose AI models",
-                     "A refusal gives its reason and can be appealed once, within 30 days."):
+                     "you may appeal once within 30 days", "Johns Hopkins Technology Ventures", "the laws of the State of Maryland"):
             self.assertIn(kept, text)
 
     def test_names_no_other_database_or_license(self):
