@@ -1,5 +1,15 @@
 [
   {
+    "date": [2026, 11, 13],
+    "title": "The group welcomes <strong>Dimple Rani</strong>",
+    "message": "Dimple Rani joins the group as a postdoctoral associate. She comes from the <u>N</u>ational <u>I</u>nstitute of <u>S</u>cience <u>E</u>ducation and <u>R</u>esearch (NISER) Bhubaneswar. Welcome!",
+    "picture_alt": "Portrait of Dimple Rani",
+    "picture_directory": "team",
+    "pictures": [
+      "dimple_rani.webp"
+    ]
+  },
+  {
     "date": [
       2026,
       10,
