@@ -80,8 +80,6 @@
     <div id="chaos-pitch">
       <h2>CHAOS accounts</h2>
       <dl class="chaos-offer">
-        <div><dt>System pages</dt><dd>Ranking, synthesis quantities, competing phases and descriptors for each disordered system.</dd></div>
-        <div><dt>Material pages</dt><dd>The structures of each composition, their formation enthalpies and the disordered systems they belong to.</dd></div>
         <div><dt>API</dt><dd>Entries and descriptors over HTTP. <a href="https://chaos.s4e.ai/API/?help">Documentation, fields and examples</a>.</dd></div>
         <div><dt>CHAOS-Agent</dt><dd>Natural-language queries of the database.</dd></div>
       </dl>
@@ -124,8 +122,6 @@
         {{ n("oxide.rocksalt_supercells_min", ox.rocksalt_supercells_min) }} and
         {{ n("oxide.rocksalt_supercells_max", ox.rocksalt_supercells_max) }}
         supercells each, typically {{ n("oxide.rocksalt_supercells_median", ox.rocksalt_supercells_median) }}.
-        Each system page gives the number of
-        supercells and their enthalpy spread.
       </p>
     </div>
     <div class="chaos-feature">
@@ -138,12 +134,9 @@
         weights at 300&nbsp;K. CHAOS also stores the atomic-solubility
         parameter, configurational entropy and valence electron concentration for
         the disordered systems. These quantities
-        can be used directly in API queries. Each system page shows the
-        formability, lattice distortion, atomic displacement, size and
-        electronegativity mismatch and valence electron concentration with
-        their percentiles in the system's cohort. The compatibility score,
+        can be used directly in API queries. The compatibility score,
         S<sub>CHAOS</sub>, is the mean of a distortion part and a chemistry
-        part built from the descriptor percentiles.
+        part built from the descriptors' percentiles in each system's cohort.
       </p>
     </div>
     <div class="chaos-feature">
@@ -160,9 +153,8 @@
         of</span> {{ n("oxide.coverage_one_cation.1", one[1]) }}
         single-cation oxides and {{ n("oxide.coverage_two_cation.0", ox.coverage_two_cation[0]) }}
         of {{ n("oxide.coverage_two_cation.1", ox.coverage_two_cation[1]) }} two-cation oxide
-        systems have ordered entries. Each system page lists its end members
-        and two-cation compounds; every ordered entry is available through the
-        API and CHAOS-Agent.
+        systems have ordered entries. Every ordered entry is available through
+        the API and CHAOS-Agent.
       </p>
     </div>
     <div class="chaos-feature">
@@ -277,8 +269,7 @@
     The public database also holds
     {{ n("alloys.disordered_systems", st.alloys.disordered_systems) }}
     high-entropy alloy systems ({{ n("alloys.bcc", st.alloys.bcc) }} bcc and
-    {{ n("alloys.fcc", st.alloys.fcc) }} fcc) with the same ensemble descriptors
-    and their own <span data-q="alloy">system pages</span>.
+    {{ n("alloys.fcc", st.alloys.fcc) }} fcc) with the same ensemble descriptors.
   </p>
 </div>
 {% endblock %}

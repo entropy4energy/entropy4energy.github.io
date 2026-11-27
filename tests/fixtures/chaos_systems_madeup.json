@@ -22,51 +22,275 @@
   ],
   "systems": [
    {
-    "id": "0000000000000010",
-    "label": "(Ca,Co,Cu,Fe,Mg)O",
+    "id": "000000000000002d",
+    "label": "(Ca,Cd,Co,Cu,Fe)O",
     "family": "oxide",
     "lattice": "rocksalt",
     "cohort": "oxide|cF8_225_1a_1b",
     "n_el": 6,
     "elements": [
      "Ca",
+     "Cd",
      "Co",
      "Cu",
+     "Fe",
+     "O"
+    ]
+   },
+   {
+    "id": "0000000000000010",
+    "label": "(Ca,Cd,Co,Cu,Mg)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Ca",
+     "Cd",
+     "Co",
+     "Cu",
+     "Mg",
+     "O"
+    ]
+   },
+   {
+    "id": "000000000000004c",
+    "label": "(Ca,Cd,Co,Cu,Mn)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Ca",
+     "Cd",
+     "Co",
+     "Cu",
+     "Mn",
+     "O"
+    ]
+   },
+   {
+    "id": "000000000000005d",
+    "label": "(Ca,Cd,Co,Cu,Ni)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Ca",
+     "Cd",
+     "Co",
+     "Cu",
+     "Ni",
+     "O"
+    ]
+   },
+   {
+    "id": "0000000000000020",
+    "label": "(Ca,Cd,Co,Cu,Sr)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Ca",
+     "Cd",
+     "Co",
+     "Cu",
+     "O",
+     "Sr"
+    ]
+   },
+   {
+    "id": "0000000000000062",
+    "label": "(Ca,Cd,Co,Cu,Zn)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Ca",
+     "Cd",
+     "Co",
+     "Cu",
+     "O",
+     "Zn"
+    ]
+   },
+   {
+    "id": "0000000000000085",
+    "label": "(Ca,Cd,Co,Fe,Mg)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Ca",
+     "Cd",
+     "Co",
      "Fe",
      "Mg",
      "O"
     ]
    },
    {
-    "id": "0000000000000020",
-    "label": "(Ca,Co,Cu,Fe,Mn)O",
+    "id": "0000000000000089",
+    "label": "(Ca,Cd,Co,Fe,Mn)O",
     "family": "oxide",
     "lattice": "rocksalt",
     "cohort": "oxide|cF8_225_1a_1b",
     "n_el": 6,
     "elements": [
      "Ca",
+     "Cd",
      "Co",
-     "Cu",
      "Fe",
      "Mn",
      "O"
     ]
    },
    {
-    "id": "000000000000002d",
-    "label": "(Ca,Co,Cu,Fe,Ni)O",
+    "id": "0000000000000094",
+    "label": "(Ca,Cd,Co,Fe,Ni)O",
     "family": "oxide",
     "lattice": "rocksalt",
     "cohort": "oxide|cF8_225_1a_1b",
     "n_el": 6,
     "elements": [
      "Ca",
+     "Cd",
      "Co",
-     "Cu",
      "Fe",
      "Ni",
      "O"
+    ]
+   },
+   {
+    "id": "000000000000009b",
+    "label": "(Ca,Cd,Co,Fe,Sr)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Ca",
+     "Cd",
+     "Co",
+     "Fe",
+     "O",
+     "Sr"
+    ]
+   },
+   {
+    "id": "000000000000009f",
+    "label": "(Ca,Cd,Co,Fe,Zn)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Ca",
+     "Cd",
+     "Co",
+     "Fe",
+     "O",
+     "Zn"
+    ]
+   },
+   {
+    "id": "0000000000000026",
+    "label": "(Ca,Cd,Co,Mg,Mn)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Ca",
+     "Cd",
+     "Co",
+     "Mg",
+     "Mn",
+     "O"
+    ]
+   },
+   {
+    "id": "0000000000000059",
+    "label": "(Ca,Cd,Co,Mg,Ni)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Ca",
+     "Cd",
+     "Co",
+     "Mg",
+     "Ni",
+     "O"
+    ]
+   },
+   {
+    "id": "0000000000000078",
+    "label": "(Ca,Cd,Co,Mg,Sr)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Ca",
+     "Cd",
+     "Co",
+     "Mg",
+     "O",
+     "Sr"
+    ]
+   },
+   {
+    "id": "000000000000007e",
+    "label": "(Ca,Cd,Co,Mg,Zn)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Ca",
+     "Cd",
+     "Co",
+     "Mg",
+     "O",
+     "Zn"
+    ]
+   },
+   {
+    "id": "000000000000008e",
+    "label": "(Ca,Cd,Co,Mn,Ni)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Ca",
+     "Cd",
+     "Co",
+     "Mn",
+     "Ni",
+     "O"
+    ]
+   },
+   {
+    "id": "00000000000000a0",
+    "label": "(Ca,Cd,Co,Mn,Sr)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Ca",
+     "Cd",
+     "Co",
+     "Mn",
+     "O",
+     "Sr"
     ]
    },
    {
@@ -87,7 +311,7 @@
    },
    {
     "id": "0000000000000043",
-    "label": "(Ca,Co,Cu,Mg,Mn)O",
+    "label": "(Ca,Co,Cu,Mg,Sr)O",
     "family": "oxide",
     "lattice": "rocksalt",
     "cohort": "oxide|cF8_225_1a_1b",
@@ -97,24 +321,8 @@
      "Co",
      "Cu",
      "Mg",
-     "Mn",
-     "O"
-    ]
-   },
-   {
-    "id": "000000000000004c",
-    "label": "(Ca,Co,Cu,Mg,Ni)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Ca",
-     "Co",
-     "Cu",
-     "Mg",
-     "Ni",
-     "O"
+     "O",
+     "Sr"
     ]
    },
    {
@@ -129,38 +337,6 @@
      "Co",
      "Cu",
      "Mg",
-     "O",
-     "Zn"
-    ]
-   },
-   {
-    "id": "000000000000005d",
-    "label": "(Ca,Co,Cu,Mn,Ni)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Ca",
-     "Co",
-     "Cu",
-     "Mn",
-     "Ni",
-     "O"
-    ]
-   },
-   {
-    "id": "0000000000000062",
-    "label": "(Ca,Co,Cu,Mn,Zn)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Ca",
-     "Co",
-     "Cu",
-     "Mn",
      "O",
      "Zn"
     ]
@@ -182,98 +358,98 @@
     ]
    },
    {
-    "id": "0000000000000078",
-    "label": "(Ca,Co,Fe,Mg,Mn)O",
+    "id": "0000000000000005",
+    "label": "(Cd,Co,Cu,Mg,Ni)O",
     "family": "oxide",
     "lattice": "rocksalt",
     "cohort": "oxide|cF8_225_1a_1b",
     "n_el": 6,
     "elements": [
-     "Ca",
+     "Cd",
      "Co",
-     "Fe",
-     "Mg",
-     "Mn",
-     "O"
-    ]
-   },
-   {
-    "id": "0000000000000085",
-    "label": "(Ca,Co,Fe,Mg,Ni)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Ca",
-     "Co",
-     "Fe",
+     "Cu",
      "Mg",
      "Ni",
      "O"
     ]
    },
    {
-    "id": "0000000000000089",
-    "label": "(Ca,Co,Fe,Mg,Zn)O",
+    "id": "0000000000000001",
+    "label": "(Cd,Co,Cu,Mg,Sr)O",
     "family": "oxide",
     "lattice": "rocksalt",
     "cohort": "oxide|cF8_225_1a_1b",
     "n_el": 6,
     "elements": [
-     "Ca",
+     "Cd",
      "Co",
-     "Fe",
+     "Cu",
      "Mg",
      "O",
+     "Sr"
+    ]
+   },
+   {
+    "id": "0000000000000017",
+    "label": "(Cd,Co,Cu,Ni,Sr)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Cd",
+     "Co",
+     "Cu",
+     "Ni",
+     "O",
+     "Sr"
+    ]
+   },
+   {
+    "id": "000000000000001b",
+    "label": "(Cd,Co,Cu,Sr,Zn)O",
+    "family": "oxide",
+    "lattice": "rocksalt",
+    "cohort": "oxide|cF8_225_1a_1b",
+    "n_el": 6,
+    "elements": [
+     "Cd",
+     "Co",
+     "Cu",
+     "O",
+     "Sr",
      "Zn"
     ]
    },
    {
-    "id": "0000000000000094",
-    "label": "(Ca,Co,Fe,Mn,Ni)O",
+    "id": "000000000000006f",
+    "label": "(Cd,Co,Mg,Ni,Sr)O",
     "family": "oxide",
     "lattice": "rocksalt",
     "cohort": "oxide|cF8_225_1a_1b",
     "n_el": 6,
     "elements": [
-     "Ca",
+     "Cd",
      "Co",
-     "Fe",
-     "Mn",
+     "Mg",
      "Ni",
-     "O"
+     "O",
+     "Sr"
     ]
    },
    {
-    "id": "000000000000009b",
-    "label": "(Ca,Co,Fe,Mn,Zn)O",
+    "id": "0000000000000073",
+    "label": "(Cd,Co,Mg,Sr,Zn)O",
     "family": "oxide",
     "lattice": "rocksalt",
     "cohort": "oxide|cF8_225_1a_1b",
     "n_el": 6,
     "elements": [
-     "Ca",
+     "Cd",
      "Co",
-     "Fe",
-     "Mn",
+     "Mg",
      "O",
-     "Zn"
-    ]
-   },
-   {
-    "id": "000000000000009f",
-    "label": "(Ca,Co,Fe,Ni,Zn)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Ca",
-     "Co",
-     "Fe",
-     "Ni",
-     "O",
+     "Sr",
      "Zn"
     ]
    },
@@ -356,88 +532,8 @@
     ]
    },
    {
-    "id": "0000000000000001",
-    "label": "(Co,Cu,Fe,Mg,Mn)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Co",
-     "Cu",
-     "Fe",
-     "Mg",
-     "Mn",
-     "O"
-    ]
-   },
-   {
-    "id": "0000000000000005",
-    "label": "(Co,Cu,Fe,Mg,Ni)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Co",
-     "Cu",
-     "Fe",
-     "Mg",
-     "Ni",
-     "O"
-    ]
-   },
-   {
-    "id": "0000000000000017",
-    "label": "(Co,Cu,Fe,Mn,Ni)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Co",
-     "Cu",
-     "Fe",
-     "Mn",
-     "Ni",
-     "O"
-    ]
-   },
-   {
-    "id": "000000000000001b",
-    "label": "(Co,Cu,Fe,Mn,Zn)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Co",
-     "Cu",
-     "Fe",
-     "Mn",
-     "O",
-     "Zn"
-    ]
-   },
-   {
-    "id": "0000000000000026",
-    "label": "(Co,Cu,Fe,Ni,Zn)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Co",
-     "Cu",
-     "Fe",
-     "Ni",
-     "O",
-     "Zn"
-    ]
-   },
-   {
     "id": "0000000000000036",
-    "label": "(Co,Cu,Mg,Mn,Ni)O",
+    "label": "(Co,Cu,Mg,Ni,Sr)O",
     "family": "oxide",
     "lattice": "rocksalt",
     "cohort": "oxide|cF8_225_1a_1b",
@@ -446,25 +542,9 @@
      "Co",
      "Cu",
      "Mg",
-     "Mn",
      "Ni",
-     "O"
-    ]
-   },
-   {
-    "id": "000000000000003c",
-    "label": "(Co,Cu,Mg,Mn,Zn)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Co",
-     "Cu",
-     "Mg",
-     "Mn",
      "O",
-     "Zn"
+     "Sr"
     ]
    },
    {
@@ -484,8 +564,8 @@
     ]
    },
    {
-    "id": "0000000000000059",
-    "label": "(Co,Cu,Mn,Ni,Zn)O",
+    "id": "000000000000003c",
+    "label": "(Co,Cu,Mg,Sr,Zn)O",
     "family": "oxide",
     "lattice": "rocksalt",
     "cohort": "oxide|cF8_225_1a_1b",
@@ -493,73 +573,9 @@
     "elements": [
      "Co",
      "Cu",
-     "Mn",
-     "Ni",
-     "O",
-     "Zn"
-    ]
-   },
-   {
-    "id": "000000000000006f",
-    "label": "(Co,Fe,Mg,Mn,Ni)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Co",
-     "Fe",
      "Mg",
-     "Mn",
-     "Ni",
-     "O"
-    ]
-   },
-   {
-    "id": "0000000000000073",
-    "label": "(Co,Fe,Mg,Mn,Zn)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Co",
-     "Fe",
-     "Mg",
-     "Mn",
      "O",
-     "Zn"
-    ]
-   },
-   {
-    "id": "000000000000007e",
-    "label": "(Co,Fe,Mg,Ni,Zn)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Co",
-     "Fe",
-     "Mg",
-     "Ni",
-     "O",
-     "Zn"
-    ]
-   },
-   {
-    "id": "000000000000008e",
-    "label": "(Co,Fe,Mn,Ni,Zn)O",
-    "family": "oxide",
-    "lattice": "rocksalt",
-    "cohort": "oxide|cF8_225_1a_1b",
-    "n_el": 6,
-    "elements": [
-     "Co",
-     "Fe",
-     "Mn",
-     "Ni",
-     "O",
+     "Sr",
      "Zn"
     ]
    },
@@ -925,15 +941,15 @@
    "format": 1,
    "id": "0000000000000001",
    "chaos_id": "s4e:0000000000000001",
-   "label": "(Co,Cu,Fe,Mg,Mn)O",
+   "label": "(Cd,Co,Cu,Mg,Sr)O",
    "label_exact": true,
    "species": [
+    "Cd",
     "Co",
     "Cu",
-    "Fe",
     "Mg",
-    "Mn",
-    "O"
+    "O",
+    "Sr"
    ],
    "family": "oxide",
    "anions": [
@@ -951,6 +967,10 @@
     {
      "elements": [
       {
+       "el": "Cd",
+       "x": 0.2
+      },
+      {
        "el": "Co",
        "x": 0.2
       },
@@ -959,15 +979,11 @@
        "x": 0.2
       },
       {
-       "el": "Fe",
-       "x": 0.2
-      },
-      {
        "el": "Mg",
        "x": 0.2
       },
       {
-       "el": "Mn",
+       "el": "Sr",
        "x": 0.2
       }
      ],
@@ -976,11 +992,11 @@
     }
    ],
    "per_formula": {
+    "Cd": 0.2,
     "Co": 0.2,
     "Cu": 0.2,
-    "Fe": 0.2,
     "Mg": 0.2,
-    "Mn": 0.2,
+    "Sr": 0.2,
     "O": 1.0
    },
    "n_supercells": 3,
@@ -1196,6 +1212,35 @@
    },
    "end_members": [
     {
+     "el": "Cd",
+     "x": 0.2,
+     "formula": "CdO",
+     "n": 2,
+     "lowest": {
+      "formula": "CdO",
+      "chaos_id": "s4e:00000000000000ca",
+      "hf": -1.42,
+      "hf_corr": -1.72,
+      "structure": "rocksalt",
+      "pearson": "cF8",
+      "sg": 225,
+      "sg_symbol": "Fm-3m"
+     },
+     "same_lattice": {
+      "formula": "CdO",
+      "chaos_id": "s4e:00000000000000ca",
+      "hf": -1.42,
+      "hf_corr": -1.72,
+      "structure": "rocksalt",
+      "pearson": "cF8",
+      "sg": 225,
+      "sg_symbol": "Fm-3m"
+     },
+     "above": 0.0,
+     "takes_lattice": true,
+     "mass": 128.413
+    },
+    {
      "el": "Co",
      "x": 0.2,
      "formula": "CoO",
@@ -1254,35 +1299,6 @@
      "mass": 79.545
     },
     {
-     "el": "Fe",
-     "x": 0.2,
-     "formula": "FeO",
-     "n": 2,
-     "lowest": {
-      "formula": "FeO",
-      "chaos_id": "s4e:00000000000000ca",
-      "hf": -1.42,
-      "hf_corr": -1.72,
-      "structure": "rocksalt",
-      "pearson": "cF8",
-      "sg": 225,
-      "sg_symbol": "Fm-3m"
-     },
-     "same_lattice": {
-      "formula": "FeO",
-      "chaos_id": "s4e:00000000000000ca",
-      "hf": -1.42,
-      "hf_corr": -1.72,
-      "structure": "rocksalt",
-      "pearson": "cF8",
-      "sg": 225,
-      "sg_symbol": "Fm-3m"
-     },
-     "above": 0.0,
-     "takes_lattice": true,
-     "mass": 71.844
-    },
-    {
      "el": "Mg",
      "x": 0.2,
      "formula": "MgO",
@@ -1312,12 +1328,12 @@
      "mass": 40.304
     },
     {
-     "el": "Mn",
+     "el": "Sr",
      "x": 0.2,
-     "formula": "MnO",
+     "formula": "SrO",
      "n": 2,
      "lowest": {
-      "formula": "MnO",
+      "formula": "SrO",
       "chaos_id": "s4e:00000000000000ce",
       "hf": -1.99,
       "hf_corr": -2.29,
@@ -1327,7 +1343,7 @@
       "sg_symbol": "Fm-3m"
      },
      "same_lattice": {
-      "formula": "MnO",
+      "formula": "SrO",
       "chaos_id": "s4e:00000000000000ce",
       "hf": -1.99,
       "hf_corr": -2.29,
@@ -1338,15 +1354,20 @@
      },
      "above": 0.0,
      "takes_lattice": true,
-     "mass": 70.937
+     "mass": 103.619
     }
    ],
    "weigh_out": {
     "product": {
-     "formula": "(Co,Cu,Fe,Mg,Mn)O",
-     "mass": 67.5124
+     "formula": "(Cd,Co,Cu,Mg,Sr)O",
+     "mass": 85.3626
     },
     "elements": [
+     {
+      "el": "Cd",
+      "mol": 0.2,
+      "mass": 22.4828
+     },
      {
       "el": "Co",
       "mol": 0.2,
@@ -1358,27 +1379,29 @@
       "mass": 12.7092
      },
      {
-      "el": "Fe",
-      "mol": 0.2,
-      "mass": 11.169
-     },
-     {
       "el": "Mg",
       "mol": 0.2,
       "mass": 4.861
      },
      {
-      "el": "Mn",
-      "mol": 0.2,
-      "mass": 10.9876
-     },
-     {
       "el": "O",
       "mol": 1.0,
       "mass": 15.999
+     },
+     {
+      "el": "Sr",
+      "mol": 0.2,
+      "mass": 17.524
      }
     ],
     "rows": [
+     {
+      "formula": "CdO",
+      "el": "Cd",
+      "mol": 0.2,
+      "molar_mass": 128.413,
+      "in_chaos": true
+     },
      {
       "formula": "CoO",
       "el": "Co",
@@ -1394,13 +1417,6 @@
       "in_chaos": true
      },
      {
-      "formula": "FeO",
-      "el": "Fe",
-      "mol": 0.2,
-      "molar_mass": 71.844,
-      "in_chaos": true
-     },
-     {
       "formula": "MgO",
       "el": "Mg",
       "mol": 0.2,
@@ -1408,10 +1424,10 @@
       "in_chaos": true
      },
      {
-      "formula": "MnO",
-      "el": "Mn",
+      "formula": "SrO",
+      "el": "Sr",
       "mol": 0.2,
-      "molar_mass": 70.937,
+      "molar_mass": 103.619,
       "in_chaos": true
      }
     ]
@@ -1423,19 +1439,19 @@
    "neighbors": {
     "pool": [
      "Ca",
+     "Cd",
      "Co",
      "Cu",
-     "Fe",
      "Mg",
-     "Mn",
      "Ni",
+     "Sr",
      "Zn"
     ],
     "possible": 15,
     "list": [
      {
       "id": "0000000000000078",
-      "label": "(Ca,Co,Fe,Mg,Mn)O",
+      "label": "(Ca,Cd,Co,Mg,Sr)O",
       "out": "Cu",
       "in": "Ca",
       "p_formability": 0.828,
@@ -1445,7 +1461,7 @@
      },
      {
       "id": "000000000000006f",
-      "label": "(Co,Fe,Mg,Mn,Ni)O",
+      "label": "(Cd,Co,Mg,Ni,Sr)O",
       "out": "Cu",
       "in": "Ni",
       "p_formability": 0.759,
@@ -1455,7 +1471,7 @@
      },
      {
       "id": "0000000000000073",
-      "label": "(Co,Fe,Mg,Mn,Zn)O",
+      "label": "(Cd,Co,Mg,Sr,Zn)O",
       "out": "Cu",
       "in": "Zn",
       "p_formability": 0.69,
@@ -1465,8 +1481,8 @@
      },
      {
       "id": "0000000000000043",
-      "label": "(Ca,Co,Cu,Mg,Mn)O",
-      "out": "Fe",
+      "label": "(Ca,Co,Cu,Mg,Sr)O",
+      "out": "Cd",
       "in": "Ca",
       "p_formability": 0.483,
       "d_p": 0.448,
@@ -1475,8 +1491,8 @@
      },
      {
       "id": "0000000000000036",
-      "label": "(Co,Cu,Mg,Mn,Ni)O",
-      "out": "Fe",
+      "label": "(Co,Cu,Mg,Ni,Sr)O",
+      "out": "Cd",
       "in": "Ni",
       "p_formability": 0.414,
       "d_p": 0.379,
@@ -1485,8 +1501,8 @@
      },
      {
       "id": "000000000000003c",
-      "label": "(Co,Cu,Mg,Mn,Zn)O",
-      "out": "Fe",
+      "label": "(Co,Cu,Mg,Sr,Zn)O",
+      "out": "Cd",
       "in": "Zn",
       "p_formability": 0.31,
       "d_p": 0.276,
@@ -1495,7 +1511,7 @@
      },
      {
       "id": "0000000000000020",
-      "label": "(Ca,Co,Cu,Fe,Mn)O",
+      "label": "(Ca,Cd,Co,Cu,Sr)O",
       "out": "Mg",
       "in": "Ca",
       "p_formability": 0.276,
@@ -1505,7 +1521,7 @@
      },
      {
       "id": "0000000000000017",
-      "label": "(Co,Cu,Fe,Mn,Ni)O",
+      "label": "(Cd,Co,Cu,Ni,Sr)O",
       "out": "Mg",
       "in": "Ni",
       "p_formability": 0.207,
@@ -1515,8 +1531,8 @@
      },
      {
       "id": "0000000000000010",
-      "label": "(Ca,Co,Cu,Fe,Mg)O",
-      "out": "Mn",
+      "label": "(Ca,Cd,Co,Cu,Mg)O",
+      "out": "Sr",
       "in": "Ca",
       "p_formability": 0.138,
       "d_p": 0.103,
@@ -1525,7 +1541,7 @@
      },
      {
       "id": "000000000000001b",
-      "label": "(Co,Cu,Fe,Mn,Zn)O",
+      "label": "(Cd,Co,Cu,Sr,Zn)O",
       "out": "Mg",
       "in": "Zn",
       "p_formability": 0.103,
@@ -1535,8 +1551,8 @@
      },
      {
       "id": "0000000000000005",
-      "label": "(Co,Cu,Fe,Mg,Ni)O",
-      "out": "Mn",
+      "label": "(Cd,Co,Cu,Mg,Ni)O",
+      "out": "Sr",
       "in": "Ni",
       "p_formability": 0.069,
       "d_p": 0.0345,
@@ -1577,7 +1593,7 @@
      "value": 0.01
     }
    ],
-   "query": "*,entropy_forming_ability(*),species(Co,Cu,Fe,Mg,Mn,O),nspecies(6),aflow_prototype_label_orig(AB_cF8_225_a_b),paging(1,1)",
+   "query": "*,entropy_forming_ability(*),species(Cd,Co,Cu,Mg,O,Sr),nspecies(6),aflow_prototype_label_orig(AB_cF8_225_a_b),paging(1,1)",
    "query_matches": 1,
    "release": "20261004T045428Z"
   },

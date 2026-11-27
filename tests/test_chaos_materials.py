@@ -16,7 +16,7 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-from test_chaos_systems import BANNED, Handler
+from test_chaos_systems import BANNED, BETA, BROWSER_ARGS, Handler
 
 FIXTURE = Path(__file__).resolve().parent / "fixtures" / "chaos_materials_madeup.json"
 # CoO as the published database stores it, written by the generator (the first release's display bugs)
@@ -39,7 +39,7 @@ def main():
 
     server = ThreadingHTTPServer(("localhost", 0), functools.partial(Handler, directory=str(args.dist.resolve())))
     threading.Thread(target=server.serve_forever, daemon=True).start()
-    origin = f"http://localhost:{server.server_port}"
+    origin = f"http://{BETA}:{server.server_port}"
     answer = {"mode": "ok"}
     seen = []
 
@@ -67,7 +67,7 @@ def main():
 
     try:
         with sync_playwright() as pw:
-            browser = pw.chromium.launch()
+            browser = pw.chromium.launch(args=BROWSER_ARGS)
             context = browser.new_context(viewport={"width": 1280, "height": 900}, accept_downloads=True)
             context.route("**/*", lambda route: route.continue_() if route.request.url.startswith(origin) else route.abort())
             context.route(origin + "/API/chaos/profiles/**", gate)

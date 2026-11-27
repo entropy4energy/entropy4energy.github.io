@@ -82,11 +82,11 @@
     "two_cation": [
      {
       "id": "0000000000000010",
-      "label": "(Ca,Co,Cu,Fe,Mg)O"
+      "label": "(Ca,Cd,Co,Cu,Mg)O"
      },
      {
       "id": "0000000000000012",
-      "label": "(Co,Fe,Mg,Mn,Ni)O"
+      "label": "(Ca,Co,Fe,Mg,Sr)O"
      }
     ]
    }
@@ -173,7 +173,7 @@
     "end_member": [
      {
       "id": "0000000000000010",
-      "label": "(Ca,Co,Cu,Fe,Mg)O"
+      "label": "(Ca,Cd,Co,Cu,Mg)O"
      },
      {
       "id": "0000000000000011",
@@ -181,7 +181,7 @@
      },
      {
       "id": "0000000000000012",
-      "label": "(Co,Fe,Mg,Mn,Ni)O"
+      "label": "(Ca,Co,Fe,Mg,Sr)O"
      }
     ],
     "two_cation": []
@@ -221,7 +221,7 @@
     "end_member": [
      {
       "id": "0000000000000010",
-      "label": "(Ca,Co,Cu,Fe,Mg)O"
+      "label": "(Ca,Cd,Co,Cu,Mg)O"
      },
      {
       "id": "0000000000000011",
@@ -595,7 +595,7 @@
     "end_member": [
      {
       "id": "0000000000000010",
-      "label": "(Ca,Co,Cu,Fe,Mg)O"
+      "label": "(Ca,Cd,Co,Cu,Mg)O"
      },
      {
       "id": "0000000000000011",
@@ -603,7 +603,7 @@
      },
      {
       "id": "0000000000000012",
-      "label": "(Co,Fe,Mg,Mn,Ni)O"
+      "label": "(Ca,Co,Fe,Mg,Sr)O"
      }
     ],
     "two_cation": []
@@ -788,7 +788,7 @@
     "end_member": [
      {
       "id": "0000000000000010",
-      "label": "(Ca,Co,Cu,Fe,Mg)O"
+      "label": "(Ca,Cd,Co,Cu,Mg)O"
      },
      {
       "id": "0000000000000011",
@@ -796,7 +796,7 @@
      },
      {
       "id": "0000000000000012",
-      "label": "(Co,Fe,Mg,Mn,Ni)O"
+      "label": "(Ca,Co,Fe,Mg,Sr)O"
      }
     ],
     "two_cation": []
@@ -935,7 +935,7 @@
     "end_member": [
      {
       "id": "0000000000000010",
-      "label": "(Ca,Co,Cu,Fe,Mg)O"
+      "label": "(Ca,Cd,Co,Cu,Mg)O"
      },
      {
       "id": "0000000000000011",
@@ -943,7 +943,7 @@
      },
      {
       "id": "0000000000000012",
-      "label": "(Co,Fe,Mg,Mn,Ni)O"
+      "label": "(Ca,Co,Fe,Mg,Sr)O"
      }
     ],
     "two_cation": []
@@ -1346,7 +1346,7 @@
     "end_member": [
      {
       "id": "0000000000000010",
-      "label": "(Ca,Co,Cu,Fe,Mg)O"
+      "label": "(Ca,Cd,Co,Cu,Mg)O"
      },
      {
       "id": "0000000000000011",
@@ -1494,11 +1494,11 @@
     "two_cation": [
      {
       "id": "0000000000000010",
-      "label": "(Ca,Co,Cu,Fe,Mg)O"
+      "label": "(Ca,Cd,Co,Cu,Mg)O"
      },
      {
       "id": "0000000000000012",
-      "label": "(Co,Fe,Mg,Mn,Ni)O"
+      "label": "(Ca,Co,Fe,Mg,Sr)O"
      }
     ]
    },

@@ -21,6 +21,10 @@ FIXTURE = Path(__file__).resolve().parent / "fixtures" / "chaos_systems_madeup.j
 # Words the public CHAOS text does not use (package and method names), as in
 # the CHAOS API documentation check. Field names and identifiers are left out first.
 BANNED = re.compile(r"(?i)\bpocc\b|\bvasp\b|\bcce\b|entropy[- ]forming|\befa\b|misfit|\baflux\b|\baflow\b")
+# chaos-members.js adds the system and material pages' tabs, cards and links on the private
+# beta's host only, so the browser reaches the stand-in server under that name.
+BETA = "chaos-beta.s4e.ai"
+BROWSER_ARGS = [f"--host-resolver-rules=MAP {BETA} localhost"]
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -42,7 +46,7 @@ def main():
     args = parser.parse_args()
     fixture = json.loads(FIXTURE.read_text())
     by_label = {s["label"]: s["id"] for s in fixture["index"]["systems"]}
-    rocksalt = by_label["(Co,Cu,Fe,Mg,Mn)O"]
+    rocksalt = by_label["(Cd,Co,Cu,Mg,Sr)O"]
     checks = []
 
     def check(ok, label):
@@ -52,7 +56,7 @@ def main():
 
     server = ThreadingHTTPServer(("localhost", 0), functools.partial(Handler, directory=str(args.dist.resolve())))
     threading.Thread(target=server.serve_forever, daemon=True).start()
-    origin = f"http://localhost:{server.server_port}"
+    origin = f"http://{BETA}:{server.server_port}"
     answer = {"mode": "ok"}
     seen = []
 
@@ -83,7 +87,7 @@ def main():
 
     try:
         with sync_playwright() as pw:
-            browser = pw.chromium.launch()
+            browser = pw.chromium.launch(args=BROWSER_ARGS)
             context = browser.new_context(viewport={"width": 1280, "height": 900})
             context.route("**/*", lambda route: route.continue_() if route.request.url.startswith(origin) else route.abort())
             context.route(origin + "/API/chaos/profiles/**", gate)
@@ -152,8 +156,8 @@ def main():
             page.goto(origin + "/chaos-systems?id=" + rocksalt)
             page.locator(".cs-identity").wait_for()
             p = fixture["profiles"][rocksalt]
-            check(page.locator(".cs-title").inner_text() == "(Co,Cu,Fe,Mg,Mn)O", "title")
-            check("(Co,Cu,Fe,Mg,Mn)O" in page.title(), "browser title")
+            check(page.locator(".cs-title").inner_text() == "(Cd,Co,Cu,Mg,Sr)O", "title")
+            check("(Cd,Co,Cu,Mg,Sr)O" in page.title(), "browser title")
             check(page.locator(".cs-bar .cs-chip").inner_text().lower() == "lower priority", "verdict in the bar")
             check(page.locator("section.cs-sec").count() == 7 and page.locator("details.cs-sec").count() == 0,
                   "seven sections, none collapsed")

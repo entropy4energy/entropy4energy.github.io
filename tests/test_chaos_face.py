@@ -1,6 +1,8 @@
 """Browser checks of the two sides of the CHAOS overview: the public face, which
 shows and links to nothing behind the sign-in, and the signed-in side, which
-chaos-members.js adds after the gate accepts the visitor. Made-up answers only.
+chaos-members.js adds after the gate accepts the visitor. The system and material
+pages' tabs, cards, search and links are on the private beta's host only; on any
+other host a member sees the API and CHAOS-Agent alone. Made-up answers only.
 
     make && python tests/test_chaos_face.py --dist dist
 """
@@ -14,7 +16,7 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-from test_chaos_systems import Handler
+from test_chaos_systems import BETA, BROWSER_ARGS, Handler
 
 WIDTHS = [320, 375, 600, 768, 800, 1024, 1100, 1440]
 BEHIND = re.compile(r"chaos-systems|chaos-materials|chaos-hull|chaos-pairs|chaos/agent")
@@ -44,6 +46,7 @@ def main():
     server = ThreadingHTTPServer(("localhost", 0), functools.partial(Handler, directory=str(dist)))
     threading.Thread(target=server.serve_forever, daemon=True).start()
     origin = f"http://localhost:{server.server_port}"
+    beta = f"http://{BETA}:{server.server_port}"
     answer = {"status": 401}
 
     def gate(route):
@@ -57,7 +60,7 @@ def main():
 
     try:
         with sync_playwright() as pw:
-            browser = pw.chromium.launch()
+            browser = pw.chromium.launch(args=BROWSER_ARGS)
             for status in (401, 403, 429, 500):
                 answer["status"] = status
                 ctx = browser.new_context(viewport={"width": 1280, "height": 900})
@@ -72,7 +75,7 @@ def main():
                 check(not [h for h in hrefs if BEHIND.search(h)], label + "no link behind the sign-in")
                 check(page.locator(".chaos-hero h1").inner_text() == "CHAOS", label + "the band")
                 check(page.locator("#chaos-cta a").all_inner_texts() == ["Sign in to CHAOS", "Get an account"], label + "the sign-in")
-                check(page.locator(".chaos-offer dt").count() >= 4, label + "what an account gives")
+                check(page.locator(".chaos-offer dt").all_inner_texts() == ["API", "CHAOS-Agent"], label + "what an account gives")
                 check(page.locator(".chaos-offer a").all_inner_texts() == ["Documentation, fields and examples"], label + "only the public documentation links")
                 check(page.locator('.product-nav[data-product="chaos"] a').all_inner_texts() == ["Overview", "API"], label + "public tabs only")
                 check(page.locator("a.ptable-cell, a.chaos-stat").count() == 0, label + "counts are plain")
@@ -89,11 +92,30 @@ def main():
                 ctx.close()
 
             answer["status"] = 200
+            # a member away from the beta's host: the API and CHAOS-Agent, nothing of the beta's pages
             ctx = browser.new_context(viewport={"width": 1280, "height": 900})
             ctx.route("**/*", lambda route: route.continue_() if route.request.url.startswith(origin) else route.abort())
             ctx.route(origin + "/API/chaos/**", gate)
             page = ctx.new_page()
             visit(page, "/chaos.html")
+            page.wait_for_selector("html[data-chaos-member]")
+            label = "member off the beta's host: "
+            check(page.locator('.product-nav[data-product="chaos"] a').all_inner_texts() == ["Overview", "API", "CHAOS-Agent"],
+                  label + "no Systems or Materials tab")
+            check(page.locator(".chaos-tools .access-card-title").all_inner_texts() == ["API", "CHAOS-Agent"], label + "API and CHAOS-Agent cards only")
+            check(page.locator(".chaos-find, form[action*='chaos-']").count() == 0, label + "no search")
+            hrefs = page.eval_on_selector_all("a[href]", "els => els.map(e => e.getAttribute('href'))")
+            check(not [h for h in hrefs if re.search(r"chaos-systems|chaos-materials", h)], label + "no link to the system or material pages")
+            check(page.locator("a.ptable-cell, a.chaos-stat").count() == 0, label + "counts are plain")
+            check(page.locator("#chaos-cta").inner_text().startswith("Signed in"), label + "signed in shown")
+            ctx.close()
+
+            ctx = browser.new_context(viewport={"width": 1280, "height": 900})
+            ctx.route("**/*", lambda route: route.continue_() if route.request.url.startswith(beta) else route.abort())
+            ctx.route(beta + "/API/chaos/**", gate)
+            page = ctx.new_page()
+            page.goto(beta + "/chaos.html")
+            page.wait_for_load_state("networkidle")
             page.wait_for_selector("html[data-chaos-member]")
             tabs = page.locator('.product-nav[data-product="chaos"] a').all_inner_texts()
             check(tabs[:3] == ["Overview", "Systems", "Materials"] and tabs[-2:] == ["API", "CHAOS-Agent"], "member tabs")

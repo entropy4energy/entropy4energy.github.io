@@ -3,13 +3,16 @@
 // sign-in opens the data; on a yes it adds the member tabs and, on the CHAOS
 // overview, the search, the tool cards and the links from the counts. On any
 // other answer it does nothing, and the data stay with the gate either way.
+// The system and material pages are in the private beta: their tabs, cards,
+// search and links are added on its host only, never on any other.
 (function () {
   "use strict";
 
-  var PAGES = [
+  var BETA = location.hostname === "chaos-beta.s4e.ai";
+  var PAGES = BETA ? [
     ["chaos-systems", "Systems", "Ranking, synthesis quantities, competing phases and descriptors for each disordered system."],
     ["chaos-materials", "Materials", "The structures of each composition, their formation enthalpies and the disordered systems they belong to."]
-  ];
+  ] : [];
   var AGENT = "/chaos/agent/";
 
   function tab(href, label) {
@@ -79,7 +82,7 @@
     var box = document.createElement("section");
     box.className = "chaos-tools";
     box.setAttribute("aria-label", "CHAOS tools");
-    box.appendChild(search());
+    if (BETA) box.appendChild(search());
     var cards = document.createElement("div");
     cards.className = "access-cards";
     PAGES.forEach(function (p) { cards.appendChild(card(p[0], p[1], p[2])); });
@@ -90,7 +93,7 @@
     hero.parentNode.insertBefore(box, hero.nextSibling);
     var pitch = document.getElementById("access");
     if (pitch) pitch.hidden = true;
-    Array.prototype.forEach.call(document.querySelectorAll("[data-q]"), link);
+    if (BETA) Array.prototype.forEach.call(document.querySelectorAll("[data-q]"), link);
   }
 
   if (!window.fetch) return;

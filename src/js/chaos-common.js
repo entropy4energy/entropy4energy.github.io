@@ -160,10 +160,10 @@
     setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 0);
   }
 
-  // The hosts the CHAOS data pages run on.
+  // The hosts the CHAOS data pages run on, the private beta's among them.
   function onCHAOSHost() {
     var host = location.hostname;
-    return host === "chaos.s4e.ai" || host === "localhost" || host === "127.0.0.1";
+    return host === "chaos.s4e.ai" || host === "chaos-beta.s4e.ai" || host === "localhost" || host === "127.0.0.1";
   }
 
   window.CHAOS = {
